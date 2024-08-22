@@ -1,58 +1,58 @@
 package publish
 
-import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.artifacts.repositories.MavenArtifactRepository
-import org.gradle.api.publish.PublishingExtension
 import java.net.URI
 
-@Suppress("unused")
-class CentralPortalPlusPlugin :
-    BaseCentralPortalPlusExtension(),
-    Plugin<Project> {
-    override var url: URI? = null
-    override var username: String? = null
-    override var password: String? = null
-    override var publishingType: PublishingType? = null
+/***
+ * The endpoint has two optional query parameters.
+ *
+ * The first, name, allows for providing a human-readable name for the deployment.
+ * The second, publishingType, can have one of the following values:
+ *
+ * AUTOMATIC: (default) a deployment will go through validation and, if it passes,
+ *   automatically proceed to publish to Maven Central
+ *
+ * USER_MANAGED: a deployment will go through validation and require the user to
+ *   manually publish it via the Portal UI
+ */
+enum class PublishingType {
+    /***
+     * AUTOMATIC: Server validation will automatically publish
+     */
+    AUTOMATIC,
 
-    override fun apply(target: Project) {
-        val portalConf =
-            target.extensions.create(
-                "centralPortalPlus",
-                BaseCentralPortalPlusExtension::class.java,
-            )
+    /**
+     * USER_MANAGED: Even if the server is validated,
+     * you still need to log in to the central portal to confirm the release
+     * [Maven Central: Publishing](https://central.sonatype.com/publishing/deployments)
+     */
+    USER_MANAGED,
+}
 
-        target.afterEvaluate {
-            if (portalConf.url == null) {
-                val publishConf =
-                    project.extensions.findByType(PublishingExtension::class.java)
-                if (publishConf is PublishingExtension) {
-                    val localMavenRepo =
-                        publishConf.repositories.find { it is MavenArtifactRepository }
-                    if (localMavenRepo is MavenArtifactRepository) {
-                        this@CentralPortalPlusPlugin.url = localMavenRepo.url
-                    }
-                }
-            } else {
-                this@CentralPortalPlusPlugin.url = portalConf.url
+data class CentralPortalPublishConfiguration(
+    var url: URI? = null,
+    var username: String? = null,
+    var password: String? = null,
+    var publishingType: PublishingType? = null
+)
+
+fun Project.centralPortalPublish(configure: CentralPortalPublishConfiguration.() -> Unit) {
+    val configuration = CentralPortalPublishConfiguration()
+        .also { it.configure() }
+
+    val defaultPublishTask = tasks.findByName("publish")
+    if (defaultPublishTask != null) {
+        val publishToCentralPortalTask = tasks
+            .register("publishToCentralPortal", BasePublishingTask::class.java) {
+                url = configuration.url
+                username = configuration.username
+                password = configuration.password
+                publishingType = configuration.publishingType
             }
-            this@CentralPortalPlusPlugin.username = portalConf.username
-            this@CentralPortalPlusPlugin.password = portalConf.password
-            this@CentralPortalPlusPlugin.publishingType = portalConf.publishingType
-            val tasks = project.tasks
-
-            val defaultPublishTask = tasks.findByName("publish")
-            if (defaultPublishTask != null) {
-                val publishToCentralPortalTask =
-                    tasks.register("publishToCentralPortal", BasePublishingTask::class.java)
-                publishToCentralPortalTask.configure {
-                    dependsOn(
-                        defaultPublishTask,
-                    )
-                }
-            } else {
-                target.logger.error("missing default publish task!")
-            }
+        publishToCentralPortalTask.configure {
+            dependsOn(defaultPublishTask)
         }
+    } else {
+        logger.error("missing default publish task!")
     }
 }

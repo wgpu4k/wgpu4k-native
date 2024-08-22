@@ -13,6 +13,7 @@ import java.nio.charset.Charset
 import java.nio.file.Paths
 
 abstract class BasePublishingTask : AbstractTask() {
+
     private val params by lazy {
         ZipParameters().apply {
             compressionLevel = CompressionLevel.ULTRA
@@ -26,7 +27,7 @@ abstract class BasePublishingTask : AbstractTask() {
      */
     @TaskAction
     fun launch() {
-        val url = plugin.url ?: throw NullPointerException("missing local maven repo, url=" + null)
+        val url = url ?: throw NullPointerException("missing local maven repo, url=" + null)
         val dir = Paths.get(url).toFile()
         if (!dir.isDirectory) {
             logger.error("local maven repo ({}) is not a folder.", dir)
@@ -37,9 +38,9 @@ abstract class BasePublishingTask : AbstractTask() {
             logger.error("local maven repo ({}) is empty.", dir)
             return
         }
-        var publishingType = plugin.publishingType
+        var publishingType = publishingType
         if (publishingType == null) {
-            publishingType = BaseCentralPortalPlusExtension.PublishingType.USER_MANAGED
+            publishingType = PublishingType.USER_MANAGED
         }
         createBundleForAllGroups(
             publishingType.name,
@@ -72,35 +73,6 @@ abstract class BasePublishingTask : AbstractTask() {
             }
         }
         return deploymentName
-    }
-
-    private fun saveLastDeploymentId(respText: String) {
-        val lastDeployment = lastDeploymentsId.toFile()
-        val projectDir = lastDeployment.parentFile
-        if (!projectDir.exists()) return
-        FileUtils.write(lastDeployment, respText, Charset.defaultCharset())
-        val ignore = File(projectDir, ".gitignore")
-        if (ignore.exists()) {
-            val allLines =
-                FileUtils
-                    .readLines(
-                        ignore,
-                        Charset.defaultCharset(),
-                    )
-            if (allLines
-                    .find { line -> line.contains(lastDeployment.name, ignoreCase = true) }
-                    .isNullOrEmpty()
-            ) {
-                allLines.add(lastDeployment.name)
-            }
-            FileUtils.writeLines(ignore, allLines)
-        } else {
-            FileUtils.write(
-                ignore,
-                lastDeployment.name,
-                Charset.defaultCharset(),
-            )
-        }
     }
 
     private fun publishComponent(
@@ -136,12 +108,9 @@ abstract class BasePublishingTask : AbstractTask() {
                 if (!it.isSuccessful) {
                     logger.error("{}: {}", it.code, respText)
                 } else {
-                    if (publishingType == BaseCentralPortalPlusExtension.PublishingType.USER_MANAGED.name) {
+                    if (publishingType == PublishingType.USER_MANAGED.name) {
                         logger.lifecycle("Upload successful!" + System.lineSeparator())
                         publishMsg()
-                    }
-                    if (respText.isNotEmpty()) {
-                        saveLastDeploymentId(respText)
                     }
                 }
             }

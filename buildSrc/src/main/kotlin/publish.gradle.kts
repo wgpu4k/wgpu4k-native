@@ -1,7 +1,7 @@
 import org.jreleaser.model.api.deploy.maven.MavenCentralMavenDeployer.Stage
 import org.jreleaser.model.Active
-import publish.BaseCentralPortalPlusExtension
-import publish.CentralPortalPlusPlugin
+import publish.centralPortalPublish
+import publish.PublishingType
 
 plugins {
     `maven-publish`
@@ -59,27 +59,24 @@ jreleaser {
     }
 }
 
-val signingKey="""
-...
-""".trimIndent()
-
-val  signingPassword="..."
+val signingKey = System.getenv("JRELEASER_GPG_SECRET_KEY")
+val signingPassword = System.getenv("JRELEASER_GPG_PASSPHRASE")
 
 signing {
     useInMemoryPgpKeys(signingKey, signingPassword)
     sign(publishing.publications)
 }
 
-CentralPortalPlusPlugin().apply {
-    username = "..."
-    password = "..."
-    publishingType = BaseCentralPortalPlusExtension.PublishingType.USER_MANAGED
+project.centralPortalPublish {
+    username = System.getenv("JRELEASER_MAVENCENTRAL_USERNAME")
+    password = System.getenv("JRELEASER_MAVENCENTRAL_PASSWORD")
+    publishingType = PublishingType.USER_MANAGED
     url = layout.buildDirectory.dir("staging-deploy").get().asFile.toURI()
-}.apply(project)
+}
 
 publishing {
     publications {
-        create<MavenPublication>("maven") {
+        withType<MavenPublication> {
             pom {
                 name.set(project.name)
                 description.set(libraryDescription)
@@ -128,4 +125,9 @@ publishing {
             }
         }
     }
+}
+
+val signingTasks = tasks.withType<Sign>()
+tasks.withType<AbstractPublishToMaven>().configureEach {
+    dependsOn(signingTasks)
 }

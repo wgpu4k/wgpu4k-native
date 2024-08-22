@@ -9,11 +9,6 @@ val buildNativeResourcesDirectory = project.file("build").resolve("native")
 
 kotlin {
 
-    val androidNativeTargets = listOf(
-        androidNativeArm64(),
-        androidNativeX64()
-    )
-
     val nativeTargets = listOf(
         iosX64(),
         iosArm64(),
@@ -23,21 +18,15 @@ kotlin {
         linuxArm64(),
         linuxX64(),
         configureMingwX64(),
-    ).filterNotNull() + androidNativeTargets
+        androidNativeArm64(),
+        androidNativeX64()
+    ).filterNotNull()
 
 
     nativeTargets.forEach { target ->
         val main by target.compilations.getting {
             cinterops.create("webgpu") {
                 header(buildNativeResourcesDirectory.resolve("wgpu.h"))
-            }
-        }
-    }
-
-    androidNativeTargets.forEach { target ->
-        target.binaries {
-            sharedLib {
-                baseName = "wgpu4kv2"
             }
         }
     }

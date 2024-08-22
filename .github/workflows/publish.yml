@@ -19,7 +19,7 @@ jobs:
         run: |
           gradle wrapper
           ./gradlew fetch-native-dependencies
-          ./gradlew jreleaserConfig assemble publish jreleaserFullRelease --info
+          ./gradlew assemble publish publishToCentralPortal --info
         env:
           SNAPSHOT: "false"
           VERSION: ${{ github.event.release.tag_name }}
