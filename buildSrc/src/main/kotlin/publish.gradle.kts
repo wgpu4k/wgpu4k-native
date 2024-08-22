@@ -1,10 +1,14 @@
 import org.jreleaser.model.api.deploy.maven.MavenCentralMavenDeployer.Stage
 import org.jreleaser.model.Active
+import publish.BaseCentralPortalPlusExtension
+import publish.CentralPortalPlusPlugin
 
 plugins {
     `maven-publish`
     id("org.jreleaser")
+    signing
 }
+
 
 val libraryDescription = "wgpu4k kotlin native binding."
 
@@ -26,6 +30,12 @@ jreleaser {
     deploy {
         active = Active.ALWAYS
         maven {
+
+            pomchecker {
+                failOnError = false
+                failOnWarning = false
+            }
+
             active = Active.ALWAYS
             mavenCentral {
                 active = Active.ALWAYS
@@ -49,6 +59,23 @@ jreleaser {
     }
 }
 
+val signingKey="""
+...
+""".trimIndent()
+
+val  signingPassword="..."
+
+signing {
+    useInMemoryPgpKeys(signingKey, signingPassword)
+    sign(publishing.publications)
+}
+
+CentralPortalPlusPlugin().apply {
+    username = "..."
+    password = "..."
+    publishingType = BaseCentralPortalPlusExtension.PublishingType.USER_MANAGED
+    url = layout.buildDirectory.dir("staging-deploy").get().asFile.toURI()
+}.apply(project)
 
 publishing {
     publications {
