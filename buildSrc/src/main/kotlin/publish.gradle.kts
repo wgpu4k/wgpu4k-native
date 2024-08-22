@@ -53,9 +53,6 @@ jreleaser {
 publishing {
     publications {
         create<MavenPublication>("maven") {
-
-            from(components["java"])
-
             pom {
                 name.set(project.name)
                 description.set(libraryDescription)
