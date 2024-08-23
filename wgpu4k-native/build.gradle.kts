@@ -17,11 +17,10 @@ kotlin {
         macosX64(),
         linuxArm64(),
         linuxX64(),
-        configureMingwX64(),
+        mingwX64(),
         androidNativeArm64(),
         androidNativeX64()
-    ).filterNotNull()
-
+    )
 
     nativeTargets.forEach { target ->
         val main by target.compilations.getting {
