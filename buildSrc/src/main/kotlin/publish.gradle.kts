@@ -62,9 +62,11 @@ jreleaser {
 val signingKey = System.getenv("JRELEASER_GPG_SECRET_KEY")
 val signingPassword = System.getenv("JRELEASER_GPG_PASSPHRASE")
 
-signing {
-    useInMemoryPgpKeys(signingKey, signingPassword)
-    sign(publishing.publications)
+if (!isSnapshot()) {
+    signing {
+        useInMemoryPgpKeys(signingKey, signingPassword)
+        sign(publishing.publications)
+    }
 }
 
 project.centralPortalPublish {
@@ -127,7 +129,9 @@ publishing {
     }
 }
 
-val signingTasks = tasks.withType<Sign>()
-tasks.withType<AbstractPublishToMaven>().configureEach {
-    dependsOn(signingTasks)
+if (!isSnapshot()) {
+    val signingTasks = tasks.withType<Sign>()
+    tasks.withType<AbstractPublishToMaven>().configureEach {
+        dependsOn(signingTasks)
+    }
 }
