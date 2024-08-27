@@ -27,8 +27,8 @@ jobs:
           VERSION: ${{ github.event.inputs.version }}
           SONATYPE_LOGIN: ${{ secrets.SONATYPE_LOGIN }}
           SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
-          PGP_PUBLIC: ${{ secrets.PGP_PUBLIC }}
-          PGP_PRIVATE: ${{ secrets.PGP_PRIVATE }}
-          PGP_PASSPHRASE: ${{ secrets.PGP_PASSPHRASE }}
+          JRELEASER_GPG_PUBLIC_KEY: ${{ secrets.PGP_PUBLIC }}
+          JRELEASER_GPG_SECRET_KEY: ${{ secrets.PGP_PRIVATE }}
+          JRELEASER_GPG_PASSPHRASE: ${{ secrets.PGP_PASSPHRASE }}
           GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
 
