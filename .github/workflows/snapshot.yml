@@ -16,7 +16,6 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: 22
-          cache: 'gradle'
       - name: Build and publish with Gradle
         run:  |
           gradle wrapper
