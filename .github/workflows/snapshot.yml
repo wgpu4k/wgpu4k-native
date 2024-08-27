@@ -21,7 +21,7 @@ jobs:
         run:  |
           gradle wrapper
           ./gradlew fetch-native-dependencies
-          ./gradlew publish --info
+          ./gradlew assemble publish --info
         env:
           SNAPSHOT: "true"
           VERSION: ${{ github.event.inputs.version }}
