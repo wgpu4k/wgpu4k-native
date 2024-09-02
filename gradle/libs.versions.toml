@@ -1,5 +1,5 @@
 [versions]
-kotlin = "2.0.0"
+kotlin = "2.0.20"
 wgpu = "v22.1.0.2"
 download = "5.6.0"
 jreleaser = "1.13.1"
