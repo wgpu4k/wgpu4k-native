@@ -2,7 +2,7 @@ package io.ygdrasil.wgpu.nativeWgpu4k
 
 import com.sun.jna.Native
 
-internal object NativeWgpu4k {
+object NativeWgpu4k {
 
     init {
         Native.register(NativeWgpu4k::class.java, "wgpu4k")
