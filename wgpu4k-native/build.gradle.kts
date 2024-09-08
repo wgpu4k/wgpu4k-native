@@ -1,13 +1,20 @@
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     id(libs.plugins.kotlin.multiplatform.get().pluginId)
     id("publish")
+    id("com.android.library")
 }
 
 val buildNativeResourcesDirectory = project.file("build").resolve("native")
 
 kotlin {
+
+    val androidNativeTargets = listOf(
+        androidNativeArm64(),
+        androidNativeX64()
+    )
 
     val nativeTargets = listOf(
         iosX64(),
@@ -17,10 +24,15 @@ kotlin {
         macosX64(),
         linuxArm64(),
         linuxX64(),
-        mingwX64(),
-        androidNativeArm64(),
-        androidNativeX64()
-    )
+        mingwX64()
+    ) + androidNativeTargets
+
+    androidTarget {
+        @OptIn(ExperimentalKotlinGradlePluginApi::class)
+        compilerOptions {
+            jvmTarget = JvmTarget.JVM_17
+        }
+    }
 
     nativeTargets.forEach { target ->
         val main by target.compilations.getting {
@@ -30,10 +42,47 @@ kotlin {
         }
     }
 
+    androidNativeTargets.forEach { target ->
+        target.binaries {
+            sharedLib {
+                baseName = "wgpu4k"
+            }
+        }
+    }
+
     @OptIn(ExperimentalKotlinGradlePluginApi::class)
     compilerOptions {
         allWarningsAsErrors = true
     }
+
+    sourceSets {
+        androidMain {
+            dependencies {
+                val jna = libs.jna.get()
+                implementation("${jna.module.group}:${jna.module.name}:${jna.versionConstraint}:@aar")
+            }
+        }
+    }
+}
+
+android {
+    namespace = "io.ygdrasil.nativeWgpu4k"
+    compileSdk = 35
+
+    defaultConfig {
+        minSdk = 28
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+    }
+
+    sourceSets {
+        getByName("main") {
+            jniLibs.srcDirs(jniBasePath().absolutePath)
+        }
+    }
+
 }
 
 configureDownloadTasks {
@@ -81,3 +130,42 @@ configureDownloadTasks {
         extract("libwgpu_native.a", buildNativeResourcesDirectory.resolve("ios-aarch64").resolve("libWGPU.a"))
     }
 }
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+tasks.create("copyJniLibraries") {
+    dependsOn("androidNativeArm64Binaries")
+    dependsOn("androidNativeX64Binaries")
+    doFirst {
+        copyJniLibraries()
+    }
+}
+
+tasks.findByName("assemble")?.dependsOn("copyJniLibraries")
+
+fun copyJniLibraries() {
+    val libraryFullName = "libwgpu4k.so"
+    filesToCopy().forEach { (source, target) ->
+        target.mkdirs()
+        target.resolve(libraryFullName)
+            .also { fileTarget ->
+                source.resolve(libraryFullName).copyTo(fileTarget, overwrite = true)
+            }
+    }
+}
+
+fun nativeBasePath() = project.projectDir.resolve("build").resolve("bin")
+fun jniBasePath() = nativeBasePath().resolve("libs")
+
+fun filesToCopy() = listOf(
+    nativeBasePath().resolve("androidNativeArm64").resolve("releaseShared")
+            to jniBasePath().resolve("arm64-v8a"),
+    nativeBasePath().resolve("androidNativeX64").resolve("releaseShared")
+            to jniBasePath().resolve("x86_64")
+)
+
+
