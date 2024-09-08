@@ -5,7 +5,7 @@ import com.sun.jna.Native
 internal object JnaInterface {
 
     init {
-        Native.register(JnaInterface::class.java, "wgpu4kv2")
+        Native.register(JnaInterface::class.java, "wgpu4k")
     }
 
     /*** Instance ***/
