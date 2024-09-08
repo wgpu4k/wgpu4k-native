@@ -2,10 +2,10 @@ package io.ygdrasil.wgpu.nativeWgpu4k
 
 import com.sun.jna.Native
 
-internal object JnaInterface {
+internal object NativeWgpu4k {
 
     init {
-        Native.register(JnaInterface::class.java, "wgpu4k")
+        Native.register(NativeWgpu4k::class.java, "wgpu4k")
     }
 
     /*** Instance ***/
