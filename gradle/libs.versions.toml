@@ -10,7 +10,7 @@ jna = "5.14.0"
 download = { module = "de.undercouch.download:de.undercouch.download.gradle.plugin", version.ref = "download" }
 kotlin-multiplatform = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 jreleaser-plugin = { module = "org.jreleaser:org.jreleaser.gradle.plugin", version.ref = "jreleaser" }
-commons-io = { module = "commons-io:commons-io", version = "2.16.1" }
+commons-io = { module = "commons-io:commons-io", version = "2.17.0" }
 gson = { module = "com.google.code.gson:gson", version = "2.11.0" }
 okhttp = { module = "com.squareup.okhttp3:okhttp", version = "4.12.0" }
 zip4j = { module = "net.lingala.zip4j:zip4j", version = "2.11.5" }
