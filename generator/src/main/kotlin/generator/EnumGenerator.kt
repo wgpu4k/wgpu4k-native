@@ -1,12 +1,11 @@
 package generator
 
 import builder.templateBuilder
-import commonMainBasePath
 import disclamer
 import domain.NativeModel
 import java.io.File
 
-val enumerationCommonMainFile = commonMainBasePath
+val enumerationCommonMainFile = Paths.commonMainBasePath
     .resolve("webgpu")
     .resolve("Enumerations.kt")
 

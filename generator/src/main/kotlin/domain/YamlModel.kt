@@ -17,10 +17,13 @@ data class YamlModel(
     val typedefs: List<String>,
     val bitflags: List<Bitflag>,
     val structs: List<Struct>,
-    val callbacks: List<Callback>,
     val functions: List<Function>,
     val objects: List<Object>,
     val enums: List<Enum>,
+    // Used on v22
+    val function_types: List<FunctionType> = listOf(),
+    // Used on v23
+    val callbacks: List<Callback> = listOf(),
 ) {
     fun merge(loadExtraYaml: YamlModel): YamlModel {
         return YamlModel(
@@ -50,6 +53,7 @@ data class YamlModel(
         val name: String,
         val doc: String,
         val args: List<Arg> = listOf(),
+        val returns_async: List<Arg>? = null,
         val returns: Return? = null,
         val callback: String? = null,
     ) {
@@ -75,6 +79,24 @@ data class YamlModel(
     }
 
     @Serializable
+    data class FunctionType(
+        val name: String,
+        val doc: String,
+        var args: List<Arg>
+    ) {
+        @Serializable
+        data class Arg(
+            val name: String,
+            val doc: String,
+            val type: String,
+            val pointer: String? = null,
+        )
+    }
+
+    /**
+     * Model v23
+     */
+    @Serializable
     data class Callback(
         val name: String,
         val doc: String,
@@ -95,7 +117,7 @@ data class YamlModel(
         val name: String,
         val doc: String,
         val type: String,
-        val members: List<Member>,
+        val members: List<Member> = listOf(),
         val free_members: Boolean = false,
         val extends: List<String> = listOf()
     ) {

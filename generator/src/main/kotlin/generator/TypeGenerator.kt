@@ -1,11 +1,10 @@
 package generator
 
-import commonMainBasePath
 import disclamer
 import domain.NativeModel
 import java.io.File
 
-val typesCommonMainFile = commonMainBasePath
+val typesCommonMainFile = Paths.commonMainBasePath
     .resolve("webgpu")
     .resolve("Types.kt")
 

@@ -3,10 +3,9 @@ package generator
 import disclamer
 import domain.NativeModel
 import generator.function.toJvmFunctionsInterface
-import jvmMainBasePath
 import java.io.File
 
-val jvmNativeFunctionsMainFile = jvmMainBasePath
+val jvmNativeFunctionsMainFile = Paths.jvmMainBasePath
     .resolve("webgpu")
     .resolve("jvm")
     .resolve("Functions.kt")

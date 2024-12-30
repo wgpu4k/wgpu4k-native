@@ -32,22 +32,6 @@ import generator.structuresNativeMainFile
 import generator.typesCommonMainFile
 import java.io.File
 
-val basePath = File(".")
-val sourceBasePath = basePath
-    .resolve("wgpu4k-native")
-    .resolve("src")
-val commonMainBasePath = sourceBasePath
-    .resolve("commonMain")
-    .resolve("kotlin")
-val androidMainBasePath = sourceBasePath
-    .resolve("androidMain")
-    .resolve("kotlin")
-val jvmMainBasePath = sourceBasePath
-    .resolve("jvmMain")
-    .resolve("kotlin")
-val nativeMainBasePath = sourceBasePath
-    .resolve("nativeMain")
-    .resolve("kotlin")
 
 fun main() {
 
@@ -58,15 +42,15 @@ fun main() {
     typesCommonMainFile.generateTypesCommonMain(webgpuCModel.pointers)
 
 
-    commonMainBasePath.apply {
+    Paths.commonMainBasePath.apply {
         generateCommonCallback(webgpuCModel.callbacks)
     }
 
-    jvmMainBasePath.apply {
+    Paths.jvmMainBasePath.apply {
         generateJvmCallback(webgpuCModel.callbacks)
     }
 
-    nativeMainBasePath.apply {
+    Paths. nativeMainBasePath.apply {
         generateNativeFunctions(webgpuCModel.functions)
         generateNativeCallback(webgpuCModel.callbacks)
     }
@@ -85,7 +69,7 @@ fun main() {
 
     enumerationCommonMainFile.generateCommonEnumerations(webgpuCModel.enumerations)
 
-    androidMainBasePath.apply {
+    Paths.androidMainBasePath.apply {
         generateAndroidCallback(webgpuCModel.callbacks)
         generateAndroidStructures(webgpuCModel.structures)
         generateAndroidNativeFunctions(webgpuCModel.functions)
@@ -93,23 +77,17 @@ fun main() {
     }
 }
 
-fun loadExtraYaml() = basePath.resolve("wgpu4k-native-specs")
-    .resolve("src")
-    .resolve("jvmMain")
-    .resolve("resources")
+fun loadExtraYaml() = Paths.specs
     .resolve("extra.yml")
     .readText()
     .let { text -> parser.decodeFromString(YamlModel.serializer(), text) }
 
-fun loadWebGPUYaml() = basePath.resolve("wgpu4k-native-specs")
-    .resolve("src")
-    .resolve("jvmMain")
-    .resolve("resources")
+fun loadWebGPUYaml() = Paths.specs
     .resolve("webgpu.yml")
     .readText()
     .let { text -> parser.decodeFromString(YamlModel.serializer(), text)}
 
 val parser = Yaml(
-    configuration = Yaml.default.configuration.copy(strictMode = false)
+    configuration = Yaml.default.configuration.copy(strictMode = true)
 )
 

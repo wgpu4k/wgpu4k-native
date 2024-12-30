@@ -1,25 +1,22 @@
 package generator
 
-import commonMainBasePath
 import converter.variableType
 import disclamer
 import domain.NativeModel
 import domain.toFunctionKotlinType
 import generator.structure.toJvmStructure
 import generator.structure.toNativeStructure
-import jvmMainBasePath
-import nativeMainBasePath
 import java.io.File
 
-val structuresCommonMainFile = commonMainBasePath
+val structuresCommonMainFile = Paths.commonMainBasePath
     .resolve("webgpu")
     .resolve("Structures.kt")
 
-val structuresJvmMainFile = jvmMainBasePath
+val structuresJvmMainFile = Paths.jvmMainBasePath
     .resolve("webgpu")
     .resolve("Structures.jvm.kt")
 
-val structuresNativeMainFile = nativeMainBasePath
+val structuresNativeMainFile = Paths.nativeMainBasePath
     .resolve("webgpu")
     .resolve("Structures.native.kt")
 

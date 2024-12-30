@@ -1,19 +1,17 @@
 package generator
 
-import commonMainBasePath
 import disclamer
 import domain.NativeModel
 import domain.toFunctionKotlinType
 import generator.function.toNativeFunctionsInterface
 import generator.function.toJvmFunctions
-import jvmMainBasePath
 import java.io.File
 
-val functionsCommonMainFile = commonMainBasePath
+val functionsCommonMainFile = Paths.commonMainBasePath
     .resolve("webgpu")
     .resolve("Functions.kt")
 
-val functionsJvmMainFile = jvmMainBasePath
+val functionsJvmMainFile = Paths.jvmMainBasePath
     .resolve("webgpu")
     .resolve("Functions.jvm.kt")
 
