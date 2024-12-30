@@ -25,7 +25,7 @@ internal fun YamlModel.toNativeModel(version: Version): NativeModel {
 }
 
 
-private fun YamlModel.generateCLibraryStructures() = structs.map {
+internal fun YamlModel.generateCLibraryStructures() = structs.map {
     val members = when {
         it.type == "base_in" -> listOf(
             YamlModel.Struct.Member(

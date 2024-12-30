@@ -37,7 +37,8 @@ data class YamlModel(
             structs = (this.structs + loadExtraYaml.structs).distinctBy { it.name },
             callbacks = (this.callbacks + loadExtraYaml.callbacks).distinctBy { it.name },
             functions = (this.functions + loadExtraYaml.functions).distinctBy { it.name },
-            objects = (this.objects + loadExtraYaml.objects).distinctBy { it.name }
+            objects = (this.objects + loadExtraYaml.objects).distinctBy { it.name },
+            function_types = (this.function_types + loadExtraYaml.function_types).distinctBy { it.name },
         )
     }
 

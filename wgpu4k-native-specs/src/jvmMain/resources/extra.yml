@@ -211,7 +211,7 @@ functions:
       - name: callback
         doc: |
           TODO
-        type: function_types.log_callback
+        type: function_type.log_callback
       - name: userdata
         doc: |
           TODO
