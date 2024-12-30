@@ -8,18 +8,6 @@ import generator.structure.toJvmStructure
 import generator.structure.toNativeStructure
 import java.io.File
 
-val structuresCommonMainFile = Paths.commonMainBasePath
-    .resolve("webgpu")
-    .resolve("Structures.kt")
-
-val structuresJvmMainFile = Paths.jvmMainBasePath
-    .resolve("webgpu")
-    .resolve("Structures.jvm.kt")
-
-val structuresNativeMainFile = Paths.nativeMainBasePath
-    .resolve("webgpu")
-    .resolve("Structures.native.kt")
-
 private val header = """
     $disclamer
     package io.ygdrasil.wgpu
@@ -82,7 +70,8 @@ private val headerNative = """
     
 """.trimIndent()
 
-internal fun File.generateCommonStructures(structures: List<NativeModel.Structure>) {
+internal fun File.generateCommonStructures(structures: List<NativeModel.Structure>)
+    = resolve("Structures.kt").apply {
     writeText(header)
     structures.forEach {
         val structureName = it.name
@@ -103,13 +92,15 @@ internal fun File.generateCommonStructures(structures: List<NativeModel.Structur
     }
 }
 
-internal fun File.generateNativeStructures(structures: List<NativeModel.Structure>) {
+internal fun File.generateNativeStructures(structures: List<NativeModel.Structure>)
+ = resolve("Structures.native.kt").apply {
     writeText(headerNative)
     structures.map { it.toNativeStructure() }
         .forEach { appendText(it) }
 }
 
-internal fun File.generateJvmStructures(structures: List<NativeModel.Structure>) {
+internal fun File.generateJvmStructures(structures: List<NativeModel.Structure>)
+= resolve("Structures.jvm.kt").apply {
     writeText(headerJvm)
     structures.map { it.toJvmStructure() }
         .forEach { appendText(it) }

@@ -41,7 +41,7 @@ enums:
         doc: |
           TODO
         value: 0x00000002
-  - name: LogLevel
+  - name: log_level
     doc: |
       TODO
     entries:
@@ -203,5 +203,44 @@ structs:
           TODO
         type: string
 callbacks: []
-functions: []
+functions:
+  - name: set_log_callback
+    doc: |
+      TODO
+    args:
+      - name: callback
+        doc: |
+          TODO
+        type: function_types.log_callback
+      - name: userdata
+        doc: |
+          TODO
+        type: c_void
+        pointer: mutable
+  - name: set_log_level
+    doc: |
+      TODO
+    args:
+      - name: level
+        doc: |
+          TODO
+        type: enum.log_level
 objects: []
+function_types:
+  - name: log_callback
+    doc: |
+      TODO
+    args:
+      - name: level
+        doc: |
+          TODO
+        type: enum.log_level
+      - name: message
+        doc: |
+          TODO
+        type: string
+      - name: userdata
+        doc: |
+          TODO
+        type: c_void
+        pointer: mutable

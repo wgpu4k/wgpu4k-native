@@ -47,34 +47,30 @@ private val nativeHeader = """
     
 """.trimIndent()
 
-internal fun File.generateCommonCallback(callbacks: List<NativeModel.Callback>) = resolve("webgpu")
-    .resolve("Callbacks.kt").apply {
+internal fun File.generateCommonCallback(callbacks: List<NativeModel.Callback>) = resolve("Callbacks.kt").apply {
 
     writeText(header)
     callbacks.map(NativeModel.Callback::toCommonCallback)
         .forEach(::appendText)
 }
 
-internal fun File.generateJvmCallback(callbacks: List<NativeModel.Callback>) = resolve("webgpu")
-    .resolve("Callbacks.jvm.kt").apply {
+internal fun File.generateJvmCallback(callbacks: List<NativeModel.Callback>) = resolve("Callbacks.jvm.kt").apply {
 
-        writeText(header)
-        callbacks.map(NativeModel.Callback::toJvmCallback)
-            .forEach(::appendText)
-    }
+    writeText(header)
+    callbacks.map(NativeModel.Callback::toJvmCallback)
+        .forEach(::appendText)
+}
 
-internal fun File.generateAndroidCallback(callbacks: List<NativeModel.Callback>) = resolve("webgpu")
-    .resolve("Callbacks.android.kt").apply {
+internal fun File.generateAndroidCallback(callbacks: List<NativeModel.Callback>) =
+    resolve("Callbacks.android.kt").apply {
 
         writeText(header)
         callbacks.map(NativeModel.Callback::toJnaCallback)
             .forEach(::appendText)
     }
 
-internal fun File.generateNativeCallback(callbacks: List<NativeModel.Callback>) = resolve("webgpu")
-    .resolve("Callbacks.native.kt").apply {
-
-        writeText(nativeHeader)
-        callbacks.map(NativeModel.Callback::toNativeCallback)
-            .forEach(::appendText)
-    }
+internal fun File.generateNativeCallback(callbacks: List<NativeModel.Callback>) = resolve("Callbacks.native.kt").apply {
+    writeText(nativeHeader)
+    callbacks.map(NativeModel.Callback::toNativeCallback)
+        .forEach(::appendText)
+}

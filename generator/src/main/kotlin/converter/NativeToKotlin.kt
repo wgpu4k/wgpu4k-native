@@ -7,10 +7,6 @@ fun NativeModel.Type.variableType(): String = when(this) {
     else -> "var"
 }
 
-fun NativeModel.Type.isFinal(): Boolean
-        = this is NativeModel.Reference.StructureField
-
-
 internal fun NativeModel.Primitive.toPrimitiveKotlinType(): String = when (this) {
     is NativeModel.Primitive.Int32 -> "Int"
     is NativeModel.Primitive.Int64 -> "Long"
@@ -31,30 +27,4 @@ internal fun NativeModel.Primitive.toPrimitiveDefaultValue(): String = when (thi
     NativeModel.Primitive.Float32 -> "0f"
     NativeModel.Primitive.UInt32 -> "0u"
     NativeModel.Primitive.UInt16 -> "0u"
-}
-
-
-internal fun NativeModel.Type.getOffsetSize() = when(this) {
-    NativeModel.Reference.OpaquePointer,
-    is NativeModel.Reference.Pointer,
-    NativeModel.Reference.CString,
-    is NativeModel.Array,
-    is NativeModel.Reference.Callback,
-    NativeModel.Void,
-    is NativeModel.Reference.Structure -> Long.SIZE_BYTES
-
-    NativeModel.Primitive.UInt16 -> Short.SIZE_BYTES
-
-    NativeModel.Primitive.Bool,
-    NativeModel.Primitive.UInt32,
-    NativeModel.Primitive.Int32 -> Int.SIZE_BYTES
-
-    NativeModel.Primitive.UInt64,
-    NativeModel.Primitive.Int64 -> Long.SIZE_BYTES
-
-    NativeModel.Primitive.Float32 -> Float.SIZE_BYTES
-    NativeModel.Primitive.Float64 -> Double.SIZE_BYTES
-
-    is NativeModel.Reference.Enumeration -> Int.SIZE_BYTES
-    is NativeModel.Reference.StructureField -> null
 }

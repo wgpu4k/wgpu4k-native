@@ -5,10 +5,6 @@ import disclamer
 import domain.NativeModel
 import java.io.File
 
-val enumerationCommonMainFile = Paths.commonMainBasePath
-    .resolve("webgpu")
-    .resolve("Enumerations.kt")
-
 private val header = """
     $disclamer
     package io.ygdrasil.wgpu
@@ -16,7 +12,8 @@ private val header = """
     
 """.trimIndent()
 
-internal fun File.generateCommonEnumerations(enumerations: List<NativeModel.Enumeration>) {
+internal fun File.generateCommonEnumerations(enumerations: List<NativeModel.Enumeration>)
+= resolve("Enumerations.kt").apply {
 
     writeText(header)
 

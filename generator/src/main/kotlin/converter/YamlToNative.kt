@@ -8,65 +8,22 @@ import convertToKotlinFunctionName
 import convertToKotlinVariableName
 import domain.NativeModel
 import domain.NativeModel.Type
+import domain.Version
 import domain.YamlModel
 import domain.toCType
+import converter.to.native.convertCallbacks
 
-internal fun YamlModel.toCModel(): NativeModel {
+internal fun YamlModel.toNativeModel(version: Version): NativeModel {
     val pointers = convertToPointer()
     val functions = convertToCLibraryFunctions()
-        .injectWgpuFunctions()
     val enumerations = convertToCLibraryEnumerations()
     val structures = generateCLibraryStructures()
         .calculateSizeAndPadding()
-    val callbacks = callbacks.map {
-        NativeModel.Callback(
-            it.name.convertToKotlinCallbackName(),
-            it.args.map {
-                it.name.convertToKotlinVariableName() to it.type.toCType(
-                    it.pointer != null,
-                    it.pointer == "mutable"
-                )
-            } +
-                    listOf(
-                        "userdata1" to NativeModel.Reference.OpaquePointer,
-                        "userdata2" to NativeModel.Reference.OpaquePointer
-                    )
-        )
-    }.injectWgpuCallbacks()
+    val callbacks = convertCallbacks()
 
     return NativeModel(pointers, functions, enumerations, structures, callbacks)
 }
 
-private fun List<NativeModel.Callback>.injectWgpuCallbacks(): List<NativeModel.Callback> {
-    return this + listOf(
-        NativeModel.Callback(
-            "WGPULogCallback",
-            listOf(
-                "level" to NativeModel.Reference.Enumeration("WGPULogLevel"),
-                "message" to NativeModel.Reference.StructureField("WGPUStringView"),
-                "userdata" to NativeModel.Reference.OpaquePointer
-            )
-        )
-    )
-}
-
-private fun List<NativeModel.Function>.injectWgpuFunctions(): List<NativeModel.Function> {
-    return this + listOf(
-        NativeModel.Function(
-            "wgpuSetLogLevel",
-            NativeModel.Void,
-            listOf("level" to NativeModel.Reference.Enumeration("WGPULogLevel"))
-        ),
-        NativeModel.Function(
-            "wgpuSetLogCallback",
-            NativeModel.Void,
-            listOf(
-                "callback" to NativeModel.Reference.Callback("WGPULogCallback"),
-                "userdata" to NativeModel.Reference.OpaquePointer
-            )
-        )
-    )
-}
 
 private fun YamlModel.generateCLibraryStructures() = structs.map {
     val members = when {

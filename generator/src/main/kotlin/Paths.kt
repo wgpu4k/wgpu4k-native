@@ -1,10 +1,12 @@
 import java.io.File
 
-object Paths {
+class Paths(
+    library: File,
+    specifications: File
+) {
 
-    val base = File(".")
-    val sourceBasePath = base
-        .resolve("wgpu4k-native")
+
+    val sourceBasePath = library
         .resolve("src")
     val commonMainBasePath = sourceBasePath
         .resolve("commonMain")
@@ -19,7 +21,7 @@ object Paths {
         .resolve("nativeMain")
         .resolve("kotlin")
 
-    val specs = base.resolve("wgpu4k-native-specs")
+    val specs = specifications
         .resolve("src")
         .resolve("jvmMain")
         .resolve("resources")

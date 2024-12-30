@@ -4,10 +4,6 @@ import disclamer
 import domain.NativeModel
 import java.io.File
 
-val typesCommonMainFile = Paths.commonMainBasePath
-    .resolve("webgpu")
-    .resolve("Types.kt")
-
 private val header = """
     $disclamer
     package io.ygdrasil.wgpu
@@ -17,7 +13,7 @@ private val header = """
     
 """.trimIndent()
 
-fun File.generateTypesCommonMain(classes: List<NativeModel.Pointer>) {
+fun File.generateCommonTypes(classes: List<NativeModel.Pointer>) = resolve("Types.kt").apply {
     writeText(header)
     classes.forEach {
         appendText("@JvmInline\n")

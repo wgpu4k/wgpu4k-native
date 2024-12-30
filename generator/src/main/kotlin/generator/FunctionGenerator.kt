@@ -7,14 +7,6 @@ import generator.function.toNativeFunctionsInterface
 import generator.function.toJvmFunctions
 import java.io.File
 
-val functionsCommonMainFile = Paths.commonMainBasePath
-    .resolve("webgpu")
-    .resolve("Functions.kt")
-
-val functionsJvmMainFile = Paths.jvmMainBasePath
-    .resolve("webgpu")
-    .resolve("Functions.jvm.kt")
-
 private val header = """
     $disclamer
     package io.ygdrasil.wgpu
@@ -58,7 +50,7 @@ private val nativeHeader = """
     
 """.trimIndent()
 
-internal fun File.generateCommonFunctions(functions: List<NativeModel.Function>) {
+internal fun File.generateCommonFunctions(functions: List<NativeModel.Function>) = resolve("Functions.kt").apply {
 
     writeText(header)
 
@@ -84,6 +76,7 @@ private fun NativeModel.Type.optionalReturnType(): String = when (this) {
     NativeModel.Reference.CString,
     is NativeModel.Reference.Callback,
     is NativeModel.Array -> "?"
+
     else -> ""
 }
 
@@ -95,19 +88,21 @@ private fun NativeModel.Type.optional(): String = when (this) {
     NativeModel.Reference.CString,
     is NativeModel.Reference.Callback,
     is NativeModel.Array -> "?"
+
     else -> ""
 }
 
 
-internal fun File.generateNativeFunctions(functions: List<NativeModel.Function>) = resolve("webgpu")
-    .resolve("Functions.native.kt").apply {
-    writeText(nativeHeader)
-    functions.toNativeFunctionsInterface()
-        .let(::appendText)
-}
+internal fun File.generateNativeFunctions(functions: List<NativeModel.Function>) =
+    resolve("Functions.native.kt").apply {
+        writeText(nativeHeader)
+        functions.toNativeFunctionsInterface()
+            .let(::appendText)
+    }
 
 
-internal fun File.generateJvmFunctions(functions: List<NativeModel.Function>) {
+internal fun File.generateJvmFunctions(functions: List<NativeModel.Function>)
+= resolve("Functions.jvm.kt").apply {
     writeText(jvmHeader)
     functions.toJvmFunctions()
         .let(::appendText)

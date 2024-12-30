@@ -5,12 +5,6 @@ import domain.NativeModel
 import generator.function.toJvmFunctionsInterface
 import java.io.File
 
-val jvmNativeFunctionsMainFile = Paths.jvmMainBasePath
-    .resolve("webgpu")
-    .resolve("jvm")
-    .resolve("Functions.kt")
-
-
 private val header = """
     $disclamer
     package io.ygdrasil.wgpu
@@ -28,7 +22,8 @@ private val header = """
     
 """.trimIndent()
 
-internal fun File.generateJvmNativeFunctions(functions: List<NativeModel.Function>) {
+internal fun File.generateJvmNativeFunctions(functions: List<NativeModel.Function>)
+ = resolve("Functions.kt").apply {
     writeText(header)
     functions.toJvmFunctionsInterface()
         .let(::appendText)

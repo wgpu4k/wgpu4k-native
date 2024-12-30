@@ -7,6 +7,7 @@ plugins {
     id("publish")
     id("com.android.library")
     alias(libs.plugins.kotest)
+    id("generator")
 }
 
 val buildNativeResourcesDirectory = project.file("build").resolve("native")
