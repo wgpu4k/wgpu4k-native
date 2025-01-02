@@ -35,13 +35,13 @@ internal interface FunctionsInterface: com.sun.jna.Library {
 	fun wgpuBindGroupRelease(handler: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuBindGroupSetLabel")
-	fun wgpuBindGroupSetLabel(handler: com.sun.jna.Pointer?, label: WGPUStringView.ByValue): Unit
+	fun wgpuBindGroupSetLabel(handler: com.sun.jna.Pointer?, label: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuBindGroupLayoutRelease")
 	fun wgpuBindGroupLayoutRelease(handler: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuBindGroupLayoutSetLabel")
-	fun wgpuBindGroupLayoutSetLabel(handler: com.sun.jna.Pointer?, label: WGPUStringView.ByValue): Unit
+	fun wgpuBindGroupLayoutSetLabel(handler: com.sun.jna.Pointer?, label: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuBufferRelease")
 	fun wgpuBufferRelease(handler: com.sun.jna.Pointer?): Unit
@@ -56,7 +56,7 @@ internal interface FunctionsInterface: com.sun.jna.Library {
 	fun wgpuBufferGetConstMappedRange(handler: com.sun.jna.Pointer?, offset: ULong, size: ULong): com.sun.jna.Pointer?
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuBufferSetLabel")
-	fun wgpuBufferSetLabel(handler: com.sun.jna.Pointer?, label: WGPUStringView.ByValue): Unit
+	fun wgpuBufferSetLabel(handler: com.sun.jna.Pointer?, label: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuBufferGetUsage")
 	fun wgpuBufferGetUsage(handler: com.sun.jna.Pointer?): ULong
@@ -77,7 +77,7 @@ internal interface FunctionsInterface: com.sun.jna.Library {
 	fun wgpuCommandBufferRelease(handler: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuCommandBufferSetLabel")
-	fun wgpuCommandBufferSetLabel(handler: com.sun.jna.Pointer?, label: WGPUStringView.ByValue): Unit
+	fun wgpuCommandBufferSetLabel(handler: com.sun.jna.Pointer?, label: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuCommandEncoderRelease")
 	fun wgpuCommandEncoderRelease(handler: com.sun.jna.Pointer?): Unit
@@ -107,13 +107,13 @@ internal interface FunctionsInterface: com.sun.jna.Library {
 	fun wgpuCommandEncoderClearBuffer(handler: com.sun.jna.Pointer?, buffer: com.sun.jna.Pointer?, offset: ULong, size: ULong): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuCommandEncoderInsertDebugMarker")
-	fun wgpuCommandEncoderInsertDebugMarker(handler: com.sun.jna.Pointer?, markerLabel: WGPUStringView.ByValue): Unit
+	fun wgpuCommandEncoderInsertDebugMarker(handler: com.sun.jna.Pointer?, markerLabel: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuCommandEncoderPopDebugGroup")
 	fun wgpuCommandEncoderPopDebugGroup(handler: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuCommandEncoderPushDebugGroup")
-	fun wgpuCommandEncoderPushDebugGroup(handler: com.sun.jna.Pointer?, groupLabel: WGPUStringView.ByValue): Unit
+	fun wgpuCommandEncoderPushDebugGroup(handler: com.sun.jna.Pointer?, groupLabel: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuCommandEncoderResolveQuerySet")
 	fun wgpuCommandEncoderResolveQuerySet(handler: com.sun.jna.Pointer?, querySet: com.sun.jna.Pointer?, firstQuery: UInt, queryCount: UInt, destination: com.sun.jna.Pointer?, destinationOffset: ULong): Unit
@@ -122,19 +122,19 @@ internal interface FunctionsInterface: com.sun.jna.Library {
 	fun wgpuCommandEncoderWriteTimestamp(handler: com.sun.jna.Pointer?, querySet: com.sun.jna.Pointer?, queryIndex: UInt): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuCommandEncoderSetLabel")
-	fun wgpuCommandEncoderSetLabel(handler: com.sun.jna.Pointer?, label: WGPUStringView.ByValue): Unit
+	fun wgpuCommandEncoderSetLabel(handler: com.sun.jna.Pointer?, label: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuComputePassEncoderRelease")
 	fun wgpuComputePassEncoderRelease(handler: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuComputePassEncoderInsertDebugMarker")
-	fun wgpuComputePassEncoderInsertDebugMarker(handler: com.sun.jna.Pointer?, markerLabel: WGPUStringView.ByValue): Unit
+	fun wgpuComputePassEncoderInsertDebugMarker(handler: com.sun.jna.Pointer?, markerLabel: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuComputePassEncoderPopDebugGroup")
 	fun wgpuComputePassEncoderPopDebugGroup(handler: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuComputePassEncoderPushDebugGroup")
-	fun wgpuComputePassEncoderPushDebugGroup(handler: com.sun.jna.Pointer?, groupLabel: WGPUStringView.ByValue): Unit
+	fun wgpuComputePassEncoderPushDebugGroup(handler: com.sun.jna.Pointer?, groupLabel: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuComputePassEncoderSetPipeline")
 	fun wgpuComputePassEncoderSetPipeline(handler: com.sun.jna.Pointer?, pipeline: com.sun.jna.Pointer?): Unit
@@ -152,7 +152,7 @@ internal interface FunctionsInterface: com.sun.jna.Library {
 	fun wgpuComputePassEncoderEnd(handler: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuComputePassEncoderSetLabel")
-	fun wgpuComputePassEncoderSetLabel(handler: com.sun.jna.Pointer?, label: WGPUStringView.ByValue): Unit
+	fun wgpuComputePassEncoderSetLabel(handler: com.sun.jna.Pointer?, label: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuComputePipelineRelease")
 	fun wgpuComputePipelineRelease(handler: com.sun.jna.Pointer?): Unit
@@ -161,7 +161,7 @@ internal interface FunctionsInterface: com.sun.jna.Library {
 	fun wgpuComputePipelineGetBindGroupLayout(handler: com.sun.jna.Pointer?, groupIndex: UInt): com.sun.jna.Pointer?
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuComputePipelineSetLabel")
-	fun wgpuComputePipelineSetLabel(handler: com.sun.jna.Pointer?, label: WGPUStringView.ByValue): Unit
+	fun wgpuComputePipelineSetLabel(handler: com.sun.jna.Pointer?, label: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuDeviceRelease")
 	fun wgpuDeviceRelease(handler: com.sun.jna.Pointer?): Unit
@@ -230,7 +230,7 @@ internal interface FunctionsInterface: com.sun.jna.Library {
 	fun wgpuDevicePopErrorScope(handler: com.sun.jna.Pointer?, callback: com.sun.jna.Callback?, userdata: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuDeviceSetLabel")
-	fun wgpuDeviceSetLabel(handler: com.sun.jna.Pointer?, label: WGPUStringView.ByValue): Unit
+	fun wgpuDeviceSetLabel(handler: com.sun.jna.Pointer?, label: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuInstanceRelease")
 	fun wgpuInstanceRelease(handler: com.sun.jna.Pointer?): Unit
@@ -251,13 +251,13 @@ internal interface FunctionsInterface: com.sun.jna.Library {
 	fun wgpuPipelineLayoutRelease(handler: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuPipelineLayoutSetLabel")
-	fun wgpuPipelineLayoutSetLabel(handler: com.sun.jna.Pointer?, label: WGPUStringView.ByValue): Unit
+	fun wgpuPipelineLayoutSetLabel(handler: com.sun.jna.Pointer?, label: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuQuerySetRelease")
 	fun wgpuQuerySetRelease(handler: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuQuerySetSetLabel")
-	fun wgpuQuerySetSetLabel(handler: com.sun.jna.Pointer?, label: WGPUStringView.ByValue): Unit
+	fun wgpuQuerySetSetLabel(handler: com.sun.jna.Pointer?, label: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuQuerySetGetType")
 	fun wgpuQuerySetGetType(handler: com.sun.jna.Pointer?): UInt
@@ -284,13 +284,13 @@ internal interface FunctionsInterface: com.sun.jna.Library {
 	fun wgpuQueueWriteTexture(handler: com.sun.jna.Pointer?, destination: WGPUImageCopyTexture.ByReference?, data: com.sun.jna.Pointer?, dataSize: ULong, dataLayout: WGPUTextureDataLayout.ByReference?, writeSize: WGPUExtent3D.ByReference?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuQueueSetLabel")
-	fun wgpuQueueSetLabel(handler: com.sun.jna.Pointer?, label: WGPUStringView.ByValue): Unit
+	fun wgpuQueueSetLabel(handler: com.sun.jna.Pointer?, label: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuRenderBundleRelease")
 	fun wgpuRenderBundleRelease(handler: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuRenderBundleSetLabel")
-	fun wgpuRenderBundleSetLabel(handler: com.sun.jna.Pointer?, label: WGPUStringView.ByValue): Unit
+	fun wgpuRenderBundleSetLabel(handler: com.sun.jna.Pointer?, label: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuRenderBundleEncoderRelease")
 	fun wgpuRenderBundleEncoderRelease(handler: com.sun.jna.Pointer?): Unit
@@ -314,13 +314,13 @@ internal interface FunctionsInterface: com.sun.jna.Library {
 	fun wgpuRenderBundleEncoderDrawIndexedIndirect(handler: com.sun.jna.Pointer?, indirectBuffer: com.sun.jna.Pointer?, indirectOffset: ULong): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuRenderBundleEncoderInsertDebugMarker")
-	fun wgpuRenderBundleEncoderInsertDebugMarker(handler: com.sun.jna.Pointer?, markerLabel: WGPUStringView.ByValue): Unit
+	fun wgpuRenderBundleEncoderInsertDebugMarker(handler: com.sun.jna.Pointer?, markerLabel: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuRenderBundleEncoderPopDebugGroup")
 	fun wgpuRenderBundleEncoderPopDebugGroup(handler: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuRenderBundleEncoderPushDebugGroup")
-	fun wgpuRenderBundleEncoderPushDebugGroup(handler: com.sun.jna.Pointer?, groupLabel: WGPUStringView.ByValue): Unit
+	fun wgpuRenderBundleEncoderPushDebugGroup(handler: com.sun.jna.Pointer?, groupLabel: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuRenderBundleEncoderSetVertexBuffer")
 	fun wgpuRenderBundleEncoderSetVertexBuffer(handler: com.sun.jna.Pointer?, slot: UInt, buffer: com.sun.jna.Pointer?, offset: ULong, size: ULong): Unit
@@ -332,7 +332,7 @@ internal interface FunctionsInterface: com.sun.jna.Library {
 	fun wgpuRenderBundleEncoderFinish(handler: com.sun.jna.Pointer?, descriptor: WGPURenderBundleDescriptor.ByReference?): com.sun.jna.Pointer?
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuRenderBundleEncoderSetLabel")
-	fun wgpuRenderBundleEncoderSetLabel(handler: com.sun.jna.Pointer?, label: WGPUStringView.ByValue): Unit
+	fun wgpuRenderBundleEncoderSetLabel(handler: com.sun.jna.Pointer?, label: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuRenderPassEncoderRelease")
 	fun wgpuRenderPassEncoderRelease(handler: com.sun.jna.Pointer?): Unit
@@ -359,13 +359,13 @@ internal interface FunctionsInterface: com.sun.jna.Library {
 	fun wgpuRenderPassEncoderExecuteBundles(handler: com.sun.jna.Pointer?, bundleCount: ULong, bundles: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuRenderPassEncoderInsertDebugMarker")
-	fun wgpuRenderPassEncoderInsertDebugMarker(handler: com.sun.jna.Pointer?, markerLabel: WGPUStringView.ByValue): Unit
+	fun wgpuRenderPassEncoderInsertDebugMarker(handler: com.sun.jna.Pointer?, markerLabel: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuRenderPassEncoderPopDebugGroup")
 	fun wgpuRenderPassEncoderPopDebugGroup(handler: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuRenderPassEncoderPushDebugGroup")
-	fun wgpuRenderPassEncoderPushDebugGroup(handler: com.sun.jna.Pointer?, groupLabel: WGPUStringView.ByValue): Unit
+	fun wgpuRenderPassEncoderPushDebugGroup(handler: com.sun.jna.Pointer?, groupLabel: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuRenderPassEncoderSetStencilReference")
 	fun wgpuRenderPassEncoderSetStencilReference(handler: com.sun.jna.Pointer?, reference: UInt): Unit
@@ -395,7 +395,7 @@ internal interface FunctionsInterface: com.sun.jna.Library {
 	fun wgpuRenderPassEncoderEnd(handler: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuRenderPassEncoderSetLabel")
-	fun wgpuRenderPassEncoderSetLabel(handler: com.sun.jna.Pointer?, label: WGPUStringView.ByValue): Unit
+	fun wgpuRenderPassEncoderSetLabel(handler: com.sun.jna.Pointer?, label: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuRenderPipelineRelease")
 	fun wgpuRenderPipelineRelease(handler: com.sun.jna.Pointer?): Unit
@@ -404,13 +404,13 @@ internal interface FunctionsInterface: com.sun.jna.Library {
 	fun wgpuRenderPipelineGetBindGroupLayout(handler: com.sun.jna.Pointer?, groupIndex: UInt): com.sun.jna.Pointer?
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuRenderPipelineSetLabel")
-	fun wgpuRenderPipelineSetLabel(handler: com.sun.jna.Pointer?, label: WGPUStringView.ByValue): Unit
+	fun wgpuRenderPipelineSetLabel(handler: com.sun.jna.Pointer?, label: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuSamplerRelease")
 	fun wgpuSamplerRelease(handler: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuSamplerSetLabel")
-	fun wgpuSamplerSetLabel(handler: com.sun.jna.Pointer?, label: WGPUStringView.ByValue): Unit
+	fun wgpuSamplerSetLabel(handler: com.sun.jna.Pointer?, label: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuShaderModuleRelease")
 	fun wgpuShaderModuleRelease(handler: com.sun.jna.Pointer?): Unit
@@ -419,7 +419,7 @@ internal interface FunctionsInterface: com.sun.jna.Library {
 	fun wgpuShaderModuleGetCompilationInfo(handler: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuShaderModuleSetLabel")
-	fun wgpuShaderModuleSetLabel(handler: com.sun.jna.Pointer?, label: WGPUStringView.ByValue): Unit
+	fun wgpuShaderModuleSetLabel(handler: com.sun.jna.Pointer?, label: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuSurfaceRelease")
 	fun wgpuSurfaceRelease(handler: com.sun.jna.Pointer?): Unit
@@ -440,7 +440,7 @@ internal interface FunctionsInterface: com.sun.jna.Library {
 	fun wgpuSurfaceUnconfigure(handler: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuSurfaceSetLabel")
-	fun wgpuSurfaceSetLabel(handler: com.sun.jna.Pointer?, label: WGPUStringView.ByValue): Unit
+	fun wgpuSurfaceSetLabel(handler: com.sun.jna.Pointer?, label: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuTextureRelease")
 	fun wgpuTextureRelease(handler: com.sun.jna.Pointer?): Unit
@@ -449,7 +449,7 @@ internal interface FunctionsInterface: com.sun.jna.Library {
 	fun wgpuTextureCreateView(handler: com.sun.jna.Pointer?, descriptor: WGPUTextureViewDescriptor.ByReference?): com.sun.jna.Pointer?
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuTextureSetLabel")
-	fun wgpuTextureSetLabel(handler: com.sun.jna.Pointer?, label: WGPUStringView.ByValue): Unit
+	fun wgpuTextureSetLabel(handler: com.sun.jna.Pointer?, label: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuTextureGetWidth")
 	fun wgpuTextureGetWidth(handler: com.sun.jna.Pointer?): UInt
@@ -482,6 +482,6 @@ internal interface FunctionsInterface: com.sun.jna.Library {
 	fun wgpuTextureViewRelease(handler: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuTextureViewSetLabel")
-	fun wgpuTextureViewSetLabel(handler: com.sun.jna.Pointer?, label: WGPUStringView.ByValue): Unit
+	fun wgpuTextureViewSetLabel(handler: com.sun.jna.Pointer?, label: com.sun.jna.Pointer?): Unit
 }
 internal val Functions = com.sun.jna.Native.load("wgpu4k", FunctionsInterface::class.java)

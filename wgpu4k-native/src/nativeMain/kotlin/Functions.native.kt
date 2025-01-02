@@ -53,16 +53,16 @@ actual fun wgpuBindGroupRelease(handler: WGPUBindGroup?): Unit {
 	webgpu.native.wgpuBindGroupRelease(handler?.handler?.reinterpret())
 }
 
-actual fun wgpuBindGroupSetLabel(handler: WGPUBindGroup?, label: WGPUStringView): Unit {
-	webgpu.native.wgpuBindGroupSetLabel(handler?.handler?.reinterpret(), label.toCValue())
+actual fun wgpuBindGroupSetLabel(handler: WGPUBindGroup?, label: CString?): Unit {
+	webgpu.native.wgpuBindGroupSetLabel(handler?.handler?.reinterpret(), label?.toKString())
 }
 
 actual fun wgpuBindGroupLayoutRelease(handler: WGPUBindGroupLayout?): Unit {
 	webgpu.native.wgpuBindGroupLayoutRelease(handler?.handler?.reinterpret())
 }
 
-actual fun wgpuBindGroupLayoutSetLabel(handler: WGPUBindGroupLayout?, label: WGPUStringView): Unit {
-	webgpu.native.wgpuBindGroupLayoutSetLabel(handler?.handler?.reinterpret(), label.toCValue())
+actual fun wgpuBindGroupLayoutSetLabel(handler: WGPUBindGroupLayout?, label: CString?): Unit {
+	webgpu.native.wgpuBindGroupLayoutSetLabel(handler?.handler?.reinterpret(), label?.toKString())
 }
 
 actual fun wgpuBufferRelease(handler: WGPUBuffer?): Unit {
@@ -83,8 +83,8 @@ actual fun wgpuBufferGetConstMappedRange(handler: WGPUBuffer?, offset: ULong, si
 		?.let(::NativeAddress)
 }
 
-actual fun wgpuBufferSetLabel(handler: WGPUBuffer?, label: WGPUStringView): Unit {
-	webgpu.native.wgpuBufferSetLabel(handler?.handler?.reinterpret(), label.toCValue())
+actual fun wgpuBufferSetLabel(handler: WGPUBuffer?, label: CString?): Unit {
+	webgpu.native.wgpuBufferSetLabel(handler?.handler?.reinterpret(), label?.toKString())
 }
 
 actual fun wgpuBufferGetUsage(handler: WGPUBuffer?): ULong {
@@ -111,8 +111,8 @@ actual fun wgpuCommandBufferRelease(handler: WGPUCommandBuffer?): Unit {
 	webgpu.native.wgpuCommandBufferRelease(handler?.handler?.reinterpret())
 }
 
-actual fun wgpuCommandBufferSetLabel(handler: WGPUCommandBuffer?, label: WGPUStringView): Unit {
-	webgpu.native.wgpuCommandBufferSetLabel(handler?.handler?.reinterpret(), label.toCValue())
+actual fun wgpuCommandBufferSetLabel(handler: WGPUCommandBuffer?, label: CString?): Unit {
+	webgpu.native.wgpuCommandBufferSetLabel(handler?.handler?.reinterpret(), label?.toKString())
 }
 
 actual fun wgpuCommandEncoderRelease(handler: WGPUCommandEncoder?): Unit {
@@ -154,16 +154,16 @@ actual fun wgpuCommandEncoderClearBuffer(handler: WGPUCommandEncoder?, buffer: W
 	webgpu.native.wgpuCommandEncoderClearBuffer(handler?.handler?.reinterpret(), buffer?.handler?.reinterpret(), offset, size)
 }
 
-actual fun wgpuCommandEncoderInsertDebugMarker(handler: WGPUCommandEncoder?, markerLabel: WGPUStringView): Unit {
-	webgpu.native.wgpuCommandEncoderInsertDebugMarker(handler?.handler?.reinterpret(), markerLabel.toCValue())
+actual fun wgpuCommandEncoderInsertDebugMarker(handler: WGPUCommandEncoder?, markerLabel: CString?): Unit {
+	webgpu.native.wgpuCommandEncoderInsertDebugMarker(handler?.handler?.reinterpret(), markerLabel?.toKString())
 }
 
 actual fun wgpuCommandEncoderPopDebugGroup(handler: WGPUCommandEncoder?): Unit {
 	webgpu.native.wgpuCommandEncoderPopDebugGroup(handler?.handler?.reinterpret())
 }
 
-actual fun wgpuCommandEncoderPushDebugGroup(handler: WGPUCommandEncoder?, groupLabel: WGPUStringView): Unit {
-	webgpu.native.wgpuCommandEncoderPushDebugGroup(handler?.handler?.reinterpret(), groupLabel.toCValue())
+actual fun wgpuCommandEncoderPushDebugGroup(handler: WGPUCommandEncoder?, groupLabel: CString?): Unit {
+	webgpu.native.wgpuCommandEncoderPushDebugGroup(handler?.handler?.reinterpret(), groupLabel?.toKString())
 }
 
 actual fun wgpuCommandEncoderResolveQuerySet(handler: WGPUCommandEncoder?, querySet: WGPUQuerySet?, firstQuery: UInt, queryCount: UInt, destination: WGPUBuffer?, destinationOffset: ULong): Unit {
@@ -174,24 +174,24 @@ actual fun wgpuCommandEncoderWriteTimestamp(handler: WGPUCommandEncoder?, queryS
 	webgpu.native.wgpuCommandEncoderWriteTimestamp(handler?.handler?.reinterpret(), querySet?.handler?.reinterpret(), queryIndex)
 }
 
-actual fun wgpuCommandEncoderSetLabel(handler: WGPUCommandEncoder?, label: WGPUStringView): Unit {
-	webgpu.native.wgpuCommandEncoderSetLabel(handler?.handler?.reinterpret(), label.toCValue())
+actual fun wgpuCommandEncoderSetLabel(handler: WGPUCommandEncoder?, label: CString?): Unit {
+	webgpu.native.wgpuCommandEncoderSetLabel(handler?.handler?.reinterpret(), label?.toKString())
 }
 
 actual fun wgpuComputePassEncoderRelease(handler: WGPUComputePassEncoder?): Unit {
 	webgpu.native.wgpuComputePassEncoderRelease(handler?.handler?.reinterpret())
 }
 
-actual fun wgpuComputePassEncoderInsertDebugMarker(handler: WGPUComputePassEncoder?, markerLabel: WGPUStringView): Unit {
-	webgpu.native.wgpuComputePassEncoderInsertDebugMarker(handler?.handler?.reinterpret(), markerLabel.toCValue())
+actual fun wgpuComputePassEncoderInsertDebugMarker(handler: WGPUComputePassEncoder?, markerLabel: CString?): Unit {
+	webgpu.native.wgpuComputePassEncoderInsertDebugMarker(handler?.handler?.reinterpret(), markerLabel?.toKString())
 }
 
 actual fun wgpuComputePassEncoderPopDebugGroup(handler: WGPUComputePassEncoder?): Unit {
 	webgpu.native.wgpuComputePassEncoderPopDebugGroup(handler?.handler?.reinterpret())
 }
 
-actual fun wgpuComputePassEncoderPushDebugGroup(handler: WGPUComputePassEncoder?, groupLabel: WGPUStringView): Unit {
-	webgpu.native.wgpuComputePassEncoderPushDebugGroup(handler?.handler?.reinterpret(), groupLabel.toCValue())
+actual fun wgpuComputePassEncoderPushDebugGroup(handler: WGPUComputePassEncoder?, groupLabel: CString?): Unit {
+	webgpu.native.wgpuComputePassEncoderPushDebugGroup(handler?.handler?.reinterpret(), groupLabel?.toKString())
 }
 
 actual fun wgpuComputePassEncoderSetPipeline(handler: WGPUComputePassEncoder?, pipeline: WGPUComputePipeline?): Unit {
@@ -214,8 +214,8 @@ actual fun wgpuComputePassEncoderEnd(handler: WGPUComputePassEncoder?): Unit {
 	webgpu.native.wgpuComputePassEncoderEnd(handler?.handler?.reinterpret())
 }
 
-actual fun wgpuComputePassEncoderSetLabel(handler: WGPUComputePassEncoder?, label: WGPUStringView): Unit {
-	webgpu.native.wgpuComputePassEncoderSetLabel(handler?.handler?.reinterpret(), label.toCValue())
+actual fun wgpuComputePassEncoderSetLabel(handler: WGPUComputePassEncoder?, label: CString?): Unit {
+	webgpu.native.wgpuComputePassEncoderSetLabel(handler?.handler?.reinterpret(), label?.toKString())
 }
 
 actual fun wgpuComputePipelineRelease(handler: WGPUComputePipeline?): Unit {
@@ -227,8 +227,8 @@ actual fun wgpuComputePipelineGetBindGroupLayout(handler: WGPUComputePipeline?, 
 		?.let(::NativeAddress)?.let(::WGPUBindGroupLayout)
 }
 
-actual fun wgpuComputePipelineSetLabel(handler: WGPUComputePipeline?, label: WGPUStringView): Unit {
-	webgpu.native.wgpuComputePipelineSetLabel(handler?.handler?.reinterpret(), label.toCValue())
+actual fun wgpuComputePipelineSetLabel(handler: WGPUComputePipeline?, label: CString?): Unit {
+	webgpu.native.wgpuComputePipelineSetLabel(handler?.handler?.reinterpret(), label?.toKString())
 }
 
 actual fun wgpuDeviceRelease(handler: WGPUDevice?): Unit {
@@ -334,8 +334,8 @@ actual fun wgpuDevicePopErrorScope(handler: WGPUDevice?, callback: CallbackHolde
 	webgpu.native.wgpuDevicePopErrorScope(handler?.handler?.reinterpret(), callback?.handler?.reinterpret(), userdata?.pointer)
 }
 
-actual fun wgpuDeviceSetLabel(handler: WGPUDevice?, label: WGPUStringView): Unit {
-	webgpu.native.wgpuDeviceSetLabel(handler?.handler?.reinterpret(), label.toCValue())
+actual fun wgpuDeviceSetLabel(handler: WGPUDevice?, label: CString?): Unit {
+	webgpu.native.wgpuDeviceSetLabel(handler?.handler?.reinterpret(), label?.toKString())
 }
 
 actual fun wgpuInstanceRelease(handler: WGPUInstance?): Unit {
@@ -364,16 +364,16 @@ actual fun wgpuPipelineLayoutRelease(handler: WGPUPipelineLayout?): Unit {
 	webgpu.native.wgpuPipelineLayoutRelease(handler?.handler?.reinterpret())
 }
 
-actual fun wgpuPipelineLayoutSetLabel(handler: WGPUPipelineLayout?, label: WGPUStringView): Unit {
-	webgpu.native.wgpuPipelineLayoutSetLabel(handler?.handler?.reinterpret(), label.toCValue())
+actual fun wgpuPipelineLayoutSetLabel(handler: WGPUPipelineLayout?, label: CString?): Unit {
+	webgpu.native.wgpuPipelineLayoutSetLabel(handler?.handler?.reinterpret(), label?.toKString())
 }
 
 actual fun wgpuQuerySetRelease(handler: WGPUQuerySet?): Unit {
 	webgpu.native.wgpuQuerySetRelease(handler?.handler?.reinterpret())
 }
 
-actual fun wgpuQuerySetSetLabel(handler: WGPUQuerySet?, label: WGPUStringView): Unit {
-	webgpu.native.wgpuQuerySetSetLabel(handler?.handler?.reinterpret(), label.toCValue())
+actual fun wgpuQuerySetSetLabel(handler: WGPUQuerySet?, label: CString?): Unit {
+	webgpu.native.wgpuQuerySetSetLabel(handler?.handler?.reinterpret(), label?.toKString())
 }
 
 actual fun wgpuQuerySetGetType(handler: WGPUQuerySet?): WGPUQueryType {
@@ -408,16 +408,16 @@ actual fun wgpuQueueWriteTexture(handler: WGPUQueue?, destination: WGPUImageCopy
 	webgpu.native.wgpuQueueWriteTexture(handler?.handler?.reinterpret(), destination?.handler?.reinterpret(), data?.pointer, dataSize, dataLayout?.handler?.reinterpret(), writeSize?.handler?.reinterpret())
 }
 
-actual fun wgpuQueueSetLabel(handler: WGPUQueue?, label: WGPUStringView): Unit {
-	webgpu.native.wgpuQueueSetLabel(handler?.handler?.reinterpret(), label.toCValue())
+actual fun wgpuQueueSetLabel(handler: WGPUQueue?, label: CString?): Unit {
+	webgpu.native.wgpuQueueSetLabel(handler?.handler?.reinterpret(), label?.toKString())
 }
 
 actual fun wgpuRenderBundleRelease(handler: WGPURenderBundle?): Unit {
 	webgpu.native.wgpuRenderBundleRelease(handler?.handler?.reinterpret())
 }
 
-actual fun wgpuRenderBundleSetLabel(handler: WGPURenderBundle?, label: WGPUStringView): Unit {
-	webgpu.native.wgpuRenderBundleSetLabel(handler?.handler?.reinterpret(), label.toCValue())
+actual fun wgpuRenderBundleSetLabel(handler: WGPURenderBundle?, label: CString?): Unit {
+	webgpu.native.wgpuRenderBundleSetLabel(handler?.handler?.reinterpret(), label?.toKString())
 }
 
 actual fun wgpuRenderBundleEncoderRelease(handler: WGPURenderBundleEncoder?): Unit {
@@ -448,16 +448,16 @@ actual fun wgpuRenderBundleEncoderDrawIndexedIndirect(handler: WGPURenderBundleE
 	webgpu.native.wgpuRenderBundleEncoderDrawIndexedIndirect(handler?.handler?.reinterpret(), indirectBuffer?.handler?.reinterpret(), indirectOffset)
 }
 
-actual fun wgpuRenderBundleEncoderInsertDebugMarker(handler: WGPURenderBundleEncoder?, markerLabel: WGPUStringView): Unit {
-	webgpu.native.wgpuRenderBundleEncoderInsertDebugMarker(handler?.handler?.reinterpret(), markerLabel.toCValue())
+actual fun wgpuRenderBundleEncoderInsertDebugMarker(handler: WGPURenderBundleEncoder?, markerLabel: CString?): Unit {
+	webgpu.native.wgpuRenderBundleEncoderInsertDebugMarker(handler?.handler?.reinterpret(), markerLabel?.toKString())
 }
 
 actual fun wgpuRenderBundleEncoderPopDebugGroup(handler: WGPURenderBundleEncoder?): Unit {
 	webgpu.native.wgpuRenderBundleEncoderPopDebugGroup(handler?.handler?.reinterpret())
 }
 
-actual fun wgpuRenderBundleEncoderPushDebugGroup(handler: WGPURenderBundleEncoder?, groupLabel: WGPUStringView): Unit {
-	webgpu.native.wgpuRenderBundleEncoderPushDebugGroup(handler?.handler?.reinterpret(), groupLabel.toCValue())
+actual fun wgpuRenderBundleEncoderPushDebugGroup(handler: WGPURenderBundleEncoder?, groupLabel: CString?): Unit {
+	webgpu.native.wgpuRenderBundleEncoderPushDebugGroup(handler?.handler?.reinterpret(), groupLabel?.toKString())
 }
 
 actual fun wgpuRenderBundleEncoderSetVertexBuffer(handler: WGPURenderBundleEncoder?, slot: UInt, buffer: WGPUBuffer?, offset: ULong, size: ULong): Unit {
@@ -473,8 +473,8 @@ actual fun wgpuRenderBundleEncoderFinish(handler: WGPURenderBundleEncoder?, desc
 		?.let(::NativeAddress)?.let(::WGPURenderBundle)
 }
 
-actual fun wgpuRenderBundleEncoderSetLabel(handler: WGPURenderBundleEncoder?, label: WGPUStringView): Unit {
-	webgpu.native.wgpuRenderBundleEncoderSetLabel(handler?.handler?.reinterpret(), label.toCValue())
+actual fun wgpuRenderBundleEncoderSetLabel(handler: WGPURenderBundleEncoder?, label: CString?): Unit {
+	webgpu.native.wgpuRenderBundleEncoderSetLabel(handler?.handler?.reinterpret(), label?.toKString())
 }
 
 actual fun wgpuRenderPassEncoderRelease(handler: WGPURenderPassEncoder?): Unit {
@@ -509,16 +509,16 @@ actual fun wgpuRenderPassEncoderExecuteBundles(handler: WGPURenderPassEncoder?, 
 	webgpu.native.wgpuRenderPassEncoderExecuteBundles(handler?.handler?.reinterpret(), bundleCount, bundles?.handler?.reinterpret())
 }
 
-actual fun wgpuRenderPassEncoderInsertDebugMarker(handler: WGPURenderPassEncoder?, markerLabel: WGPUStringView): Unit {
-	webgpu.native.wgpuRenderPassEncoderInsertDebugMarker(handler?.handler?.reinterpret(), markerLabel.toCValue())
+actual fun wgpuRenderPassEncoderInsertDebugMarker(handler: WGPURenderPassEncoder?, markerLabel: CString?): Unit {
+	webgpu.native.wgpuRenderPassEncoderInsertDebugMarker(handler?.handler?.reinterpret(), markerLabel?.toKString())
 }
 
 actual fun wgpuRenderPassEncoderPopDebugGroup(handler: WGPURenderPassEncoder?): Unit {
 	webgpu.native.wgpuRenderPassEncoderPopDebugGroup(handler?.handler?.reinterpret())
 }
 
-actual fun wgpuRenderPassEncoderPushDebugGroup(handler: WGPURenderPassEncoder?, groupLabel: WGPUStringView): Unit {
-	webgpu.native.wgpuRenderPassEncoderPushDebugGroup(handler?.handler?.reinterpret(), groupLabel.toCValue())
+actual fun wgpuRenderPassEncoderPushDebugGroup(handler: WGPURenderPassEncoder?, groupLabel: CString?): Unit {
+	webgpu.native.wgpuRenderPassEncoderPushDebugGroup(handler?.handler?.reinterpret(), groupLabel?.toKString())
 }
 
 actual fun wgpuRenderPassEncoderSetStencilReference(handler: WGPURenderPassEncoder?, reference: UInt): Unit {
@@ -557,8 +557,8 @@ actual fun wgpuRenderPassEncoderEnd(handler: WGPURenderPassEncoder?): Unit {
 	webgpu.native.wgpuRenderPassEncoderEnd(handler?.handler?.reinterpret())
 }
 
-actual fun wgpuRenderPassEncoderSetLabel(handler: WGPURenderPassEncoder?, label: WGPUStringView): Unit {
-	webgpu.native.wgpuRenderPassEncoderSetLabel(handler?.handler?.reinterpret(), label.toCValue())
+actual fun wgpuRenderPassEncoderSetLabel(handler: WGPURenderPassEncoder?, label: CString?): Unit {
+	webgpu.native.wgpuRenderPassEncoderSetLabel(handler?.handler?.reinterpret(), label?.toKString())
 }
 
 actual fun wgpuRenderPipelineRelease(handler: WGPURenderPipeline?): Unit {
@@ -570,16 +570,16 @@ actual fun wgpuRenderPipelineGetBindGroupLayout(handler: WGPURenderPipeline?, gr
 		?.let(::NativeAddress)?.let(::WGPUBindGroupLayout)
 }
 
-actual fun wgpuRenderPipelineSetLabel(handler: WGPURenderPipeline?, label: WGPUStringView): Unit {
-	webgpu.native.wgpuRenderPipelineSetLabel(handler?.handler?.reinterpret(), label.toCValue())
+actual fun wgpuRenderPipelineSetLabel(handler: WGPURenderPipeline?, label: CString?): Unit {
+	webgpu.native.wgpuRenderPipelineSetLabel(handler?.handler?.reinterpret(), label?.toKString())
 }
 
 actual fun wgpuSamplerRelease(handler: WGPUSampler?): Unit {
 	webgpu.native.wgpuSamplerRelease(handler?.handler?.reinterpret())
 }
 
-actual fun wgpuSamplerSetLabel(handler: WGPUSampler?, label: WGPUStringView): Unit {
-	webgpu.native.wgpuSamplerSetLabel(handler?.handler?.reinterpret(), label.toCValue())
+actual fun wgpuSamplerSetLabel(handler: WGPUSampler?, label: CString?): Unit {
+	webgpu.native.wgpuSamplerSetLabel(handler?.handler?.reinterpret(), label?.toKString())
 }
 
 actual fun wgpuShaderModuleRelease(handler: WGPUShaderModule?): Unit {
@@ -590,8 +590,8 @@ actual fun wgpuShaderModuleGetCompilationInfo(handler: WGPUShaderModule?): Unit 
 	webgpu.native.wgpuShaderModuleGetCompilationInfo(handler?.handler?.reinterpret())
 }
 
-actual fun wgpuShaderModuleSetLabel(handler: WGPUShaderModule?, label: WGPUStringView): Unit {
-	webgpu.native.wgpuShaderModuleSetLabel(handler?.handler?.reinterpret(), label.toCValue())
+actual fun wgpuShaderModuleSetLabel(handler: WGPUShaderModule?, label: CString?): Unit {
+	webgpu.native.wgpuShaderModuleSetLabel(handler?.handler?.reinterpret(), label?.toKString())
 }
 
 actual fun wgpuSurfaceRelease(handler: WGPUSurface?): Unit {
@@ -618,8 +618,8 @@ actual fun wgpuSurfaceUnconfigure(handler: WGPUSurface?): Unit {
 	webgpu.native.wgpuSurfaceUnconfigure(handler?.handler?.reinterpret())
 }
 
-actual fun wgpuSurfaceSetLabel(handler: WGPUSurface?, label: WGPUStringView): Unit {
-	webgpu.native.wgpuSurfaceSetLabel(handler?.handler?.reinterpret(), label.toCValue())
+actual fun wgpuSurfaceSetLabel(handler: WGPUSurface?, label: CString?): Unit {
+	webgpu.native.wgpuSurfaceSetLabel(handler?.handler?.reinterpret(), label?.toKString())
 }
 
 actual fun wgpuTextureRelease(handler: WGPUTexture?): Unit {
@@ -631,8 +631,8 @@ actual fun wgpuTextureCreateView(handler: WGPUTexture?, descriptor: WGPUTextureV
 		?.let(::NativeAddress)?.let(::WGPUTextureView)
 }
 
-actual fun wgpuTextureSetLabel(handler: WGPUTexture?, label: WGPUStringView): Unit {
-	webgpu.native.wgpuTextureSetLabel(handler?.handler?.reinterpret(), label.toCValue())
+actual fun wgpuTextureSetLabel(handler: WGPUTexture?, label: CString?): Unit {
+	webgpu.native.wgpuTextureSetLabel(handler?.handler?.reinterpret(), label?.toKString())
 }
 
 actual fun wgpuTextureGetWidth(handler: WGPUTexture?): UInt {
@@ -675,7 +675,7 @@ actual fun wgpuTextureViewRelease(handler: WGPUTextureView?): Unit {
 	webgpu.native.wgpuTextureViewRelease(handler?.handler?.reinterpret())
 }
 
-actual fun wgpuTextureViewSetLabel(handler: WGPUTextureView?, label: WGPUStringView): Unit {
-	webgpu.native.wgpuTextureViewSetLabel(handler?.handler?.reinterpret(), label.toCValue())
+actual fun wgpuTextureViewSetLabel(handler: WGPUTextureView?, label: CString?): Unit {
+	webgpu.native.wgpuTextureViewSetLabel(handler?.handler?.reinterpret(), label?.toKString())
 }
 

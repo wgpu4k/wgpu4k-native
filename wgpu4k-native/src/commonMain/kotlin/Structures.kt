@@ -21,23 +21,12 @@ expect interface WGPURequestAdapterOptions {
 	}
 }
 
-expect interface WGPUStringView {
-	var data: CString?
-	var length: ULong
-	val handler: NativeAddress
-	companion object {
-		operator fun invoke(address: NativeAddress): WGPUStringView
-		fun allocate(allocator: MemoryAllocator): WGPUStringView
-		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPUStringView) -> Unit): ArrayHolder<WGPUStringView>
-	}
-}
-
 expect interface WGPUAdapterInfo {
 	var nextInChain: NativeAddress?
-	val vendor: WGPUStringView
-	val architecture: WGPUStringView
-	val device: WGPUStringView
-	val description: WGPUStringView
+	var vendor: CString?
+	var architecture: CString?
+	var device: CString?
+	var description: CString?
 	var backendType: WGPUBackendType
 	var adapterType: WGPUAdapterType
 	var vendorID: UInt
@@ -52,7 +41,7 @@ expect interface WGPUAdapterInfo {
 
 expect interface WGPUQueueDescriptor {
 	var nextInChain: NativeAddress?
-	val label: WGPUStringView
+	var label: CString?
 	val handler: NativeAddress
 	companion object {
 		operator fun invoke(address: NativeAddress): WGPUQueueDescriptor
@@ -75,7 +64,7 @@ expect interface WGPUUncapturedErrorCallbackInfo {
 
 expect interface WGPUDeviceDescriptor {
 	var nextInChain: NativeAddress?
-	val label: WGPUStringView
+	var label: CString?
 	var requiredFeatureCount: ULong
 	var requiredFeatures: ArrayHolder<WGPUFeatureName>?
 	var requiredLimits: WGPURequiredLimits?
@@ -109,7 +98,7 @@ expect interface WGPUBindGroupEntry {
 
 expect interface WGPUBindGroupDescriptor {
 	var nextInChain: NativeAddress?
-	val label: WGPUStringView
+	var label: CString?
 	var layout: WGPUBindGroupLayout?
 	var entryCount: ULong
 	var entries: ArrayHolder<WGPUBindGroupEntry>?
@@ -225,7 +214,7 @@ expect interface WGPUBindGroupLayoutEntry {
 
 expect interface WGPUBindGroupLayoutDescriptor {
 	var nextInChain: NativeAddress?
-	val label: WGPUStringView
+	var label: CString?
 	var entryCount: ULong
 	var entries: ArrayHolder<WGPUBindGroupLayoutEntry>?
 	val handler: NativeAddress
@@ -250,7 +239,7 @@ expect interface WGPUBlendComponent {
 
 expect interface WGPUBufferDescriptor {
 	var nextInChain: NativeAddress?
-	val label: WGPUStringView
+	var label: CString?
 	var usage: ULong
 	var size: ULong
 	var mappedAtCreation: Boolean
@@ -277,7 +266,7 @@ expect interface WGPUColor {
 
 expect interface WGPUConstantEntry {
 	var nextInChain: NativeAddress?
-	val key: WGPUStringView
+	var key: CString?
 	var value: Double
 	val handler: NativeAddress
 	companion object {
@@ -289,7 +278,7 @@ expect interface WGPUConstantEntry {
 
 expect interface WGPUCommandBufferDescriptor {
 	var nextInChain: NativeAddress?
-	val label: WGPUStringView
+	var label: CString?
 	val handler: NativeAddress
 	companion object {
 		operator fun invoke(address: NativeAddress): WGPUCommandBufferDescriptor
@@ -300,7 +289,7 @@ expect interface WGPUCommandBufferDescriptor {
 
 expect interface WGPUCommandEncoderDescriptor {
 	var nextInChain: NativeAddress?
-	val label: WGPUStringView
+	var label: CString?
 	val handler: NativeAddress
 	companion object {
 		operator fun invoke(address: NativeAddress): WGPUCommandEncoderDescriptor
@@ -323,7 +312,7 @@ expect interface WGPUCompilationInfo {
 
 expect interface WGPUCompilationMessage {
 	var nextInChain: NativeAddress?
-	val message: WGPUStringView
+	var message: CString?
 	var type: WGPUCompilationMessageType
 	var lineNum: ULong
 	var linePos: ULong
@@ -342,7 +331,7 @@ expect interface WGPUCompilationMessage {
 
 expect interface WGPUComputePassDescriptor {
 	var nextInChain: NativeAddress?
-	val label: WGPUStringView
+	var label: CString?
 	var timestampWrites: WGPUComputePassTimestampWrites?
 	val handler: NativeAddress
 	companion object {
@@ -367,7 +356,7 @@ expect interface WGPUComputePassTimestampWrites {
 expect interface WGPUProgrammableStageDescriptor {
 	var nextInChain: NativeAddress?
 	var module: WGPUShaderModule?
-	val entryPoint: WGPUStringView
+	var entryPoint: CString?
 	var constantCount: ULong
 	var constants: ArrayHolder<WGPUConstantEntry>?
 	val handler: NativeAddress
@@ -380,7 +369,7 @@ expect interface WGPUProgrammableStageDescriptor {
 
 expect interface WGPUComputePipelineDescriptor {
 	var nextInChain: NativeAddress?
-	val label: WGPUStringView
+	var label: CString?
 	var layout: WGPUPipelineLayout?
 	val compute: WGPUProgrammableStageDescriptor
 	val handler: NativeAddress
@@ -554,7 +543,7 @@ expect interface WGPUVertexBufferLayout {
 
 expect interface WGPUPipelineLayoutDescriptor {
 	var nextInChain: NativeAddress?
-	val label: WGPUStringView
+	var label: CString?
 	var bindGroupLayoutCount: ULong
 	var bindGroupLayouts: ArrayHolder<WGPUBindGroupLayout>?
 	val handler: NativeAddress
@@ -567,7 +556,7 @@ expect interface WGPUPipelineLayoutDescriptor {
 
 expect interface WGPUQuerySetDescriptor {
 	var nextInChain: NativeAddress?
-	val label: WGPUStringView
+	var label: CString?
 	var type: WGPUQueryType
 	var count: UInt
 	val handler: NativeAddress
@@ -580,7 +569,7 @@ expect interface WGPUQuerySetDescriptor {
 
 expect interface WGPURenderBundleDescriptor {
 	var nextInChain: NativeAddress?
-	val label: WGPUStringView
+	var label: CString?
 	val handler: NativeAddress
 	companion object {
 		operator fun invoke(address: NativeAddress): WGPURenderBundleDescriptor
@@ -591,7 +580,7 @@ expect interface WGPURenderBundleDescriptor {
 
 expect interface WGPURenderBundleEncoderDescriptor {
 	var nextInChain: NativeAddress?
-	val label: WGPUStringView
+	var label: CString?
 	var colorFormatCount: ULong
 	var colorFormats: ArrayHolder<WGPUTextureFormat>?
 	var depthStencilFormat: WGPUTextureFormat
@@ -642,7 +631,7 @@ expect interface WGPURenderPassDepthStencilAttachment {
 
 expect interface WGPURenderPassDescriptor {
 	var nextInChain: NativeAddress?
-	val label: WGPUStringView
+	var label: CString?
 	var colorAttachmentCount: ULong
 	var colorAttachments: ArrayHolder<WGPURenderPassColorAttachment>?
 	var depthStencilAttachment: WGPURenderPassDepthStencilAttachment?
@@ -693,7 +682,7 @@ expect interface WGPURenderPassTimestampWrites {
 expect interface WGPUVertexState {
 	var nextInChain: NativeAddress?
 	var module: WGPUShaderModule?
-	val entryPoint: WGPUStringView
+	var entryPoint: CString?
 	var constantCount: ULong
 	var constants: ArrayHolder<WGPUConstantEntry>?
 	var bufferCount: ULong
@@ -780,7 +769,7 @@ expect interface WGPUMultisampleState {
 expect interface WGPUFragmentState {
 	var nextInChain: NativeAddress?
 	var module: WGPUShaderModule?
-	val entryPoint: WGPUStringView
+	var entryPoint: CString?
 	var constantCount: ULong
 	var constants: ArrayHolder<WGPUConstantEntry>?
 	var targetCount: ULong
@@ -819,7 +808,7 @@ expect interface WGPUBlendState {
 
 expect interface WGPURenderPipelineDescriptor {
 	var nextInChain: NativeAddress?
-	val label: WGPUStringView
+	var label: CString?
 	var layout: WGPUPipelineLayout?
 	val vertex: WGPUVertexState
 	val primitive: WGPUPrimitiveState
@@ -836,7 +825,7 @@ expect interface WGPURenderPipelineDescriptor {
 
 expect interface WGPUSamplerDescriptor {
 	var nextInChain: NativeAddress?
-	val label: WGPUStringView
+	var label: CString?
 	var addressModeU: WGPUAddressMode
 	var addressModeV: WGPUAddressMode
 	var addressModeW: WGPUAddressMode
@@ -857,7 +846,7 @@ expect interface WGPUSamplerDescriptor {
 
 expect interface WGPUShaderModuleDescriptor {
 	var nextInChain: NativeAddress?
-	val label: WGPUStringView
+	var label: CString?
 	var hintCount: ULong
 	var hints: ArrayHolder<WGPUShaderModuleCompilationHint>?
 	val handler: NativeAddress
@@ -870,7 +859,7 @@ expect interface WGPUShaderModuleDescriptor {
 
 expect interface WGPUShaderModuleCompilationHint {
 	var nextInChain: NativeAddress?
-	val entryPoint: WGPUStringView
+	var entryPoint: CString?
 	var layout: WGPUPipelineLayout?
 	val handler: NativeAddress
 	companion object {
@@ -894,7 +883,7 @@ expect interface WGPUShaderModuleSPIRVDescriptor {
 
 expect interface WGPUShaderModuleWGSLDescriptor {
 	val chain: WGPUChainedStruct
-	val code: WGPUStringView
+	var code: CString?
 	val handler: NativeAddress
 	companion object {
 		operator fun invoke(address: NativeAddress): WGPUShaderModuleWGSLDescriptor
@@ -905,7 +894,7 @@ expect interface WGPUShaderModuleWGSLDescriptor {
 
 expect interface WGPUSurfaceDescriptor {
 	var nextInChain: NativeAddress?
-	val label: WGPUStringView
+	var label: CString?
 	val handler: NativeAddress
 	companion object {
 		operator fun invoke(address: NativeAddress): WGPUSurfaceDescriptor
@@ -927,7 +916,7 @@ expect interface WGPUSurfaceDescriptorFromAndroidNativeWindow {
 
 expect interface WGPUSurfaceDescriptorFromCanvasHTMLSelector {
 	val chain: WGPUChainedStruct
-	val selector: WGPUStringView
+	var selector: CString?
 	val handler: NativeAddress
 	companion object {
 		operator fun invoke(address: NativeAddress): WGPUSurfaceDescriptorFromCanvasHTMLSelector
@@ -1009,7 +998,7 @@ expect interface WGPUSurfaceTexture {
 
 expect interface WGPUTextureDescriptor {
 	var nextInChain: NativeAddress?
-	val label: WGPUStringView
+	var label: CString?
 	var usage: ULong
 	var dimension: WGPUTextureDimension
 	val size: WGPUExtent3D
@@ -1028,7 +1017,7 @@ expect interface WGPUTextureDescriptor {
 
 expect interface WGPUTextureViewDescriptor {
 	var nextInChain: NativeAddress?
-	val label: WGPUStringView
+	var label: CString?
 	var format: WGPUTextureFormat
 	var dimension: WGPUTextureViewDimension
 	var baseMipLevel: UInt
@@ -1050,8 +1039,8 @@ expect interface WGPUInstanceExtras {
 	var flags: ULong
 	var dx12ShaderCompiler: WGPUDx12Compiler
 	var gles3MinorVersion: WGPUGles3MinorVersion
-	val dxilPath: WGPUStringView
-	val dxcPath: WGPUStringView
+	var dxilPath: CString?
+	var dxcPath: CString?
 	val handler: NativeAddress
 	companion object {
 		operator fun invoke(address: NativeAddress): WGPUInstanceExtras
@@ -1068,6 +1057,17 @@ expect interface WGPUChainedStructOut {
 		operator fun invoke(address: NativeAddress): WGPUChainedStructOut
 		fun allocate(allocator: MemoryAllocator): WGPUChainedStructOut
 		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPUChainedStructOut) -> Unit): ArrayHolder<WGPUChainedStructOut>
+	}
+}
+
+expect interface WGPUStringView {
+	var data: CString?
+	var length: ULong
+	val handler: NativeAddress
+	companion object {
+		operator fun invoke(address: NativeAddress): WGPUStringView
+		fun allocate(allocator: MemoryAllocator): WGPUStringView
+		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPUStringView) -> Unit): ArrayHolder<WGPUStringView>
 	}
 }
 

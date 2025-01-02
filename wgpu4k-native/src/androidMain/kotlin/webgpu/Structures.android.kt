@@ -111,72 +111,6 @@ actual interface WGPURequestAdapterOptions {
 	}
 }
 
-actual interface WGPUStringView {
-
-	class ByReference(val handle: io.ygdrasil.wgpu.android.WGPUStringView.ByReference = io.ygdrasil.wgpu.android.WGPUStringView.ByReference(com.sun.jna.Pointer.NULL)) : WGPUStringView {
-		override var data: CString?
-			get() = handle.data?.let(::CString)
-			set(newValue) { handle.data = newValue?.handler }
-
-		override var length: ULong
-			get() = handle.length.toULong()
-			set(newValue) { handle.length = newValue.toLong() }
-
-		override val handler: NativeAddress
-			get() {
-				handle.write()
-				return handle.getPointer()
-			}
-	}
-
-	class ByValue(val handle: io.ygdrasil.wgpu.android.WGPUStringView.ByValue = io.ygdrasil.wgpu.android.WGPUStringView.ByValue(com.sun.jna.Pointer.NULL)) : WGPUStringView {
-		override var data: CString?
-			get() = handle.data?.let(::CString)
-			set(newValue) { handle.data = newValue?.handler }
-
-		override var length: ULong
-			get() = handle.length.toULong()
-			set(newValue) { handle.length = newValue.toLong() }
-
-		override val handler: NativeAddress
-			get() {
-				handle.write()
-				return handle.getPointer()
-			}
-	}
-
-	fun toCValue() = (this as ByReference).let{ io.ygdrasil.wgpu.android.WGPUStringView.ByValue(handle) }
-	fun toReference() = (this as ByReference).handle
-
-	actual var data: CString?
-	actual var length: ULong
-	actual val handler: NativeAddress
-
-	actual companion object {
-		actual operator fun invoke(address: NativeAddress): WGPUStringView {
-			return io.ygdrasil.wgpu.android.WGPUStringView.ByReference(address)
-				.also { it.read() }
-				.let(::ByReference)
-		}
-
-		actual fun allocate(allocator: MemoryAllocator): WGPUStringView {
-			return WGPUStringView.ByReference()
-				.also { allocator.register(it) }
-		}
-
-		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUStringView) -> Unit): ArrayHolder<WGPUStringView> {
-			val array = io.ygdrasil.wgpu.android.WGPUStringView.ByValue().toArray(size.toInt())
-			array.forEachIndexed { index, structure ->
-				(structure as io.ygdrasil.wgpu.android.WGPUStringView.ByValue)
-					.also { provider(index.toUInt(), WGPUStringView.ByValue(it)) }
-					.write()
-			}
-			val pointer = if (size == 0u) com.sun.jna.Pointer.NULL else array.first().pointer
-			return ArrayHolder(pointer)
-		}
-	}
-}
-
 actual interface WGPUAdapterInfo {
 
 	class ByReference(val handle: io.ygdrasil.wgpu.android.WGPUAdapterInfo.ByReference = io.ygdrasil.wgpu.android.WGPUAdapterInfo.ByReference(com.sun.jna.Pointer.NULL)) : WGPUAdapterInfo {
@@ -184,17 +118,21 @@ actual interface WGPUAdapterInfo {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override val vendor: WGPUStringView
-			get() = handle.vendor.let{ WGPUStringView.ByValue(it) }
+		override var vendor: CString?
+			get() = handle.vendor?.let(::CString)
+			set(newValue) { handle.vendor = newValue?.handler }
 
-		override val architecture: WGPUStringView
-			get() = handle.architecture.let{ WGPUStringView.ByValue(it) }
+		override var architecture: CString?
+			get() = handle.architecture?.let(::CString)
+			set(newValue) { handle.architecture = newValue?.handler }
 
-		override val device: WGPUStringView
-			get() = handle.device.let{ WGPUStringView.ByValue(it) }
+		override var device: CString?
+			get() = handle.device?.let(::CString)
+			set(newValue) { handle.device = newValue?.handler }
 
-		override val description: WGPUStringView
-			get() = handle.description.let{ WGPUStringView.ByValue(it) }
+		override var description: CString?
+			get() = handle.description?.let(::CString)
+			set(newValue) { handle.description = newValue?.handler }
 
 		override var backendType: WGPUBackendType
 			get() = handle.backendType.toUInt()
@@ -224,17 +162,21 @@ actual interface WGPUAdapterInfo {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override val vendor: WGPUStringView
-			get() = handle.vendor.let{ WGPUStringView.ByValue(it) }
+		override var vendor: CString?
+			get() = handle.vendor?.let(::CString)
+			set(newValue) { handle.vendor = newValue?.handler }
 
-		override val architecture: WGPUStringView
-			get() = handle.architecture.let{ WGPUStringView.ByValue(it) }
+		override var architecture: CString?
+			get() = handle.architecture?.let(::CString)
+			set(newValue) { handle.architecture = newValue?.handler }
 
-		override val device: WGPUStringView
-			get() = handle.device.let{ WGPUStringView.ByValue(it) }
+		override var device: CString?
+			get() = handle.device?.let(::CString)
+			set(newValue) { handle.device = newValue?.handler }
 
-		override val description: WGPUStringView
-			get() = handle.description.let{ WGPUStringView.ByValue(it) }
+		override var description: CString?
+			get() = handle.description?.let(::CString)
+			set(newValue) { handle.description = newValue?.handler }
 
 		override var backendType: WGPUBackendType
 			get() = handle.backendType.toUInt()
@@ -263,10 +205,10 @@ actual interface WGPUAdapterInfo {
 	fun toReference() = (this as ByReference).handle
 
 	actual var nextInChain: NativeAddress?
-	actual val vendor: WGPUStringView
-	actual val architecture: WGPUStringView
-	actual val device: WGPUStringView
-	actual val description: WGPUStringView
+	actual var vendor: CString?
+	actual var architecture: CString?
+	actual var device: CString?
+	actual var description: CString?
 	actual var backendType: WGPUBackendType
 	actual var adapterType: WGPUAdapterType
 	actual var vendorID: UInt
@@ -305,8 +247,9 @@ actual interface WGPUQueueDescriptor {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override val label: WGPUStringView
-			get() = handle.label.let{ WGPUStringView.ByValue(it) }
+		override var label: CString?
+			get() = handle.label?.let(::CString)
+			set(newValue) { handle.label = newValue?.handler }
 
 		override val handler: NativeAddress
 			get() {
@@ -320,8 +263,9 @@ actual interface WGPUQueueDescriptor {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override val label: WGPUStringView
-			get() = handle.label.let{ WGPUStringView.ByValue(it) }
+		override var label: CString?
+			get() = handle.label?.let(::CString)
+			set(newValue) { handle.label = newValue?.handler }
 
 		override val handler: NativeAddress
 			get() {
@@ -334,7 +278,7 @@ actual interface WGPUQueueDescriptor {
 	fun toReference() = (this as ByReference).handle
 
 	actual var nextInChain: NativeAddress?
-	actual val label: WGPUStringView
+	actual var label: CString?
 	actual val handler: NativeAddress
 
 	actual companion object {
@@ -444,8 +388,9 @@ actual interface WGPUDeviceDescriptor {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override val label: WGPUStringView
-			get() = handle.label.let{ WGPUStringView.ByValue(it) }
+		override var label: CString?
+			get() = handle.label?.let(::CString)
+			set(newValue) { handle.label = newValue?.handler }
 
 		override var requiredFeatureCount: ULong
 			get() = handle.requiredFeatureCount.toULong()
@@ -485,8 +430,9 @@ actual interface WGPUDeviceDescriptor {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override val label: WGPUStringView
-			get() = handle.label.let{ WGPUStringView.ByValue(it) }
+		override var label: CString?
+			get() = handle.label?.let(::CString)
+			set(newValue) { handle.label = newValue?.handler }
 
 		override var requiredFeatureCount: ULong
 			get() = handle.requiredFeatureCount.toULong()
@@ -525,7 +471,7 @@ actual interface WGPUDeviceDescriptor {
 	fun toReference() = (this as ByReference).handle
 
 	actual var nextInChain: NativeAddress?
-	actual val label: WGPUStringView
+	actual var label: CString?
 	actual var requiredFeatureCount: ULong
 	actual var requiredFeatures: ArrayHolder<WGPUFeatureName>?
 	actual var requiredLimits: WGPURequiredLimits?
@@ -678,8 +624,9 @@ actual interface WGPUBindGroupDescriptor {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override val label: WGPUStringView
-			get() = handle.label.let{ WGPUStringView.ByValue(it) }
+		override var label: CString?
+			get() = handle.label?.let(::CString)
+			set(newValue) { handle.label = newValue?.handler }
 
 		override var layout: WGPUBindGroupLayout?
 			get() = handle.layout?.let{ WGPUBindGroupLayout(it) }
@@ -705,8 +652,9 @@ actual interface WGPUBindGroupDescriptor {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override val label: WGPUStringView
-			get() = handle.label.let{ WGPUStringView.ByValue(it) }
+		override var label: CString?
+			get() = handle.label?.let(::CString)
+			set(newValue) { handle.label = newValue?.handler }
 
 		override var layout: WGPUBindGroupLayout?
 			get() = handle.layout?.let{ WGPUBindGroupLayout(it) }
@@ -731,7 +679,7 @@ actual interface WGPUBindGroupDescriptor {
 	fun toReference() = (this as ByReference).handle
 
 	actual var nextInChain: NativeAddress?
-	actual val label: WGPUStringView
+	actual var label: CString?
 	actual var layout: WGPUBindGroupLayout?
 	actual var entryCount: ULong
 	actual var entries: ArrayHolder<WGPUBindGroupEntry>?
@@ -1448,8 +1396,9 @@ actual interface WGPUBindGroupLayoutDescriptor {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override val label: WGPUStringView
-			get() = handle.label.let{ WGPUStringView.ByValue(it) }
+		override var label: CString?
+			get() = handle.label?.let(::CString)
+			set(newValue) { handle.label = newValue?.handler }
 
 		override var entryCount: ULong
 			get() = handle.entryCount.toULong()
@@ -1471,8 +1420,9 @@ actual interface WGPUBindGroupLayoutDescriptor {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override val label: WGPUStringView
-			get() = handle.label.let{ WGPUStringView.ByValue(it) }
+		override var label: CString?
+			get() = handle.label?.let(::CString)
+			set(newValue) { handle.label = newValue?.handler }
 
 		override var entryCount: ULong
 			get() = handle.entryCount.toULong()
@@ -1493,7 +1443,7 @@ actual interface WGPUBindGroupLayoutDescriptor {
 	fun toReference() = (this as ByReference).handle
 
 	actual var nextInChain: NativeAddress?
-	actual val label: WGPUStringView
+	actual var label: CString?
 	actual var entryCount: ULong
 	actual var entries: ArrayHolder<WGPUBindGroupLayoutEntry>?
 	actual val handler: NativeAddress
@@ -1605,8 +1555,9 @@ actual interface WGPUBufferDescriptor {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override val label: WGPUStringView
-			get() = handle.label.let{ WGPUStringView.ByValue(it) }
+		override var label: CString?
+			get() = handle.label?.let(::CString)
+			set(newValue) { handle.label = newValue?.handler }
 
 		override var usage: ULong
 			get() = handle.usage.toULong()
@@ -1632,8 +1583,9 @@ actual interface WGPUBufferDescriptor {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override val label: WGPUStringView
-			get() = handle.label.let{ WGPUStringView.ByValue(it) }
+		override var label: CString?
+			get() = handle.label?.let(::CString)
+			set(newValue) { handle.label = newValue?.handler }
 
 		override var usage: ULong
 			get() = handle.usage.toULong()
@@ -1658,7 +1610,7 @@ actual interface WGPUBufferDescriptor {
 	fun toReference() = (this as ByReference).handle
 
 	actual var nextInChain: NativeAddress?
-	actual val label: WGPUStringView
+	actual var label: CString?
 	actual var usage: ULong
 	actual var size: ULong
 	actual var mappedAtCreation: Boolean
@@ -1780,8 +1732,9 @@ actual interface WGPUConstantEntry {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override val key: WGPUStringView
-			get() = handle.key.let{ WGPUStringView.ByValue(it) }
+		override var key: CString?
+			get() = handle.key?.let(::CString)
+			set(newValue) { handle.key = newValue?.handler }
 
 		override var value: Double
 			get() = handle.value
@@ -1799,8 +1752,9 @@ actual interface WGPUConstantEntry {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override val key: WGPUStringView
-			get() = handle.key.let{ WGPUStringView.ByValue(it) }
+		override var key: CString?
+			get() = handle.key?.let(::CString)
+			set(newValue) { handle.key = newValue?.handler }
 
 		override var value: Double
 			get() = handle.value
@@ -1817,7 +1771,7 @@ actual interface WGPUConstantEntry {
 	fun toReference() = (this as ByReference).handle
 
 	actual var nextInChain: NativeAddress?
-	actual val key: WGPUStringView
+	actual var key: CString?
 	actual var value: Double
 	actual val handler: NativeAddress
 
@@ -1853,8 +1807,9 @@ actual interface WGPUCommandBufferDescriptor {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override val label: WGPUStringView
-			get() = handle.label.let{ WGPUStringView.ByValue(it) }
+		override var label: CString?
+			get() = handle.label?.let(::CString)
+			set(newValue) { handle.label = newValue?.handler }
 
 		override val handler: NativeAddress
 			get() {
@@ -1868,8 +1823,9 @@ actual interface WGPUCommandBufferDescriptor {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override val label: WGPUStringView
-			get() = handle.label.let{ WGPUStringView.ByValue(it) }
+		override var label: CString?
+			get() = handle.label?.let(::CString)
+			set(newValue) { handle.label = newValue?.handler }
 
 		override val handler: NativeAddress
 			get() {
@@ -1882,7 +1838,7 @@ actual interface WGPUCommandBufferDescriptor {
 	fun toReference() = (this as ByReference).handle
 
 	actual var nextInChain: NativeAddress?
-	actual val label: WGPUStringView
+	actual var label: CString?
 	actual val handler: NativeAddress
 
 	actual companion object {
@@ -1917,8 +1873,9 @@ actual interface WGPUCommandEncoderDescriptor {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override val label: WGPUStringView
-			get() = handle.label.let{ WGPUStringView.ByValue(it) }
+		override var label: CString?
+			get() = handle.label?.let(::CString)
+			set(newValue) { handle.label = newValue?.handler }
 
 		override val handler: NativeAddress
 			get() {
@@ -1932,8 +1889,9 @@ actual interface WGPUCommandEncoderDescriptor {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override val label: WGPUStringView
-			get() = handle.label.let{ WGPUStringView.ByValue(it) }
+		override var label: CString?
+			get() = handle.label?.let(::CString)
+			set(newValue) { handle.label = newValue?.handler }
 
 		override val handler: NativeAddress
 			get() {
@@ -1946,7 +1904,7 @@ actual interface WGPUCommandEncoderDescriptor {
 	fun toReference() = (this as ByReference).handle
 
 	actual var nextInChain: NativeAddress?
-	actual val label: WGPUStringView
+	actual var label: CString?
 	actual val handler: NativeAddress
 
 	actual companion object {
@@ -2056,8 +2014,9 @@ actual interface WGPUCompilationMessage {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override val message: WGPUStringView
-			get() = handle.message.let{ WGPUStringView.ByValue(it) }
+		override var message: CString?
+			get() = handle.message?.let(::CString)
+			set(newValue) { handle.message = newValue?.handler }
 
 		override var type: WGPUCompilationMessageType
 			get() = handle.type.toUInt()
@@ -2103,8 +2062,9 @@ actual interface WGPUCompilationMessage {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override val message: WGPUStringView
-			get() = handle.message.let{ WGPUStringView.ByValue(it) }
+		override var message: CString?
+			get() = handle.message?.let(::CString)
+			set(newValue) { handle.message = newValue?.handler }
 
 		override var type: WGPUCompilationMessageType
 			get() = handle.type.toUInt()
@@ -2149,7 +2109,7 @@ actual interface WGPUCompilationMessage {
 	fun toReference() = (this as ByReference).handle
 
 	actual var nextInChain: NativeAddress?
-	actual val message: WGPUStringView
+	actual var message: CString?
 	actual var type: WGPUCompilationMessageType
 	actual var lineNum: ULong
 	actual var linePos: ULong
@@ -2192,8 +2152,9 @@ actual interface WGPUComputePassDescriptor {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override val label: WGPUStringView
-			get() = handle.label.let{ WGPUStringView.ByValue(it) }
+		override var label: CString?
+			get() = handle.label?.let(::CString)
+			set(newValue) { handle.label = newValue?.handler }
 
 		override var timestampWrites: WGPUComputePassTimestampWrites?
 			get() = handle.timestampWrites?.let{ WGPUComputePassTimestampWrites.ByReference(it) }
@@ -2211,8 +2172,9 @@ actual interface WGPUComputePassDescriptor {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override val label: WGPUStringView
-			get() = handle.label.let{ WGPUStringView.ByValue(it) }
+		override var label: CString?
+			get() = handle.label?.let(::CString)
+			set(newValue) { handle.label = newValue?.handler }
 
 		override var timestampWrites: WGPUComputePassTimestampWrites?
 			get() = handle.timestampWrites?.let{ WGPUComputePassTimestampWrites.ByReference(it) }
@@ -2229,7 +2191,7 @@ actual interface WGPUComputePassDescriptor {
 	fun toReference() = (this as ByReference).handle
 
 	actual var nextInChain: NativeAddress?
-	actual val label: WGPUStringView
+	actual var label: CString?
 	actual var timestampWrites: WGPUComputePassTimestampWrites?
 	actual val handler: NativeAddress
 
@@ -2344,8 +2306,9 @@ actual interface WGPUProgrammableStageDescriptor {
 			get() = handle.module?.let{ WGPUShaderModule(it) }
 			set(newValue) { handle.module = newValue?.handler }
 
-		override val entryPoint: WGPUStringView
-			get() = handle.entryPoint.let{ WGPUStringView.ByValue(it) }
+		override var entryPoint: CString?
+			get() = handle.entryPoint?.let(::CString)
+			set(newValue) { handle.entryPoint = newValue?.handler }
 
 		override var constantCount: ULong
 			get() = handle.constantCount.toULong()
@@ -2371,8 +2334,9 @@ actual interface WGPUProgrammableStageDescriptor {
 			get() = handle.module?.let{ WGPUShaderModule(it) }
 			set(newValue) { handle.module = newValue?.handler }
 
-		override val entryPoint: WGPUStringView
-			get() = handle.entryPoint.let{ WGPUStringView.ByValue(it) }
+		override var entryPoint: CString?
+			get() = handle.entryPoint?.let(::CString)
+			set(newValue) { handle.entryPoint = newValue?.handler }
 
 		override var constantCount: ULong
 			get() = handle.constantCount.toULong()
@@ -2394,7 +2358,7 @@ actual interface WGPUProgrammableStageDescriptor {
 
 	actual var nextInChain: NativeAddress?
 	actual var module: WGPUShaderModule?
-	actual val entryPoint: WGPUStringView
+	actual var entryPoint: CString?
 	actual var constantCount: ULong
 	actual var constants: ArrayHolder<WGPUConstantEntry>?
 	actual val handler: NativeAddress
@@ -2431,8 +2395,9 @@ actual interface WGPUComputePipelineDescriptor {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override val label: WGPUStringView
-			get() = handle.label.let{ WGPUStringView.ByValue(it) }
+		override var label: CString?
+			get() = handle.label?.let(::CString)
+			set(newValue) { handle.label = newValue?.handler }
 
 		override var layout: WGPUPipelineLayout?
 			get() = handle.layout?.let{ WGPUPipelineLayout(it) }
@@ -2453,8 +2418,9 @@ actual interface WGPUComputePipelineDescriptor {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override val label: WGPUStringView
-			get() = handle.label.let{ WGPUStringView.ByValue(it) }
+		override var label: CString?
+			get() = handle.label?.let(::CString)
+			set(newValue) { handle.label = newValue?.handler }
 
 		override var layout: WGPUPipelineLayout?
 			get() = handle.layout?.let{ WGPUPipelineLayout(it) }
@@ -2474,7 +2440,7 @@ actual interface WGPUComputePipelineDescriptor {
 	fun toReference() = (this as ByReference).handle
 
 	actual var nextInChain: NativeAddress?
-	actual val label: WGPUStringView
+	actual var label: CString?
 	actual var layout: WGPUPipelineLayout?
 	actual val compute: WGPUProgrammableStageDescriptor
 	actual val handler: NativeAddress
@@ -3589,8 +3555,9 @@ actual interface WGPUPipelineLayoutDescriptor {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override val label: WGPUStringView
-			get() = handle.label.let{ WGPUStringView.ByValue(it) }
+		override var label: CString?
+			get() = handle.label?.let(::CString)
+			set(newValue) { handle.label = newValue?.handler }
 
 		override var bindGroupLayoutCount: ULong
 			get() = handle.bindGroupLayoutCount.toULong()
@@ -3612,8 +3579,9 @@ actual interface WGPUPipelineLayoutDescriptor {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override val label: WGPUStringView
-			get() = handle.label.let{ WGPUStringView.ByValue(it) }
+		override var label: CString?
+			get() = handle.label?.let(::CString)
+			set(newValue) { handle.label = newValue?.handler }
 
 		override var bindGroupLayoutCount: ULong
 			get() = handle.bindGroupLayoutCount.toULong()
@@ -3634,7 +3602,7 @@ actual interface WGPUPipelineLayoutDescriptor {
 	fun toReference() = (this as ByReference).handle
 
 	actual var nextInChain: NativeAddress?
-	actual val label: WGPUStringView
+	actual var label: CString?
 	actual var bindGroupLayoutCount: ULong
 	actual var bindGroupLayouts: ArrayHolder<WGPUBindGroupLayout>?
 	actual val handler: NativeAddress
@@ -3671,8 +3639,9 @@ actual interface WGPUQuerySetDescriptor {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override val label: WGPUStringView
-			get() = handle.label.let{ WGPUStringView.ByValue(it) }
+		override var label: CString?
+			get() = handle.label?.let(::CString)
+			set(newValue) { handle.label = newValue?.handler }
 
 		override var type: WGPUQueryType
 			get() = handle.type.toUInt()
@@ -3694,8 +3663,9 @@ actual interface WGPUQuerySetDescriptor {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override val label: WGPUStringView
-			get() = handle.label.let{ WGPUStringView.ByValue(it) }
+		override var label: CString?
+			get() = handle.label?.let(::CString)
+			set(newValue) { handle.label = newValue?.handler }
 
 		override var type: WGPUQueryType
 			get() = handle.type.toUInt()
@@ -3716,7 +3686,7 @@ actual interface WGPUQuerySetDescriptor {
 	fun toReference() = (this as ByReference).handle
 
 	actual var nextInChain: NativeAddress?
-	actual val label: WGPUStringView
+	actual var label: CString?
 	actual var type: WGPUQueryType
 	actual var count: UInt
 	actual val handler: NativeAddress
@@ -3753,8 +3723,9 @@ actual interface WGPURenderBundleDescriptor {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override val label: WGPUStringView
-			get() = handle.label.let{ WGPUStringView.ByValue(it) }
+		override var label: CString?
+			get() = handle.label?.let(::CString)
+			set(newValue) { handle.label = newValue?.handler }
 
 		override val handler: NativeAddress
 			get() {
@@ -3768,8 +3739,9 @@ actual interface WGPURenderBundleDescriptor {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override val label: WGPUStringView
-			get() = handle.label.let{ WGPUStringView.ByValue(it) }
+		override var label: CString?
+			get() = handle.label?.let(::CString)
+			set(newValue) { handle.label = newValue?.handler }
 
 		override val handler: NativeAddress
 			get() {
@@ -3782,7 +3754,7 @@ actual interface WGPURenderBundleDescriptor {
 	fun toReference() = (this as ByReference).handle
 
 	actual var nextInChain: NativeAddress?
-	actual val label: WGPUStringView
+	actual var label: CString?
 	actual val handler: NativeAddress
 
 	actual companion object {
@@ -3817,8 +3789,9 @@ actual interface WGPURenderBundleEncoderDescriptor {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override val label: WGPUStringView
-			get() = handle.label.let{ WGPUStringView.ByValue(it) }
+		override var label: CString?
+			get() = handle.label?.let(::CString)
+			set(newValue) { handle.label = newValue?.handler }
 
 		override var colorFormatCount: ULong
 			get() = handle.colorFormatCount.toULong()
@@ -3856,8 +3829,9 @@ actual interface WGPURenderBundleEncoderDescriptor {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override val label: WGPUStringView
-			get() = handle.label.let{ WGPUStringView.ByValue(it) }
+		override var label: CString?
+			get() = handle.label?.let(::CString)
+			set(newValue) { handle.label = newValue?.handler }
 
 		override var colorFormatCount: ULong
 			get() = handle.colorFormatCount.toULong()
@@ -3894,7 +3868,7 @@ actual interface WGPURenderBundleEncoderDescriptor {
 	fun toReference() = (this as ByReference).handle
 
 	actual var nextInChain: NativeAddress?
-	actual val label: WGPUStringView
+	actual var label: CString?
 	actual var colorFormatCount: ULong
 	actual var colorFormats: ArrayHolder<WGPUTextureFormat>?
 	actual var depthStencilFormat: WGPUTextureFormat
@@ -4173,8 +4147,9 @@ actual interface WGPURenderPassDescriptor {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override val label: WGPUStringView
-			get() = handle.label.let{ WGPUStringView.ByValue(it) }
+		override var label: CString?
+			get() = handle.label?.let(::CString)
+			set(newValue) { handle.label = newValue?.handler }
 
 		override var colorAttachmentCount: ULong
 			get() = handle.colorAttachmentCount.toULong()
@@ -4208,8 +4183,9 @@ actual interface WGPURenderPassDescriptor {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override val label: WGPUStringView
-			get() = handle.label.let{ WGPUStringView.ByValue(it) }
+		override var label: CString?
+			get() = handle.label?.let(::CString)
+			set(newValue) { handle.label = newValue?.handler }
 
 		override var colorAttachmentCount: ULong
 			get() = handle.colorAttachmentCount.toULong()
@@ -4242,7 +4218,7 @@ actual interface WGPURenderPassDescriptor {
 	fun toReference() = (this as ByReference).handle
 
 	actual var nextInChain: NativeAddress?
-	actual val label: WGPUStringView
+	actual var label: CString?
 	actual var colorAttachmentCount: ULong
 	actual var colorAttachments: ArrayHolder<WGPURenderPassColorAttachment>?
 	actual var depthStencilAttachment: WGPURenderPassDepthStencilAttachment?
@@ -4491,8 +4467,9 @@ actual interface WGPUVertexState {
 			get() = handle.module?.let{ WGPUShaderModule(it) }
 			set(newValue) { handle.module = newValue?.handler }
 
-		override val entryPoint: WGPUStringView
-			get() = handle.entryPoint.let{ WGPUStringView.ByValue(it) }
+		override var entryPoint: CString?
+			get() = handle.entryPoint?.let(::CString)
+			set(newValue) { handle.entryPoint = newValue?.handler }
 
 		override var constantCount: ULong
 			get() = handle.constantCount.toULong()
@@ -4526,8 +4503,9 @@ actual interface WGPUVertexState {
 			get() = handle.module?.let{ WGPUShaderModule(it) }
 			set(newValue) { handle.module = newValue?.handler }
 
-		override val entryPoint: WGPUStringView
-			get() = handle.entryPoint.let{ WGPUStringView.ByValue(it) }
+		override var entryPoint: CString?
+			get() = handle.entryPoint?.let(::CString)
+			set(newValue) { handle.entryPoint = newValue?.handler }
 
 		override var constantCount: ULong
 			get() = handle.constantCount.toULong()
@@ -4557,7 +4535,7 @@ actual interface WGPUVertexState {
 
 	actual var nextInChain: NativeAddress?
 	actual var module: WGPUShaderModule?
-	actual val entryPoint: WGPUStringView
+	actual var entryPoint: CString?
 	actual var constantCount: ULong
 	actual var constants: ArrayHolder<WGPUConstantEntry>?
 	actual var bufferCount: ULong
@@ -5068,8 +5046,9 @@ actual interface WGPUFragmentState {
 			get() = handle.module?.let{ WGPUShaderModule(it) }
 			set(newValue) { handle.module = newValue?.handler }
 
-		override val entryPoint: WGPUStringView
-			get() = handle.entryPoint.let{ WGPUStringView.ByValue(it) }
+		override var entryPoint: CString?
+			get() = handle.entryPoint?.let(::CString)
+			set(newValue) { handle.entryPoint = newValue?.handler }
 
 		override var constantCount: ULong
 			get() = handle.constantCount.toULong()
@@ -5103,8 +5082,9 @@ actual interface WGPUFragmentState {
 			get() = handle.module?.let{ WGPUShaderModule(it) }
 			set(newValue) { handle.module = newValue?.handler }
 
-		override val entryPoint: WGPUStringView
-			get() = handle.entryPoint.let{ WGPUStringView.ByValue(it) }
+		override var entryPoint: CString?
+			get() = handle.entryPoint?.let(::CString)
+			set(newValue) { handle.entryPoint = newValue?.handler }
 
 		override var constantCount: ULong
 			get() = handle.constantCount.toULong()
@@ -5134,7 +5114,7 @@ actual interface WGPUFragmentState {
 
 	actual var nextInChain: NativeAddress?
 	actual var module: WGPUShaderModule?
-	actual val entryPoint: WGPUStringView
+	actual var entryPoint: CString?
 	actual var constantCount: ULong
 	actual var constants: ArrayHolder<WGPUConstantEntry>?
 	actual var targetCount: ULong
@@ -5319,8 +5299,9 @@ actual interface WGPURenderPipelineDescriptor {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override val label: WGPUStringView
-			get() = handle.label.let{ WGPUStringView.ByValue(it) }
+		override var label: CString?
+			get() = handle.label?.let(::CString)
+			set(newValue) { handle.label = newValue?.handler }
 
 		override var layout: WGPUPipelineLayout?
 			get() = handle.layout?.let{ WGPUPipelineLayout(it) }
@@ -5355,8 +5336,9 @@ actual interface WGPURenderPipelineDescriptor {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override val label: WGPUStringView
-			get() = handle.label.let{ WGPUStringView.ByValue(it) }
+		override var label: CString?
+			get() = handle.label?.let(::CString)
+			set(newValue) { handle.label = newValue?.handler }
 
 		override var layout: WGPUPipelineLayout?
 			get() = handle.layout?.let{ WGPUPipelineLayout(it) }
@@ -5390,7 +5372,7 @@ actual interface WGPURenderPipelineDescriptor {
 	fun toReference() = (this as ByReference).handle
 
 	actual var nextInChain: NativeAddress?
-	actual val label: WGPUStringView
+	actual var label: CString?
 	actual var layout: WGPUPipelineLayout?
 	actual val vertex: WGPUVertexState
 	actual val primitive: WGPUPrimitiveState
@@ -5431,8 +5413,9 @@ actual interface WGPUSamplerDescriptor {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override val label: WGPUStringView
-			get() = handle.label.let{ WGPUStringView.ByValue(it) }
+		override var label: CString?
+			get() = handle.label?.let(::CString)
+			set(newValue) { handle.label = newValue?.handler }
 
 		override var addressModeU: WGPUAddressMode
 			get() = handle.addressModeU.toUInt()
@@ -5486,8 +5469,9 @@ actual interface WGPUSamplerDescriptor {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override val label: WGPUStringView
-			get() = handle.label.let{ WGPUStringView.ByValue(it) }
+		override var label: CString?
+			get() = handle.label?.let(::CString)
+			set(newValue) { handle.label = newValue?.handler }
 
 		override var addressModeU: WGPUAddressMode
 			get() = handle.addressModeU.toUInt()
@@ -5540,7 +5524,7 @@ actual interface WGPUSamplerDescriptor {
 	fun toReference() = (this as ByReference).handle
 
 	actual var nextInChain: NativeAddress?
-	actual val label: WGPUStringView
+	actual var label: CString?
 	actual var addressModeU: WGPUAddressMode
 	actual var addressModeV: WGPUAddressMode
 	actual var addressModeW: WGPUAddressMode
@@ -5585,8 +5569,9 @@ actual interface WGPUShaderModuleDescriptor {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override val label: WGPUStringView
-			get() = handle.label.let{ WGPUStringView.ByValue(it) }
+		override var label: CString?
+			get() = handle.label?.let(::CString)
+			set(newValue) { handle.label = newValue?.handler }
 
 		override var hintCount: ULong
 			get() = handle.hintCount.toULong()
@@ -5608,8 +5593,9 @@ actual interface WGPUShaderModuleDescriptor {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override val label: WGPUStringView
-			get() = handle.label.let{ WGPUStringView.ByValue(it) }
+		override var label: CString?
+			get() = handle.label?.let(::CString)
+			set(newValue) { handle.label = newValue?.handler }
 
 		override var hintCount: ULong
 			get() = handle.hintCount.toULong()
@@ -5630,7 +5616,7 @@ actual interface WGPUShaderModuleDescriptor {
 	fun toReference() = (this as ByReference).handle
 
 	actual var nextInChain: NativeAddress?
-	actual val label: WGPUStringView
+	actual var label: CString?
 	actual var hintCount: ULong
 	actual var hints: ArrayHolder<WGPUShaderModuleCompilationHint>?
 	actual val handler: NativeAddress
@@ -5667,8 +5653,9 @@ actual interface WGPUShaderModuleCompilationHint {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override val entryPoint: WGPUStringView
-			get() = handle.entryPoint.let{ WGPUStringView.ByValue(it) }
+		override var entryPoint: CString?
+			get() = handle.entryPoint?.let(::CString)
+			set(newValue) { handle.entryPoint = newValue?.handler }
 
 		override var layout: WGPUPipelineLayout?
 			get() = handle.layout?.let{ WGPUPipelineLayout(it) }
@@ -5686,8 +5673,9 @@ actual interface WGPUShaderModuleCompilationHint {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override val entryPoint: WGPUStringView
-			get() = handle.entryPoint.let{ WGPUStringView.ByValue(it) }
+		override var entryPoint: CString?
+			get() = handle.entryPoint?.let(::CString)
+			set(newValue) { handle.entryPoint = newValue?.handler }
 
 		override var layout: WGPUPipelineLayout?
 			get() = handle.layout?.let{ WGPUPipelineLayout(it) }
@@ -5704,7 +5692,7 @@ actual interface WGPUShaderModuleCompilationHint {
 	fun toReference() = (this as ByReference).handle
 
 	actual var nextInChain: NativeAddress?
-	actual val entryPoint: WGPUStringView
+	actual var entryPoint: CString?
 	actual var layout: WGPUPipelineLayout?
 	actual val handler: NativeAddress
 
@@ -5812,8 +5800,9 @@ actual interface WGPUShaderModuleWGSLDescriptor {
 		override val chain: WGPUChainedStruct
 			get() = handle.chain.let{ WGPUChainedStruct.ByValue(it) }
 
-		override val code: WGPUStringView
-			get() = handle.code.let{ WGPUStringView.ByValue(it) }
+		override var code: CString?
+			get() = handle.code?.let(::CString)
+			set(newValue) { handle.code = newValue?.handler }
 
 		override val handler: NativeAddress
 			get() {
@@ -5826,8 +5815,9 @@ actual interface WGPUShaderModuleWGSLDescriptor {
 		override val chain: WGPUChainedStruct
 			get() = handle.chain.let{ WGPUChainedStruct.ByValue(it) }
 
-		override val code: WGPUStringView
-			get() = handle.code.let{ WGPUStringView.ByValue(it) }
+		override var code: CString?
+			get() = handle.code?.let(::CString)
+			set(newValue) { handle.code = newValue?.handler }
 
 		override val handler: NativeAddress
 			get() {
@@ -5840,7 +5830,7 @@ actual interface WGPUShaderModuleWGSLDescriptor {
 	fun toReference() = (this as ByReference).handle
 
 	actual val chain: WGPUChainedStruct
-	actual val code: WGPUStringView
+	actual var code: CString?
 	actual val handler: NativeAddress
 
 	actual companion object {
@@ -5875,8 +5865,9 @@ actual interface WGPUSurfaceDescriptor {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override val label: WGPUStringView
-			get() = handle.label.let{ WGPUStringView.ByValue(it) }
+		override var label: CString?
+			get() = handle.label?.let(::CString)
+			set(newValue) { handle.label = newValue?.handler }
 
 		override val handler: NativeAddress
 			get() {
@@ -5890,8 +5881,9 @@ actual interface WGPUSurfaceDescriptor {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override val label: WGPUStringView
-			get() = handle.label.let{ WGPUStringView.ByValue(it) }
+		override var label: CString?
+			get() = handle.label?.let(::CString)
+			set(newValue) { handle.label = newValue?.handler }
 
 		override val handler: NativeAddress
 			get() {
@@ -5904,7 +5896,7 @@ actual interface WGPUSurfaceDescriptor {
 	fun toReference() = (this as ByReference).handle
 
 	actual var nextInChain: NativeAddress?
-	actual val label: WGPUStringView
+	actual var label: CString?
 	actual val handler: NativeAddress
 
 	actual companion object {
@@ -6002,8 +5994,9 @@ actual interface WGPUSurfaceDescriptorFromCanvasHTMLSelector {
 		override val chain: WGPUChainedStruct
 			get() = handle.chain.let{ WGPUChainedStruct.ByValue(it) }
 
-		override val selector: WGPUStringView
-			get() = handle.selector.let{ WGPUStringView.ByValue(it) }
+		override var selector: CString?
+			get() = handle.selector?.let(::CString)
+			set(newValue) { handle.selector = newValue?.handler }
 
 		override val handler: NativeAddress
 			get() {
@@ -6016,8 +6009,9 @@ actual interface WGPUSurfaceDescriptorFromCanvasHTMLSelector {
 		override val chain: WGPUChainedStruct
 			get() = handle.chain.let{ WGPUChainedStruct.ByValue(it) }
 
-		override val selector: WGPUStringView
-			get() = handle.selector.let{ WGPUStringView.ByValue(it) }
+		override var selector: CString?
+			get() = handle.selector?.let(::CString)
+			set(newValue) { handle.selector = newValue?.handler }
 
 		override val handler: NativeAddress
 			get() {
@@ -6030,7 +6024,7 @@ actual interface WGPUSurfaceDescriptorFromCanvasHTMLSelector {
 	fun toReference() = (this as ByReference).handle
 
 	actual val chain: WGPUChainedStruct
-	actual val selector: WGPUStringView
+	actual var selector: CString?
 	actual val handler: NativeAddress
 
 	actual companion object {
@@ -6496,8 +6490,9 @@ actual interface WGPUTextureDescriptor {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override val label: WGPUStringView
-			get() = handle.label.let{ WGPUStringView.ByValue(it) }
+		override var label: CString?
+			get() = handle.label?.let(::CString)
+			set(newValue) { handle.label = newValue?.handler }
 
 		override var usage: ULong
 			get() = handle.usage.toULong()
@@ -6542,8 +6537,9 @@ actual interface WGPUTextureDescriptor {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override val label: WGPUStringView
-			get() = handle.label.let{ WGPUStringView.ByValue(it) }
+		override var label: CString?
+			get() = handle.label?.let(::CString)
+			set(newValue) { handle.label = newValue?.handler }
 
 		override var usage: ULong
 			get() = handle.usage.toULong()
@@ -6587,7 +6583,7 @@ actual interface WGPUTextureDescriptor {
 	fun toReference() = (this as ByReference).handle
 
 	actual var nextInChain: NativeAddress?
-	actual val label: WGPUStringView
+	actual var label: CString?
 	actual var usage: ULong
 	actual var dimension: WGPUTextureDimension
 	actual val size: WGPUExtent3D
@@ -6630,8 +6626,9 @@ actual interface WGPUTextureViewDescriptor {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override val label: WGPUStringView
-			get() = handle.label.let{ WGPUStringView.ByValue(it) }
+		override var label: CString?
+			get() = handle.label?.let(::CString)
+			set(newValue) { handle.label = newValue?.handler }
 
 		override var format: WGPUTextureFormat
 			get() = handle.format.toUInt()
@@ -6673,8 +6670,9 @@ actual interface WGPUTextureViewDescriptor {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override val label: WGPUStringView
-			get() = handle.label.let{ WGPUStringView.ByValue(it) }
+		override var label: CString?
+			get() = handle.label?.let(::CString)
+			set(newValue) { handle.label = newValue?.handler }
 
 		override var format: WGPUTextureFormat
 			get() = handle.format.toUInt()
@@ -6715,7 +6713,7 @@ actual interface WGPUTextureViewDescriptor {
 	fun toReference() = (this as ByReference).handle
 
 	actual var nextInChain: NativeAddress?
-	actual val label: WGPUStringView
+	actual var label: CString?
 	actual var format: WGPUTextureFormat
 	actual var dimension: WGPUTextureViewDimension
 	actual var baseMipLevel: UInt
@@ -6772,11 +6770,13 @@ actual interface WGPUInstanceExtras {
 			get() = handle.gles3MinorVersion.toUInt()
 			set(newValue) { handle.gles3MinorVersion = newValue.toInt() }
 
-		override val dxilPath: WGPUStringView
-			get() = handle.dxilPath.let{ WGPUStringView.ByValue(it) }
+		override var dxilPath: CString?
+			get() = handle.dxilPath?.let(::CString)
+			set(newValue) { handle.dxilPath = newValue?.handler }
 
-		override val dxcPath: WGPUStringView
-			get() = handle.dxcPath.let{ WGPUStringView.ByValue(it) }
+		override var dxcPath: CString?
+			get() = handle.dxcPath?.let(::CString)
+			set(newValue) { handle.dxcPath = newValue?.handler }
 
 		override val handler: NativeAddress
 			get() {
@@ -6805,11 +6805,13 @@ actual interface WGPUInstanceExtras {
 			get() = handle.gles3MinorVersion.toUInt()
 			set(newValue) { handle.gles3MinorVersion = newValue.toInt() }
 
-		override val dxilPath: WGPUStringView
-			get() = handle.dxilPath.let{ WGPUStringView.ByValue(it) }
+		override var dxilPath: CString?
+			get() = handle.dxilPath?.let(::CString)
+			set(newValue) { handle.dxilPath = newValue?.handler }
 
-		override val dxcPath: WGPUStringView
-			get() = handle.dxcPath.let{ WGPUStringView.ByValue(it) }
+		override var dxcPath: CString?
+			get() = handle.dxcPath?.let(::CString)
+			set(newValue) { handle.dxcPath = newValue?.handler }
 
 		override val handler: NativeAddress
 			get() {
@@ -6826,8 +6828,8 @@ actual interface WGPUInstanceExtras {
 	actual var flags: ULong
 	actual var dx12ShaderCompiler: WGPUDx12Compiler
 	actual var gles3MinorVersion: WGPUGles3MinorVersion
-	actual val dxilPath: WGPUStringView
-	actual val dxcPath: WGPUStringView
+	actual var dxilPath: CString?
+	actual var dxcPath: CString?
 	actual val handler: NativeAddress
 
 	actual companion object {
@@ -6913,6 +6915,72 @@ actual interface WGPUChainedStructOut {
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUChainedStructOut.ByValue)
 					.also { provider(index.toUInt(), WGPUChainedStructOut.ByValue(it)) }
+					.write()
+			}
+			val pointer = if (size == 0u) com.sun.jna.Pointer.NULL else array.first().pointer
+			return ArrayHolder(pointer)
+		}
+	}
+}
+
+actual interface WGPUStringView {
+
+	class ByReference(val handle: io.ygdrasil.wgpu.android.WGPUStringView.ByReference = io.ygdrasil.wgpu.android.WGPUStringView.ByReference(com.sun.jna.Pointer.NULL)) : WGPUStringView {
+		override var data: CString?
+			get() = handle.data?.let(::CString)
+			set(newValue) { handle.data = newValue?.handler }
+
+		override var length: ULong
+			get() = handle.length.toULong()
+			set(newValue) { handle.length = newValue.toLong() }
+
+		override val handler: NativeAddress
+			get() {
+				handle.write()
+				return handle.getPointer()
+			}
+	}
+
+	class ByValue(val handle: io.ygdrasil.wgpu.android.WGPUStringView.ByValue = io.ygdrasil.wgpu.android.WGPUStringView.ByValue(com.sun.jna.Pointer.NULL)) : WGPUStringView {
+		override var data: CString?
+			get() = handle.data?.let(::CString)
+			set(newValue) { handle.data = newValue?.handler }
+
+		override var length: ULong
+			get() = handle.length.toULong()
+			set(newValue) { handle.length = newValue.toLong() }
+
+		override val handler: NativeAddress
+			get() {
+				handle.write()
+				return handle.getPointer()
+			}
+	}
+
+	fun toCValue() = (this as ByReference).let{ io.ygdrasil.wgpu.android.WGPUStringView.ByValue(handle) }
+	fun toReference() = (this as ByReference).handle
+
+	actual var data: CString?
+	actual var length: ULong
+	actual val handler: NativeAddress
+
+	actual companion object {
+		actual operator fun invoke(address: NativeAddress): WGPUStringView {
+			return io.ygdrasil.wgpu.android.WGPUStringView.ByReference(address)
+				.also { it.read() }
+				.let(::ByReference)
+		}
+
+		actual fun allocate(allocator: MemoryAllocator): WGPUStringView {
+			return WGPUStringView.ByReference()
+				.also { allocator.register(it) }
+		}
+
+		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUStringView) -> Unit): ArrayHolder<WGPUStringView> {
+			val array = io.ygdrasil.wgpu.android.WGPUStringView.ByValue().toArray(size.toInt())
+			array.forEachIndexed { index, structure ->
+				(structure as io.ygdrasil.wgpu.android.WGPUStringView.ByValue)
+					.also { provider(index.toUInt(), WGPUStringView.ByValue(it)) }
 					.write()
 			}
 			val pointer = if (size == 0u) com.sun.jna.Pointer.NULL else array.first().pointer
