@@ -61,6 +61,18 @@ expect interface WGPUQueueDescriptor {
 	}
 }
 
+expect interface WGPUUncapturedErrorCallbackInfo {
+	var nextInChain: NativeAddress?
+	var callback: CallbackHolder<WGPUErrorCallback>?
+	var userdata: NativeAddress?
+	val handler: NativeAddress
+	companion object {
+		operator fun invoke(address: NativeAddress): WGPUUncapturedErrorCallbackInfo
+		fun allocate(allocator: MemoryAllocator): WGPUUncapturedErrorCallbackInfo
+		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPUUncapturedErrorCallbackInfo) -> Unit): ArrayHolder<WGPUUncapturedErrorCallbackInfo>
+	}
+}
+
 expect interface WGPUDeviceDescriptor {
 	var nextInChain: NativeAddress?
 	val label: WGPUStringView
@@ -70,7 +82,7 @@ expect interface WGPUDeviceDescriptor {
 	val defaultQueue: WGPUQueueDescriptor
 	var deviceLostCallback: CallbackHolder<WGPUDeviceLostCallback>?
 	var deviceLostUserdata: NativeAddress?
-	var uncapturedErrorCallbackInfo: CallbackHolder<WGPUUncapturedErrorCallbackInfo>?
+	val uncapturedErrorCallbackInfo: WGPUUncapturedErrorCallbackInfo
 	val handler: NativeAddress
 	companion object {
 		operator fun invoke(address: NativeAddress): WGPUDeviceDescriptor
@@ -1029,18 +1041,6 @@ expect interface WGPUTextureViewDescriptor {
 		operator fun invoke(address: NativeAddress): WGPUTextureViewDescriptor
 		fun allocate(allocator: MemoryAllocator): WGPUTextureViewDescriptor
 		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPUTextureViewDescriptor) -> Unit): ArrayHolder<WGPUTextureViewDescriptor>
-	}
-}
-
-expect interface WGPUUncapturedErrorCallbackInfo {
-	var nextInChain: NativeAddress?
-	var callback: CallbackHolder<WGPUErrorCallback>?
-	var userdata: NativeAddress?
-	val handler: NativeAddress
-	companion object {
-		operator fun invoke(address: NativeAddress): WGPUUncapturedErrorCallbackInfo
-		fun allocate(allocator: MemoryAllocator): WGPUUncapturedErrorCallbackInfo
-		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPUUncapturedErrorCallbackInfo) -> Unit): ArrayHolder<WGPUUncapturedErrorCallbackInfo>
 	}
 }
 

@@ -113,6 +113,29 @@ sealed class WGPUQueueDescriptor(pointer: com.sun.jna.Pointer? = null) : com.sun
 	}
 }
 
+sealed class WGPUUncapturedErrorCallbackInfo(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
+	@JvmField var nextInChain: com.sun.jna.Pointer? = null
+	@JvmField var callback: com.sun.jna.Callback? = null
+	@JvmField var userdata: com.sun.jna.Pointer? = null
+	override fun getFieldOrder() = listOf("nextInChain", "callback", "userdata")
+
+	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPUUncapturedErrorCallbackInfo(pointer), com.sun.jna.Structure.ByReference {
+		constructor(other: WGPUUncapturedErrorCallbackInfo) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
+			this.callback = other.callback
+			this.userdata = other.userdata
+		}
+	}
+
+	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPUUncapturedErrorCallbackInfo(pointer), com.sun.jna.Structure.ByValue {
+		constructor(other: WGPUUncapturedErrorCallbackInfo) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
+			this.callback = other.callback
+			this.userdata = other.userdata
+		}
+	}
+}
+
 sealed class WGPUDeviceDescriptor(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var label: WGPUStringView.ByValue = WGPUStringView.ByValue()
@@ -122,7 +145,7 @@ sealed class WGPUDeviceDescriptor(pointer: com.sun.jna.Pointer? = null) : com.su
 	@JvmField var defaultQueue: WGPUQueueDescriptor.ByValue = WGPUQueueDescriptor.ByValue()
 	@JvmField var deviceLostCallback: com.sun.jna.Callback? = null
 	@JvmField var deviceLostUserdata: com.sun.jna.Pointer? = null
-	@JvmField var uncapturedErrorCallbackInfo: com.sun.jna.Callback? = null
+	@JvmField var uncapturedErrorCallbackInfo: WGPUUncapturedErrorCallbackInfo.ByValue = WGPUUncapturedErrorCallbackInfo.ByValue()
 	override fun getFieldOrder() = listOf("nextInChain", "label", "requiredFeatureCount", "requiredFeatures", "requiredLimits", "defaultQueue", "deviceLostCallback", "deviceLostUserdata", "uncapturedErrorCallbackInfo")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPUDeviceDescriptor(pointer), com.sun.jna.Structure.ByReference {
@@ -2112,29 +2135,6 @@ sealed class WGPUTextureViewDescriptor(pointer: com.sun.jna.Pointer? = null) : c
 			this.baseArrayLayer = other.baseArrayLayer
 			this.arrayLayerCount = other.arrayLayerCount
 			this.aspect = other.aspect
-		}
-	}
-}
-
-sealed class WGPUUncapturedErrorCallbackInfo(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
-	@JvmField var nextInChain: com.sun.jna.Pointer? = null
-	@JvmField var callback: com.sun.jna.Callback? = null
-	@JvmField var userdata: com.sun.jna.Pointer? = null
-	override fun getFieldOrder() = listOf("nextInChain", "callback", "userdata")
-
-	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPUUncapturedErrorCallbackInfo(pointer), com.sun.jna.Structure.ByReference {
-		constructor(other: WGPUUncapturedErrorCallbackInfo) : this(other.pointer) {
-			this.nextInChain = other.nextInChain
-			this.callback = other.callback
-			this.userdata = other.userdata
-		}
-	}
-
-	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPUUncapturedErrorCallbackInfo(pointer), com.sun.jna.Structure.ByValue {
-		constructor(other: WGPUUncapturedErrorCallbackInfo) : this(other.pointer) {
-			this.nextInChain = other.nextInChain
-			this.callback = other.callback
-			this.userdata = other.userdata
 		}
 	}
 }

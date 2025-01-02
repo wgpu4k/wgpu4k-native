@@ -1522,7 +1522,7 @@ structs:
       - name: uncaptured_error_callback_info
         doc: |
           TODO
-        type: function_type.uncaptured_error_callback_info
+        type: struct.uncaptured_error_callback_info
 
   - name: bind_group_entry
     doc: |

@@ -281,6 +281,62 @@ actual interface WGPUQueueDescriptor : CStructure {
 		val labelLayout = WGPUStringView.LAYOUT
 	}
 }
+actual interface WGPUUncapturedErrorCallbackInfo : CStructure {
+
+	@JvmInline
+	value class ByReference(override val handler: NativeAddress) : WGPUUncapturedErrorCallbackInfo {
+		override var nextInChain: NativeAddress?
+			get() = get(nextInChainLayout, nextInChainOffset)
+			set(newValue) = set(nextInChainLayout, nextInChainOffset, newValue)
+		override var callback: CallbackHolder<WGPUErrorCallback>?
+			get() = get(callbackLayout, callbackOffset).let(::CallbackHolder)
+			set(newValue) = set(callbackLayout, callbackOffset, newValue?.handler)
+		override var userdata: NativeAddress?
+			get() = get(userdataLayout, userdataOffset)
+			set(newValue) = set(userdataLayout, userdataOffset, newValue)
+	}
+
+	actual var nextInChain: NativeAddress?
+	actual var callback: CallbackHolder<WGPUErrorCallback>?
+	actual var userdata: NativeAddress?
+
+	actual companion object {
+		actual operator fun invoke(address: NativeAddress): WGPUUncapturedErrorCallbackInfo {
+			return ByReference(address)
+		}
+
+		actual fun allocate(allocator: MemoryAllocator): WGPUUncapturedErrorCallbackInfo {
+			return allocator.allocate(24L)
+				.let { WGPUUncapturedErrorCallbackInfo(it) }
+		}
+
+		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUUncapturedErrorCallbackInfo) -> Unit): ArrayHolder<WGPUUncapturedErrorCallbackInfo> {
+			return allocator.allocate(24 * size.toLong())
+				.also {
+					(0u until size).forEach { index ->
+						it.handler.asSlice(index.toLong() * 24L)
+							.let(::NativeAddress)
+							.let { WGPUUncapturedErrorCallbackInfo(it) }
+							.let { provider(index, it) }
+					}
+				}
+				.let(::ArrayHolder)
+		}
+
+		internal val LAYOUT = structLayout(
+			ffi.C_POINTER.withName("nextInChain"),
+			ffi.C_POINTER.withName("callback"),
+			ffi.C_POINTER.withName("userdata"),
+		).withName("WGPUUncapturedErrorCallbackInfo")
+
+		val nextInChainOffset = 0L
+		val nextInChainLayout = ffi.C_POINTER
+		val callbackOffset = 8L
+		val callbackLayout = ffi.C_POINTER
+		val userdataOffset = 16L
+		val userdataLayout = ffi.C_POINTER
+	}
+}
 actual interface WGPUDeviceDescriptor : CStructure {
 
 	@JvmInline
@@ -307,9 +363,8 @@ actual interface WGPUDeviceDescriptor : CStructure {
 		override var deviceLostUserdata: NativeAddress?
 			get() = get(deviceLostUserdataLayout, deviceLostUserdataOffset)
 			set(newValue) = set(deviceLostUserdataLayout, deviceLostUserdataOffset, newValue)
-		override var uncapturedErrorCallbackInfo: CallbackHolder<WGPUUncapturedErrorCallbackInfo>?
-			get() = get(uncapturedErrorCallbackInfoLayout, uncapturedErrorCallbackInfoOffset).let(::CallbackHolder)
-			set(newValue) = set(uncapturedErrorCallbackInfoLayout, uncapturedErrorCallbackInfoOffset, newValue?.handler)
+		override val uncapturedErrorCallbackInfo: WGPUUncapturedErrorCallbackInfo
+			get() = handler.handler.asSlice(uncapturedErrorCallbackInfoOffset, 24L).let(::NativeAddress).let { WGPUUncapturedErrorCallbackInfo(it) }
 	}
 
 	actual var nextInChain: NativeAddress?
@@ -320,7 +375,7 @@ actual interface WGPUDeviceDescriptor : CStructure {
 	actual val defaultQueue: WGPUQueueDescriptor
 	actual var deviceLostCallback: CallbackHolder<WGPUDeviceLostCallback>?
 	actual var deviceLostUserdata: NativeAddress?
-	actual var uncapturedErrorCallbackInfo: CallbackHolder<WGPUUncapturedErrorCallbackInfo>?
+	actual val uncapturedErrorCallbackInfo: WGPUUncapturedErrorCallbackInfo
 
 	actual companion object {
 		actual operator fun invoke(address: NativeAddress): WGPUDeviceDescriptor {
@@ -328,15 +383,15 @@ actual interface WGPUDeviceDescriptor : CStructure {
 		}
 
 		actual fun allocate(allocator: MemoryAllocator): WGPUDeviceDescriptor {
-			return allocator.allocate(96L)
+			return allocator.allocate(112L)
 				.let { WGPUDeviceDescriptor(it) }
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUDeviceDescriptor) -> Unit): ArrayHolder<WGPUDeviceDescriptor> {
-			return allocator.allocate(96 * size.toLong())
+			return allocator.allocate(112 * size.toLong())
 				.also {
 					(0u until size).forEach { index ->
-						it.handler.asSlice(index.toLong() * 96L)
+						it.handler.asSlice(index.toLong() * 112L)
 							.let(::NativeAddress)
 							.let { WGPUDeviceDescriptor(it) }
 							.let { provider(index, it) }
@@ -354,7 +409,7 @@ actual interface WGPUDeviceDescriptor : CStructure {
 			WGPUQueueDescriptor.LAYOUT.withName("defaultQueue"),
 			ffi.C_POINTER.withName("deviceLostCallback"),
 			ffi.C_POINTER.withName("deviceLostUserdata"),
-			ffi.C_POINTER.withName("uncapturedErrorCallbackInfo"),
+			WGPUUncapturedErrorCallbackInfo.LAYOUT.withName("uncapturedErrorCallbackInfo"),
 		).withName("WGPUDeviceDescriptor")
 
 		val nextInChainOffset = 0L
@@ -374,7 +429,7 @@ actual interface WGPUDeviceDescriptor : CStructure {
 		val deviceLostUserdataOffset = 80L
 		val deviceLostUserdataLayout = ffi.C_POINTER
 		val uncapturedErrorCallbackInfoOffset = 88L
-		val uncapturedErrorCallbackInfoLayout = ffi.C_POINTER
+		val uncapturedErrorCallbackInfoLayout = WGPUUncapturedErrorCallbackInfo.LAYOUT
 	}
 }
 actual interface WGPUBindGroupEntry : CStructure {
@@ -5082,62 +5137,6 @@ actual interface WGPUTextureViewDescriptor : CStructure {
 		val arrayLayerCountLayout = ffi.C_INT
 		val aspectOffset = 48L
 		val aspectLayout = ffi.C_INT
-	}
-}
-actual interface WGPUUncapturedErrorCallbackInfo : CStructure {
-
-	@JvmInline
-	value class ByReference(override val handler: NativeAddress) : WGPUUncapturedErrorCallbackInfo {
-		override var nextInChain: NativeAddress?
-			get() = get(nextInChainLayout, nextInChainOffset)
-			set(newValue) = set(nextInChainLayout, nextInChainOffset, newValue)
-		override var callback: CallbackHolder<WGPUErrorCallback>?
-			get() = get(callbackLayout, callbackOffset).let(::CallbackHolder)
-			set(newValue) = set(callbackLayout, callbackOffset, newValue?.handler)
-		override var userdata: NativeAddress?
-			get() = get(userdataLayout, userdataOffset)
-			set(newValue) = set(userdataLayout, userdataOffset, newValue)
-	}
-
-	actual var nextInChain: NativeAddress?
-	actual var callback: CallbackHolder<WGPUErrorCallback>?
-	actual var userdata: NativeAddress?
-
-	actual companion object {
-		actual operator fun invoke(address: NativeAddress): WGPUUncapturedErrorCallbackInfo {
-			return ByReference(address)
-		}
-
-		actual fun allocate(allocator: MemoryAllocator): WGPUUncapturedErrorCallbackInfo {
-			return allocator.allocate(24L)
-				.let { WGPUUncapturedErrorCallbackInfo(it) }
-		}
-
-		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUUncapturedErrorCallbackInfo) -> Unit): ArrayHolder<WGPUUncapturedErrorCallbackInfo> {
-			return allocator.allocate(24 * size.toLong())
-				.also {
-					(0u until size).forEach { index ->
-						it.handler.asSlice(index.toLong() * 24L)
-							.let(::NativeAddress)
-							.let { WGPUUncapturedErrorCallbackInfo(it) }
-							.let { provider(index, it) }
-					}
-				}
-				.let(::ArrayHolder)
-		}
-
-		internal val LAYOUT = structLayout(
-			ffi.C_POINTER.withName("nextInChain"),
-			ffi.C_POINTER.withName("callback"),
-			ffi.C_POINTER.withName("userdata"),
-		).withName("WGPUUncapturedErrorCallbackInfo")
-
-		val nextInChainOffset = 0L
-		val nextInChainLayout = ffi.C_POINTER
-		val callbackOffset = 8L
-		val callbackLayout = ffi.C_POINTER
-		val userdataOffset = 16L
-		val userdataLayout = ffi.C_POINTER
 	}
 }
 actual interface WGPUInstanceExtras : CStructure {

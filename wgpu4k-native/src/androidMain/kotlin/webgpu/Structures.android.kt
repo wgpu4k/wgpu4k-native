@@ -362,6 +362,81 @@ actual interface WGPUQueueDescriptor {
 	}
 }
 
+actual interface WGPUUncapturedErrorCallbackInfo {
+
+	class ByReference(val handle: io.ygdrasil.wgpu.android.WGPUUncapturedErrorCallbackInfo.ByReference = io.ygdrasil.wgpu.android.WGPUUncapturedErrorCallbackInfo.ByReference(com.sun.jna.Pointer.NULL)) : WGPUUncapturedErrorCallbackInfo {
+		override var nextInChain: NativeAddress?
+			get() = handle.nextInChain
+			set(newValue) { handle.nextInChain = newValue }
+
+		override var callback: CallbackHolder<WGPUErrorCallback>?
+			get() = handle.callback?.let{ CallbackHolder(com.sun.jna.Pointer(0), it) }
+			set(newValue) { handle.callback = newValue?.callback }
+
+		override var userdata: NativeAddress?
+			get() = handle.userdata
+			set(newValue) { handle.userdata = newValue }
+
+		override val handler: NativeAddress
+			get() {
+				handle.write()
+				return handle.getPointer()
+			}
+	}
+
+	class ByValue(val handle: io.ygdrasil.wgpu.android.WGPUUncapturedErrorCallbackInfo.ByValue = io.ygdrasil.wgpu.android.WGPUUncapturedErrorCallbackInfo.ByValue(com.sun.jna.Pointer.NULL)) : WGPUUncapturedErrorCallbackInfo {
+		override var nextInChain: NativeAddress?
+			get() = handle.nextInChain
+			set(newValue) { handle.nextInChain = newValue }
+
+		override var callback: CallbackHolder<WGPUErrorCallback>?
+			get() = handle.callback?.let{ CallbackHolder(com.sun.jna.Pointer(0), it) }
+			set(newValue) { handle.callback = newValue?.callback }
+
+		override var userdata: NativeAddress?
+			get() = handle.userdata
+			set(newValue) { handle.userdata = newValue }
+
+		override val handler: NativeAddress
+			get() {
+				handle.write()
+				return handle.getPointer()
+			}
+	}
+
+	fun toCValue() = (this as ByReference).let{ io.ygdrasil.wgpu.android.WGPUUncapturedErrorCallbackInfo.ByValue(handle) }
+	fun toReference() = (this as ByReference).handle
+
+	actual var nextInChain: NativeAddress?
+	actual var callback: CallbackHolder<WGPUErrorCallback>?
+	actual var userdata: NativeAddress?
+	actual val handler: NativeAddress
+
+	actual companion object {
+		actual operator fun invoke(address: NativeAddress): WGPUUncapturedErrorCallbackInfo {
+			return io.ygdrasil.wgpu.android.WGPUUncapturedErrorCallbackInfo.ByReference(address)
+				.also { it.read() }
+				.let(::ByReference)
+		}
+
+		actual fun allocate(allocator: MemoryAllocator): WGPUUncapturedErrorCallbackInfo {
+			return WGPUUncapturedErrorCallbackInfo.ByReference()
+				.also { allocator.register(it) }
+		}
+
+		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUUncapturedErrorCallbackInfo) -> Unit): ArrayHolder<WGPUUncapturedErrorCallbackInfo> {
+			val array = io.ygdrasil.wgpu.android.WGPUUncapturedErrorCallbackInfo.ByValue().toArray(size.toInt())
+			array.forEachIndexed { index, structure ->
+				(structure as io.ygdrasil.wgpu.android.WGPUUncapturedErrorCallbackInfo.ByValue)
+					.also { provider(index.toUInt(), WGPUUncapturedErrorCallbackInfo.ByValue(it)) }
+					.write()
+			}
+			val pointer = if (size == 0u) com.sun.jna.Pointer.NULL else array.first().pointer
+			return ArrayHolder(pointer)
+		}
+	}
+}
+
 actual interface WGPUDeviceDescriptor {
 
 	class ByReference(val handle: io.ygdrasil.wgpu.android.WGPUDeviceDescriptor.ByReference = io.ygdrasil.wgpu.android.WGPUDeviceDescriptor.ByReference(com.sun.jna.Pointer.NULL)) : WGPUDeviceDescriptor {
@@ -395,9 +470,8 @@ actual interface WGPUDeviceDescriptor {
 			get() = handle.deviceLostUserdata
 			set(newValue) { handle.deviceLostUserdata = newValue }
 
-		override var uncapturedErrorCallbackInfo: CallbackHolder<WGPUUncapturedErrorCallbackInfo>?
-			get() = handle.uncapturedErrorCallbackInfo?.let{ CallbackHolder(com.sun.jna.Pointer(0), it) }
-			set(newValue) { handle.uncapturedErrorCallbackInfo = newValue?.callback }
+		override val uncapturedErrorCallbackInfo: WGPUUncapturedErrorCallbackInfo
+			get() = handle.uncapturedErrorCallbackInfo.let{ WGPUUncapturedErrorCallbackInfo.ByValue(it) }
 
 		override val handler: NativeAddress
 			get() {
@@ -437,9 +511,8 @@ actual interface WGPUDeviceDescriptor {
 			get() = handle.deviceLostUserdata
 			set(newValue) { handle.deviceLostUserdata = newValue }
 
-		override var uncapturedErrorCallbackInfo: CallbackHolder<WGPUUncapturedErrorCallbackInfo>?
-			get() = handle.uncapturedErrorCallbackInfo?.let{ CallbackHolder(com.sun.jna.Pointer(0), it) }
-			set(newValue) { handle.uncapturedErrorCallbackInfo = newValue?.callback }
+		override val uncapturedErrorCallbackInfo: WGPUUncapturedErrorCallbackInfo
+			get() = handle.uncapturedErrorCallbackInfo.let{ WGPUUncapturedErrorCallbackInfo.ByValue(it) }
 
 		override val handler: NativeAddress
 			get() {
@@ -459,7 +532,7 @@ actual interface WGPUDeviceDescriptor {
 	actual val defaultQueue: WGPUQueueDescriptor
 	actual var deviceLostCallback: CallbackHolder<WGPUDeviceLostCallback>?
 	actual var deviceLostUserdata: NativeAddress?
-	actual var uncapturedErrorCallbackInfo: CallbackHolder<WGPUUncapturedErrorCallbackInfo>?
+	actual val uncapturedErrorCallbackInfo: WGPUUncapturedErrorCallbackInfo
 	actual val handler: NativeAddress
 
 	actual companion object {
@@ -6669,81 +6742,6 @@ actual interface WGPUTextureViewDescriptor {
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUTextureViewDescriptor.ByValue)
 					.also { provider(index.toUInt(), WGPUTextureViewDescriptor.ByValue(it)) }
-					.write()
-			}
-			val pointer = if (size == 0u) com.sun.jna.Pointer.NULL else array.first().pointer
-			return ArrayHolder(pointer)
-		}
-	}
-}
-
-actual interface WGPUUncapturedErrorCallbackInfo {
-
-	class ByReference(val handle: io.ygdrasil.wgpu.android.WGPUUncapturedErrorCallbackInfo.ByReference = io.ygdrasil.wgpu.android.WGPUUncapturedErrorCallbackInfo.ByReference(com.sun.jna.Pointer.NULL)) : WGPUUncapturedErrorCallbackInfo {
-		override var nextInChain: NativeAddress?
-			get() = handle.nextInChain
-			set(newValue) { handle.nextInChain = newValue }
-
-		override var callback: CallbackHolder<WGPUErrorCallback>?
-			get() = handle.callback?.let{ CallbackHolder(com.sun.jna.Pointer(0), it) }
-			set(newValue) { handle.callback = newValue?.callback }
-
-		override var userdata: NativeAddress?
-			get() = handle.userdata
-			set(newValue) { handle.userdata = newValue }
-
-		override val handler: NativeAddress
-			get() {
-				handle.write()
-				return handle.getPointer()
-			}
-	}
-
-	class ByValue(val handle: io.ygdrasil.wgpu.android.WGPUUncapturedErrorCallbackInfo.ByValue = io.ygdrasil.wgpu.android.WGPUUncapturedErrorCallbackInfo.ByValue(com.sun.jna.Pointer.NULL)) : WGPUUncapturedErrorCallbackInfo {
-		override var nextInChain: NativeAddress?
-			get() = handle.nextInChain
-			set(newValue) { handle.nextInChain = newValue }
-
-		override var callback: CallbackHolder<WGPUErrorCallback>?
-			get() = handle.callback?.let{ CallbackHolder(com.sun.jna.Pointer(0), it) }
-			set(newValue) { handle.callback = newValue?.callback }
-
-		override var userdata: NativeAddress?
-			get() = handle.userdata
-			set(newValue) { handle.userdata = newValue }
-
-		override val handler: NativeAddress
-			get() {
-				handle.write()
-				return handle.getPointer()
-			}
-	}
-
-	fun toCValue() = (this as ByReference).let{ io.ygdrasil.wgpu.android.WGPUUncapturedErrorCallbackInfo.ByValue(handle) }
-	fun toReference() = (this as ByReference).handle
-
-	actual var nextInChain: NativeAddress?
-	actual var callback: CallbackHolder<WGPUErrorCallback>?
-	actual var userdata: NativeAddress?
-	actual val handler: NativeAddress
-
-	actual companion object {
-		actual operator fun invoke(address: NativeAddress): WGPUUncapturedErrorCallbackInfo {
-			return io.ygdrasil.wgpu.android.WGPUUncapturedErrorCallbackInfo.ByReference(address)
-				.also { it.read() }
-				.let(::ByReference)
-		}
-
-		actual fun allocate(allocator: MemoryAllocator): WGPUUncapturedErrorCallbackInfo {
-			return WGPUUncapturedErrorCallbackInfo.ByReference()
-				.also { allocator.register(it) }
-		}
-
-		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUUncapturedErrorCallbackInfo) -> Unit): ArrayHolder<WGPUUncapturedErrorCallbackInfo> {
-			val array = io.ygdrasil.wgpu.android.WGPUUncapturedErrorCallbackInfo.ByValue().toArray(size.toInt())
-			array.forEachIndexed { index, structure ->
-				(structure as io.ygdrasil.wgpu.android.WGPUUncapturedErrorCallbackInfo.ByValue)
-					.also { provider(index.toUInt(), WGPUUncapturedErrorCallbackInfo.ByValue(it)) }
 					.write()
 			}
 			val pointer = if (size == 0u) com.sun.jna.Pointer.NULL else array.first().pointer

@@ -378,6 +378,82 @@ fun webgpu.native.WGPUQueueDescriptor.adapt(structure: WGPUQueueDescriptor) {
 	nextInChain = structure.nextInChain?.reinterpret()
 }
 
+actual interface WGPUUncapturedErrorCallbackInfo {
+	value class ByValue(val handle: CValue<webgpu.native.WGPUUncapturedErrorCallbackInfo>) : WGPUUncapturedErrorCallbackInfo {
+		override var nextInChain: NativeAddress?
+			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
+
+		override var callback: CallbackHolder<WGPUErrorCallback>?
+			get() = handle.useContents { callback?.let(::NativeAddress)?.let { CallbackHolder<WGPUErrorCallback>(it) } }
+			set(newValue) { handle.useContents { callback = newValue?.handler?.reinterpret() } } 
+
+		override var userdata: NativeAddress?
+			get() = handle.useContents { userdata?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { userdata = newValue?.reinterpret() } } 
+
+		override val handler: NativeAddress
+			get() = error("should not be call on CValue")
+
+	}
+	value class ByReference(override val handler: NativeAddress) : WGPUUncapturedErrorCallbackInfo {
+		override var nextInChain: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPUUncapturedErrorCallbackInfo>().pointed.nextInChain?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPUUncapturedErrorCallbackInfo>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
+
+		override var callback: CallbackHolder<WGPUErrorCallback>?
+			get() = handler.reinterpret<webgpu.native.WGPUUncapturedErrorCallbackInfo>().pointed.callback?.let(::NativeAddress)?.let { CallbackHolder<WGPUErrorCallback>(it) }
+			set(newValue) { handler.reinterpret<webgpu.native.WGPUUncapturedErrorCallbackInfo>().pointed.let { it.callback = newValue?.handler?.reinterpret() } } 
+
+		override var userdata: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPUUncapturedErrorCallbackInfo>().pointed.userdata?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPUUncapturedErrorCallbackInfo>().pointed.let { it.userdata = newValue?.reinterpret() } } 
+
+	}
+
+	actual var nextInChain: NativeAddress?
+	actual var callback: CallbackHolder<WGPUErrorCallback>?
+	actual var userdata: NativeAddress?
+	actual val handler: NativeAddress
+
+	actual companion object {
+		actual operator fun invoke(address: NativeAddress): WGPUUncapturedErrorCallbackInfo {
+			return ByReference(address)
+		}
+
+		actual fun allocate(allocator: MemoryAllocator): WGPUUncapturedErrorCallbackInfo {
+			return allocator.allocate(sizeOf<webgpu.native.WGPUUncapturedErrorCallbackInfo>())
+				.let { WGPUUncapturedErrorCallbackInfo(it) }
+		}
+
+		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUUncapturedErrorCallbackInfo) -> Unit): ArrayHolder<WGPUUncapturedErrorCallbackInfo> {
+			return allocator.allocate(sizeOf<webgpu.native.WGPUUncapturedErrorCallbackInfo>() * size.toLong())
+				.also {
+					(0u until size).forEach { index ->
+						(it.rawValue + index.toLong() * sizeOf<webgpu.native.WGPUUncapturedErrorCallbackInfo>())
+							.let(::NativeAddress)
+							.let { WGPUUncapturedErrorCallbackInfo(it) }
+							.let { provider(index, it) }
+					}
+				}
+				.let(::ArrayHolder)
+		}
+	}
+	fun toCValue(): CValue<webgpu.native.WGPUUncapturedErrorCallbackInfo> {
+		return cValue<webgpu.native.WGPUUncapturedErrorCallbackInfo> {
+			nextInChain = this@WGPUUncapturedErrorCallbackInfo.nextInChain?.reinterpret()
+			callback = this@WGPUUncapturedErrorCallbackInfo.callback?.handler?.reinterpret()
+			userdata = this@WGPUUncapturedErrorCallbackInfo.userdata?.reinterpret()
+		}
+	}
+}
+
+fun webgpu.native.WGPUUncapturedErrorCallbackInfo.adapt(structure: WGPUUncapturedErrorCallbackInfo) {
+	nextInChain = structure.nextInChain?.reinterpret()
+	callback = structure.callback?.handler?.reinterpret()
+	userdata = structure.userdata?.reinterpret()
+}
+
 actual interface WGPUDeviceDescriptor {
 	value class ByValue(val handle: CValue<webgpu.native.WGPUDeviceDescriptor>) : WGPUDeviceDescriptor {
 		override var nextInChain: NativeAddress?
@@ -410,9 +486,8 @@ actual interface WGPUDeviceDescriptor {
 			get() = handle.useContents { deviceLostUserdata?.let(::NativeAddress) }
 			set(newValue) { handle.useContents { deviceLostUserdata = newValue?.reinterpret() } } 
 
-		override var uncapturedErrorCallbackInfo: CallbackHolder<WGPUUncapturedErrorCallbackInfo>?
-			get() = handle.useContents { uncapturedErrorCallbackInfo?.let(::NativeAddress)?.let { CallbackHolder<WGPUUncapturedErrorCallbackInfo>(it) } }
-			set(newValue) { handle.useContents { uncapturedErrorCallbackInfo = newValue?.handler?.reinterpret() } } 
+		override val uncapturedErrorCallbackInfo: WGPUUncapturedErrorCallbackInfo
+			get() = handle.useContents { uncapturedErrorCallbackInfo.rawPtr.toLong().let(::NativeAddress).let { WGPUUncapturedErrorCallbackInfo(it) } }
 
 		override val handler: NativeAddress
 			get() = error("should not be call on CValue")
@@ -449,9 +524,8 @@ actual interface WGPUDeviceDescriptor {
 			get() = handler.reinterpret<webgpu.native.WGPUDeviceDescriptor>().pointed.deviceLostUserdata?.let(::NativeAddress)
 			set(newValue) { handler.reinterpret<webgpu.native.WGPUDeviceDescriptor>().pointed.let { it.deviceLostUserdata = newValue?.reinterpret() } } 
 
-		override var uncapturedErrorCallbackInfo: CallbackHolder<WGPUUncapturedErrorCallbackInfo>?
-			get() = handler.reinterpret<webgpu.native.WGPUDeviceDescriptor>().pointed.uncapturedErrorCallbackInfo?.let(::NativeAddress)?.let { CallbackHolder<WGPUUncapturedErrorCallbackInfo>(it) }
-			set(newValue) { handler.reinterpret<webgpu.native.WGPUDeviceDescriptor>().pointed.let { it.uncapturedErrorCallbackInfo = newValue?.handler?.reinterpret() } } 
+		override val uncapturedErrorCallbackInfo: WGPUUncapturedErrorCallbackInfo
+			get() = handler.reinterpret<webgpu.native.WGPUDeviceDescriptor>().pointed.uncapturedErrorCallbackInfo.rawPtr.toLong().let(::NativeAddress).let { WGPUUncapturedErrorCallbackInfo(it) }
 
 	}
 
@@ -463,7 +537,7 @@ actual interface WGPUDeviceDescriptor {
 	actual val defaultQueue: WGPUQueueDescriptor
 	actual var deviceLostCallback: CallbackHolder<WGPUDeviceLostCallback>?
 	actual var deviceLostUserdata: NativeAddress?
-	actual var uncapturedErrorCallbackInfo: CallbackHolder<WGPUUncapturedErrorCallbackInfo>?
+	actual val uncapturedErrorCallbackInfo: WGPUUncapturedErrorCallbackInfo
 	actual val handler: NativeAddress
 
 	actual companion object {
@@ -493,13 +567,13 @@ actual interface WGPUDeviceDescriptor {
 		return cValue<webgpu.native.WGPUDeviceDescriptor> {
 			label.adapt(this@WGPUDeviceDescriptor.label)
 			defaultQueue.adapt(this@WGPUDeviceDescriptor.defaultQueue)
+			uncapturedErrorCallbackInfo.adapt(this@WGPUDeviceDescriptor.uncapturedErrorCallbackInfo)
 			nextInChain = this@WGPUDeviceDescriptor.nextInChain?.reinterpret()
 			requiredFeatureCount = this@WGPUDeviceDescriptor.requiredFeatureCount
 			requiredFeatures = this@WGPUDeviceDescriptor.requiredFeatures?.handler?.reinterpret()
 			requiredLimits = this@WGPUDeviceDescriptor.requiredLimits?.handler?.reinterpret()
 			deviceLostCallback = this@WGPUDeviceDescriptor.deviceLostCallback?.handler?.reinterpret()
 			deviceLostUserdata = this@WGPUDeviceDescriptor.deviceLostUserdata?.reinterpret()
-			uncapturedErrorCallbackInfo = this@WGPUDeviceDescriptor.uncapturedErrorCallbackInfo?.handler?.reinterpret()
 		}
 	}
 }
@@ -507,13 +581,13 @@ actual interface WGPUDeviceDescriptor {
 fun webgpu.native.WGPUDeviceDescriptor.adapt(structure: WGPUDeviceDescriptor) {
 	label.adapt(structure.label)
 	defaultQueue.adapt(structure.defaultQueue)
+	uncapturedErrorCallbackInfo.adapt(structure.uncapturedErrorCallbackInfo)
 	nextInChain = structure.nextInChain?.reinterpret()
 	requiredFeatureCount = structure.requiredFeatureCount
 	requiredFeatures = structure.requiredFeatures?.handler?.reinterpret()
 	requiredLimits = structure.requiredLimits?.handler?.reinterpret()
 	deviceLostCallback = structure.deviceLostCallback?.handler?.reinterpret()
 	deviceLostUserdata = structure.deviceLostUserdata?.reinterpret()
-	uncapturedErrorCallbackInfo = structure.uncapturedErrorCallbackInfo?.handler?.reinterpret()
 }
 
 actual interface WGPUBindGroupEntry {
@@ -7023,82 +7097,6 @@ fun webgpu.native.WGPUTextureViewDescriptor.adapt(structure: WGPUTextureViewDesc
 	baseArrayLayer = structure.baseArrayLayer
 	arrayLayerCount = structure.arrayLayerCount
 	aspect = structure.aspect
-}
-
-actual interface WGPUUncapturedErrorCallbackInfo {
-	value class ByValue(val handle: CValue<webgpu.native.WGPUUncapturedErrorCallbackInfo>) : WGPUUncapturedErrorCallbackInfo {
-		override var nextInChain: NativeAddress?
-			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
-			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
-
-		override var callback: CallbackHolder<WGPUErrorCallback>?
-			get() = handle.useContents { callback?.let(::NativeAddress)?.let { CallbackHolder<WGPUErrorCallback>(it) } }
-			set(newValue) { handle.useContents { callback = newValue?.handler?.reinterpret() } } 
-
-		override var userdata: NativeAddress?
-			get() = handle.useContents { userdata?.let(::NativeAddress) }
-			set(newValue) { handle.useContents { userdata = newValue?.reinterpret() } } 
-
-		override val handler: NativeAddress
-			get() = error("should not be call on CValue")
-
-	}
-	value class ByReference(override val handler: NativeAddress) : WGPUUncapturedErrorCallbackInfo {
-		override var nextInChain: NativeAddress?
-			get() = handler.reinterpret<webgpu.native.WGPUUncapturedErrorCallbackInfo>().pointed.nextInChain?.let(::NativeAddress)
-			set(newValue) { handler.reinterpret<webgpu.native.WGPUUncapturedErrorCallbackInfo>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
-
-		override var callback: CallbackHolder<WGPUErrorCallback>?
-			get() = handler.reinterpret<webgpu.native.WGPUUncapturedErrorCallbackInfo>().pointed.callback?.let(::NativeAddress)?.let { CallbackHolder<WGPUErrorCallback>(it) }
-			set(newValue) { handler.reinterpret<webgpu.native.WGPUUncapturedErrorCallbackInfo>().pointed.let { it.callback = newValue?.handler?.reinterpret() } } 
-
-		override var userdata: NativeAddress?
-			get() = handler.reinterpret<webgpu.native.WGPUUncapturedErrorCallbackInfo>().pointed.userdata?.let(::NativeAddress)
-			set(newValue) { handler.reinterpret<webgpu.native.WGPUUncapturedErrorCallbackInfo>().pointed.let { it.userdata = newValue?.reinterpret() } } 
-
-	}
-
-	actual var nextInChain: NativeAddress?
-	actual var callback: CallbackHolder<WGPUErrorCallback>?
-	actual var userdata: NativeAddress?
-	actual val handler: NativeAddress
-
-	actual companion object {
-		actual operator fun invoke(address: NativeAddress): WGPUUncapturedErrorCallbackInfo {
-			return ByReference(address)
-		}
-
-		actual fun allocate(allocator: MemoryAllocator): WGPUUncapturedErrorCallbackInfo {
-			return allocator.allocate(sizeOf<webgpu.native.WGPUUncapturedErrorCallbackInfo>())
-				.let { WGPUUncapturedErrorCallbackInfo(it) }
-		}
-
-		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUUncapturedErrorCallbackInfo) -> Unit): ArrayHolder<WGPUUncapturedErrorCallbackInfo> {
-			return allocator.allocate(sizeOf<webgpu.native.WGPUUncapturedErrorCallbackInfo>() * size.toLong())
-				.also {
-					(0u until size).forEach { index ->
-						(it.rawValue + index.toLong() * sizeOf<webgpu.native.WGPUUncapturedErrorCallbackInfo>())
-							.let(::NativeAddress)
-							.let { WGPUUncapturedErrorCallbackInfo(it) }
-							.let { provider(index, it) }
-					}
-				}
-				.let(::ArrayHolder)
-		}
-	}
-	fun toCValue(): CValue<webgpu.native.WGPUUncapturedErrorCallbackInfo> {
-		return cValue<webgpu.native.WGPUUncapturedErrorCallbackInfo> {
-			nextInChain = this@WGPUUncapturedErrorCallbackInfo.nextInChain?.reinterpret()
-			callback = this@WGPUUncapturedErrorCallbackInfo.callback?.handler?.reinterpret()
-			userdata = this@WGPUUncapturedErrorCallbackInfo.userdata?.reinterpret()
-		}
-	}
-}
-
-fun webgpu.native.WGPUUncapturedErrorCallbackInfo.adapt(structure: WGPUUncapturedErrorCallbackInfo) {
-	nextInChain = structure.nextInChain?.reinterpret()
-	callback = structure.callback?.handler?.reinterpret()
-	userdata = structure.userdata?.reinterpret()
 }
 
 actual interface WGPUInstanceExtras {
