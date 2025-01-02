@@ -1,6 +1,12 @@
 // This file has been generated DO NOT EDIT !!!
 package io.ygdrasil.wgpu
 
+typealias WGPURequestAdapterStatus = UInt
+const val WGPURequestAdapterStatus_Success : WGPURequestAdapterStatus = 1u
+const val WGPURequestAdapterStatus_Unavailable : WGPURequestAdapterStatus = 2u
+const val WGPURequestAdapterStatus_Error : WGPURequestAdapterStatus = 3u
+const val WGPURequestAdapterStatus_Unknown : WGPURequestAdapterStatus = 4u
+
 typealias WGPUAdapterType = UInt
 const val WGPUAdapterType_DiscreteGPU : WGPUAdapterType = 1u
 const val WGPUAdapterType_IntegratedGPU : WGPUAdapterType = 2u
@@ -8,10 +14,9 @@ const val WGPUAdapterType_CPU : WGPUAdapterType = 3u
 const val WGPUAdapterType_Unknown : WGPUAdapterType = 4u
 
 typealias WGPUAddressMode = UInt
-const val WGPUAddressMode_Undefined : WGPUAddressMode = 0u
-const val WGPUAddressMode_ClampToEdge : WGPUAddressMode = 1u
-const val WGPUAddressMode_Repeat : WGPUAddressMode = 2u
-const val WGPUAddressMode_MirrorRepeat : WGPUAddressMode = 3u
+const val WGPUAddressMode_Repeat : WGPUAddressMode = 1u
+const val WGPUAddressMode_MirrorRepeat : WGPUAddressMode = 2u
+const val WGPUAddressMode_ClampToEdge : WGPUAddressMode = 3u
 
 typealias WGPUBackendType = UInt
 const val WGPUBackendType_Undefined : WGPUBackendType = 0u
@@ -24,8 +29,33 @@ const val WGPUBackendType_Vulkan : WGPUBackendType = 6u
 const val WGPUBackendType_OpenGL : WGPUBackendType = 7u
 const val WGPUBackendType_OpenGLES : WGPUBackendType = 8u
 
+typealias WGPUBufferBindingType = UInt
+const val WGPUBufferBindingType_Undefined : WGPUBufferBindingType = 0u
+const val WGPUBufferBindingType_Uniform : WGPUBufferBindingType = 1u
+const val WGPUBufferBindingType_Storage : WGPUBufferBindingType = 2u
+const val WGPUBufferBindingType_ReadOnlyStorage : WGPUBufferBindingType = 3u
+
+typealias WGPUSamplerBindingType = UInt
+const val WGPUSamplerBindingType_Undefined : WGPUSamplerBindingType = 0u
+const val WGPUSamplerBindingType_Filtering : WGPUSamplerBindingType = 1u
+const val WGPUSamplerBindingType_NonFiltering : WGPUSamplerBindingType = 2u
+const val WGPUSamplerBindingType_Comparison : WGPUSamplerBindingType = 3u
+
+typealias WGPUTextureSampleType = UInt
+const val WGPUTextureSampleType_Undefined : WGPUTextureSampleType = 0u
+const val WGPUTextureSampleType_Float : WGPUTextureSampleType = 1u
+const val WGPUTextureSampleType_UnfilterableFloat : WGPUTextureSampleType = 2u
+const val WGPUTextureSampleType_Depth : WGPUTextureSampleType = 3u
+const val WGPUTextureSampleType_Sint : WGPUTextureSampleType = 4u
+const val WGPUTextureSampleType_Uint : WGPUTextureSampleType = 5u
+
+typealias WGPUStorageTextureAccess = UInt
+const val WGPUStorageTextureAccess_Undefined : WGPUStorageTextureAccess = 0u
+const val WGPUStorageTextureAccess_WriteOnly : WGPUStorageTextureAccess = 1u
+const val WGPUStorageTextureAccess_ReadOnly : WGPUStorageTextureAccess = 2u
+const val WGPUStorageTextureAccess_ReadWrite : WGPUStorageTextureAccess = 3u
+
 typealias WGPUBlendFactor = UInt
-const val WGPUBlendFactor_Undefined : WGPUBlendFactor = 0u
 const val WGPUBlendFactor_Zero : WGPUBlendFactor = 1u
 const val WGPUBlendFactor_One : WGPUBlendFactor = 2u
 const val WGPUBlendFactor_Src : WGPUBlendFactor = 3u
@@ -39,51 +69,45 @@ const val WGPUBlendFactor_OneMinusDstAlpha : WGPUBlendFactor = 10u
 const val WGPUBlendFactor_SrcAlphaSaturated : WGPUBlendFactor = 11u
 const val WGPUBlendFactor_Constant : WGPUBlendFactor = 12u
 const val WGPUBlendFactor_OneMinusConstant : WGPUBlendFactor = 13u
-const val WGPUBlendFactor_Src1 : WGPUBlendFactor = 14u
-const val WGPUBlendFactor_OneMinusSrc1 : WGPUBlendFactor = 15u
-const val WGPUBlendFactor_Src1Alpha : WGPUBlendFactor = 16u
-const val WGPUBlendFactor_OneMinusSrc1Alpha : WGPUBlendFactor = 17u
 
 typealias WGPUBlendOperation = UInt
-const val WGPUBlendOperation_Undefined : WGPUBlendOperation = 0u
 const val WGPUBlendOperation_Add : WGPUBlendOperation = 1u
 const val WGPUBlendOperation_Subtract : WGPUBlendOperation = 2u
 const val WGPUBlendOperation_ReverseSubtract : WGPUBlendOperation = 3u
 const val WGPUBlendOperation_Min : WGPUBlendOperation = 4u
 const val WGPUBlendOperation_Max : WGPUBlendOperation = 5u
 
-typealias WGPUBufferBindingType = UInt
-const val WGPUBufferBindingType_BindingNotUsed : WGPUBufferBindingType = 1u
-const val WGPUBufferBindingType_Undefined : WGPUBufferBindingType = 2u
-const val WGPUBufferBindingType_Uniform : WGPUBufferBindingType = 3u
-const val WGPUBufferBindingType_Storage : WGPUBufferBindingType = 4u
-const val WGPUBufferBindingType_ReadOnlyStorage : WGPUBufferBindingType = 5u
+typealias WGPUBufferMapAsyncStatus = UInt
+const val WGPUBufferMapAsyncStatus_Success : WGPUBufferMapAsyncStatus = 1u
+const val WGPUBufferMapAsyncStatus_ValidationError : WGPUBufferMapAsyncStatus = 2u
+const val WGPUBufferMapAsyncStatus_Unknown : WGPUBufferMapAsyncStatus = 3u
+const val WGPUBufferMapAsyncStatus_DeviceLost : WGPUBufferMapAsyncStatus = 4u
+const val WGPUBufferMapAsyncStatus_DestroyedBeforeCallback : WGPUBufferMapAsyncStatus = 5u
+const val WGPUBufferMapAsyncStatus_UnmappedBeforeCallback : WGPUBufferMapAsyncStatus = 6u
+const val WGPUBufferMapAsyncStatus_MappingAlreadyPending : WGPUBufferMapAsyncStatus = 7u
+const val WGPUBufferMapAsyncStatus_OffsetOutOfRange : WGPUBufferMapAsyncStatus = 8u
+const val WGPUBufferMapAsyncStatus_SizeOutOfRange : WGPUBufferMapAsyncStatus = 9u
 
 typealias WGPUBufferMapState = UInt
 const val WGPUBufferMapState_Unmapped : WGPUBufferMapState = 1u
 const val WGPUBufferMapState_Pending : WGPUBufferMapState = 2u
 const val WGPUBufferMapState_Mapped : WGPUBufferMapState = 3u
 
-typealias WGPUCallbackMode = UInt
-const val WGPUCallbackMode_WaitAnyOnly : WGPUCallbackMode = 1u
-const val WGPUCallbackMode_AllowProcessEvents : WGPUCallbackMode = 2u
-const val WGPUCallbackMode_AllowSpontaneous : WGPUCallbackMode = 3u
-
 typealias WGPUCompareFunction = UInt
 const val WGPUCompareFunction_Undefined : WGPUCompareFunction = 0u
 const val WGPUCompareFunction_Never : WGPUCompareFunction = 1u
 const val WGPUCompareFunction_Less : WGPUCompareFunction = 2u
-const val WGPUCompareFunction_Equal : WGPUCompareFunction = 3u
-const val WGPUCompareFunction_LessEqual : WGPUCompareFunction = 4u
-const val WGPUCompareFunction_Greater : WGPUCompareFunction = 5u
-const val WGPUCompareFunction_NotEqual : WGPUCompareFunction = 6u
-const val WGPUCompareFunction_GreaterEqual : WGPUCompareFunction = 7u
+const val WGPUCompareFunction_LessEqual : WGPUCompareFunction = 3u
+const val WGPUCompareFunction_Greater : WGPUCompareFunction = 4u
+const val WGPUCompareFunction_GreaterEqual : WGPUCompareFunction = 5u
+const val WGPUCompareFunction_Equal : WGPUCompareFunction = 6u
+const val WGPUCompareFunction_NotEqual : WGPUCompareFunction = 7u
 const val WGPUCompareFunction_Always : WGPUCompareFunction = 8u
 
 typealias WGPUCompilationInfoRequestStatus = UInt
 const val WGPUCompilationInfoRequestStatus_Success : WGPUCompilationInfoRequestStatus = 1u
-const val WGPUCompilationInfoRequestStatus_InstanceDropped : WGPUCompilationInfoRequestStatus = 2u
-const val WGPUCompilationInfoRequestStatus_Error : WGPUCompilationInfoRequestStatus = 3u
+const val WGPUCompilationInfoRequestStatus_Error : WGPUCompilationInfoRequestStatus = 2u
+const val WGPUCompilationInfoRequestStatus_DeviceLost : WGPUCompilationInfoRequestStatus = 3u
 const val WGPUCompilationInfoRequestStatus_Unknown : WGPUCompilationInfoRequestStatus = 4u
 
 typealias WGPUCompilationMessageType = UInt
@@ -100,13 +124,13 @@ const val WGPUCompositeAlphaMode_Inherit : WGPUCompositeAlphaMode = 5u
 
 typealias WGPUCreatePipelineAsyncStatus = UInt
 const val WGPUCreatePipelineAsyncStatus_Success : WGPUCreatePipelineAsyncStatus = 1u
-const val WGPUCreatePipelineAsyncStatus_InstanceDropped : WGPUCreatePipelineAsyncStatus = 2u
-const val WGPUCreatePipelineAsyncStatus_ValidationError : WGPUCreatePipelineAsyncStatus = 3u
-const val WGPUCreatePipelineAsyncStatus_InternalError : WGPUCreatePipelineAsyncStatus = 4u
-const val WGPUCreatePipelineAsyncStatus_Unknown : WGPUCreatePipelineAsyncStatus = 5u
+const val WGPUCreatePipelineAsyncStatus_ValidationError : WGPUCreatePipelineAsyncStatus = 2u
+const val WGPUCreatePipelineAsyncStatus_InternalError : WGPUCreatePipelineAsyncStatus = 3u
+const val WGPUCreatePipelineAsyncStatus_DeviceLost : WGPUCreatePipelineAsyncStatus = 4u
+const val WGPUCreatePipelineAsyncStatus_DeviceDestroyed : WGPUCreatePipelineAsyncStatus = 5u
+const val WGPUCreatePipelineAsyncStatus_Unknown : WGPUCreatePipelineAsyncStatus = 6u
 
 typealias WGPUCullMode = UInt
-const val WGPUCullMode_Undefined : WGPUCullMode = 0u
 const val WGPUCullMode_None : WGPUCullMode = 1u
 const val WGPUCullMode_Front : WGPUCullMode = 2u
 const val WGPUCullMode_Back : WGPUCullMode = 3u
@@ -114,8 +138,6 @@ const val WGPUCullMode_Back : WGPUCullMode = 3u
 typealias WGPUDeviceLostReason = UInt
 const val WGPUDeviceLostReason_Unknown : WGPUDeviceLostReason = 1u
 const val WGPUDeviceLostReason_Destroyed : WGPUDeviceLostReason = 2u
-const val WGPUDeviceLostReason_InstanceDropped : WGPUDeviceLostReason = 3u
-const val WGPUDeviceLostReason_FailedCreation : WGPUDeviceLostReason = 4u
 
 typealias WGPUErrorFilter = UInt
 const val WGPUErrorFilter_Validation : WGPUErrorFilter = 1u
@@ -128,10 +150,7 @@ const val WGPUErrorType_Validation : WGPUErrorType = 2u
 const val WGPUErrorType_OutOfMemory : WGPUErrorType = 3u
 const val WGPUErrorType_Internal : WGPUErrorType = 4u
 const val WGPUErrorType_Unknown : WGPUErrorType = 5u
-
-typealias WGPUFeatureLevel = UInt
-const val WGPUFeatureLevel_Compatibility : WGPUFeatureLevel = 1u
-const val WGPUFeatureLevel_Core : WGPUFeatureLevel = 2u
+const val WGPUErrorType_DeviceLost : WGPUErrorType = 6u
 
 typealias WGPUFeatureName = UInt
 const val WGPUFeatureName_Undefined : WGPUFeatureName = 0u
@@ -139,26 +158,19 @@ const val WGPUFeatureName_DepthClipControl : WGPUFeatureName = 1u
 const val WGPUFeatureName_Depth32FloatStencil8 : WGPUFeatureName = 2u
 const val WGPUFeatureName_TimestampQuery : WGPUFeatureName = 3u
 const val WGPUFeatureName_TextureCompressionBC : WGPUFeatureName = 4u
-const val WGPUFeatureName_TextureCompressionBCSliced3D : WGPUFeatureName = 5u
-const val WGPUFeatureName_TextureCompressionETC2 : WGPUFeatureName = 6u
-const val WGPUFeatureName_TextureCompressionASTC : WGPUFeatureName = 7u
-const val WGPUFeatureName_TextureCompressionASTCSliced3D : WGPUFeatureName = 8u
-const val WGPUFeatureName_IndirectFirstInstance : WGPUFeatureName = 9u
-const val WGPUFeatureName_ShaderF16 : WGPUFeatureName = 10u
-const val WGPUFeatureName_RG11B10UfloatRenderable : WGPUFeatureName = 11u
-const val WGPUFeatureName_BGRA8UnormStorage : WGPUFeatureName = 12u
-const val WGPUFeatureName_Float32Filterable : WGPUFeatureName = 13u
-const val WGPUFeatureName_Float32Blendable : WGPUFeatureName = 14u
-const val WGPUFeatureName_ClipDistances : WGPUFeatureName = 15u
-const val WGPUFeatureName_DualSourceBlending : WGPUFeatureName = 16u
+const val WGPUFeatureName_TextureCompressionETC2 : WGPUFeatureName = 5u
+const val WGPUFeatureName_TextureCompressionASTC : WGPUFeatureName = 6u
+const val WGPUFeatureName_IndirectFirstInstance : WGPUFeatureName = 7u
+const val WGPUFeatureName_ShaderF16 : WGPUFeatureName = 8u
+const val WGPUFeatureName_RG11B10UfloatRenderable : WGPUFeatureName = 9u
+const val WGPUFeatureName_BGRA8UnormStorage : WGPUFeatureName = 10u
+const val WGPUFeatureName_Float32Filterable : WGPUFeatureName = 11u
 
 typealias WGPUFilterMode = UInt
-const val WGPUFilterMode_Undefined : WGPUFilterMode = 0u
 const val WGPUFilterMode_Nearest : WGPUFilterMode = 1u
 const val WGPUFilterMode_Linear : WGPUFilterMode = 2u
 
 typealias WGPUFrontFace = UInt
-const val WGPUFrontFace_Undefined : WGPUFrontFace = 0u
 const val WGPUFrontFace_CCW : WGPUFrontFace = 1u
 const val WGPUFrontFace_CW : WGPUFrontFace = 2u
 
@@ -167,32 +179,24 @@ const val WGPUIndexFormat_Undefined : WGPUIndexFormat = 0u
 const val WGPUIndexFormat_Uint16 : WGPUIndexFormat = 1u
 const val WGPUIndexFormat_Uint32 : WGPUIndexFormat = 2u
 
+typealias WGPUVertexStepMode = UInt
+const val WGPUVertexStepMode_Vertex : WGPUVertexStepMode = 1u
+const val WGPUVertexStepMode_Instance : WGPUVertexStepMode = 2u
+const val WGPUVertexStepMode_VertexBufferNotUsed : WGPUVertexStepMode = 3u
+
 typealias WGPULoadOp = UInt
 const val WGPULoadOp_Undefined : WGPULoadOp = 0u
-const val WGPULoadOp_Load : WGPULoadOp = 1u
-const val WGPULoadOp_Clear : WGPULoadOp = 2u
-
-typealias WGPUMapAsyncStatus = UInt
-const val WGPUMapAsyncStatus_Success : WGPUMapAsyncStatus = 1u
-const val WGPUMapAsyncStatus_InstanceDropped : WGPUMapAsyncStatus = 2u
-const val WGPUMapAsyncStatus_Error : WGPUMapAsyncStatus = 3u
-const val WGPUMapAsyncStatus_Aborted : WGPUMapAsyncStatus = 4u
-const val WGPUMapAsyncStatus_Unknown : WGPUMapAsyncStatus = 5u
+const val WGPULoadOp_Clear : WGPULoadOp = 1u
+const val WGPULoadOp_Load : WGPULoadOp = 2u
 
 typealias WGPUMipmapFilterMode = UInt
-const val WGPUMipmapFilterMode_Undefined : WGPUMipmapFilterMode = 0u
 const val WGPUMipmapFilterMode_Nearest : WGPUMipmapFilterMode = 1u
 const val WGPUMipmapFilterMode_Linear : WGPUMipmapFilterMode = 2u
 
-typealias WGPUOptionalBool = UInt
-const val WGPUOptionalBool_False : WGPUOptionalBool = 1u
-const val WGPUOptionalBool_True : WGPUOptionalBool = 2u
-const val WGPUOptionalBool_Undefined : WGPUOptionalBool = 3u
-
-typealias WGPUPopErrorScopeStatus = UInt
-const val WGPUPopErrorScopeStatus_Success : WGPUPopErrorScopeStatus = 1u
-const val WGPUPopErrorScopeStatus_InstanceDropped : WGPUPopErrorScopeStatus = 2u
-const val WGPUPopErrorScopeStatus_EmptyStack : WGPUPopErrorScopeStatus = 3u
+typealias WGPUStoreOp = UInt
+const val WGPUStoreOp_Undefined : WGPUStoreOp = 0u
+const val WGPUStoreOp_Store : WGPUStoreOp = 1u
+const val WGPUStoreOp_Discard : WGPUStoreOp = 2u
 
 typealias WGPUPowerPreference = UInt
 const val WGPUPowerPreference_Undefined : WGPUPowerPreference = 0u
@@ -200,14 +204,12 @@ const val WGPUPowerPreference_LowPower : WGPUPowerPreference = 1u
 const val WGPUPowerPreference_HighPerformance : WGPUPowerPreference = 2u
 
 typealias WGPUPresentMode = UInt
-const val WGPUPresentMode_Undefined : WGPUPresentMode = 0u
 const val WGPUPresentMode_Fifo : WGPUPresentMode = 1u
 const val WGPUPresentMode_FifoRelaxed : WGPUPresentMode = 2u
 const val WGPUPresentMode_Immediate : WGPUPresentMode = 3u
 const val WGPUPresentMode_Mailbox : WGPUPresentMode = 4u
 
 typealias WGPUPrimitiveTopology = UInt
-const val WGPUPrimitiveTopology_Undefined : WGPUPrimitiveTopology = 0u
 const val WGPUPrimitiveTopology_PointList : WGPUPrimitiveTopology = 1u
 const val WGPUPrimitiveTopology_LineList : WGPUPrimitiveTopology = 2u
 const val WGPUPrimitiveTopology_LineStrip : WGPUPrimitiveTopology = 3u
@@ -220,47 +222,16 @@ const val WGPUQueryType_Timestamp : WGPUQueryType = 2u
 
 typealias WGPUQueueWorkDoneStatus = UInt
 const val WGPUQueueWorkDoneStatus_Success : WGPUQueueWorkDoneStatus = 1u
-const val WGPUQueueWorkDoneStatus_InstanceDropped : WGPUQueueWorkDoneStatus = 2u
-const val WGPUQueueWorkDoneStatus_Error : WGPUQueueWorkDoneStatus = 3u
-const val WGPUQueueWorkDoneStatus_Unknown : WGPUQueueWorkDoneStatus = 4u
-
-typealias WGPURequestAdapterStatus = UInt
-const val WGPURequestAdapterStatus_Success : WGPURequestAdapterStatus = 1u
-const val WGPURequestAdapterStatus_InstanceDropped : WGPURequestAdapterStatus = 2u
-const val WGPURequestAdapterStatus_Unavailable : WGPURequestAdapterStatus = 3u
-const val WGPURequestAdapterStatus_Error : WGPURequestAdapterStatus = 4u
-const val WGPURequestAdapterStatus_Unknown : WGPURequestAdapterStatus = 5u
+const val WGPUQueueWorkDoneStatus_Error : WGPUQueueWorkDoneStatus = 2u
+const val WGPUQueueWorkDoneStatus_Unknown : WGPUQueueWorkDoneStatus = 3u
+const val WGPUQueueWorkDoneStatus_DeviceLost : WGPUQueueWorkDoneStatus = 4u
 
 typealias WGPURequestDeviceStatus = UInt
 const val WGPURequestDeviceStatus_Success : WGPURequestDeviceStatus = 1u
-const val WGPURequestDeviceStatus_InstanceDropped : WGPURequestDeviceStatus = 2u
-const val WGPURequestDeviceStatus_Error : WGPURequestDeviceStatus = 3u
-const val WGPURequestDeviceStatus_Unknown : WGPURequestDeviceStatus = 4u
-
-typealias WGPUSType = UInt
-const val WGPUSType_ShaderSourceSPIRV : WGPUSType = 1u
-const val WGPUSType_ShaderSourceWGSL : WGPUSType = 2u
-const val WGPUSType_RenderPassMaxDrawCount : WGPUSType = 3u
-const val WGPUSType_SurfaceSourceMetalLayer : WGPUSType = 4u
-const val WGPUSType_SurfaceSourceWindowsHWND : WGPUSType = 5u
-const val WGPUSType_SurfaceSourceXlibWindow : WGPUSType = 6u
-const val WGPUSType_SurfaceSourceWaylandSurface : WGPUSType = 7u
-const val WGPUSType_SurfaceSourceAndroidNativeWindow : WGPUSType = 8u
-const val WGPUSType_SurfaceSourceXCBWindow : WGPUSType = 9u
-
-typealias WGPUSamplerBindingType = UInt
-const val WGPUSamplerBindingType_BindingNotUsed : WGPUSamplerBindingType = 1u
-const val WGPUSamplerBindingType_Undefined : WGPUSamplerBindingType = 2u
-const val WGPUSamplerBindingType_Filtering : WGPUSamplerBindingType = 3u
-const val WGPUSamplerBindingType_NonFiltering : WGPUSamplerBindingType = 4u
-const val WGPUSamplerBindingType_Comparison : WGPUSamplerBindingType = 5u
-
-typealias WGPUStatus = UInt
-const val WGPUStatus_Success : WGPUStatus = 1u
-const val WGPUStatus_Error : WGPUStatus = 2u
+const val WGPURequestDeviceStatus_Error : WGPURequestDeviceStatus = 2u
+const val WGPURequestDeviceStatus_Unknown : WGPURequestDeviceStatus = 3u
 
 typealias WGPUStencilOperation = UInt
-const val WGPUStencilOperation_Undefined : WGPUStencilOperation = 0u
 const val WGPUStencilOperation_Keep : WGPUStencilOperation = 1u
 const val WGPUStencilOperation_Zero : WGPUStencilOperation = 2u
 const val WGPUStencilOperation_Replace : WGPUStencilOperation = 3u
@@ -270,36 +241,34 @@ const val WGPUStencilOperation_DecrementClamp : WGPUStencilOperation = 6u
 const val WGPUStencilOperation_IncrementWrap : WGPUStencilOperation = 7u
 const val WGPUStencilOperation_DecrementWrap : WGPUStencilOperation = 8u
 
-typealias WGPUStorageTextureAccess = UInt
-const val WGPUStorageTextureAccess_BindingNotUsed : WGPUStorageTextureAccess = 1u
-const val WGPUStorageTextureAccess_Undefined : WGPUStorageTextureAccess = 2u
-const val WGPUStorageTextureAccess_WriteOnly : WGPUStorageTextureAccess = 3u
-const val WGPUStorageTextureAccess_ReadOnly : WGPUStorageTextureAccess = 4u
-const val WGPUStorageTextureAccess_ReadWrite : WGPUStorageTextureAccess = 5u
-
-typealias WGPUStoreOp = UInt
-const val WGPUStoreOp_Undefined : WGPUStoreOp = 0u
-const val WGPUStoreOp_Store : WGPUStoreOp = 1u
-const val WGPUStoreOp_Discard : WGPUStoreOp = 2u
+typealias WGPUSType = UInt
+const val WGPUSType_Invalid : WGPUSType = 1u
+const val WGPUSType_SurfaceDescriptorFromMetalLayer : WGPUSType = 2u
+const val WGPUSType_SurfaceDescriptorFromWindowsHWND : WGPUSType = 3u
+const val WGPUSType_SurfaceDescriptorFromXlibWindow : WGPUSType = 4u
+const val WGPUSType_SurfaceDescriptorFromCanvasHTMLSelector : WGPUSType = 5u
+const val WGPUSType_ShaderModuleSPIRVDescriptor : WGPUSType = 6u
+const val WGPUSType_ShaderModuleWGSLDescriptor : WGPUSType = 7u
+const val WGPUSType_PrimitiveDepthClipControl : WGPUSType = 8u
+const val WGPUSType_SurfaceDescriptorFromWaylandSurface : WGPUSType = 9u
+const val WGPUSType_SurfaceDescriptorFromAndroidNativeWindow : WGPUSType = 10u
+const val WGPUSType_SurfaceDescriptorFromXcbWindow : WGPUSType = 11u
+const val WGPUSType_RenderPassDescriptorMaxDrawCount : WGPUSType = 15u
 
 typealias WGPUSurfaceGetCurrentTextureStatus = UInt
-const val WGPUSurfaceGetCurrentTextureStatus_SuccessOptimal : WGPUSurfaceGetCurrentTextureStatus = 1u
-const val WGPUSurfaceGetCurrentTextureStatus_SuccessSuboptimal : WGPUSurfaceGetCurrentTextureStatus = 2u
-const val WGPUSurfaceGetCurrentTextureStatus_Timeout : WGPUSurfaceGetCurrentTextureStatus = 3u
-const val WGPUSurfaceGetCurrentTextureStatus_Outdated : WGPUSurfaceGetCurrentTextureStatus = 4u
-const val WGPUSurfaceGetCurrentTextureStatus_Lost : WGPUSurfaceGetCurrentTextureStatus = 5u
-const val WGPUSurfaceGetCurrentTextureStatus_OutOfMemory : WGPUSurfaceGetCurrentTextureStatus = 6u
-const val WGPUSurfaceGetCurrentTextureStatus_DeviceLost : WGPUSurfaceGetCurrentTextureStatus = 7u
-const val WGPUSurfaceGetCurrentTextureStatus_Error : WGPUSurfaceGetCurrentTextureStatus = 8u
+const val WGPUSurfaceGetCurrentTextureStatus_Success : WGPUSurfaceGetCurrentTextureStatus = 1u
+const val WGPUSurfaceGetCurrentTextureStatus_Timeout : WGPUSurfaceGetCurrentTextureStatus = 2u
+const val WGPUSurfaceGetCurrentTextureStatus_Outdated : WGPUSurfaceGetCurrentTextureStatus = 3u
+const val WGPUSurfaceGetCurrentTextureStatus_Lost : WGPUSurfaceGetCurrentTextureStatus = 4u
+const val WGPUSurfaceGetCurrentTextureStatus_OutOfMemory : WGPUSurfaceGetCurrentTextureStatus = 5u
+const val WGPUSurfaceGetCurrentTextureStatus_DeviceLost : WGPUSurfaceGetCurrentTextureStatus = 6u
 
 typealias WGPUTextureAspect = UInt
-const val WGPUTextureAspect_Undefined : WGPUTextureAspect = 0u
 const val WGPUTextureAspect_All : WGPUTextureAspect = 1u
 const val WGPUTextureAspect_StencilOnly : WGPUTextureAspect = 2u
 const val WGPUTextureAspect_DepthOnly : WGPUTextureAspect = 3u
 
 typealias WGPUTextureDimension = UInt
-const val WGPUTextureDimension_Undefined : WGPUTextureDimension = 0u
 const val WGPUTextureDimension_1D : WGPUTextureDimension = 1u
 const val WGPUTextureDimension_2D : WGPUTextureDimension = 2u
 const val WGPUTextureDimension_3D : WGPUTextureDimension = 3u
@@ -402,15 +371,6 @@ const val WGPUTextureFormat_ASTC12x10UnormSrgb : WGPUTextureFormat = 93u
 const val WGPUTextureFormat_ASTC12x12Unorm : WGPUTextureFormat = 94u
 const val WGPUTextureFormat_ASTC12x12UnormSrgb : WGPUTextureFormat = 95u
 
-typealias WGPUTextureSampleType = UInt
-const val WGPUTextureSampleType_BindingNotUsed : WGPUTextureSampleType = 1u
-const val WGPUTextureSampleType_Undefined : WGPUTextureSampleType = 2u
-const val WGPUTextureSampleType_Float : WGPUTextureSampleType = 3u
-const val WGPUTextureSampleType_UnfilterableFloat : WGPUTextureSampleType = 4u
-const val WGPUTextureSampleType_Depth : WGPUTextureSampleType = 5u
-const val WGPUTextureSampleType_Sint : WGPUTextureSampleType = 6u
-const val WGPUTextureSampleType_Uint : WGPUTextureSampleType = 7u
-
 typealias WGPUTextureViewDimension = UInt
 const val WGPUTextureViewDimension_Undefined : WGPUTextureViewDimension = 0u
 const val WGPUTextureViewDimension_1D : WGPUTextureViewDimension = 1u
@@ -421,66 +381,44 @@ const val WGPUTextureViewDimension_CubeArray : WGPUTextureViewDimension = 5u
 const val WGPUTextureViewDimension_3D : WGPUTextureViewDimension = 6u
 
 typealias WGPUVertexFormat = UInt
-const val WGPUVertexFormat_Uint8 : WGPUVertexFormat = 1u
-const val WGPUVertexFormat_Uint8x2 : WGPUVertexFormat = 2u
-const val WGPUVertexFormat_Uint8x4 : WGPUVertexFormat = 3u
-const val WGPUVertexFormat_Sint8 : WGPUVertexFormat = 4u
-const val WGPUVertexFormat_Sint8x2 : WGPUVertexFormat = 5u
-const val WGPUVertexFormat_Sint8x4 : WGPUVertexFormat = 6u
-const val WGPUVertexFormat_Unorm8 : WGPUVertexFormat = 7u
-const val WGPUVertexFormat_Unorm8x2 : WGPUVertexFormat = 8u
-const val WGPUVertexFormat_Unorm8x4 : WGPUVertexFormat = 9u
-const val WGPUVertexFormat_Snorm8 : WGPUVertexFormat = 10u
-const val WGPUVertexFormat_Snorm8x2 : WGPUVertexFormat = 11u
-const val WGPUVertexFormat_Snorm8x4 : WGPUVertexFormat = 12u
-const val WGPUVertexFormat_Uint16 : WGPUVertexFormat = 13u
-const val WGPUVertexFormat_Uint16x2 : WGPUVertexFormat = 14u
-const val WGPUVertexFormat_Uint16x4 : WGPUVertexFormat = 15u
-const val WGPUVertexFormat_Sint16 : WGPUVertexFormat = 16u
-const val WGPUVertexFormat_Sint16x2 : WGPUVertexFormat = 17u
-const val WGPUVertexFormat_Sint16x4 : WGPUVertexFormat = 18u
-const val WGPUVertexFormat_Unorm16 : WGPUVertexFormat = 19u
-const val WGPUVertexFormat_Unorm16x2 : WGPUVertexFormat = 20u
-const val WGPUVertexFormat_Unorm16x4 : WGPUVertexFormat = 21u
-const val WGPUVertexFormat_Snorm16 : WGPUVertexFormat = 22u
-const val WGPUVertexFormat_Snorm16x2 : WGPUVertexFormat = 23u
-const val WGPUVertexFormat_Snorm16x4 : WGPUVertexFormat = 24u
-const val WGPUVertexFormat_Float16 : WGPUVertexFormat = 25u
-const val WGPUVertexFormat_Float16x2 : WGPUVertexFormat = 26u
-const val WGPUVertexFormat_Float16x4 : WGPUVertexFormat = 27u
-const val WGPUVertexFormat_Float32 : WGPUVertexFormat = 28u
-const val WGPUVertexFormat_Float32x2 : WGPUVertexFormat = 29u
-const val WGPUVertexFormat_Float32x3 : WGPUVertexFormat = 30u
-const val WGPUVertexFormat_Float32x4 : WGPUVertexFormat = 31u
-const val WGPUVertexFormat_Uint32 : WGPUVertexFormat = 32u
-const val WGPUVertexFormat_Uint32x2 : WGPUVertexFormat = 33u
-const val WGPUVertexFormat_Uint32x3 : WGPUVertexFormat = 34u
-const val WGPUVertexFormat_Uint32x4 : WGPUVertexFormat = 35u
-const val WGPUVertexFormat_Sint32 : WGPUVertexFormat = 36u
-const val WGPUVertexFormat_Sint32x2 : WGPUVertexFormat = 37u
-const val WGPUVertexFormat_Sint32x3 : WGPUVertexFormat = 38u
-const val WGPUVertexFormat_Sint32x4 : WGPUVertexFormat = 39u
-const val WGPUVertexFormat_Unorm1010102 : WGPUVertexFormat = 40u
-const val WGPUVertexFormat_Unorm8x4BGRA : WGPUVertexFormat = 41u
+const val WGPUVertexFormat_Undefined : WGPUVertexFormat = 0u
+const val WGPUVertexFormat_Uint8x2 : WGPUVertexFormat = 1u
+const val WGPUVertexFormat_Uint8x4 : WGPUVertexFormat = 2u
+const val WGPUVertexFormat_Sint8x2 : WGPUVertexFormat = 3u
+const val WGPUVertexFormat_Sint8x4 : WGPUVertexFormat = 4u
+const val WGPUVertexFormat_Unorm8x2 : WGPUVertexFormat = 5u
+const val WGPUVertexFormat_Unorm8x4 : WGPUVertexFormat = 6u
+const val WGPUVertexFormat_Snorm8x2 : WGPUVertexFormat = 7u
+const val WGPUVertexFormat_Snorm8x4 : WGPUVertexFormat = 8u
+const val WGPUVertexFormat_Uint16x2 : WGPUVertexFormat = 9u
+const val WGPUVertexFormat_Uint16x4 : WGPUVertexFormat = 10u
+const val WGPUVertexFormat_Sint16x2 : WGPUVertexFormat = 11u
+const val WGPUVertexFormat_Sint16x4 : WGPUVertexFormat = 12u
+const val WGPUVertexFormat_Unorm16x2 : WGPUVertexFormat = 13u
+const val WGPUVertexFormat_Unorm16x4 : WGPUVertexFormat = 14u
+const val WGPUVertexFormat_Snorm16x2 : WGPUVertexFormat = 15u
+const val WGPUVertexFormat_Snorm16x4 : WGPUVertexFormat = 16u
+const val WGPUVertexFormat_Float16x2 : WGPUVertexFormat = 17u
+const val WGPUVertexFormat_Float16x4 : WGPUVertexFormat = 18u
+const val WGPUVertexFormat_Float32 : WGPUVertexFormat = 19u
+const val WGPUVertexFormat_Float32x2 : WGPUVertexFormat = 20u
+const val WGPUVertexFormat_Float32x3 : WGPUVertexFormat = 21u
+const val WGPUVertexFormat_Float32x4 : WGPUVertexFormat = 22u
+const val WGPUVertexFormat_Uint32 : WGPUVertexFormat = 23u
+const val WGPUVertexFormat_Uint32x2 : WGPUVertexFormat = 24u
+const val WGPUVertexFormat_Uint32x3 : WGPUVertexFormat = 25u
+const val WGPUVertexFormat_Uint32x4 : WGPUVertexFormat = 26u
+const val WGPUVertexFormat_Sint32 : WGPUVertexFormat = 27u
+const val WGPUVertexFormat_Sint32x2 : WGPUVertexFormat = 28u
+const val WGPUVertexFormat_Sint32x3 : WGPUVertexFormat = 29u
+const val WGPUVertexFormat_Sint32x4 : WGPUVertexFormat = 30u
 
-typealias WGPUVertexStepMode = UInt
-const val WGPUVertexStepMode_VertexBufferNotUsed : WGPUVertexStepMode = 1u
-const val WGPUVertexStepMode_Undefined : WGPUVertexStepMode = 2u
-const val WGPUVertexStepMode_Vertex : WGPUVertexStepMode = 3u
-const val WGPUVertexStepMode_Instance : WGPUVertexStepMode = 4u
-
-typealias WGPUWaitStatus = UInt
-const val WGPUWaitStatus_Success : WGPUWaitStatus = 1u
-const val WGPUWaitStatus_TimedOut : WGPUWaitStatus = 2u
-const val WGPUWaitStatus_UnsupportedTimeout : WGPUWaitStatus = 3u
-const val WGPUWaitStatus_UnsupportedCount : WGPUWaitStatus = 4u
-const val WGPUWaitStatus_UnsupportedMixedSources : WGPUWaitStatus = 5u
-
-typealias WGPUWGSLLanguageFeatureName = UInt
-const val WGPUWGSLLanguageFeatureName_ReadonlyAndReadwriteStorageTextures : WGPUWGSLLanguageFeatureName = 1u
-const val WGPUWGSLLanguageFeatureName_Packed4x8IntegerDotProduct : WGPUWGSLLanguageFeatureName = 2u
-const val WGPUWGSLLanguageFeatureName_UnrestrictedPointerParameters : WGPUWGSLLanguageFeatureName = 3u
-const val WGPUWGSLLanguageFeatureName_PointerCompositeAccess : WGPUWGSLLanguageFeatureName = 4u
+typealias WGPUWGSLFeatureName = UInt
+const val WGPUWGSLFeatureName_Undefined : WGPUWGSLFeatureName = 0u
+const val WGPUWGSLFeatureName_ReadonlyAndReadwriteStorageTextures : WGPUWGSLFeatureName = 1u
+const val WGPUWGSLFeatureName_Packed4x8IntegerDotProduct : WGPUWGSLFeatureName = 2u
+const val WGPUWGSLFeatureName_UnrestrictedPointerParameters : WGPUWGSLFeatureName = 3u
+const val WGPUWGSLFeatureName_PointerCompositeAccess : WGPUWGSLFeatureName = 4u
 
 typealias WGPUGles3MinorVersion = UInt
 const val WGPUGles3MinorVersion_Automatic : WGPUGles3MinorVersion = 0u

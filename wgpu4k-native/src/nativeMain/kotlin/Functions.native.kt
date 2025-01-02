@@ -15,16 +15,21 @@ actual fun wgpuCreateInstance(descriptor: WGPUInstanceDescriptor?): WGPUInstance
 		?.let(::NativeAddress)?.let(::WGPUInstance)
 }
 
-actual fun wgpuGetInstanceCapabilities(capabilities: WGPUInstanceCapabilities?): WGPUStatus {
-	return webgpu.native.wgpuGetInstanceCapabilities(capabilities?.handler?.reinterpret())
+actual fun wgpuSetLogCallback(callback: CallbackHolder<WGPULogCallback>?, userdata: NativeAddress?): Unit {
+	webgpu.native.wgpuSetLogCallback(callback?.handler?.reinterpret(), userdata?.pointer)
+}
+
+actual fun wgpuSetLogLevel(level: WGPULogLevel): Unit {
+	webgpu.native.wgpuSetLogLevel(level)
 }
 
 actual fun wgpuAdapterRelease(handler: WGPUAdapter?): Unit {
 	webgpu.native.wgpuAdapterRelease(handler?.handler?.reinterpret())
 }
 
-actual fun wgpuAdapterGetLimits(handler: WGPUAdapter?, limits: WGPULimits?): WGPUStatus {
+actual fun wgpuAdapterGetLimits(handler: WGPUAdapter?, limits: WGPUSupportedLimits?): Boolean {
 	return webgpu.native.wgpuAdapterGetLimits(handler?.handler?.reinterpret(), limits?.handler?.reinterpret())
+		.toBoolean()
 }
 
 actual fun wgpuAdapterHasFeature(handler: WGPUAdapter?, feature: WGPUFeatureName): Boolean {
@@ -32,16 +37,16 @@ actual fun wgpuAdapterHasFeature(handler: WGPUAdapter?, feature: WGPUFeatureName
 		.toBoolean()
 }
 
-actual fun wgpuAdapterGetFeatures(handler: WGPUAdapter?, features: WGPUSupportedFeatures?): Unit {
-	webgpu.native.wgpuAdapterGetFeatures(handler?.handler?.reinterpret(), features?.handler?.reinterpret())
+actual fun wgpuAdapterEnumerateFeatures(handler: WGPUAdapter?, features: NativeAddress?): ULong {
+	return webgpu.native.wgpuAdapterEnumerateFeatures(handler?.handler?.reinterpret(), features?.pointer)
 }
 
-actual fun wgpuAdapterGetInfo(handler: WGPUAdapter?, info: WGPUAdapterInfo?): WGPUStatus {
-	return webgpu.native.wgpuAdapterGetInfo(handler?.handler?.reinterpret(), info?.handler?.reinterpret())
+actual fun wgpuAdapterGetInfo(handler: WGPUAdapter?, info: WGPUAdapterInfo?): Unit {
+	webgpu.native.wgpuAdapterGetInfo(handler?.handler?.reinterpret(), info?.handler?.reinterpret())
 }
 
-actual fun wgpuAdapterRequestDevice(handler: WGPUAdapter?, descriptor: WGPUDeviceDescriptor?, callbackInfo: WGPURequestDeviceCallbackInfo): Unit {
-	webgpu.native.wgpuAdapterRequestDevice(handler?.handler?.reinterpret(), descriptor?.handler?.reinterpret(), callbackInfo.toCValue())
+actual fun wgpuAdapterRequestDevice(handler: WGPUAdapter?, descriptor: WGPUDeviceDescriptor?): Unit {
+	webgpu.native.wgpuAdapterRequestDevice(handler?.handler?.reinterpret(), descriptor?.handler?.reinterpret())
 }
 
 actual fun wgpuBindGroupRelease(handler: WGPUBindGroup?): Unit {
@@ -64,8 +69,8 @@ actual fun wgpuBufferRelease(handler: WGPUBuffer?): Unit {
 	webgpu.native.wgpuBufferRelease(handler?.handler?.reinterpret())
 }
 
-actual fun wgpuBufferMapAsync(handler: WGPUBuffer?, mode: ULong, offset: ULong, size: ULong, callbackInfo: WGPUBufferMapCallbackInfo): Unit {
-	webgpu.native.wgpuBufferMapAsync(handler?.handler?.reinterpret(), mode, offset, size, callbackInfo.toCValue())
+actual fun wgpuBufferMapAsync(handler: WGPUBuffer?, mode: ULong, offset: ULong, size: ULong): Unit {
+	webgpu.native.wgpuBufferMapAsync(handler?.handler?.reinterpret(), mode, offset, size)
 }
 
 actual fun wgpuBufferGetMappedRange(handler: WGPUBuffer?, offset: ULong, size: ULong): NativeAddress? {
@@ -133,15 +138,15 @@ actual fun wgpuCommandEncoderCopyBufferToBuffer(handler: WGPUCommandEncoder?, so
 	webgpu.native.wgpuCommandEncoderCopyBufferToBuffer(handler?.handler?.reinterpret(), source?.handler?.reinterpret(), sourceOffset, destination?.handler?.reinterpret(), destinationOffset, size)
 }
 
-actual fun wgpuCommandEncoderCopyBufferToTexture(handler: WGPUCommandEncoder?, source: WGPUTexelCopyBufferInfo?, destination: WGPUTexelCopyTextureInfo?, copySize: WGPUExtent3D?): Unit {
+actual fun wgpuCommandEncoderCopyBufferToTexture(handler: WGPUCommandEncoder?, source: WGPUImageCopyBuffer?, destination: WGPUImageCopyTexture?, copySize: WGPUExtent3D?): Unit {
 	webgpu.native.wgpuCommandEncoderCopyBufferToTexture(handler?.handler?.reinterpret(), source?.handler?.reinterpret(), destination?.handler?.reinterpret(), copySize?.handler?.reinterpret())
 }
 
-actual fun wgpuCommandEncoderCopyTextureToBuffer(handler: WGPUCommandEncoder?, source: WGPUTexelCopyTextureInfo?, destination: WGPUTexelCopyBufferInfo?, copySize: WGPUExtent3D?): Unit {
+actual fun wgpuCommandEncoderCopyTextureToBuffer(handler: WGPUCommandEncoder?, source: WGPUImageCopyTexture?, destination: WGPUImageCopyBuffer?, copySize: WGPUExtent3D?): Unit {
 	webgpu.native.wgpuCommandEncoderCopyTextureToBuffer(handler?.handler?.reinterpret(), source?.handler?.reinterpret(), destination?.handler?.reinterpret(), copySize?.handler?.reinterpret())
 }
 
-actual fun wgpuCommandEncoderCopyTextureToTexture(handler: WGPUCommandEncoder?, source: WGPUTexelCopyTextureInfo?, destination: WGPUTexelCopyTextureInfo?, copySize: WGPUExtent3D?): Unit {
+actual fun wgpuCommandEncoderCopyTextureToTexture(handler: WGPUCommandEncoder?, source: WGPUImageCopyTexture?, destination: WGPUImageCopyTexture?, copySize: WGPUExtent3D?): Unit {
 	webgpu.native.wgpuCommandEncoderCopyTextureToTexture(handler?.handler?.reinterpret(), source?.handler?.reinterpret(), destination?.handler?.reinterpret(), copySize?.handler?.reinterpret())
 }
 
@@ -255,8 +260,8 @@ actual fun wgpuDeviceCreateComputePipeline(handler: WGPUDevice?, descriptor: WGP
 		?.let(::NativeAddress)?.let(::WGPUComputePipeline)
 }
 
-actual fun wgpuDeviceCreateComputePipelineAsync(handler: WGPUDevice?, descriptor: WGPUComputePipelineDescriptor?, callbackInfo: WGPUCreateComputePipelineAsyncCallbackInfo): Unit {
-	webgpu.native.wgpuDeviceCreateComputePipelineAsync(handler?.handler?.reinterpret(), descriptor?.handler?.reinterpret(), callbackInfo.toCValue())
+actual fun wgpuDeviceCreateComputePipelineAsync(handler: WGPUDevice?, descriptor: WGPUComputePipelineDescriptor?): Unit {
+	webgpu.native.wgpuDeviceCreateComputePipelineAsync(handler?.handler?.reinterpret(), descriptor?.handler?.reinterpret())
 }
 
 actual fun wgpuDeviceCreatePipelineLayout(handler: WGPUDevice?, descriptor: WGPUPipelineLayoutDescriptor?): WGPUPipelineLayout? {
@@ -269,8 +274,8 @@ actual fun wgpuDeviceCreateQuerySet(handler: WGPUDevice?, descriptor: WGPUQueryS
 		?.let(::NativeAddress)?.let(::WGPUQuerySet)
 }
 
-actual fun wgpuDeviceCreateRenderPipelineAsync(handler: WGPUDevice?, descriptor: WGPURenderPipelineDescriptor?, callbackInfo: WGPUCreateRenderPipelineAsyncCallbackInfo): Unit {
-	webgpu.native.wgpuDeviceCreateRenderPipelineAsync(handler?.handler?.reinterpret(), descriptor?.handler?.reinterpret(), callbackInfo.toCValue())
+actual fun wgpuDeviceCreateRenderPipelineAsync(handler: WGPUDevice?, descriptor: WGPURenderPipelineDescriptor?): Unit {
+	webgpu.native.wgpuDeviceCreateRenderPipelineAsync(handler?.handler?.reinterpret(), descriptor?.handler?.reinterpret())
 }
 
 actual fun wgpuDeviceCreateRenderBundleEncoder(handler: WGPUDevice?, descriptor: WGPURenderBundleEncoderDescriptor?): WGPURenderBundleEncoder? {
@@ -302,13 +307,9 @@ actual fun wgpuDeviceDestroy(handler: WGPUDevice?): Unit {
 	webgpu.native.wgpuDeviceDestroy(handler?.handler?.reinterpret())
 }
 
-actual fun wgpuDeviceGetLostFuture(handler: WGPUDevice?): WGPUFuture {
-	return webgpu.native.wgpuDeviceGetLostFuture(handler?.handler?.reinterpret())
-		.let(WGPUFuture::ByValue)
-}
-
-actual fun wgpuDeviceGetLimits(handler: WGPUDevice?, limits: WGPULimits?): WGPUStatus {
+actual fun wgpuDeviceGetLimits(handler: WGPUDevice?, limits: WGPUSupportedLimits?): Boolean {
 	return webgpu.native.wgpuDeviceGetLimits(handler?.handler?.reinterpret(), limits?.handler?.reinterpret())
+		.toBoolean()
 }
 
 actual fun wgpuDeviceHasFeature(handler: WGPUDevice?, feature: WGPUFeatureName): Boolean {
@@ -316,13 +317,8 @@ actual fun wgpuDeviceHasFeature(handler: WGPUDevice?, feature: WGPUFeatureName):
 		.toBoolean()
 }
 
-actual fun wgpuDeviceGetFeatures(handler: WGPUDevice?, features: WGPUSupportedFeatures?): Unit {
-	webgpu.native.wgpuDeviceGetFeatures(handler?.handler?.reinterpret(), features?.handler?.reinterpret())
-}
-
-actual fun wgpuDeviceGetAdapterInfo(handler: WGPUDevice?): WGPUAdapterInfo {
-	return webgpu.native.wgpuDeviceGetAdapterInfo(handler?.handler?.reinterpret())
-		.let(WGPUAdapterInfo::ByValue)
+actual fun wgpuDeviceEnumerateFeatures(handler: WGPUDevice?, features: NativeAddress?): ULong {
+	return webgpu.native.wgpuDeviceEnumerateFeatures(handler?.handler?.reinterpret(), features?.pointer)
 }
 
 actual fun wgpuDeviceGetQueue(handler: WGPUDevice?): WGPUQueue? {
@@ -334,8 +330,8 @@ actual fun wgpuDevicePushErrorScope(handler: WGPUDevice?, filter: WGPUErrorFilte
 	webgpu.native.wgpuDevicePushErrorScope(handler?.handler?.reinterpret(), filter)
 }
 
-actual fun wgpuDevicePopErrorScope(handler: WGPUDevice?, callbackInfo: WGPUPopErrorScopeCallbackInfo): Unit {
-	webgpu.native.wgpuDevicePopErrorScope(handler?.handler?.reinterpret(), callbackInfo.toCValue())
+actual fun wgpuDevicePopErrorScope(handler: WGPUDevice?, callback: CallbackHolder<WGPUErrorCallback>?, userdata: NativeAddress?): Unit {
+	webgpu.native.wgpuDevicePopErrorScope(handler?.handler?.reinterpret(), callback?.handler?.reinterpret(), userdata?.pointer)
 }
 
 actual fun wgpuDeviceSetLabel(handler: WGPUDevice?, label: WGPUStringView): Unit {
@@ -351,11 +347,7 @@ actual fun wgpuInstanceCreateSurface(handler: WGPUInstance?, descriptor: WGPUSur
 		?.let(::NativeAddress)?.let(::WGPUSurface)
 }
 
-actual fun wgpuInstanceGetWGSLLanguageFeatures(handler: WGPUInstance?, features: WGPUSupportedWGSLLanguageFeatures?): WGPUStatus {
-	return webgpu.native.wgpuInstanceGetWGSLLanguageFeatures(handler?.handler?.reinterpret(), features?.handler?.reinterpret())
-}
-
-actual fun wgpuInstanceHasWGSLLanguageFeature(handler: WGPUInstance?, feature: WGPUWGSLLanguageFeatureName): Boolean {
+actual fun wgpuInstanceHasWGSLLanguageFeature(handler: WGPUInstance?, feature: WGPUWGSLFeatureName): Boolean {
 	return webgpu.native.wgpuInstanceHasWGSLLanguageFeature(handler?.handler?.reinterpret(), feature)
 		.toBoolean()
 }
@@ -364,12 +356,8 @@ actual fun wgpuInstanceProcessEvents(handler: WGPUInstance?): Unit {
 	webgpu.native.wgpuInstanceProcessEvents(handler?.handler?.reinterpret())
 }
 
-actual fun wgpuInstanceRequestAdapter(handler: WGPUInstance?, options: WGPURequestAdapterOptions?, callbackInfo: WGPURequestAdapterCallbackInfo): Unit {
-	webgpu.native.wgpuInstanceRequestAdapter(handler?.handler?.reinterpret(), options?.handler?.reinterpret(), callbackInfo.toCValue())
-}
-
-actual fun wgpuInstanceWaitAny(handler: WGPUInstance?, futureCount: ULong, futures: WGPUFutureWaitInfo?, timeoutNS: ULong): WGPUWaitStatus {
-	return webgpu.native.wgpuInstanceWaitAny(handler?.handler?.reinterpret(), futureCount, futures?.handler?.reinterpret(), timeoutNS)
+actual fun wgpuInstanceRequestAdapter(handler: WGPUInstance?, options: WGPURequestAdapterOptions?): Unit {
+	webgpu.native.wgpuInstanceRequestAdapter(handler?.handler?.reinterpret(), options?.handler?.reinterpret())
 }
 
 actual fun wgpuPipelineLayoutRelease(handler: WGPUPipelineLayout?): Unit {
@@ -408,15 +396,15 @@ actual fun wgpuQueueSubmit(handler: WGPUQueue?, commandCount: ULong, commands: A
 	webgpu.native.wgpuQueueSubmit(handler?.handler?.reinterpret(), commandCount, commands?.handler?.reinterpret())
 }
 
-actual fun wgpuQueueOnSubmittedWorkDone(handler: WGPUQueue?, callbackInfo: WGPUQueueWorkDoneCallbackInfo): Unit {
-	webgpu.native.wgpuQueueOnSubmittedWorkDone(handler?.handler?.reinterpret(), callbackInfo.toCValue())
+actual fun wgpuQueueOnSubmittedWorkDone(handler: WGPUQueue?): Unit {
+	webgpu.native.wgpuQueueOnSubmittedWorkDone(handler?.handler?.reinterpret())
 }
 
 actual fun wgpuQueueWriteBuffer(handler: WGPUQueue?, buffer: WGPUBuffer?, bufferOffset: ULong, data: NativeAddress?, size: ULong): Unit {
 	webgpu.native.wgpuQueueWriteBuffer(handler?.handler?.reinterpret(), buffer?.handler?.reinterpret(), bufferOffset, data?.pointer, size)
 }
 
-actual fun wgpuQueueWriteTexture(handler: WGPUQueue?, destination: WGPUTexelCopyTextureInfo?, data: NativeAddress?, dataSize: ULong, dataLayout: WGPUTexelCopyBufferLayout?, writeSize: WGPUExtent3D?): Unit {
+actual fun wgpuQueueWriteTexture(handler: WGPUQueue?, destination: WGPUImageCopyTexture?, data: NativeAddress?, dataSize: ULong, dataLayout: WGPUTextureDataLayout?, writeSize: WGPUExtent3D?): Unit {
 	webgpu.native.wgpuQueueWriteTexture(handler?.handler?.reinterpret(), destination?.handler?.reinterpret(), data?.pointer, dataSize, dataLayout?.handler?.reinterpret(), writeSize?.handler?.reinterpret())
 }
 
@@ -598,8 +586,8 @@ actual fun wgpuShaderModuleRelease(handler: WGPUShaderModule?): Unit {
 	webgpu.native.wgpuShaderModuleRelease(handler?.handler?.reinterpret())
 }
 
-actual fun wgpuShaderModuleGetCompilationInfo(handler: WGPUShaderModule?, callbackInfo: WGPUCompilationInfoCallbackInfo): Unit {
-	webgpu.native.wgpuShaderModuleGetCompilationInfo(handler?.handler?.reinterpret(), callbackInfo.toCValue())
+actual fun wgpuShaderModuleGetCompilationInfo(handler: WGPUShaderModule?): Unit {
+	webgpu.native.wgpuShaderModuleGetCompilationInfo(handler?.handler?.reinterpret())
 }
 
 actual fun wgpuShaderModuleSetLabel(handler: WGPUShaderModule?, label: WGPUStringView): Unit {
@@ -614,16 +602,16 @@ actual fun wgpuSurfaceConfigure(handler: WGPUSurface?, config: WGPUSurfaceConfig
 	webgpu.native.wgpuSurfaceConfigure(handler?.handler?.reinterpret(), config?.handler?.reinterpret())
 }
 
-actual fun wgpuSurfaceGetCapabilities(handler: WGPUSurface?, adapter: WGPUAdapter?, capabilities: WGPUSurfaceCapabilities?): WGPUStatus {
-	return webgpu.native.wgpuSurfaceGetCapabilities(handler?.handler?.reinterpret(), adapter?.handler?.reinterpret(), capabilities?.handler?.reinterpret())
+actual fun wgpuSurfaceGetCapabilities(handler: WGPUSurface?, adapter: WGPUAdapter?, capabilities: WGPUSurfaceCapabilities?): Unit {
+	webgpu.native.wgpuSurfaceGetCapabilities(handler?.handler?.reinterpret(), adapter?.handler?.reinterpret(), capabilities?.handler?.reinterpret())
 }
 
 actual fun wgpuSurfaceGetCurrentTexture(handler: WGPUSurface?, surfaceTexture: WGPUSurfaceTexture?): Unit {
 	webgpu.native.wgpuSurfaceGetCurrentTexture(handler?.handler?.reinterpret(), surfaceTexture?.handler?.reinterpret())
 }
 
-actual fun wgpuSurfacePresent(handler: WGPUSurface?): WGPUStatus {
-	return webgpu.native.wgpuSurfacePresent(handler?.handler?.reinterpret())
+actual fun wgpuSurfacePresent(handler: WGPUSurface?): Unit {
+	webgpu.native.wgpuSurfacePresent(handler?.handler?.reinterpret())
 }
 
 actual fun wgpuSurfaceUnconfigure(handler: WGPUSurface?): Unit {
@@ -689,13 +677,5 @@ actual fun wgpuTextureViewRelease(handler: WGPUTextureView?): Unit {
 
 actual fun wgpuTextureViewSetLabel(handler: WGPUTextureView?, label: WGPUStringView): Unit {
 	webgpu.native.wgpuTextureViewSetLabel(handler?.handler?.reinterpret(), label.toCValue())
-}
-
-actual fun wgpuSetLogLevel(level: WGPULogLevel): Unit {
-	webgpu.native.wgpuSetLogLevel(level)
-}
-
-actual fun wgpuSetLogCallback(callback: CallbackHolder<WGPULogCallback>?, userdata: NativeAddress?): Unit {
-	webgpu.native.wgpuSetLogCallback(callback?.handler?.reinterpret(), userdata?.pointer)
 }
 

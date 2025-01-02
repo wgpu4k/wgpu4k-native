@@ -1,7 +1,6 @@
 package converter
 
 import convertToEnumValueName
-import convertToKotlinCallbackName
 import convertToKotlinCallbackStructureName
 import convertToKotlinClassName
 import convertToKotlinFunctionName
@@ -16,7 +15,7 @@ import converter.to.native.generateCLibraryStructures
 
 internal fun YamlModel.toNativeModel(version: Version): NativeModel {
     val pointers = convertToPointer()
-    val functions = convertToCLibraryFunctions()
+    val functions = convertToCLibraryFunctions(version)
     val enumerations = convertToCLibraryEnumerations()
     val structures = generateCLibraryStructures()
         .calculateSizeAndPadding()
@@ -52,7 +51,7 @@ private fun List<YamlModel.Enum.Entry>.convertEnumToEnumValues(baseValue: Int): 
 }
 
 
-private fun YamlModel.convertToCLibraryFunctions(): List<NativeModel.Function> = functions
+private fun YamlModel.convertToCLibraryFunctions(version: Version): List<NativeModel.Function> = functions
     // TODO Skip until added to binding
     .filter { it.name != "get_instance_features" }
     .map {

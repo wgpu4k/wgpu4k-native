@@ -12,27 +12,31 @@ actual fun wgpuCreateInstance(descriptor: WGPUInstanceDescriptor?): WGPUInstance
 	 = Functions.wgpuCreateInstance(descriptor?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
 		?.let(::NativeAddress)?.let(::WGPUInstance)
 
-actual fun wgpuGetInstanceCapabilities(capabilities: WGPUInstanceCapabilities?): WGPUStatus
-	 = Functions.wgpuGetInstanceCapabilities(capabilities?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
+actual fun wgpuSetLogCallback(callback: CallbackHolder<WGPULogCallback>?, userdata: NativeAddress?): Unit
+	 = Functions.wgpuSetLogCallback(callback?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, userdata.adapt() ?: java.lang.foreign.MemorySegment.NULL)
+
+actual fun wgpuSetLogLevel(level: WGPULogLevel): Unit
+	 = Functions.wgpuSetLogLevel(level)
 
 actual fun wgpuAdapterRelease(handler: WGPUAdapter?): Unit
 	 = Functions.wgpuAdapterRelease(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
 
-actual fun wgpuAdapterGetLimits(handler: WGPUAdapter?, limits: WGPULimits?): WGPUStatus
+actual fun wgpuAdapterGetLimits(handler: WGPUAdapter?, limits: WGPUSupportedLimits?): Boolean
 	 = Functions.wgpuAdapterGetLimits(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, limits?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
+		.toBoolean()
 
 actual fun wgpuAdapterHasFeature(handler: WGPUAdapter?, feature: WGPUFeatureName): Boolean
 	 = Functions.wgpuAdapterHasFeature(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, feature)
 		.toBoolean()
 
-actual fun wgpuAdapterGetFeatures(handler: WGPUAdapter?, features: WGPUSupportedFeatures?): Unit
-	 = Functions.wgpuAdapterGetFeatures(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, features?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
+actual fun wgpuAdapterEnumerateFeatures(handler: WGPUAdapter?, features: NativeAddress?): ULong
+	 = Functions.wgpuAdapterEnumerateFeatures(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, features.adapt() ?: java.lang.foreign.MemorySegment.NULL)
 
-actual fun wgpuAdapterGetInfo(handler: WGPUAdapter?, info: WGPUAdapterInfo?): WGPUStatus
+actual fun wgpuAdapterGetInfo(handler: WGPUAdapter?, info: WGPUAdapterInfo?): Unit
 	 = Functions.wgpuAdapterGetInfo(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, info?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
 
-actual fun wgpuAdapterRequestDevice(handler: WGPUAdapter?, descriptor: WGPUDeviceDescriptor?, callbackInfo: WGPURequestDeviceCallbackInfo): Unit
-	 = Functions.wgpuAdapterRequestDevice(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, descriptor?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, callbackInfo?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
+actual fun wgpuAdapterRequestDevice(handler: WGPUAdapter?, descriptor: WGPUDeviceDescriptor?): Unit
+	 = Functions.wgpuAdapterRequestDevice(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, descriptor?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
 
 actual fun wgpuBindGroupRelease(handler: WGPUBindGroup?): Unit
 	 = Functions.wgpuBindGroupRelease(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
@@ -49,8 +53,8 @@ actual fun wgpuBindGroupLayoutSetLabel(handler: WGPUBindGroupLayout?, label: WGP
 actual fun wgpuBufferRelease(handler: WGPUBuffer?): Unit
 	 = Functions.wgpuBufferRelease(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
 
-actual fun wgpuBufferMapAsync(handler: WGPUBuffer?, mode: ULong, offset: ULong, size: ULong, callbackInfo: WGPUBufferMapCallbackInfo): Unit
-	 = Functions.wgpuBufferMapAsync(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, mode, offset, size, callbackInfo?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
+actual fun wgpuBufferMapAsync(handler: WGPUBuffer?, mode: ULong, offset: ULong, size: ULong): Unit
+	 = Functions.wgpuBufferMapAsync(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, mode, offset, size)
 
 actual fun wgpuBufferGetMappedRange(handler: WGPUBuffer?, offset: ULong, size: ULong): NativeAddress?
 	 = Functions.wgpuBufferGetMappedRange(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, offset, size)
@@ -102,13 +106,13 @@ actual fun wgpuCommandEncoderBeginRenderPass(handler: WGPUCommandEncoder?, descr
 actual fun wgpuCommandEncoderCopyBufferToBuffer(handler: WGPUCommandEncoder?, source: WGPUBuffer?, sourceOffset: ULong, destination: WGPUBuffer?, destinationOffset: ULong, size: ULong): Unit
 	 = Functions.wgpuCommandEncoderCopyBufferToBuffer(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, source?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, sourceOffset, destination?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, destinationOffset, size)
 
-actual fun wgpuCommandEncoderCopyBufferToTexture(handler: WGPUCommandEncoder?, source: WGPUTexelCopyBufferInfo?, destination: WGPUTexelCopyTextureInfo?, copySize: WGPUExtent3D?): Unit
+actual fun wgpuCommandEncoderCopyBufferToTexture(handler: WGPUCommandEncoder?, source: WGPUImageCopyBuffer?, destination: WGPUImageCopyTexture?, copySize: WGPUExtent3D?): Unit
 	 = Functions.wgpuCommandEncoderCopyBufferToTexture(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, source?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, destination?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, copySize?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
 
-actual fun wgpuCommandEncoderCopyTextureToBuffer(handler: WGPUCommandEncoder?, source: WGPUTexelCopyTextureInfo?, destination: WGPUTexelCopyBufferInfo?, copySize: WGPUExtent3D?): Unit
+actual fun wgpuCommandEncoderCopyTextureToBuffer(handler: WGPUCommandEncoder?, source: WGPUImageCopyTexture?, destination: WGPUImageCopyBuffer?, copySize: WGPUExtent3D?): Unit
 	 = Functions.wgpuCommandEncoderCopyTextureToBuffer(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, source?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, destination?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, copySize?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
 
-actual fun wgpuCommandEncoderCopyTextureToTexture(handler: WGPUCommandEncoder?, source: WGPUTexelCopyTextureInfo?, destination: WGPUTexelCopyTextureInfo?, copySize: WGPUExtent3D?): Unit
+actual fun wgpuCommandEncoderCopyTextureToTexture(handler: WGPUCommandEncoder?, source: WGPUImageCopyTexture?, destination: WGPUImageCopyTexture?, copySize: WGPUExtent3D?): Unit
 	 = Functions.wgpuCommandEncoderCopyTextureToTexture(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, source?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, destination?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, copySize?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
 
 actual fun wgpuCommandEncoderClearBuffer(handler: WGPUCommandEncoder?, buffer: WGPUBuffer?, offset: ULong, size: ULong): Unit
@@ -195,8 +199,8 @@ actual fun wgpuDeviceCreateComputePipeline(handler: WGPUDevice?, descriptor: WGP
 	 = Functions.wgpuDeviceCreateComputePipeline(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, descriptor?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
 		?.let(::NativeAddress)?.let(::WGPUComputePipeline)
 
-actual fun wgpuDeviceCreateComputePipelineAsync(handler: WGPUDevice?, descriptor: WGPUComputePipelineDescriptor?, callbackInfo: WGPUCreateComputePipelineAsyncCallbackInfo): Unit
-	 = Functions.wgpuDeviceCreateComputePipelineAsync(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, descriptor?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, callbackInfo?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
+actual fun wgpuDeviceCreateComputePipelineAsync(handler: WGPUDevice?, descriptor: WGPUComputePipelineDescriptor?): Unit
+	 = Functions.wgpuDeviceCreateComputePipelineAsync(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, descriptor?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
 
 actual fun wgpuDeviceCreatePipelineLayout(handler: WGPUDevice?, descriptor: WGPUPipelineLayoutDescriptor?): WGPUPipelineLayout?
 	 = Functions.wgpuDeviceCreatePipelineLayout(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, descriptor?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
@@ -206,8 +210,8 @@ actual fun wgpuDeviceCreateQuerySet(handler: WGPUDevice?, descriptor: WGPUQueryS
 	 = Functions.wgpuDeviceCreateQuerySet(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, descriptor?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
 		?.let(::NativeAddress)?.let(::WGPUQuerySet)
 
-actual fun wgpuDeviceCreateRenderPipelineAsync(handler: WGPUDevice?, descriptor: WGPURenderPipelineDescriptor?, callbackInfo: WGPUCreateRenderPipelineAsyncCallbackInfo): Unit
-	 = Functions.wgpuDeviceCreateRenderPipelineAsync(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, descriptor?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, callbackInfo?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
+actual fun wgpuDeviceCreateRenderPipelineAsync(handler: WGPUDevice?, descriptor: WGPURenderPipelineDescriptor?): Unit
+	 = Functions.wgpuDeviceCreateRenderPipelineAsync(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, descriptor?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
 
 actual fun wgpuDeviceCreateRenderBundleEncoder(handler: WGPUDevice?, descriptor: WGPURenderBundleEncoderDescriptor?): WGPURenderBundleEncoder?
 	 = Functions.wgpuDeviceCreateRenderBundleEncoder(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, descriptor?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
@@ -232,23 +236,16 @@ actual fun wgpuDeviceCreateTexture(handler: WGPUDevice?, descriptor: WGPUTexture
 actual fun wgpuDeviceDestroy(handler: WGPUDevice?): Unit
 	 = Functions.wgpuDeviceDestroy(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
 
-actual fun wgpuDeviceGetLostFuture(handler: WGPUDevice?): WGPUFuture
-	 = Functions.wgpuDeviceGetLostFuture(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
-		.let(::NativeAddress).let(WGPUFuture::invoke)
-
-actual fun wgpuDeviceGetLimits(handler: WGPUDevice?, limits: WGPULimits?): WGPUStatus
+actual fun wgpuDeviceGetLimits(handler: WGPUDevice?, limits: WGPUSupportedLimits?): Boolean
 	 = Functions.wgpuDeviceGetLimits(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, limits?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
+		.toBoolean()
 
 actual fun wgpuDeviceHasFeature(handler: WGPUDevice?, feature: WGPUFeatureName): Boolean
 	 = Functions.wgpuDeviceHasFeature(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, feature)
 		.toBoolean()
 
-actual fun wgpuDeviceGetFeatures(handler: WGPUDevice?, features: WGPUSupportedFeatures?): Unit
-	 = Functions.wgpuDeviceGetFeatures(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, features?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
-
-actual fun wgpuDeviceGetAdapterInfo(handler: WGPUDevice?): WGPUAdapterInfo
-	 = Functions.wgpuDeviceGetAdapterInfo(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
-		.let(::NativeAddress).let(WGPUAdapterInfo::invoke)
+actual fun wgpuDeviceEnumerateFeatures(handler: WGPUDevice?, features: NativeAddress?): ULong
+	 = Functions.wgpuDeviceEnumerateFeatures(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, features.adapt() ?: java.lang.foreign.MemorySegment.NULL)
 
 actual fun wgpuDeviceGetQueue(handler: WGPUDevice?): WGPUQueue?
 	 = Functions.wgpuDeviceGetQueue(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
@@ -257,8 +254,8 @@ actual fun wgpuDeviceGetQueue(handler: WGPUDevice?): WGPUQueue?
 actual fun wgpuDevicePushErrorScope(handler: WGPUDevice?, filter: WGPUErrorFilter): Unit
 	 = Functions.wgpuDevicePushErrorScope(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, filter)
 
-actual fun wgpuDevicePopErrorScope(handler: WGPUDevice?, callbackInfo: WGPUPopErrorScopeCallbackInfo): Unit
-	 = Functions.wgpuDevicePopErrorScope(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, callbackInfo?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
+actual fun wgpuDevicePopErrorScope(handler: WGPUDevice?, callback: CallbackHolder<WGPUErrorCallback>?, userdata: NativeAddress?): Unit
+	 = Functions.wgpuDevicePopErrorScope(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, callback?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, userdata.adapt() ?: java.lang.foreign.MemorySegment.NULL)
 
 actual fun wgpuDeviceSetLabel(handler: WGPUDevice?, label: WGPUStringView): Unit
 	 = Functions.wgpuDeviceSetLabel(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, label?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
@@ -270,21 +267,15 @@ actual fun wgpuInstanceCreateSurface(handler: WGPUInstance?, descriptor: WGPUSur
 	 = Functions.wgpuInstanceCreateSurface(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, descriptor?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
 		?.let(::NativeAddress)?.let(::WGPUSurface)
 
-actual fun wgpuInstanceGetWGSLLanguageFeatures(handler: WGPUInstance?, features: WGPUSupportedWGSLLanguageFeatures?): WGPUStatus
-	 = Functions.wgpuInstanceGetWGSLLanguageFeatures(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, features?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
-
-actual fun wgpuInstanceHasWGSLLanguageFeature(handler: WGPUInstance?, feature: WGPUWGSLLanguageFeatureName): Boolean
+actual fun wgpuInstanceHasWGSLLanguageFeature(handler: WGPUInstance?, feature: WGPUWGSLFeatureName): Boolean
 	 = Functions.wgpuInstanceHasWGSLLanguageFeature(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, feature)
 		.toBoolean()
 
 actual fun wgpuInstanceProcessEvents(handler: WGPUInstance?): Unit
 	 = Functions.wgpuInstanceProcessEvents(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
 
-actual fun wgpuInstanceRequestAdapter(handler: WGPUInstance?, options: WGPURequestAdapterOptions?, callbackInfo: WGPURequestAdapterCallbackInfo): Unit
-	 = Functions.wgpuInstanceRequestAdapter(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, options?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, callbackInfo?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
-
-actual fun wgpuInstanceWaitAny(handler: WGPUInstance?, futureCount: ULong, futures: WGPUFutureWaitInfo?, timeoutNS: ULong): WGPUWaitStatus
-	 = Functions.wgpuInstanceWaitAny(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, futureCount, futures?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, timeoutNS)
+actual fun wgpuInstanceRequestAdapter(handler: WGPUInstance?, options: WGPURequestAdapterOptions?): Unit
+	 = Functions.wgpuInstanceRequestAdapter(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, options?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
 
 actual fun wgpuPipelineLayoutRelease(handler: WGPUPipelineLayout?): Unit
 	 = Functions.wgpuPipelineLayoutRelease(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
@@ -313,13 +304,13 @@ actual fun wgpuQueueRelease(handler: WGPUQueue?): Unit
 actual fun wgpuQueueSubmit(handler: WGPUQueue?, commandCount: ULong, commands: ArrayHolder<WGPUCommandBuffer>?): Unit
 	 = Functions.wgpuQueueSubmit(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, commandCount, commands?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
 
-actual fun wgpuQueueOnSubmittedWorkDone(handler: WGPUQueue?, callbackInfo: WGPUQueueWorkDoneCallbackInfo): Unit
-	 = Functions.wgpuQueueOnSubmittedWorkDone(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, callbackInfo?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
+actual fun wgpuQueueOnSubmittedWorkDone(handler: WGPUQueue?): Unit
+	 = Functions.wgpuQueueOnSubmittedWorkDone(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
 
 actual fun wgpuQueueWriteBuffer(handler: WGPUQueue?, buffer: WGPUBuffer?, bufferOffset: ULong, data: NativeAddress?, size: ULong): Unit
 	 = Functions.wgpuQueueWriteBuffer(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, buffer?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, bufferOffset, data.adapt() ?: java.lang.foreign.MemorySegment.NULL, size)
 
-actual fun wgpuQueueWriteTexture(handler: WGPUQueue?, destination: WGPUTexelCopyTextureInfo?, data: NativeAddress?, dataSize: ULong, dataLayout: WGPUTexelCopyBufferLayout?, writeSize: WGPUExtent3D?): Unit
+actual fun wgpuQueueWriteTexture(handler: WGPUQueue?, destination: WGPUImageCopyTexture?, data: NativeAddress?, dataSize: ULong, dataLayout: WGPUTextureDataLayout?, writeSize: WGPUExtent3D?): Unit
 	 = Functions.wgpuQueueWriteTexture(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, destination?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, data.adapt() ?: java.lang.foreign.MemorySegment.NULL, dataSize, dataLayout?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, writeSize?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
 
 actual fun wgpuQueueSetLabel(handler: WGPUQueue?, label: WGPUStringView): Unit
@@ -456,8 +447,8 @@ actual fun wgpuSamplerSetLabel(handler: WGPUSampler?, label: WGPUStringView): Un
 actual fun wgpuShaderModuleRelease(handler: WGPUShaderModule?): Unit
 	 = Functions.wgpuShaderModuleRelease(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
 
-actual fun wgpuShaderModuleGetCompilationInfo(handler: WGPUShaderModule?, callbackInfo: WGPUCompilationInfoCallbackInfo): Unit
-	 = Functions.wgpuShaderModuleGetCompilationInfo(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, callbackInfo?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
+actual fun wgpuShaderModuleGetCompilationInfo(handler: WGPUShaderModule?): Unit
+	 = Functions.wgpuShaderModuleGetCompilationInfo(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
 
 actual fun wgpuShaderModuleSetLabel(handler: WGPUShaderModule?, label: WGPUStringView): Unit
 	 = Functions.wgpuShaderModuleSetLabel(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, label?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
@@ -468,13 +459,13 @@ actual fun wgpuSurfaceRelease(handler: WGPUSurface?): Unit
 actual fun wgpuSurfaceConfigure(handler: WGPUSurface?, config: WGPUSurfaceConfiguration?): Unit
 	 = Functions.wgpuSurfaceConfigure(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, config?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
 
-actual fun wgpuSurfaceGetCapabilities(handler: WGPUSurface?, adapter: WGPUAdapter?, capabilities: WGPUSurfaceCapabilities?): WGPUStatus
+actual fun wgpuSurfaceGetCapabilities(handler: WGPUSurface?, adapter: WGPUAdapter?, capabilities: WGPUSurfaceCapabilities?): Unit
 	 = Functions.wgpuSurfaceGetCapabilities(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, adapter?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, capabilities?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
 
 actual fun wgpuSurfaceGetCurrentTexture(handler: WGPUSurface?, surfaceTexture: WGPUSurfaceTexture?): Unit
 	 = Functions.wgpuSurfaceGetCurrentTexture(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, surfaceTexture?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
 
-actual fun wgpuSurfacePresent(handler: WGPUSurface?): WGPUStatus
+actual fun wgpuSurfacePresent(handler: WGPUSurface?): Unit
 	 = Functions.wgpuSurfacePresent(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
 
 actual fun wgpuSurfaceUnconfigure(handler: WGPUSurface?): Unit
@@ -525,10 +516,4 @@ actual fun wgpuTextureViewRelease(handler: WGPUTextureView?): Unit
 
 actual fun wgpuTextureViewSetLabel(handler: WGPUTextureView?, label: WGPUStringView): Unit
 	 = Functions.wgpuTextureViewSetLabel(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, label?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
-
-actual fun wgpuSetLogLevel(level: WGPULogLevel): Unit
-	 = Functions.wgpuSetLogLevel(level)
-
-actual fun wgpuSetLogCallback(callback: CallbackHolder<WGPULogCallback>?, userdata: NativeAddress?): Unit
-	 = Functions.wgpuSetLogCallback(callback?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, userdata.adapt() ?: java.lang.foreign.MemorySegment.NULL)
 

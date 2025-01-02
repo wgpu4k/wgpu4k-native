@@ -22,15 +22,24 @@ object Functions {
 	private val wgpuCreateInstanceHandlerAddress = findOrThrow("wgpuCreateInstance")
 	private val wgpuCreateInstanceHandler = Linker.nativeLinker().downcallHandle(wgpuCreateInstanceHandlerAddress, wgpuCreateInstanceHandlerDescription)
 
-	fun wgpuGetInstanceCapabilities(capabilities: java.lang.foreign.MemorySegment): UInt {
-		return (wgpuGetInstanceCapabilitiesHandler.invokeExact(capabilities) as Int).toUInt()
+	fun wgpuSetLogCallback(callback: java.lang.foreign.MemorySegment, userdata: java.lang.foreign.MemorySegment): Unit {
+		return (wgpuSetLogCallbackHandler.invokeExact(callback, userdata) as Unit)
 	}
-	private val wgpuGetInstanceCapabilitiesHandlerDescription = FunctionDescriptor.of(
-			C_INT,
+	private val wgpuSetLogCallbackHandlerDescription = FunctionDescriptor.ofVoid(
+			C_POINTER,
 			C_POINTER
 		)
-	private val wgpuGetInstanceCapabilitiesHandlerAddress = findOrThrow("wgpuGetInstanceCapabilities")
-	private val wgpuGetInstanceCapabilitiesHandler = Linker.nativeLinker().downcallHandle(wgpuGetInstanceCapabilitiesHandlerAddress, wgpuGetInstanceCapabilitiesHandlerDescription)
+	private val wgpuSetLogCallbackHandlerAddress = findOrThrow("wgpuSetLogCallback")
+	private val wgpuSetLogCallbackHandler = Linker.nativeLinker().downcallHandle(wgpuSetLogCallbackHandlerAddress, wgpuSetLogCallbackHandlerDescription)
+
+	fun wgpuSetLogLevel(level: UInt): Unit {
+		return (wgpuSetLogLevelHandler.invokeExact(level.toInt()) as Unit)
+	}
+	private val wgpuSetLogLevelHandlerDescription = FunctionDescriptor.ofVoid(
+			C_INT
+		)
+	private val wgpuSetLogLevelHandlerAddress = findOrThrow("wgpuSetLogLevel")
+	private val wgpuSetLogLevelHandler = Linker.nativeLinker().downcallHandle(wgpuSetLogLevelHandlerAddress, wgpuSetLogLevelHandlerDescription)
 
 	fun wgpuAdapterRelease(handler: java.lang.foreign.MemorySegment): Unit {
 		return (wgpuAdapterReleaseHandler.invokeExact(handler) as Unit)
@@ -63,32 +72,31 @@ object Functions {
 	private val wgpuAdapterHasFeatureHandlerAddress = findOrThrow("wgpuAdapterHasFeature")
 	private val wgpuAdapterHasFeatureHandler = Linker.nativeLinker().downcallHandle(wgpuAdapterHasFeatureHandlerAddress, wgpuAdapterHasFeatureHandlerDescription)
 
-	fun wgpuAdapterGetFeatures(handler: java.lang.foreign.MemorySegment, features: java.lang.foreign.MemorySegment): Unit {
-		return (wgpuAdapterGetFeaturesHandler.invokeExact(handler, features) as Unit)
+	fun wgpuAdapterEnumerateFeatures(handler: java.lang.foreign.MemorySegment, features: java.lang.foreign.MemorySegment): ULong {
+		return (wgpuAdapterEnumerateFeaturesHandler.invokeExact(handler, features) as Long).toULong()
 	}
-	private val wgpuAdapterGetFeaturesHandlerDescription = FunctionDescriptor.ofVoid(
+	private val wgpuAdapterEnumerateFeaturesHandlerDescription = FunctionDescriptor.of(
+			C_LONG,
 			C_POINTER,
 			C_POINTER
 		)
-	private val wgpuAdapterGetFeaturesHandlerAddress = findOrThrow("wgpuAdapterGetFeatures")
-	private val wgpuAdapterGetFeaturesHandler = Linker.nativeLinker().downcallHandle(wgpuAdapterGetFeaturesHandlerAddress, wgpuAdapterGetFeaturesHandlerDescription)
+	private val wgpuAdapterEnumerateFeaturesHandlerAddress = findOrThrow("wgpuAdapterEnumerateFeatures")
+	private val wgpuAdapterEnumerateFeaturesHandler = Linker.nativeLinker().downcallHandle(wgpuAdapterEnumerateFeaturesHandlerAddress, wgpuAdapterEnumerateFeaturesHandlerDescription)
 
-	fun wgpuAdapterGetInfo(handler: java.lang.foreign.MemorySegment, info: java.lang.foreign.MemorySegment): UInt {
-		return (wgpuAdapterGetInfoHandler.invokeExact(handler, info) as Int).toUInt()
+	fun wgpuAdapterGetInfo(handler: java.lang.foreign.MemorySegment, info: java.lang.foreign.MemorySegment): Unit {
+		return (wgpuAdapterGetInfoHandler.invokeExact(handler, info) as Unit)
 	}
-	private val wgpuAdapterGetInfoHandlerDescription = FunctionDescriptor.of(
-			C_INT,
+	private val wgpuAdapterGetInfoHandlerDescription = FunctionDescriptor.ofVoid(
 			C_POINTER,
 			C_POINTER
 		)
 	private val wgpuAdapterGetInfoHandlerAddress = findOrThrow("wgpuAdapterGetInfo")
 	private val wgpuAdapterGetInfoHandler = Linker.nativeLinker().downcallHandle(wgpuAdapterGetInfoHandlerAddress, wgpuAdapterGetInfoHandlerDescription)
 
-	fun wgpuAdapterRequestDevice(handler: java.lang.foreign.MemorySegment, descriptor: java.lang.foreign.MemorySegment, callbackInfo: java.lang.foreign.MemorySegment): Unit {
-		return (wgpuAdapterRequestDeviceHandler.invokeExact(handler, descriptor, callbackInfo) as Unit)
+	fun wgpuAdapterRequestDevice(handler: java.lang.foreign.MemorySegment, descriptor: java.lang.foreign.MemorySegment): Unit {
+		return (wgpuAdapterRequestDeviceHandler.invokeExact(handler, descriptor) as Unit)
 	}
 	private val wgpuAdapterRequestDeviceHandlerDescription = FunctionDescriptor.ofVoid(
-			C_POINTER,
 			C_POINTER,
 			C_POINTER
 		)
@@ -142,15 +150,14 @@ object Functions {
 	private val wgpuBufferReleaseHandlerAddress = findOrThrow("wgpuBufferRelease")
 	private val wgpuBufferReleaseHandler = Linker.nativeLinker().downcallHandle(wgpuBufferReleaseHandlerAddress, wgpuBufferReleaseHandlerDescription)
 
-	fun wgpuBufferMapAsync(handler: java.lang.foreign.MemorySegment, mode: ULong, offset: ULong, size: ULong, callbackInfo: java.lang.foreign.MemorySegment): Unit {
-		return (wgpuBufferMapAsyncHandler.invokeExact(handler, mode.toLong(), offset.toLong(), size.toLong(), callbackInfo) as Unit)
+	fun wgpuBufferMapAsync(handler: java.lang.foreign.MemorySegment, mode: ULong, offset: ULong, size: ULong): Unit {
+		return (wgpuBufferMapAsyncHandler.invokeExact(handler, mode.toLong(), offset.toLong(), size.toLong()) as Unit)
 	}
 	private val wgpuBufferMapAsyncHandlerDescription = FunctionDescriptor.ofVoid(
 			C_POINTER,
 			C_LONG,
 			C_LONG,
-			C_LONG,
-			C_POINTER
+			C_LONG
 		)
 	private val wgpuBufferMapAsyncHandlerAddress = findOrThrow("wgpuBufferMapAsync")
 	private val wgpuBufferMapAsyncHandler = Linker.nativeLinker().downcallHandle(wgpuBufferMapAsyncHandlerAddress, wgpuBufferMapAsyncHandlerDescription)
@@ -621,11 +628,10 @@ object Functions {
 	private val wgpuDeviceCreateComputePipelineHandlerAddress = findOrThrow("wgpuDeviceCreateComputePipeline")
 	private val wgpuDeviceCreateComputePipelineHandler = Linker.nativeLinker().downcallHandle(wgpuDeviceCreateComputePipelineHandlerAddress, wgpuDeviceCreateComputePipelineHandlerDescription)
 
-	fun wgpuDeviceCreateComputePipelineAsync(handler: java.lang.foreign.MemorySegment, descriptor: java.lang.foreign.MemorySegment, callbackInfo: java.lang.foreign.MemorySegment): Unit {
-		return (wgpuDeviceCreateComputePipelineAsyncHandler.invokeExact(handler, descriptor, callbackInfo) as Unit)
+	fun wgpuDeviceCreateComputePipelineAsync(handler: java.lang.foreign.MemorySegment, descriptor: java.lang.foreign.MemorySegment): Unit {
+		return (wgpuDeviceCreateComputePipelineAsyncHandler.invokeExact(handler, descriptor) as Unit)
 	}
 	private val wgpuDeviceCreateComputePipelineAsyncHandlerDescription = FunctionDescriptor.ofVoid(
-			C_POINTER,
 			C_POINTER,
 			C_POINTER
 		)
@@ -654,11 +660,10 @@ object Functions {
 	private val wgpuDeviceCreateQuerySetHandlerAddress = findOrThrow("wgpuDeviceCreateQuerySet")
 	private val wgpuDeviceCreateQuerySetHandler = Linker.nativeLinker().downcallHandle(wgpuDeviceCreateQuerySetHandlerAddress, wgpuDeviceCreateQuerySetHandlerDescription)
 
-	fun wgpuDeviceCreateRenderPipelineAsync(handler: java.lang.foreign.MemorySegment, descriptor: java.lang.foreign.MemorySegment, callbackInfo: java.lang.foreign.MemorySegment): Unit {
-		return (wgpuDeviceCreateRenderPipelineAsyncHandler.invokeExact(handler, descriptor, callbackInfo) as Unit)
+	fun wgpuDeviceCreateRenderPipelineAsync(handler: java.lang.foreign.MemorySegment, descriptor: java.lang.foreign.MemorySegment): Unit {
+		return (wgpuDeviceCreateRenderPipelineAsyncHandler.invokeExact(handler, descriptor) as Unit)
 	}
 	private val wgpuDeviceCreateRenderPipelineAsyncHandlerDescription = FunctionDescriptor.ofVoid(
-			C_POINTER,
 			C_POINTER,
 			C_POINTER
 		)
@@ -729,16 +734,6 @@ object Functions {
 	private val wgpuDeviceDestroyHandlerAddress = findOrThrow("wgpuDeviceDestroy")
 	private val wgpuDeviceDestroyHandler = Linker.nativeLinker().downcallHandle(wgpuDeviceDestroyHandlerAddress, wgpuDeviceDestroyHandlerDescription)
 
-	fun wgpuDeviceGetLostFuture(handler: java.lang.foreign.MemorySegment): java.lang.foreign.MemorySegment {
-		return (wgpuDeviceGetLostFutureHandler.invokeExact(handler) as java.lang.foreign.MemorySegment)
-	}
-	private val wgpuDeviceGetLostFutureHandlerDescription = FunctionDescriptor.of(
-			C_POINTER,
-			C_POINTER
-		)
-	private val wgpuDeviceGetLostFutureHandlerAddress = findOrThrow("wgpuDeviceGetLostFuture")
-	private val wgpuDeviceGetLostFutureHandler = Linker.nativeLinker().downcallHandle(wgpuDeviceGetLostFutureHandlerAddress, wgpuDeviceGetLostFutureHandlerDescription)
-
 	fun wgpuDeviceGetLimits(handler: java.lang.foreign.MemorySegment, limits: java.lang.foreign.MemorySegment): UInt {
 		return (wgpuDeviceGetLimitsHandler.invokeExact(handler, limits) as Int).toUInt()
 	}
@@ -761,25 +756,16 @@ object Functions {
 	private val wgpuDeviceHasFeatureHandlerAddress = findOrThrow("wgpuDeviceHasFeature")
 	private val wgpuDeviceHasFeatureHandler = Linker.nativeLinker().downcallHandle(wgpuDeviceHasFeatureHandlerAddress, wgpuDeviceHasFeatureHandlerDescription)
 
-	fun wgpuDeviceGetFeatures(handler: java.lang.foreign.MemorySegment, features: java.lang.foreign.MemorySegment): Unit {
-		return (wgpuDeviceGetFeaturesHandler.invokeExact(handler, features) as Unit)
+	fun wgpuDeviceEnumerateFeatures(handler: java.lang.foreign.MemorySegment, features: java.lang.foreign.MemorySegment): ULong {
+		return (wgpuDeviceEnumerateFeaturesHandler.invokeExact(handler, features) as Long).toULong()
 	}
-	private val wgpuDeviceGetFeaturesHandlerDescription = FunctionDescriptor.ofVoid(
+	private val wgpuDeviceEnumerateFeaturesHandlerDescription = FunctionDescriptor.of(
+			C_LONG,
 			C_POINTER,
 			C_POINTER
 		)
-	private val wgpuDeviceGetFeaturesHandlerAddress = findOrThrow("wgpuDeviceGetFeatures")
-	private val wgpuDeviceGetFeaturesHandler = Linker.nativeLinker().downcallHandle(wgpuDeviceGetFeaturesHandlerAddress, wgpuDeviceGetFeaturesHandlerDescription)
-
-	fun wgpuDeviceGetAdapterInfo(handler: java.lang.foreign.MemorySegment): java.lang.foreign.MemorySegment {
-		return (wgpuDeviceGetAdapterInfoHandler.invokeExact(handler) as java.lang.foreign.MemorySegment)
-	}
-	private val wgpuDeviceGetAdapterInfoHandlerDescription = FunctionDescriptor.of(
-			C_POINTER,
-			C_POINTER
-		)
-	private val wgpuDeviceGetAdapterInfoHandlerAddress = findOrThrow("wgpuDeviceGetAdapterInfo")
-	private val wgpuDeviceGetAdapterInfoHandler = Linker.nativeLinker().downcallHandle(wgpuDeviceGetAdapterInfoHandlerAddress, wgpuDeviceGetAdapterInfoHandlerDescription)
+	private val wgpuDeviceEnumerateFeaturesHandlerAddress = findOrThrow("wgpuDeviceEnumerateFeatures")
+	private val wgpuDeviceEnumerateFeaturesHandler = Linker.nativeLinker().downcallHandle(wgpuDeviceEnumerateFeaturesHandlerAddress, wgpuDeviceEnumerateFeaturesHandlerDescription)
 
 	fun wgpuDeviceGetQueue(handler: java.lang.foreign.MemorySegment): java.lang.foreign.MemorySegment {
 		return (wgpuDeviceGetQueueHandler.invokeExact(handler) as java.lang.foreign.MemorySegment)
@@ -801,10 +787,11 @@ object Functions {
 	private val wgpuDevicePushErrorScopeHandlerAddress = findOrThrow("wgpuDevicePushErrorScope")
 	private val wgpuDevicePushErrorScopeHandler = Linker.nativeLinker().downcallHandle(wgpuDevicePushErrorScopeHandlerAddress, wgpuDevicePushErrorScopeHandlerDescription)
 
-	fun wgpuDevicePopErrorScope(handler: java.lang.foreign.MemorySegment, callbackInfo: java.lang.foreign.MemorySegment): Unit {
-		return (wgpuDevicePopErrorScopeHandler.invokeExact(handler, callbackInfo) as Unit)
+	fun wgpuDevicePopErrorScope(handler: java.lang.foreign.MemorySegment, callback: java.lang.foreign.MemorySegment, userdata: java.lang.foreign.MemorySegment): Unit {
+		return (wgpuDevicePopErrorScopeHandler.invokeExact(handler, callback, userdata) as Unit)
 	}
 	private val wgpuDevicePopErrorScopeHandlerDescription = FunctionDescriptor.ofVoid(
+			C_POINTER,
 			C_POINTER,
 			C_POINTER
 		)
@@ -841,17 +828,6 @@ object Functions {
 	private val wgpuInstanceCreateSurfaceHandlerAddress = findOrThrow("wgpuInstanceCreateSurface")
 	private val wgpuInstanceCreateSurfaceHandler = Linker.nativeLinker().downcallHandle(wgpuInstanceCreateSurfaceHandlerAddress, wgpuInstanceCreateSurfaceHandlerDescription)
 
-	fun wgpuInstanceGetWGSLLanguageFeatures(handler: java.lang.foreign.MemorySegment, features: java.lang.foreign.MemorySegment): UInt {
-		return (wgpuInstanceGetWGSLLanguageFeaturesHandler.invokeExact(handler, features) as Int).toUInt()
-	}
-	private val wgpuInstanceGetWGSLLanguageFeaturesHandlerDescription = FunctionDescriptor.of(
-			C_INT,
-			C_POINTER,
-			C_POINTER
-		)
-	private val wgpuInstanceGetWGSLLanguageFeaturesHandlerAddress = findOrThrow("wgpuInstanceGetWGSLLanguageFeatures")
-	private val wgpuInstanceGetWGSLLanguageFeaturesHandler = Linker.nativeLinker().downcallHandle(wgpuInstanceGetWGSLLanguageFeaturesHandlerAddress, wgpuInstanceGetWGSLLanguageFeaturesHandlerDescription)
-
 	fun wgpuInstanceHasWGSLLanguageFeature(handler: java.lang.foreign.MemorySegment, feature: UInt): UInt {
 		return (wgpuInstanceHasWGSLLanguageFeatureHandler.invokeExact(handler, feature.toInt()) as Int).toUInt()
 	}
@@ -872,29 +848,15 @@ object Functions {
 	private val wgpuInstanceProcessEventsHandlerAddress = findOrThrow("wgpuInstanceProcessEvents")
 	private val wgpuInstanceProcessEventsHandler = Linker.nativeLinker().downcallHandle(wgpuInstanceProcessEventsHandlerAddress, wgpuInstanceProcessEventsHandlerDescription)
 
-	fun wgpuInstanceRequestAdapter(handler: java.lang.foreign.MemorySegment, options: java.lang.foreign.MemorySegment, callbackInfo: java.lang.foreign.MemorySegment): Unit {
-		return (wgpuInstanceRequestAdapterHandler.invokeExact(handler, options, callbackInfo) as Unit)
+	fun wgpuInstanceRequestAdapter(handler: java.lang.foreign.MemorySegment, options: java.lang.foreign.MemorySegment): Unit {
+		return (wgpuInstanceRequestAdapterHandler.invokeExact(handler, options) as Unit)
 	}
 	private val wgpuInstanceRequestAdapterHandlerDescription = FunctionDescriptor.ofVoid(
-			C_POINTER,
 			C_POINTER,
 			C_POINTER
 		)
 	private val wgpuInstanceRequestAdapterHandlerAddress = findOrThrow("wgpuInstanceRequestAdapter")
 	private val wgpuInstanceRequestAdapterHandler = Linker.nativeLinker().downcallHandle(wgpuInstanceRequestAdapterHandlerAddress, wgpuInstanceRequestAdapterHandlerDescription)
-
-	fun wgpuInstanceWaitAny(handler: java.lang.foreign.MemorySegment, futureCount: ULong, futures: java.lang.foreign.MemorySegment, timeoutNS: ULong): UInt {
-		return (wgpuInstanceWaitAnyHandler.invokeExact(handler, futureCount.toLong(), futures, timeoutNS.toLong()) as Int).toUInt()
-	}
-	private val wgpuInstanceWaitAnyHandlerDescription = FunctionDescriptor.of(
-			C_INT,
-			C_POINTER,
-			C_LONG,
-			C_POINTER,
-			C_LONG
-		)
-	private val wgpuInstanceWaitAnyHandlerAddress = findOrThrow("wgpuInstanceWaitAny")
-	private val wgpuInstanceWaitAnyHandler = Linker.nativeLinker().downcallHandle(wgpuInstanceWaitAnyHandlerAddress, wgpuInstanceWaitAnyHandlerDescription)
 
 	fun wgpuPipelineLayoutRelease(handler: java.lang.foreign.MemorySegment): Unit {
 		return (wgpuPipelineLayoutReleaseHandler.invokeExact(handler) as Unit)
@@ -983,11 +945,10 @@ object Functions {
 	private val wgpuQueueSubmitHandlerAddress = findOrThrow("wgpuQueueSubmit")
 	private val wgpuQueueSubmitHandler = Linker.nativeLinker().downcallHandle(wgpuQueueSubmitHandlerAddress, wgpuQueueSubmitHandlerDescription)
 
-	fun wgpuQueueOnSubmittedWorkDone(handler: java.lang.foreign.MemorySegment, callbackInfo: java.lang.foreign.MemorySegment): Unit {
-		return (wgpuQueueOnSubmittedWorkDoneHandler.invokeExact(handler, callbackInfo) as Unit)
+	fun wgpuQueueOnSubmittedWorkDone(handler: java.lang.foreign.MemorySegment): Unit {
+		return (wgpuQueueOnSubmittedWorkDoneHandler.invokeExact(handler) as Unit)
 	}
 	private val wgpuQueueOnSubmittedWorkDoneHandlerDescription = FunctionDescriptor.ofVoid(
-			C_POINTER,
 			C_POINTER
 		)
 	private val wgpuQueueOnSubmittedWorkDoneHandlerAddress = findOrThrow("wgpuQueueOnSubmittedWorkDone")
@@ -1497,11 +1458,10 @@ object Functions {
 	private val wgpuShaderModuleReleaseHandlerAddress = findOrThrow("wgpuShaderModuleRelease")
 	private val wgpuShaderModuleReleaseHandler = Linker.nativeLinker().downcallHandle(wgpuShaderModuleReleaseHandlerAddress, wgpuShaderModuleReleaseHandlerDescription)
 
-	fun wgpuShaderModuleGetCompilationInfo(handler: java.lang.foreign.MemorySegment, callbackInfo: java.lang.foreign.MemorySegment): Unit {
-		return (wgpuShaderModuleGetCompilationInfoHandler.invokeExact(handler, callbackInfo) as Unit)
+	fun wgpuShaderModuleGetCompilationInfo(handler: java.lang.foreign.MemorySegment): Unit {
+		return (wgpuShaderModuleGetCompilationInfoHandler.invokeExact(handler) as Unit)
 	}
 	private val wgpuShaderModuleGetCompilationInfoHandlerDescription = FunctionDescriptor.ofVoid(
-			C_POINTER,
 			C_POINTER
 		)
 	private val wgpuShaderModuleGetCompilationInfoHandlerAddress = findOrThrow("wgpuShaderModuleGetCompilationInfo")
@@ -1536,11 +1496,10 @@ object Functions {
 	private val wgpuSurfaceConfigureHandlerAddress = findOrThrow("wgpuSurfaceConfigure")
 	private val wgpuSurfaceConfigureHandler = Linker.nativeLinker().downcallHandle(wgpuSurfaceConfigureHandlerAddress, wgpuSurfaceConfigureHandlerDescription)
 
-	fun wgpuSurfaceGetCapabilities(handler: java.lang.foreign.MemorySegment, adapter: java.lang.foreign.MemorySegment, capabilities: java.lang.foreign.MemorySegment): UInt {
-		return (wgpuSurfaceGetCapabilitiesHandler.invokeExact(handler, adapter, capabilities) as Int).toUInt()
+	fun wgpuSurfaceGetCapabilities(handler: java.lang.foreign.MemorySegment, adapter: java.lang.foreign.MemorySegment, capabilities: java.lang.foreign.MemorySegment): Unit {
+		return (wgpuSurfaceGetCapabilitiesHandler.invokeExact(handler, adapter, capabilities) as Unit)
 	}
-	private val wgpuSurfaceGetCapabilitiesHandlerDescription = FunctionDescriptor.of(
-			C_INT,
+	private val wgpuSurfaceGetCapabilitiesHandlerDescription = FunctionDescriptor.ofVoid(
 			C_POINTER,
 			C_POINTER,
 			C_POINTER
@@ -1558,11 +1517,10 @@ object Functions {
 	private val wgpuSurfaceGetCurrentTextureHandlerAddress = findOrThrow("wgpuSurfaceGetCurrentTexture")
 	private val wgpuSurfaceGetCurrentTextureHandler = Linker.nativeLinker().downcallHandle(wgpuSurfaceGetCurrentTextureHandlerAddress, wgpuSurfaceGetCurrentTextureHandlerDescription)
 
-	fun wgpuSurfacePresent(handler: java.lang.foreign.MemorySegment): UInt {
-		return (wgpuSurfacePresentHandler.invokeExact(handler) as Int).toUInt()
+	fun wgpuSurfacePresent(handler: java.lang.foreign.MemorySegment): Unit {
+		return (wgpuSurfacePresentHandler.invokeExact(handler) as Unit)
 	}
-	private val wgpuSurfacePresentHandlerDescription = FunctionDescriptor.of(
-			C_INT,
+	private val wgpuSurfacePresentHandlerDescription = FunctionDescriptor.ofVoid(
 			C_POINTER
 		)
 	private val wgpuSurfacePresentHandlerAddress = findOrThrow("wgpuSurfacePresent")
@@ -1724,24 +1682,5 @@ object Functions {
 		)
 	private val wgpuTextureViewSetLabelHandlerAddress = findOrThrow("wgpuTextureViewSetLabel")
 	private val wgpuTextureViewSetLabelHandler = Linker.nativeLinker().downcallHandle(wgpuTextureViewSetLabelHandlerAddress, wgpuTextureViewSetLabelHandlerDescription)
-
-	fun wgpuSetLogLevel(level: UInt): Unit {
-		return (wgpuSetLogLevelHandler.invokeExact(level.toInt()) as Unit)
-	}
-	private val wgpuSetLogLevelHandlerDescription = FunctionDescriptor.ofVoid(
-			C_INT
-		)
-	private val wgpuSetLogLevelHandlerAddress = findOrThrow("wgpuSetLogLevel")
-	private val wgpuSetLogLevelHandler = Linker.nativeLinker().downcallHandle(wgpuSetLogLevelHandlerAddress, wgpuSetLogLevelHandlerDescription)
-
-	fun wgpuSetLogCallback(callback: java.lang.foreign.MemorySegment, userdata: java.lang.foreign.MemorySegment): Unit {
-		return (wgpuSetLogCallbackHandler.invokeExact(callback, userdata) as Unit)
-	}
-	private val wgpuSetLogCallbackHandlerDescription = FunctionDescriptor.ofVoid(
-			C_POINTER,
-			C_POINTER
-		)
-	private val wgpuSetLogCallbackHandlerAddress = findOrThrow("wgpuSetLogCallback")
-	private val wgpuSetLogCallbackHandler = Linker.nativeLinker().downcallHandle(wgpuSetLogCallbackHandlerAddress, wgpuSetLogCallbackHandlerDescription)
 
 }

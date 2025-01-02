@@ -12,27 +12,31 @@ actual fun wgpuCreateInstance(descriptor: WGPUInstanceDescriptor?): WGPUInstance
 	 = io.ygdrasil.wgpu.android.Functions.wgpuCreateInstance(descriptor?.toReference())
 	?.let(::WGPUInstance)
 
-actual fun wgpuGetInstanceCapabilities(capabilities: WGPUInstanceCapabilities?): WGPUStatus
-	 = io.ygdrasil.wgpu.android.Functions.wgpuGetInstanceCapabilities(capabilities?.toReference())
+actual fun wgpuSetLogCallback(callback: CallbackHolder<WGPULogCallback>?, userdata: NativeAddress?): Unit
+	 = io.ygdrasil.wgpu.android.Functions.wgpuSetLogCallback(callback?.callback, userdata)
+
+actual fun wgpuSetLogLevel(level: WGPULogLevel): Unit
+	 = io.ygdrasil.wgpu.android.Functions.wgpuSetLogLevel(level)
 
 actual fun wgpuAdapterRelease(handler: WGPUAdapter?): Unit
 	 = io.ygdrasil.wgpu.android.Functions.wgpuAdapterRelease(handler?.handler)
 
-actual fun wgpuAdapterGetLimits(handler: WGPUAdapter?, limits: WGPULimits?): WGPUStatus
+actual fun wgpuAdapterGetLimits(handler: WGPUAdapter?, limits: WGPUSupportedLimits?): Boolean
 	 = io.ygdrasil.wgpu.android.Functions.wgpuAdapterGetLimits(handler?.handler, limits?.toReference())
+	.toBoolean()
 
 actual fun wgpuAdapterHasFeature(handler: WGPUAdapter?, feature: WGPUFeatureName): Boolean
 	 = io.ygdrasil.wgpu.android.Functions.wgpuAdapterHasFeature(handler?.handler, feature)
 	.toBoolean()
 
-actual fun wgpuAdapterGetFeatures(handler: WGPUAdapter?, features: WGPUSupportedFeatures?): Unit
-	 = io.ygdrasil.wgpu.android.Functions.wgpuAdapterGetFeatures(handler?.handler, features?.toReference())
+actual fun wgpuAdapterEnumerateFeatures(handler: WGPUAdapter?, features: NativeAddress?): ULong
+	 = io.ygdrasil.wgpu.android.Functions.wgpuAdapterEnumerateFeatures(handler?.handler, features)
 
-actual fun wgpuAdapterGetInfo(handler: WGPUAdapter?, info: WGPUAdapterInfo?): WGPUStatus
+actual fun wgpuAdapterGetInfo(handler: WGPUAdapter?, info: WGPUAdapterInfo?): Unit
 	 = io.ygdrasil.wgpu.android.Functions.wgpuAdapterGetInfo(handler?.handler, info?.toReference())
 
-actual fun wgpuAdapterRequestDevice(handler: WGPUAdapter?, descriptor: WGPUDeviceDescriptor?, callbackInfo: WGPURequestDeviceCallbackInfo): Unit
-	 = io.ygdrasil.wgpu.android.Functions.wgpuAdapterRequestDevice(handler?.handler, descriptor?.toReference(), callbackInfo.toCValue())
+actual fun wgpuAdapterRequestDevice(handler: WGPUAdapter?, descriptor: WGPUDeviceDescriptor?): Unit
+	 = io.ygdrasil.wgpu.android.Functions.wgpuAdapterRequestDevice(handler?.handler, descriptor?.toReference())
 
 actual fun wgpuBindGroupRelease(handler: WGPUBindGroup?): Unit
 	 = io.ygdrasil.wgpu.android.Functions.wgpuBindGroupRelease(handler?.handler)
@@ -49,8 +53,8 @@ actual fun wgpuBindGroupLayoutSetLabel(handler: WGPUBindGroupLayout?, label: WGP
 actual fun wgpuBufferRelease(handler: WGPUBuffer?): Unit
 	 = io.ygdrasil.wgpu.android.Functions.wgpuBufferRelease(handler?.handler)
 
-actual fun wgpuBufferMapAsync(handler: WGPUBuffer?, mode: ULong, offset: ULong, size: ULong, callbackInfo: WGPUBufferMapCallbackInfo): Unit
-	 = io.ygdrasil.wgpu.android.Functions.wgpuBufferMapAsync(handler?.handler, mode, offset, size, callbackInfo.toCValue())
+actual fun wgpuBufferMapAsync(handler: WGPUBuffer?, mode: ULong, offset: ULong, size: ULong): Unit
+	 = io.ygdrasil.wgpu.android.Functions.wgpuBufferMapAsync(handler?.handler, mode, offset, size)
 
 actual fun wgpuBufferGetMappedRange(handler: WGPUBuffer?, offset: ULong, size: ULong): NativeAddress?
 	 = io.ygdrasil.wgpu.android.Functions.wgpuBufferGetMappedRange(handler?.handler, offset, size)
@@ -100,13 +104,13 @@ actual fun wgpuCommandEncoderBeginRenderPass(handler: WGPUCommandEncoder?, descr
 actual fun wgpuCommandEncoderCopyBufferToBuffer(handler: WGPUCommandEncoder?, source: WGPUBuffer?, sourceOffset: ULong, destination: WGPUBuffer?, destinationOffset: ULong, size: ULong): Unit
 	 = io.ygdrasil.wgpu.android.Functions.wgpuCommandEncoderCopyBufferToBuffer(handler?.handler, source?.handler, sourceOffset, destination?.handler, destinationOffset, size)
 
-actual fun wgpuCommandEncoderCopyBufferToTexture(handler: WGPUCommandEncoder?, source: WGPUTexelCopyBufferInfo?, destination: WGPUTexelCopyTextureInfo?, copySize: WGPUExtent3D?): Unit
+actual fun wgpuCommandEncoderCopyBufferToTexture(handler: WGPUCommandEncoder?, source: WGPUImageCopyBuffer?, destination: WGPUImageCopyTexture?, copySize: WGPUExtent3D?): Unit
 	 = io.ygdrasil.wgpu.android.Functions.wgpuCommandEncoderCopyBufferToTexture(handler?.handler, source?.toReference(), destination?.toReference(), copySize?.toReference())
 
-actual fun wgpuCommandEncoderCopyTextureToBuffer(handler: WGPUCommandEncoder?, source: WGPUTexelCopyTextureInfo?, destination: WGPUTexelCopyBufferInfo?, copySize: WGPUExtent3D?): Unit
+actual fun wgpuCommandEncoderCopyTextureToBuffer(handler: WGPUCommandEncoder?, source: WGPUImageCopyTexture?, destination: WGPUImageCopyBuffer?, copySize: WGPUExtent3D?): Unit
 	 = io.ygdrasil.wgpu.android.Functions.wgpuCommandEncoderCopyTextureToBuffer(handler?.handler, source?.toReference(), destination?.toReference(), copySize?.toReference())
 
-actual fun wgpuCommandEncoderCopyTextureToTexture(handler: WGPUCommandEncoder?, source: WGPUTexelCopyTextureInfo?, destination: WGPUTexelCopyTextureInfo?, copySize: WGPUExtent3D?): Unit
+actual fun wgpuCommandEncoderCopyTextureToTexture(handler: WGPUCommandEncoder?, source: WGPUImageCopyTexture?, destination: WGPUImageCopyTexture?, copySize: WGPUExtent3D?): Unit
 	 = io.ygdrasil.wgpu.android.Functions.wgpuCommandEncoderCopyTextureToTexture(handler?.handler, source?.toReference(), destination?.toReference(), copySize?.toReference())
 
 actual fun wgpuCommandEncoderClearBuffer(handler: WGPUCommandEncoder?, buffer: WGPUBuffer?, offset: ULong, size: ULong): Unit
@@ -193,8 +197,8 @@ actual fun wgpuDeviceCreateComputePipeline(handler: WGPUDevice?, descriptor: WGP
 	 = io.ygdrasil.wgpu.android.Functions.wgpuDeviceCreateComputePipeline(handler?.handler, descriptor?.toReference())
 	?.let(::WGPUComputePipeline)
 
-actual fun wgpuDeviceCreateComputePipelineAsync(handler: WGPUDevice?, descriptor: WGPUComputePipelineDescriptor?, callbackInfo: WGPUCreateComputePipelineAsyncCallbackInfo): Unit
-	 = io.ygdrasil.wgpu.android.Functions.wgpuDeviceCreateComputePipelineAsync(handler?.handler, descriptor?.toReference(), callbackInfo.toCValue())
+actual fun wgpuDeviceCreateComputePipelineAsync(handler: WGPUDevice?, descriptor: WGPUComputePipelineDescriptor?): Unit
+	 = io.ygdrasil.wgpu.android.Functions.wgpuDeviceCreateComputePipelineAsync(handler?.handler, descriptor?.toReference())
 
 actual fun wgpuDeviceCreatePipelineLayout(handler: WGPUDevice?, descriptor: WGPUPipelineLayoutDescriptor?): WGPUPipelineLayout?
 	 = io.ygdrasil.wgpu.android.Functions.wgpuDeviceCreatePipelineLayout(handler?.handler, descriptor?.toReference())
@@ -204,8 +208,8 @@ actual fun wgpuDeviceCreateQuerySet(handler: WGPUDevice?, descriptor: WGPUQueryS
 	 = io.ygdrasil.wgpu.android.Functions.wgpuDeviceCreateQuerySet(handler?.handler, descriptor?.toReference())
 	?.let(::WGPUQuerySet)
 
-actual fun wgpuDeviceCreateRenderPipelineAsync(handler: WGPUDevice?, descriptor: WGPURenderPipelineDescriptor?, callbackInfo: WGPUCreateRenderPipelineAsyncCallbackInfo): Unit
-	 = io.ygdrasil.wgpu.android.Functions.wgpuDeviceCreateRenderPipelineAsync(handler?.handler, descriptor?.toReference(), callbackInfo.toCValue())
+actual fun wgpuDeviceCreateRenderPipelineAsync(handler: WGPUDevice?, descriptor: WGPURenderPipelineDescriptor?): Unit
+	 = io.ygdrasil.wgpu.android.Functions.wgpuDeviceCreateRenderPipelineAsync(handler?.handler, descriptor?.toReference())
 
 actual fun wgpuDeviceCreateRenderBundleEncoder(handler: WGPUDevice?, descriptor: WGPURenderBundleEncoderDescriptor?): WGPURenderBundleEncoder?
 	 = io.ygdrasil.wgpu.android.Functions.wgpuDeviceCreateRenderBundleEncoder(handler?.handler, descriptor?.toReference())
@@ -230,23 +234,16 @@ actual fun wgpuDeviceCreateTexture(handler: WGPUDevice?, descriptor: WGPUTexture
 actual fun wgpuDeviceDestroy(handler: WGPUDevice?): Unit
 	 = io.ygdrasil.wgpu.android.Functions.wgpuDeviceDestroy(handler?.handler)
 
-actual fun wgpuDeviceGetLostFuture(handler: WGPUDevice?): WGPUFuture
-	 = io.ygdrasil.wgpu.android.Functions.wgpuDeviceGetLostFuture(handler?.handler)
-	.let(WGPUFuture::ByValue)
-
-actual fun wgpuDeviceGetLimits(handler: WGPUDevice?, limits: WGPULimits?): WGPUStatus
+actual fun wgpuDeviceGetLimits(handler: WGPUDevice?, limits: WGPUSupportedLimits?): Boolean
 	 = io.ygdrasil.wgpu.android.Functions.wgpuDeviceGetLimits(handler?.handler, limits?.toReference())
+	.toBoolean()
 
 actual fun wgpuDeviceHasFeature(handler: WGPUDevice?, feature: WGPUFeatureName): Boolean
 	 = io.ygdrasil.wgpu.android.Functions.wgpuDeviceHasFeature(handler?.handler, feature)
 	.toBoolean()
 
-actual fun wgpuDeviceGetFeatures(handler: WGPUDevice?, features: WGPUSupportedFeatures?): Unit
-	 = io.ygdrasil.wgpu.android.Functions.wgpuDeviceGetFeatures(handler?.handler, features?.toReference())
-
-actual fun wgpuDeviceGetAdapterInfo(handler: WGPUDevice?): WGPUAdapterInfo
-	 = io.ygdrasil.wgpu.android.Functions.wgpuDeviceGetAdapterInfo(handler?.handler)
-	.let(WGPUAdapterInfo::ByValue)
+actual fun wgpuDeviceEnumerateFeatures(handler: WGPUDevice?, features: NativeAddress?): ULong
+	 = io.ygdrasil.wgpu.android.Functions.wgpuDeviceEnumerateFeatures(handler?.handler, features)
 
 actual fun wgpuDeviceGetQueue(handler: WGPUDevice?): WGPUQueue?
 	 = io.ygdrasil.wgpu.android.Functions.wgpuDeviceGetQueue(handler?.handler)
@@ -255,8 +252,8 @@ actual fun wgpuDeviceGetQueue(handler: WGPUDevice?): WGPUQueue?
 actual fun wgpuDevicePushErrorScope(handler: WGPUDevice?, filter: WGPUErrorFilter): Unit
 	 = io.ygdrasil.wgpu.android.Functions.wgpuDevicePushErrorScope(handler?.handler, filter)
 
-actual fun wgpuDevicePopErrorScope(handler: WGPUDevice?, callbackInfo: WGPUPopErrorScopeCallbackInfo): Unit
-	 = io.ygdrasil.wgpu.android.Functions.wgpuDevicePopErrorScope(handler?.handler, callbackInfo.toCValue())
+actual fun wgpuDevicePopErrorScope(handler: WGPUDevice?, callback: CallbackHolder<WGPUErrorCallback>?, userdata: NativeAddress?): Unit
+	 = io.ygdrasil.wgpu.android.Functions.wgpuDevicePopErrorScope(handler?.handler, callback?.callback, userdata)
 
 actual fun wgpuDeviceSetLabel(handler: WGPUDevice?, label: WGPUStringView): Unit
 	 = io.ygdrasil.wgpu.android.Functions.wgpuDeviceSetLabel(handler?.handler, label.toCValue())
@@ -268,21 +265,15 @@ actual fun wgpuInstanceCreateSurface(handler: WGPUInstance?, descriptor: WGPUSur
 	 = io.ygdrasil.wgpu.android.Functions.wgpuInstanceCreateSurface(handler?.handler, descriptor?.toReference())
 	?.let(::WGPUSurface)
 
-actual fun wgpuInstanceGetWGSLLanguageFeatures(handler: WGPUInstance?, features: WGPUSupportedWGSLLanguageFeatures?): WGPUStatus
-	 = io.ygdrasil.wgpu.android.Functions.wgpuInstanceGetWGSLLanguageFeatures(handler?.handler, features?.toReference())
-
-actual fun wgpuInstanceHasWGSLLanguageFeature(handler: WGPUInstance?, feature: WGPUWGSLLanguageFeatureName): Boolean
+actual fun wgpuInstanceHasWGSLLanguageFeature(handler: WGPUInstance?, feature: WGPUWGSLFeatureName): Boolean
 	 = io.ygdrasil.wgpu.android.Functions.wgpuInstanceHasWGSLLanguageFeature(handler?.handler, feature)
 	.toBoolean()
 
 actual fun wgpuInstanceProcessEvents(handler: WGPUInstance?): Unit
 	 = io.ygdrasil.wgpu.android.Functions.wgpuInstanceProcessEvents(handler?.handler)
 
-actual fun wgpuInstanceRequestAdapter(handler: WGPUInstance?, options: WGPURequestAdapterOptions?, callbackInfo: WGPURequestAdapterCallbackInfo): Unit
-	 = io.ygdrasil.wgpu.android.Functions.wgpuInstanceRequestAdapter(handler?.handler, options?.toReference(), callbackInfo.toCValue())
-
-actual fun wgpuInstanceWaitAny(handler: WGPUInstance?, futureCount: ULong, futures: WGPUFutureWaitInfo?, timeoutNS: ULong): WGPUWaitStatus
-	 = io.ygdrasil.wgpu.android.Functions.wgpuInstanceWaitAny(handler?.handler, futureCount, futures?.toReference(), timeoutNS)
+actual fun wgpuInstanceRequestAdapter(handler: WGPUInstance?, options: WGPURequestAdapterOptions?): Unit
+	 = io.ygdrasil.wgpu.android.Functions.wgpuInstanceRequestAdapter(handler?.handler, options?.toReference())
 
 actual fun wgpuPipelineLayoutRelease(handler: WGPUPipelineLayout?): Unit
 	 = io.ygdrasil.wgpu.android.Functions.wgpuPipelineLayoutRelease(handler?.handler)
@@ -311,13 +302,13 @@ actual fun wgpuQueueRelease(handler: WGPUQueue?): Unit
 actual fun wgpuQueueSubmit(handler: WGPUQueue?, commandCount: ULong, commands: ArrayHolder<WGPUCommandBuffer>?): Unit
 	 = io.ygdrasil.wgpu.android.Functions.wgpuQueueSubmit(handler?.handler, commandCount, commands?.handler)
 
-actual fun wgpuQueueOnSubmittedWorkDone(handler: WGPUQueue?, callbackInfo: WGPUQueueWorkDoneCallbackInfo): Unit
-	 = io.ygdrasil.wgpu.android.Functions.wgpuQueueOnSubmittedWorkDone(handler?.handler, callbackInfo.toCValue())
+actual fun wgpuQueueOnSubmittedWorkDone(handler: WGPUQueue?): Unit
+	 = io.ygdrasil.wgpu.android.Functions.wgpuQueueOnSubmittedWorkDone(handler?.handler)
 
 actual fun wgpuQueueWriteBuffer(handler: WGPUQueue?, buffer: WGPUBuffer?, bufferOffset: ULong, data: NativeAddress?, size: ULong): Unit
 	 = io.ygdrasil.wgpu.android.Functions.wgpuQueueWriteBuffer(handler?.handler, buffer?.handler, bufferOffset, data, size)
 
-actual fun wgpuQueueWriteTexture(handler: WGPUQueue?, destination: WGPUTexelCopyTextureInfo?, data: NativeAddress?, dataSize: ULong, dataLayout: WGPUTexelCopyBufferLayout?, writeSize: WGPUExtent3D?): Unit
+actual fun wgpuQueueWriteTexture(handler: WGPUQueue?, destination: WGPUImageCopyTexture?, data: NativeAddress?, dataSize: ULong, dataLayout: WGPUTextureDataLayout?, writeSize: WGPUExtent3D?): Unit
 	 = io.ygdrasil.wgpu.android.Functions.wgpuQueueWriteTexture(handler?.handler, destination?.toReference(), data, dataSize, dataLayout?.toReference(), writeSize?.toReference())
 
 actual fun wgpuQueueSetLabel(handler: WGPUQueue?, label: WGPUStringView): Unit
@@ -454,8 +445,8 @@ actual fun wgpuSamplerSetLabel(handler: WGPUSampler?, label: WGPUStringView): Un
 actual fun wgpuShaderModuleRelease(handler: WGPUShaderModule?): Unit
 	 = io.ygdrasil.wgpu.android.Functions.wgpuShaderModuleRelease(handler?.handler)
 
-actual fun wgpuShaderModuleGetCompilationInfo(handler: WGPUShaderModule?, callbackInfo: WGPUCompilationInfoCallbackInfo): Unit
-	 = io.ygdrasil.wgpu.android.Functions.wgpuShaderModuleGetCompilationInfo(handler?.handler, callbackInfo.toCValue())
+actual fun wgpuShaderModuleGetCompilationInfo(handler: WGPUShaderModule?): Unit
+	 = io.ygdrasil.wgpu.android.Functions.wgpuShaderModuleGetCompilationInfo(handler?.handler)
 
 actual fun wgpuShaderModuleSetLabel(handler: WGPUShaderModule?, label: WGPUStringView): Unit
 	 = io.ygdrasil.wgpu.android.Functions.wgpuShaderModuleSetLabel(handler?.handler, label.toCValue())
@@ -466,13 +457,13 @@ actual fun wgpuSurfaceRelease(handler: WGPUSurface?): Unit
 actual fun wgpuSurfaceConfigure(handler: WGPUSurface?, config: WGPUSurfaceConfiguration?): Unit
 	 = io.ygdrasil.wgpu.android.Functions.wgpuSurfaceConfigure(handler?.handler, config?.toReference())
 
-actual fun wgpuSurfaceGetCapabilities(handler: WGPUSurface?, adapter: WGPUAdapter?, capabilities: WGPUSurfaceCapabilities?): WGPUStatus
+actual fun wgpuSurfaceGetCapabilities(handler: WGPUSurface?, adapter: WGPUAdapter?, capabilities: WGPUSurfaceCapabilities?): Unit
 	 = io.ygdrasil.wgpu.android.Functions.wgpuSurfaceGetCapabilities(handler?.handler, adapter?.handler, capabilities?.toReference())
 
 actual fun wgpuSurfaceGetCurrentTexture(handler: WGPUSurface?, surfaceTexture: WGPUSurfaceTexture?): Unit
 	 = io.ygdrasil.wgpu.android.Functions.wgpuSurfaceGetCurrentTexture(handler?.handler, surfaceTexture?.toReference())
 
-actual fun wgpuSurfacePresent(handler: WGPUSurface?): WGPUStatus
+actual fun wgpuSurfacePresent(handler: WGPUSurface?): Unit
 	 = io.ygdrasil.wgpu.android.Functions.wgpuSurfacePresent(handler?.handler)
 
 actual fun wgpuSurfaceUnconfigure(handler: WGPUSurface?): Unit
@@ -523,10 +514,4 @@ actual fun wgpuTextureViewRelease(handler: WGPUTextureView?): Unit
 
 actual fun wgpuTextureViewSetLabel(handler: WGPUTextureView?, label: WGPUStringView): Unit
 	 = io.ygdrasil.wgpu.android.Functions.wgpuTextureViewSetLabel(handler?.handler, label.toCValue())
-
-actual fun wgpuSetLogLevel(level: WGPULogLevel): Unit
-	 = io.ygdrasil.wgpu.android.Functions.wgpuSetLogLevel(level)
-
-actual fun wgpuSetLogCallback(callback: CallbackHolder<WGPULogCallback>?, userdata: NativeAddress?): Unit
-	 = io.ygdrasil.wgpu.android.Functions.wgpuSetLogCallback(callback?.callback, userdata)
 
