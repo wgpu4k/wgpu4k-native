@@ -9,19 +9,16 @@ import ffi.memoryScope
 val allocator = MemoryAllocator()
 
 fun configureLogs(logLevel: WGPULogLevel = WGPULogLevel_Trace) {
-    val callback = WGPULogCallback.allocate(allocator, object : WGPULogCallback {
-        override fun invoke(level: WGPULogLevel, message: CString?, userdata: NativeAddress?) {
-            val kMessage = message?.toKString()
-            when (level) {
-                WGPULogLevel_Error -> println("ERROR : $kMessage}")
-                WGPULogLevel_Warn -> println("WARN : $kMessage")
-                WGPULogLevel_Info -> println("INFO : $kMessage")
-                WGPULogLevel_Debug -> println("DEBUG : $kMessage")
-                WGPULogLevel_Trace -> println("TRACE : $kMessage")
-            }
+    val callback = WGPULogCallback.allocate(allocator) { level: WGPULogLevel, message: CString?, userdata: NativeAddress? ->
+        val kMessage = message?.toKString()
+        when (level) {
+            WGPULogLevel_Error -> println("ERROR : $kMessage}")
+            WGPULogLevel_Warn -> println("WARN : $kMessage")
+            WGPULogLevel_Info -> println("INFO : $kMessage")
+            WGPULogLevel_Debug -> println("DEBUG : $kMessage")
+            WGPULogLevel_Trace -> println("TRACE : $kMessage")
         }
-
-    })
+    }
     wgpuSetLogLevel(logLevel)
     wgpuSetLogCallback(callback, allocator.bufferOfAddress(callback.handler).handler)
 }

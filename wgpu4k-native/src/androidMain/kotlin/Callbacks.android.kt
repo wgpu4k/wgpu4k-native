@@ -7,7 +7,7 @@ import ffi.CallbackHolder
 import ffi.MemoryAllocator
 import ffi.NativeAddress
 
-actual interface WGPUDeviceLostCallback : Callback {
+actual fun interface WGPUDeviceLostCallback : Callback {
 	actual fun invoke(reason: WGPUDeviceLostReason, message: CString?, userdata: NativeAddress?)
 	interface Function : com.sun.jna.Callback {
 		fun apply(reason: Int, message: com.sun.jna.Pointer?, userdata: com.sun.jna.Pointer?)
@@ -24,7 +24,7 @@ actual interface WGPUDeviceLostCallback : Callback {
 	}
 }
 
-actual interface WGPUErrorCallback : Callback {
+actual fun interface WGPUErrorCallback : Callback {
 	actual fun invoke(type: WGPUErrorType, message: CString?, userdata: NativeAddress?)
 	interface Function : com.sun.jna.Callback {
 		fun apply(type: Int, message: com.sun.jna.Pointer?, userdata: com.sun.jna.Pointer?)
@@ -41,7 +41,7 @@ actual interface WGPUErrorCallback : Callback {
 	}
 }
 
-actual interface WGPULogCallback : Callback {
+actual fun interface WGPULogCallback : Callback {
 	actual fun invoke(level: WGPULogLevel, message: CString?, userdata: NativeAddress?)
 	interface Function : com.sun.jna.Callback {
 		fun apply(level: Int, message: com.sun.jna.Pointer?, userdata: com.sun.jna.Pointer?)
@@ -58,7 +58,7 @@ actual interface WGPULogCallback : Callback {
 	}
 }
 
-actual interface WGPURequestDeviceCallback : Callback {
+actual fun interface WGPURequestDeviceCallback : Callback {
 	actual fun invoke(status: WGPURequestDeviceStatus, device: WGPUDevice?, message: CString?, userdata: NativeAddress?)
 	interface Function : com.sun.jna.Callback {
 		fun apply(status: Int, device: com.sun.jna.Pointer?, message: com.sun.jna.Pointer?, userdata: com.sun.jna.Pointer?)
@@ -75,7 +75,7 @@ actual interface WGPURequestDeviceCallback : Callback {
 	}
 }
 
-actual interface WGPUMapAsyncCallback : Callback {
+actual fun interface WGPUMapAsyncCallback : Callback {
 	actual fun invoke(status: WGPUBufferMapAsyncStatus, userdata: NativeAddress?)
 	interface Function : com.sun.jna.Callback {
 		fun apply(status: Int, userdata: com.sun.jna.Pointer?)
@@ -92,7 +92,7 @@ actual interface WGPUMapAsyncCallback : Callback {
 	}
 }
 
-actual interface WGPUCreateComputePipelineAsyncCallback : Callback {
+actual fun interface WGPUCreateComputePipelineAsyncCallback : Callback {
 	actual fun invoke(status: WGPUCreatePipelineAsyncStatus, pipeline: WGPUComputePipeline?, message: CString?, userdata: NativeAddress?)
 	interface Function : com.sun.jna.Callback {
 		fun apply(status: Int, pipeline: com.sun.jna.Pointer?, message: com.sun.jna.Pointer?, userdata: com.sun.jna.Pointer?)
@@ -109,7 +109,7 @@ actual interface WGPUCreateComputePipelineAsyncCallback : Callback {
 	}
 }
 
-actual interface WGPUCreateRenderPipelineAsyncCallback : Callback {
+actual fun interface WGPUCreateRenderPipelineAsyncCallback : Callback {
 	actual fun invoke(status: WGPUCreatePipelineAsyncStatus, pipeline: WGPURenderPipeline?, message: CString?, userdata: NativeAddress?)
 	interface Function : com.sun.jna.Callback {
 		fun apply(status: Int, pipeline: com.sun.jna.Pointer?, message: com.sun.jna.Pointer?, userdata: com.sun.jna.Pointer?)
@@ -126,7 +126,7 @@ actual interface WGPUCreateRenderPipelineAsyncCallback : Callback {
 	}
 }
 
-actual interface WGPURequestAdapterCallback : Callback {
+actual fun interface WGPURequestAdapterCallback : Callback {
 	actual fun invoke(status: WGPURequestAdapterStatus, adapter: WGPUAdapter?, message: CString?, userdata: NativeAddress?)
 	interface Function : com.sun.jna.Callback {
 		fun apply(status: Int, adapter: com.sun.jna.Pointer?, message: com.sun.jna.Pointer?, userdata: com.sun.jna.Pointer?)
@@ -143,7 +143,7 @@ actual interface WGPURequestAdapterCallback : Callback {
 	}
 }
 
-actual interface WGPUOnSubmittedWorkDoneCallback : Callback {
+actual fun interface WGPUOnSubmittedWorkDoneCallback : Callback {
 	actual fun invoke(status: WGPUQueueWorkDoneStatus, userdata: NativeAddress?)
 	interface Function : com.sun.jna.Callback {
 		fun apply(status: Int, userdata: com.sun.jna.Pointer?)
@@ -160,7 +160,7 @@ actual interface WGPUOnSubmittedWorkDoneCallback : Callback {
 	}
 }
 
-actual interface WGPUGetCompilationInfoCallback : Callback {
+actual fun interface WGPUGetCompilationInfoCallback : Callback {
 	actual fun invoke(status: WGPUCompilationInfoRequestStatus, compilationInfo: WGPUCompilationInfo?, userdata: NativeAddress?)
 	interface Function : com.sun.jna.Callback {
 		fun apply(status: Int, compilationInfo: com.sun.jna.Pointer?, userdata: com.sun.jna.Pointer?)

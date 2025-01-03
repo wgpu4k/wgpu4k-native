@@ -9,7 +9,7 @@ fun NativeModel.Callback.toJnaCallback() = templateBuilder {
         .map { (name, type) -> "$name: ${type.toCallbackJvmType()}" }
         .joinToString(", ")
 
-    appendBlock("actual interface ${name} : Callback") {
+    appendBlock("actual fun interface ${name} : Callback") {
         val args = members
             .map { (name, type) -> "$name: ${type.toCallbackKotlinType()}" }
             .joinToString(", ")

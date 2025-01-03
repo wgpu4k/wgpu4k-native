@@ -7,7 +7,7 @@ import domain.toFunctionKotlinType
 
 fun NativeModel.Callback.toNativeCallback() = templateBuilder {
     val callbackName = name
-    appendBlock("actual interface $callbackName : Callback") {
+    appendBlock("actual fun interface $callbackName : Callback") {
         val args = members
             .map { (name, type) -> "$name: ${type.toCallbackKotlinType()}" }
             .joinToString(", ")

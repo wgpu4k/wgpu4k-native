@@ -20,7 +20,7 @@ import kotlinx.cinterop.pointed
 import kotlinx.cinterop.reinterpret
 import kotlinx.cinterop.value
 
-actual interface WGPUDeviceLostCallback : Callback {
+actual fun interface WGPUDeviceLostCallback : Callback {
 	actual fun invoke(reason: WGPUDeviceLostReason, message: CString?, userdata: NativeAddress?)
 	actual companion object {
 		actual fun allocate(allocator: MemoryAllocator, callback: WGPUDeviceLostCallback): CallbackHolder<WGPUDeviceLostCallback> {
@@ -36,7 +36,7 @@ actual interface WGPUDeviceLostCallback : Callback {
 	}
 }
 
-actual interface WGPUErrorCallback : Callback {
+actual fun interface WGPUErrorCallback : Callback {
 	actual fun invoke(type: WGPUErrorType, message: CString?, userdata: NativeAddress?)
 	actual companion object {
 		actual fun allocate(allocator: MemoryAllocator, callback: WGPUErrorCallback): CallbackHolder<WGPUErrorCallback> {
@@ -52,7 +52,7 @@ actual interface WGPUErrorCallback : Callback {
 	}
 }
 
-actual interface WGPULogCallback : Callback {
+actual fun interface WGPULogCallback : Callback {
 	actual fun invoke(level: WGPULogLevel, message: CString?, userdata: NativeAddress?)
 	actual companion object {
 		actual fun allocate(allocator: MemoryAllocator, callback: WGPULogCallback): CallbackHolder<WGPULogCallback> {
@@ -68,7 +68,7 @@ actual interface WGPULogCallback : Callback {
 	}
 }
 
-actual interface WGPURequestDeviceCallback : Callback {
+actual fun interface WGPURequestDeviceCallback : Callback {
 	actual fun invoke(status: WGPURequestDeviceStatus, device: WGPUDevice?, message: CString?, userdata: NativeAddress?)
 	actual companion object {
 		actual fun allocate(allocator: MemoryAllocator, callback: WGPURequestDeviceCallback): CallbackHolder<WGPURequestDeviceCallback> {
@@ -84,7 +84,7 @@ actual interface WGPURequestDeviceCallback : Callback {
 	}
 }
 
-actual interface WGPUMapAsyncCallback : Callback {
+actual fun interface WGPUMapAsyncCallback : Callback {
 	actual fun invoke(status: WGPUBufferMapAsyncStatus, userdata: NativeAddress?)
 	actual companion object {
 		actual fun allocate(allocator: MemoryAllocator, callback: WGPUMapAsyncCallback): CallbackHolder<WGPUMapAsyncCallback> {
@@ -100,7 +100,7 @@ actual interface WGPUMapAsyncCallback : Callback {
 	}
 }
 
-actual interface WGPUCreateComputePipelineAsyncCallback : Callback {
+actual fun interface WGPUCreateComputePipelineAsyncCallback : Callback {
 	actual fun invoke(status: WGPUCreatePipelineAsyncStatus, pipeline: WGPUComputePipeline?, message: CString?, userdata: NativeAddress?)
 	actual companion object {
 		actual fun allocate(allocator: MemoryAllocator, callback: WGPUCreateComputePipelineAsyncCallback): CallbackHolder<WGPUCreateComputePipelineAsyncCallback> {
@@ -116,7 +116,7 @@ actual interface WGPUCreateComputePipelineAsyncCallback : Callback {
 	}
 }
 
-actual interface WGPUCreateRenderPipelineAsyncCallback : Callback {
+actual fun interface WGPUCreateRenderPipelineAsyncCallback : Callback {
 	actual fun invoke(status: WGPUCreatePipelineAsyncStatus, pipeline: WGPURenderPipeline?, message: CString?, userdata: NativeAddress?)
 	actual companion object {
 		actual fun allocate(allocator: MemoryAllocator, callback: WGPUCreateRenderPipelineAsyncCallback): CallbackHolder<WGPUCreateRenderPipelineAsyncCallback> {
@@ -132,7 +132,7 @@ actual interface WGPUCreateRenderPipelineAsyncCallback : Callback {
 	}
 }
 
-actual interface WGPURequestAdapterCallback : Callback {
+actual fun interface WGPURequestAdapterCallback : Callback {
 	actual fun invoke(status: WGPURequestAdapterStatus, adapter: WGPUAdapter?, message: CString?, userdata: NativeAddress?)
 	actual companion object {
 		actual fun allocate(allocator: MemoryAllocator, callback: WGPURequestAdapterCallback): CallbackHolder<WGPURequestAdapterCallback> {
@@ -148,7 +148,7 @@ actual interface WGPURequestAdapterCallback : Callback {
 	}
 }
 
-actual interface WGPUOnSubmittedWorkDoneCallback : Callback {
+actual fun interface WGPUOnSubmittedWorkDoneCallback : Callback {
 	actual fun invoke(status: WGPUQueueWorkDoneStatus, userdata: NativeAddress?)
 	actual companion object {
 		actual fun allocate(allocator: MemoryAllocator, callback: WGPUOnSubmittedWorkDoneCallback): CallbackHolder<WGPUOnSubmittedWorkDoneCallback> {
@@ -164,7 +164,7 @@ actual interface WGPUOnSubmittedWorkDoneCallback : Callback {
 	}
 }
 
-actual interface WGPUGetCompilationInfoCallback : Callback {
+actual fun interface WGPUGetCompilationInfoCallback : Callback {
 	actual fun invoke(status: WGPUCompilationInfoRequestStatus, compilationInfo: WGPUCompilationInfo?, userdata: NativeAddress?)
 	actual companion object {
 		actual fun allocate(allocator: MemoryAllocator, callback: WGPUGetCompilationInfoCallback): CallbackHolder<WGPUGetCompilationInfoCallback> {
