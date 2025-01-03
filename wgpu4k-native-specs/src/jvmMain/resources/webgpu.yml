@@ -3161,6 +3161,11 @@ objects:
             doc: |
               TODO
             type: string
+          - name: userdata
+            doc: |
+              TODO
+            type: c_void
+            pointer: mutable
         args:
           - name: descriptor
             doc: |
@@ -3207,6 +3212,11 @@ objects:
             doc: |
               TODO
             type: enum.buffer_map_async_status
+          - name: userdata
+            doc: |
+              TODO
+            type: c_void
+            pointer: mutable
         args:
           - name: mode
             doc: |
@@ -3709,6 +3719,11 @@ objects:
             doc: |
               TODO
             type: string
+          - name: userdata
+            doc: |
+              TODO
+            type: c_void
+            pointer: mutable
         args:
           - name: descriptor
             doc: |
@@ -3757,6 +3772,11 @@ objects:
             doc: |
               TODO
             type: string
+          - name: userdata
+            doc: |
+              TODO
+            type: c_void
+            pointer: mutable
         args:
           - name: descriptor
             doc: |
@@ -3955,6 +3975,11 @@ objects:
             doc: |
               TODO
             type: string
+          - name: userdata
+            doc: |
+              TODO
+            type: c_void
+            pointer: mutable
         args:
           - name: options
             doc: |
@@ -4027,6 +4052,11 @@ objects:
             doc: |
               TODO
             type: enum.queue_work_done_status
+          - name: userdata
+            doc: |
+              TODO
+            type: c_void
+            pointer: mutable
       - name: write_buffer
         doc: |
           TODO
@@ -4589,6 +4619,11 @@ objects:
               TODO
             type: struct.compilation_info
             pointer: immutable
+          - name: userdata
+            doc: |
+              TODO
+            type: c_void
+            pointer: mutable
       - name: set_label
         doc: |
           TODO

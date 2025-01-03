@@ -3,7 +3,7 @@ package ffi
 @JvmInline
 actual value class CString actual constructor(actual val handler: NativeAddress) {
     actual fun toKString(): String? {
-        return handler.handler.getString(0)
+        return if (handler.handler.byteSize() == 0L) "" else handler.handler.getString(0)
     }
 
     actual fun toKString(size: ULong): String? {
