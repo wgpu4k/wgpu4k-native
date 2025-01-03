@@ -1000,7 +1000,7 @@ actual interface WGPUSurfaceCapabilities {
 			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
 			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
 
-		override var usages: ULong
+		override var usages: UInt
 			get() = handle.useContents { usages ?: error("pointer of WGPUSurfaceCapabilities is null") }
 			set(newValue) { handle.useContents { usages = newValue } } 
 
@@ -1037,7 +1037,7 @@ actual interface WGPUSurfaceCapabilities {
 			get() = handler.reinterpret<webgpu.native.WGPUSurfaceCapabilities>().pointed.nextInChain?.let(::NativeAddress)
 			set(newValue) { handler.reinterpret<webgpu.native.WGPUSurfaceCapabilities>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
 
-		override var usages: ULong
+		override var usages: UInt
 			get() = handler.reinterpret<webgpu.native.WGPUSurfaceCapabilities>().pointed.usages ?: error("pointer of WGPUSurfaceCapabilities is null")
 			set(newValue) { handler.reinterpret<webgpu.native.WGPUSurfaceCapabilities>().pointed.let { it.usages = newValue } } 
 
@@ -1068,7 +1068,7 @@ actual interface WGPUSurfaceCapabilities {
 	}
 
 	actual var nextInChain: NativeAddress?
-	actual var usages: ULong
+	actual var usages: UInt
 	actual var formatCount: ULong
 	actual var formats: ArrayHolder<WGPUTextureFormat>?
 	actual var presentModeCount: ULong
@@ -1139,7 +1139,7 @@ actual interface WGPUSurfaceConfiguration {
 			get() = handle.useContents { format ?: error("pointer of WGPUSurfaceConfiguration is null") }
 			set(newValue) { handle.useContents { format = newValue } } 
 
-		override var usage: ULong
+		override var usage: UInt
 			get() = handle.useContents { usage ?: error("pointer of WGPUSurfaceConfiguration is null") }
 			set(newValue) { handle.useContents { usage = newValue } } 
 
@@ -1184,7 +1184,7 @@ actual interface WGPUSurfaceConfiguration {
 			get() = handler.reinterpret<webgpu.native.WGPUSurfaceConfiguration>().pointed.format ?: error("pointer of WGPUSurfaceConfiguration is null")
 			set(newValue) { handler.reinterpret<webgpu.native.WGPUSurfaceConfiguration>().pointed.let { it.format = newValue } } 
 
-		override var usage: ULong
+		override var usage: UInt
 			get() = handler.reinterpret<webgpu.native.WGPUSurfaceConfiguration>().pointed.usage ?: error("pointer of WGPUSurfaceConfiguration is null")
 			set(newValue) { handler.reinterpret<webgpu.native.WGPUSurfaceConfiguration>().pointed.let { it.usage = newValue } } 
 
@@ -1217,7 +1217,7 @@ actual interface WGPUSurfaceConfiguration {
 	actual var nextInChain: NativeAddress?
 	actual var device: WGPUDevice?
 	actual var format: WGPUTextureFormat
-	actual var usage: ULong
+	actual var usage: UInt
 	actual var viewFormatCount: ULong
 	actual var viewFormats: ArrayHolder<WGPUTextureFormat>?
 	actual var alphaMode: WGPUCompositeAlphaMode
@@ -1375,7 +1375,7 @@ actual interface WGPUBindGroupLayoutEntry {
 			get() = handle.useContents { binding ?: error("pointer of WGPUBindGroupLayoutEntry is null") }
 			set(newValue) { handle.useContents { binding = newValue } } 
 
-		override var visibility: ULong
+		override var visibility: UInt
 			get() = handle.useContents { visibility ?: error("pointer of WGPUBindGroupLayoutEntry is null") }
 			set(newValue) { handle.useContents { visibility = newValue } } 
 
@@ -1404,7 +1404,7 @@ actual interface WGPUBindGroupLayoutEntry {
 			get() = handler.reinterpret<webgpu.native.WGPUBindGroupLayoutEntry>().pointed.binding ?: error("pointer of WGPUBindGroupLayoutEntry is null")
 			set(newValue) { handler.reinterpret<webgpu.native.WGPUBindGroupLayoutEntry>().pointed.let { it.binding = newValue } } 
 
-		override var visibility: ULong
+		override var visibility: UInt
 			get() = handler.reinterpret<webgpu.native.WGPUBindGroupLayoutEntry>().pointed.visibility ?: error("pointer of WGPUBindGroupLayoutEntry is null")
 			set(newValue) { handler.reinterpret<webgpu.native.WGPUBindGroupLayoutEntry>().pointed.let { it.visibility = newValue } } 
 
@@ -1424,7 +1424,7 @@ actual interface WGPUBindGroupLayoutEntry {
 
 	actual var nextInChain: NativeAddress?
 	actual var binding: UInt
-	actual var visibility: ULong
+	actual var visibility: UInt
 	actual val buffer: WGPUBufferBindingLayout
 	actual val sampler: WGPUSamplerBindingLayout
 	actual val texture: WGPUTextureBindingLayout
@@ -1650,7 +1650,7 @@ actual interface WGPUBufferDescriptor {
 			get() = handle.useContents { label?.toCString() }
 			set(newValue) { handle.useContents { label = newValue?.handler?.reinterpret() } } 
 
-		override var usage: ULong
+		override var usage: UInt
 			get() = handle.useContents { usage ?: error("pointer of WGPUBufferDescriptor is null") }
 			set(newValue) { handle.useContents { usage = newValue } } 
 
@@ -1675,7 +1675,7 @@ actual interface WGPUBufferDescriptor {
 			get() = handler.reinterpret<webgpu.native.WGPUBufferDescriptor>().pointed.label?.toCString()
 			set(newValue) { handler.reinterpret<webgpu.native.WGPUBufferDescriptor>().pointed.let { it.label = newValue?.handler?.reinterpret() } } 
 
-		override var usage: ULong
+		override var usage: UInt
 			get() = handler.reinterpret<webgpu.native.WGPUBufferDescriptor>().pointed.usage ?: error("pointer of WGPUBufferDescriptor is null")
 			set(newValue) { handler.reinterpret<webgpu.native.WGPUBufferDescriptor>().pointed.let { it.usage = newValue } } 
 
@@ -1691,7 +1691,7 @@ actual interface WGPUBufferDescriptor {
 
 	actual var nextInChain: NativeAddress?
 	actual var label: CString?
-	actual var usage: ULong
+	actual var usage: UInt
 	actual var size: ULong
 	actual var mappedAtCreation: Boolean
 	actual val handler: NativeAddress
@@ -5445,7 +5445,7 @@ actual interface WGPUColorTargetState {
 			get() = handle.useContents { blend?.let(::NativeAddress)?.let { WGPUBlendState(it) } }
 			set(newValue) { handle.useContents { blend = newValue?.handler?.reinterpret() } } 
 
-		override var writeMask: ULong
+		override var writeMask: UInt
 			get() = handle.useContents { writeMask ?: error("pointer of WGPUColorTargetState is null") }
 			set(newValue) { handle.useContents { writeMask = newValue } } 
 
@@ -5466,7 +5466,7 @@ actual interface WGPUColorTargetState {
 			get() = handler.reinterpret<webgpu.native.WGPUColorTargetState>().pointed.blend?.let(::NativeAddress)?.let { WGPUBlendState(it) }
 			set(newValue) { handler.reinterpret<webgpu.native.WGPUColorTargetState>().pointed.let { it.blend = newValue?.handler?.reinterpret() } } 
 
-		override var writeMask: ULong
+		override var writeMask: UInt
 			get() = handler.reinterpret<webgpu.native.WGPUColorTargetState>().pointed.writeMask ?: error("pointer of WGPUColorTargetState is null")
 			set(newValue) { handler.reinterpret<webgpu.native.WGPUColorTargetState>().pointed.let { it.writeMask = newValue } } 
 
@@ -5475,7 +5475,7 @@ actual interface WGPUColorTargetState {
 	actual var nextInChain: NativeAddress?
 	actual var format: WGPUTextureFormat
 	actual var blend: WGPUBlendState?
-	actual var writeMask: ULong
+	actual var writeMask: UInt
 	actual val handler: NativeAddress
 
 	actual companion object {
@@ -6815,7 +6815,7 @@ actual interface WGPUTextureDescriptor {
 			get() = handle.useContents { label?.toCString() }
 			set(newValue) { handle.useContents { label = newValue?.handler?.reinterpret() } } 
 
-		override var usage: ULong
+		override var usage: UInt
 			get() = handle.useContents { usage ?: error("pointer of WGPUTextureDescriptor is null") }
 			set(newValue) { handle.useContents { usage = newValue } } 
 
@@ -6859,7 +6859,7 @@ actual interface WGPUTextureDescriptor {
 			get() = handler.reinterpret<webgpu.native.WGPUTextureDescriptor>().pointed.label?.toCString()
 			set(newValue) { handler.reinterpret<webgpu.native.WGPUTextureDescriptor>().pointed.let { it.label = newValue?.handler?.reinterpret() } } 
 
-		override var usage: ULong
+		override var usage: UInt
 			get() = handler.reinterpret<webgpu.native.WGPUTextureDescriptor>().pointed.usage ?: error("pointer of WGPUTextureDescriptor is null")
 			set(newValue) { handler.reinterpret<webgpu.native.WGPUTextureDescriptor>().pointed.let { it.usage = newValue } } 
 
@@ -6894,7 +6894,7 @@ actual interface WGPUTextureDescriptor {
 
 	actual var nextInChain: NativeAddress?
 	actual var label: CString?
-	actual var usage: ULong
+	actual var usage: UInt
 	actual var dimension: WGPUTextureDimension
 	actual val size: WGPUExtent3D
 	actual var format: WGPUTextureFormat
@@ -7103,11 +7103,11 @@ actual interface WGPUInstanceExtras {
 		override val chain: WGPUChainedStruct
 			get() = handle.useContents { chain.rawPtr.toLong().let(::NativeAddress).let { WGPUChainedStruct(it) } }
 
-		override var backends: ULong
+		override var backends: UInt
 			get() = handle.useContents { backends ?: error("pointer of WGPUInstanceExtras is null") }
 			set(newValue) { handle.useContents { backends = newValue } } 
 
-		override var flags: ULong
+		override var flags: UInt
 			get() = handle.useContents { flags ?: error("pointer of WGPUInstanceExtras is null") }
 			set(newValue) { handle.useContents { flags = newValue } } 
 
@@ -7135,11 +7135,11 @@ actual interface WGPUInstanceExtras {
 		override val chain: WGPUChainedStruct
 			get() = handler.reinterpret<webgpu.native.WGPUInstanceExtras>().pointed.chain.rawPtr.toLong().let(::NativeAddress).let { WGPUChainedStruct(it) }
 
-		override var backends: ULong
+		override var backends: UInt
 			get() = handler.reinterpret<webgpu.native.WGPUInstanceExtras>().pointed.backends ?: error("pointer of WGPUInstanceExtras is null")
 			set(newValue) { handler.reinterpret<webgpu.native.WGPUInstanceExtras>().pointed.let { it.backends = newValue } } 
 
-		override var flags: ULong
+		override var flags: UInt
 			get() = handler.reinterpret<webgpu.native.WGPUInstanceExtras>().pointed.flags ?: error("pointer of WGPUInstanceExtras is null")
 			set(newValue) { handler.reinterpret<webgpu.native.WGPUInstanceExtras>().pointed.let { it.flags = newValue } } 
 
@@ -7162,8 +7162,8 @@ actual interface WGPUInstanceExtras {
 	}
 
 	actual val chain: WGPUChainedStruct
-	actual var backends: ULong
-	actual var flags: ULong
+	actual var backends: UInt
+	actual var flags: UInt
 	actual var dx12ShaderCompiler: WGPUDx12Compiler
 	actual var gles3MinorVersion: WGPUGles3MinorVersion
 	actual var dxilPath: CString?
@@ -7279,70 +7279,5 @@ actual interface WGPUChainedStructOut {
 fun webgpu.native.WGPUChainedStructOut.adapt(structure: WGPUChainedStructOut) {
 	next = structure.next?.handler?.reinterpret()
 	sType = structure.sType
-}
-
-actual interface WGPUStringView {
-	value class ByValue(val handle: CValue<webgpu.native.WGPUStringView>) : WGPUStringView {
-		override var data: CString?
-			get() = handle.useContents { data?.toCString() }
-			set(newValue) { handle.useContents { data = newValue?.handler?.reinterpret() } } 
-
-		override var length: ULong
-			get() = handle.useContents { length ?: error("pointer of WGPUStringView is null") }
-			set(newValue) { handle.useContents { length = newValue } } 
-
-		override val handler: NativeAddress
-			get() = error("should not be call on CValue")
-
-	}
-	value class ByReference(override val handler: NativeAddress) : WGPUStringView {
-		override var data: CString?
-			get() = handler.reinterpret<webgpu.native.WGPUStringView>().pointed.data?.toCString()
-			set(newValue) { handler.reinterpret<webgpu.native.WGPUStringView>().pointed.let { it.data = newValue?.handler?.reinterpret() } } 
-
-		override var length: ULong
-			get() = handler.reinterpret<webgpu.native.WGPUStringView>().pointed.length ?: error("pointer of WGPUStringView is null")
-			set(newValue) { handler.reinterpret<webgpu.native.WGPUStringView>().pointed.let { it.length = newValue } } 
-
-	}
-
-	actual var data: CString?
-	actual var length: ULong
-	actual val handler: NativeAddress
-
-	actual companion object {
-		actual operator fun invoke(address: NativeAddress): WGPUStringView {
-			return ByReference(address)
-		}
-
-		actual fun allocate(allocator: MemoryAllocator): WGPUStringView {
-			return allocator.allocate(sizeOf<webgpu.native.WGPUStringView>())
-				.let { WGPUStringView(it) }
-		}
-
-		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUStringView) -> Unit): ArrayHolder<WGPUStringView> {
-			return allocator.allocate(sizeOf<webgpu.native.WGPUStringView>() * size.toLong())
-				.also {
-					(0u until size).forEach { index ->
-						(it.rawValue + index.toLong() * sizeOf<webgpu.native.WGPUStringView>())
-							.let(::NativeAddress)
-							.let { WGPUStringView(it) }
-							.let { provider(index, it) }
-					}
-				}
-				.let(::ArrayHolder)
-		}
-	}
-	fun toCValue(): CValue<webgpu.native.WGPUStringView> {
-		return cValue<webgpu.native.WGPUStringView> {
-			data = this@WGPUStringView.data?.handler?.reinterpret()
-			length = this@WGPUStringView.length
-		}
-	}
-}
-
-fun webgpu.native.WGPUStringView.adapt(structure: WGPUStringView) {
-	data = structure.data?.handler?.reinterpret()
-	length = structure.length
 }
 

@@ -1,23 +1,18 @@
 package converter
 
 import convertToEnumValueName
-import convertToKotlinCallbackName
-import convertToKotlinCallbackStructureName
 import convertToKotlinClassName
-import convertToKotlinFunctionName
-import convertToKotlinVariableName
+import converter.to.native.convertCallbacks
+import converter.to.native.convertToCLibraryFunctions
+import converter.to.native.generateCLibraryStructures
 import domain.NativeModel
-import domain.NativeModel.Type
 import domain.Version
 import domain.YamlModel
-import domain.toCType
-import converter.to.native.convertCallbacks
-import converter.to.native.generateCLibraryStructures
-import converter.to.native.convertToCLibraryFunctions
+import domain.mappingVersion
 
-internal fun YamlModel.toNativeModel(version: Version): NativeModel {
+internal fun YamlModel.toNativeModel(): NativeModel {
     val pointers = convertToPointer()
-    val functions = convertToCLibraryFunctions(version)
+    val functions = convertToCLibraryFunctions()
     val enumerations = convertToCLibraryEnumerations()
     val structures = generateCLibraryStructures()
         .calculateSizeAndPadding()
@@ -32,7 +27,7 @@ private fun YamlModel.convertToCLibraryEnumerations() =
     enums.map {
         NativeModel.Enumeration(it.name.convertToKotlinClassName(), it.values.convertEnumToEnumValues(it.values.getBaseValue()))
     } + bitflags.map {
-        NativeModel.Enumeration(it.name.convertToKotlinClassName(), it.entries.convertToEnumValues(it.entries), 64)
+        NativeModel.Enumeration(it.name.convertToKotlinClassName(), it.entries.convertToEnumValues(it.entries), if(mappingVersion == Version.v22) 32 else 64)
     }
 
 private fun List<YamlModel.Enum.Entry>.getBaseValue(): Int {

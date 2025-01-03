@@ -149,7 +149,7 @@ expect interface WGPUTextureBindingLayout {
 
 expect interface WGPUSurfaceCapabilities {
 	var nextInChain: NativeAddress?
-	var usages: ULong
+	var usages: UInt
 	var formatCount: ULong
 	var formats: ArrayHolder<WGPUTextureFormat>?
 	var presentModeCount: ULong
@@ -168,7 +168,7 @@ expect interface WGPUSurfaceConfiguration {
 	var nextInChain: NativeAddress?
 	var device: WGPUDevice?
 	var format: WGPUTextureFormat
-	var usage: ULong
+	var usage: UInt
 	var viewFormatCount: ULong
 	var viewFormats: ArrayHolder<WGPUTextureFormat>?
 	var alphaMode: WGPUCompositeAlphaMode
@@ -199,7 +199,7 @@ expect interface WGPUStorageTextureBindingLayout {
 expect interface WGPUBindGroupLayoutEntry {
 	var nextInChain: NativeAddress?
 	var binding: UInt
-	var visibility: ULong
+	var visibility: UInt
 	val buffer: WGPUBufferBindingLayout
 	val sampler: WGPUSamplerBindingLayout
 	val texture: WGPUTextureBindingLayout
@@ -240,7 +240,7 @@ expect interface WGPUBlendComponent {
 expect interface WGPUBufferDescriptor {
 	var nextInChain: NativeAddress?
 	var label: CString?
-	var usage: ULong
+	var usage: UInt
 	var size: ULong
 	var mappedAtCreation: Boolean
 	val handler: NativeAddress
@@ -786,7 +786,7 @@ expect interface WGPUColorTargetState {
 	var nextInChain: NativeAddress?
 	var format: WGPUTextureFormat
 	var blend: WGPUBlendState?
-	var writeMask: ULong
+	var writeMask: UInt
 	val handler: NativeAddress
 	companion object {
 		operator fun invoke(address: NativeAddress): WGPUColorTargetState
@@ -999,7 +999,7 @@ expect interface WGPUSurfaceTexture {
 expect interface WGPUTextureDescriptor {
 	var nextInChain: NativeAddress?
 	var label: CString?
-	var usage: ULong
+	var usage: UInt
 	var dimension: WGPUTextureDimension
 	val size: WGPUExtent3D
 	var format: WGPUTextureFormat
@@ -1035,8 +1035,8 @@ expect interface WGPUTextureViewDescriptor {
 
 expect interface WGPUInstanceExtras {
 	val chain: WGPUChainedStruct
-	var backends: ULong
-	var flags: ULong
+	var backends: UInt
+	var flags: UInt
 	var dx12ShaderCompiler: WGPUDx12Compiler
 	var gles3MinorVersion: WGPUGles3MinorVersion
 	var dxilPath: CString?
@@ -1057,17 +1057,6 @@ expect interface WGPUChainedStructOut {
 		operator fun invoke(address: NativeAddress): WGPUChainedStructOut
 		fun allocate(allocator: MemoryAllocator): WGPUChainedStructOut
 		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPUChainedStructOut) -> Unit): ArrayHolder<WGPUChainedStructOut>
-	}
-}
-
-expect interface WGPUStringView {
-	var data: CString?
-	var length: ULong
-	val handler: NativeAddress
-	companion object {
-		operator fun invoke(address: NativeAddress): WGPUStringView
-		fun allocate(allocator: MemoryAllocator): WGPUStringView
-		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPUStringView) -> Unit): ArrayHolder<WGPUStringView>
 	}
 }
 

@@ -69,7 +69,7 @@ actual fun wgpuBufferRelease(handler: WGPUBuffer?): Unit {
 	webgpu.native.wgpuBufferRelease(handler?.handler?.reinterpret())
 }
 
-actual fun wgpuBufferMapAsync(handler: WGPUBuffer?, mode: ULong, offset: ULong, size: ULong, callback: CallbackHolder<WGPUMapAsyncCallback>?, userdata: NativeAddress?): Unit {
+actual fun wgpuBufferMapAsync(handler: WGPUBuffer?, mode: UInt, offset: ULong, size: ULong, callback: CallbackHolder<WGPUMapAsyncCallback>?, userdata: NativeAddress?): Unit {
 	webgpu.native.wgpuBufferMapAsync(handler?.handler?.reinterpret(), mode, offset, size, callback?.handler?.reinterpret(), userdata?.pointer)
 }
 
@@ -87,7 +87,7 @@ actual fun wgpuBufferSetLabel(handler: WGPUBuffer?, label: CString?): Unit {
 	webgpu.native.wgpuBufferSetLabel(handler?.handler?.reinterpret(), label?.toKString())
 }
 
-actual fun wgpuBufferGetUsage(handler: WGPUBuffer?): ULong {
+actual fun wgpuBufferGetUsage(handler: WGPUBuffer?): UInt {
 	return webgpu.native.wgpuBufferGetUsage(handler?.handler?.reinterpret())
 }
 
@@ -663,7 +663,7 @@ actual fun wgpuTextureGetFormat(handler: WGPUTexture?): WGPUTextureFormat {
 	return webgpu.native.wgpuTextureGetFormat(handler?.handler?.reinterpret())
 }
 
-actual fun wgpuTextureGetUsage(handler: WGPUTexture?): ULong {
+actual fun wgpuTextureGetUsage(handler: WGPUTexture?): UInt {
 	return webgpu.native.wgpuTextureGetUsage(handler?.handler?.reinterpret())
 }
 

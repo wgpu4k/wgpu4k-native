@@ -53,7 +53,7 @@ actual fun wgpuBindGroupLayoutSetLabel(handler: WGPUBindGroupLayout?, label: CSt
 actual fun wgpuBufferRelease(handler: WGPUBuffer?): Unit
 	 = Functions.wgpuBufferRelease(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
 
-actual fun wgpuBufferMapAsync(handler: WGPUBuffer?, mode: ULong, offset: ULong, size: ULong, callback: CallbackHolder<WGPUMapAsyncCallback>?, userdata: NativeAddress?): Unit
+actual fun wgpuBufferMapAsync(handler: WGPUBuffer?, mode: UInt, offset: ULong, size: ULong, callback: CallbackHolder<WGPUMapAsyncCallback>?, userdata: NativeAddress?): Unit
 	 = Functions.wgpuBufferMapAsync(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, mode, offset, size, callback?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, userdata.adapt() ?: java.lang.foreign.MemorySegment.NULL)
 
 actual fun wgpuBufferGetMappedRange(handler: WGPUBuffer?, offset: ULong, size: ULong): NativeAddress?
@@ -67,7 +67,7 @@ actual fun wgpuBufferGetConstMappedRange(handler: WGPUBuffer?, offset: ULong, si
 actual fun wgpuBufferSetLabel(handler: WGPUBuffer?, label: CString?): Unit
 	 = Functions.wgpuBufferSetLabel(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, label?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
 
-actual fun wgpuBufferGetUsage(handler: WGPUBuffer?): ULong
+actual fun wgpuBufferGetUsage(handler: WGPUBuffer?): UInt
 	 = Functions.wgpuBufferGetUsage(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
 
 actual fun wgpuBufferGetSize(handler: WGPUBuffer?): ULong
@@ -505,7 +505,7 @@ actual fun wgpuTextureGetDimension(handler: WGPUTexture?): WGPUTextureDimension
 actual fun wgpuTextureGetFormat(handler: WGPUTexture?): WGPUTextureFormat
 	 = Functions.wgpuTextureGetFormat(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
 
-actual fun wgpuTextureGetUsage(handler: WGPUTexture?): ULong
+actual fun wgpuTextureGetUsage(handler: WGPUTexture?): UInt
 	 = Functions.wgpuTextureGetUsage(handler?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
 
 actual fun wgpuTextureDestroy(handler: WGPUTexture?): Unit

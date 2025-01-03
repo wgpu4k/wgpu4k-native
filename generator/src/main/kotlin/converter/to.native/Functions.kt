@@ -2,17 +2,14 @@ package converter.to.native
 
 import domain.NativeModel
 import domain.NativeModel.Type
-import domain.Version
 import domain.YamlModel
 import domain.toCType
-import convertToEnumValueName
 import convertToKotlinCallbackName
 import convertToKotlinCallbackStructureName
-import convertToKotlinClassName
 import convertToKotlinFunctionName
 import convertToKotlinVariableName
 
-internal fun YamlModel.convertToCLibraryFunctions(version: Version): List<NativeModel.Function> = functions
+internal fun YamlModel.convertToCLibraryFunctions(): List<NativeModel.Function> = functions
     .map {
         NativeModel.Function(
             it.name.convertToKotlinFunctionName(),

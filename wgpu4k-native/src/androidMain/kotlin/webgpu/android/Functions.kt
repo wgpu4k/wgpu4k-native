@@ -47,7 +47,7 @@ internal interface FunctionsInterface: com.sun.jna.Library {
 	fun wgpuBufferRelease(handler: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuBufferMapAsync")
-	fun wgpuBufferMapAsync(handler: com.sun.jna.Pointer?, mode: ULong, offset: ULong, size: ULong, callback: com.sun.jna.Callback?, userdata: com.sun.jna.Pointer?): Unit
+	fun wgpuBufferMapAsync(handler: com.sun.jna.Pointer?, mode: UInt, offset: ULong, size: ULong, callback: com.sun.jna.Callback?, userdata: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuBufferGetMappedRange")
 	fun wgpuBufferGetMappedRange(handler: com.sun.jna.Pointer?, offset: ULong, size: ULong): com.sun.jna.Pointer?
@@ -59,7 +59,7 @@ internal interface FunctionsInterface: com.sun.jna.Library {
 	fun wgpuBufferSetLabel(handler: com.sun.jna.Pointer?, label: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuBufferGetUsage")
-	fun wgpuBufferGetUsage(handler: com.sun.jna.Pointer?): ULong
+	fun wgpuBufferGetUsage(handler: com.sun.jna.Pointer?): UInt
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuBufferGetSize")
 	fun wgpuBufferGetSize(handler: com.sun.jna.Pointer?): ULong
@@ -473,7 +473,7 @@ internal interface FunctionsInterface: com.sun.jna.Library {
 	fun wgpuTextureGetFormat(handler: com.sun.jna.Pointer?): UInt
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuTextureGetUsage")
-	fun wgpuTextureGetUsage(handler: com.sun.jna.Pointer?): ULong
+	fun wgpuTextureGetUsage(handler: com.sun.jna.Pointer?): UInt
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuTextureDestroy")
 	fun wgpuTextureDestroy(handler: com.sun.jna.Pointer?): Unit

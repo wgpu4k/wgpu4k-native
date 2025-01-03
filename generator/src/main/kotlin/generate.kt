@@ -1,6 +1,5 @@
 import com.charleskorn.kaml.Yaml
 import converter.toNativeModel
-import domain.Version
 import domain.YamlModel
 import generator.generateAndroidCallback
 import generator.generateAndroidFunctions
@@ -20,11 +19,11 @@ import generator.generateNativeStructures
 import generator.generateCommonTypes
 import java.io.File
 
-fun generate(path: Paths, version: Version) {
+fun generate(path: Paths) {
 
     val webgpuCModel = path.specs.loadWebGPUYaml()
         .merge(path.specs.loadExtraYaml())
-        .toNativeModel(version)
+        .toNativeModel()
 
     path.commonMainBasePath.apply {
         generateCommonTypes(webgpuCModel.pointers)

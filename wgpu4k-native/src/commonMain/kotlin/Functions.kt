@@ -21,11 +21,11 @@ expect fun wgpuBindGroupSetLabel(handler: WGPUBindGroup?, label: CString?): Unit
 expect fun wgpuBindGroupLayoutRelease(handler: WGPUBindGroupLayout?): Unit
 expect fun wgpuBindGroupLayoutSetLabel(handler: WGPUBindGroupLayout?, label: CString?): Unit
 expect fun wgpuBufferRelease(handler: WGPUBuffer?): Unit
-expect fun wgpuBufferMapAsync(handler: WGPUBuffer?, mode: ULong, offset: ULong, size: ULong, callback: CallbackHolder<WGPUMapAsyncCallback>?, userdata: NativeAddress?): Unit
+expect fun wgpuBufferMapAsync(handler: WGPUBuffer?, mode: UInt, offset: ULong, size: ULong, callback: CallbackHolder<WGPUMapAsyncCallback>?, userdata: NativeAddress?): Unit
 expect fun wgpuBufferGetMappedRange(handler: WGPUBuffer?, offset: ULong, size: ULong): NativeAddress?
 expect fun wgpuBufferGetConstMappedRange(handler: WGPUBuffer?, offset: ULong, size: ULong): NativeAddress?
 expect fun wgpuBufferSetLabel(handler: WGPUBuffer?, label: CString?): Unit
-expect fun wgpuBufferGetUsage(handler: WGPUBuffer?): ULong
+expect fun wgpuBufferGetUsage(handler: WGPUBuffer?): UInt
 expect fun wgpuBufferGetSize(handler: WGPUBuffer?): ULong
 expect fun wgpuBufferGetMapState(handler: WGPUBuffer?): WGPUBufferMapState
 expect fun wgpuBufferUnmap(handler: WGPUBuffer?): Unit
@@ -163,7 +163,7 @@ expect fun wgpuTextureGetMipLevelCount(handler: WGPUTexture?): UInt
 expect fun wgpuTextureGetSampleCount(handler: WGPUTexture?): UInt
 expect fun wgpuTextureGetDimension(handler: WGPUTexture?): WGPUTextureDimension
 expect fun wgpuTextureGetFormat(handler: WGPUTexture?): WGPUTextureFormat
-expect fun wgpuTextureGetUsage(handler: WGPUTexture?): ULong
+expect fun wgpuTextureGetUsage(handler: WGPUTexture?): UInt
 expect fun wgpuTextureDestroy(handler: WGPUTexture?): Unit
 expect fun wgpuTextureViewRelease(handler: WGPUTextureView?): Unit
 expect fun wgpuTextureViewSetLabel(handler: WGPUTextureView?, label: CString?): Unit

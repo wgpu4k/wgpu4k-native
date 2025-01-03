@@ -152,12 +152,12 @@ object Functions {
 	private val wgpuBufferReleaseHandlerAddress = findOrThrow("wgpuBufferRelease")
 	private val wgpuBufferReleaseHandler = Linker.nativeLinker().downcallHandle(wgpuBufferReleaseHandlerAddress, wgpuBufferReleaseHandlerDescription)
 
-	fun wgpuBufferMapAsync(handler: java.lang.foreign.MemorySegment, mode: ULong, offset: ULong, size: ULong, callback: java.lang.foreign.MemorySegment, userdata: java.lang.foreign.MemorySegment): Unit {
-		return (wgpuBufferMapAsyncHandler.invokeExact(handler, mode.toLong(), offset.toLong(), size.toLong(), callback, userdata) as Unit)
+	fun wgpuBufferMapAsync(handler: java.lang.foreign.MemorySegment, mode: UInt, offset: ULong, size: ULong, callback: java.lang.foreign.MemorySegment, userdata: java.lang.foreign.MemorySegment): Unit {
+		return (wgpuBufferMapAsyncHandler.invokeExact(handler, mode.toInt(), offset.toLong(), size.toLong(), callback, userdata) as Unit)
 	}
 	private val wgpuBufferMapAsyncHandlerDescription = FunctionDescriptor.ofVoid(
 			C_POINTER,
-			C_LONG,
+			C_INT,
 			C_LONG,
 			C_LONG,
 			C_POINTER,
@@ -200,11 +200,11 @@ object Functions {
 	private val wgpuBufferSetLabelHandlerAddress = findOrThrow("wgpuBufferSetLabel")
 	private val wgpuBufferSetLabelHandler = Linker.nativeLinker().downcallHandle(wgpuBufferSetLabelHandlerAddress, wgpuBufferSetLabelHandlerDescription)
 
-	fun wgpuBufferGetUsage(handler: java.lang.foreign.MemorySegment): ULong {
-		return (wgpuBufferGetUsageHandler.invokeExact(handler) as Long).toULong()
+	fun wgpuBufferGetUsage(handler: java.lang.foreign.MemorySegment): UInt {
+		return (wgpuBufferGetUsageHandler.invokeExact(handler) as Int).toUInt()
 	}
 	private val wgpuBufferGetUsageHandlerDescription = FunctionDescriptor.of(
-			C_LONG,
+			C_INT,
 			C_POINTER
 		)
 	private val wgpuBufferGetUsageHandlerAddress = findOrThrow("wgpuBufferGetUsage")
@@ -1659,11 +1659,11 @@ object Functions {
 	private val wgpuTextureGetFormatHandlerAddress = findOrThrow("wgpuTextureGetFormat")
 	private val wgpuTextureGetFormatHandler = Linker.nativeLinker().downcallHandle(wgpuTextureGetFormatHandlerAddress, wgpuTextureGetFormatHandlerDescription)
 
-	fun wgpuTextureGetUsage(handler: java.lang.foreign.MemorySegment): ULong {
-		return (wgpuTextureGetUsageHandler.invokeExact(handler) as Long).toULong()
+	fun wgpuTextureGetUsage(handler: java.lang.foreign.MemorySegment): UInt {
+		return (wgpuTextureGetUsageHandler.invokeExact(handler) as Int).toUInt()
 	}
 	private val wgpuTextureGetUsageHandlerDescription = FunctionDescriptor.of(
-			C_LONG,
+			C_INT,
 			C_POINTER
 		)
 	private val wgpuTextureGetUsageHandlerAddress = findOrThrow("wgpuTextureGetUsage")

@@ -7,6 +7,8 @@ import convertToKotlinCallbackName
 import convertToKotlinCallbackStructureName
 import convertToKotlinClassName
 import convertToKotlinVariableName
+import domain.Version
+import domain.mappingVersion
 
 internal fun YamlModel.generateCLibraryStructures() = structs.map {
     val members = when {
@@ -76,12 +78,6 @@ internal fun YamlModel.generateCLibraryStructures() = structs.map {
             NativeModel.StructureField("next", NativeModel.Reference.Structure("WGPUChainedStructOut"), "?"),
             NativeModel.StructureField("sType", NativeModel.Reference.Enumeration("WGPUSType"), "")
         )
-    ),
-    NativeModel.Structure(
-        "WGPUStringView", listOf(
-            NativeModel.StructureField("data", NativeModel.Reference.CString, "?"),
-            NativeModel.StructureField("length", NativeModel.Primitive.UInt64, "")
-        )
     )
 ) + callbacks.map {
     val name = it.name.convertToKotlinCallbackStructureName()
@@ -104,7 +100,16 @@ internal fun YamlModel.generateCLibraryStructures() = structs.map {
             )
         )
     }
-}
+} + if (mappingVersion == Version.v23) listOf(
+    NativeModel.Structure(
+        "WGPUStringView", listOf(
+            NativeModel.StructureField("data", NativeModel.Reference.CString, "?"),
+            NativeModel.StructureField("length", NativeModel.Primitive.UInt64, "")
+        )
+    )
+) else emptyList()
+
+
 private fun NativeModel.StructureField.generateArrayCounter() = let { (name, _, _) ->
     val newName = when {
         name.endsWith("ies") -> name.removeSuffix("ies") + "yCount"

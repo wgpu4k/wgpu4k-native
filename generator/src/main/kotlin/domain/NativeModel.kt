@@ -96,7 +96,7 @@ internal fun String?.toCType(isPointer: Boolean, isMutable: Boolean): NativeMode
         }
         startsWith("function_type.") -> NativeModel.Reference.Callback(split(".").last().convertToKotlinClassName())
         startsWith("callback.") -> NativeModel.Reference.StructureField(split(".").last().convertToKotlinCallbackStructureName())
-        startsWith("bitflag.") -> NativeModel.Primitive.UInt64
+        startsWith("bitflag.") -> if (mappingVersion == Version.v22) NativeModel.Primitive.UInt32 else NativeModel.Primitive.UInt64
         equals("bool") -> NativeModel.Primitive.Bool
         equals("usize") -> when (isPointer) {
             true -> NativeModel.Reference.OpaquePointer

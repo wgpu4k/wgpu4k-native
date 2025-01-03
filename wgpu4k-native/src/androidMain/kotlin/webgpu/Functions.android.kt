@@ -53,7 +53,7 @@ actual fun wgpuBindGroupLayoutSetLabel(handler: WGPUBindGroupLayout?, label: CSt
 actual fun wgpuBufferRelease(handler: WGPUBuffer?): Unit
 	 = io.ygdrasil.wgpu.android.Functions.wgpuBufferRelease(handler?.handler)
 
-actual fun wgpuBufferMapAsync(handler: WGPUBuffer?, mode: ULong, offset: ULong, size: ULong, callback: CallbackHolder<WGPUMapAsyncCallback>?, userdata: NativeAddress?): Unit
+actual fun wgpuBufferMapAsync(handler: WGPUBuffer?, mode: UInt, offset: ULong, size: ULong, callback: CallbackHolder<WGPUMapAsyncCallback>?, userdata: NativeAddress?): Unit
 	 = io.ygdrasil.wgpu.android.Functions.wgpuBufferMapAsync(handler?.handler, mode, offset, size, callback?.callback, userdata)
 
 actual fun wgpuBufferGetMappedRange(handler: WGPUBuffer?, offset: ULong, size: ULong): NativeAddress?
@@ -65,7 +65,7 @@ actual fun wgpuBufferGetConstMappedRange(handler: WGPUBuffer?, offset: ULong, si
 actual fun wgpuBufferSetLabel(handler: WGPUBuffer?, label: CString?): Unit
 	 = io.ygdrasil.wgpu.android.Functions.wgpuBufferSetLabel(handler?.handler, label?.handler)
 
-actual fun wgpuBufferGetUsage(handler: WGPUBuffer?): ULong
+actual fun wgpuBufferGetUsage(handler: WGPUBuffer?): UInt
 	 = io.ygdrasil.wgpu.android.Functions.wgpuBufferGetUsage(handler?.handler)
 
 actual fun wgpuBufferGetSize(handler: WGPUBuffer?): ULong
@@ -503,7 +503,7 @@ actual fun wgpuTextureGetDimension(handler: WGPUTexture?): WGPUTextureDimension
 actual fun wgpuTextureGetFormat(handler: WGPUTexture?): WGPUTextureFormat
 	 = io.ygdrasil.wgpu.android.Functions.wgpuTextureGetFormat(handler?.handler)
 
-actual fun wgpuTextureGetUsage(handler: WGPUTexture?): ULong
+actual fun wgpuTextureGetUsage(handler: WGPUTexture?): UInt
 	 = io.ygdrasil.wgpu.android.Functions.wgpuTextureGetUsage(handler?.handler)
 
 actual fun wgpuTextureDestroy(handler: WGPUTexture?): Unit

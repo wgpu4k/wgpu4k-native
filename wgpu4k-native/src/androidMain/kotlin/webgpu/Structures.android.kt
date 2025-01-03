@@ -951,9 +951,9 @@ actual interface WGPUSurfaceCapabilities {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override var usages: ULong
-			get() = handle.usages.toULong()
-			set(newValue) { handle.usages = newValue.toLong() }
+		override var usages: UInt
+			get() = handle.usages.toUInt()
+			set(newValue) { handle.usages = newValue.toInt() }
 
 		override var formatCount: ULong
 			get() = handle.formatCount.toULong()
@@ -991,9 +991,9 @@ actual interface WGPUSurfaceCapabilities {
 			get() = handle.nextInChain
 			set(newValue) { handle.nextInChain = newValue }
 
-		override var usages: ULong
-			get() = handle.usages.toULong()
-			set(newValue) { handle.usages = newValue.toLong() }
+		override var usages: UInt
+			get() = handle.usages.toUInt()
+			set(newValue) { handle.usages = newValue.toInt() }
 
 		override var formatCount: ULong
 			get() = handle.formatCount.toULong()
@@ -1030,7 +1030,7 @@ actual interface WGPUSurfaceCapabilities {
 	fun toReference() = (this as ByReference).handle
 
 	actual var nextInChain: NativeAddress?
-	actual var usages: ULong
+	actual var usages: UInt
 	actual var formatCount: ULong
 	actual var formats: ArrayHolder<WGPUTextureFormat>?
 	actual var presentModeCount: ULong
@@ -1079,9 +1079,9 @@ actual interface WGPUSurfaceConfiguration {
 			get() = handle.format.toUInt()
 			set(newValue) { handle.format = newValue.toInt() }
 
-		override var usage: ULong
-			get() = handle.usage.toULong()
-			set(newValue) { handle.usage = newValue.toLong() }
+		override var usage: UInt
+			get() = handle.usage.toUInt()
+			set(newValue) { handle.usage = newValue.toInt() }
 
 		override var viewFormatCount: ULong
 			get() = handle.viewFormatCount.toULong()
@@ -1127,9 +1127,9 @@ actual interface WGPUSurfaceConfiguration {
 			get() = handle.format.toUInt()
 			set(newValue) { handle.format = newValue.toInt() }
 
-		override var usage: ULong
-			get() = handle.usage.toULong()
-			set(newValue) { handle.usage = newValue.toLong() }
+		override var usage: UInt
+			get() = handle.usage.toUInt()
+			set(newValue) { handle.usage = newValue.toInt() }
 
 		override var viewFormatCount: ULong
 			get() = handle.viewFormatCount.toULong()
@@ -1168,7 +1168,7 @@ actual interface WGPUSurfaceConfiguration {
 	actual var nextInChain: NativeAddress?
 	actual var device: WGPUDevice?
 	actual var format: WGPUTextureFormat
-	actual var usage: ULong
+	actual var usage: UInt
 	actual var viewFormatCount: ULong
 	actual var viewFormats: ArrayHolder<WGPUTextureFormat>?
 	actual var alphaMode: WGPUCompositeAlphaMode
@@ -1297,9 +1297,9 @@ actual interface WGPUBindGroupLayoutEntry {
 			get() = handle.binding.toUInt()
 			set(newValue) { handle.binding = newValue.toInt() }
 
-		override var visibility: ULong
-			get() = handle.visibility.toULong()
-			set(newValue) { handle.visibility = newValue.toLong() }
+		override var visibility: UInt
+			get() = handle.visibility.toUInt()
+			set(newValue) { handle.visibility = newValue.toInt() }
 
 		override val buffer: WGPUBufferBindingLayout
 			get() = handle.buffer.let{ WGPUBufferBindingLayout.ByValue(it) }
@@ -1329,9 +1329,9 @@ actual interface WGPUBindGroupLayoutEntry {
 			get() = handle.binding.toUInt()
 			set(newValue) { handle.binding = newValue.toInt() }
 
-		override var visibility: ULong
-			get() = handle.visibility.toULong()
-			set(newValue) { handle.visibility = newValue.toLong() }
+		override var visibility: UInt
+			get() = handle.visibility.toUInt()
+			set(newValue) { handle.visibility = newValue.toInt() }
 
 		override val buffer: WGPUBufferBindingLayout
 			get() = handle.buffer.let{ WGPUBufferBindingLayout.ByValue(it) }
@@ -1357,7 +1357,7 @@ actual interface WGPUBindGroupLayoutEntry {
 
 	actual var nextInChain: NativeAddress?
 	actual var binding: UInt
-	actual var visibility: ULong
+	actual var visibility: UInt
 	actual val buffer: WGPUBufferBindingLayout
 	actual val sampler: WGPUSamplerBindingLayout
 	actual val texture: WGPUTextureBindingLayout
@@ -1559,9 +1559,9 @@ actual interface WGPUBufferDescriptor {
 			get() = handle.label?.let(::CString)
 			set(newValue) { handle.label = newValue?.handler }
 
-		override var usage: ULong
-			get() = handle.usage.toULong()
-			set(newValue) { handle.usage = newValue.toLong() }
+		override var usage: UInt
+			get() = handle.usage.toUInt()
+			set(newValue) { handle.usage = newValue.toInt() }
 
 		override var size: ULong
 			get() = handle.size.toULong()
@@ -1587,9 +1587,9 @@ actual interface WGPUBufferDescriptor {
 			get() = handle.label?.let(::CString)
 			set(newValue) { handle.label = newValue?.handler }
 
-		override var usage: ULong
-			get() = handle.usage.toULong()
-			set(newValue) { handle.usage = newValue.toLong() }
+		override var usage: UInt
+			get() = handle.usage.toUInt()
+			set(newValue) { handle.usage = newValue.toInt() }
 
 		override var size: ULong
 			get() = handle.size.toULong()
@@ -1611,7 +1611,7 @@ actual interface WGPUBufferDescriptor {
 
 	actual var nextInChain: NativeAddress?
 	actual var label: CString?
-	actual var usage: ULong
+	actual var usage: UInt
 	actual var size: ULong
 	actual var mappedAtCreation: Boolean
 	actual val handler: NativeAddress
@@ -5161,9 +5161,9 @@ actual interface WGPUColorTargetState {
 			get() = handle.blend?.let{ WGPUBlendState.ByReference(it) }
 			set(newValue) { handle.blend = (newValue as? WGPUBlendState.ByReference)?.handle }
 
-		override var writeMask: ULong
-			get() = handle.writeMask.toULong()
-			set(newValue) { handle.writeMask = newValue.toLong() }
+		override var writeMask: UInt
+			get() = handle.writeMask.toUInt()
+			set(newValue) { handle.writeMask = newValue.toInt() }
 
 		override val handler: NativeAddress
 			get() {
@@ -5185,9 +5185,9 @@ actual interface WGPUColorTargetState {
 			get() = handle.blend?.let{ WGPUBlendState.ByReference(it) }
 			set(newValue) { handle.blend = (newValue as? WGPUBlendState.ByReference)?.handle }
 
-		override var writeMask: ULong
-			get() = handle.writeMask.toULong()
-			set(newValue) { handle.writeMask = newValue.toLong() }
+		override var writeMask: UInt
+			get() = handle.writeMask.toUInt()
+			set(newValue) { handle.writeMask = newValue.toInt() }
 
 		override val handler: NativeAddress
 			get() {
@@ -5202,7 +5202,7 @@ actual interface WGPUColorTargetState {
 	actual var nextInChain: NativeAddress?
 	actual var format: WGPUTextureFormat
 	actual var blend: WGPUBlendState?
-	actual var writeMask: ULong
+	actual var writeMask: UInt
 	actual val handler: NativeAddress
 
 	actual companion object {
@@ -6494,9 +6494,9 @@ actual interface WGPUTextureDescriptor {
 			get() = handle.label?.let(::CString)
 			set(newValue) { handle.label = newValue?.handler }
 
-		override var usage: ULong
-			get() = handle.usage.toULong()
-			set(newValue) { handle.usage = newValue.toLong() }
+		override var usage: UInt
+			get() = handle.usage.toUInt()
+			set(newValue) { handle.usage = newValue.toInt() }
 
 		override var dimension: WGPUTextureDimension
 			get() = handle.dimension.toUInt()
@@ -6541,9 +6541,9 @@ actual interface WGPUTextureDescriptor {
 			get() = handle.label?.let(::CString)
 			set(newValue) { handle.label = newValue?.handler }
 
-		override var usage: ULong
-			get() = handle.usage.toULong()
-			set(newValue) { handle.usage = newValue.toLong() }
+		override var usage: UInt
+			get() = handle.usage.toUInt()
+			set(newValue) { handle.usage = newValue.toInt() }
 
 		override var dimension: WGPUTextureDimension
 			get() = handle.dimension.toUInt()
@@ -6584,7 +6584,7 @@ actual interface WGPUTextureDescriptor {
 
 	actual var nextInChain: NativeAddress?
 	actual var label: CString?
-	actual var usage: ULong
+	actual var usage: UInt
 	actual var dimension: WGPUTextureDimension
 	actual val size: WGPUExtent3D
 	actual var format: WGPUTextureFormat
@@ -6754,13 +6754,13 @@ actual interface WGPUInstanceExtras {
 		override val chain: WGPUChainedStruct
 			get() = handle.chain.let{ WGPUChainedStruct.ByValue(it) }
 
-		override var backends: ULong
-			get() = handle.backends.toULong()
-			set(newValue) { handle.backends = newValue.toLong() }
+		override var backends: UInt
+			get() = handle.backends.toUInt()
+			set(newValue) { handle.backends = newValue.toInt() }
 
-		override var flags: ULong
-			get() = handle.flags.toULong()
-			set(newValue) { handle.flags = newValue.toLong() }
+		override var flags: UInt
+			get() = handle.flags.toUInt()
+			set(newValue) { handle.flags = newValue.toInt() }
 
 		override var dx12ShaderCompiler: WGPUDx12Compiler
 			get() = handle.dx12ShaderCompiler.toUInt()
@@ -6789,13 +6789,13 @@ actual interface WGPUInstanceExtras {
 		override val chain: WGPUChainedStruct
 			get() = handle.chain.let{ WGPUChainedStruct.ByValue(it) }
 
-		override var backends: ULong
-			get() = handle.backends.toULong()
-			set(newValue) { handle.backends = newValue.toLong() }
+		override var backends: UInt
+			get() = handle.backends.toUInt()
+			set(newValue) { handle.backends = newValue.toInt() }
 
-		override var flags: ULong
-			get() = handle.flags.toULong()
-			set(newValue) { handle.flags = newValue.toLong() }
+		override var flags: UInt
+			get() = handle.flags.toUInt()
+			set(newValue) { handle.flags = newValue.toInt() }
 
 		override var dx12ShaderCompiler: WGPUDx12Compiler
 			get() = handle.dx12ShaderCompiler.toUInt()
@@ -6824,8 +6824,8 @@ actual interface WGPUInstanceExtras {
 	fun toReference() = (this as ByReference).handle
 
 	actual val chain: WGPUChainedStruct
-	actual var backends: ULong
-	actual var flags: ULong
+	actual var backends: UInt
+	actual var flags: UInt
 	actual var dx12ShaderCompiler: WGPUDx12Compiler
 	actual var gles3MinorVersion: WGPUGles3MinorVersion
 	actual var dxilPath: CString?
@@ -6915,72 +6915,6 @@ actual interface WGPUChainedStructOut {
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUChainedStructOut.ByValue)
 					.also { provider(index.toUInt(), WGPUChainedStructOut.ByValue(it)) }
-					.write()
-			}
-			val pointer = if (size == 0u) com.sun.jna.Pointer.NULL else array.first().pointer
-			return ArrayHolder(pointer)
-		}
-	}
-}
-
-actual interface WGPUStringView {
-
-	class ByReference(val handle: io.ygdrasil.wgpu.android.WGPUStringView.ByReference = io.ygdrasil.wgpu.android.WGPUStringView.ByReference(com.sun.jna.Pointer.NULL)) : WGPUStringView {
-		override var data: CString?
-			get() = handle.data?.let(::CString)
-			set(newValue) { handle.data = newValue?.handler }
-
-		override var length: ULong
-			get() = handle.length.toULong()
-			set(newValue) { handle.length = newValue.toLong() }
-
-		override val handler: NativeAddress
-			get() {
-				handle.write()
-				return handle.getPointer()
-			}
-	}
-
-	class ByValue(val handle: io.ygdrasil.wgpu.android.WGPUStringView.ByValue = io.ygdrasil.wgpu.android.WGPUStringView.ByValue(com.sun.jna.Pointer.NULL)) : WGPUStringView {
-		override var data: CString?
-			get() = handle.data?.let(::CString)
-			set(newValue) { handle.data = newValue?.handler }
-
-		override var length: ULong
-			get() = handle.length.toULong()
-			set(newValue) { handle.length = newValue.toLong() }
-
-		override val handler: NativeAddress
-			get() {
-				handle.write()
-				return handle.getPointer()
-			}
-	}
-
-	fun toCValue() = (this as ByReference).let{ io.ygdrasil.wgpu.android.WGPUStringView.ByValue(handle) }
-	fun toReference() = (this as ByReference).handle
-
-	actual var data: CString?
-	actual var length: ULong
-	actual val handler: NativeAddress
-
-	actual companion object {
-		actual operator fun invoke(address: NativeAddress): WGPUStringView {
-			return io.ygdrasil.wgpu.android.WGPUStringView.ByReference(address)
-				.also { it.read() }
-				.let(::ByReference)
-		}
-
-		actual fun allocate(allocator: MemoryAllocator): WGPUStringView {
-			return WGPUStringView.ByReference()
-				.also { allocator.register(it) }
-		}
-
-		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUStringView) -> Unit): ArrayHolder<WGPUStringView> {
-			val array = io.ygdrasil.wgpu.android.WGPUStringView.ByValue().toArray(size.toInt())
-			array.forEachIndexed { index, structure ->
-				(structure as io.ygdrasil.wgpu.android.WGPUStringView.ByValue)
-					.also { provider(index.toUInt(), WGPUStringView.ByValue(it)) }
 					.write()
 			}
 			val pointer = if (size == 0u) com.sun.jna.Pointer.NULL else array.first().pointer
