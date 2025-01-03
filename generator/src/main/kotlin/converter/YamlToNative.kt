@@ -31,7 +31,7 @@ private fun YamlModel.convertToCLibraryEnumerations() =
     }
 
 private fun List<YamlModel.Enum.Entry>.getBaseValue(): Int {
-    return if (isNotEmpty() && first().name == "undefined") 0 else 1
+    return if (isNotEmpty() && first().name == "undefined") 0 else if (mappingVersion == Version.v22) 0 else 1
 }
 
 private fun List<YamlModel.Bitflag.Entry>.convertToEnumValues(entries: List<YamlModel.Bitflag.Entry>): List<Pair<String, Int>> = mapIndexed { index, entry ->

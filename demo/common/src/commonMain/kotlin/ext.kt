@@ -68,7 +68,7 @@ fun getDevice(adapter: WGPUAdapter): WGPUDevice = memoryScope { scope ->
 
     })
 
-    wgpuAdapterRequestDevice(adapter, null, callback, null)
+    wgpuAdapterRequestDevice(adapter, null, callback, scope.bufferOfAddress(callback.handler).handler)
 
     fetchedDevice ?: error("fail to get device")
 }
@@ -92,7 +92,7 @@ fun getAdapter(surface: WGPUSurface, instance: WGPUInstance, backendType: UInt =
 
     })
 
-    wgpuInstanceRequestAdapter(instance, options, callback, null)
+    wgpuInstanceRequestAdapter(instance, options, callback, scope.bufferOfAddress(callback.handler).handler)
 
     fetchedAdapter ?: error("fail to get adapter")
 }
