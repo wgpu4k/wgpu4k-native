@@ -45,8 +45,8 @@ actual fun wgpuAdapterGetInfo(handler: WGPUAdapter?, info: WGPUAdapterInfo?): Un
 	webgpu.native.wgpuAdapterGetInfo(handler?.handler?.reinterpret(), info?.handler?.reinterpret())
 }
 
-actual fun wgpuAdapterRequestDevice(handler: WGPUAdapter?, descriptor: WGPUDeviceDescriptor?): Unit {
-	webgpu.native.wgpuAdapterRequestDevice(handler?.handler?.reinterpret(), descriptor?.handler?.reinterpret())
+actual fun wgpuAdapterRequestDevice(handler: WGPUAdapter?, descriptor: WGPUDeviceDescriptor?, callback: CallbackHolder<WGPURequestDeviceCallback>?, userdata: NativeAddress?): Unit {
+	webgpu.native.wgpuAdapterRequestDevice(handler?.handler?.reinterpret(), descriptor?.handler?.reinterpret(), callback?.handler?.reinterpret(), userdata?.pointer)
 }
 
 actual fun wgpuBindGroupRelease(handler: WGPUBindGroup?): Unit {
@@ -69,8 +69,8 @@ actual fun wgpuBufferRelease(handler: WGPUBuffer?): Unit {
 	webgpu.native.wgpuBufferRelease(handler?.handler?.reinterpret())
 }
 
-actual fun wgpuBufferMapAsync(handler: WGPUBuffer?, mode: ULong, offset: ULong, size: ULong): Unit {
-	webgpu.native.wgpuBufferMapAsync(handler?.handler?.reinterpret(), mode, offset, size)
+actual fun wgpuBufferMapAsync(handler: WGPUBuffer?, mode: ULong, offset: ULong, size: ULong, callback: CallbackHolder<WGPUMapAsyncCallback>?, userdata: NativeAddress?): Unit {
+	webgpu.native.wgpuBufferMapAsync(handler?.handler?.reinterpret(), mode, offset, size, callback?.handler?.reinterpret(), userdata?.pointer)
 }
 
 actual fun wgpuBufferGetMappedRange(handler: WGPUBuffer?, offset: ULong, size: ULong): NativeAddress? {
@@ -260,8 +260,8 @@ actual fun wgpuDeviceCreateComputePipeline(handler: WGPUDevice?, descriptor: WGP
 		?.let(::NativeAddress)?.let(::WGPUComputePipeline)
 }
 
-actual fun wgpuDeviceCreateComputePipelineAsync(handler: WGPUDevice?, descriptor: WGPUComputePipelineDescriptor?): Unit {
-	webgpu.native.wgpuDeviceCreateComputePipelineAsync(handler?.handler?.reinterpret(), descriptor?.handler?.reinterpret())
+actual fun wgpuDeviceCreateComputePipelineAsync(handler: WGPUDevice?, descriptor: WGPUComputePipelineDescriptor?, callback: CallbackHolder<WGPUCreateComputePipelineAsyncCallback>?, userdata: NativeAddress?): Unit {
+	webgpu.native.wgpuDeviceCreateComputePipelineAsync(handler?.handler?.reinterpret(), descriptor?.handler?.reinterpret(), callback?.handler?.reinterpret(), userdata?.pointer)
 }
 
 actual fun wgpuDeviceCreatePipelineLayout(handler: WGPUDevice?, descriptor: WGPUPipelineLayoutDescriptor?): WGPUPipelineLayout? {
@@ -274,8 +274,8 @@ actual fun wgpuDeviceCreateQuerySet(handler: WGPUDevice?, descriptor: WGPUQueryS
 		?.let(::NativeAddress)?.let(::WGPUQuerySet)
 }
 
-actual fun wgpuDeviceCreateRenderPipelineAsync(handler: WGPUDevice?, descriptor: WGPURenderPipelineDescriptor?): Unit {
-	webgpu.native.wgpuDeviceCreateRenderPipelineAsync(handler?.handler?.reinterpret(), descriptor?.handler?.reinterpret())
+actual fun wgpuDeviceCreateRenderPipelineAsync(handler: WGPUDevice?, descriptor: WGPURenderPipelineDescriptor?, callback: CallbackHolder<WGPUCreateRenderPipelineAsyncCallback>?, userdata: NativeAddress?): Unit {
+	webgpu.native.wgpuDeviceCreateRenderPipelineAsync(handler?.handler?.reinterpret(), descriptor?.handler?.reinterpret(), callback?.handler?.reinterpret(), userdata?.pointer)
 }
 
 actual fun wgpuDeviceCreateRenderBundleEncoder(handler: WGPUDevice?, descriptor: WGPURenderBundleEncoderDescriptor?): WGPURenderBundleEncoder? {
@@ -356,8 +356,8 @@ actual fun wgpuInstanceProcessEvents(handler: WGPUInstance?): Unit {
 	webgpu.native.wgpuInstanceProcessEvents(handler?.handler?.reinterpret())
 }
 
-actual fun wgpuInstanceRequestAdapter(handler: WGPUInstance?, options: WGPURequestAdapterOptions?): Unit {
-	webgpu.native.wgpuInstanceRequestAdapter(handler?.handler?.reinterpret(), options?.handler?.reinterpret())
+actual fun wgpuInstanceRequestAdapter(handler: WGPUInstance?, options: WGPURequestAdapterOptions?, callback: CallbackHolder<WGPURequestAdapterCallback>?, userdata: NativeAddress?): Unit {
+	webgpu.native.wgpuInstanceRequestAdapter(handler?.handler?.reinterpret(), options?.handler?.reinterpret(), callback?.handler?.reinterpret(), userdata?.pointer)
 }
 
 actual fun wgpuPipelineLayoutRelease(handler: WGPUPipelineLayout?): Unit {
@@ -396,8 +396,8 @@ actual fun wgpuQueueSubmit(handler: WGPUQueue?, commandCount: ULong, commands: A
 	webgpu.native.wgpuQueueSubmit(handler?.handler?.reinterpret(), commandCount, commands?.handler?.reinterpret())
 }
 
-actual fun wgpuQueueOnSubmittedWorkDone(handler: WGPUQueue?): Unit {
-	webgpu.native.wgpuQueueOnSubmittedWorkDone(handler?.handler?.reinterpret())
+actual fun wgpuQueueOnSubmittedWorkDone(handler: WGPUQueue?, callback: CallbackHolder<WGPUOnSubmittedWorkDoneCallback>?, userdata: NativeAddress?): Unit {
+	webgpu.native.wgpuQueueOnSubmittedWorkDone(handler?.handler?.reinterpret(), callback?.handler?.reinterpret(), userdata?.pointer)
 }
 
 actual fun wgpuQueueWriteBuffer(handler: WGPUQueue?, buffer: WGPUBuffer?, bufferOffset: ULong, data: NativeAddress?, size: ULong): Unit {
@@ -586,8 +586,8 @@ actual fun wgpuShaderModuleRelease(handler: WGPUShaderModule?): Unit {
 	webgpu.native.wgpuShaderModuleRelease(handler?.handler?.reinterpret())
 }
 
-actual fun wgpuShaderModuleGetCompilationInfo(handler: WGPUShaderModule?): Unit {
-	webgpu.native.wgpuShaderModuleGetCompilationInfo(handler?.handler?.reinterpret())
+actual fun wgpuShaderModuleGetCompilationInfo(handler: WGPUShaderModule?, callback: CallbackHolder<WGPUGetCompilationInfoCallback>?, userdata: NativeAddress?): Unit {
+	webgpu.native.wgpuShaderModuleGetCompilationInfo(handler?.handler?.reinterpret(), callback?.handler?.reinterpret(), userdata?.pointer)
 }
 
 actual fun wgpuShaderModuleSetLabel(handler: WGPUShaderModule?, label: CString?): Unit {

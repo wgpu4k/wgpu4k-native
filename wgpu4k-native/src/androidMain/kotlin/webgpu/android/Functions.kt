@@ -29,7 +29,7 @@ internal interface FunctionsInterface: com.sun.jna.Library {
 	fun wgpuAdapterGetInfo(handler: com.sun.jna.Pointer?, info: WGPUAdapterInfo.ByReference?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuAdapterRequestDevice")
-	fun wgpuAdapterRequestDevice(handler: com.sun.jna.Pointer?, descriptor: WGPUDeviceDescriptor.ByReference?): Unit
+	fun wgpuAdapterRequestDevice(handler: com.sun.jna.Pointer?, descriptor: WGPUDeviceDescriptor.ByReference?, callback: com.sun.jna.Callback?, userdata: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuBindGroupRelease")
 	fun wgpuBindGroupRelease(handler: com.sun.jna.Pointer?): Unit
@@ -47,7 +47,7 @@ internal interface FunctionsInterface: com.sun.jna.Library {
 	fun wgpuBufferRelease(handler: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuBufferMapAsync")
-	fun wgpuBufferMapAsync(handler: com.sun.jna.Pointer?, mode: ULong, offset: ULong, size: ULong): Unit
+	fun wgpuBufferMapAsync(handler: com.sun.jna.Pointer?, mode: ULong, offset: ULong, size: ULong, callback: com.sun.jna.Callback?, userdata: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuBufferGetMappedRange")
 	fun wgpuBufferGetMappedRange(handler: com.sun.jna.Pointer?, offset: ULong, size: ULong): com.sun.jna.Pointer?
@@ -182,7 +182,7 @@ internal interface FunctionsInterface: com.sun.jna.Library {
 	fun wgpuDeviceCreateComputePipeline(handler: com.sun.jna.Pointer?, descriptor: WGPUComputePipelineDescriptor.ByReference?): com.sun.jna.Pointer?
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuDeviceCreateComputePipelineAsync")
-	fun wgpuDeviceCreateComputePipelineAsync(handler: com.sun.jna.Pointer?, descriptor: WGPUComputePipelineDescriptor.ByReference?): Unit
+	fun wgpuDeviceCreateComputePipelineAsync(handler: com.sun.jna.Pointer?, descriptor: WGPUComputePipelineDescriptor.ByReference?, callback: com.sun.jna.Callback?, userdata: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuDeviceCreatePipelineLayout")
 	fun wgpuDeviceCreatePipelineLayout(handler: com.sun.jna.Pointer?, descriptor: WGPUPipelineLayoutDescriptor.ByReference?): com.sun.jna.Pointer?
@@ -191,7 +191,7 @@ internal interface FunctionsInterface: com.sun.jna.Library {
 	fun wgpuDeviceCreateQuerySet(handler: com.sun.jna.Pointer?, descriptor: WGPUQuerySetDescriptor.ByReference?): com.sun.jna.Pointer?
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuDeviceCreateRenderPipelineAsync")
-	fun wgpuDeviceCreateRenderPipelineAsync(handler: com.sun.jna.Pointer?, descriptor: WGPURenderPipelineDescriptor.ByReference?): Unit
+	fun wgpuDeviceCreateRenderPipelineAsync(handler: com.sun.jna.Pointer?, descriptor: WGPURenderPipelineDescriptor.ByReference?, callback: com.sun.jna.Callback?, userdata: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuDeviceCreateRenderBundleEncoder")
 	fun wgpuDeviceCreateRenderBundleEncoder(handler: com.sun.jna.Pointer?, descriptor: WGPURenderBundleEncoderDescriptor.ByReference?): com.sun.jna.Pointer?
@@ -245,7 +245,7 @@ internal interface FunctionsInterface: com.sun.jna.Library {
 	fun wgpuInstanceProcessEvents(handler: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuInstanceRequestAdapter")
-	fun wgpuInstanceRequestAdapter(handler: com.sun.jna.Pointer?, options: WGPURequestAdapterOptions.ByReference?): Unit
+	fun wgpuInstanceRequestAdapter(handler: com.sun.jna.Pointer?, options: WGPURequestAdapterOptions.ByReference?, callback: com.sun.jna.Callback?, userdata: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuPipelineLayoutRelease")
 	fun wgpuPipelineLayoutRelease(handler: com.sun.jna.Pointer?): Unit
@@ -275,7 +275,7 @@ internal interface FunctionsInterface: com.sun.jna.Library {
 	fun wgpuQueueSubmit(handler: com.sun.jna.Pointer?, commandCount: ULong, commands: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuQueueOnSubmittedWorkDone")
-	fun wgpuQueueOnSubmittedWorkDone(handler: com.sun.jna.Pointer?): Unit
+	fun wgpuQueueOnSubmittedWorkDone(handler: com.sun.jna.Pointer?, callback: com.sun.jna.Callback?, userdata: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuQueueWriteBuffer")
 	fun wgpuQueueWriteBuffer(handler: com.sun.jna.Pointer?, buffer: com.sun.jna.Pointer?, bufferOffset: ULong, data: com.sun.jna.Pointer?, size: ULong): Unit
@@ -416,7 +416,7 @@ internal interface FunctionsInterface: com.sun.jna.Library {
 	fun wgpuShaderModuleRelease(handler: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuShaderModuleGetCompilationInfo")
-	fun wgpuShaderModuleGetCompilationInfo(handler: com.sun.jna.Pointer?): Unit
+	fun wgpuShaderModuleGetCompilationInfo(handler: com.sun.jna.Pointer?, callback: com.sun.jna.Callback?, userdata: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuShaderModuleSetLabel")
 	fun wgpuShaderModuleSetLabel(handler: com.sun.jna.Pointer?, label: com.sun.jna.Pointer?): Unit
