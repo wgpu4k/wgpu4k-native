@@ -39,13 +39,13 @@ private val headerAndroid = """
     
 """.trimIndent()
 
-fun File.generateAndroidStructures(structures: List<NativeModel.Structure>) = resolve("webgpu").apply {
+fun File.generateAndroidStructures(structures: List<NativeModel.Structure>) = this.apply {
     resolve("Structures.android.kt").apply {
         writeText(headerAndroid)
         structures.map(NativeModel.Structure::toAndroidStructure)
             .forEach(::appendText)
     }
-    resolve("android").resolve("Structures.kt").apply {
+    resolve("Structures.kt").apply {
         writeText(headerAndroidJna)
         structures.map(NativeModel.Structure::toJnaStructure)
             .forEach(::appendText)

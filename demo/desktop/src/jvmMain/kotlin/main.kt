@@ -7,17 +7,8 @@ import darwin.NSWindow
 import ffi.LibraryLoader
 import ffi.NativeAddress
 import ffi.memoryScope
-import org.lwjgl.glfw.GLFW.*
-import org.lwjgl.glfw.GLFWNativeCocoa.glfwGetCocoaWindow
-import org.lwjgl.glfw.GLFWNativeWin32.glfwGetWin32Window
-import org.lwjgl.glfw.GLFWNativeX11.glfwGetX11Display
-import org.lwjgl.glfw.GLFWNativeX11.glfwGetX11Window
-import org.lwjgl.system.MemoryUtil.NULL
-import org.rococoa.ID
-import org.rococoa.Rococoa
 import io.ygdrasil.wgpu.HelloTriangleScene
 import io.ygdrasil.wgpu.WGPUInstance
-import io.ygdrasil.wgpu.WGPULimits
 import io.ygdrasil.wgpu.WGPUSType_SurfaceDescriptorFromMetalLayer
 import io.ygdrasil.wgpu.WGPUSType_SurfaceDescriptorFromWindowsHWND
 import io.ygdrasil.wgpu.WGPUSType_SurfaceDescriptorFromXlibWindow
@@ -36,6 +27,14 @@ import io.ygdrasil.wgpu.getDevice
 import io.ygdrasil.wgpu.wgpuAdapterGetLimits
 import io.ygdrasil.wgpu.wgpuCreateInstance
 import io.ygdrasil.wgpu.wgpuInstanceCreateSurface
+import org.lwjgl.glfw.GLFW.*
+import org.lwjgl.glfw.GLFWNativeCocoa.glfwGetCocoaWindow
+import org.lwjgl.glfw.GLFWNativeWin32.glfwGetWin32Window
+import org.lwjgl.glfw.GLFWNativeX11.glfwGetX11Display
+import org.lwjgl.glfw.GLFWNativeX11.glfwGetX11Window
+import org.lwjgl.system.MemoryUtil.NULL
+import org.rococoa.ID
+import org.rococoa.Rococoa
 import java.lang.foreign.MemorySegment
 
 fun main() {

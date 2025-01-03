@@ -29,9 +29,8 @@ private val header = """
     
 """.trimIndent()
 
-internal fun File.generateAndroidNativeFunctions(functions: List<NativeModel.Function>) = resolve("webgpu")
-    .resolve("android")
-    .resolve("Functions.kt").apply {
+internal fun File.generateAndroidNativeFunctions(functions: List<NativeModel.Function>) =
+    resolve("Functions.kt").apply {
         writeText(jnaHeader)
 
         functions.toJnaFunctionsInterface()
@@ -40,8 +39,7 @@ internal fun File.generateAndroidNativeFunctions(functions: List<NativeModel.Fun
     }
 
 
-internal fun File.generateAndroidFunctions(functions: List<NativeModel.Function>) = resolve("webgpu")
-    .resolve("Functions.android.kt").apply {
+internal fun File.generateAndroidFunctions(functions: List<NativeModel.Function>) = resolve("Functions.android.kt").apply {
         writeText(header)
 
         functions.toAndroidFunctions()
