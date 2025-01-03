@@ -60,11 +60,7 @@ fun getDevice(adapter: WGPUAdapter): WGPUDevice = memoryScope { scope ->
 
     val callback = WGPURequestDeviceCallback.allocate(scope, object : WGPURequestDeviceCallback {
         override fun invoke(
-            status: WGPURequestDeviceStatus,
-            device: WGPUDevice?,
-            message: WGPUStringView?,
-            userdata1: NativeAddress?,
-            userdata2: NativeAddress?
+            status: WGPURequestDeviceStatus, device: WGPUDevice?, message: CString?
         ) {
             if (status != WGPURequestDeviceStatus_Success && device == null) error("fail to get device")
             fetchedDevice = device
@@ -72,18 +68,13 @@ fun getDevice(adapter: WGPUAdapter): WGPUDevice = memoryScope { scope ->
 
     })
 
-    val callbackInfo = WGPURequestDeviceCallbackInfo.allocate(scope).apply {
-        this.callback = callback
-        this.userdata2 = scope.bufferOfAddress(callback.handler).handler
-    }
-
-    wgpuAdapterRequestDevice(adapter, null, callbackInfo)
+    wgpuAdapterRequestDevice(adapter, null, callback, null)
 
     fetchedDevice ?: error("fail to get device")
 }
 
 fun getAdapter(surface: WGPUSurface, instance: WGPUInstance, backendType: UInt = WGPUBackendType_Undefined) = memoryScope { scope ->
-    val callbackInfo = WGPURequestAdapterCallbackInfo.allocate(scope)
+
     val options = WGPURequestAdapterOptions.allocate(scope).apply {
         compatibleSurface = surface
         this.backendType = backendType
@@ -93,11 +84,7 @@ fun getAdapter(surface: WGPUSurface, instance: WGPUInstance, backendType: UInt =
 
     val callback = WGPURequestAdapterCallback.allocate(scope, object : WGPURequestAdapterCallback {
         override fun invoke(
-            status: WGPURequestAdapterStatus,
-            adapter: WGPUAdapter?,
-            message: WGPUStringView?,
-            userdata1: NativeAddress?,
-            userdata2: NativeAddress?
+            status: WGPURequestAdapterStatus, adapter: WGPUAdapter?, message: CString?
         ) {
             if (status != WGPURequestAdapterStatus_Success || adapter == null) error("fail to get adapter")
             fetchedAdapter = adapter
@@ -105,10 +92,7 @@ fun getAdapter(surface: WGPUSurface, instance: WGPUInstance, backendType: UInt =
 
     })
 
-    callbackInfo.callback = callback
-    callbackInfo.userdata2 = scope.bufferOfAddress(callback.handler).handler
-
-    wgpuInstanceRequestAdapter(instance, options, callbackInfo)
+    wgpuInstanceRequestAdapter(instance, options, callback, null)
 
     fetchedAdapter ?: error("fail to get adapter")
 }

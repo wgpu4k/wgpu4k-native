@@ -18,14 +18,15 @@ import org.rococoa.Rococoa
 import io.ygdrasil.wgpu.HelloTriangleScene
 import io.ygdrasil.wgpu.WGPUInstance
 import io.ygdrasil.wgpu.WGPULimits
-import io.ygdrasil.wgpu.WGPUSType_SurfaceSourceMetalLayer
-import io.ygdrasil.wgpu.WGPUSType_SurfaceSourceWindowsHWND
-import io.ygdrasil.wgpu.WGPUSType_SurfaceSourceXlibWindow
+import io.ygdrasil.wgpu.WGPUSType_SurfaceDescriptorFromMetalLayer
+import io.ygdrasil.wgpu.WGPUSType_SurfaceDescriptorFromWindowsHWND
+import io.ygdrasil.wgpu.WGPUSType_SurfaceDescriptorFromXlibWindow
+import io.ygdrasil.wgpu.WGPUSupportedLimits
 import io.ygdrasil.wgpu.WGPUSurface
 import io.ygdrasil.wgpu.WGPUSurfaceDescriptor
-import io.ygdrasil.wgpu.WGPUSurfaceSourceMetalLayer
-import io.ygdrasil.wgpu.WGPUSurfaceSourceWindowsHWND
-import io.ygdrasil.wgpu.WGPUSurfaceSourceXlibWindow
+import io.ygdrasil.wgpu.WGPUSurfaceDescriptorFromMetalLayer
+import io.ygdrasil.wgpu.WGPUSurfaceDescriptorFromWindowsHWND
+import io.ygdrasil.wgpu.WGPUSurfaceDescriptorFromXlibWindow
 import io.ygdrasil.wgpu.compatibleAlphaMode
 import io.ygdrasil.wgpu.compatibleFormat
 import io.ygdrasil.wgpu.configureLogs
@@ -59,7 +60,7 @@ fun main() {
     val adapter = getAdapter(surface, instance)
 
     memoryScope { scope ->
-        val supportedLimits = WGPULimits.allocate(scope)
+        val supportedLimits = WGPUSupportedLimits.allocate(scope)
         wgpuAdapterGetLimits(adapter, supportedLimits)
         println("Adapter limits: $supportedLimits")
     }
@@ -107,8 +108,8 @@ private fun getSurface(instance: WGPUInstance, window: Long): WGPUSurface = when
 private fun getSurfaceFromMetalLayer(instance: WGPUInstance, metalLayer: NativeAddress): WGPUSurface? = memoryScope { scope ->
 
     val surfaceDescriptor = WGPUSurfaceDescriptor.allocate(scope).apply {
-        nextInChain = WGPUSurfaceSourceMetalLayer.allocate(scope).apply {
-            chain.sType = WGPUSType_SurfaceSourceMetalLayer
+        nextInChain = WGPUSurfaceDescriptorFromMetalLayer.allocate(scope).apply {
+            chain.sType = WGPUSType_SurfaceDescriptorFromMetalLayer
             layer = metalLayer
         }.handler
     }
@@ -119,8 +120,8 @@ private fun getSurfaceFromMetalLayer(instance: WGPUInstance, metalLayer: NativeA
 fun getSurfaceFromX11Window(instance: WGPUInstance, display: NativeAddress, window: Long): WGPUSurface? = memoryScope { scope ->
 
     val surfaceDescriptor = WGPUSurfaceDescriptor.allocate(scope).apply {
-        nextInChain = WGPUSurfaceSourceXlibWindow.allocate(scope).apply {
-            chain.sType = WGPUSType_SurfaceSourceXlibWindow
+        nextInChain = WGPUSurfaceDescriptorFromXlibWindow.allocate(scope).apply {
+            chain.sType = WGPUSType_SurfaceDescriptorFromXlibWindow
             this.display = display
             this.window = window.toULong()
         }.handler
@@ -132,8 +133,8 @@ fun getSurfaceFromX11Window(instance: WGPUInstance, display: NativeAddress, wind
 fun getSurfaceFromWindows(instance: WGPUInstance, hinstance: NativeAddress, hwnd: NativeAddress): WGPUSurface? = memoryScope { scope ->
 
     val surfaceDescriptor = WGPUSurfaceDescriptor.allocate(scope).apply {
-        nextInChain = WGPUSurfaceSourceWindowsHWND.allocate(scope).apply {
-            chain.sType = WGPUSType_SurfaceSourceWindowsHWND
+        nextInChain = WGPUSurfaceDescriptorFromWindowsHWND.allocate(scope).apply {
+            chain.sType = WGPUSType_SurfaceDescriptorFromWindowsHWND
             this.hwnd = hwnd
             this.hinstance = hinstance
         }.handler
