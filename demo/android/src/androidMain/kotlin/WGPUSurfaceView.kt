@@ -57,8 +57,8 @@ fun getSurface(
     val nativeWindow = io.ygdrasil.nativeHelper.Helper.nativeWindowFromSurface(surfaceHolder.surface)
 
     val surfaceDescriptor = WGPUSurfaceDescriptor.allocate(scope).apply {
-        nextInChain = WGPUSurfaceSourceAndroidNativeWindow.allocate(scope).apply {
-            chain.sType = WGPUSType_SurfaceSourceAndroidNativeWindow
+        nextInChain = WGPUSurfaceDescriptorFromAndroidNativeWindow.allocate(scope).apply {
+            chain.sType = WGPUSType_SurfaceDescriptorFromAndroidNativeWindow
             window = Pointer(nativeWindow)
         }.handler
     }
