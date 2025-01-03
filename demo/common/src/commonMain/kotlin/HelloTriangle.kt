@@ -12,24 +12,20 @@ class HelloTriangleScene(val device: WGPUDevice, val renderingContextFormat: UIn
     fun initialize() = memoryScope { scope ->
         renderPipeline = WGPURenderPipelineDescriptor.allocate(scope).apply {
             vertex.module = WGPUShaderModuleDescriptor.allocate(scope).apply {
-                nextInChain = WGPUShaderSourceWGSL.allocate(scope).apply {
-                    code.length = triangleVertexShader.length.toULong()
-                    code.data = scope.allocateFrom(triangleVertexShader)
-                    chain.sType = WGPUSType_ShaderSourceWGSL
+                nextInChain = WGPUShaderModuleWGSLDescriptor.allocate(scope).apply {
+                    code = scope.allocateFrom(triangleVertexShader)
+                    chain.sType = WGPUSType_ShaderModuleWGSLDescriptor
                 }.handler
             }.let { wgpuDeviceCreateShaderModule(device, it) } ?: error("fail to create shader module")
 
-            vertex.entryPoint.data = scope.allocateFrom("main")
-            vertex.entryPoint.length = "main".length.toULong()
+            vertex.entryPoint = scope.allocateFrom("main")
 
             fragment = WGPUFragmentState.allocate(scope).apply {
-                entryPoint.data = scope.allocateFrom("main")
-                entryPoint.length = "main".length.toULong()
+                entryPoint = scope.allocateFrom("main")
                 module = WGPUShaderModuleDescriptor.allocate(scope).apply {
-                    nextInChain = WGPUShaderSourceWGSL.allocate(scope).apply {
-                        code.length = redFragmentShader.length.toULong()
-                        code.data = scope.allocateFrom(redFragmentShader)
-                        chain.sType = WGPUSType_ShaderSourceWGSL
+                    nextInChain = WGPUShaderModuleWGSLDescriptor.allocate(scope).apply {
+                        code = scope.allocateFrom(redFragmentShader)
+                        chain.sType = WGPUSType_ShaderModuleWGSLDescriptor
                     }.handler
                 }.let { wgpuDeviceCreateShaderModule(device, it) } ?: error("fail to create shader module")
 
@@ -51,7 +47,7 @@ class HelloTriangleScene(val device: WGPUDevice, val renderingContextFormat: UIn
         val surfaceTexture = WGPUSurfaceTexture.allocate(scope)
         wgpuSurfaceGetCurrentTexture(surface, surfaceTexture)
 
-        if (surfaceTexture.status > WGPUSurfaceGetCurrentTextureStatus_SuccessSuboptimal) error("surface status is KO with status ${surfaceTexture.status}")
+        if (surfaceTexture.status > WGPUSurfaceGetCurrentTextureStatus_Success) error("surface status is KO with status ${surfaceTexture.status}")
         surfaceTexture.texture ?: error("fail to get texture")
 
         val frame = wgpuTextureCreateView(surfaceTexture.texture, null) ?: error("fail to create view")

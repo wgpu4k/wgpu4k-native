@@ -1,6 +1,7 @@
 package io.ygdrasil.wgpu
 
 import ffi.ArrayHolder
+import ffi.CString
 import ffi.MemoryAllocator
 import ffi.NativeAddress
 import ffi.memoryScope
@@ -9,8 +10,8 @@ val allocator = MemoryAllocator()
 
 fun configureLogs(logLevel: WGPULogLevel = WGPULogLevel_Trace) {
     val callback = WGPULogCallback.allocate(allocator, object : WGPULogCallback {
-        override fun invoke(level: WGPULogLevel, message: WGPUStringView?, userdata: NativeAddress?) {
-            val kMessage = message?.data?.toKString(message.length)
+        override fun invoke(level: WGPULogLevel, message: CString?, userdata: NativeAddress?) {
+            val kMessage = message?.toKString()
             when (level) {
                 WGPULogLevel_Error -> println("ERROR : $kMessage}")
                 WGPULogLevel_Warn -> println("WARN : $kMessage")
