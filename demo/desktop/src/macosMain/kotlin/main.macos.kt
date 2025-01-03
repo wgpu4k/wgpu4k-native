@@ -8,10 +8,10 @@ import kotlinx.cinterop.*
 import platform.AppKit.NSWindow
 import platform.QuartzCore.CAMetalLayer
 import io.ygdrasil.wgpu.WGPUInstance
-import io.ygdrasil.wgpu.WGPUSType_SurfaceSourceMetalLayer
+import io.ygdrasil.wgpu.WGPUSType_SurfaceDescriptorFromMetalLayer
 import io.ygdrasil.wgpu.WGPUSurface
 import io.ygdrasil.wgpu.WGPUSurfaceDescriptor
-import io.ygdrasil.wgpu.WGPUSurfaceSourceMetalLayer
+import io.ygdrasil.wgpu.WGPUSurfaceDescriptorFromMetalLayer
 import io.ygdrasil.wgpu.wgpuInstanceCreateSurface
 
 actual fun getSurface(instance: WGPUInstance, window: CPointer<GLFWwindow>): WGPUSurface {
@@ -26,8 +26,8 @@ actual fun getSurface(instance: WGPUInstance, window: CPointer<GLFWwindow>): WGP
 private fun getSurfaceFromMetalLayer(instance: WGPUInstance, metalLayer: COpaquePointer): WGPUSurface? = memoryScope { scope ->
 
     val surfaceDescriptor = WGPUSurfaceDescriptor.allocate(scope).apply {
-        nextInChain = WGPUSurfaceSourceMetalLayer.allocate(scope).apply {
-            chain.sType = WGPUSType_SurfaceSourceMetalLayer
+        nextInChain = WGPUSurfaceDescriptorFromMetalLayer.allocate(scope).apply {
+            chain.sType = WGPUSType_SurfaceDescriptorFromMetalLayer
             layer = metalLayer.let(::NativeAddress)
         }.handler
     }

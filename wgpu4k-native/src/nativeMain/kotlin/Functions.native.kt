@@ -7,6 +7,7 @@ import ffi.NativeAddress
 import ffi.ArrayHolder
 import ffi.CallbackHolder
 import kotlinx.cinterop.ExperimentalForeignApi
+import kotlinx.cinterop.reinterpret
 import kotlinx.cinterop.toCPointer
 
 
@@ -38,7 +39,7 @@ actual fun wgpuAdapterHasFeature(handler: WGPUAdapter?, feature: WGPUFeatureName
 }
 
 actual fun wgpuAdapterEnumerateFeatures(handler: WGPUAdapter?, features: NativeAddress?): ULong {
-	return webgpu.native.wgpuAdapterEnumerateFeatures(handler?.handler?.reinterpret(), features?.pointer)
+	return webgpu.native.wgpuAdapterEnumerateFeatures(handler?.handler?.reinterpret(), features?.pointer?.reinterpret())
 }
 
 actual fun wgpuAdapterGetInfo(handler: WGPUAdapter?, info: WGPUAdapterInfo?): Unit {
@@ -318,7 +319,7 @@ actual fun wgpuDeviceHasFeature(handler: WGPUDevice?, feature: WGPUFeatureName):
 }
 
 actual fun wgpuDeviceEnumerateFeatures(handler: WGPUDevice?, features: NativeAddress?): ULong {
-	return webgpu.native.wgpuDeviceEnumerateFeatures(handler?.handler?.reinterpret(), features?.pointer)
+	return webgpu.native.wgpuDeviceEnumerateFeatures(handler?.handler?.reinterpret(), features?.pointer?.reinterpret())
 }
 
 actual fun wgpuDeviceGetQueue(handler: WGPUDevice?): WGPUQueue? {

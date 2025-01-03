@@ -60,7 +60,7 @@ fun getDevice(adapter: WGPUAdapter): WGPUDevice = memoryScope { scope ->
 
     val callback = WGPURequestDeviceCallback.allocate(scope, object : WGPURequestDeviceCallback {
         override fun invoke(
-            status: WGPURequestDeviceStatus, device: WGPUDevice?, message: CString?
+            status: WGPURequestDeviceStatus, device: WGPUDevice?, message: CString?, userdata: NativeAddress?
         ) {
             if (status != WGPURequestDeviceStatus_Success && device == null) error("fail to get device")
             fetchedDevice = device
@@ -84,7 +84,7 @@ fun getAdapter(surface: WGPUSurface, instance: WGPUInstance, backendType: UInt =
 
     val callback = WGPURequestAdapterCallback.allocate(scope, object : WGPURequestAdapterCallback {
         override fun invoke(
-            status: WGPURequestAdapterStatus, adapter: WGPUAdapter?, message: CString?
+            status: WGPURequestAdapterStatus, adapter: WGPUAdapter?, message: CString?, userdata: NativeAddress?
         ) {
             if (status != WGPURequestAdapterStatus_Success || adapter == null) error("fail to get adapter")
             fetchedAdapter = adapter
