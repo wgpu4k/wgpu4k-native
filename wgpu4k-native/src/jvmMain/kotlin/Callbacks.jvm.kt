@@ -103,3 +103,222 @@ actual interface WGPULogCallback : Callback {
 	}
 }
 
+actual interface WGPURequestDeviceCallback : Callback {
+	actual fun invoke(status: WGPURequestDeviceStatus, device: WGPUDevice?, message: CString?)
+	interface Function {
+		fun apply(status: Int, device: java.lang.foreign.MemorySegment, message: java.lang.foreign.MemorySegment)
+	}
+	actual companion object {
+		actual fun allocate(allocator: MemoryAllocator, callback: WGPURequestDeviceCallback): CallbackHolder<WGPURequestDeviceCallback> {
+			val function = object : Function {
+				override fun apply(status: Int, device: java.lang.foreign.MemorySegment, message: java.lang.foreign.MemorySegment) {
+					callback.invoke(status.toUInt(), device.takeIf { it != java.lang.foreign.MemorySegment.NULL }?.let { java.lang.foreign.MemorySegment.ofAddress(it.address()).reinterpret(it.byteSize()) }?.let(::NativeAddress)?.let { WGPUDevice(it) }, message.takeIf { it != java.lang.foreign.MemorySegment.NULL }?.let { java.lang.foreign.MemorySegment.ofAddress(it.address()).reinterpret(it.byteSize()) }?.let(::NativeAddress)?.let { CString(it) })
+				}
+			}
+			return java.lang.foreign.Linker.nativeLinker().upcallStub(
+				handler.bindTo(function),
+				descriptor,
+				allocator.arena
+			).let(::NativeAddress)
+				.let(::CallbackHolder)
+		}
+		private val descriptor: java.lang.foreign.FunctionDescriptor = java.lang.foreign.FunctionDescriptor.ofVoid(
+			ffi.C_INT,
+			ffi.C_POINTER,
+			ffi.C_POINTER,
+		)
+		private val handler: java.lang.invoke.MethodHandle = ffi.upcallHandle(
+			Function::class.java,
+			"apply",
+			descriptor
+		)
+	}
+}
+
+actual interface WGPUMapAsyncCallback : Callback {
+	actual fun invoke(status: WGPUBufferMapAsyncStatus)
+	interface Function {
+		fun apply(status: Int)
+	}
+	actual companion object {
+		actual fun allocate(allocator: MemoryAllocator, callback: WGPUMapAsyncCallback): CallbackHolder<WGPUMapAsyncCallback> {
+			val function = object : Function {
+				override fun apply(status: Int) {
+					callback.invoke(status.toUInt())
+				}
+			}
+			return java.lang.foreign.Linker.nativeLinker().upcallStub(
+				handler.bindTo(function),
+				descriptor,
+				allocator.arena
+			).let(::NativeAddress)
+				.let(::CallbackHolder)
+		}
+		private val descriptor: java.lang.foreign.FunctionDescriptor = java.lang.foreign.FunctionDescriptor.ofVoid(
+			ffi.C_INT,
+		)
+		private val handler: java.lang.invoke.MethodHandle = ffi.upcallHandle(
+			Function::class.java,
+			"apply",
+			descriptor
+		)
+	}
+}
+
+actual interface WGPUCreateComputePipelineAsyncCallback : Callback {
+	actual fun invoke(status: WGPUCreatePipelineAsyncStatus, pipeline: WGPUComputePipeline?, message: CString?)
+	interface Function {
+		fun apply(status: Int, pipeline: java.lang.foreign.MemorySegment, message: java.lang.foreign.MemorySegment)
+	}
+	actual companion object {
+		actual fun allocate(allocator: MemoryAllocator, callback: WGPUCreateComputePipelineAsyncCallback): CallbackHolder<WGPUCreateComputePipelineAsyncCallback> {
+			val function = object : Function {
+				override fun apply(status: Int, pipeline: java.lang.foreign.MemorySegment, message: java.lang.foreign.MemorySegment) {
+					callback.invoke(status.toUInt(), pipeline.takeIf { it != java.lang.foreign.MemorySegment.NULL }?.let { java.lang.foreign.MemorySegment.ofAddress(it.address()).reinterpret(it.byteSize()) }?.let(::NativeAddress)?.let { WGPUComputePipeline(it) }, message.takeIf { it != java.lang.foreign.MemorySegment.NULL }?.let { java.lang.foreign.MemorySegment.ofAddress(it.address()).reinterpret(it.byteSize()) }?.let(::NativeAddress)?.let { CString(it) })
+				}
+			}
+			return java.lang.foreign.Linker.nativeLinker().upcallStub(
+				handler.bindTo(function),
+				descriptor,
+				allocator.arena
+			).let(::NativeAddress)
+				.let(::CallbackHolder)
+		}
+		private val descriptor: java.lang.foreign.FunctionDescriptor = java.lang.foreign.FunctionDescriptor.ofVoid(
+			ffi.C_INT,
+			ffi.C_POINTER,
+			ffi.C_POINTER,
+		)
+		private val handler: java.lang.invoke.MethodHandle = ffi.upcallHandle(
+			Function::class.java,
+			"apply",
+			descriptor
+		)
+	}
+}
+
+actual interface WGPUCreateRenderPipelineAsyncCallback : Callback {
+	actual fun invoke(status: WGPUCreatePipelineAsyncStatus, pipeline: WGPURenderPipeline?, message: CString?)
+	interface Function {
+		fun apply(status: Int, pipeline: java.lang.foreign.MemorySegment, message: java.lang.foreign.MemorySegment)
+	}
+	actual companion object {
+		actual fun allocate(allocator: MemoryAllocator, callback: WGPUCreateRenderPipelineAsyncCallback): CallbackHolder<WGPUCreateRenderPipelineAsyncCallback> {
+			val function = object : Function {
+				override fun apply(status: Int, pipeline: java.lang.foreign.MemorySegment, message: java.lang.foreign.MemorySegment) {
+					callback.invoke(status.toUInt(), pipeline.takeIf { it != java.lang.foreign.MemorySegment.NULL }?.let { java.lang.foreign.MemorySegment.ofAddress(it.address()).reinterpret(it.byteSize()) }?.let(::NativeAddress)?.let { WGPURenderPipeline(it) }, message.takeIf { it != java.lang.foreign.MemorySegment.NULL }?.let { java.lang.foreign.MemorySegment.ofAddress(it.address()).reinterpret(it.byteSize()) }?.let(::NativeAddress)?.let { CString(it) })
+				}
+			}
+			return java.lang.foreign.Linker.nativeLinker().upcallStub(
+				handler.bindTo(function),
+				descriptor,
+				allocator.arena
+			).let(::NativeAddress)
+				.let(::CallbackHolder)
+		}
+		private val descriptor: java.lang.foreign.FunctionDescriptor = java.lang.foreign.FunctionDescriptor.ofVoid(
+			ffi.C_INT,
+			ffi.C_POINTER,
+			ffi.C_POINTER,
+		)
+		private val handler: java.lang.invoke.MethodHandle = ffi.upcallHandle(
+			Function::class.java,
+			"apply",
+			descriptor
+		)
+	}
+}
+
+actual interface WGPURequestAdapterCallback : Callback {
+	actual fun invoke(status: WGPURequestAdapterStatus, adapter: WGPUAdapter?, message: CString?)
+	interface Function {
+		fun apply(status: Int, adapter: java.lang.foreign.MemorySegment, message: java.lang.foreign.MemorySegment)
+	}
+	actual companion object {
+		actual fun allocate(allocator: MemoryAllocator, callback: WGPURequestAdapterCallback): CallbackHolder<WGPURequestAdapterCallback> {
+			val function = object : Function {
+				override fun apply(status: Int, adapter: java.lang.foreign.MemorySegment, message: java.lang.foreign.MemorySegment) {
+					callback.invoke(status.toUInt(), adapter.takeIf { it != java.lang.foreign.MemorySegment.NULL }?.let { java.lang.foreign.MemorySegment.ofAddress(it.address()).reinterpret(it.byteSize()) }?.let(::NativeAddress)?.let { WGPUAdapter(it) }, message.takeIf { it != java.lang.foreign.MemorySegment.NULL }?.let { java.lang.foreign.MemorySegment.ofAddress(it.address()).reinterpret(it.byteSize()) }?.let(::NativeAddress)?.let { CString(it) })
+				}
+			}
+			return java.lang.foreign.Linker.nativeLinker().upcallStub(
+				handler.bindTo(function),
+				descriptor,
+				allocator.arena
+			).let(::NativeAddress)
+				.let(::CallbackHolder)
+		}
+		private val descriptor: java.lang.foreign.FunctionDescriptor = java.lang.foreign.FunctionDescriptor.ofVoid(
+			ffi.C_INT,
+			ffi.C_POINTER,
+			ffi.C_POINTER,
+		)
+		private val handler: java.lang.invoke.MethodHandle = ffi.upcallHandle(
+			Function::class.java,
+			"apply",
+			descriptor
+		)
+	}
+}
+
+actual interface WGPUOnSubmittedWorkDoneCallback : Callback {
+	actual fun invoke(status: WGPUQueueWorkDoneStatus)
+	interface Function {
+		fun apply(status: Int)
+	}
+	actual companion object {
+		actual fun allocate(allocator: MemoryAllocator, callback: WGPUOnSubmittedWorkDoneCallback): CallbackHolder<WGPUOnSubmittedWorkDoneCallback> {
+			val function = object : Function {
+				override fun apply(status: Int) {
+					callback.invoke(status.toUInt())
+				}
+			}
+			return java.lang.foreign.Linker.nativeLinker().upcallStub(
+				handler.bindTo(function),
+				descriptor,
+				allocator.arena
+			).let(::NativeAddress)
+				.let(::CallbackHolder)
+		}
+		private val descriptor: java.lang.foreign.FunctionDescriptor = java.lang.foreign.FunctionDescriptor.ofVoid(
+			ffi.C_INT,
+		)
+		private val handler: java.lang.invoke.MethodHandle = ffi.upcallHandle(
+			Function::class.java,
+			"apply",
+			descriptor
+		)
+	}
+}
+
+actual interface WGPUGetCompilationInfoCallback : Callback {
+	actual fun invoke(status: WGPUCompilationInfoRequestStatus, compilationInfo: WGPUCompilationInfo?)
+	interface Function {
+		fun apply(status: Int, compilationInfo: java.lang.foreign.MemorySegment)
+	}
+	actual companion object {
+		actual fun allocate(allocator: MemoryAllocator, callback: WGPUGetCompilationInfoCallback): CallbackHolder<WGPUGetCompilationInfoCallback> {
+			val function = object : Function {
+				override fun apply(status: Int, compilationInfo: java.lang.foreign.MemorySegment) {
+					callback.invoke(status.toUInt(), compilationInfo.takeIf { it != java.lang.foreign.MemorySegment.NULL }?.let { java.lang.foreign.MemorySegment.ofAddress(it.address()).reinterpret(it.byteSize()) }?.let(::NativeAddress)?.let { WGPUCompilationInfo(it) })
+				}
+			}
+			return java.lang.foreign.Linker.nativeLinker().upcallStub(
+				handler.bindTo(function),
+				descriptor,
+				allocator.arena
+			).let(::NativeAddress)
+				.let(::CallbackHolder)
+		}
+		private val descriptor: java.lang.foreign.FunctionDescriptor = java.lang.foreign.FunctionDescriptor.ofVoid(
+			ffi.C_INT,
+			ffi.C_POINTER,
+		)
+		private val handler: java.lang.invoke.MethodHandle = ffi.upcallHandle(
+			Function::class.java,
+			"apply",
+			descriptor
+		)
+	}
+}
+
