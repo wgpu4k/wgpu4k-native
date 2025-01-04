@@ -10,10 +10,10 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.reinterpret
 import io.ygdrasil.wgpu.WGPUInstance
-import io.ygdrasil.wgpu.WGPUSType_SurfaceSourceXlibWindow
+import io.ygdrasil.wgpu.WGPUSType_SurfaceDescriptorFromXlibWindow
 import io.ygdrasil.wgpu.WGPUSurface
 import io.ygdrasil.wgpu.WGPUSurfaceDescriptor
-import io.ygdrasil.wgpu.WGPUSurfaceSourceXlibWindow
+import io.ygdrasil.wgpu.WGPUSurfaceDescriptorFromXlibWindow
 import io.ygdrasil.wgpu.wgpuInstanceCreateSurface
 
 actual fun getSurface(instance: WGPUInstance, window: CPointer<GLFWwindow>): WGPUSurface {
@@ -27,8 +27,8 @@ actual fun getSurface(instance: WGPUInstance, window: CPointer<GLFWwindow>): WGP
 fun getSurfaceFromX11Window(instance: WGPUInstance, display: COpaquePointer, window: ULong): WGPUSurface? = memoryScope { scope ->
 
     val surfaceDescriptor = WGPUSurfaceDescriptor.allocate(scope).apply {
-        nextInChain = WGPUSurfaceSourceXlibWindow.allocate(scope).apply {
-            chain.sType = WGPUSType_SurfaceSourceXlibWindow
+        nextInChain = WGPUSurfaceDescriptorFromXlibWindow.allocate(scope).apply {
+            chain.sType = WGPUSType_SurfaceDescriptorFromXlibWindow
             this.display = display.let(::NativeAddress)
             this.window = window
         }.handler
