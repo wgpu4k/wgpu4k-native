@@ -15,13 +15,13 @@ expect fun wgpuAdapterGetLimits(handler: WGPUAdapter?, limits: WGPUSupportedLimi
 expect fun wgpuAdapterHasFeature(handler: WGPUAdapter?, feature: WGPUFeatureName): Boolean
 expect fun wgpuAdapterEnumerateFeatures(handler: WGPUAdapter?, features: NativeAddress?): ULong
 expect fun wgpuAdapterGetInfo(handler: WGPUAdapter?, info: WGPUAdapterInfo?): Unit
-expect fun wgpuAdapterRequestDevice(handler: WGPUAdapter?, descriptor: WGPUDeviceDescriptor?, callback: CallbackHolder<WGPURequestDeviceCallback>?, userdata: NativeAddress?): Unit
+expect fun wgpuAdapterRequestDevice(handler: WGPUAdapter?, descriptor: WGPUDeviceDescriptor?, callback: CallbackHolder<WGPUAdapterRequestDeviceCallback>?, userdata: NativeAddress?): Unit
 expect fun wgpuBindGroupRelease(handler: WGPUBindGroup?): Unit
 expect fun wgpuBindGroupSetLabel(handler: WGPUBindGroup?, label: CString?): Unit
 expect fun wgpuBindGroupLayoutRelease(handler: WGPUBindGroupLayout?): Unit
 expect fun wgpuBindGroupLayoutSetLabel(handler: WGPUBindGroupLayout?, label: CString?): Unit
 expect fun wgpuBufferRelease(handler: WGPUBuffer?): Unit
-expect fun wgpuBufferMapAsync(handler: WGPUBuffer?, mode: UInt, offset: ULong, size: ULong, callback: CallbackHolder<WGPUMapAsyncCallback>?, userdata: NativeAddress?): Unit
+expect fun wgpuBufferMapAsync(handler: WGPUBuffer?, mode: UInt, offset: ULong, size: ULong, callback: CallbackHolder<WGPUBufferMapAsyncCallback>?, userdata: NativeAddress?): Unit
 expect fun wgpuBufferGetMappedRange(handler: WGPUBuffer?, offset: ULong, size: ULong): NativeAddress?
 expect fun wgpuBufferGetConstMappedRange(handler: WGPUBuffer?, offset: ULong, size: ULong): NativeAddress?
 expect fun wgpuBufferSetLabel(handler: WGPUBuffer?, label: CString?): Unit
@@ -66,10 +66,10 @@ expect fun wgpuDeviceCreateBindGroupLayout(handler: WGPUDevice?, descriptor: WGP
 expect fun wgpuDeviceCreateBuffer(handler: WGPUDevice?, descriptor: WGPUBufferDescriptor?): WGPUBuffer?
 expect fun wgpuDeviceCreateCommandEncoder(handler: WGPUDevice?, descriptor: WGPUCommandEncoderDescriptor?): WGPUCommandEncoder?
 expect fun wgpuDeviceCreateComputePipeline(handler: WGPUDevice?, descriptor: WGPUComputePipelineDescriptor?): WGPUComputePipeline?
-expect fun wgpuDeviceCreateComputePipelineAsync(handler: WGPUDevice?, descriptor: WGPUComputePipelineDescriptor?, callback: CallbackHolder<WGPUCreateComputePipelineAsyncCallback>?, userdata: NativeAddress?): Unit
+expect fun wgpuDeviceCreateComputePipelineAsync(handler: WGPUDevice?, descriptor: WGPUComputePipelineDescriptor?, callback: CallbackHolder<WGPUDeviceCreateComputePipelineAsyncCallback>?, userdata: NativeAddress?): Unit
 expect fun wgpuDeviceCreatePipelineLayout(handler: WGPUDevice?, descriptor: WGPUPipelineLayoutDescriptor?): WGPUPipelineLayout?
 expect fun wgpuDeviceCreateQuerySet(handler: WGPUDevice?, descriptor: WGPUQuerySetDescriptor?): WGPUQuerySet?
-expect fun wgpuDeviceCreateRenderPipelineAsync(handler: WGPUDevice?, descriptor: WGPURenderPipelineDescriptor?, callback: CallbackHolder<WGPUCreateRenderPipelineAsyncCallback>?, userdata: NativeAddress?): Unit
+expect fun wgpuDeviceCreateRenderPipelineAsync(handler: WGPUDevice?, descriptor: WGPURenderPipelineDescriptor?, callback: CallbackHolder<WGPUDeviceCreateRenderPipelineAsyncCallback>?, userdata: NativeAddress?): Unit
 expect fun wgpuDeviceCreateRenderBundleEncoder(handler: WGPUDevice?, descriptor: WGPURenderBundleEncoderDescriptor?): WGPURenderBundleEncoder?
 expect fun wgpuDeviceCreateRenderPipeline(handler: WGPUDevice?, descriptor: WGPURenderPipelineDescriptor?): WGPURenderPipeline?
 expect fun wgpuDeviceCreateSampler(handler: WGPUDevice?, descriptor: WGPUSamplerDescriptor?): WGPUSampler?
@@ -87,7 +87,7 @@ expect fun wgpuInstanceRelease(handler: WGPUInstance?): Unit
 expect fun wgpuInstanceCreateSurface(handler: WGPUInstance?, descriptor: WGPUSurfaceDescriptor?): WGPUSurface?
 expect fun wgpuInstanceHasWGSLLanguageFeature(handler: WGPUInstance?, feature: WGPUWGSLFeatureName): Boolean
 expect fun wgpuInstanceProcessEvents(handler: WGPUInstance?): Unit
-expect fun wgpuInstanceRequestAdapter(handler: WGPUInstance?, options: WGPURequestAdapterOptions?, callback: CallbackHolder<WGPURequestAdapterCallback>?, userdata: NativeAddress?): Unit
+expect fun wgpuInstanceRequestAdapter(handler: WGPUInstance?, options: WGPURequestAdapterOptions?, callback: CallbackHolder<WGPUInstanceRequestAdapterCallback>?, userdata: NativeAddress?): Unit
 expect fun wgpuPipelineLayoutRelease(handler: WGPUPipelineLayout?): Unit
 expect fun wgpuPipelineLayoutSetLabel(handler: WGPUPipelineLayout?, label: CString?): Unit
 expect fun wgpuQuerySetRelease(handler: WGPUQuerySet?): Unit
@@ -97,7 +97,7 @@ expect fun wgpuQuerySetGetCount(handler: WGPUQuerySet?): UInt
 expect fun wgpuQuerySetDestroy(handler: WGPUQuerySet?): Unit
 expect fun wgpuQueueRelease(handler: WGPUQueue?): Unit
 expect fun wgpuQueueSubmit(handler: WGPUQueue?, commandCount: ULong, commands: ArrayHolder<WGPUCommandBuffer>?): Unit
-expect fun wgpuQueueOnSubmittedWorkDone(handler: WGPUQueue?, callback: CallbackHolder<WGPUOnSubmittedWorkDoneCallback>?, userdata: NativeAddress?): Unit
+expect fun wgpuQueueOnSubmittedWorkDone(handler: WGPUQueue?, callback: CallbackHolder<WGPUQueueOnSubmittedWorkDoneCallback>?, userdata: NativeAddress?): Unit
 expect fun wgpuQueueWriteBuffer(handler: WGPUQueue?, buffer: WGPUBuffer?, bufferOffset: ULong, data: NativeAddress?, size: ULong): Unit
 expect fun wgpuQueueWriteTexture(handler: WGPUQueue?, destination: WGPUImageCopyTexture?, data: NativeAddress?, dataSize: ULong, dataLayout: WGPUTextureDataLayout?, writeSize: WGPUExtent3D?): Unit
 expect fun wgpuQueueSetLabel(handler: WGPUQueue?, label: CString?): Unit
@@ -144,7 +144,7 @@ expect fun wgpuRenderPipelineSetLabel(handler: WGPURenderPipeline?, label: CStri
 expect fun wgpuSamplerRelease(handler: WGPUSampler?): Unit
 expect fun wgpuSamplerSetLabel(handler: WGPUSampler?, label: CString?): Unit
 expect fun wgpuShaderModuleRelease(handler: WGPUShaderModule?): Unit
-expect fun wgpuShaderModuleGetCompilationInfo(handler: WGPUShaderModule?, callback: CallbackHolder<WGPUGetCompilationInfoCallback>?, userdata: NativeAddress?): Unit
+expect fun wgpuShaderModuleGetCompilationInfo(handler: WGPUShaderModule?, callback: CallbackHolder<WGPUShaderModuleGetCompilationInfoCallback>?, userdata: NativeAddress?): Unit
 expect fun wgpuShaderModuleSetLabel(handler: WGPUShaderModule?, label: CString?): Unit
 expect fun wgpuSurfaceRelease(handler: WGPUSurface?): Unit
 expect fun wgpuSurfaceConfigure(handler: WGPUSurface?, config: WGPUSurfaceConfiguration?): Unit

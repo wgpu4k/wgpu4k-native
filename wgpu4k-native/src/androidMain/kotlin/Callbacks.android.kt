@@ -58,13 +58,13 @@ actual fun interface WGPULogCallback : Callback {
 	}
 }
 
-actual fun interface WGPURequestDeviceCallback : Callback {
+actual fun interface WGPUAdapterRequestDeviceCallback : Callback {
 	actual fun invoke(status: WGPURequestDeviceStatus, device: WGPUDevice?, message: CString?, userdata: NativeAddress?)
 	interface Function : com.sun.jna.Callback {
 		fun apply(status: Int, device: com.sun.jna.Pointer?, message: com.sun.jna.Pointer?, userdata: com.sun.jna.Pointer?)
 	}
 	actual companion object {
-		actual fun allocate(allocator: MemoryAllocator, callback: WGPURequestDeviceCallback): CallbackHolder<WGPURequestDeviceCallback> {
+		actual fun allocate(allocator: MemoryAllocator, callback: WGPUAdapterRequestDeviceCallback): CallbackHolder<WGPUAdapterRequestDeviceCallback> {
 			val callbackFunction = object : Function {
 				override fun apply(status: Int, device: com.sun.jna.Pointer?, message: com.sun.jna.Pointer?, userdata: com.sun.jna.Pointer?) {
 					callback.invoke(status.toUInt(), device?.let { WGPUDevice(it) }, message?.let { CString(it) }, userdata ?: com.sun.jna.Pointer(0))
@@ -75,13 +75,13 @@ actual fun interface WGPURequestDeviceCallback : Callback {
 	}
 }
 
-actual fun interface WGPUMapAsyncCallback : Callback {
+actual fun interface WGPUBufferMapAsyncCallback : Callback {
 	actual fun invoke(status: WGPUBufferMapAsyncStatus, userdata: NativeAddress?)
 	interface Function : com.sun.jna.Callback {
 		fun apply(status: Int, userdata: com.sun.jna.Pointer?)
 	}
 	actual companion object {
-		actual fun allocate(allocator: MemoryAllocator, callback: WGPUMapAsyncCallback): CallbackHolder<WGPUMapAsyncCallback> {
+		actual fun allocate(allocator: MemoryAllocator, callback: WGPUBufferMapAsyncCallback): CallbackHolder<WGPUBufferMapAsyncCallback> {
 			val callbackFunction = object : Function {
 				override fun apply(status: Int, userdata: com.sun.jna.Pointer?) {
 					callback.invoke(status.toUInt(), userdata ?: com.sun.jna.Pointer(0))
@@ -92,13 +92,13 @@ actual fun interface WGPUMapAsyncCallback : Callback {
 	}
 }
 
-actual fun interface WGPUCreateComputePipelineAsyncCallback : Callback {
+actual fun interface WGPUDeviceCreateComputePipelineAsyncCallback : Callback {
 	actual fun invoke(status: WGPUCreatePipelineAsyncStatus, pipeline: WGPUComputePipeline?, message: CString?, userdata: NativeAddress?)
 	interface Function : com.sun.jna.Callback {
 		fun apply(status: Int, pipeline: com.sun.jna.Pointer?, message: com.sun.jna.Pointer?, userdata: com.sun.jna.Pointer?)
 	}
 	actual companion object {
-		actual fun allocate(allocator: MemoryAllocator, callback: WGPUCreateComputePipelineAsyncCallback): CallbackHolder<WGPUCreateComputePipelineAsyncCallback> {
+		actual fun allocate(allocator: MemoryAllocator, callback: WGPUDeviceCreateComputePipelineAsyncCallback): CallbackHolder<WGPUDeviceCreateComputePipelineAsyncCallback> {
 			val callbackFunction = object : Function {
 				override fun apply(status: Int, pipeline: com.sun.jna.Pointer?, message: com.sun.jna.Pointer?, userdata: com.sun.jna.Pointer?) {
 					callback.invoke(status.toUInt(), pipeline?.let { WGPUComputePipeline(it) }, message?.let { CString(it) }, userdata ?: com.sun.jna.Pointer(0))
@@ -109,13 +109,13 @@ actual fun interface WGPUCreateComputePipelineAsyncCallback : Callback {
 	}
 }
 
-actual fun interface WGPUCreateRenderPipelineAsyncCallback : Callback {
+actual fun interface WGPUDeviceCreateRenderPipelineAsyncCallback : Callback {
 	actual fun invoke(status: WGPUCreatePipelineAsyncStatus, pipeline: WGPURenderPipeline?, message: CString?, userdata: NativeAddress?)
 	interface Function : com.sun.jna.Callback {
 		fun apply(status: Int, pipeline: com.sun.jna.Pointer?, message: com.sun.jna.Pointer?, userdata: com.sun.jna.Pointer?)
 	}
 	actual companion object {
-		actual fun allocate(allocator: MemoryAllocator, callback: WGPUCreateRenderPipelineAsyncCallback): CallbackHolder<WGPUCreateRenderPipelineAsyncCallback> {
+		actual fun allocate(allocator: MemoryAllocator, callback: WGPUDeviceCreateRenderPipelineAsyncCallback): CallbackHolder<WGPUDeviceCreateRenderPipelineAsyncCallback> {
 			val callbackFunction = object : Function {
 				override fun apply(status: Int, pipeline: com.sun.jna.Pointer?, message: com.sun.jna.Pointer?, userdata: com.sun.jna.Pointer?) {
 					callback.invoke(status.toUInt(), pipeline?.let { WGPURenderPipeline(it) }, message?.let { CString(it) }, userdata ?: com.sun.jna.Pointer(0))
@@ -126,13 +126,13 @@ actual fun interface WGPUCreateRenderPipelineAsyncCallback : Callback {
 	}
 }
 
-actual fun interface WGPURequestAdapterCallback : Callback {
+actual fun interface WGPUInstanceRequestAdapterCallback : Callback {
 	actual fun invoke(status: WGPURequestAdapterStatus, adapter: WGPUAdapter?, message: CString?, userdata: NativeAddress?)
 	interface Function : com.sun.jna.Callback {
 		fun apply(status: Int, adapter: com.sun.jna.Pointer?, message: com.sun.jna.Pointer?, userdata: com.sun.jna.Pointer?)
 	}
 	actual companion object {
-		actual fun allocate(allocator: MemoryAllocator, callback: WGPURequestAdapterCallback): CallbackHolder<WGPURequestAdapterCallback> {
+		actual fun allocate(allocator: MemoryAllocator, callback: WGPUInstanceRequestAdapterCallback): CallbackHolder<WGPUInstanceRequestAdapterCallback> {
 			val callbackFunction = object : Function {
 				override fun apply(status: Int, adapter: com.sun.jna.Pointer?, message: com.sun.jna.Pointer?, userdata: com.sun.jna.Pointer?) {
 					callback.invoke(status.toUInt(), adapter?.let { WGPUAdapter(it) }, message?.let { CString(it) }, userdata ?: com.sun.jna.Pointer(0))
@@ -143,13 +143,13 @@ actual fun interface WGPURequestAdapterCallback : Callback {
 	}
 }
 
-actual fun interface WGPUOnSubmittedWorkDoneCallback : Callback {
+actual fun interface WGPUQueueOnSubmittedWorkDoneCallback : Callback {
 	actual fun invoke(status: WGPUQueueWorkDoneStatus, userdata: NativeAddress?)
 	interface Function : com.sun.jna.Callback {
 		fun apply(status: Int, userdata: com.sun.jna.Pointer?)
 	}
 	actual companion object {
-		actual fun allocate(allocator: MemoryAllocator, callback: WGPUOnSubmittedWorkDoneCallback): CallbackHolder<WGPUOnSubmittedWorkDoneCallback> {
+		actual fun allocate(allocator: MemoryAllocator, callback: WGPUQueueOnSubmittedWorkDoneCallback): CallbackHolder<WGPUQueueOnSubmittedWorkDoneCallback> {
 			val callbackFunction = object : Function {
 				override fun apply(status: Int, userdata: com.sun.jna.Pointer?) {
 					callback.invoke(status.toUInt(), userdata ?: com.sun.jna.Pointer(0))
@@ -160,13 +160,13 @@ actual fun interface WGPUOnSubmittedWorkDoneCallback : Callback {
 	}
 }
 
-actual fun interface WGPUGetCompilationInfoCallback : Callback {
+actual fun interface WGPUShaderModuleGetCompilationInfoCallback : Callback {
 	actual fun invoke(status: WGPUCompilationInfoRequestStatus, compilationInfo: WGPUCompilationInfo?, userdata: NativeAddress?)
 	interface Function : com.sun.jna.Callback {
 		fun apply(status: Int, compilationInfo: com.sun.jna.Pointer?, userdata: com.sun.jna.Pointer?)
 	}
 	actual companion object {
-		actual fun allocate(allocator: MemoryAllocator, callback: WGPUGetCompilationInfoCallback): CallbackHolder<WGPUGetCompilationInfoCallback> {
+		actual fun allocate(allocator: MemoryAllocator, callback: WGPUShaderModuleGetCompilationInfoCallback): CallbackHolder<WGPUShaderModuleGetCompilationInfoCallback> {
 			val callbackFunction = object : Function {
 				override fun apply(status: Int, compilationInfo: com.sun.jna.Pointer?, userdata: com.sun.jna.Pointer?) {
 					callback.invoke(status.toUInt(), compilationInfo?.let { WGPUCompilationInfo(it) }, userdata ?: com.sun.jna.Pointer(0))

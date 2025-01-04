@@ -26,7 +26,7 @@ internal fun YamlModel.convertToCLibraryFunctions(): List<NativeModel.Function> 
             NativeModel.Function(
                 name,
                 it.returns.let { it?.type }.toCType(it.returns?.pointer != null, it.returns?.pointer == "mutable"),
-                convertToCFunctionArgs(args, it.callback) + it.returns_async.injectCallbackVariable(it.name)
+                convertToCFunctionArgs(args, it.callback) + it.returns_async.injectCallbackVariable("${reference.name}_${it.name}")
             )
         }
 }

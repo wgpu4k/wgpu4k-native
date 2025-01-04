@@ -68,14 +68,14 @@ actual fun interface WGPULogCallback : Callback {
 	}
 }
 
-actual fun interface WGPURequestDeviceCallback : Callback {
+actual fun interface WGPUAdapterRequestDeviceCallback : Callback {
 	actual fun invoke(status: WGPURequestDeviceStatus, device: WGPUDevice?, message: CString?, userdata: NativeAddress?)
 	actual companion object {
-		actual fun allocate(allocator: MemoryAllocator, callback: WGPURequestDeviceCallback): CallbackHolder<WGPURequestDeviceCallback> {
+		actual fun allocate(allocator: MemoryAllocator, callback: WGPUAdapterRequestDeviceCallback): CallbackHolder<WGPUAdapterRequestDeviceCallback> {
 			val actualCallback = kotlinx.cinterop.staticCFunction { status: UInt, device: COpaquePointer?, message: COpaquePointer?, userdata: COpaquePointer? ->
 				val address = userdata?.reinterpret<LongVar>()?.pointed?.value?.let(::NativeAddress) ?: error("Missing callback address on last argument")
-				val callback = findCallback<WGPURequestDeviceCallback>(address.reinterpret<COpaque>())
-					?: error("Callback not found with address $address and type WGPURequestDeviceCallback")
+				val callback = findCallback<WGPUAdapterRequestDeviceCallback>(address.reinterpret<COpaque>())
+					?: error("Callback not found with address $address and type WGPUAdapterRequestDeviceCallback")
 				callback.invoke(status, device?.let(::NativeAddress)?.let(::WGPUDevice), message?.let(::NativeAddress)?.let(::CString), userdata?.let(::NativeAddress))
 			}
 			registerCallback(actualCallback, callback)
@@ -84,14 +84,14 @@ actual fun interface WGPURequestDeviceCallback : Callback {
 	}
 }
 
-actual fun interface WGPUMapAsyncCallback : Callback {
+actual fun interface WGPUBufferMapAsyncCallback : Callback {
 	actual fun invoke(status: WGPUBufferMapAsyncStatus, userdata: NativeAddress?)
 	actual companion object {
-		actual fun allocate(allocator: MemoryAllocator, callback: WGPUMapAsyncCallback): CallbackHolder<WGPUMapAsyncCallback> {
+		actual fun allocate(allocator: MemoryAllocator, callback: WGPUBufferMapAsyncCallback): CallbackHolder<WGPUBufferMapAsyncCallback> {
 			val actualCallback = kotlinx.cinterop.staticCFunction { status: UInt, userdata: COpaquePointer? ->
 				val address = userdata?.reinterpret<LongVar>()?.pointed?.value?.let(::NativeAddress) ?: error("Missing callback address on last argument")
-				val callback = findCallback<WGPUMapAsyncCallback>(address.reinterpret<COpaque>())
-					?: error("Callback not found with address $address and type WGPUMapAsyncCallback")
+				val callback = findCallback<WGPUBufferMapAsyncCallback>(address.reinterpret<COpaque>())
+					?: error("Callback not found with address $address and type WGPUBufferMapAsyncCallback")
 				callback.invoke(status, userdata?.let(::NativeAddress))
 			}
 			registerCallback(actualCallback, callback)
@@ -100,14 +100,14 @@ actual fun interface WGPUMapAsyncCallback : Callback {
 	}
 }
 
-actual fun interface WGPUCreateComputePipelineAsyncCallback : Callback {
+actual fun interface WGPUDeviceCreateComputePipelineAsyncCallback : Callback {
 	actual fun invoke(status: WGPUCreatePipelineAsyncStatus, pipeline: WGPUComputePipeline?, message: CString?, userdata: NativeAddress?)
 	actual companion object {
-		actual fun allocate(allocator: MemoryAllocator, callback: WGPUCreateComputePipelineAsyncCallback): CallbackHolder<WGPUCreateComputePipelineAsyncCallback> {
+		actual fun allocate(allocator: MemoryAllocator, callback: WGPUDeviceCreateComputePipelineAsyncCallback): CallbackHolder<WGPUDeviceCreateComputePipelineAsyncCallback> {
 			val actualCallback = kotlinx.cinterop.staticCFunction { status: UInt, pipeline: COpaquePointer?, message: COpaquePointer?, userdata: COpaquePointer? ->
 				val address = userdata?.reinterpret<LongVar>()?.pointed?.value?.let(::NativeAddress) ?: error("Missing callback address on last argument")
-				val callback = findCallback<WGPUCreateComputePipelineAsyncCallback>(address.reinterpret<COpaque>())
-					?: error("Callback not found with address $address and type WGPUCreateComputePipelineAsyncCallback")
+				val callback = findCallback<WGPUDeviceCreateComputePipelineAsyncCallback>(address.reinterpret<COpaque>())
+					?: error("Callback not found with address $address and type WGPUDeviceCreateComputePipelineAsyncCallback")
 				callback.invoke(status, pipeline?.let(::NativeAddress)?.let(::WGPUComputePipeline), message?.let(::NativeAddress)?.let(::CString), userdata?.let(::NativeAddress))
 			}
 			registerCallback(actualCallback, callback)
@@ -116,14 +116,14 @@ actual fun interface WGPUCreateComputePipelineAsyncCallback : Callback {
 	}
 }
 
-actual fun interface WGPUCreateRenderPipelineAsyncCallback : Callback {
+actual fun interface WGPUDeviceCreateRenderPipelineAsyncCallback : Callback {
 	actual fun invoke(status: WGPUCreatePipelineAsyncStatus, pipeline: WGPURenderPipeline?, message: CString?, userdata: NativeAddress?)
 	actual companion object {
-		actual fun allocate(allocator: MemoryAllocator, callback: WGPUCreateRenderPipelineAsyncCallback): CallbackHolder<WGPUCreateRenderPipelineAsyncCallback> {
+		actual fun allocate(allocator: MemoryAllocator, callback: WGPUDeviceCreateRenderPipelineAsyncCallback): CallbackHolder<WGPUDeviceCreateRenderPipelineAsyncCallback> {
 			val actualCallback = kotlinx.cinterop.staticCFunction { status: UInt, pipeline: COpaquePointer?, message: COpaquePointer?, userdata: COpaquePointer? ->
 				val address = userdata?.reinterpret<LongVar>()?.pointed?.value?.let(::NativeAddress) ?: error("Missing callback address on last argument")
-				val callback = findCallback<WGPUCreateRenderPipelineAsyncCallback>(address.reinterpret<COpaque>())
-					?: error("Callback not found with address $address and type WGPUCreateRenderPipelineAsyncCallback")
+				val callback = findCallback<WGPUDeviceCreateRenderPipelineAsyncCallback>(address.reinterpret<COpaque>())
+					?: error("Callback not found with address $address and type WGPUDeviceCreateRenderPipelineAsyncCallback")
 				callback.invoke(status, pipeline?.let(::NativeAddress)?.let(::WGPURenderPipeline), message?.let(::NativeAddress)?.let(::CString), userdata?.let(::NativeAddress))
 			}
 			registerCallback(actualCallback, callback)
@@ -132,14 +132,14 @@ actual fun interface WGPUCreateRenderPipelineAsyncCallback : Callback {
 	}
 }
 
-actual fun interface WGPURequestAdapterCallback : Callback {
+actual fun interface WGPUInstanceRequestAdapterCallback : Callback {
 	actual fun invoke(status: WGPURequestAdapterStatus, adapter: WGPUAdapter?, message: CString?, userdata: NativeAddress?)
 	actual companion object {
-		actual fun allocate(allocator: MemoryAllocator, callback: WGPURequestAdapterCallback): CallbackHolder<WGPURequestAdapterCallback> {
+		actual fun allocate(allocator: MemoryAllocator, callback: WGPUInstanceRequestAdapterCallback): CallbackHolder<WGPUInstanceRequestAdapterCallback> {
 			val actualCallback = kotlinx.cinterop.staticCFunction { status: UInt, adapter: COpaquePointer?, message: COpaquePointer?, userdata: COpaquePointer? ->
 				val address = userdata?.reinterpret<LongVar>()?.pointed?.value?.let(::NativeAddress) ?: error("Missing callback address on last argument")
-				val callback = findCallback<WGPURequestAdapterCallback>(address.reinterpret<COpaque>())
-					?: error("Callback not found with address $address and type WGPURequestAdapterCallback")
+				val callback = findCallback<WGPUInstanceRequestAdapterCallback>(address.reinterpret<COpaque>())
+					?: error("Callback not found with address $address and type WGPUInstanceRequestAdapterCallback")
 				callback.invoke(status, adapter?.let(::NativeAddress)?.let(::WGPUAdapter), message?.let(::NativeAddress)?.let(::CString), userdata?.let(::NativeAddress))
 			}
 			registerCallback(actualCallback, callback)
@@ -148,14 +148,14 @@ actual fun interface WGPURequestAdapterCallback : Callback {
 	}
 }
 
-actual fun interface WGPUOnSubmittedWorkDoneCallback : Callback {
+actual fun interface WGPUQueueOnSubmittedWorkDoneCallback : Callback {
 	actual fun invoke(status: WGPUQueueWorkDoneStatus, userdata: NativeAddress?)
 	actual companion object {
-		actual fun allocate(allocator: MemoryAllocator, callback: WGPUOnSubmittedWorkDoneCallback): CallbackHolder<WGPUOnSubmittedWorkDoneCallback> {
+		actual fun allocate(allocator: MemoryAllocator, callback: WGPUQueueOnSubmittedWorkDoneCallback): CallbackHolder<WGPUQueueOnSubmittedWorkDoneCallback> {
 			val actualCallback = kotlinx.cinterop.staticCFunction { status: UInt, userdata: COpaquePointer? ->
 				val address = userdata?.reinterpret<LongVar>()?.pointed?.value?.let(::NativeAddress) ?: error("Missing callback address on last argument")
-				val callback = findCallback<WGPUOnSubmittedWorkDoneCallback>(address.reinterpret<COpaque>())
-					?: error("Callback not found with address $address and type WGPUOnSubmittedWorkDoneCallback")
+				val callback = findCallback<WGPUQueueOnSubmittedWorkDoneCallback>(address.reinterpret<COpaque>())
+					?: error("Callback not found with address $address and type WGPUQueueOnSubmittedWorkDoneCallback")
 				callback.invoke(status, userdata?.let(::NativeAddress))
 			}
 			registerCallback(actualCallback, callback)
@@ -164,14 +164,14 @@ actual fun interface WGPUOnSubmittedWorkDoneCallback : Callback {
 	}
 }
 
-actual fun interface WGPUGetCompilationInfoCallback : Callback {
+actual fun interface WGPUShaderModuleGetCompilationInfoCallback : Callback {
 	actual fun invoke(status: WGPUCompilationInfoRequestStatus, compilationInfo: WGPUCompilationInfo?, userdata: NativeAddress?)
 	actual companion object {
-		actual fun allocate(allocator: MemoryAllocator, callback: WGPUGetCompilationInfoCallback): CallbackHolder<WGPUGetCompilationInfoCallback> {
+		actual fun allocate(allocator: MemoryAllocator, callback: WGPUShaderModuleGetCompilationInfoCallback): CallbackHolder<WGPUShaderModuleGetCompilationInfoCallback> {
 			val actualCallback = kotlinx.cinterop.staticCFunction { status: UInt, compilationInfo: COpaquePointer?, userdata: COpaquePointer? ->
 				val address = userdata?.reinterpret<LongVar>()?.pointed?.value?.let(::NativeAddress) ?: error("Missing callback address on last argument")
-				val callback = findCallback<WGPUGetCompilationInfoCallback>(address.reinterpret<COpaque>())
-					?: error("Callback not found with address $address and type WGPUGetCompilationInfoCallback")
+				val callback = findCallback<WGPUShaderModuleGetCompilationInfoCallback>(address.reinterpret<COpaque>())
+					?: error("Callback not found with address $address and type WGPUShaderModuleGetCompilationInfoCallback")
 				callback.invoke(status, compilationInfo?.let(::NativeAddress)?.let { WGPUCompilationInfo(it) }, userdata?.let(::NativeAddress))
 			}
 			registerCallback(actualCallback, callback)

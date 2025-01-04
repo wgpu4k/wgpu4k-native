@@ -28,52 +28,52 @@ expect fun interface WGPULogCallback : Callback {
 	}
 }
 
-expect fun interface WGPURequestDeviceCallback : Callback {
+expect fun interface WGPUAdapterRequestDeviceCallback : Callback {
 	fun invoke(status: WGPURequestDeviceStatus, device: WGPUDevice?, message: CString?, userdata: NativeAddress?)
 	companion object {
-		fun allocate(allocator: MemoryAllocator, callback: WGPURequestDeviceCallback): CallbackHolder<WGPURequestDeviceCallback>
+		fun allocate(allocator: MemoryAllocator, callback: WGPUAdapterRequestDeviceCallback): CallbackHolder<WGPUAdapterRequestDeviceCallback>
 	}
 }
 
-expect fun interface WGPUMapAsyncCallback : Callback {
+expect fun interface WGPUBufferMapAsyncCallback : Callback {
 	fun invoke(status: WGPUBufferMapAsyncStatus, userdata: NativeAddress?)
 	companion object {
-		fun allocate(allocator: MemoryAllocator, callback: WGPUMapAsyncCallback): CallbackHolder<WGPUMapAsyncCallback>
+		fun allocate(allocator: MemoryAllocator, callback: WGPUBufferMapAsyncCallback): CallbackHolder<WGPUBufferMapAsyncCallback>
 	}
 }
 
-expect fun interface WGPUCreateComputePipelineAsyncCallback : Callback {
+expect fun interface WGPUDeviceCreateComputePipelineAsyncCallback : Callback {
 	fun invoke(status: WGPUCreatePipelineAsyncStatus, pipeline: WGPUComputePipeline?, message: CString?, userdata: NativeAddress?)
 	companion object {
-		fun allocate(allocator: MemoryAllocator, callback: WGPUCreateComputePipelineAsyncCallback): CallbackHolder<WGPUCreateComputePipelineAsyncCallback>
+		fun allocate(allocator: MemoryAllocator, callback: WGPUDeviceCreateComputePipelineAsyncCallback): CallbackHolder<WGPUDeviceCreateComputePipelineAsyncCallback>
 	}
 }
 
-expect fun interface WGPUCreateRenderPipelineAsyncCallback : Callback {
+expect fun interface WGPUDeviceCreateRenderPipelineAsyncCallback : Callback {
 	fun invoke(status: WGPUCreatePipelineAsyncStatus, pipeline: WGPURenderPipeline?, message: CString?, userdata: NativeAddress?)
 	companion object {
-		fun allocate(allocator: MemoryAllocator, callback: WGPUCreateRenderPipelineAsyncCallback): CallbackHolder<WGPUCreateRenderPipelineAsyncCallback>
+		fun allocate(allocator: MemoryAllocator, callback: WGPUDeviceCreateRenderPipelineAsyncCallback): CallbackHolder<WGPUDeviceCreateRenderPipelineAsyncCallback>
 	}
 }
 
-expect fun interface WGPURequestAdapterCallback : Callback {
+expect fun interface WGPUInstanceRequestAdapterCallback : Callback {
 	fun invoke(status: WGPURequestAdapterStatus, adapter: WGPUAdapter?, message: CString?, userdata: NativeAddress?)
 	companion object {
-		fun allocate(allocator: MemoryAllocator, callback: WGPURequestAdapterCallback): CallbackHolder<WGPURequestAdapterCallback>
+		fun allocate(allocator: MemoryAllocator, callback: WGPUInstanceRequestAdapterCallback): CallbackHolder<WGPUInstanceRequestAdapterCallback>
 	}
 }
 
-expect fun interface WGPUOnSubmittedWorkDoneCallback : Callback {
+expect fun interface WGPUQueueOnSubmittedWorkDoneCallback : Callback {
 	fun invoke(status: WGPUQueueWorkDoneStatus, userdata: NativeAddress?)
 	companion object {
-		fun allocate(allocator: MemoryAllocator, callback: WGPUOnSubmittedWorkDoneCallback): CallbackHolder<WGPUOnSubmittedWorkDoneCallback>
+		fun allocate(allocator: MemoryAllocator, callback: WGPUQueueOnSubmittedWorkDoneCallback): CallbackHolder<WGPUQueueOnSubmittedWorkDoneCallback>
 	}
 }
 
-expect fun interface WGPUGetCompilationInfoCallback : Callback {
+expect fun interface WGPUShaderModuleGetCompilationInfoCallback : Callback {
 	fun invoke(status: WGPUCompilationInfoRequestStatus, compilationInfo: WGPUCompilationInfo?, userdata: NativeAddress?)
 	companion object {
-		fun allocate(allocator: MemoryAllocator, callback: WGPUGetCompilationInfoCallback): CallbackHolder<WGPUGetCompilationInfoCallback>
+		fun allocate(allocator: MemoryAllocator, callback: WGPUShaderModuleGetCompilationInfoCallback): CallbackHolder<WGPUShaderModuleGetCompilationInfoCallback>
 	}
 }
 

@@ -103,13 +103,13 @@ actual fun interface WGPULogCallback : Callback {
 	}
 }
 
-actual fun interface WGPURequestDeviceCallback : Callback {
+actual fun interface WGPUAdapterRequestDeviceCallback : Callback {
 	actual fun invoke(status: WGPURequestDeviceStatus, device: WGPUDevice?, message: CString?, userdata: NativeAddress?)
 	interface Function {
 		fun apply(status: Int, device: java.lang.foreign.MemorySegment, message: java.lang.foreign.MemorySegment, userdata: java.lang.foreign.MemorySegment)
 	}
 	actual companion object {
-		actual fun allocate(allocator: MemoryAllocator, callback: WGPURequestDeviceCallback): CallbackHolder<WGPURequestDeviceCallback> {
+		actual fun allocate(allocator: MemoryAllocator, callback: WGPUAdapterRequestDeviceCallback): CallbackHolder<WGPUAdapterRequestDeviceCallback> {
 			val function = object : Function {
 				override fun apply(status: Int, device: java.lang.foreign.MemorySegment, message: java.lang.foreign.MemorySegment, userdata: java.lang.foreign.MemorySegment) {
 					callback.invoke(status.toUInt(), device.takeIf { it != java.lang.foreign.MemorySegment.NULL }?.let { java.lang.foreign.MemorySegment.ofAddress(it.address()).reinterpret(it.byteSize()) }?.let(::NativeAddress)?.let { WGPUDevice(it) }, message.takeIf { it != java.lang.foreign.MemorySegment.NULL }?.let { java.lang.foreign.MemorySegment.ofAddress(it.address()).reinterpret(it.byteSize()) }?.let(::NativeAddress)?.let { CString(it) }, userdata.let(::NativeAddress))
@@ -136,13 +136,13 @@ actual fun interface WGPURequestDeviceCallback : Callback {
 	}
 }
 
-actual fun interface WGPUMapAsyncCallback : Callback {
+actual fun interface WGPUBufferMapAsyncCallback : Callback {
 	actual fun invoke(status: WGPUBufferMapAsyncStatus, userdata: NativeAddress?)
 	interface Function {
 		fun apply(status: Int, userdata: java.lang.foreign.MemorySegment)
 	}
 	actual companion object {
-		actual fun allocate(allocator: MemoryAllocator, callback: WGPUMapAsyncCallback): CallbackHolder<WGPUMapAsyncCallback> {
+		actual fun allocate(allocator: MemoryAllocator, callback: WGPUBufferMapAsyncCallback): CallbackHolder<WGPUBufferMapAsyncCallback> {
 			val function = object : Function {
 				override fun apply(status: Int, userdata: java.lang.foreign.MemorySegment) {
 					callback.invoke(status.toUInt(), userdata.let(::NativeAddress))
@@ -167,13 +167,13 @@ actual fun interface WGPUMapAsyncCallback : Callback {
 	}
 }
 
-actual fun interface WGPUCreateComputePipelineAsyncCallback : Callback {
+actual fun interface WGPUDeviceCreateComputePipelineAsyncCallback : Callback {
 	actual fun invoke(status: WGPUCreatePipelineAsyncStatus, pipeline: WGPUComputePipeline?, message: CString?, userdata: NativeAddress?)
 	interface Function {
 		fun apply(status: Int, pipeline: java.lang.foreign.MemorySegment, message: java.lang.foreign.MemorySegment, userdata: java.lang.foreign.MemorySegment)
 	}
 	actual companion object {
-		actual fun allocate(allocator: MemoryAllocator, callback: WGPUCreateComputePipelineAsyncCallback): CallbackHolder<WGPUCreateComputePipelineAsyncCallback> {
+		actual fun allocate(allocator: MemoryAllocator, callback: WGPUDeviceCreateComputePipelineAsyncCallback): CallbackHolder<WGPUDeviceCreateComputePipelineAsyncCallback> {
 			val function = object : Function {
 				override fun apply(status: Int, pipeline: java.lang.foreign.MemorySegment, message: java.lang.foreign.MemorySegment, userdata: java.lang.foreign.MemorySegment) {
 					callback.invoke(status.toUInt(), pipeline.takeIf { it != java.lang.foreign.MemorySegment.NULL }?.let { java.lang.foreign.MemorySegment.ofAddress(it.address()).reinterpret(it.byteSize()) }?.let(::NativeAddress)?.let { WGPUComputePipeline(it) }, message.takeIf { it != java.lang.foreign.MemorySegment.NULL }?.let { java.lang.foreign.MemorySegment.ofAddress(it.address()).reinterpret(it.byteSize()) }?.let(::NativeAddress)?.let { CString(it) }, userdata.let(::NativeAddress))
@@ -200,13 +200,13 @@ actual fun interface WGPUCreateComputePipelineAsyncCallback : Callback {
 	}
 }
 
-actual fun interface WGPUCreateRenderPipelineAsyncCallback : Callback {
+actual fun interface WGPUDeviceCreateRenderPipelineAsyncCallback : Callback {
 	actual fun invoke(status: WGPUCreatePipelineAsyncStatus, pipeline: WGPURenderPipeline?, message: CString?, userdata: NativeAddress?)
 	interface Function {
 		fun apply(status: Int, pipeline: java.lang.foreign.MemorySegment, message: java.lang.foreign.MemorySegment, userdata: java.lang.foreign.MemorySegment)
 	}
 	actual companion object {
-		actual fun allocate(allocator: MemoryAllocator, callback: WGPUCreateRenderPipelineAsyncCallback): CallbackHolder<WGPUCreateRenderPipelineAsyncCallback> {
+		actual fun allocate(allocator: MemoryAllocator, callback: WGPUDeviceCreateRenderPipelineAsyncCallback): CallbackHolder<WGPUDeviceCreateRenderPipelineAsyncCallback> {
 			val function = object : Function {
 				override fun apply(status: Int, pipeline: java.lang.foreign.MemorySegment, message: java.lang.foreign.MemorySegment, userdata: java.lang.foreign.MemorySegment) {
 					callback.invoke(status.toUInt(), pipeline.takeIf { it != java.lang.foreign.MemorySegment.NULL }?.let { java.lang.foreign.MemorySegment.ofAddress(it.address()).reinterpret(it.byteSize()) }?.let(::NativeAddress)?.let { WGPURenderPipeline(it) }, message.takeIf { it != java.lang.foreign.MemorySegment.NULL }?.let { java.lang.foreign.MemorySegment.ofAddress(it.address()).reinterpret(it.byteSize()) }?.let(::NativeAddress)?.let { CString(it) }, userdata.let(::NativeAddress))
@@ -233,13 +233,13 @@ actual fun interface WGPUCreateRenderPipelineAsyncCallback : Callback {
 	}
 }
 
-actual fun interface WGPURequestAdapterCallback : Callback {
+actual fun interface WGPUInstanceRequestAdapterCallback : Callback {
 	actual fun invoke(status: WGPURequestAdapterStatus, adapter: WGPUAdapter?, message: CString?, userdata: NativeAddress?)
 	interface Function {
 		fun apply(status: Int, adapter: java.lang.foreign.MemorySegment, message: java.lang.foreign.MemorySegment, userdata: java.lang.foreign.MemorySegment)
 	}
 	actual companion object {
-		actual fun allocate(allocator: MemoryAllocator, callback: WGPURequestAdapterCallback): CallbackHolder<WGPURequestAdapterCallback> {
+		actual fun allocate(allocator: MemoryAllocator, callback: WGPUInstanceRequestAdapterCallback): CallbackHolder<WGPUInstanceRequestAdapterCallback> {
 			val function = object : Function {
 				override fun apply(status: Int, adapter: java.lang.foreign.MemorySegment, message: java.lang.foreign.MemorySegment, userdata: java.lang.foreign.MemorySegment) {
 					callback.invoke(status.toUInt(), adapter.takeIf { it != java.lang.foreign.MemorySegment.NULL }?.let { java.lang.foreign.MemorySegment.ofAddress(it.address()).reinterpret(it.byteSize()) }?.let(::NativeAddress)?.let { WGPUAdapter(it) }, message.takeIf { it != java.lang.foreign.MemorySegment.NULL }?.let { java.lang.foreign.MemorySegment.ofAddress(it.address()).reinterpret(it.byteSize()) }?.let(::NativeAddress)?.let { CString(it) }, userdata.let(::NativeAddress))
@@ -266,13 +266,13 @@ actual fun interface WGPURequestAdapterCallback : Callback {
 	}
 }
 
-actual fun interface WGPUOnSubmittedWorkDoneCallback : Callback {
+actual fun interface WGPUQueueOnSubmittedWorkDoneCallback : Callback {
 	actual fun invoke(status: WGPUQueueWorkDoneStatus, userdata: NativeAddress?)
 	interface Function {
 		fun apply(status: Int, userdata: java.lang.foreign.MemorySegment)
 	}
 	actual companion object {
-		actual fun allocate(allocator: MemoryAllocator, callback: WGPUOnSubmittedWorkDoneCallback): CallbackHolder<WGPUOnSubmittedWorkDoneCallback> {
+		actual fun allocate(allocator: MemoryAllocator, callback: WGPUQueueOnSubmittedWorkDoneCallback): CallbackHolder<WGPUQueueOnSubmittedWorkDoneCallback> {
 			val function = object : Function {
 				override fun apply(status: Int, userdata: java.lang.foreign.MemorySegment) {
 					callback.invoke(status.toUInt(), userdata.let(::NativeAddress))
@@ -297,13 +297,13 @@ actual fun interface WGPUOnSubmittedWorkDoneCallback : Callback {
 	}
 }
 
-actual fun interface WGPUGetCompilationInfoCallback : Callback {
+actual fun interface WGPUShaderModuleGetCompilationInfoCallback : Callback {
 	actual fun invoke(status: WGPUCompilationInfoRequestStatus, compilationInfo: WGPUCompilationInfo?, userdata: NativeAddress?)
 	interface Function {
 		fun apply(status: Int, compilationInfo: java.lang.foreign.MemorySegment, userdata: java.lang.foreign.MemorySegment)
 	}
 	actual companion object {
-		actual fun allocate(allocator: MemoryAllocator, callback: WGPUGetCompilationInfoCallback): CallbackHolder<WGPUGetCompilationInfoCallback> {
+		actual fun allocate(allocator: MemoryAllocator, callback: WGPUShaderModuleGetCompilationInfoCallback): CallbackHolder<WGPUShaderModuleGetCompilationInfoCallback> {
 			val function = object : Function {
 				override fun apply(status: Int, compilationInfo: java.lang.foreign.MemorySegment, userdata: java.lang.foreign.MemorySegment) {
 					callback.invoke(status.toUInt(), compilationInfo.takeIf { it != java.lang.foreign.MemorySegment.NULL }?.let { java.lang.foreign.MemorySegment.ofAddress(it.address()).reinterpret(it.byteSize()) }?.let(::NativeAddress)?.let { WGPUCompilationInfo(it) }, userdata.let(::NativeAddress))
