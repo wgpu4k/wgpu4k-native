@@ -14,7 +14,8 @@ kotlin {
         hostOs == "Linux" && !isArm64 -> linuxX64()
         hostOs == "Mac OS X" && isArm64 -> macosArm64()
         hostOs == "Mac OS X" && !isArm64 -> macosX64()
-        hostOs.startsWith("Windows") -> mingwX64()
+        // Disable native on windows until linking issues are note solved
+        //hostOs.startsWith("Windows") -> mingwX64()
         else -> null // Not supported
     }
 
