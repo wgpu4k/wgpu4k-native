@@ -2,6 +2,7 @@ import com.android.build.gradle.internal.tasks.factory.dependsOn
 import com.android.build.gradle.tasks.MergeSourceSetFolders
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.tasks.CInteropProcess
 import java.nio.file.Files
 
 plugins {
@@ -290,7 +291,9 @@ tasks.named<Test>("jvmTest") {
     }
 }
 
-// required by mergeDebugJniLibFolders to set lib as dependencies
 tasks.withType(MergeSourceSetFolders::class.java).configureEach {
+    dependsOn("fetch-native-dependencies")
+}
+tasks.withType(CInteropProcess::class.java).configureEach {
     dependsOn("fetch-native-dependencies")
 }
