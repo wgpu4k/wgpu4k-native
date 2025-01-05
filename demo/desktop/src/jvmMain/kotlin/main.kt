@@ -52,7 +52,6 @@ fun main() {
     // Disable context creation, WGPU will manage that
     glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API)
     val windowHandler = glfwCreateWindow(width, height, title, NULL, NULL)
-        ?: error("fail to create windows")
 
     val instance = wgpuCreateInstance(null) ?: error("fail to create instance")
     val surface = getSurface(instance, windowHandler)
@@ -116,7 +115,7 @@ private fun getSurfaceFromMetalLayer(instance: WGPUInstance, metalLayer: NativeA
     return wgpuInstanceCreateSurface(instance, surfaceDescriptor)
 }
 
-fun getSurfaceFromX11Window(instance: WGPUInstance, display: NativeAddress, window: Long): WGPUSurface? = memoryScope { scope ->
+private fun getSurfaceFromX11Window(instance: WGPUInstance, display: NativeAddress, window: Long): WGPUSurface? = memoryScope { scope ->
 
     val surfaceDescriptor = WGPUSurfaceDescriptor.allocate(scope).apply {
         nextInChain = WGPUSurfaceDescriptorFromXlibWindow.allocate(scope).apply {
@@ -129,7 +128,7 @@ fun getSurfaceFromX11Window(instance: WGPUInstance, display: NativeAddress, wind
     return wgpuInstanceCreateSurface(instance, surfaceDescriptor)
 }
 
-fun getSurfaceFromWindows(instance: WGPUInstance, hinstance: NativeAddress, hwnd: NativeAddress): WGPUSurface? = memoryScope { scope ->
+private fun getSurfaceFromWindows(instance: WGPUInstance, hinstance: NativeAddress, hwnd: NativeAddress): WGPUSurface? = memoryScope { scope ->
 
     val surfaceDescriptor = WGPUSurfaceDescriptor.allocate(scope).apply {
         nextInChain = WGPUSurfaceDescriptorFromWindowsHWND.allocate(scope).apply {

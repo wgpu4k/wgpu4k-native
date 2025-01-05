@@ -12,10 +12,5 @@ repositories {
 
 dependencies {
 	implementation(libs.kotlin.multiplatform)
-
-	implementation(libs.gson)
-	implementation(libs.commons.io)
-
 	implementation(libs.kaml)
-
 }
