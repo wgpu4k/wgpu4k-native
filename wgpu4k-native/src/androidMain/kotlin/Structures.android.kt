@@ -6748,6 +6748,72 @@ actual interface WGPUTextureViewDescriptor {
 	}
 }
 
+actual interface WGPUWrappedSubmissionIndex {
+
+	class ByReference(val handle: io.ygdrasil.wgpu.android.WGPUWrappedSubmissionIndex.ByReference = io.ygdrasil.wgpu.android.WGPUWrappedSubmissionIndex.ByReference(com.sun.jna.Pointer.NULL)) : WGPUWrappedSubmissionIndex {
+		override var queue: WGPUQueue?
+			get() = handle.queue?.let{ WGPUQueue(it) }
+			set(newValue) { handle.queue = newValue?.handler }
+
+		override var submissionIndex: ULong
+			get() = handle.submissionIndex.toULong()
+			set(newValue) { handle.submissionIndex = newValue.toLong() }
+
+		override val handler: NativeAddress
+			get() {
+				handle.write()
+				return handle.getPointer()
+			}
+	}
+
+	class ByValue(val handle: io.ygdrasil.wgpu.android.WGPUWrappedSubmissionIndex.ByValue = io.ygdrasil.wgpu.android.WGPUWrappedSubmissionIndex.ByValue(com.sun.jna.Pointer.NULL)) : WGPUWrappedSubmissionIndex {
+		override var queue: WGPUQueue?
+			get() = handle.queue?.let{ WGPUQueue(it) }
+			set(newValue) { handle.queue = newValue?.handler }
+
+		override var submissionIndex: ULong
+			get() = handle.submissionIndex.toULong()
+			set(newValue) { handle.submissionIndex = newValue.toLong() }
+
+		override val handler: NativeAddress
+			get() {
+				handle.write()
+				return handle.getPointer()
+			}
+	}
+
+	fun toCValue() = (this as ByReference).let{ io.ygdrasil.wgpu.android.WGPUWrappedSubmissionIndex.ByValue(handle) }
+	fun toReference() = (this as ByReference).handle
+
+	actual var queue: WGPUQueue?
+	actual var submissionIndex: ULong
+	actual val handler: NativeAddress
+
+	actual companion object {
+		actual operator fun invoke(address: NativeAddress): WGPUWrappedSubmissionIndex {
+			return io.ygdrasil.wgpu.android.WGPUWrappedSubmissionIndex.ByReference(address)
+				.also { it.read() }
+				.let(::ByReference)
+		}
+
+		actual fun allocate(allocator: MemoryAllocator): WGPUWrappedSubmissionIndex {
+			return WGPUWrappedSubmissionIndex.ByReference()
+				.also { allocator.register(it) }
+		}
+
+		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUWrappedSubmissionIndex) -> Unit): ArrayHolder<WGPUWrappedSubmissionIndex> {
+			val array = io.ygdrasil.wgpu.android.WGPUWrappedSubmissionIndex.ByValue().toArray(size.toInt())
+			array.forEachIndexed { index, structure ->
+				(structure as io.ygdrasil.wgpu.android.WGPUWrappedSubmissionIndex.ByValue)
+					.also { provider(index.toUInt(), WGPUWrappedSubmissionIndex.ByValue(it)) }
+					.write()
+			}
+			val pointer = if (size == 0u) com.sun.jna.Pointer.NULL else array.first().pointer
+			return ArrayHolder(pointer)
+		}
+	}
+}
+
 actual interface WGPUInstanceExtras {
 
 	class ByReference(val handle: io.ygdrasil.wgpu.android.WGPUInstanceExtras.ByReference = io.ygdrasil.wgpu.android.WGPUInstanceExtras.ByReference(com.sun.jna.Pointer.NULL)) : WGPUInstanceExtras {

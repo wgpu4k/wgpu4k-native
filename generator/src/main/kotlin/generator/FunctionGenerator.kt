@@ -89,6 +89,11 @@ private fun NativeModel.Type.optional(): String = when (this) {
     is NativeModel.Reference.Callback,
     is NativeModel.Array -> "?"
 
+    is NativeModel.Reference.StructureField -> when (isOptional) {
+        true -> "?"
+        else -> ""
+    }
+
     else -> ""
 }
 

@@ -7098,6 +7098,71 @@ fun webgpu.native.WGPUTextureViewDescriptor.adapt(structure: WGPUTextureViewDesc
 	aspect = structure.aspect
 }
 
+actual interface WGPUWrappedSubmissionIndex {
+	value class ByValue(val handle: CValue<webgpu.native.WGPUWrappedSubmissionIndex>) : WGPUWrappedSubmissionIndex {
+		override var queue: WGPUQueue?
+			get() = handle.useContents { queue?.let(::NativeAddress)?.let { WGPUQueue(it) } }
+			set(newValue) { handle.useContents { queue = newValue?.handler?.reinterpret() } } 
+
+		override var submissionIndex: ULong
+			get() = handle.useContents { submissionIndex ?: error("pointer of WGPUWrappedSubmissionIndex is null") }
+			set(newValue) { handle.useContents { submissionIndex = newValue } } 
+
+		override val handler: NativeAddress
+			get() = error("should not be call on CValue")
+
+	}
+	value class ByReference(override val handler: NativeAddress) : WGPUWrappedSubmissionIndex {
+		override var queue: WGPUQueue?
+			get() = handler.reinterpret<webgpu.native.WGPUWrappedSubmissionIndex>().pointed.queue?.let(::NativeAddress)?.let { WGPUQueue(it) }
+			set(newValue) { handler.reinterpret<webgpu.native.WGPUWrappedSubmissionIndex>().pointed.let { it.queue = newValue?.handler?.reinterpret() } } 
+
+		override var submissionIndex: ULong
+			get() = handler.reinterpret<webgpu.native.WGPUWrappedSubmissionIndex>().pointed.submissionIndex ?: error("pointer of WGPUWrappedSubmissionIndex is null")
+			set(newValue) { handler.reinterpret<webgpu.native.WGPUWrappedSubmissionIndex>().pointed.let { it.submissionIndex = newValue } } 
+
+	}
+
+	actual var queue: WGPUQueue?
+	actual var submissionIndex: ULong
+	actual val handler: NativeAddress
+
+	actual companion object {
+		actual operator fun invoke(address: NativeAddress): WGPUWrappedSubmissionIndex {
+			return ByReference(address)
+		}
+
+		actual fun allocate(allocator: MemoryAllocator): WGPUWrappedSubmissionIndex {
+			return allocator.allocate(sizeOf<webgpu.native.WGPUWrappedSubmissionIndex>())
+				.let { WGPUWrappedSubmissionIndex(it) }
+		}
+
+		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUWrappedSubmissionIndex) -> Unit): ArrayHolder<WGPUWrappedSubmissionIndex> {
+			return allocator.allocate(sizeOf<webgpu.native.WGPUWrappedSubmissionIndex>() * size.toLong())
+				.also {
+					(0u until size).forEach { index ->
+						(it.rawValue + index.toLong() * sizeOf<webgpu.native.WGPUWrappedSubmissionIndex>())
+							.let(::NativeAddress)
+							.let { WGPUWrappedSubmissionIndex(it) }
+							.let { provider(index, it) }
+					}
+				}
+				.let(::ArrayHolder)
+		}
+	}
+	fun toCValue(): CValue<webgpu.native.WGPUWrappedSubmissionIndex> {
+		return cValue<webgpu.native.WGPUWrappedSubmissionIndex> {
+			queue = this@WGPUWrappedSubmissionIndex.queue?.handler?.reinterpret()
+			submissionIndex = this@WGPUWrappedSubmissionIndex.submissionIndex
+		}
+	}
+}
+
+fun webgpu.native.WGPUWrappedSubmissionIndex.adapt(structure: WGPUWrappedSubmissionIndex) {
+	queue = structure.queue?.handler?.reinterpret()
+	submissionIndex = structure.submissionIndex
+}
+
 actual interface WGPUInstanceExtras {
 	value class ByValue(val handle: CValue<webgpu.native.WGPUInstanceExtras>) : WGPUInstanceExtras {
 		override val chain: WGPUChainedStruct

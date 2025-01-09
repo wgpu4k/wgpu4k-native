@@ -45,7 +45,8 @@ private fun convertToCFunctionArgs(args: List<YamlModel.Function.Arg>, callback:
     return args.flatMap { arg ->
         (arg.name.convertToKotlinVariableName() to arg.type.toCType(
             arg.pointer != null,
-            arg.pointer == "mutable"
+            arg.pointer == "mutable",
+            arg.optional
         )).let {
             when (it.second) {
                 is NativeModel.Array -> listOf(
@@ -61,7 +62,7 @@ private fun convertToCFunctionArgs(args: List<YamlModel.Function.Arg>, callback:
 
 
 private fun String?.injectCallbackInfoStructure(): List<Pair<String, Type>> = when {
-    this != null -> listOf("callbackInfo" to NativeModel.Reference.StructureField(split(".")[1].convertToKotlinCallbackStructureName()))
+    this != null -> listOf("callbackInfo" to NativeModel.Reference.StructureField(split(".")[1].convertToKotlinCallbackStructureName(), false))
     else -> emptyList()
 }
 

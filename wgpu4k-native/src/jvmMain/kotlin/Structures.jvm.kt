@@ -5122,6 +5122,55 @@ actual interface WGPUTextureViewDescriptor : CStructure {
 		val aspectLayout = ffi.C_INT
 	}
 }
+actual interface WGPUWrappedSubmissionIndex : CStructure {
+
+	@JvmInline
+	value class ByReference(override val handler: NativeAddress) : WGPUWrappedSubmissionIndex {
+		override var queue: WGPUQueue?
+			get() = get(queueLayout, queueOffset).let { WGPUQueue(it) }
+			set(newValue) = set(queueLayout, queueOffset, newValue?.handler)
+		override var submissionIndex: ULong
+			get() = getULong(submissionIndexOffset)
+			set(newValue) = set(submissionIndexOffset, newValue)
+	}
+
+	actual var queue: WGPUQueue?
+	actual var submissionIndex: ULong
+
+	actual companion object {
+		actual operator fun invoke(address: NativeAddress): WGPUWrappedSubmissionIndex {
+			return ByReference(address)
+		}
+
+		actual fun allocate(allocator: MemoryAllocator): WGPUWrappedSubmissionIndex {
+			return allocator.allocate(16L)
+				.let { WGPUWrappedSubmissionIndex(it) }
+		}
+
+		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUWrappedSubmissionIndex) -> Unit): ArrayHolder<WGPUWrappedSubmissionIndex> {
+			return allocator.allocate(16 * size.toLong())
+				.also {
+					(0u until size).forEach { index ->
+						it.handler.asSlice(index.toLong() * 16L)
+							.let(::NativeAddress)
+							.let { WGPUWrappedSubmissionIndex(it) }
+							.let { provider(index, it) }
+					}
+				}
+				.let(::ArrayHolder)
+		}
+
+		internal val LAYOUT = structLayout(
+			ffi.C_POINTER.withName("queue"),
+			ffi.C_LONG.withName("submissionIndex"),
+		).withName("WGPUWrappedSubmissionIndex")
+
+		val queueOffset = 0L
+		val queueLayout = ffi.C_POINTER
+		val submissionIndexOffset = 8L
+		val submissionIndexLayout = ffi.C_LONG
+	}
+}
 actual interface WGPUInstanceExtras : CStructure {
 
 	@JvmInline

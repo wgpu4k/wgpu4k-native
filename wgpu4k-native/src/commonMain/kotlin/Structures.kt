@@ -1033,6 +1033,17 @@ expect interface WGPUTextureViewDescriptor {
 	}
 }
 
+expect interface WGPUWrappedSubmissionIndex {
+	var queue: WGPUQueue?
+	var submissionIndex: ULong
+	val handler: NativeAddress
+	companion object {
+		operator fun invoke(address: NativeAddress): WGPUWrappedSubmissionIndex
+		fun allocate(allocator: MemoryAllocator): WGPUWrappedSubmissionIndex
+		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPUWrappedSubmissionIndex) -> Unit): ArrayHolder<WGPUWrappedSubmissionIndex>
+	}
+}
+
 expect interface WGPUInstanceExtras {
 	val chain: WGPUChainedStruct
 	var backends: UInt

@@ -21,7 +21,7 @@ data class NativeModel(
         class Pointer(name: String) : Reference(name)
         class Callback(name: String) : Reference(name)
         class Structure(name: String) : Reference(name)
-        class StructureField(name: String) : Reference(name)
+        class StructureField(name: String, val isOptional: Boolean) : Reference(name)
         class Enumeration(name: String) : Reference(name)
         object CString : Reference("CString")
     }
@@ -81,12 +81,12 @@ internal fun NativeModel.Type.toCallbackKotlinType(): String = when (this) {
 }
 
 
-internal fun String?.toCType(isPointer: Boolean, isMutable: Boolean): NativeModel.Type {
+internal fun String?.toCType(isPointer: Boolean, isMutable: Boolean, isOptional: Boolean = false): NativeModel.Type {
     return when {
         this == null -> NativeModel.Void
         startsWith("struct.") -> when (isPointer) {
             true -> NativeModel.Reference.Structure(split(".").last().convertToKotlinClassName())
-            else -> NativeModel.Reference.StructureField(split(".").last().convertToKotlinClassName())
+            else -> NativeModel.Reference.StructureField(split(".").last().convertToKotlinClassName(), isOptional)
         }
         startsWith("object.")
             -> NativeModel.Reference.Pointer(split(".").last().convertToKotlinClassName())
@@ -95,7 +95,7 @@ internal fun String?.toCType(isPointer: Boolean, isMutable: Boolean): NativeMode
             else -> NativeModel.Reference.Enumeration(split(".").last().convertToKotlinClassName())
         }
         startsWith("function_type.") -> NativeModel.Reference.Callback(split(".").last().convertToKotlinClassName())
-        startsWith("callback.") -> NativeModel.Reference.StructureField(split(".").last().convertToKotlinCallbackStructureName())
+        startsWith("callback.") -> NativeModel.Reference.StructureField(split(".").last().convertToKotlinCallbackStructureName(), false)
         startsWith("bitflag.") -> if (mappingVersion == Version.v22) NativeModel.Primitive.UInt32 else NativeModel.Primitive.UInt64
         equals("bool") -> NativeModel.Primitive.Bool
         equals("usize") -> when (isPointer) {

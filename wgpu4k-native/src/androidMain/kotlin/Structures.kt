@@ -2119,6 +2119,26 @@ sealed class WGPUTextureViewDescriptor(pointer: com.sun.jna.Pointer? = null) : c
 	}
 }
 
+sealed class WGPUWrappedSubmissionIndex(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
+	@JvmField var queue: com.sun.jna.Pointer? = null
+	@JvmField var submissionIndex: Long = 0L
+	override fun getFieldOrder() = listOf("queue", "submissionIndex")
+
+	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPUWrappedSubmissionIndex(pointer), com.sun.jna.Structure.ByReference {
+		constructor(other: WGPUWrappedSubmissionIndex) : this(other.pointer) {
+			this.queue = other.queue
+			this.submissionIndex = other.submissionIndex
+		}
+	}
+
+	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPUWrappedSubmissionIndex(pointer), com.sun.jna.Structure.ByValue {
+		constructor(other: WGPUWrappedSubmissionIndex) : this(other.pointer) {
+			this.queue = other.queue
+			this.submissionIndex = other.submissionIndex
+		}
+	}
+}
+
 sealed class WGPUInstanceExtras(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var chain: WGPUChainedStruct.ByValue = WGPUChainedStruct.ByValue()
 	@JvmField var backends: Int = 0

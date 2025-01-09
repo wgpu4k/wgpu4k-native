@@ -63,5 +63,9 @@ internal fun NativeModel.Type.optional(): String = when (this) {
     NativeModel.Reference.CString,
     is NativeModel.Reference.Callback,
     is NativeModel.Array -> "?"
+    is NativeModel.Reference.StructureField -> when (isOptional) {
+        true -> "?"
+        else -> ""
+    }
     else -> ""
 }

@@ -7,6 +7,9 @@ internal interface FunctionsInterface: com.sun.jna.Library {
 	@JvmName("wgpuCreateInstance")
 	fun wgpuCreateInstance(descriptor: WGPUInstanceDescriptor.ByReference?): com.sun.jna.Pointer?
 	@Suppress("INAPPLICABLE_JVM_NAME")
+	@JvmName("wgpuDevicePoll")
+	fun wgpuDevicePoll(device: com.sun.jna.Pointer?, wait: UInt, wrappedSubmissionIndex: WGPUWrappedSubmissionIndex.ByValue): UInt
+	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuSetLogCallback")
 	fun wgpuSetLogCallback(callback: com.sun.jna.Callback?, userdata: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")

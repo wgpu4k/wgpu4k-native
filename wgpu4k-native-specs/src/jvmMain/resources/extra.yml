@@ -173,6 +173,20 @@ bitflags:
           - GL
           - DX11
 structs:
+  - name: wrapped_submission_index
+    doc: |
+      TODO
+    type: standalone
+    members:
+      - name: queue
+        doc: |
+          TODO
+        type: object.queue
+      - name: submissionIndex
+        doc: |
+          TODO
+        type: uint64
+
   - name: InstanceExtras
     doc: |
       TODO
@@ -204,6 +218,28 @@ structs:
         type: string
 callbacks: []
 functions:
+  - name: device_poll
+    doc: |
+      TODO
+    args:
+      - name: device
+        doc: |
+          TODO
+        type: object.device
+      - name: wait
+        doc: |
+          TODO
+        type: bool
+      - name: wrappedSubmissionIndex
+        doc: |
+          TODO
+        type: struct.wrapped_submission_index
+        optional: true
+    returns:
+      doc: |
+        TODO
+      type: bool
+
   - name: set_log_callback
     doc: |
       TODO

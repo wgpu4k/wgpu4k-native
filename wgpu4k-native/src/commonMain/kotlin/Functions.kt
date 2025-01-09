@@ -8,6 +8,7 @@ import ffi.ArrayHolder
 
 
 expect fun wgpuCreateInstance(descriptor: WGPUInstanceDescriptor?): WGPUInstance?
+expect fun wgpuDevicePoll(device: WGPUDevice?, wait: Boolean, wrappedSubmissionIndex: WGPUWrappedSubmissionIndex?): Boolean
 expect fun wgpuSetLogCallback(callback: CallbackHolder<WGPULogCallback>?, userdata: NativeAddress?): Unit
 expect fun wgpuSetLogLevel(level: WGPULogLevel): Unit
 expect fun wgpuAdapterRelease(handler: WGPUAdapter?): Unit

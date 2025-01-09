@@ -22,6 +22,18 @@ object Functions {
 	private val wgpuCreateInstanceHandlerAddress = findOrThrow("wgpuCreateInstance")
 	private val wgpuCreateInstanceHandler = Linker.nativeLinker().downcallHandle(wgpuCreateInstanceHandlerAddress, wgpuCreateInstanceHandlerDescription)
 
+	fun wgpuDevicePoll(device: java.lang.foreign.MemorySegment, wait: UInt, wrappedSubmissionIndex: java.lang.foreign.MemorySegment): UInt {
+		return (wgpuDevicePollHandler.invokeExact(device, wait.toInt(), wrappedSubmissionIndex) as Int).toUInt()
+	}
+	private val wgpuDevicePollHandlerDescription = FunctionDescriptor.of(
+			C_INT,
+			C_POINTER,
+			C_INT,
+			C_POINTER
+		)
+	private val wgpuDevicePollHandlerAddress = findOrThrow("wgpuDevicePoll")
+	private val wgpuDevicePollHandler = Linker.nativeLinker().downcallHandle(wgpuDevicePollHandlerAddress, wgpuDevicePollHandlerDescription)
+
 	fun wgpuSetLogCallback(callback: java.lang.foreign.MemorySegment, userdata: java.lang.foreign.MemorySegment): Unit {
 		return (wgpuSetLogCallbackHandler.invokeExact(callback, userdata) as Unit)
 	}
