@@ -138,6 +138,7 @@ internal fun NativeModel.Type.toKotlinNativeType(): String = when (this) {
 }
 
 private fun NativeModel.Type.toJvmArgCall(name: String) = when(this) {
+    is NativeModel.Primitive.Bool -> "$name.toUInt()"
     is NativeModel.Reference.OpaquePointer -> "$name.adapt() ?: java.lang.foreign.MemorySegment.NULL"
     is NativeModel.Reference.Enumeration -> name
     is NativeModel.Array,

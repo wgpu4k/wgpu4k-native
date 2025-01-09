@@ -35,7 +35,11 @@ fun List<NativeModel.Function>.toAndroidFunctions() = templateBuilder {
 
 
 private fun NativeModel.Type.toJvmArgCall(name: String) = when(this) {
-    is NativeModel.Reference.StructureField -> "${name}.toCValue()"
+    is NativeModel.Primitive.Bool -> "$name.toUInt()"
+    is NativeModel.Reference.StructureField -> when (isOptional) {
+        true -> "$name?.toCValue()"
+        else -> "${name}.toCValue()"
+    }
     is NativeModel.Reference.Structure -> "${name}?.toReference()"
     is NativeModel.Reference.OpaquePointer,
     is NativeModel.Reference.Enumeration -> name

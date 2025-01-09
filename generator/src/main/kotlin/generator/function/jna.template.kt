@@ -33,7 +33,10 @@ internal fun NativeModel.Type.toAndroidNativeType(): String = when (this) {
     is NativeModel.Reference.Enumeration,
     NativeModel.Primitive.UInt32 -> "UInt"
     NativeModel.Primitive.UInt16 -> "UShort"
-    is NativeModel.Reference.StructureField -> "${name}.ByValue"
+    is NativeModel.Reference.StructureField -> when (isOptional) {
+        true -> "${name}.ByValue?"
+        else -> "${name}.ByValue"
+    }
     is NativeModel.Reference.Structure -> "${name}.ByReference?"
     is NativeModel.Reference.Callback -> "com.sun.jna.Callback?"
     is NativeModel.Array,

@@ -13,7 +13,7 @@ actual fun wgpuCreateInstance(descriptor: WGPUInstanceDescriptor?): WGPUInstance
 	?.let(::WGPUInstance)
 
 actual fun wgpuDevicePoll(device: WGPUDevice?, wait: Boolean, wrappedSubmissionIndex: WGPUWrappedSubmissionIndex?): Boolean
-	 = io.ygdrasil.wgpu.android.Functions.wgpuDevicePoll(device?.handler, wait, wrappedSubmissionIndex.toCValue())
+	 = io.ygdrasil.wgpu.android.Functions.wgpuDevicePoll(device?.handler, wait.toUInt(), wrappedSubmissionIndex?.toCValue())
 	.toBoolean()
 
 actual fun wgpuSetLogCallback(callback: CallbackHolder<WGPULogCallback>?, userdata: NativeAddress?): Unit
