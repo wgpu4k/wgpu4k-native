@@ -1,20 +1,23 @@
+import com.android.build.gradle.internal.tasks.factory.dependsOn
+import com.android.build.gradle.tasks.MergeSourceSetFolders
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.tasks.CInteropProcess
+import java.nio.file.Files
 
 plugins {
     id(libs.plugins.kotlin.multiplatform.get().pluginId)
     id("publish")
     id("com.android.library")
+    alias(libs.plugins.kotest)
+    id("generator")
 }
 
 val buildNativeResourcesDirectory = project.file("build").resolve("native")
+val jvmLibResourcesDirectory = project.file("build").resolve("generated").resolve("resources")
 
 kotlin {
 
-    val androidNativeTargets = listOf(
-        androidNativeArm64(),
-        androidNativeX64()
-    )
 
     val nativeTargets = listOf(
         iosX64(),
@@ -25,43 +28,68 @@ kotlin {
         linuxArm64(),
         linuxX64(),
         mingwX64()
-    ) + androidNativeTargets
+    )
 
     androidTarget {
-        @OptIn(ExperimentalKotlinGradlePluginApi::class)
         compilerOptions {
-            jvmTarget = JvmTarget.JVM_17
+            jvmTarget = JvmTarget.JVM_22
         }
 
-        publishLibraryVariants("release", "debug")
+        publishAllLibraryVariants()
+    }
+
+    jvm {
+        compilerOptions {
+            jvmTarget = JvmTarget.JVM_22
+        }
     }
 
     nativeTargets.forEach { target ->
         val main by target.compilations.getting {
             cinterops.create("webgpu") {
+                packageName = "webgpu.native"
                 header(buildNativeResourcesDirectory.resolve("wgpu.h"))
             }
         }
     }
 
-    androidNativeTargets.forEach { target ->
-        target.binaries {
-            sharedLib {
-                baseName = "wgpu4k"
-            }
-        }
-    }
-
-    @OptIn(ExperimentalKotlinGradlePluginApi::class)
     compilerOptions {
-        allWarningsAsErrors = true
+        //allWarningsAsErrors = true
+        freeCompilerArgs.add("-Xexpect-actual-classes")
     }
 
     sourceSets {
         androidMain {
             dependencies {
                 val jna = libs.jna.get()
-                implementation("${jna.module.group}:${jna.module.name}:${jna.versionConstraint}:@aar")
+                api("${jna.module.group}:${jna.module.name}:${jna.versionConstraint}:@aar")
+            }
+        }
+
+        commonTest {
+            dependencies {
+                implementation(libs.bundles.kotest)
+                implementation(kotlin("test-common"))
+                implementation(kotlin("test-annotations-common"))
+            }
+        }
+
+        jvmMain {
+            sourceSets {
+                resources.srcDirs(jvmLibResourcesDirectory.absolutePath)
+            }
+        }
+
+        jvmTest {
+            dependencies {
+                implementation(libs.kotest.runner.junit5)
+                implementation(libs.kotlin.reflect)
+            }
+        }
+
+        androidUnitTest {
+            dependencies {
+                implementation(libs.kotest.runner.junit5)
             }
         }
     }
@@ -76,7 +104,7 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_22
     }
 
     sourceSets {
@@ -85,6 +113,13 @@ android {
         }
     }
 
+    /*testOptions {
+        unitTests.all {
+            it.useJUnitPlatform()
+
+        }
+    }*/
+
 }
 
 configureDownloadTasks {
@@ -92,82 +127,173 @@ configureDownloadTasks {
 
     /*** Macos ***/
     download("wgpu-macos-aarch64-release.zip") {
-        extract("webgpu.h", buildNativeResourcesDirectory.resolve("webgpu.h"))
-        extract("wgpu.h", buildNativeResourcesDirectory.resolve("wgpu.h"))
-        extract("libwgpu_native.a", buildNativeResourcesDirectory.resolve("darwin-aarch64").resolve("libWGPU.a"))
+        extract("wgpu-native-meta/webgpu.yml", buildNativeResourcesDirectory.resolve("webgpu.yml")).doLast {
+            Files.move(
+                buildNativeResourcesDirectory.resolve("wgpu-native-meta").resolve("webgpu.yml").toPath(),
+                buildNativeResourcesDirectory.resolve("webgpu.yml").toPath()
+            )
+            buildNativeResourcesDirectory.resolve("wgpu-native-meta").deleteRecursively()
+        }
+        extract("include/webgpu/webgpu.h", buildNativeResourcesDirectory.resolve("webgpu.h")).doLast {
+            Files.move(
+                buildNativeResourcesDirectory.resolve("include").resolve("webgpu").resolve("webgpu.h").toPath(),
+                buildNativeResourcesDirectory.resolve("webgpu.h").toPath()
+            )
+            buildNativeResourcesDirectory.resolve("include").deleteRecursively()
+        }
+        extract("include/wgpu/wgpu.h", buildNativeResourcesDirectory.resolve("wgpu.h")).doLast {
+            Files.move(
+                buildNativeResourcesDirectory.resolve("include").resolve("wgpu").resolve("wgpu.h").toPath(),
+                buildNativeResourcesDirectory.resolve("wgpu.h").toPath()
+            )
+            buildNativeResourcesDirectory.resolve("include").deleteRecursively()
+        }
+        extract("lib/libwgpu_native.a", buildNativeResourcesDirectory.resolve("darwin-aarch64").resolve("libWGPU.a"))
+        extract("lib/libwgpu_native.dylib", jvmLibResourcesDirectory.resolve("darwin-aarch64").resolve("libWGPU.dylib")).doLast {
+            val basePath = jvmLibResourcesDirectory.resolve("darwin-aarch64")
+            Files.move(
+                basePath.resolve("lib").resolve("libWGPU.dylib").toPath(),
+                basePath.resolve("libWGPU.dylib").toPath()
+            )
+            basePath.resolve("lib").deleteRecursively()
+        }
     }
     download("wgpu-macos-x86_64-release.zip") {
-        extract("libwgpu_native.a", buildNativeResourcesDirectory.resolve("darwin-x64").resolve("libWGPU.a"))
+        extract("lib/libwgpu_native.a", buildNativeResourcesDirectory.resolve("darwin-x64").resolve("libWGPU.a"))
+        extract("lib/libwgpu_native.dylib", jvmLibResourcesDirectory.resolve("darwin-x86-64").resolve("libWGPU.dylib")).doLast {
+            val basePath = jvmLibResourcesDirectory.resolve("darwin-x86-64")
+            Files.move(
+                basePath.resolve("lib").resolve("libWGPU.dylib").toPath(),
+                basePath.resolve("libWGPU.dylib").toPath()
+            )
+            basePath.resolve("lib").deleteRecursively()
+        }
     }
 
     /*** Windows ***/
     download("wgpu-windows-x86_64-gnu-release.zip") {
-        extract("libwgpu_native.a", buildNativeResourcesDirectory.resolve("windows-x64").resolve("wgpu.a"))
+        extract("lib/libwgpu_native.a", buildNativeResourcesDirectory.resolve("windows-x64").resolve("wgpu.a"))
+    }
+    download("wgpu-windows-x86_64-msvc-release.zip") {
+        extract("lib/wgpu_native.lib", buildNativeResourcesDirectory.resolve("windows-x64").resolve("wgpu.lib"))
+        extract("lib/wgpu_native.dll", jvmLibResourcesDirectory.resolve("win32-x86-64").resolve("WGPU.dll")).doLast {
+            val basePath = jvmLibResourcesDirectory.resolve("win32-x86-64")
+            Files.move(
+                basePath.resolve("lib").resolve("WGPU.dll").toPath(),
+                basePath.resolve("WGPU.dll").toPath()
+            )
+            basePath.resolve("lib").deleteRecursively()
+        }
     }
 
     /*** Linux ***/
     download("wgpu-linux-x86_64-release.zip") {
-        extract("libwgpu_native.a", buildNativeResourcesDirectory.resolve("linux-x64").resolve("libWGPU.a"))
+        extract("lib/libwgpu_native.a", buildNativeResourcesDirectory.resolve("linux-x64").resolve("libWGPU.a"))
+        extract("lib/libwgpu_native.so", jvmLibResourcesDirectory.resolve("linux-x86-64").resolve("libWGPU.so")).doLast {
+            val basePath = jvmLibResourcesDirectory.resolve("linux-x86-64")
+            Files.move(
+                basePath.resolve("lib").resolve("libWGPU.so").toPath(),
+                basePath.resolve("libWGPU.so").toPath()
+            )
+            basePath.resolve("lib").deleteRecursively()
+        }
     }
     download("wgpu-linux-aarch64-release.zip") {
-        extract("libwgpu_native.a", buildNativeResourcesDirectory.resolve("linux-aarch64").resolve("libWGPU.a"))
-    }
-
-    /*** Android ***/
-    download("wgpu-android-x86_64-release.zip") {
-        extract("libwgpu_native.a", buildNativeResourcesDirectory.resolve("android-x64").resolve("libWGPU.a"))
-    }
-    download("wgpu-android-aarch64-release.zip") {
-        extract("libwgpu_native.a", buildNativeResourcesDirectory.resolve("android-aarch64").resolve("libWGPU.a"))
+        extract("lib/libwgpu_native.a", buildNativeResourcesDirectory.resolve("linux-aarch64").resolve("libWGPU.a"))
+        extract("lib/libwgpu_native.so", jvmLibResourcesDirectory.resolve("linux-aarch64").resolve("libWGPU.so")).doLast {
+            val basePath = jvmLibResourcesDirectory.resolve("linux-aarch64")
+            Files.move(
+                basePath.resolve("lib").resolve("libWGPU.so").toPath(),
+                basePath.resolve("libWGPU.so").toPath()
+            )
+            basePath.resolve("lib").deleteRecursively()
+        }
     }
 
     /*** iOS ***/
-    download("wgpu-iOS-x86_64-simulator-release.zip") {
-        extract("libwgpu_native.a", buildNativeResourcesDirectory.resolve("ios-simulator-x64").resolve("libWGPU.a"))
+    download("wgpu-ios-x86_64-simulator-release.zip") {
+        extract("lib/libwgpu_native.a", buildNativeResourcesDirectory.resolve("ios-simulator-x64").resolve("libWGPU.a"))
     }
-    download("wgpu-iOS-aarch64-simulator-release.zip") {
-        extract("libwgpu_native.a", buildNativeResourcesDirectory.resolve("ios-simulator-aarch64").resolve("libWGPU.a"))
+    download("wgpu-ios-aarch64-simulator-release.zip") {
+        extract("lib/libwgpu_native.a", buildNativeResourcesDirectory.resolve("ios-simulator-aarch64").resolve("libWGPU.a"))
     }
-    download("wgpu-iOS-aarch64-release.zip") {
-        extract("libwgpu_native.a", buildNativeResourcesDirectory.resolve("ios-aarch64").resolve("libWGPU.a"))
+    download("wgpu-ios-aarch64-release.zip") {
+        extract("lib/libwgpu_native.a", buildNativeResourcesDirectory.resolve("ios-aarch64").resolve("libWGPU.a"))
+    }
+
+    /*** Android ***/
+    /**** Release ****/
+    download("wgpu-android-x86_64-release.zip") {
+        extract("lib/libwgpu_native.so", buildNativeResourcesDirectory.resolve("libs").resolve("x86_64").resolve("libwgpu4k.so")).doLast {
+            Files.move(
+                buildNativeResourcesDirectory.resolve("libs").resolve("x86_64").resolve("lib").resolve("libwgpu4k.so").toPath(),
+                buildNativeResourcesDirectory.resolve("libs").resolve("x86_64").resolve("libwgpu4k.so").toPath()
+            )
+            buildNativeResourcesDirectory.resolve("libs").resolve("x86_64").resolve("lib").deleteRecursively()
+        }
+    }
+    download("wgpu-android-aarch64-release.zip") {
+        extract("lib/libwgpu_native.so", buildNativeResourcesDirectory.resolve("libs").resolve("arm64-v8a").resolve("libwgpu4k.so")).doLast {
+            Files.move(
+                buildNativeResourcesDirectory.resolve("libs").resolve("arm64-v8a").resolve("lib").resolve("libwgpu4k.so").toPath(),
+                buildNativeResourcesDirectory.resolve("libs").resolve("arm64-v8a").resolve("libwgpu4k.so").toPath()
+            )
+            buildNativeResourcesDirectory.resolve("libs").resolve("arm64-v8a").resolve("lib").deleteRecursively()
+        }
+    }
+    /**** Debug ****/
+    download("wgpu-android-x86_64-debug.zip") {
+        extract("lib/libwgpu_native.so", buildNativeResourcesDirectory.resolve("libsDebug").resolve("x86_64").resolve("libwgpu4k.so")).doLast {
+            Files.move(
+                buildNativeResourcesDirectory.resolve("libsDebug").resolve("x86_64").resolve("lib").resolve("libwgpu4k.so").toPath(),
+                buildNativeResourcesDirectory.resolve("libsDebug").resolve("x86_64").resolve("libwgpu4k.so").toPath()
+            )
+            buildNativeResourcesDirectory.resolve("libsDebug").resolve("x86_64").resolve("lib").deleteRecursively()
+        }
+    }
+    download("wgpu-android-aarch64-debug.zip") {
+        extract("lib/libwgpu_native.so", buildNativeResourcesDirectory.resolve("libsDebug").resolve("arm64-v8a").resolve("libwgpu4k.so")).doLast {
+            Files.move(
+                buildNativeResourcesDirectory.resolve("libsDebug").resolve("arm64-v8a").resolve("lib").resolve("libwgpu4k.so").toPath(),
+                buildNativeResourcesDirectory.resolve("libsDebug").resolve("arm64-v8a").resolve("libwgpu4k.so").toPath()
+            )
+            buildNativeResourcesDirectory.resolve("libsDebug").resolve("arm64-v8a").resolve("lib").deleteRecursively()
+        }
     }
 }
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+        languageVersion = JavaLanguageVersion.of(22)
     }
 }
 
-tasks.create("copyJniLibraries") {
-    dependsOn("androidNativeArm64Binaries")
-    dependsOn("androidNativeX64Binaries")
-    doFirst {
-        copyJniLibraries()
+fun jniBasePath() = buildNativeResourcesDirectory.resolve("libsDebug")
+
+/*if (Platform.os == Os.MacOs) {
+    tasks.findByName("linkDebugTestMingwX64")?.apply { enabled = false }
+    tasks.findByName("mingwX64Test")?.apply { enabled = false }
+}*/
+
+tasks.named<Test>("jvmTest") {
+    useJUnitPlatform()
+    filter {
+        isFailOnNoMatchingTests = false
+    }
+    testLogging {
+        showExceptions = true
+        showStandardStreams = true
+        events = setOf(
+            org.gradle.api.tasks.testing.logging.TestLogEvent.FAILED,
+            org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED
+        )
+        exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
     }
 }
 
-tasks.findByName("assemble")?.dependsOn("copyJniLibraries")
-
-fun copyJniLibraries() {
-    val libraryFullName = "libwgpu4k.so"
-    filesToCopy().forEach { (source, target) ->
-        target.mkdirs()
-        target.resolve(libraryFullName)
-            .also { fileTarget ->
-                source.resolve(libraryFullName).copyTo(fileTarget, overwrite = true)
-            }
-    }
+tasks.withType(MergeSourceSetFolders::class.java).configureEach {
+    dependsOn("fetch-native-dependencies")
 }
-
-fun nativeBasePath() = project.projectDir.resolve("build").resolve("bin")
-fun jniBasePath() = nativeBasePath().resolve("libs")
-
-fun filesToCopy() = listOf(
-    nativeBasePath().resolve("androidNativeArm64").resolve("releaseShared")
-            to jniBasePath().resolve("arm64-v8a"),
-    nativeBasePath().resolve("androidNativeX64").resolve("releaseShared")
-            to jniBasePath().resolve("x86_64")
-)
-
-
+tasks.withType(CInteropProcess::class.java).configureEach {
+    dependsOn("fetch-native-dependencies")
+}

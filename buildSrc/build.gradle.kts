@@ -12,6 +12,7 @@ repositories {
 dependencies {
 	implementation(libs.download)
 	implementation(libs.kotlin.multiplatform)
+	implementation(libs.dokka)
 	implementation(libs.jreleaser.plugin)
 	implementation(libs.android.library)
 
@@ -19,4 +20,5 @@ dependencies {
 	implementation(libs.zip4j)
 	implementation(libs.okhttp)
 	implementation(libs.commons.io)
+
 }

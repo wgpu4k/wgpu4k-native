@@ -7,6 +7,7 @@ plugins {
     `maven-publish`
     id("org.jreleaser")
     signing
+    id("org.jetbrains.dokka")
 }
 
 
@@ -76,9 +77,15 @@ project.centralPortalPublish {
     url = layout.buildDirectory.dir("staging-deploy").get().asFile.toURI()
 }
 
+val javadocJar by tasks.registering(Jar::class) {
+    archiveClassifier.set("javadoc")
+    from(tasks.findByName("dokkaHtml"))
+}
+
 publishing {
     publications {
         withType<MavenPublication> {
+            artifact(javadocJar)
             pom {
                 name.set(project.name)
                 description.set(libraryDescription)

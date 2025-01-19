@@ -2,18 +2,17 @@ rootProject.name = "wgpu4k-native-root"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
+	includeBuild("generator")
 	repositories {
 		gradlePluginPortal()
 		google()
 		mavenCentral()
-		mavenLocal()
 	}
 }
 
 dependencyResolutionManagement {
 	repositories {
 		google()
-		mavenLocal()
 		mavenCentral()
 	}
 }
@@ -21,3 +20,7 @@ dependencyResolutionManagement {
 val hostOs = System.getProperty("os.name")
 
 include("wgpu4k-native")
+include("wgpu4k-native-specs")
+include("demo:common")
+include("demo:desktop")
+include("demo:android")

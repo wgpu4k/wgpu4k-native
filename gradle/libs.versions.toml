@@ -1,21 +1,56 @@
 [versions]
-kotlin = "2.0.20"
-wgpu = "v22.1.0.2"
+kaml = "0.67.0"
+kotlin = "2.1.0"
+wgpu = "v22.1.0.5"
 download = "5.6.0"
 jreleaser = "1.13.1"
-agp = "8.5.2"
-jna = "5.14.0"
+agp = "8.8.0"
+jna = "5.16.0"
+kotest = "6.0.0.M1"
+dokka = "2.0.0"
+
+# Jvm demo
+glfwNative = "0.0.1"
+rococoa = "0.0.1"
+
+# Android demo
+activityCompose = "1.9.3"
+android-native-helper = "0.0.1"
 
 [libraries]
-download = { module = "de.undercouch.download:de.undercouch.download.gradle.plugin", version.ref = "download" }
 kotlin-multiplatform = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
-jreleaser-plugin = { module = "org.jreleaser:org.jreleaser.gradle.plugin", version.ref = "jreleaser" }
+android-library = { module = "com.android.library:com.android.library.gradle.plugin", version.ref = "agp" }
+jna = { module = "net.java.dev.jna:jna", version.ref = "jna" }
+
+# Jvm demo
+ygdrasil-glfw-native = { module = "io.ygdrasil:glfw-native", version.ref = "glfwNative" }
+rococoa = { module = "io.ygdrasil:rococoa", version.ref = "rococoa" }
+jnaPlatform = { module = "net.java.dev.jna:jna-platform", version.ref = "jna" }
+
+# Android demo
+activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
+android-native-helper = { module = "io.ygdrasil:android-native-helper", version.ref = "android-native-helper" }
+
+# Tests
+kotest-runner-junit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
+kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect" }
+kotest-core = { module = "io.kotest:kotest-framework-engine", version.ref = "kotest" }
+kotest-assertions = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
+
+# Generator & Release
 commons-io = { module = "commons-io:commons-io", version = "2.18.0" }
 gson = { module = "com.google.code.gson:gson", version = "2.11.0" }
 okhttp = { module = "com.squareup.okhttp3:okhttp", version = "4.12.0" }
 zip4j = { module = "net.lingala.zip4j:zip4j", version = "2.11.5" }
-android-library = { module = "com.android.library:com.android.library.gradle.plugin", version.ref = "agp" }
-jna = { module = "net.java.dev.jna:jna", version.ref = "jna" }
+download = { module = "de.undercouch.download:de.undercouch.download.gradle.plugin", version.ref = "download" }
+kaml = { module = "com.charleskorn.kaml:kaml", version.ref = "kaml" }
+jreleaser-plugin = { module = "org.jreleaser:org.jreleaser.gradle.plugin", version.ref = "jreleaser" }
+dokka = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
 
 [plugins]
+kotest = { id = "io.kotest.multiplatform", version.ref = "kotest" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+android-application = { id = "com.android.application", version.ref = "agp" }
+
+[bundles]
+kotest = ["kotest-core", "kotest-assertions"]

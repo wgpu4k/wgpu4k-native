@@ -18,12 +18,15 @@ jobs:
         os: [ macos-14, ubuntu-latest, windows-latest ]
     runs-on: ${{ matrix.os }}
     steps:
+      - name: install dependencies
+        if: matrix.os == 'ubuntu-latest'
+        run: sudo apt install -y libglfw3-dev
       - uses: actions/checkout@v4
       - name: Set up JDK
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: 17
+          java-version: 22
           cache: 'gradle'
       - name: Cache Gradle packages
         uses: actions/cache@v4
@@ -31,8 +34,8 @@ jobs:
           path: ~/.gradle/caches
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle.kts') }}
           restore-keys: ${{ runner.os }}-gradle
-      - name: Fetch native dependencies
+      - name: Build
         run: |
           ./gradlew fetch-native-dependencies
-      - name: package
-        run: ./gradlew assemble --stacktrace
+          ./gradlew assemble
+          ./gradlew build
