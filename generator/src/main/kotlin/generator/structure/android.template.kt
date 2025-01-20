@@ -37,7 +37,7 @@ fun NativeModel.Structure.toAndroidStructure() = templateBuilder {
             }
             newLine()
             appendBlock("actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  $structureName) -> Unit): ArrayHolder<$structureName>") {
-                appendLine("val array = io.ygdrasil.wgpu.android.$structureName.ByValue().toArray(size.toInt())")
+                appendLine("val array = io.ygdrasil.wgpu.android.$structureName.ByValue(allocator.allocate($structureSize * size.toLong())).toArray(size.toInt())")
                 appendBlock("array.forEachIndexed", "index, structure") {
                     appendLine("(structure as io.ygdrasil.wgpu.android.$structureName.ByValue)") {
                         appendLine(".also { provider(index.toUInt(), $structureName.ByValue(it)) }")

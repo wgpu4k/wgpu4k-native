@@ -99,7 +99,7 @@ actual interface WGPURequestAdapterOptions {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPURequestAdapterOptions) -> Unit): ArrayHolder<WGPURequestAdapterOptions> {
-			val array = io.ygdrasil.wgpu.android.WGPURequestAdapterOptions.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPURequestAdapterOptions.ByValue(allocator.allocate(32 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPURequestAdapterOptions.ByValue)
 					.also { provider(index.toUInt(), WGPURequestAdapterOptions.ByValue(it)) }
@@ -228,7 +228,7 @@ actual interface WGPUAdapterInfo {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUAdapterInfo) -> Unit): ArrayHolder<WGPUAdapterInfo> {
-			val array = io.ygdrasil.wgpu.android.WGPUAdapterInfo.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUAdapterInfo.ByValue(allocator.allocate(56 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUAdapterInfo.ByValue)
 					.also { provider(index.toUInt(), WGPUAdapterInfo.ByValue(it)) }
@@ -294,7 +294,7 @@ actual interface WGPUQueueDescriptor {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUQueueDescriptor) -> Unit): ArrayHolder<WGPUQueueDescriptor> {
-			val array = io.ygdrasil.wgpu.android.WGPUQueueDescriptor.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUQueueDescriptor.ByValue(allocator.allocate(16 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUQueueDescriptor.ByValue)
 					.also { provider(index.toUInt(), WGPUQueueDescriptor.ByValue(it)) }
@@ -369,7 +369,7 @@ actual interface WGPUUncapturedErrorCallbackInfo {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUUncapturedErrorCallbackInfo) -> Unit): ArrayHolder<WGPUUncapturedErrorCallbackInfo> {
-			val array = io.ygdrasil.wgpu.android.WGPUUncapturedErrorCallbackInfo.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUUncapturedErrorCallbackInfo.ByValue(allocator.allocate(24 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUUncapturedErrorCallbackInfo.ByValue)
 					.also { provider(index.toUInt(), WGPUUncapturedErrorCallbackInfo.ByValue(it)) }
@@ -494,7 +494,7 @@ actual interface WGPUDeviceDescriptor {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUDeviceDescriptor) -> Unit): ArrayHolder<WGPUDeviceDescriptor> {
-			val array = io.ygdrasil.wgpu.android.WGPUDeviceDescriptor.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUDeviceDescriptor.ByValue(allocator.allocate(96 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUDeviceDescriptor.ByValue)
 					.also { provider(index.toUInt(), WGPUDeviceDescriptor.ByValue(it)) }
@@ -605,7 +605,7 @@ actual interface WGPUBindGroupEntry {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUBindGroupEntry) -> Unit): ArrayHolder<WGPUBindGroupEntry> {
-			val array = io.ygdrasil.wgpu.android.WGPUBindGroupEntry.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUBindGroupEntry.ByValue(allocator.allocate(56 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUBindGroupEntry.ByValue)
 					.also { provider(index.toUInt(), WGPUBindGroupEntry.ByValue(it)) }
@@ -698,7 +698,7 @@ actual interface WGPUBindGroupDescriptor {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUBindGroupDescriptor) -> Unit): ArrayHolder<WGPUBindGroupDescriptor> {
-			val array = io.ygdrasil.wgpu.android.WGPUBindGroupDescriptor.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUBindGroupDescriptor.ByValue(allocator.allocate(40 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUBindGroupDescriptor.ByValue)
 					.also { provider(index.toUInt(), WGPUBindGroupDescriptor.ByValue(it)) }
@@ -782,7 +782,7 @@ actual interface WGPUBufferBindingLayout {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUBufferBindingLayout) -> Unit): ArrayHolder<WGPUBufferBindingLayout> {
-			val array = io.ygdrasil.wgpu.android.WGPUBufferBindingLayout.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUBufferBindingLayout.ByValue(allocator.allocate(24 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUBufferBindingLayout.ByValue)
 					.also { provider(index.toUInt(), WGPUBufferBindingLayout.ByValue(it)) }
@@ -848,7 +848,7 @@ actual interface WGPUSamplerBindingLayout {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUSamplerBindingLayout) -> Unit): ArrayHolder<WGPUSamplerBindingLayout> {
-			val array = io.ygdrasil.wgpu.android.WGPUSamplerBindingLayout.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUSamplerBindingLayout.ByValue(allocator.allocate(16 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUSamplerBindingLayout.ByValue)
 					.also { provider(index.toUInt(), WGPUSamplerBindingLayout.ByValue(it)) }
@@ -932,7 +932,7 @@ actual interface WGPUTextureBindingLayout {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUTextureBindingLayout) -> Unit): ArrayHolder<WGPUTextureBindingLayout> {
-			val array = io.ygdrasil.wgpu.android.WGPUTextureBindingLayout.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUTextureBindingLayout.ByValue(allocator.allocate(24 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUTextureBindingLayout.ByValue)
 					.also { provider(index.toUInt(), WGPUTextureBindingLayout.ByValue(it)) }
@@ -1052,7 +1052,7 @@ actual interface WGPUSurfaceCapabilities {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUSurfaceCapabilities) -> Unit): ArrayHolder<WGPUSurfaceCapabilities> {
-			val array = io.ygdrasil.wgpu.android.WGPUSurfaceCapabilities.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUSurfaceCapabilities.ByValue(allocator.allocate(64 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUSurfaceCapabilities.ByValue)
 					.also { provider(index.toUInt(), WGPUSurfaceCapabilities.ByValue(it)) }
@@ -1190,7 +1190,7 @@ actual interface WGPUSurfaceConfiguration {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUSurfaceConfiguration) -> Unit): ArrayHolder<WGPUSurfaceConfiguration> {
-			val array = io.ygdrasil.wgpu.android.WGPUSurfaceConfiguration.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUSurfaceConfiguration.ByValue(allocator.allocate(56 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUSurfaceConfiguration.ByValue)
 					.also { provider(index.toUInt(), WGPUSurfaceConfiguration.ByValue(it)) }
@@ -1274,7 +1274,7 @@ actual interface WGPUStorageTextureBindingLayout {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUStorageTextureBindingLayout) -> Unit): ArrayHolder<WGPUStorageTextureBindingLayout> {
-			val array = io.ygdrasil.wgpu.android.WGPUStorageTextureBindingLayout.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUStorageTextureBindingLayout.ByValue(allocator.allocate(24 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUStorageTextureBindingLayout.ByValue)
 					.also { provider(index.toUInt(), WGPUStorageTextureBindingLayout.ByValue(it)) }
@@ -1377,7 +1377,7 @@ actual interface WGPUBindGroupLayoutEntry {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUBindGroupLayoutEntry) -> Unit): ArrayHolder<WGPUBindGroupLayoutEntry> {
-			val array = io.ygdrasil.wgpu.android.WGPUBindGroupLayoutEntry.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUBindGroupLayoutEntry.ByValue(allocator.allocate(104 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUBindGroupLayoutEntry.ByValue)
 					.also { provider(index.toUInt(), WGPUBindGroupLayoutEntry.ByValue(it)) }
@@ -1461,7 +1461,7 @@ actual interface WGPUBindGroupLayoutDescriptor {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUBindGroupLayoutDescriptor) -> Unit): ArrayHolder<WGPUBindGroupLayoutDescriptor> {
-			val array = io.ygdrasil.wgpu.android.WGPUBindGroupLayoutDescriptor.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUBindGroupLayoutDescriptor.ByValue(allocator.allocate(32 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUBindGroupLayoutDescriptor.ByValue)
 					.also { provider(index.toUInt(), WGPUBindGroupLayoutDescriptor.ByValue(it)) }
@@ -1536,7 +1536,7 @@ actual interface WGPUBlendComponent {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUBlendComponent) -> Unit): ArrayHolder<WGPUBlendComponent> {
-			val array = io.ygdrasil.wgpu.android.WGPUBlendComponent.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUBlendComponent.ByValue(allocator.allocate(12 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUBlendComponent.ByValue)
 					.also { provider(index.toUInt(), WGPUBlendComponent.ByValue(it)) }
@@ -1629,7 +1629,7 @@ actual interface WGPUBufferDescriptor {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUBufferDescriptor) -> Unit): ArrayHolder<WGPUBufferDescriptor> {
-			val array = io.ygdrasil.wgpu.android.WGPUBufferDescriptor.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUBufferDescriptor.ByValue(allocator.allocate(40 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUBufferDescriptor.ByValue)
 					.also { provider(index.toUInt(), WGPUBufferDescriptor.ByValue(it)) }
@@ -1713,7 +1713,7 @@ actual interface WGPUColor {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUColor) -> Unit): ArrayHolder<WGPUColor> {
-			val array = io.ygdrasil.wgpu.android.WGPUColor.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUColor.ByValue(allocator.allocate(32 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUColor.ByValue)
 					.also { provider(index.toUInt(), WGPUColor.ByValue(it)) }
@@ -1788,7 +1788,7 @@ actual interface WGPUConstantEntry {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUConstantEntry) -> Unit): ArrayHolder<WGPUConstantEntry> {
-			val array = io.ygdrasil.wgpu.android.WGPUConstantEntry.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUConstantEntry.ByValue(allocator.allocate(24 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUConstantEntry.ByValue)
 					.also { provider(index.toUInt(), WGPUConstantEntry.ByValue(it)) }
@@ -1854,7 +1854,7 @@ actual interface WGPUCommandBufferDescriptor {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUCommandBufferDescriptor) -> Unit): ArrayHolder<WGPUCommandBufferDescriptor> {
-			val array = io.ygdrasil.wgpu.android.WGPUCommandBufferDescriptor.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUCommandBufferDescriptor.ByValue(allocator.allocate(16 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUCommandBufferDescriptor.ByValue)
 					.also { provider(index.toUInt(), WGPUCommandBufferDescriptor.ByValue(it)) }
@@ -1920,7 +1920,7 @@ actual interface WGPUCommandEncoderDescriptor {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUCommandEncoderDescriptor) -> Unit): ArrayHolder<WGPUCommandEncoderDescriptor> {
-			val array = io.ygdrasil.wgpu.android.WGPUCommandEncoderDescriptor.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUCommandEncoderDescriptor.ByValue(allocator.allocate(16 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUCommandEncoderDescriptor.ByValue)
 					.also { provider(index.toUInt(), WGPUCommandEncoderDescriptor.ByValue(it)) }
@@ -1995,7 +1995,7 @@ actual interface WGPUCompilationInfo {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUCompilationInfo) -> Unit): ArrayHolder<WGPUCompilationInfo> {
-			val array = io.ygdrasil.wgpu.android.WGPUCompilationInfo.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUCompilationInfo.ByValue(allocator.allocate(24 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUCompilationInfo.ByValue)
 					.also { provider(index.toUInt(), WGPUCompilationInfo.ByValue(it)) }
@@ -2133,7 +2133,7 @@ actual interface WGPUCompilationMessage {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUCompilationMessage) -> Unit): ArrayHolder<WGPUCompilationMessage> {
-			val array = io.ygdrasil.wgpu.android.WGPUCompilationMessage.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUCompilationMessage.ByValue(allocator.allocate(80 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUCompilationMessage.ByValue)
 					.also { provider(index.toUInt(), WGPUCompilationMessage.ByValue(it)) }
@@ -2208,7 +2208,7 @@ actual interface WGPUComputePassDescriptor {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUComputePassDescriptor) -> Unit): ArrayHolder<WGPUComputePassDescriptor> {
-			val array = io.ygdrasil.wgpu.android.WGPUComputePassDescriptor.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUComputePassDescriptor.ByValue(allocator.allocate(24 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUComputePassDescriptor.ByValue)
 					.also { provider(index.toUInt(), WGPUComputePassDescriptor.ByValue(it)) }
@@ -2283,7 +2283,7 @@ actual interface WGPUComputePassTimestampWrites {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUComputePassTimestampWrites) -> Unit): ArrayHolder<WGPUComputePassTimestampWrites> {
-			val array = io.ygdrasil.wgpu.android.WGPUComputePassTimestampWrites.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUComputePassTimestampWrites.ByValue(allocator.allocate(16 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUComputePassTimestampWrites.ByValue)
 					.also { provider(index.toUInt(), WGPUComputePassTimestampWrites.ByValue(it)) }
@@ -2376,7 +2376,7 @@ actual interface WGPUProgrammableStageDescriptor {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUProgrammableStageDescriptor) -> Unit): ArrayHolder<WGPUProgrammableStageDescriptor> {
-			val array = io.ygdrasil.wgpu.android.WGPUProgrammableStageDescriptor.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUProgrammableStageDescriptor.ByValue(allocator.allocate(40 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUProgrammableStageDescriptor.ByValue)
 					.also { provider(index.toUInt(), WGPUProgrammableStageDescriptor.ByValue(it)) }
@@ -2458,7 +2458,7 @@ actual interface WGPUComputePipelineDescriptor {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUComputePipelineDescriptor) -> Unit): ArrayHolder<WGPUComputePipelineDescriptor> {
-			val array = io.ygdrasil.wgpu.android.WGPUComputePipelineDescriptor.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUComputePipelineDescriptor.ByValue(allocator.allocate(64 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUComputePipelineDescriptor.ByValue)
 					.also { provider(index.toUInt(), WGPUComputePipelineDescriptor.ByValue(it)) }
@@ -2794,7 +2794,7 @@ actual interface WGPULimits {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPULimits) -> Unit): ArrayHolder<WGPULimits> {
-			val array = io.ygdrasil.wgpu.android.WGPULimits.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPULimits.ByValue(allocator.allocate(144 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPULimits.ByValue)
 					.also { provider(index.toUInt(), WGPULimits.ByValue(it)) }
@@ -2858,7 +2858,7 @@ actual interface WGPURequiredLimits {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPURequiredLimits) -> Unit): ArrayHolder<WGPURequiredLimits> {
-			val array = io.ygdrasil.wgpu.android.WGPURequiredLimits.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPURequiredLimits.ByValue(allocator.allocate(152 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPURequiredLimits.ByValue)
 					.also { provider(index.toUInt(), WGPURequiredLimits.ByValue(it)) }
@@ -2922,7 +2922,7 @@ actual interface WGPUSupportedLimits {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUSupportedLimits) -> Unit): ArrayHolder<WGPUSupportedLimits> {
-			val array = io.ygdrasil.wgpu.android.WGPUSupportedLimits.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUSupportedLimits.ByValue(allocator.allocate(152 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUSupportedLimits.ByValue)
 					.also { provider(index.toUInt(), WGPUSupportedLimits.ByValue(it)) }
@@ -2997,7 +2997,7 @@ actual interface WGPUExtent3D {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUExtent3D) -> Unit): ArrayHolder<WGPUExtent3D> {
-			val array = io.ygdrasil.wgpu.android.WGPUExtent3D.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUExtent3D.ByValue(allocator.allocate(12 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUExtent3D.ByValue)
 					.also { provider(index.toUInt(), WGPUExtent3D.ByValue(it)) }
@@ -3081,7 +3081,7 @@ actual interface WGPUTextureDataLayout {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUTextureDataLayout) -> Unit): ArrayHolder<WGPUTextureDataLayout> {
-			val array = io.ygdrasil.wgpu.android.WGPUTextureDataLayout.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUTextureDataLayout.ByValue(allocator.allocate(24 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUTextureDataLayout.ByValue)
 					.also { provider(index.toUInt(), WGPUTextureDataLayout.ByValue(it)) }
@@ -3154,7 +3154,7 @@ actual interface WGPUImageCopyBuffer {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUImageCopyBuffer) -> Unit): ArrayHolder<WGPUImageCopyBuffer> {
-			val array = io.ygdrasil.wgpu.android.WGPUImageCopyBuffer.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUImageCopyBuffer.ByValue(allocator.allocate(40 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUImageCopyBuffer.ByValue)
 					.also { provider(index.toUInt(), WGPUImageCopyBuffer.ByValue(it)) }
@@ -3229,7 +3229,7 @@ actual interface WGPUOrigin3D {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUOrigin3D) -> Unit): ArrayHolder<WGPUOrigin3D> {
-			val array = io.ygdrasil.wgpu.android.WGPUOrigin3D.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUOrigin3D.ByValue(allocator.allocate(12 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUOrigin3D.ByValue)
 					.also { provider(index.toUInt(), WGPUOrigin3D.ByValue(it)) }
@@ -3320,7 +3320,7 @@ actual interface WGPUImageCopyTexture {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUImageCopyTexture) -> Unit): ArrayHolder<WGPUImageCopyTexture> {
-			val array = io.ygdrasil.wgpu.android.WGPUImageCopyTexture.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUImageCopyTexture.ByValue(allocator.allocate(40 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUImageCopyTexture.ByValue)
 					.also { provider(index.toUInt(), WGPUImageCopyTexture.ByValue(it)) }
@@ -3377,7 +3377,7 @@ actual interface WGPUInstanceDescriptor {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUInstanceDescriptor) -> Unit): ArrayHolder<WGPUInstanceDescriptor> {
-			val array = io.ygdrasil.wgpu.android.WGPUInstanceDescriptor.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUInstanceDescriptor.ByValue(allocator.allocate(8 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUInstanceDescriptor.ByValue)
 					.also { provider(index.toUInt(), WGPUInstanceDescriptor.ByValue(it)) }
@@ -3452,7 +3452,7 @@ actual interface WGPUVertexAttribute {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUVertexAttribute) -> Unit): ArrayHolder<WGPUVertexAttribute> {
-			val array = io.ygdrasil.wgpu.android.WGPUVertexAttribute.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUVertexAttribute.ByValue(allocator.allocate(24 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUVertexAttribute.ByValue)
 					.also { provider(index.toUInt(), WGPUVertexAttribute.ByValue(it)) }
@@ -3536,7 +3536,7 @@ actual interface WGPUVertexBufferLayout {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUVertexBufferLayout) -> Unit): ArrayHolder<WGPUVertexBufferLayout> {
-			val array = io.ygdrasil.wgpu.android.WGPUVertexBufferLayout.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUVertexBufferLayout.ByValue(allocator.allocate(32 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUVertexBufferLayout.ByValue)
 					.also { provider(index.toUInt(), WGPUVertexBufferLayout.ByValue(it)) }
@@ -3620,7 +3620,7 @@ actual interface WGPUPipelineLayoutDescriptor {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUPipelineLayoutDescriptor) -> Unit): ArrayHolder<WGPUPipelineLayoutDescriptor> {
-			val array = io.ygdrasil.wgpu.android.WGPUPipelineLayoutDescriptor.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUPipelineLayoutDescriptor.ByValue(allocator.allocate(32 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUPipelineLayoutDescriptor.ByValue)
 					.also { provider(index.toUInt(), WGPUPipelineLayoutDescriptor.ByValue(it)) }
@@ -3704,7 +3704,7 @@ actual interface WGPUQuerySetDescriptor {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUQuerySetDescriptor) -> Unit): ArrayHolder<WGPUQuerySetDescriptor> {
-			val array = io.ygdrasil.wgpu.android.WGPUQuerySetDescriptor.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUQuerySetDescriptor.ByValue(allocator.allocate(24 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUQuerySetDescriptor.ByValue)
 					.also { provider(index.toUInt(), WGPUQuerySetDescriptor.ByValue(it)) }
@@ -3770,7 +3770,7 @@ actual interface WGPURenderBundleDescriptor {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPURenderBundleDescriptor) -> Unit): ArrayHolder<WGPURenderBundleDescriptor> {
-			val array = io.ygdrasil.wgpu.android.WGPURenderBundleDescriptor.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPURenderBundleDescriptor.ByValue(allocator.allocate(16 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPURenderBundleDescriptor.ByValue)
 					.also { provider(index.toUInt(), WGPURenderBundleDescriptor.ByValue(it)) }
@@ -3890,7 +3890,7 @@ actual interface WGPURenderBundleEncoderDescriptor {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPURenderBundleEncoderDescriptor) -> Unit): ArrayHolder<WGPURenderBundleEncoderDescriptor> {
-			val array = io.ygdrasil.wgpu.android.WGPURenderBundleEncoderDescriptor.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPURenderBundleEncoderDescriptor.ByValue(allocator.allocate(48 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPURenderBundleEncoderDescriptor.ByValue)
 					.also { provider(index.toUInt(), WGPURenderBundleEncoderDescriptor.ByValue(it)) }
@@ -3999,7 +3999,7 @@ actual interface WGPURenderPassColorAttachment {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPURenderPassColorAttachment) -> Unit): ArrayHolder<WGPURenderPassColorAttachment> {
-			val array = io.ygdrasil.wgpu.android.WGPURenderPassColorAttachment.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPURenderPassColorAttachment.ByValue(allocator.allocate(72 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPURenderPassColorAttachment.ByValue)
 					.also { provider(index.toUInt(), WGPURenderPassColorAttachment.ByValue(it)) }
@@ -4128,7 +4128,7 @@ actual interface WGPURenderPassDepthStencilAttachment {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPURenderPassDepthStencilAttachment) -> Unit): ArrayHolder<WGPURenderPassDepthStencilAttachment> {
-			val array = io.ygdrasil.wgpu.android.WGPURenderPassDepthStencilAttachment.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPURenderPassDepthStencilAttachment.ByValue(allocator.allocate(40 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPURenderPassDepthStencilAttachment.ByValue)
 					.also { provider(index.toUInt(), WGPURenderPassDepthStencilAttachment.ByValue(it)) }
@@ -4239,7 +4239,7 @@ actual interface WGPURenderPassDescriptor {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPURenderPassDescriptor) -> Unit): ArrayHolder<WGPURenderPassDescriptor> {
-			val array = io.ygdrasil.wgpu.android.WGPURenderPassDescriptor.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPURenderPassDescriptor.ByValue(allocator.allocate(56 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPURenderPassDescriptor.ByValue)
 					.also { provider(index.toUInt(), WGPURenderPassDescriptor.ByValue(it)) }
@@ -4305,7 +4305,7 @@ actual interface WGPUChainedStruct {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUChainedStruct) -> Unit): ArrayHolder<WGPUChainedStruct> {
-			val array = io.ygdrasil.wgpu.android.WGPUChainedStruct.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUChainedStruct.ByValue(allocator.allocate(16 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUChainedStruct.ByValue)
 					.also { provider(index.toUInt(), WGPUChainedStruct.ByValue(it)) }
@@ -4369,7 +4369,7 @@ actual interface WGPURenderPassDescriptorMaxDrawCount {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPURenderPassDescriptorMaxDrawCount) -> Unit): ArrayHolder<WGPURenderPassDescriptorMaxDrawCount> {
-			val array = io.ygdrasil.wgpu.android.WGPURenderPassDescriptorMaxDrawCount.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPURenderPassDescriptorMaxDrawCount.ByValue(allocator.allocate(24 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPURenderPassDescriptorMaxDrawCount.ByValue)
 					.also { provider(index.toUInt(), WGPURenderPassDescriptorMaxDrawCount.ByValue(it)) }
@@ -4444,7 +4444,7 @@ actual interface WGPURenderPassTimestampWrites {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPURenderPassTimestampWrites) -> Unit): ArrayHolder<WGPURenderPassTimestampWrites> {
-			val array = io.ygdrasil.wgpu.android.WGPURenderPassTimestampWrites.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPURenderPassTimestampWrites.ByValue(allocator.allocate(16 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPURenderPassTimestampWrites.ByValue)
 					.also { provider(index.toUInt(), WGPURenderPassTimestampWrites.ByValue(it)) }
@@ -4555,7 +4555,7 @@ actual interface WGPUVertexState {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUVertexState) -> Unit): ArrayHolder<WGPUVertexState> {
-			val array = io.ygdrasil.wgpu.android.WGPUVertexState.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUVertexState.ByValue(allocator.allocate(56 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUVertexState.ByValue)
 					.also { provider(index.toUInt(), WGPUVertexState.ByValue(it)) }
@@ -4648,7 +4648,7 @@ actual interface WGPUPrimitiveState {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUPrimitiveState) -> Unit): ArrayHolder<WGPUPrimitiveState> {
-			val array = io.ygdrasil.wgpu.android.WGPUPrimitiveState.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUPrimitiveState.ByValue(allocator.allocate(24 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUPrimitiveState.ByValue)
 					.also { provider(index.toUInt(), WGPUPrimitiveState.ByValue(it)) }
@@ -4712,7 +4712,7 @@ actual interface WGPUPrimitiveDepthClipControl {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUPrimitiveDepthClipControl) -> Unit): ArrayHolder<WGPUPrimitiveDepthClipControl> {
-			val array = io.ygdrasil.wgpu.android.WGPUPrimitiveDepthClipControl.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUPrimitiveDepthClipControl.ByValue(allocator.allocate(24 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUPrimitiveDepthClipControl.ByValue)
 					.also { provider(index.toUInt(), WGPUPrimitiveDepthClipControl.ByValue(it)) }
@@ -4796,7 +4796,7 @@ actual interface WGPUStencilFaceState {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUStencilFaceState) -> Unit): ArrayHolder<WGPUStencilFaceState> {
-			val array = io.ygdrasil.wgpu.android.WGPUStencilFaceState.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUStencilFaceState.ByValue(allocator.allocate(16 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUStencilFaceState.ByValue)
 					.also { provider(index.toUInt(), WGPUStencilFaceState.ByValue(it)) }
@@ -4939,7 +4939,7 @@ actual interface WGPUDepthStencilState {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUDepthStencilState) -> Unit): ArrayHolder<WGPUDepthStencilState> {
-			val array = io.ygdrasil.wgpu.android.WGPUDepthStencilState.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUDepthStencilState.ByValue(allocator.allocate(72 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUDepthStencilState.ByValue)
 					.also { provider(index.toUInt(), WGPUDepthStencilState.ByValue(it)) }
@@ -5023,7 +5023,7 @@ actual interface WGPUMultisampleState {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUMultisampleState) -> Unit): ArrayHolder<WGPUMultisampleState> {
-			val array = io.ygdrasil.wgpu.android.WGPUMultisampleState.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUMultisampleState.ByValue(allocator.allocate(24 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUMultisampleState.ByValue)
 					.also { provider(index.toUInt(), WGPUMultisampleState.ByValue(it)) }
@@ -5134,7 +5134,7 @@ actual interface WGPUFragmentState {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUFragmentState) -> Unit): ArrayHolder<WGPUFragmentState> {
-			val array = io.ygdrasil.wgpu.android.WGPUFragmentState.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUFragmentState.ByValue(allocator.allocate(56 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUFragmentState.ByValue)
 					.also { provider(index.toUInt(), WGPUFragmentState.ByValue(it)) }
@@ -5218,7 +5218,7 @@ actual interface WGPUColorTargetState {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUColorTargetState) -> Unit): ArrayHolder<WGPUColorTargetState> {
-			val array = io.ygdrasil.wgpu.android.WGPUColorTargetState.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUColorTargetState.ByValue(allocator.allocate(32 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUColorTargetState.ByValue)
 					.also { provider(index.toUInt(), WGPUColorTargetState.ByValue(it)) }
@@ -5280,7 +5280,7 @@ actual interface WGPUBlendState {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUBlendState) -> Unit): ArrayHolder<WGPUBlendState> {
-			val array = io.ygdrasil.wgpu.android.WGPUBlendState.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUBlendState.ByValue(allocator.allocate(24 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUBlendState.ByValue)
 					.also { provider(index.toUInt(), WGPUBlendState.ByValue(it)) }
@@ -5394,7 +5394,7 @@ actual interface WGPURenderPipelineDescriptor {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPURenderPipelineDescriptor) -> Unit): ArrayHolder<WGPURenderPipelineDescriptor> {
-			val array = io.ygdrasil.wgpu.android.WGPURenderPipelineDescriptor.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPURenderPipelineDescriptor.ByValue(allocator.allocate(144 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPURenderPipelineDescriptor.ByValue)
 					.also { provider(index.toUInt(), WGPURenderPipelineDescriptor.ByValue(it)) }
@@ -5550,7 +5550,7 @@ actual interface WGPUSamplerDescriptor {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUSamplerDescriptor) -> Unit): ArrayHolder<WGPUSamplerDescriptor> {
-			val array = io.ygdrasil.wgpu.android.WGPUSamplerDescriptor.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUSamplerDescriptor.ByValue(allocator.allocate(60 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUSamplerDescriptor.ByValue)
 					.also { provider(index.toUInt(), WGPUSamplerDescriptor.ByValue(it)) }
@@ -5634,7 +5634,7 @@ actual interface WGPUShaderModuleDescriptor {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUShaderModuleDescriptor) -> Unit): ArrayHolder<WGPUShaderModuleDescriptor> {
-			val array = io.ygdrasil.wgpu.android.WGPUShaderModuleDescriptor.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUShaderModuleDescriptor.ByValue(allocator.allocate(32 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUShaderModuleDescriptor.ByValue)
 					.also { provider(index.toUInt(), WGPUShaderModuleDescriptor.ByValue(it)) }
@@ -5709,7 +5709,7 @@ actual interface WGPUShaderModuleCompilationHint {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUShaderModuleCompilationHint) -> Unit): ArrayHolder<WGPUShaderModuleCompilationHint> {
-			val array = io.ygdrasil.wgpu.android.WGPUShaderModuleCompilationHint.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUShaderModuleCompilationHint.ByValue(allocator.allocate(24 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUShaderModuleCompilationHint.ByValue)
 					.also { provider(index.toUInt(), WGPUShaderModuleCompilationHint.ByValue(it)) }
@@ -5782,7 +5782,7 @@ actual interface WGPUShaderModuleSPIRVDescriptor {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUShaderModuleSPIRVDescriptor) -> Unit): ArrayHolder<WGPUShaderModuleSPIRVDescriptor> {
-			val array = io.ygdrasil.wgpu.android.WGPUShaderModuleSPIRVDescriptor.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUShaderModuleSPIRVDescriptor.ByValue(allocator.allocate(32 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUShaderModuleSPIRVDescriptor.ByValue)
 					.also { provider(index.toUInt(), WGPUShaderModuleSPIRVDescriptor.ByValue(it)) }
@@ -5846,7 +5846,7 @@ actual interface WGPUShaderModuleWGSLDescriptor {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUShaderModuleWGSLDescriptor) -> Unit): ArrayHolder<WGPUShaderModuleWGSLDescriptor> {
-			val array = io.ygdrasil.wgpu.android.WGPUShaderModuleWGSLDescriptor.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUShaderModuleWGSLDescriptor.ByValue(allocator.allocate(24 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUShaderModuleWGSLDescriptor.ByValue)
 					.also { provider(index.toUInt(), WGPUShaderModuleWGSLDescriptor.ByValue(it)) }
@@ -5912,7 +5912,7 @@ actual interface WGPUSurfaceDescriptor {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUSurfaceDescriptor) -> Unit): ArrayHolder<WGPUSurfaceDescriptor> {
-			val array = io.ygdrasil.wgpu.android.WGPUSurfaceDescriptor.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUSurfaceDescriptor.ByValue(allocator.allocate(16 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUSurfaceDescriptor.ByValue)
 					.also { provider(index.toUInt(), WGPUSurfaceDescriptor.ByValue(it)) }
@@ -5976,7 +5976,7 @@ actual interface WGPUSurfaceDescriptorFromAndroidNativeWindow {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUSurfaceDescriptorFromAndroidNativeWindow) -> Unit): ArrayHolder<WGPUSurfaceDescriptorFromAndroidNativeWindow> {
-			val array = io.ygdrasil.wgpu.android.WGPUSurfaceDescriptorFromAndroidNativeWindow.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUSurfaceDescriptorFromAndroidNativeWindow.ByValue(allocator.allocate(24 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUSurfaceDescriptorFromAndroidNativeWindow.ByValue)
 					.also { provider(index.toUInt(), WGPUSurfaceDescriptorFromAndroidNativeWindow.ByValue(it)) }
@@ -6040,7 +6040,7 @@ actual interface WGPUSurfaceDescriptorFromCanvasHTMLSelector {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUSurfaceDescriptorFromCanvasHTMLSelector) -> Unit): ArrayHolder<WGPUSurfaceDescriptorFromCanvasHTMLSelector> {
-			val array = io.ygdrasil.wgpu.android.WGPUSurfaceDescriptorFromCanvasHTMLSelector.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUSurfaceDescriptorFromCanvasHTMLSelector.ByValue(allocator.allocate(24 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUSurfaceDescriptorFromCanvasHTMLSelector.ByValue)
 					.also { provider(index.toUInt(), WGPUSurfaceDescriptorFromCanvasHTMLSelector.ByValue(it)) }
@@ -6104,7 +6104,7 @@ actual interface WGPUSurfaceDescriptorFromMetalLayer {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUSurfaceDescriptorFromMetalLayer) -> Unit): ArrayHolder<WGPUSurfaceDescriptorFromMetalLayer> {
-			val array = io.ygdrasil.wgpu.android.WGPUSurfaceDescriptorFromMetalLayer.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUSurfaceDescriptorFromMetalLayer.ByValue(allocator.allocate(24 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUSurfaceDescriptorFromMetalLayer.ByValue)
 					.also { provider(index.toUInt(), WGPUSurfaceDescriptorFromMetalLayer.ByValue(it)) }
@@ -6177,7 +6177,7 @@ actual interface WGPUSurfaceDescriptorFromWindowsHWND {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUSurfaceDescriptorFromWindowsHWND) -> Unit): ArrayHolder<WGPUSurfaceDescriptorFromWindowsHWND> {
-			val array = io.ygdrasil.wgpu.android.WGPUSurfaceDescriptorFromWindowsHWND.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUSurfaceDescriptorFromWindowsHWND.ByValue(allocator.allocate(32 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUSurfaceDescriptorFromWindowsHWND.ByValue)
 					.also { provider(index.toUInt(), WGPUSurfaceDescriptorFromWindowsHWND.ByValue(it)) }
@@ -6250,7 +6250,7 @@ actual interface WGPUSurfaceDescriptorFromXcbWindow {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUSurfaceDescriptorFromXcbWindow) -> Unit): ArrayHolder<WGPUSurfaceDescriptorFromXcbWindow> {
-			val array = io.ygdrasil.wgpu.android.WGPUSurfaceDescriptorFromXcbWindow.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUSurfaceDescriptorFromXcbWindow.ByValue(allocator.allocate(32 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUSurfaceDescriptorFromXcbWindow.ByValue)
 					.also { provider(index.toUInt(), WGPUSurfaceDescriptorFromXcbWindow.ByValue(it)) }
@@ -6323,7 +6323,7 @@ actual interface WGPUSurfaceDescriptorFromXlibWindow {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUSurfaceDescriptorFromXlibWindow) -> Unit): ArrayHolder<WGPUSurfaceDescriptorFromXlibWindow> {
-			val array = io.ygdrasil.wgpu.android.WGPUSurfaceDescriptorFromXlibWindow.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUSurfaceDescriptorFromXlibWindow.ByValue(allocator.allocate(32 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUSurfaceDescriptorFromXlibWindow.ByValue)
 					.also { provider(index.toUInt(), WGPUSurfaceDescriptorFromXlibWindow.ByValue(it)) }
@@ -6396,7 +6396,7 @@ actual interface WGPUSurfaceDescriptorFromWaylandSurface {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUSurfaceDescriptorFromWaylandSurface) -> Unit): ArrayHolder<WGPUSurfaceDescriptorFromWaylandSurface> {
-			val array = io.ygdrasil.wgpu.android.WGPUSurfaceDescriptorFromWaylandSurface.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUSurfaceDescriptorFromWaylandSurface.ByValue(allocator.allocate(32 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUSurfaceDescriptorFromWaylandSurface.ByValue)
 					.also { provider(index.toUInt(), WGPUSurfaceDescriptorFromWaylandSurface.ByValue(it)) }
@@ -6471,7 +6471,7 @@ actual interface WGPUSurfaceTexture {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUSurfaceTexture) -> Unit): ArrayHolder<WGPUSurfaceTexture> {
-			val array = io.ygdrasil.wgpu.android.WGPUSurfaceTexture.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUSurfaceTexture.ByValue(allocator.allocate(16 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUSurfaceTexture.ByValue)
 					.also { provider(index.toUInt(), WGPUSurfaceTexture.ByValue(it)) }
@@ -6607,7 +6607,7 @@ actual interface WGPUTextureDescriptor {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUTextureDescriptor) -> Unit): ArrayHolder<WGPUTextureDescriptor> {
-			val array = io.ygdrasil.wgpu.android.WGPUTextureDescriptor.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUTextureDescriptor.ByValue(allocator.allocate(64 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUTextureDescriptor.ByValue)
 					.also { provider(index.toUInt(), WGPUTextureDescriptor.ByValue(it)) }
@@ -6736,7 +6736,7 @@ actual interface WGPUTextureViewDescriptor {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUTextureViewDescriptor) -> Unit): ArrayHolder<WGPUTextureViewDescriptor> {
-			val array = io.ygdrasil.wgpu.android.WGPUTextureViewDescriptor.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUTextureViewDescriptor.ByValue(allocator.allocate(48 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUTextureViewDescriptor.ByValue)
 					.also { provider(index.toUInt(), WGPUTextureViewDescriptor.ByValue(it)) }
@@ -6802,7 +6802,7 @@ actual interface WGPUWrappedSubmissionIndex {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUWrappedSubmissionIndex) -> Unit): ArrayHolder<WGPUWrappedSubmissionIndex> {
-			val array = io.ygdrasil.wgpu.android.WGPUWrappedSubmissionIndex.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUWrappedSubmissionIndex.ByValue(allocator.allocate(16 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUWrappedSubmissionIndex.ByValue)
 					.also { provider(index.toUInt(), WGPUWrappedSubmissionIndex.ByValue(it)) }
@@ -6911,7 +6911,7 @@ actual interface WGPUInstanceExtras {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUInstanceExtras) -> Unit): ArrayHolder<WGPUInstanceExtras> {
-			val array = io.ygdrasil.wgpu.android.WGPUInstanceExtras.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUInstanceExtras.ByValue(allocator.allocate(48 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUInstanceExtras.ByValue)
 					.also { provider(index.toUInt(), WGPUInstanceExtras.ByValue(it)) }
@@ -6977,7 +6977,7 @@ actual interface WGPUChainedStructOut {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUChainedStructOut) -> Unit): ArrayHolder<WGPUChainedStructOut> {
-			val array = io.ygdrasil.wgpu.android.WGPUChainedStructOut.ByValue().toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUChainedStructOut.ByValue(allocator.allocate(16 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUChainedStructOut.ByValue)
 					.also { provider(index.toUInt(), WGPUChainedStructOut.ByValue(it)) }
