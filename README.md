@@ -2,7 +2,7 @@
 
 [![Tests](https://github.com/wgpu4k/wgpu4k-native/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/wgpu4k/wgpu4k-native/actions/workflows/test.yml)
 ![Static Badge](https://img.shields.io/badge/Status-Stable-green?style=plastic)
-![Static Badge](https://img.shields.io/badge/Latest%20version-v22.0.1-green?style=plastic)
+![Static Badge](https://img.shields.io/badge/Latest%20version-v22.0.2-green?style=plastic)
 [![Static Badge](https://img.shields.io/badge/Licence-MIT-blue?style=plastic)](https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FMIT_License)
 [![Static Badge](https://img.shields.io/badge/Discord-wgpu4k-purple?style=plastic)](https://discord.gg/qy9KQAP9Kc)
 
