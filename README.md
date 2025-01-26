@@ -13,6 +13,14 @@ If you are looking for an experience that also covers the web, you can use the [
 
 This library uses the Firefox backend written in Rust, [available here](https://github.com/gfx-rs/wgpu-native).
 
+## How to Run the demo
+
+1. On JVM: `./gradlew demo:desktop-and-ios:runJvm`
+4. On native Macos or Linux: `./gradlew demo:desktop-and-ios:runDebugExecutable`
+5. On Android, run the subproject `android` with android studio !
+6. On iOS `./gradlew demo:desktop-and-ios:assembleWgpuAppXCFramework` to build the XC Framework, then you can run the subproject `iosApp` (on demo/desktop-and-ios folder) with XCode on a iOS simulator or real device.
+
+
 ## How to use
 
 From a basic multiplatform project, create a common native source set and add the library:
@@ -104,8 +112,3 @@ kotlin {
     }
     ...
 }
-
-
-```
-
-Check the [demo folder](https://github.com/wgpu4k/wgpu4k-native/tree/main/demo) to see how to use the library.

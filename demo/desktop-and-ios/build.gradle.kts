@@ -1,8 +1,26 @@
+import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
+
 plugins {
     id(libs.plugins.kotlin.multiplatform.get().pluginId)
 }
 
 kotlin {
+
+    val xcframeworkName = "WgpuApp"
+    val xcf = XCFramework(xcframeworkName)
+
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64()
+    ).forEach { iosTarget ->
+        iosTarget.binaries.framework {
+            baseName = "WgpuApp"
+            isStatic = true
+            xcf.add(this)
+            binaryOption("bundleId", "io.ygdrasil.webgpu.$xcframeworkName")
+        }
+    }
 
     val hostOs = System.getProperty("os.name")
     val isArm64 = System.getProperty("os.arch") == "aarch64"
@@ -34,6 +52,8 @@ kotlin {
         withJava()
     }
 
+    applyDefaultHierarchyTemplate()
+
     sourceSets {
 
         commonMain {
@@ -42,10 +62,18 @@ kotlin {
             }
         }
 
-        nativeMain {
+        val desktopMain by creating {
             dependencies {
                 implementation(libs.ygdrasil.glfw.native)
             }
+        }
+
+        macosMain {
+            dependsOn(desktopMain)
+        }
+
+        linuxMain {
+            dependsOn(desktopMain)
         }
 
         jvmMain {
@@ -90,4 +118,10 @@ tasks.register<JavaExec>("runJvm") {
         }
     )
     classpath = sourceSets["main"].runtimeClasspath
+}
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(22))
+    }
 }

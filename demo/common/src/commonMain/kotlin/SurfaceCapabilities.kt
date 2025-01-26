@@ -37,7 +37,6 @@ fun compatibleFormat(surface: WGPUSurface, adapter: WGPUAdapter): UInt = memoryS
     val surfaceCapabilities = WGPUSurfaceCapabilities.allocate(scope)
     wgpuSurfaceGetCapabilities(surface, adapter, surfaceCapabilities)
     if (surfaceCapabilities.formatCount == 0uL) error("no surface format")
-    println("surface format count: ${surfaceCapabilities.formatCount}")
     return surfaceCapabilities.formats?.handler
         ?.let { MemoryBuffer(it, Int.SIZE_BYTES.toULong() * surfaceCapabilities.formatCount) }
         ?.readInt()?.toUInt()

@@ -10,16 +10,17 @@ kotlin {
 
 
     jvm()
-
     macosArm64()
     macosX64()
+    iosX64()
+    iosArm64()
+    iosSimulatorArm64()
     linuxArm64()
     linuxX64()
     iosX64()
     iosArm64()
     iosSimulatorArm64()
     mingwX64()
-
     androidTarget()
 
     sourceSets {
