@@ -141,9 +141,9 @@ configureDownloadTasks {
             )
             buildNativeResourcesDirectory.resolve("include").deleteRecursively()
         }
-        extract("include/wgpu/wgpu.h", buildNativeResourcesDirectory.resolve("wgpu.h")).doLast {
+        extract("include/webgpu/wgpu.h", buildNativeResourcesDirectory.resolve("wgpu.h")).doLast {
             Files.move(
-                buildNativeResourcesDirectory.resolve("include").resolve("wgpu").resolve("wgpu.h").toPath(),
+                buildNativeResourcesDirectory.resolve("include").resolve("webgpu").resolve("wgpu.h").toPath(),
                 buildNativeResourcesDirectory.resolve("wgpu.h").toPath()
             )
             buildNativeResourcesDirectory.resolve("include").deleteRecursively()
