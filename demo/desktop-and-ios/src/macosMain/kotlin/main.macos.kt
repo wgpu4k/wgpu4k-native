@@ -1,18 +1,13 @@
 @file:OptIn(ExperimentalForeignApi::class)
 
+package io.ygdrasil.wgpu
+
 import cnames.structs.GLFWwindow
-import ffi.memoryScope
 import ffi.NativeAddress
 import glfw.glfwGetCocoaWindow
 import kotlinx.cinterop.*
 import platform.AppKit.NSWindow
 import platform.QuartzCore.CAMetalLayer
-import io.ygdrasil.wgpu.WGPUInstance
-import io.ygdrasil.wgpu.WGPUSType_SurfaceDescriptorFromMetalLayer
-import io.ygdrasil.wgpu.WGPUSurface
-import io.ygdrasil.wgpu.WGPUSurfaceDescriptor
-import io.ygdrasil.wgpu.WGPUSurfaceDescriptorFromMetalLayer
-import io.ygdrasil.wgpu.wgpuInstanceCreateSurface
 
 actual fun getSurface(instance: WGPUInstance, window: CPointer<GLFWwindow>): WGPUSurface {
     val nsWindow = interpretObjCPointer<NSWindow>(glfwGetCocoaWindow(window).rawValue)
@@ -20,17 +15,6 @@ actual fun getSurface(instance: WGPUInstance, window: CPointer<GLFWwindow>): WGP
     val layer = CAMetalLayer.layer()
     nsWindow.contentView()?.setLayer(layer)
     val layerPointer: COpaquePointer = interpretCPointer<COpaque>(layer.objcPtr())!!.reinterpret()
-    return getSurfaceFromMetalLayer(instance, layerPointer) ?: error("fail to get surface on MacOs")
+    return getSurfaceFromMetalLayer(instance, layerPointer.let(::NativeAddress)) ?: error("fail to get surface on MacOs")
 }
 
-private fun getSurfaceFromMetalLayer(instance: WGPUInstance, metalLayer: COpaquePointer): WGPUSurface? = memoryScope { scope ->
-
-    val surfaceDescriptor = WGPUSurfaceDescriptor.allocate(scope).apply {
-        nextInChain = WGPUSurfaceDescriptorFromMetalLayer.allocate(scope).apply {
-            chain.sType = WGPUSType_SurfaceDescriptorFromMetalLayer
-            layer = metalLayer.let(::NativeAddress)
-        }.handler
-    }
-
-    return wgpuInstanceCreateSurface(instance, surfaceDescriptor)
-}

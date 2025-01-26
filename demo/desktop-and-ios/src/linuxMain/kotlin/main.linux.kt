@@ -1,5 +1,7 @@
 @file:OptIn(ExperimentalForeignApi::class)
 
+package io.ygdrasil.wgpu
+
 import cnames.structs.GLFWwindow
 import ffi.memoryScope
 import ffi.NativeAddress

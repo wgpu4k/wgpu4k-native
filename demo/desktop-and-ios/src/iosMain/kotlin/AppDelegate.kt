@@ -1,20 +1,8 @@
 @file:OptIn(ExperimentalForeignApi::class)
 
+package io.ygdrasil.wgpu
+
 import ffi.NativeAddress
-import ffi.memoryScope
-import io.ygdrasil.wgpu.HelloTriangleScene
-import io.ygdrasil.wgpu.WGPUInstance
-import io.ygdrasil.wgpu.WGPUSType_SurfaceDescriptorFromMetalLayer
-import io.ygdrasil.wgpu.WGPUSurface
-import io.ygdrasil.wgpu.WGPUSurfaceDescriptor
-import io.ygdrasil.wgpu.WGPUSurfaceDescriptorFromMetalLayer
-import io.ygdrasil.wgpu.compatibleAlphaMode
-import io.ygdrasil.wgpu.compatibleFormat
-import io.ygdrasil.wgpu.configureSurface
-import io.ygdrasil.wgpu.getAdapter
-import io.ygdrasil.wgpu.getDevice
-import io.ygdrasil.wgpu.wgpuCreateInstance
-import io.ygdrasil.wgpu.wgpuInstanceCreateSurface
 import kotlinx.cinterop.COpaque
 import kotlinx.cinterop.COpaquePointer
 import kotlinx.cinterop.CValue
@@ -102,14 +90,3 @@ class ViewDelegate(
 
 }
 
-private fun getSurfaceFromMetalLayer(instance: WGPUInstance, metalLayer: NativeAddress): WGPUSurface? = memoryScope { scope ->
-
-    val surfaceDescriptor = WGPUSurfaceDescriptor.allocate(scope).apply {
-        nextInChain = WGPUSurfaceDescriptorFromMetalLayer.allocate(scope).apply {
-            chain.sType = WGPUSType_SurfaceDescriptorFromMetalLayer
-            layer = metalLayer
-        }.handler
-    }
-
-    return wgpuInstanceCreateSurface(instance, surfaceDescriptor)
-}

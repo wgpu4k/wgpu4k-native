@@ -6,6 +6,7 @@ import android.util.AttributeSet
 import android.view.SurfaceHolder
 import android.view.SurfaceView
 import com.sun.jna.Pointer
+import ffi.NativeAddress
 import ffi.memoryScope
 
 
@@ -55,13 +56,5 @@ fun getSurface(
     surfaceHolder: SurfaceHolder
 ): WGPUSurface = memoryScope { scope ->
     val nativeWindow = io.ygdrasil.nativeHelper.Helper.nativeWindowFromSurface(surfaceHolder.surface)
-
-    val surfaceDescriptor = WGPUSurfaceDescriptor.allocate(scope).apply {
-        nextInChain = WGPUSurfaceDescriptorFromAndroidNativeWindow.allocate(scope).apply {
-            chain.sType = WGPUSType_SurfaceDescriptorFromAndroidNativeWindow
-            window = Pointer(nativeWindow)
-        }.handler
-    }
-
-    wgpuInstanceCreateSurface(instance, surfaceDescriptor) ?: error("fail to create surface")
+    return getSurfaceAndroidView(instance, nativeWindow.let(::NativeAddress))
 }
