@@ -140,13 +140,13 @@ fun getSurfaceAndroidView(
 }
 
 
-fun getSurfaceFromX11Window(instance: WGPUInstance, display: NativeAddress, window: Long): WGPUSurface? = memoryScope { scope ->
+fun getSurfaceFromX11Window(instance: WGPUInstance, display: NativeAddress, window: ULong): WGPUSurface? = memoryScope { scope ->
 
     val surfaceDescriptor = WGPUSurfaceDescriptor.allocate(scope).apply {
         nextInChain = WGPUSurfaceSourceXlibWindow.allocate(scope).apply {
             chain.sType = WGPUSType_SurfaceSourceXlibWindow
             this.display = display
-            this.window = window.toULong()
+            this.window = window
         }.handler
     }
 
