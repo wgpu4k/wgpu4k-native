@@ -1,4 +1,4 @@
-
+package io.ygdrasil.wgpu
 
 import com.sun.jna.Pointer
 import com.sun.jna.platform.win32.Kernel32
@@ -7,26 +7,6 @@ import darwin.NSWindow
 import ffi.LibraryLoader
 import ffi.NativeAddress
 import ffi.memoryScope
-import io.ygdrasil.wgpu.HelloTriangleScene
-import io.ygdrasil.wgpu.WGPUInstance
-import io.ygdrasil.wgpu.WGPUSType_SurfaceDescriptorFromMetalLayer
-import io.ygdrasil.wgpu.WGPUSType_SurfaceDescriptorFromWindowsHWND
-import io.ygdrasil.wgpu.WGPUSType_SurfaceDescriptorFromXlibWindow
-import io.ygdrasil.wgpu.WGPUSupportedLimits
-import io.ygdrasil.wgpu.WGPUSurface
-import io.ygdrasil.wgpu.WGPUSurfaceDescriptor
-import io.ygdrasil.wgpu.WGPUSurfaceDescriptorFromMetalLayer
-import io.ygdrasil.wgpu.WGPUSurfaceDescriptorFromWindowsHWND
-import io.ygdrasil.wgpu.WGPUSurfaceDescriptorFromXlibWindow
-import io.ygdrasil.wgpu.compatibleAlphaMode
-import io.ygdrasil.wgpu.compatibleFormat
-import io.ygdrasil.wgpu.configureLogs
-import io.ygdrasil.wgpu.configureSurface
-import io.ygdrasil.wgpu.getAdapter
-import io.ygdrasil.wgpu.getDevice
-import io.ygdrasil.wgpu.wgpuAdapterGetLimits
-import io.ygdrasil.wgpu.wgpuCreateInstance
-import io.ygdrasil.wgpu.wgpuInstanceCreateSurface
 import org.lwjgl.glfw.GLFW.*
 import org.lwjgl.glfw.GLFWNativeCocoa.glfwGetCocoaWindow
 import org.lwjgl.glfw.GLFWNativeWin32.glfwGetWin32Window
@@ -58,7 +38,7 @@ fun main() {
     val adapter = getAdapter(surface, instance)
 
     memoryScope { scope ->
-        val supportedLimits = WGPUSupportedLimits.allocate(scope)
+        val supportedLimits = WGPULimits.allocate(scope)
         wgpuAdapterGetLimits(adapter, supportedLimits)
         println("Adapter limits: $supportedLimits")
     }
@@ -85,7 +65,7 @@ private fun getSurface(instance: WGPUInstance, window: Long): WGPUSurface = when
     Os.Linux -> {
         val display = glfwGetX11Display().toNativeAddress()
         val x11_window = glfwGetX11Window(window)
-        getSurfaceFromX11Window(instance, display, x11_window) ?: error("fail to get surface on Linux")
+        getSurfaceFromX11Window(instance, display, x11_window.toULong()) ?: error("fail to get surface on Linux")
     }
     Os.Window -> {
         val hwnd = glfwGetWin32Window(window).toNativeAddress()
@@ -102,44 +82,6 @@ private fun getSurface(instance: WGPUInstance, window: Long): WGPUSurface = when
     }
 } ?: error("fail to get surface")
 
-
-private fun getSurfaceFromMetalLayer(instance: WGPUInstance, metalLayer: NativeAddress): WGPUSurface? = memoryScope { scope ->
-
-    val surfaceDescriptor = WGPUSurfaceDescriptor.allocate(scope).apply {
-        nextInChain = WGPUSurfaceDescriptorFromMetalLayer.allocate(scope).apply {
-            chain.sType = WGPUSType_SurfaceDescriptorFromMetalLayer
-            layer = metalLayer
-        }.handler
-    }
-
-    return wgpuInstanceCreateSurface(instance, surfaceDescriptor)
-}
-
-private fun getSurfaceFromX11Window(instance: WGPUInstance, display: NativeAddress, window: Long): WGPUSurface? = memoryScope { scope ->
-
-    val surfaceDescriptor = WGPUSurfaceDescriptor.allocate(scope).apply {
-        nextInChain = WGPUSurfaceDescriptorFromXlibWindow.allocate(scope).apply {
-            chain.sType = WGPUSType_SurfaceDescriptorFromXlibWindow
-            this.display = display
-            this.window = window.toULong()
-        }.handler
-    }
-
-    return wgpuInstanceCreateSurface(instance, surfaceDescriptor)
-}
-
-private fun getSurfaceFromWindows(instance: WGPUInstance, hinstance: NativeAddress, hwnd: NativeAddress): WGPUSurface? = memoryScope { scope ->
-
-    val surfaceDescriptor = WGPUSurfaceDescriptor.allocate(scope).apply {
-        nextInChain = WGPUSurfaceDescriptorFromWindowsHWND.allocate(scope).apply {
-            chain.sType = WGPUSType_SurfaceDescriptorFromWindowsHWND
-            this.hwnd = hwnd
-            this.hinstance = hinstance
-        }.handler
-    }
-
-    return wgpuInstanceCreateSurface(instance, surfaceDescriptor)
-}
 
 private fun Long.toPointer(): Pointer = Pointer(this)
 

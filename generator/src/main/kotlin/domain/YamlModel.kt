@@ -76,6 +76,7 @@ data class YamlModel(
             val type: String,
             val pointer: String? = null,
             val optional: Boolean = false,
+            val passed_with_ownership: Boolean? = null,
         )
     }
 
@@ -110,6 +111,7 @@ data class YamlModel(
             val doc: String,
             val type: String,
             val pointer: String? = null,
+            val passed_with_ownership: Boolean? = null,
         )
     }
 

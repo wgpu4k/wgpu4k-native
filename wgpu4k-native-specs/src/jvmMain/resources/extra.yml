@@ -173,20 +173,6 @@ bitflags:
           - GL
           - DX11
 structs:
-  - name: wrapped_submission_index
-    doc: |
-      TODO
-    type: standalone
-    members:
-      - name: queue
-        doc: |
-          TODO
-        type: object.queue
-      - name: submissionIndex
-        doc: |
-          TODO
-        type: uint64
-
   - name: InstanceExtras
     doc: |
       TODO
@@ -233,8 +219,8 @@ functions:
       - name: wrappedSubmissionIndex
         doc: |
           TODO
-        type: struct.wrapped_submission_index
-        optional: true
+        type: c_void
+        pointer: mutable
     returns:
       doc: |
         TODO

@@ -42,7 +42,7 @@ kotlin {
 
             binaries {
                 executable {
-                    entryPoint = "main"
+                    entryPoint = "io.ygdrasil.wgpu.main"
                 }
             }
         }
@@ -102,7 +102,7 @@ tasks.register<JavaExec>("runJvm") {
     group = "run"
     // TODO: find why the app is crashing sometimes
     isIgnoreExitValue = true
-    mainClass = "MainKt"
+    mainClass = "io.ygdrasil.wgpu.MainKt"
     jvmArgs(
         if (Platform.os == Os.MacOs) {
             listOf(

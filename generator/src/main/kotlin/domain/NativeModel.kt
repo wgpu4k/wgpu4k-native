@@ -131,7 +131,7 @@ internal fun String?.toCType(isPointer: Boolean, isMutable: Boolean, isOptional:
             else -> NativeModel.Void
         }
         startsWith("array<") -> NativeModel.Array(substring(6, length - 1).toCType(false, false), isMutable)
-        isString() -> NativeModel.Reference.CString//NativeModel.Reference.StructureField("WGPUStringView")
+        isString() -> NativeModel.Reference.StructureField("WGPUStringView", false)
         else -> error("unknown type $this")
     }
 }

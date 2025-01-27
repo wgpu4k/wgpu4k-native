@@ -1,5 +1,7 @@
 @file:OptIn(ExperimentalForeignApi::class)
 
+package io.ygdrasil.wgpu
+
 import cnames.structs.GLFWwindow
 import glfw.GLFW_CLIENT_API
 import glfw.GLFW_FALSE
@@ -15,16 +17,6 @@ import glfw.glfwWindowHint
 import glfw.glfwWindowShouldClose
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.ExperimentalForeignApi
-import io.ygdrasil.wgpu.HelloTriangleScene
-import io.ygdrasil.wgpu.WGPUInstance
-import io.ygdrasil.wgpu.WGPUSurface
-import io.ygdrasil.wgpu.compatibleAlphaMode
-import io.ygdrasil.wgpu.compatibleFormat
-import io.ygdrasil.wgpu.configureLogs
-import io.ygdrasil.wgpu.configureSurface
-import io.ygdrasil.wgpu.getAdapter
-import io.ygdrasil.wgpu.getDevice
-import io.ygdrasil.wgpu.wgpuCreateInstance
 
 fun main() {
     val width = 640
