@@ -65,7 +65,7 @@ private fun getSurface(instance: WGPUInstance, window: Long): WGPUSurface = when
     Os.Linux -> {
         val display = glfwGetX11Display().toNativeAddress()
         val x11_window = glfwGetX11Window(window)
-        getSurfaceFromX11Window(instance, display, x11_window) ?: error("fail to get surface on Linux")
+        getSurfaceFromX11Window(instance, display, x11_window.toULong()) ?: error("fail to get surface on Linux")
     }
     Os.Window -> {
         val hwnd = glfwGetWin32Window(window).toNativeAddress()
