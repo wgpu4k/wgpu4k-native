@@ -20,7 +20,9 @@ jobs:
     steps:
       - name: install dependencies
         if: matrix.os == 'ubuntu-latest'
-        run: sudo apt install -y libglfw3-dev
+        run: |
+          sudo apt update
+          sudo apt install -y libglfw3-dev
       - uses: actions/checkout@v4
       - name: Set up JDK
         uses: actions/setup-java@v4

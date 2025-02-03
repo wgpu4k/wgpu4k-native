@@ -44,11 +44,10 @@ fun main() {
     }
 
     val device = getDevice(adapter)
-    val compatibleFormat = compatibleFormat(surface, adapter)
-    val alphaMode = compatibleAlphaMode(surface, adapter)
-    configureSurface(device, width, height, surface, compatibleFormat, alphaMode)
+    val surfaceCapabilities = surfaceCapabilities(surface, adapter)
+    configureSurface(device, width, height, surface, surfaceCapabilities.formats.first(), surfaceCapabilities.alphaModes.first(), listOf(surfaceCapabilities.formats.first()))
 
-    val scene = HelloTriangleScene(device, compatibleFormat, surface)
+    val scene = HelloTriangleScene(device, surfaceCapabilities.formats.first(), surface)
     scene.initialize()
 
     glfwShowWindow(windowHandler)
