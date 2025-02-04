@@ -159,20 +159,10 @@ data class YamlModel(
     data class Enum(
         val name: String,
         val doc: String,
-        val entries: YamlList,
+        val entries: List<Entry?>,
     ) {
 
-        val values: List<Entry>
-            get() = entries.items
-                .filter { entry -> entry !is YamlNull }
-                .map { entry ->
-                    val name = entry.yamlMap.get<YamlNode>("name")!!.yamlScalar.content
-                    val doc = entry.yamlMap.get<YamlNode>("doc")!!.yamlScalar.content
-                    val value = entry.yamlMap.get<YamlNode>("value")?.yamlScalar?.content
-                        ?.substringAfter("x")?.toInt(radix = 16)
-                    Entry(name, doc, value)
-                }
-
+        @Serializable
         data class Entry(
             val name: String,
             val doc: String,

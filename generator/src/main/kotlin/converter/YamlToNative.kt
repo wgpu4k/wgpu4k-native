@@ -25,14 +25,10 @@ internal fun YamlModel.toNativeModel(): NativeModel {
 
 private fun YamlModel.convertToCLibraryEnumerations() =
     enums.map {
-        NativeModel.Enumeration(it.name.convertToKotlinClassName(), it.values.convertEnumToEnumValues(it.values.getBaseValue()))
+        NativeModel.Enumeration(it.name.convertToKotlinClassName(), it.entries.convertEnumToEnumValues())
     } + bitflags.map {
         NativeModel.Enumeration(it.name.convertToKotlinClassName(), it.entries.convertToEnumValues(it.entries), if(mappingVersion == Version.v22) 32 else 64)
     }
-
-private fun List<YamlModel.Enum.Entry>.getBaseValue(): Int {
-    return if (isNotEmpty() && first().name == "undefined") 0 else if (mappingVersion == Version.v22) 0 else 1
-}
 
 private fun List<YamlModel.Bitflag.Entry>.convertToEnumValues(entries: List<YamlModel.Bitflag.Entry>): List<Pair<String, Int>> = mapIndexed { index, entry ->
     // Calculate first if that a combination
@@ -43,8 +39,10 @@ private fun List<YamlModel.Bitflag.Entry>.convertToEnumValues(entries: List<Yaml
 
 private fun indexToFlagValue(base: Int): Int = if (base == 0) 0 else 1 shl (base - 1)
 
-private fun List<YamlModel.Enum.Entry>.convertEnumToEnumValues(baseValue: Int): List<Pair<String, Int>> = mapIndexed { index, entry ->
-    entry.name.convertToEnumValueName() to (entry.value ?: (index + baseValue))
+private fun List<YamlModel.Enum.Entry?>.convertEnumToEnumValues(): List<Pair<String, Int>> = mapIndexedNotNull { index, entry ->
+    if (entry == null) return@mapIndexedNotNull null
+
+    entry.name.convertToEnumValueName() to (entry.value ?: (index))
 }
 
 
