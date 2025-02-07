@@ -8,6 +8,7 @@ import converter.to.native.generateCLibraryStructures
 import domain.NativeModel
 import domain.Version
 import domain.YamlModel
+import domain.actualDoc
 import domain.mappingVersion
 
 internal fun YamlModel.toNativeModel(): NativeModel {
@@ -30,19 +31,19 @@ private fun YamlModel.convertToCLibraryEnumerations() =
         NativeModel.Enumeration(it.name.convertToKotlinClassName(), it.entries.convertToEnumValues(it.entries), if(mappingVersion == Version.v22) 32 else 64)
     }
 
-private fun List<YamlModel.Bitflag.Entry>.convertToEnumValues(entries: List<YamlModel.Bitflag.Entry>): List<Pair<String, Int>> = mapIndexed { index, entry ->
+private fun List<YamlModel.Bitflag.Entry>.convertToEnumValues(entries: List<YamlModel.Bitflag.Entry>): List<Triple<String, Int, String?>> = mapIndexed { index, entry ->
     // Calculate first if that a combination
     val value = entry.value_combination?.sumOf { subPart -> indexToFlagValue(entries.indexOfFirst { it.name == subPart }) }
         ?: indexToFlagValue(index)
-    entry.name.convertToEnumValueName() to value
+    Triple(entry.name.convertToEnumValueName(), value, entry.doc.actualDoc())
 }
 
 private fun indexToFlagValue(base: Int): Int = if (base == 0) 0 else 1 shl (base - 1)
 
-private fun List<YamlModel.Enum.Entry?>.convertEnumToEnumValues(): List<Pair<String, Int>> = mapIndexedNotNull { index, entry ->
+private fun List<YamlModel.Enum.Entry?>.convertEnumToEnumValues(): List<Triple<String, Int, String?>> = mapIndexedNotNull { index, entry ->
     if (entry == null) return@mapIndexedNotNull null
 
-    entry.name.convertToEnumValueName() to (entry.value ?: (index))
+    Triple(entry.name.convertToEnumValueName(), entry.value ?: index, entry.doc.actualDoc())
 }
 
 

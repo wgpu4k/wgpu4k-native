@@ -170,3 +170,5 @@ data class YamlModel(
         )
     }
 }
+
+fun String.actualDoc(): String? = trim().takeIf { it != "TODO" }

@@ -13,7 +13,7 @@ data class NativeModel(
     val callbacks: List<Callback>,
 ) {
 
-    class Enumeration(val name: String, val values: List<Pair<String, Int>>, val size: Int = 32)
+    class Enumeration(val name: String, val values: List<Triple<String, Int, String?>>, val size: Int = 32)
 
     sealed interface Type
     sealed class Reference(val name: String) : Type {
@@ -26,7 +26,7 @@ data class NativeModel(
         object CString : Reference("CString")
     }
 
-    class Array(val subType: Type, val isMutable: Boolean) : Type
+    class Array(val subType: Type) : Type
     sealed interface Primitive : Type {
         object Bool : Primitive
         object UInt32 : Primitive
@@ -130,7 +130,7 @@ internal fun String?.toCType(isPointer: Boolean, isMutable: Boolean, isOptional:
             true -> NativeModel.Reference.OpaquePointer
             else -> NativeModel.Void
         }
-        startsWith("array<") -> NativeModel.Array(substring(6, length - 1).toCType(false, false), isMutable)
+        startsWith("array<") -> NativeModel.Array(substring(6, length - 1).toCType(false, false))
         isString() -> NativeModel.Reference.StructureField("WGPUStringView", false)
         else -> error("unknown type $this")
     }
