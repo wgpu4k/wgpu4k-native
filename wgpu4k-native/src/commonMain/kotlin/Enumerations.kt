@@ -87,14 +87,14 @@ const val WGPUBufferMapState_Mapped : WGPUBufferMapState = 3u
 typealias WGPUCallbackMode = UInt
 /**
  * Callbacks created with `WGPUCallbackMode_WaitAnyOnly`:
- * - fire when the asynchronous operation's future is passed to a call to `::wgpuInstanceWaitAny`
- *   AND the operation has already completed or it completes inside the call to `::wgpuInstanceWaitAny`.
+ * - fire when the asynchronous operation's future is passed to a call to [wgpuInstanceWaitAny]
+ *   AND the operation has already completed or it completes inside the call to [wgpuInstanceWaitAny].
 */
 const val WGPUCallbackMode_WaitAnyOnly : WGPUCallbackMode = 1u
 /**
  * Callbacks created with `WGPUCallbackMode_AllowProcessEvents`:
  * - fire for the same reasons as callbacks created with `WGPUCallbackMode_WaitAnyOnly`
- * - fire inside a call to `::wgpuInstanceProcessEvents` if the asynchronous operation is complete.
+ * - fire inside a call to [wgpuInstanceProcessEvents] if the asynchronous operation is complete.
 */
 const val WGPUCallbackMode_AllowProcessEvents : WGPUCallbackMode = 2u
 /**
