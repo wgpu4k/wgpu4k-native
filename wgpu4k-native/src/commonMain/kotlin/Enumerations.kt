@@ -395,13 +395,7 @@ const val WGPUSamplerBindingType_Comparison : WGPUSamplerBindingType = 4u
  * Read the function's documentation for specific error conditions.
  */
 typealias WGPUStatus = UInt
-/**
- * 
- */
 const val WGPUStatus_Success : WGPUStatus = 1u
-/**
- * 
- */
 const val WGPUStatus_Error : WGPUStatus = 2u
 
 typealias WGPUStencilOperation = UInt

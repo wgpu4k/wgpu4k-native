@@ -173,6 +173,7 @@ data class YamlModel(
 
 fun String.actualDoc(): String? = trim()
     .takeIf { it != "TODO" }
+    ?.takeIf { it.isNotBlank() }
     ?.convertFunctionReferenceToDokka()
     ?.convertReferenceToDokka()
 
