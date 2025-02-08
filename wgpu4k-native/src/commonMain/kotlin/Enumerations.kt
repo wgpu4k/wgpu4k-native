@@ -84,6 +84,9 @@ const val WGPUBufferMapState_Unmapped : WGPUBufferMapState = 1u
 const val WGPUBufferMapState_Pending : WGPUBufferMapState = 2u
 const val WGPUBufferMapState_Mapped : WGPUBufferMapState = 3u
 
+/**
+ * The callback mode controls how a callback for an asynchronous operation may be fired. See @ref Asynchronous-Operations for how these are used.
+ */
 typealias WGPUCallbackMode = UInt
 /**
  * Callbacks created with [WGPUCallbackMode_WaitAnyOnly]:
@@ -133,6 +136,9 @@ const val WGPUCompilationMessageType_Error : WGPUCompilationMessageType = 1u
 const val WGPUCompilationMessageType_Warning : WGPUCompilationMessageType = 2u
 const val WGPUCompilationMessageType_Info : WGPUCompilationMessageType = 3u
 
+/**
+ * Describes how frames are composited with other contents on the screen when [wgpuSurfacePresent] is called.
+ */
 typealias WGPUCompositeAlphaMode = UInt
 /**
  * Lets the WebGPU implementation choose the best mode (supported, and with the best performance) between @ref WGPUCompositeAlphaMode_Opaque or @ref WGPUCompositeAlphaMode_Inherit.
@@ -189,6 +195,9 @@ const val WGPUErrorType_OutOfMemory : WGPUErrorType = 3u
 const val WGPUErrorType_Internal : WGPUErrorType = 4u
 const val WGPUErrorType_Unknown : WGPUErrorType = 5u
 
+/**
+ * See @ref WGPURequestAdapterOptions::featureLevel.
+ */
 typealias WGPUFeatureLevel = UInt
 /**
  * "Compatibility" profile which can be supported on OpenGL ES 3.1.
@@ -289,6 +298,9 @@ const val WGPUPowerPreference_Undefined : WGPUPowerPreference = 0u
 const val WGPUPowerPreference_LowPower : WGPUPowerPreference = 1u
 const val WGPUPowerPreference_HighPerformance : WGPUPowerPreference = 2u
 
+/**
+ * Describes when and in which order frames are presented on the screen when [wgpuSurfacePresent] is called.
+ */
 typealias WGPUPresentMode = UInt
 /**
  * Present mode is not specified. Use the default.
@@ -377,6 +389,11 @@ const val WGPUSamplerBindingType_Filtering : WGPUSamplerBindingType = 2u
 const val WGPUSamplerBindingType_NonFiltering : WGPUSamplerBindingType = 3u
 const val WGPUSamplerBindingType_Comparison : WGPUSamplerBindingType = 4u
 
+/**
+ * Status code returned (synchronously) from many operations. Generally
+ * indicates an invalid input like an unknown enum value or @ref OutStructChainError.
+ * Read the function's documentation for specific error conditions.
+ */
 typealias WGPUStatus = UInt
 /**
  * 
@@ -424,6 +441,9 @@ const val WGPUStoreOp_Undefined : WGPUStoreOp = 0u
 const val WGPUStoreOp_Store : WGPUStoreOp = 1u
 const val WGPUStoreOp_Discard : WGPUStoreOp = 2u
 
+/**
+ * The status enum for [wgpuSurfaceGetCurrentTexture].
+ */
 typealias WGPUSurfaceGetCurrentTextureStatus = UInt
 /**
  * Yay! Everything is good and we can render this frame.
@@ -662,6 +682,9 @@ const val WGPUVertexStepMode_Undefined : WGPUVertexStepMode = 1u
 const val WGPUVertexStepMode_Vertex : WGPUVertexStepMode = 2u
 const val WGPUVertexStepMode_Instance : WGPUVertexStepMode = 3u
 
+/**
+ * Status returned from a call to ::wgpuInstanceWaitAny.
+ */
 typealias WGPUWaitStatus = UInt
 /**
  * At least one WGPUFuture completed successfully.

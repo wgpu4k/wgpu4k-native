@@ -21,6 +21,7 @@ internal fun File.generateCommonEnumerations(enumerations: List<NativeModel.Enum
         enumerations.forEach { enumeration ->
             val type = if (enumeration.size == 32) "UInt" else "ULong"
             val valueSuffix = if (enumeration.size == 32) "u" else "uL"
+            appendDoc(enumeration.doc)
             appendLine("typealias ${enumeration.name} = $type")
             enumeration.values.forEach { (name, value, doc) ->
                 appendDoc(doc)

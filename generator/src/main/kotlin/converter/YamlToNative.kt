@@ -26,9 +26,9 @@ internal fun YamlModel.toNativeModel(): NativeModel {
 
 private fun YamlModel.convertToCLibraryEnumerations() =
     enums.map {
-        NativeModel.Enumeration(it.name.convertToKotlinClassName(), it.entries.convertEnumToEnumValues())
+        NativeModel.Enumeration(it.name.convertToKotlinClassName(), it.entries.convertEnumToEnumValues(), 32, it.doc.actualDoc())
     } + bitflags.map {
-        NativeModel.Enumeration(it.name.convertToKotlinClassName(), it.entries.convertToEnumValues(it.entries), if(mappingVersion == Version.v22) 32 else 64)
+        NativeModel.Enumeration(it.name.convertToKotlinClassName(), it.entries.convertToEnumValues(it.entries), if(mappingVersion == Version.v22) 32 else 64, it.doc.actualDoc())
     }
 
 private fun List<YamlModel.Bitflag.Entry>.convertToEnumValues(entries: List<YamlModel.Bitflag.Entry>): List<Triple<String, Int, String?>> = mapIndexed { index, entry ->

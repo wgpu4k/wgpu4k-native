@@ -13,7 +13,7 @@ data class NativeModel(
     val callbacks: List<Callback>,
 ) {
 
-    class Enumeration(val name: String, val values: List<Triple<String, Int, String?>>, val size: Int = 32)
+    class Enumeration(val name: String, val values: List<Triple<String, Int, String?>>, val size: Int = 32, val doc: String?)
 
     sealed interface Type
     sealed class Reference(val name: String) : Type {
