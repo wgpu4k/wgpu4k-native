@@ -8,14 +8,15 @@ fun List<NativeModel.Function>.toJnaFunctionsInterface() = templateBuilder {
     appendBlock("internal interface FunctionsInterface: com.sun.jna.Library") {
         forEach { function ->
             val name = function.name
-            val returnType = function.returnType.toAndroidNativeType()
+            val returnType = function.returnType.first
+            val returnTypeAsString = returnType.toAndroidNativeType()
             val args = function.args
                 .map { (name, type) -> "${name}: ${type.toAndroidNativeType()}" }
                 .joinToString(", ")
 
             appendLine("@Suppress(\"INAPPLICABLE_JVM_NAME\")")
             appendLine("@JvmName(\"${name}\")")
-            appendLine("fun $name($args): $returnType")
+            appendLine("fun $name($args): $returnTypeAsString")
         }
     }
 

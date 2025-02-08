@@ -18,22 +18,23 @@ internal fun List<NativeModel.Function>.toJvmFunctionsInterface() = templateBuil
 
 private fun Builder.toJvmFunction(function: NativeModel.Function) {
     val name = function.name
-    val returnType = function.returnType.toFunctionKotlinType() + function.returnType.optionalReturnType()
+    val returnType = function.returnType.first
+    val returnTypeAsString = returnType.toFunctionKotlinType() + returnType.optionalReturnType()
     val args = function.args
         .map { (name, type) -> "${name}: ${type.toFunctionKotlinType()}${type.optional()}" }
         .joinToString(", ")
     val argsCall = function.args
         .map { (name, type) -> type.toJvmArgCall(name) }
         .joinToString(", ")
-    appendLine("actual fun $name($args): $returnType")
+    appendLine("actual fun $name($args): $returnTypeAsString")
     appendLine("\t = Functions.$name($argsCall)")
 
-    when (function.returnType) {
+    when (returnType) {
         is NativeModel.Reference.Enumeration -> null
-        is NativeModel.Reference.StructureField -> ".let(::NativeAddress).let(${function.returnType.name}::invoke)"
+        is NativeModel.Reference.StructureField -> ".let(::NativeAddress).let(${returnType.name}::invoke)"
         is NativeModel.Reference.OpaquePointer -> "?.let(::NativeAddress)"
         is NativeModel.Reference -> {
-            "?.let(::NativeAddress)?.let(::${function.returnType.name})"
+            "?.let(::NativeAddress)?.let(::${returnType.name})"
         }
         is NativeModel.Primitive.Bool -> ".toBoolean()"
         else -> null
@@ -45,15 +46,16 @@ private fun Builder.toJvmFunction(function: NativeModel.Function) {
 
 private fun Builder.toJvmFunctionInterface(function: NativeModel.Function) {
     val name = function.name
-    val returnType = function.returnType.toKotlinNativeType()
+    val returnType = function.returnType.first
+    val returnTypeAsString = returnType.toKotlinNativeType()
     val args = function.args
         .map { (name, type) -> "${name}: ${type.toKotlinNativeType()}" }
         .joinToString(", ")
-    appendBlock("fun $name($args): $returnType") {
+    appendBlock("fun $name($args): $returnTypeAsString") {
         val handlerCallArgs = function.args
             .map { (name, type) -> "$name${type.toJavaExtraConverter()}" }
             .joinToString(", ")
-        appendLine("return (${name}Handler.invokeExact($handlerCallArgs) as ${function.returnType.toJvmNativeType()})${function.returnType.toKotlinExtraConverter()}")
+        appendLine("return (${name}Handler.invokeExact($handlerCallArgs) as ${returnType.toJvmNativeType()})${returnType.toKotlinExtraConverter()}")
     }
 
 
@@ -81,6 +83,7 @@ private fun NativeModel.Type.toJavaExtraConverter(): String = when (this) {
 }
 
 private fun NativeModel.Function.generateDescriptor(): String {
+    val returnType = returnType.first
     return when (returnType) {
         is NativeModel.Void -> "FunctionDescriptor.ofVoid("
         else -> "FunctionDescriptor.of(\n\t\t\t${returnType.toJvmDescriptorType()},"

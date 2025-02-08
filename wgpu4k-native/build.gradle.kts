@@ -1,6 +1,4 @@
-import com.android.build.gradle.internal.tasks.factory.dependsOn
 import com.android.build.gradle.tasks.MergeSourceSetFolders
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.CInteropProcess
 import java.nio.file.Files
@@ -17,7 +15,6 @@ val buildNativeResourcesDirectory = project.file("build").resolve("native")
 val jvmLibResourcesDirectory = project.file("build").resolve("generated").resolve("resources")
 
 kotlin {
-
 
     val nativeTargets = listOf(
         iosX64(),

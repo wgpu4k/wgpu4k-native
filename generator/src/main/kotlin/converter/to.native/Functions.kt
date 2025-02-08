@@ -5,6 +5,7 @@ import convertToKotlinCallbackStructureName
 import convertToKotlinFunctionName
 import convertToKotlinVariableName
 import domain.FunctionArgument
+import domain.FunctionReturnType
 import domain.NativeModel
 import domain.YamlModel
 import domain.actualDoc
@@ -14,7 +15,7 @@ internal fun YamlModel.convertToCLibraryFunctions(): List<NativeModel.Function> 
     .map {
         NativeModel.Function(
             it.name.convertToKotlinFunctionName(),
-            it.returns.let { it?.type }.toCType(it.returns?.pointer != null, it.returns?.pointer == "mutable"),
+            FunctionReturnType(it.returns.let { it?.type }.toCType(it.returns?.pointer != null, it.returns?.pointer == "mutable"), it.returns?.doc?.actualDoc()),
             convertToCFunctionArgs(it.args, it.callback),
             it.doc.actualDoc()
         )
@@ -27,7 +28,7 @@ internal fun YamlModel.convertToCLibraryFunctions(): List<NativeModel.Function> 
             val args = listOf(YamlModel.Function.Arg("handler", "", "object.${reference.name}")) + it.args
             NativeModel.Function(
                 name,
-                it.returns.let { it?.type }.toCType(it.returns?.pointer != null, it.returns?.pointer == "mutable"),
+                FunctionReturnType(it.returns.let { it?.type }.toCType(it.returns?.pointer != null, it.returns?.pointer == "mutable"), it.returns?.doc?.actualDoc()),
                 convertToCFunctionArgs(
                     args,
                     it.callback

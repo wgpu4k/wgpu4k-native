@@ -11,22 +11,23 @@ internal fun List<NativeModel.Function>.toNativeFunctionsInterface() = templateB
 
 private fun Builder.toNativeFunction(function: NativeModel.Function) {
     val name = function.name
-    val returnType = function.returnType.toFunctionKotlinType() + function.returnType.optionalReturnType()
+    val returnType = function.returnType.first
+    val returnTypeAsString = returnType.toFunctionKotlinType() + returnType.optionalReturnType()
     val args = function.args
         .map { (name, type) -> "${name}: ${type.toFunctionKotlinType()}${type.optional()}" }
         .joinToString(", ")
     val argsCall = function.args
         .map { (name, type) -> type.toNativeArgCall(name) }
         .joinToString(", ")
-    appendBlock("actual fun $name($args): $returnType") {
-        appendLine("${if (function.returnType is NativeModel.Void) "" else "return "}webgpu.native.$name($argsCall)")
+    appendBlock("actual fun $name($args): $returnTypeAsString") {
+        appendLine("${if (returnType is NativeModel.Void) "" else "return "}webgpu.native.$name($argsCall)")
 
-        when (function.returnType) {
+        when (returnType) {
             is NativeModel.Reference.Enumeration -> null
             is NativeModel.Reference.OpaquePointer -> "?.let(::NativeAddress)"
-            is NativeModel.Reference.StructureField -> ".let(${function.returnType.name}::ByValue)"
+            is NativeModel.Reference.StructureField -> ".let(${returnType.name}::ByValue)"
             is NativeModel.Reference -> {
-                "?.let(::NativeAddress)?.let(::${function.returnType.name})"
+                "?.let(::NativeAddress)?.let(::${returnType.name})"
             }
             is NativeModel.Primitive.Bool -> ".toBoolean()"
             else -> null

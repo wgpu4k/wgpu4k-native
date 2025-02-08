@@ -6,6 +6,7 @@ import converter.toPrimitiveKotlinType
 import domain.NativeModel.Type
 
 typealias FunctionArgument = Triple<String, Type, String?>
+typealias FunctionReturnType = Pair<Type, String?>
 
 data class NativeModel(
     val pointers: List<Pointer>,
@@ -43,7 +44,7 @@ data class NativeModel(
 
     data class Pointer(val name: String)
 
-    data class Function(val name: String, val returnType: Type, val args: List<FunctionArgument>, val doc: String?)
+    data class Function(val name: String, val returnType: FunctionReturnType, val args: List<FunctionArgument>, val doc: String?)
 
     data class Structure(
         val name: String,

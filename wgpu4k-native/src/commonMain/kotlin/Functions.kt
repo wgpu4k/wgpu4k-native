@@ -14,18 +14,27 @@ expect fun wgpuCreateInstance(descriptor: WGPUInstanceDescriptor?): WGPUInstance
 /**
  * Query the supported instance capabilities.
  * @param capabilities The supported instance capabilities
+ * @return Indicates if there was an @ref OutStructChainError.
  */
 expect fun wgpuGetInstanceCapabilities(capabilities: WGPUInstanceCapabilities?): WGPUStatus
 expect fun wgpuDevicePoll(device: WGPUDevice?, wait: Boolean, wrappedSubmissionIndex: NativeAddress?): Boolean
 expect fun wgpuSetLogCallback(callback: CallbackHolder<WGPULogCallback>?, userdata: NativeAddress?): Unit
 expect fun wgpuSetLogLevel(level: WGPULogLevel): Unit
 expect fun wgpuAdapterRelease(handler: WGPUAdapter?): Unit
+/**
+ * 
+ * @return Indicates if there was an @ref OutStructChainError.
+ */
 expect fun wgpuAdapterGetLimits(handler: WGPUAdapter?, limits: WGPULimits?): WGPUStatus
 expect fun wgpuAdapterHasFeature(handler: WGPUAdapter?, feature: WGPUFeatureName): Boolean
 /**
  * Get the list of @ref WGPUFeatureName values supported by the adapter.
  */
 expect fun wgpuAdapterGetFeatures(handler: WGPUAdapter?, features: WGPUSupportedFeatures?): Unit
+/**
+ * 
+ * @return Indicates if there was an @ref OutStructChainError.
+ */
 expect fun wgpuAdapterGetInfo(handler: WGPUAdapter?, info: WGPUAdapterInfo?): WGPUStatus
 expect fun wgpuAdapterRequestDevice(handler: WGPUAdapter?, descriptor: WGPUDeviceDescriptor?, callbackInfo: WGPURequestDeviceCallbackInfo): Unit
 expect fun wgpuBindGroupRelease(handler: WGPUBindGroup?): Unit
@@ -35,13 +44,27 @@ expect fun wgpuBindGroupLayoutSetLabel(handler: WGPUBindGroupLayout?, label: WGP
 expect fun wgpuBufferRelease(handler: WGPUBuffer?): Unit
 expect fun wgpuBufferMapAsync(handler: WGPUBuffer?, mode: ULong, offset: ULong, size: ULong, callbackInfo: WGPUBufferMapCallbackInfo): Unit
 /**
+ * 
  * @param offset Byte offset relative to the beginning of the buffer.
  * @param size Byte size of the range to get. The returned pointer is valid for exactly this many bytes.
+ * @return Returns a mutable pointer to beginning of the mapped range.
+ * Returns [NULL] with @ref ImplementationDefinedLogging if:
+ * 
+ * - There is any content-timeline error as defined in the WebGPU specification for [getMappedRange()] (alignments, overlaps, etc.)
+ * - The buffer is not mapped with @ref WGPUMapMode_Write.
  */
 expect fun wgpuBufferGetMappedRange(handler: WGPUBuffer?, offset: ULong, size: ULong): NativeAddress?
 /**
+ * 
  * @param offset Byte offset relative to the beginning of the buffer.
  * @param size Byte size of the range to get. The returned pointer is valid for exactly this many bytes.
+ * @return Returns a const pointer to beginning of the mapped range.
+ * It must not be written; writing to this range causes undefined behavior.
+ * Returns [NULL] with @ref ImplementationDefinedLogging if:
+ * 
+ * - There is any content-timeline error as defined in the WebGPU specification for [getMappedRange()] (alignments, overlaps, etc.)
+ *   **except** for overlaps with other *const* ranges, which are allowed in C.
+ *   (JS does not allow this because const ranges do not exist.)
  */
 expect fun wgpuBufferGetConstMappedRange(handler: WGPUBuffer?, offset: ULong, size: ULong): NativeAddress?
 expect fun wgpuBufferSetLabel(handler: WGPUBuffer?, label: WGPUStringView): Unit
@@ -73,6 +96,7 @@ expect fun wgpuComputePassEncoderPopDebugGroup(handler: WGPUComputePassEncoder?)
 expect fun wgpuComputePassEncoderPushDebugGroup(handler: WGPUComputePassEncoder?, groupLabel: WGPUStringView): Unit
 expect fun wgpuComputePassEncoderSetPipeline(handler: WGPUComputePassEncoder?, pipeline: WGPUComputePipeline?): Unit
 /**
+ * 
  * @param dynamicOffsetCount number of elements in the array [dynamicOffsets]
  */
 expect fun wgpuComputePassEncoderSetBindGroup(handler: WGPUComputePassEncoder?, groupIndex: UInt, group: WGPUBindGroup?, dynamicOffsetCount: ULong, dynamicOffsets: ArrayHolder<UInt>?): Unit
@@ -99,7 +123,15 @@ expect fun wgpuDeviceCreateSampler(handler: WGPUDevice?, descriptor: WGPUSampler
 expect fun wgpuDeviceCreateShaderModule(handler: WGPUDevice?, descriptor: WGPUShaderModuleDescriptor?): WGPUShaderModule?
 expect fun wgpuDeviceCreateTexture(handler: WGPUDevice?, descriptor: WGPUTextureDescriptor?): WGPUTexture?
 expect fun wgpuDeviceDestroy(handler: WGPUDevice?): Unit
+/**
+ * 
+ * @return The @ref WGPUFuture for the device-lost event of the device.
+ */
 expect fun wgpuDeviceGetLostFuture(handler: WGPUDevice?): WGPUFuture
+/**
+ * 
+ * @return Indicates if there was an @ref OutStructChainError.
+ */
 expect fun wgpuDeviceGetLimits(handler: WGPUDevice?, limits: WGPULimits?): WGPUStatus
 expect fun wgpuDeviceHasFeature(handler: WGPUDevice?, feature: WGPUFeatureName): Boolean
 /**
@@ -115,6 +147,7 @@ expect fun wgpuInstanceRelease(handler: WGPUInstance?): Unit
 /**
  * Creates a @ref WGPUSurface, see @ref Surface-Creation for more details.
  * @param descriptor The description of the @ref WGPUSurface to create.
+ * @return A new @ref WGPUSurface for this descriptor (or an error @ref WGPUSurface).
  */
 expect fun wgpuInstanceCreateSurface(handler: WGPUInstance?, descriptor: WGPUSurfaceDescriptor?): WGPUSurface?
 /**
@@ -144,6 +177,7 @@ expect fun wgpuQuerySetGetCount(handler: WGPUQuerySet?): UInt
 expect fun wgpuQuerySetDestroy(handler: WGPUQuerySet?): Unit
 expect fun wgpuQueueRelease(handler: WGPUQueue?): Unit
 /**
+ * 
  * @param commandCount number of elements in the array [commands]
  */
 expect fun wgpuQueueSubmit(handler: WGPUQueue?, commandCount: ULong, commands: ArrayHolder<WGPUCommandBuffer>?): Unit
@@ -160,6 +194,7 @@ expect fun wgpuRenderBundleSetLabel(handler: WGPURenderBundle?, label: WGPUStrin
 expect fun wgpuRenderBundleEncoderRelease(handler: WGPURenderBundleEncoder?): Unit
 expect fun wgpuRenderBundleEncoderSetPipeline(handler: WGPURenderBundleEncoder?, pipeline: WGPURenderPipeline?): Unit
 /**
+ * 
  * @param dynamicOffsetCount number of elements in the array [dynamicOffsets]
  */
 expect fun wgpuRenderBundleEncoderSetBindGroup(handler: WGPURenderBundleEncoder?, groupIndex: UInt, group: WGPUBindGroup?, dynamicOffsetCount: ULong, dynamicOffsets: ArrayHolder<UInt>?): Unit
@@ -177,6 +212,7 @@ expect fun wgpuRenderBundleEncoderSetLabel(handler: WGPURenderBundleEncoder?, la
 expect fun wgpuRenderPassEncoderRelease(handler: WGPURenderPassEncoder?): Unit
 expect fun wgpuRenderPassEncoderSetPipeline(handler: WGPURenderPassEncoder?, pipeline: WGPURenderPipeline?): Unit
 /**
+ * 
  * @param dynamicOffsetCount number of elements in the array [dynamicOffsets]
  */
 expect fun wgpuRenderPassEncoderSetBindGroup(handler: WGPURenderPassEncoder?, groupIndex: UInt, group: WGPUBindGroup?, dynamicOffsetCount: ULong, dynamicOffsets: ArrayHolder<UInt>?): Unit
@@ -185,6 +221,7 @@ expect fun wgpuRenderPassEncoderDrawIndexed(handler: WGPURenderPassEncoder?, ind
 expect fun wgpuRenderPassEncoderDrawIndirect(handler: WGPURenderPassEncoder?, indirectBuffer: WGPUBuffer?, indirectOffset: ULong): Unit
 expect fun wgpuRenderPassEncoderDrawIndexedIndirect(handler: WGPURenderPassEncoder?, indirectBuffer: WGPUBuffer?, indirectOffset: ULong): Unit
 /**
+ * 
  * @param bundleCount number of elements in the array [bundles]
  */
 expect fun wgpuRenderPassEncoderExecuteBundles(handler: WGPURenderPassEncoder?, bundleCount: ULong, bundles: ArrayHolder<WGPURenderBundle>?): Unit
@@ -224,6 +261,7 @@ expect fun wgpuSurfaceConfigure(handler: WGPUSurface?, config: WGPUSurfaceConfig
  * @param adapter The @ref WGPUAdapter to get capabilities for presenting to this @ref WGPUSurface.
  * @param capabilities The structure to fill capabilities in.
  * It may contain memory allocations so [wgpuSurfaceCapabilitiesFreeMembers] must be called to avoid memory leaks.
+ * @return Indicates if there was an @ref OutStructChainError.
  */
 expect fun wgpuSurfaceGetCapabilities(handler: WGPUSurface?, adapter: WGPUAdapter?, capabilities: WGPUSurfaceCapabilities?): WGPUStatus
 /**
@@ -237,6 +275,7 @@ expect fun wgpuSurfaceGetCurrentTexture(handler: WGPUSurface?, surfaceTexture: W
 /**
  * Shows [surface]'s current texture to the user.
  * See @ref Surface-Presenting for more details.
+ * @return Returns @ref WGPUStatus_Error if the surface doesn't have a current texture.
  */
 expect fun wgpuSurfacePresent(handler: WGPUSurface?): WGPUStatus
 /**
