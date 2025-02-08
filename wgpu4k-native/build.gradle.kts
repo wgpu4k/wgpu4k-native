@@ -241,25 +241,6 @@ configureDownloadTasks {
             buildNativeResourcesDirectory.resolve("libs").resolve("arm64-v8a").resolve("lib").deleteRecursively()
         }
     }
-    /**** Debug ****/
-    download("wgpu-android-x86_64-debug.zip") {
-        extract("lib/libwgpu_native.so", buildNativeResourcesDirectory.resolve("libsDebug").resolve("x86_64").resolve("libwgpu4k.so")).doLast {
-            Files.move(
-                buildNativeResourcesDirectory.resolve("libsDebug").resolve("x86_64").resolve("lib").resolve("libwgpu4k.so").toPath(),
-                buildNativeResourcesDirectory.resolve("libsDebug").resolve("x86_64").resolve("libwgpu4k.so").toPath()
-            )
-            buildNativeResourcesDirectory.resolve("libsDebug").resolve("x86_64").resolve("lib").deleteRecursively()
-        }
-    }
-    download("wgpu-android-aarch64-debug.zip") {
-        extract("lib/libwgpu_native.so", buildNativeResourcesDirectory.resolve("libsDebug").resolve("arm64-v8a").resolve("libwgpu4k.so")).doLast {
-            Files.move(
-                buildNativeResourcesDirectory.resolve("libsDebug").resolve("arm64-v8a").resolve("lib").resolve("libwgpu4k.so").toPath(),
-                buildNativeResourcesDirectory.resolve("libsDebug").resolve("arm64-v8a").resolve("libwgpu4k.so").toPath()
-            )
-            buildNativeResourcesDirectory.resolve("libsDebug").resolve("arm64-v8a").resolve("lib").deleteRecursively()
-        }
-    }
 }
 
 java {
