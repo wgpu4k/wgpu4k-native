@@ -28,7 +28,7 @@ class Builder(
             newLine()
         }
         textBuilder.append("\t".repeat(indent))
-        textBuilder.append("*/")
+        textBuilder.append(" */")
         newLine()
     }
 
