@@ -173,11 +173,20 @@ data class YamlModel(
 
 fun String.actualDoc(): String? = trim()
     .takeIf { it != "TODO" }
-    ?.let(::convertFunctionReferenceToDokka)
+    ?.convertFunctionReferenceToDokka()
+    ?.convertReferenceToDokka()
 
-private fun convertFunctionReferenceToDokka(input: String): String {
+private fun String.convertFunctionReferenceToDokka(): String {
     val regex = Regex("`::(.*?)`")
-    return input.replace(regex) { matchResult ->
+    return replace(regex) { matchResult ->
+        val content = matchResult.groupValues[1]
+        "[$content]"
+    }
+}
+
+private fun String.convertReferenceToDokka(): String {
+    val regex = Regex("`(.*?)`")
+    return replace(regex) { matchResult ->
         val content = matchResult.groupValues[1]
         "[$content]"
     }

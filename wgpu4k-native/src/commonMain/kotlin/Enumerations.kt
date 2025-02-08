@@ -86,25 +86,25 @@ const val WGPUBufferMapState_Mapped : WGPUBufferMapState = 3u
 
 typealias WGPUCallbackMode = UInt
 /**
- * Callbacks created with `WGPUCallbackMode_WaitAnyOnly`:
+ * Callbacks created with [WGPUCallbackMode_WaitAnyOnly]:
  * - fire when the asynchronous operation's future is passed to a call to [wgpuInstanceWaitAny]
  *   AND the operation has already completed or it completes inside the call to [wgpuInstanceWaitAny].
  */
 const val WGPUCallbackMode_WaitAnyOnly : WGPUCallbackMode = 1u
 /**
- * Callbacks created with `WGPUCallbackMode_AllowProcessEvents`:
- * - fire for the same reasons as callbacks created with `WGPUCallbackMode_WaitAnyOnly`
+ * Callbacks created with [WGPUCallbackMode_AllowProcessEvents]:
+ * - fire for the same reasons as callbacks created with [WGPUCallbackMode_WaitAnyOnly]
  * - fire inside a call to [wgpuInstanceProcessEvents] if the asynchronous operation is complete.
  */
 const val WGPUCallbackMode_AllowProcessEvents : WGPUCallbackMode = 2u
 /**
- * Callbacks created with `WGPUCallbackMode_AllowSpontaneous`:
- * - fire for the same reasons as callbacks created with `WGPUCallbackMode_AllowProcessEvents`
+ * Callbacks created with [WGPUCallbackMode_AllowSpontaneous]:
+ * - fire for the same reasons as callbacks created with [WGPUCallbackMode_AllowProcessEvents]
  * - **may** fire spontaneously on an arbitrary or application thread, when the WebGPU implementations discovers that the asynchronous operation is complete.
  * 
  *   Implementations _should_ fire spontaneous callbacks as soon as possible.
  * 
- * @note Because spontaneous callbacks may fire at an arbitrary time on an arbitrary thread, applications should take extra care when acquiring locks or mutating state inside the callback. It undefined behavior to re-entrantly call into the webgpu.h API if the callback fires while inside the callstack of another webgpu.h function that is not `wgpuInstanceWaitAny` or `wgpuInstanceProcessEvents`.
+ * @note Because spontaneous callbacks may fire at an arbitrary time on an arbitrary thread, applications should take extra care when acquiring locks or mutating state inside the callback. It undefined behavior to re-entrantly call into the webgpu.h API if the callback fires while inside the callstack of another webgpu.h function that is not [wgpuInstanceWaitAny] or [wgpuInstanceProcessEvents].
  */
 const val WGPUCallbackMode_AllowSpontaneous : WGPUCallbackMode = 3u
 
@@ -651,7 +651,7 @@ const val WGPUVertexFormat_Unorm8x4BGRA : WGPUVertexFormat = 41u
 
 typealias WGPUVertexStepMode = UInt
 /**
- * This @ref WGPUVertexBufferLayout is a "hole" in the @ref WGPUVertexState `buffers` array.
+ * This @ref WGPUVertexBufferLayout is a "hole" in the @ref WGPUVertexState [buffers] array.
  * (See also @ref SentinelValues.)
  */
 const val WGPUVertexStepMode_VertexBufferNotUsed : WGPUVertexStepMode = 0u
