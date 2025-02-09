@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>[android]ByValue</title>
+    <link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
+<script type="text/javascript" src="../../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../../styles/style.css" rel="Stylesheet">
+<link href="../../../../styles/main.css" rel="Stylesheet">
+<link href="../../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<link href="../../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../../ui-kit/ui-kit.min.js" defer="defer"></script>
+<script type="text/javascript" src="../../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+</head>
+<body>
+    <div class="root">
+    <nav class="navigation theme-dark" id="navigation-wrapper">
+            <a class="library-name--link" href="../../../../index.html">
+                    wgpu4k-native
+            </a>
+        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle"
+                type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+v24.0.0-SNAPSHOT        </div>
+        <div class="navigation-controls">
+        <div class="filter-section filter-section_loading" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active=""
+                        data-filter=":wgpu4k-native:dokkaHtml/androidMain">android</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox"
+                        data-role="dropdown-toggle"
+                        aria-controls="platform-tags-listbox"
+                        aria-haspopup="listbox"
+                        aria-expanded="false"
+                        aria-label="Toggle source sets"
+                ></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
+                    <div class="dropdown--header"><span>Platform filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":wgpu4k-native:dokkaHtml/androidMain"
+                                       data-filter=":wgpu4k-native:dokkaHtml/androidMain"/>
+                                <span class="checkbox--icon"></span>
+                                android
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </div>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button"
+                    type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
+                        data-role="dropdown-listbox">
+                        <div class="dropdown--header">
+                            <span>
+                                    wgpu4k-native
+                            </span>
+                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
+                        </div>
+                        <div class="sidebar--inner" id="sideMenu"></div>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
+                </div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="wgpu4k-native::io.ygdrasil.wgpu/WGPUPrimitiveState.ByValue///PointingToDeclaration//-829905854">
+  <div class="breadcrumbs"><a href="../../../../index.html">wgpu4k-native</a><span class="delimiter">/</span><a href="../../index.html">io.ygdrasil.wgpu</a><span class="delimiter">/</span><a href="../index.html">WGPUPrimitiveState</a><span class="delimiter">/</span><span class="current">[android]ByValue</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>By</span><wbr></wbr><span><span>Value</span></span></h1>
+    <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+      <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/androidMain" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/androidMain">android</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/androidMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">ByValue</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>handle<span class="token operator">: </span><a href="../../../io.ygdrasil.wgpu.android/-w-g-p-u-primitive-state/-by-value/index.html">WGPUPrimitiveState.ByValue</a><span class="token operator"> = </span>io.ygdrasil.wgpu.android.WGPUPrimitiveState.ByValue(com.sun.jna.Pointer.NULL)</span></span><span class="token punctuation">)</span> : <a href="../index.html">WGPUPrimitiveState</a></div></div>    </div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="-349814094%2FConstructors%2F-829905854" anchor-label="ByValue" id="-349814094%2FConstructors%2F-829905854" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":wgpu4k-native:dokkaHtml/androidMain" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-by-value.html"><span>By</span><wbr></wbr><span><span>Value</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-349814094%2FConstructors%2F-829905854"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/androidMain" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/androidMain">android</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/androidMain"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">handle<span class="token operator">: </span><a href="../../../io.ygdrasil.wgpu.android/-w-g-p-u-primitive-state/-by-value/index.html">WGPUPrimitiveState.ByValue</a><span class="token operator"> = </span>io.ygdrasil.wgpu.android.WGPUPrimitiveState.ByValue(com.sun.jna.Pointer.NULL)</span></span><span class="token punctuation">)</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="-2085187703%2FProperties%2F-829905854" anchor-label="cullMode" id="-2085187703%2FProperties%2F-829905854" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/androidMain" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="cull-mode.html"><span>cull</span><wbr></wbr><span><span>Mode</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2085187703%2FProperties%2F-829905854"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/androidMain" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/androidMain">android</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/androidMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">var </span><a href="cull-mode.html">cullMode</a><span class="token operator">: </span><a href="../../-w-g-p-u-cull-mode/index.html">WGPUCullMode</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1849408022%2FProperties%2F-829905854" anchor-label="frontFace" id="1849408022%2FProperties%2F-829905854" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/androidMain" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="front-face.html"><span>front</span><wbr></wbr><span><span>Face</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1849408022%2FProperties%2F-829905854"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/androidMain" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/androidMain">android</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/androidMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">var </span><a href="front-face.html">frontFace</a><span class="token operator">: </span><a href="../../-w-g-p-u-front-face/index.html">WGPUFrontFace</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2077587254%2FProperties%2F-829905854" anchor-label="handle" id="2077587254%2FProperties%2F-829905854" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/androidMain" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="handle.html"><span><span>handle</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2077587254%2FProperties%2F-829905854"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/androidMain" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/androidMain">android</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/androidMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="handle.html">handle</a><span class="token operator">: </span><a href="../../../io.ygdrasil.wgpu.android/-w-g-p-u-primitive-state/-by-value/index.html">WGPUPrimitiveState.ByValue</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1515930418%2FProperties%2F-829905854" anchor-label="handler" id="1515930418%2FProperties%2F-829905854" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/androidMain" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="handler.html"><span><span>handler</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1515930418%2FProperties%2F-829905854"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/androidMain" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/androidMain">android</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/androidMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="handler.html">handler</a><span class="token operator">: </span><a href="../../../ffi/-native-address/index.html">NativeAddress</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="279526835%2FProperties%2F-829905854" anchor-label="nextInChain" id="279526835%2FProperties%2F-829905854" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/androidMain" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="next-in-chain.html"><span>next</span><wbr></wbr><span>In</span><wbr></wbr><span><span>Chain</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="279526835%2FProperties%2F-829905854"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/androidMain" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/androidMain">android</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/androidMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">var </span><a href="next-in-chain.html">nextInChain</a><span class="token operator">: </span><a href="../../../ffi/-native-address/index.html">NativeAddress</a><span class="token operator">?</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-184340723%2FProperties%2F-829905854" anchor-label="stripIndexFormat" id="-184340723%2FProperties%2F-829905854" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/androidMain" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="strip-index-format.html"><span>strip</span><wbr></wbr><span>Index</span><wbr></wbr><span><span>Format</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-184340723%2FProperties%2F-829905854"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/androidMain" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/androidMain">android</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/androidMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">var </span><a href="strip-index-format.html">stripIndexFormat</a><span class="token operator">: </span><a href="../../-w-g-p-u-index-format/index.html">WGPUIndexFormat</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-718533489%2FProperties%2F-829905854" anchor-label="topology" id="-718533489%2FProperties%2F-829905854" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/androidMain" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="topology.html"><span><span>topology</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-718533489%2FProperties%2F-829905854"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/androidMain" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/androidMain">android</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/androidMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">var </span><a href="topology.html">topology</a><span class="token operator">: </span><a href="../../-w-g-p-u-primitive-topology/index.html">WGPUPrimitiveTopology</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1984607583%2FProperties%2F-829905854" anchor-label="unclippedDepth" id="-1984607583%2FProperties%2F-829905854" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/androidMain" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="unclipped-depth.html"><span>unclipped</span><wbr></wbr><span><span>Depth</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1984607583%2FProperties%2F-829905854"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/androidMain" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/androidMain">android</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/androidMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">var </span><a href="unclipped-depth.html">unclippedDepth</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="-899828023%2FFunctions%2F-829905854" anchor-label="toCValue" id="-899828023%2FFunctions%2F-829905854" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/androidMain" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../[android]to-c-value.html"><span>to</span><wbr></wbr><span><span>CValue</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-899828023%2FFunctions%2F-829905854"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/androidMain" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/androidMain">android</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/androidMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../[android]to-c-value.html"><span class="token function">toCValue</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../io.ygdrasil.wgpu.android/-w-g-p-u-primitive-state/-by-value/index.html">WGPUPrimitiveState.ByValue</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1412487800%2FFunctions%2F-829905854" anchor-label="toReference" id="1412487800%2FFunctions%2F-829905854" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/androidMain" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../to-reference.html"><span>to</span><wbr></wbr><span><span>Reference</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1412487800%2FFunctions%2F-829905854"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/androidMain" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/androidMain">android</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/androidMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../to-reference.html"><span class="token function">toReference</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../io.ygdrasil.wgpu.android/-w-g-p-u-primitive-state/-by-reference/index.html">WGPUPrimitiveState.ByReference</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+        <span>© 2025 Copyright</span>
+        <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
+    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

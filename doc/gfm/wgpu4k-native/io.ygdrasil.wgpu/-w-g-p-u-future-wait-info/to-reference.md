@@ -1,0 +1,6 @@
+//[wgpu4k-native](../../../index.md)/[io.ygdrasil.wgpu](../index.md)/[WGPUFutureWaitInfo](index.md)/[toReference](to-reference.md)
+
+# toReference
+
+[android]\
+open fun [toReference](to-reference.md)(): [WGPUFutureWaitInfo.ByReference](../../io.ygdrasil.wgpu.android/-w-g-p-u-future-wait-info/-by-reference/index.md)

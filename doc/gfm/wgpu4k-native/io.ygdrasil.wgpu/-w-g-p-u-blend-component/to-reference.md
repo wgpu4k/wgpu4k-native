@@ -1,0 +1,6 @@
+//[wgpu4k-native](../../../index.md)/[io.ygdrasil.wgpu](../index.md)/[WGPUBlendComponent](index.md)/[toReference](to-reference.md)
+
+# toReference
+
+[android]\
+open fun [toReference](to-reference.md)(): [WGPUBlendComponent.ByReference](../../io.ygdrasil.wgpu.android/-w-g-p-u-blend-component/-by-reference/index.md)

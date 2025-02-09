@@ -1,0 +1,6 @@
+//[wgpu4k-native](../../../../index.md)/[io.ygdrasil.wgpu](../../index.md)/[WGPUShaderSourceWGSL](../index.md)/[[android]ByReference](index.md)/[handle](handle.md)
+
+# handle
+
+[android]\
+val [handle](handle.md): [WGPUShaderSourceWGSL.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-shader-source-w-g-s-l/-by-reference/index.md)

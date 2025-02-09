@@ -1,0 +1,6 @@
+//[wgpu4k-native](../../../index.md)/[io.ygdrasil.wgpu](../index.md)/[WGPUBlendState](index.md)/[[android]toCValue]([android]to-c-value.md)
+
+# toCValue
+
+[android]\
+open fun [toCValue]([android]to-c-value.md)(): [WGPUBlendState.ByValue](../../io.ygdrasil.wgpu.android/-w-g-p-u-blend-state/-by-value/index.md)

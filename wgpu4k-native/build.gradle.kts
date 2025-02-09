@@ -270,3 +270,15 @@ tasks.withType(MergeSourceSetFolders::class.java).configureEach {
 tasks.withType(CInteropProcess::class.java).configureEach {
     dependsOn("fetch-native-dependencies")
 }
+
+tasks.register<Copy>("copyDocsToRoot") {
+    dependsOn("dokkaGfm", "dokkaHtml")
+    from(project.layout.buildDirectory.dir("dokka"))
+    into(rootDir.resolve("doc"))
+}
+
+tasks.register<Task>("generateDocs") {
+    group = "documentation"
+    description = "Generates the documentation in HTML and Markdown formats, then copies the files into the 'doc' folder."
+    dependsOn("copyDocsToRoot")
+}

@@ -1,0 +1,94 @@
+//[wgpu4k-native](../../index.md)/[io.ygdrasil.wgpu.android](index.md)
+
+# Package-level declarations
+
+## Types
+
+| Name | Summary |
+|---|---|
+| [WGPUAdapterInfo](-w-g-p-u-adapter-info/index.md) | [android]<br>sealed class [WGPUAdapterInfo](-w-g-p-u-adapter-info/index.md) : Structure |
+| [WGPUBindGroupDescriptor](-w-g-p-u-bind-group-descriptor/index.md) | [android]<br>sealed class [WGPUBindGroupDescriptor](-w-g-p-u-bind-group-descriptor/index.md) : Structure |
+| [WGPUBindGroupEntry](-w-g-p-u-bind-group-entry/index.md) | [android]<br>sealed class [WGPUBindGroupEntry](-w-g-p-u-bind-group-entry/index.md) : Structure |
+| [WGPUBindGroupLayoutDescriptor](-w-g-p-u-bind-group-layout-descriptor/index.md) | [android]<br>sealed class [WGPUBindGroupLayoutDescriptor](-w-g-p-u-bind-group-layout-descriptor/index.md) : Structure |
+| [WGPUBindGroupLayoutEntry](-w-g-p-u-bind-group-layout-entry/index.md) | [android]<br>sealed class [WGPUBindGroupLayoutEntry](-w-g-p-u-bind-group-layout-entry/index.md) : Structure |
+| [WGPUBlendComponent](-w-g-p-u-blend-component/index.md) | [android]<br>sealed class [WGPUBlendComponent](-w-g-p-u-blend-component/index.md) : Structure |
+| [WGPUBlendState](-w-g-p-u-blend-state/index.md) | [android]<br>sealed class [WGPUBlendState](-w-g-p-u-blend-state/index.md) : Structure |
+| [WGPUBufferBindingLayout](-w-g-p-u-buffer-binding-layout/index.md) | [android]<br>sealed class [WGPUBufferBindingLayout](-w-g-p-u-buffer-binding-layout/index.md) : Structure |
+| [WGPUBufferDescriptor](-w-g-p-u-buffer-descriptor/index.md) | [android]<br>sealed class [WGPUBufferDescriptor](-w-g-p-u-buffer-descriptor/index.md) : Structure |
+| [WGPUBufferMapCallbackInfo](-w-g-p-u-buffer-map-callback-info/index.md) | [android]<br>sealed class [WGPUBufferMapCallbackInfo](-w-g-p-u-buffer-map-callback-info/index.md) : Structure |
+| [WGPUChainedStruct](-w-g-p-u-chained-struct/index.md) | [android]<br>sealed class [WGPUChainedStruct](-w-g-p-u-chained-struct/index.md) : Structure |
+| [WGPUChainedStructOut](-w-g-p-u-chained-struct-out/index.md) | [android]<br>sealed class [WGPUChainedStructOut](-w-g-p-u-chained-struct-out/index.md) : Structure |
+| [WGPUColor](-w-g-p-u-color/index.md) | [android]<br>sealed class [WGPUColor](-w-g-p-u-color/index.md) : Structure |
+| [WGPUColorTargetState](-w-g-p-u-color-target-state/index.md) | [android]<br>sealed class [WGPUColorTargetState](-w-g-p-u-color-target-state/index.md) : Structure |
+| [WGPUCommandBufferDescriptor](-w-g-p-u-command-buffer-descriptor/index.md) | [android]<br>sealed class [WGPUCommandBufferDescriptor](-w-g-p-u-command-buffer-descriptor/index.md) : Structure |
+| [WGPUCommandEncoderDescriptor](-w-g-p-u-command-encoder-descriptor/index.md) | [android]<br>sealed class [WGPUCommandEncoderDescriptor](-w-g-p-u-command-encoder-descriptor/index.md) : Structure |
+| [WGPUCompilationInfo](-w-g-p-u-compilation-info/index.md) | [android]<br>sealed class [WGPUCompilationInfo](-w-g-p-u-compilation-info/index.md) : Structure |
+| [WGPUCompilationInfoCallbackInfo](-w-g-p-u-compilation-info-callback-info/index.md) | [android]<br>sealed class [WGPUCompilationInfoCallbackInfo](-w-g-p-u-compilation-info-callback-info/index.md) : Structure |
+| [WGPUCompilationMessage](-w-g-p-u-compilation-message/index.md) | [android]<br>sealed class [WGPUCompilationMessage](-w-g-p-u-compilation-message/index.md) : Structure |
+| [WGPUComputePassDescriptor](-w-g-p-u-compute-pass-descriptor/index.md) | [android]<br>sealed class [WGPUComputePassDescriptor](-w-g-p-u-compute-pass-descriptor/index.md) : Structure |
+| [WGPUComputePassTimestampWrites](-w-g-p-u-compute-pass-timestamp-writes/index.md) | [android]<br>sealed class [WGPUComputePassTimestampWrites](-w-g-p-u-compute-pass-timestamp-writes/index.md) : Structure |
+| [WGPUComputePipelineDescriptor](-w-g-p-u-compute-pipeline-descriptor/index.md) | [android]<br>sealed class [WGPUComputePipelineDescriptor](-w-g-p-u-compute-pipeline-descriptor/index.md) : Structure |
+| [WGPUConstantEntry](-w-g-p-u-constant-entry/index.md) | [android]<br>sealed class [WGPUConstantEntry](-w-g-p-u-constant-entry/index.md) : Structure |
+| [WGPUCreateComputePipelineAsyncCallbackInfo](-w-g-p-u-create-compute-pipeline-async-callback-info/index.md) | [android]<br>sealed class [WGPUCreateComputePipelineAsyncCallbackInfo](-w-g-p-u-create-compute-pipeline-async-callback-info/index.md) : Structure |
+| [WGPUCreateRenderPipelineAsyncCallbackInfo](-w-g-p-u-create-render-pipeline-async-callback-info/index.md) | [android]<br>sealed class [WGPUCreateRenderPipelineAsyncCallbackInfo](-w-g-p-u-create-render-pipeline-async-callback-info/index.md) : Structure |
+| [WGPUDepthStencilState](-w-g-p-u-depth-stencil-state/index.md) | [android]<br>sealed class [WGPUDepthStencilState](-w-g-p-u-depth-stencil-state/index.md) : Structure |
+| [WGPUDeviceDescriptor](-w-g-p-u-device-descriptor/index.md) | [android]<br>sealed class [WGPUDeviceDescriptor](-w-g-p-u-device-descriptor/index.md) : Structure |
+| [WGPUDeviceLostCallbackInfo](-w-g-p-u-device-lost-callback-info/index.md) | [android]<br>sealed class [WGPUDeviceLostCallbackInfo](-w-g-p-u-device-lost-callback-info/index.md) : Structure |
+| [WGPUExtent3D](-w-g-p-u-extent3-d/index.md) | [android]<br>sealed class [WGPUExtent3D](-w-g-p-u-extent3-d/index.md) : Structure |
+| [WGPUFragmentState](-w-g-p-u-fragment-state/index.md) | [android]<br>sealed class [WGPUFragmentState](-w-g-p-u-fragment-state/index.md) : Structure |
+| [WGPUFuture](-w-g-p-u-future/index.md) | [android]<br>sealed class [WGPUFuture](-w-g-p-u-future/index.md) : Structure |
+| [WGPUFutureWaitInfo](-w-g-p-u-future-wait-info/index.md) | [android]<br>sealed class [WGPUFutureWaitInfo](-w-g-p-u-future-wait-info/index.md) : Structure |
+| [WGPUInstanceCapabilities](-w-g-p-u-instance-capabilities/index.md) | [android]<br>sealed class [WGPUInstanceCapabilities](-w-g-p-u-instance-capabilities/index.md) : Structure |
+| [WGPUInstanceDescriptor](-w-g-p-u-instance-descriptor/index.md) | [android]<br>sealed class [WGPUInstanceDescriptor](-w-g-p-u-instance-descriptor/index.md) : Structure |
+| [WGPUInstanceExtras](-w-g-p-u-instance-extras/index.md) | [android]<br>sealed class [WGPUInstanceExtras](-w-g-p-u-instance-extras/index.md) : Structure |
+| [WGPULimits](-w-g-p-u-limits/index.md) | [android]<br>sealed class [WGPULimits](-w-g-p-u-limits/index.md) : Structure |
+| [WGPUMultisampleState](-w-g-p-u-multisample-state/index.md) | [android]<br>sealed class [WGPUMultisampleState](-w-g-p-u-multisample-state/index.md) : Structure |
+| [WGPUOrigin3D](-w-g-p-u-origin3-d/index.md) | [android]<br>sealed class [WGPUOrigin3D](-w-g-p-u-origin3-d/index.md) : Structure |
+| [WGPUPipelineLayoutDescriptor](-w-g-p-u-pipeline-layout-descriptor/index.md) | [android]<br>sealed class [WGPUPipelineLayoutDescriptor](-w-g-p-u-pipeline-layout-descriptor/index.md) : Structure |
+| [WGPUPopErrorScopeCallbackInfo](-w-g-p-u-pop-error-scope-callback-info/index.md) | [android]<br>sealed class [WGPUPopErrorScopeCallbackInfo](-w-g-p-u-pop-error-scope-callback-info/index.md) : Structure |
+| [WGPUPrimitiveState](-w-g-p-u-primitive-state/index.md) | [android]<br>sealed class [WGPUPrimitiveState](-w-g-p-u-primitive-state/index.md) : Structure |
+| [WGPUProgrammableStageDescriptor](-w-g-p-u-programmable-stage-descriptor/index.md) | [android]<br>sealed class [WGPUProgrammableStageDescriptor](-w-g-p-u-programmable-stage-descriptor/index.md) : Structure |
+| [WGPUQuerySetDescriptor](-w-g-p-u-query-set-descriptor/index.md) | [android]<br>sealed class [WGPUQuerySetDescriptor](-w-g-p-u-query-set-descriptor/index.md) : Structure |
+| [WGPUQueueDescriptor](-w-g-p-u-queue-descriptor/index.md) | [android]<br>sealed class [WGPUQueueDescriptor](-w-g-p-u-queue-descriptor/index.md) : Structure |
+| [WGPUQueueWorkDoneCallbackInfo](-w-g-p-u-queue-work-done-callback-info/index.md) | [android]<br>sealed class [WGPUQueueWorkDoneCallbackInfo](-w-g-p-u-queue-work-done-callback-info/index.md) : Structure |
+| [WGPURenderBundleDescriptor](-w-g-p-u-render-bundle-descriptor/index.md) | [android]<br>sealed class [WGPURenderBundleDescriptor](-w-g-p-u-render-bundle-descriptor/index.md) : Structure |
+| [WGPURenderBundleEncoderDescriptor](-w-g-p-u-render-bundle-encoder-descriptor/index.md) | [android]<br>sealed class [WGPURenderBundleEncoderDescriptor](-w-g-p-u-render-bundle-encoder-descriptor/index.md) : Structure |
+| [WGPURenderPassColorAttachment](-w-g-p-u-render-pass-color-attachment/index.md) | [android]<br>sealed class [WGPURenderPassColorAttachment](-w-g-p-u-render-pass-color-attachment/index.md) : Structure |
+| [WGPURenderPassDepthStencilAttachment](-w-g-p-u-render-pass-depth-stencil-attachment/index.md) | [android]<br>sealed class [WGPURenderPassDepthStencilAttachment](-w-g-p-u-render-pass-depth-stencil-attachment/index.md) : Structure |
+| [WGPURenderPassDescriptor](-w-g-p-u-render-pass-descriptor/index.md) | [android]<br>sealed class [WGPURenderPassDescriptor](-w-g-p-u-render-pass-descriptor/index.md) : Structure |
+| [WGPURenderPassMaxDrawCount](-w-g-p-u-render-pass-max-draw-count/index.md) | [android]<br>sealed class [WGPURenderPassMaxDrawCount](-w-g-p-u-render-pass-max-draw-count/index.md) : Structure |
+| [WGPURenderPassTimestampWrites](-w-g-p-u-render-pass-timestamp-writes/index.md) | [android]<br>sealed class [WGPURenderPassTimestampWrites](-w-g-p-u-render-pass-timestamp-writes/index.md) : Structure |
+| [WGPURenderPipelineDescriptor](-w-g-p-u-render-pipeline-descriptor/index.md) | [android]<br>sealed class [WGPURenderPipelineDescriptor](-w-g-p-u-render-pipeline-descriptor/index.md) : Structure |
+| [WGPURequestAdapterCallbackInfo](-w-g-p-u-request-adapter-callback-info/index.md) | [android]<br>sealed class [WGPURequestAdapterCallbackInfo](-w-g-p-u-request-adapter-callback-info/index.md) : Structure |
+| [WGPURequestAdapterOptions](-w-g-p-u-request-adapter-options/index.md) | [android]<br>sealed class [WGPURequestAdapterOptions](-w-g-p-u-request-adapter-options/index.md) : Structure |
+| [WGPURequestDeviceCallbackInfo](-w-g-p-u-request-device-callback-info/index.md) | [android]<br>sealed class [WGPURequestDeviceCallbackInfo](-w-g-p-u-request-device-callback-info/index.md) : Structure |
+| [WGPUSamplerBindingLayout](-w-g-p-u-sampler-binding-layout/index.md) | [android]<br>sealed class [WGPUSamplerBindingLayout](-w-g-p-u-sampler-binding-layout/index.md) : Structure |
+| [WGPUSamplerDescriptor](-w-g-p-u-sampler-descriptor/index.md) | [android]<br>sealed class [WGPUSamplerDescriptor](-w-g-p-u-sampler-descriptor/index.md) : Structure |
+| [WGPUShaderModuleDescriptor](-w-g-p-u-shader-module-descriptor/index.md) | [android]<br>sealed class [WGPUShaderModuleDescriptor](-w-g-p-u-shader-module-descriptor/index.md) : Structure |
+| [WGPUShaderSourceSPIRV](-w-g-p-u-shader-source-s-p-i-r-v/index.md) | [android]<br>sealed class [WGPUShaderSourceSPIRV](-w-g-p-u-shader-source-s-p-i-r-v/index.md) : Structure |
+| [WGPUShaderSourceWGSL](-w-g-p-u-shader-source-w-g-s-l/index.md) | [android]<br>sealed class [WGPUShaderSourceWGSL](-w-g-p-u-shader-source-w-g-s-l/index.md) : Structure |
+| [WGPUStencilFaceState](-w-g-p-u-stencil-face-state/index.md) | [android]<br>sealed class [WGPUStencilFaceState](-w-g-p-u-stencil-face-state/index.md) : Structure |
+| [WGPUStorageTextureBindingLayout](-w-g-p-u-storage-texture-binding-layout/index.md) | [android]<br>sealed class [WGPUStorageTextureBindingLayout](-w-g-p-u-storage-texture-binding-layout/index.md) : Structure |
+| [WGPUStringView](-w-g-p-u-string-view/index.md) | [android]<br>sealed class [WGPUStringView](-w-g-p-u-string-view/index.md) : Structure |
+| [WGPUSupportedFeatures](-w-g-p-u-supported-features/index.md) | [android]<br>sealed class [WGPUSupportedFeatures](-w-g-p-u-supported-features/index.md) : Structure |
+| [WGPUSupportedWGSLLanguageFeatures](-w-g-p-u-supported-w-g-s-l-language-features/index.md) | [android]<br>sealed class [WGPUSupportedWGSLLanguageFeatures](-w-g-p-u-supported-w-g-s-l-language-features/index.md) : Structure |
+| [WGPUSurfaceCapabilities](-w-g-p-u-surface-capabilities/index.md) | [android]<br>sealed class [WGPUSurfaceCapabilities](-w-g-p-u-surface-capabilities/index.md) : Structure |
+| [WGPUSurfaceConfiguration](-w-g-p-u-surface-configuration/index.md) | [android]<br>sealed class [WGPUSurfaceConfiguration](-w-g-p-u-surface-configuration/index.md) : Structure |
+| [WGPUSurfaceDescriptor](-w-g-p-u-surface-descriptor/index.md) | [android]<br>sealed class [WGPUSurfaceDescriptor](-w-g-p-u-surface-descriptor/index.md) : Structure |
+| [WGPUSurfaceSourceAndroidNativeWindow](-w-g-p-u-surface-source-android-native-window/index.md) | [android]<br>sealed class [WGPUSurfaceSourceAndroidNativeWindow](-w-g-p-u-surface-source-android-native-window/index.md) : Structure |
+| [WGPUSurfaceSourceMetalLayer](-w-g-p-u-surface-source-metal-layer/index.md) | [android]<br>sealed class [WGPUSurfaceSourceMetalLayer](-w-g-p-u-surface-source-metal-layer/index.md) : Structure |
+| [WGPUSurfaceSourceWaylandSurface](-w-g-p-u-surface-source-wayland-surface/index.md) | [android]<br>sealed class [WGPUSurfaceSourceWaylandSurface](-w-g-p-u-surface-source-wayland-surface/index.md) : Structure |
+| [WGPUSurfaceSourceWindowsHWND](-w-g-p-u-surface-source-windows-h-w-n-d/index.md) | [android]<br>sealed class [WGPUSurfaceSourceWindowsHWND](-w-g-p-u-surface-source-windows-h-w-n-d/index.md) : Structure |
+| [WGPUSurfaceSourceXCBWindow](-w-g-p-u-surface-source-x-c-b-window/index.md) | [android]<br>sealed class [WGPUSurfaceSourceXCBWindow](-w-g-p-u-surface-source-x-c-b-window/index.md) : Structure |
+| [WGPUSurfaceSourceXlibWindow](-w-g-p-u-surface-source-xlib-window/index.md) | [android]<br>sealed class [WGPUSurfaceSourceXlibWindow](-w-g-p-u-surface-source-xlib-window/index.md) : Structure |
+| [WGPUSurfaceTexture](-w-g-p-u-surface-texture/index.md) | [android]<br>sealed class [WGPUSurfaceTexture](-w-g-p-u-surface-texture/index.md) : Structure |
+| [WGPUTexelCopyBufferInfo](-w-g-p-u-texel-copy-buffer-info/index.md) | [android]<br>sealed class [WGPUTexelCopyBufferInfo](-w-g-p-u-texel-copy-buffer-info/index.md) : Structure |
+| [WGPUTexelCopyBufferLayout](-w-g-p-u-texel-copy-buffer-layout/index.md) | [android]<br>sealed class [WGPUTexelCopyBufferLayout](-w-g-p-u-texel-copy-buffer-layout/index.md) : Structure |
+| [WGPUTexelCopyTextureInfo](-w-g-p-u-texel-copy-texture-info/index.md) | [android]<br>sealed class [WGPUTexelCopyTextureInfo](-w-g-p-u-texel-copy-texture-info/index.md) : Structure |
+| [WGPUTextureBindingLayout](-w-g-p-u-texture-binding-layout/index.md) | [android]<br>sealed class [WGPUTextureBindingLayout](-w-g-p-u-texture-binding-layout/index.md) : Structure |
+| [WGPUTextureDescriptor](-w-g-p-u-texture-descriptor/index.md) | [android]<br>sealed class [WGPUTextureDescriptor](-w-g-p-u-texture-descriptor/index.md) : Structure |
+| [WGPUTextureViewDescriptor](-w-g-p-u-texture-view-descriptor/index.md) | [android]<br>sealed class [WGPUTextureViewDescriptor](-w-g-p-u-texture-view-descriptor/index.md) : Structure |
+| [WGPUUncapturedErrorCallbackInfo](-w-g-p-u-uncaptured-error-callback-info/index.md) | [android]<br>sealed class [WGPUUncapturedErrorCallbackInfo](-w-g-p-u-uncaptured-error-callback-info/index.md) : Structure |
+| [WGPUVertexAttribute](-w-g-p-u-vertex-attribute/index.md) | [android]<br>sealed class [WGPUVertexAttribute](-w-g-p-u-vertex-attribute/index.md) : Structure |
+| [WGPUVertexBufferLayout](-w-g-p-u-vertex-buffer-layout/index.md) | [android]<br>sealed class [WGPUVertexBufferLayout](-w-g-p-u-vertex-buffer-layout/index.md) : Structure |
+| [WGPUVertexState](-w-g-p-u-vertex-state/index.md) | [android]<br>sealed class [WGPUVertexState](-w-g-p-u-vertex-state/index.md) : Structure |

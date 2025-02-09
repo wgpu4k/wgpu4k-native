@@ -1,0 +1,6 @@
+//[wgpu4k-native](../../../../index.md)/[io.ygdrasil.wgpu](../../index.md)/[WGPUStringView](../index.md)/[[native]ByReference](index.md)/[length](length.md)
+
+# length
+
+[native]\
+open override var [length](length.md): [ULong](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-long/index.html)
