@@ -49,6 +49,7 @@ data class NativeModel(
     data class Structure(
         val name: String,
         val members: List<StructureField>,
+        val doc: String?,
         val size: Int? = null,
         val alignment: Int? = null,
         val padding: Int? = null,

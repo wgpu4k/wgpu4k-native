@@ -43,5 +43,5 @@ private fun NativeModel.Structure.updateSizeAndPadding(
     if (padding > 0) println("padding on $name: $padding structureAlignment: $structureAlignment size before padding: $offset")
     offset += padding
 
-    processed.add(NativeModel.Structure(name, members, offset, structureAlignment, padding))
+    processed.add(NativeModel.Structure(name, members, doc, offset, structureAlignment, padding))
 }

@@ -8,35 +8,11 @@ import convertToKotlinCallbackStructureName
 import convertToKotlinClassName
 import convertToKotlinVariableName
 import domain.Version
+import domain.actualDoc
 import domain.mappingVersion
 
 internal fun YamlModel.generateCLibraryStructures() = structs.map {
-    val members = when {
-        it.type == "base_in" -> listOf(
-            YamlModel.Struct.Member(
-                "nextInChain",
-                "",
-                "c_void",
-                true,
-                "mutable"
-            )
-        ) + it.members
-
-        it.type == "extension_in" -> listOf(YamlModel.Struct.Member("chain", "", "struct.chained_struct")) + it.members
-        it.type == "base_out" || it.type == "base_in_or_out" -> listOf(
-            YamlModel.Struct.Member(
-                "nextInChain",
-                "",
-                "c_void",
-                true,
-                "mutable"
-            )
-        ) + it.members
-
-        it.type == "standalone" -> it.members
-        else -> error("unsuported type ${it.type}")
-    }
-
+    val members = getMembers(it)
     NativeModel.Structure(
         it.name.convertToKotlinClassName(),
         members.flatMap {
@@ -64,20 +40,23 @@ internal fun YamlModel.generateCLibraryStructures() = structs.map {
                     else -> listOf(it)
                 }
             }
-        }
+        },
+        it.doc.actualDoc()
     )
 } + listOf(
     NativeModel.Structure(
         "WGPUChainedStruct", listOf(
             NativeModel.StructureField("next", NativeModel.Reference.Structure("WGPUChainedStruct"), "?"),
             NativeModel.StructureField("sType", NativeModel.Reference.Enumeration("WGPUSType"), "")
-        )
+        ),
+        null
     ),
     NativeModel.Structure(
         "WGPUChainedStructOut", listOf(
             NativeModel.StructureField("next", NativeModel.Reference.Structure("WGPUChainedStructOut"), "?"),
             NativeModel.StructureField("sType", NativeModel.Reference.Enumeration("WGPUSType"), "")
-        )
+        ),
+        null
     )
 ) + callbacks.map {
     val name = it.name.convertToKotlinCallbackStructureName()
@@ -89,7 +68,8 @@ internal fun YamlModel.generateCLibraryStructures() = structs.map {
                 NativeModel.StructureField("callback", NativeModel.Reference.Callback(it.name.convertToKotlinCallbackName()), "?"),
                 NativeModel.StructureField("userdata1", NativeModel.Reference.OpaquePointer, "?"),
                 NativeModel.StructureField("userdata2", NativeModel.Reference.OpaquePointer, "?")
-            )
+            ),
+            null
         )
         else -> NativeModel.Structure(
             name, listOf(
@@ -97,7 +77,8 @@ internal fun YamlModel.generateCLibraryStructures() = structs.map {
                 NativeModel.StructureField("callback", NativeModel.Reference.Callback(it.name.convertToKotlinCallbackName()), "?"),
                 NativeModel.StructureField("userdata1", NativeModel.Reference.OpaquePointer, "?"),
                 NativeModel.StructureField("userdata2", NativeModel.Reference.OpaquePointer, "?")
-            )
+            ),
+            null
         )
     }
 } + if (mappingVersion == Version.v23) listOf(
@@ -105,9 +86,36 @@ internal fun YamlModel.generateCLibraryStructures() = structs.map {
         "WGPUStringView", listOf(
             NativeModel.StructureField("data", NativeModel.Reference.CString, "?"),
             NativeModel.StructureField("length", NativeModel.Primitive.UInt64, "")
-        )
+        ),
+        null
     )
 ) else emptyList()
+
+private fun getMembers(it: YamlModel.Struct) = when {
+    it.type == "base_in" -> listOf(
+        YamlModel.Struct.Member(
+            "nextInChain",
+            "",
+            "c_void",
+            true,
+            "mutable"
+        )
+    ) + it.members
+
+    it.type == "extension_in" -> listOf(YamlModel.Struct.Member("chain", "", "struct.chained_struct")) + it.members
+    it.type == "base_out" || it.type == "base_in_or_out" -> listOf(
+        YamlModel.Struct.Member(
+            "nextInChain",
+            "",
+            "c_void",
+            true,
+            "mutable"
+        )
+    ) + it.members
+
+    it.type == "standalone" -> it.members
+    else -> error("unsuported type ${it.type}")
+}
 
 
 private fun NativeModel.StructureField.generateArrayCounter() = let { (name, _, _) ->

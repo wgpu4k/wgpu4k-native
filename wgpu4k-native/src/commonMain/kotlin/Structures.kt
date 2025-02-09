@@ -437,6 +437,9 @@ expect interface WGPUFragmentState {
 	}
 }
 
+/**
+ * Opaque handle to an asynchronous operation. See @ref Asynchronous-Operations for more information.
+ */
 expect interface WGPUFuture {
 	var id: ULong
 	val handler: NativeAddress
@@ -447,6 +450,9 @@ expect interface WGPUFuture {
 	}
 }
 
+/**
+ * Struct holding a future to wait on, and a [completed] boolean flag.
+ */
 expect interface WGPUFutureWaitInfo {
 	val future: WGPUFuture
 	var completed: Boolean
@@ -458,6 +464,9 @@ expect interface WGPUFutureWaitInfo {
 	}
 }
 
+/**
+ * Features enabled on the WGPUInstance
+ */
 expect interface WGPUInstanceCapabilities {
 	var nextInChain: NativeAddress?
 	var timedWaitAnyEnable: Boolean
@@ -825,6 +834,9 @@ expect interface WGPUSupportedWGSLLanguageFeatures {
 	}
 }
 
+/**
+ * Filled by [wgpuSurfaceGetCapabilities] with what's supported for [wgpuSurfaceConfigure] for a pair of @ref WGPUSurface and @ref WGPUAdapter.
+ */
 expect interface WGPUSurfaceCapabilities {
 	var nextInChain: NativeAddress?
 	var usages: ULong
@@ -842,6 +854,10 @@ expect interface WGPUSurfaceCapabilities {
 	}
 }
 
+/**
+ * Options to [wgpuSurfaceConfigure] for defining how a @ref WGPUSurface will be rendered to and presented to the user.
+ * See @ref Surface-Configuration for more details.
+ */
 expect interface WGPUSurfaceConfiguration {
 	var nextInChain: NativeAddress?
 	var device: WGPUDevice?
@@ -861,6 +877,11 @@ expect interface WGPUSurfaceConfiguration {
 	}
 }
 
+/**
+ * The root descriptor for the creation of an @ref WGPUSurface with [wgpuInstanceCreateSurface].
+ * It isn't sufficient by itself and must have one of the [WGPUSurfaceSource*] in its chain.
+ * See @ref Surface-Creation for more details.
+ */
 expect interface WGPUSurfaceDescriptor {
 	var nextInChain: NativeAddress?
 	val label: WGPUStringView
@@ -872,6 +893,9 @@ expect interface WGPUSurfaceDescriptor {
 	}
 }
 
+/**
+ * Chained in @ref WGPUSurfaceDescriptor to make an @ref WGPUSurface wrapping an Android [[ANativeWindow]](https://developer.android.com/ndk/reference/group/a-native-window).
+ */
 expect interface WGPUSurfaceSourceAndroidNativeWindow {
 	val chain: WGPUChainedStruct
 	var window: NativeAddress?
@@ -883,6 +907,9 @@ expect interface WGPUSurfaceSourceAndroidNativeWindow {
 	}
 }
 
+/**
+ * Chained in @ref WGPUSurfaceDescriptor to make an @ref WGPUSurface wrapping a [[CAMetalLayer]](https://developer.apple.com/documentation/quartzcore/cametallayer?language=objc).
+ */
 expect interface WGPUSurfaceSourceMetalLayer {
 	val chain: WGPUChainedStruct
 	var layer: NativeAddress?
@@ -894,6 +921,9 @@ expect interface WGPUSurfaceSourceMetalLayer {
 	}
 }
 
+/**
+ * Chained in @ref WGPUSurfaceDescriptor to make an @ref WGPUSurface wrapping a [Wayland](https://wayland.freedesktop.org/) [[wl_surface]](https://wayland.freedesktop.org/docs/html/apa.html#protocol-spec-wl_surface).
+ */
 expect interface WGPUSurfaceSourceWaylandSurface {
 	val chain: WGPUChainedStruct
 	var display: NativeAddress?
@@ -906,6 +936,9 @@ expect interface WGPUSurfaceSourceWaylandSurface {
 	}
 }
 
+/**
+ * Chained in @ref WGPUSurfaceDescriptor to make an @ref WGPUSurface wrapping a Windows [[HWND]](https://learn.microsoft.com/en-us/windows/apps/develop/ui-input/retrieve-hwnd).
+ */
 expect interface WGPUSurfaceSourceWindowsHWND {
 	val chain: WGPUChainedStruct
 	var hinstance: NativeAddress?
@@ -918,6 +951,9 @@ expect interface WGPUSurfaceSourceWindowsHWND {
 	}
 }
 
+/**
+ * Chained in @ref WGPUSurfaceDescriptor to make an @ref WGPUSurface wrapping an [XCB](https://xcb.freedesktop.org/) [xcb_window_t].
+ */
 expect interface WGPUSurfaceSourceXCBWindow {
 	val chain: WGPUChainedStruct
 	var connection: NativeAddress?
@@ -930,6 +966,9 @@ expect interface WGPUSurfaceSourceXCBWindow {
 	}
 }
 
+/**
+ * Chained in @ref WGPUSurfaceDescriptor to make an @ref WGPUSurface wrapping an [Xlib](https://www.x.org/releases/current/doc/libX11/libX11/libX11.html) [Window].
+ */
 expect interface WGPUSurfaceSourceXlibWindow {
 	val chain: WGPUChainedStruct
 	var display: NativeAddress?
@@ -942,6 +981,10 @@ expect interface WGPUSurfaceSourceXlibWindow {
 	}
 }
 
+/**
+ * Queried each frame from a @ref WGPUSurface to get a @ref WGPUTexture to render to along with some metadata.
+ * See @ref Surface-Presenting for more details.
+ */
 expect interface WGPUSurfaceTexture {
 	var nextInChain: NativeAddress?
 	var texture: WGPUTexture?
