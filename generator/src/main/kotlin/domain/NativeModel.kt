@@ -59,6 +59,7 @@ data class NativeModel(
         val name: String,
         val type: Type,
         val option: String,
+        val doc: String?,
         val alignment: Int? = type.getSize(),
         val size: Int? = type.getSize(),
         val padding: Int? = null

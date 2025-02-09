@@ -79,8 +79,9 @@ internal fun File.generateCommonStructures(structures: List<NativeModel.Structur
             val structureName = it.name
             appendDoc(it.doc)
             appendBlock("expect interface $structureName") {
-                it.members.forEach { (name, type, optional) ->
+                it.members.forEach { (name, type, optional, doc) ->
                     val variableType = type.variableType()
+                    appendDoc(doc)
                     appendLine("$variableType $name: ${type.toFunctionKotlinType()}$optional")
                 }
 

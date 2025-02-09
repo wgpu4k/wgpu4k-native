@@ -36,7 +36,7 @@ private fun NativeModel.Structure.updateSizeAndPadding(
         val padding = offset % alignment
         offset += size + padding
 
-        NativeModel.StructureField(member.name, member.type, member.option, alignment, size, padding)
+        NativeModel.StructureField(member.name, member.type, member.option, member.doc, alignment, size, padding)
     }
 
     val padding = offset % structureAlignment

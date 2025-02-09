@@ -58,7 +58,9 @@ actual interface WGPUStringView : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("data"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_LONG.withName("length"),
 		).withName("WGPUStringView")
 
@@ -131,14 +133,23 @@ actual interface WGPUAdapterInfo : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
+			MemoryLayout.paddingLayout(16),
 			WGPUStringView.LAYOUT.withName("vendor"),
+			MemoryLayout.paddingLayout(16),
 			WGPUStringView.LAYOUT.withName("architecture"),
+			MemoryLayout.paddingLayout(16),
 			WGPUStringView.LAYOUT.withName("device"),
+			MemoryLayout.paddingLayout(16),
 			WGPUStringView.LAYOUT.withName("description"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("backendType"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("adapterType"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("vendorID"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("deviceID"),
 		).withName("WGPUAdapterInfo")
 
@@ -212,10 +223,15 @@ actual interface WGPUBindGroupDescriptor : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
+			MemoryLayout.paddingLayout(16),
 			WGPUStringView.LAYOUT.withName("label"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("layout"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_LONG.withName("entryCount"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("entries"),
 		).withName("WGPUBindGroupDescriptor")
 
@@ -290,13 +306,19 @@ actual interface WGPUBindGroupEntry : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
-			ffi.C_INT.withName("binding"),
 			MemoryLayout.paddingLayout(4),
+			ffi.C_INT.withName("binding"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("buffer"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_LONG.withName("offset"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_LONG.withName("size"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("sampler"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("textureView"),
 		).withName("WGPUBindGroupEntry")
 
@@ -362,9 +384,13 @@ actual interface WGPUBindGroupLayoutDescriptor : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
+			MemoryLayout.paddingLayout(16),
 			WGPUStringView.LAYOUT.withName("label"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_LONG.withName("entryCount"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("entries"),
 		).withName("WGPUBindGroupLayoutDescriptor")
 
@@ -425,9 +451,13 @@ actual interface WGPUBufferBindingLayout : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("type"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("hasDynamicOffset"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_LONG.withName("minBindingSize"),
 		).withName("WGPUBufferBindingLayout")
 
@@ -480,7 +510,9 @@ actual interface WGPUSamplerBindingLayout : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("type"),
 			MemoryLayout.paddingLayout(4)
 		).withName("WGPUSamplerBindingLayout")
@@ -538,9 +570,13 @@ actual interface WGPUTextureBindingLayout : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("sampleType"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("viewDimension"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("multisampled"),
 			MemoryLayout.paddingLayout(4)
 		).withName("WGPUTextureBindingLayout")
@@ -602,9 +638,13 @@ actual interface WGPUStorageTextureBindingLayout : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("access"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("format"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("viewDimension"),
 			MemoryLayout.paddingLayout(4)
 		).withName("WGPUStorageTextureBindingLayout")
@@ -674,13 +714,19 @@ actual interface WGPUBindGroupLayoutEntry : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
-			ffi.C_INT.withName("binding"),
 			MemoryLayout.paddingLayout(4),
+			ffi.C_INT.withName("binding"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_LONG.withName("visibility"),
+			MemoryLayout.paddingLayout(24),
 			WGPUBufferBindingLayout.LAYOUT.withName("buffer"),
+			MemoryLayout.paddingLayout(16),
 			WGPUSamplerBindingLayout.LAYOUT.withName("sampler"),
+			MemoryLayout.paddingLayout(24),
 			WGPUTextureBindingLayout.LAYOUT.withName("texture"),
+			MemoryLayout.paddingLayout(24),
 			WGPUStorageTextureBindingLayout.LAYOUT.withName("storageTexture"),
 		).withName("WGPUBindGroupLayoutEntry")
 
@@ -743,8 +789,11 @@ actual interface WGPUBlendComponent : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("operation"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("srcFactor"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("dstFactor"),
 		).withName("WGPUBlendComponent")
 
@@ -793,7 +842,9 @@ actual interface WGPUBlendState : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(12),
 			WGPUBlendComponent.LAYOUT.withName("color"),
+			MemoryLayout.paddingLayout(12),
 			WGPUBlendComponent.LAYOUT.withName("alpha"),
 		).withName("WGPUBlendState")
 
@@ -853,10 +904,15 @@ actual interface WGPUBufferDescriptor : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
+			MemoryLayout.paddingLayout(16),
 			WGPUStringView.LAYOUT.withName("label"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_LONG.withName("usage"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_LONG.withName("size"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("mappedAtCreation"),
 			MemoryLayout.paddingLayout(4)
 		).withName("WGPUBufferDescriptor")
@@ -920,9 +976,13 @@ actual interface WGPUColor : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_DOUBLE.withName("r"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_DOUBLE.withName("g"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_DOUBLE.withName("b"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_DOUBLE.withName("a"),
 		).withName("WGPUColor")
 
@@ -983,10 +1043,13 @@ actual interface WGPUColorTargetState : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
-			ffi.C_INT.withName("format"),
 			MemoryLayout.paddingLayout(4),
+			ffi.C_INT.withName("format"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("blend"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_LONG.withName("writeMask"),
 		).withName("WGPUColorTargetState")
 
@@ -1038,7 +1101,9 @@ actual interface WGPUCommandBufferDescriptor : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
+			MemoryLayout.paddingLayout(16),
 			WGPUStringView.LAYOUT.withName("label"),
 		).withName("WGPUCommandBufferDescriptor")
 
@@ -1086,7 +1151,9 @@ actual interface WGPUCommandEncoderDescriptor : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
+			MemoryLayout.paddingLayout(16),
 			WGPUStringView.LAYOUT.withName("label"),
 		).withName("WGPUCommandEncoderDescriptor")
 
@@ -1139,8 +1206,11 @@ actual interface WGPUCompilationInfo : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_LONG.withName("messageCount"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("messages"),
 		).withName("WGPUCompilationInfo")
 
@@ -1210,13 +1280,19 @@ actual interface WGPUCompilationMessage : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
+			MemoryLayout.paddingLayout(16),
 			WGPUStringView.LAYOUT.withName("message"),
-			ffi.C_INT.withName("type"),
 			MemoryLayout.paddingLayout(4),
+			ffi.C_INT.withName("type"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_LONG.withName("lineNum"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_LONG.withName("linePos"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_LONG.withName("offset"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_LONG.withName("length"),
 		).withName("WGPUCompilationMessage")
 
@@ -1278,8 +1354,11 @@ actual interface WGPUComputePassDescriptor : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
+			MemoryLayout.paddingLayout(16),
 			WGPUStringView.LAYOUT.withName("label"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("timestampWrites"),
 		).withName("WGPUComputePassDescriptor")
 
@@ -1334,8 +1413,11 @@ actual interface WGPUComputePassTimestampWrites : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("querySet"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("beginningOfPassWriteIndex"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("endOfPassWriteIndex"),
 		).withName("WGPUComputePassTimestampWrites")
 
@@ -1397,10 +1479,15 @@ actual interface WGPUProgrammableStageDescriptor : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("module"),
+			MemoryLayout.paddingLayout(16),
 			WGPUStringView.LAYOUT.withName("entryPoint"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_LONG.withName("constantCount"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("constants"),
 		).withName("WGPUProgrammableStageDescriptor")
 
@@ -1461,9 +1548,13 @@ actual interface WGPUComputePipelineDescriptor : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
+			MemoryLayout.paddingLayout(16),
 			WGPUStringView.LAYOUT.withName("label"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("layout"),
+			MemoryLayout.paddingLayout(48),
 			WGPUProgrammableStageDescriptor.LAYOUT.withName("compute"),
 		).withName("WGPUComputePipelineDescriptor")
 
@@ -1519,8 +1610,11 @@ actual interface WGPUConstantEntry : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
+			MemoryLayout.paddingLayout(16),
 			WGPUStringView.LAYOUT.withName("key"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_DOUBLE.withName("value"),
 		).withName("WGPUConstantEntry")
 
@@ -1579,9 +1673,13 @@ actual interface WGPUStencilFaceState : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("compare"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("failOp"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("depthFailOp"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("passOp"),
 		).withName("WGPUStencilFaceState")
 
@@ -1668,16 +1766,27 @@ actual interface WGPUDepthStencilState : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("format"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("depthWriteEnabled"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("depthCompare"),
+			MemoryLayout.paddingLayout(16),
 			WGPUStencilFaceState.LAYOUT.withName("stencilFront"),
+			MemoryLayout.paddingLayout(16),
 			WGPUStencilFaceState.LAYOUT.withName("stencilBack"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("stencilReadMask"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("stencilWriteMask"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("depthBias"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_FLOAT.withName("depthBiasSlopeScale"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_FLOAT.withName("depthBiasClamp"),
 		).withName("WGPUDepthStencilState")
 
@@ -1743,7 +1852,9 @@ actual interface WGPUQueueDescriptor : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
+			MemoryLayout.paddingLayout(16),
 			WGPUStringView.LAYOUT.withName("label"),
 		).withName("WGPUQueueDescriptor")
 
@@ -1804,11 +1915,15 @@ actual interface WGPUDeviceLostCallbackInfo : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
-			ffi.C_INT.withName("mode"),
 			MemoryLayout.paddingLayout(4),
+			ffi.C_INT.withName("mode"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("callback"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("userdata1"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("userdata2"),
 		).withName("WGPUDeviceLostCallbackInfo")
 
@@ -1871,9 +1986,13 @@ actual interface WGPUUncapturedErrorCallbackInfo : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("callback"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("userdata1"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("userdata2"),
 		).withName("WGPUUncapturedErrorCallbackInfo")
 
@@ -1946,13 +2065,21 @@ actual interface WGPUDeviceDescriptor : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
+			MemoryLayout.paddingLayout(16),
 			WGPUStringView.LAYOUT.withName("label"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_LONG.withName("requiredFeatureCount"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("requiredFeatures"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("requiredLimits"),
+			MemoryLayout.paddingLayout(24),
 			WGPUQueueDescriptor.LAYOUT.withName("defaultQueue"),
+			MemoryLayout.paddingLayout(40),
 			WGPUDeviceLostCallbackInfo.LAYOUT.withName("deviceLostCallbackInfo"),
+			MemoryLayout.paddingLayout(32),
 			WGPUUncapturedErrorCallbackInfo.LAYOUT.withName("uncapturedErrorCallbackInfo"),
 		).withName("WGPUDeviceDescriptor")
 
@@ -2017,8 +2144,11 @@ actual interface WGPUExtent3D : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("width"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("height"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("depthOrArrayLayers"),
 		).withName("WGPUExtent3D")
 
@@ -2088,12 +2218,19 @@ actual interface WGPUFragmentState : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("module"),
+			MemoryLayout.paddingLayout(16),
 			WGPUStringView.LAYOUT.withName("entryPoint"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_LONG.withName("constantCount"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("constants"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_LONG.withName("targetCount"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("targets"),
 		).withName("WGPUFragmentState")
 
@@ -2148,6 +2285,7 @@ actual interface WGPUFuture : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_LONG.withName("id"),
 		).withName("WGPUFuture")
 
@@ -2193,7 +2331,9 @@ actual interface WGPUFutureWaitInfo : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			WGPUFuture.LAYOUT.withName("future"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("completed"),
 			MemoryLayout.paddingLayout(4)
 		).withName("WGPUFutureWaitInfo")
@@ -2247,9 +2387,11 @@ actual interface WGPUInstanceCapabilities : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
-			ffi.C_INT.withName("timedWaitAnyEnable"),
 			MemoryLayout.paddingLayout(4),
+			ffi.C_INT.withName("timedWaitAnyEnable"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_LONG.withName("timedWaitAnyMaxCount"),
 		).withName("WGPUInstanceCapabilities")
 
@@ -2299,7 +2441,9 @@ actual interface WGPUInstanceDescriptor : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
+			MemoryLayout.paddingLayout(24),
 			WGPUInstanceCapabilities.LAYOUT.withName("features"),
 		).withName("WGPUInstanceDescriptor")
 
@@ -2468,38 +2612,69 @@ actual interface WGPULimits : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
-			ffi.C_INT.withName("maxTextureDimension1D"),
-			ffi.C_INT.withName("maxTextureDimension2D"),
-			ffi.C_INT.withName("maxTextureDimension3D"),
-			ffi.C_INT.withName("maxTextureArrayLayers"),
-			ffi.C_INT.withName("maxBindGroups"),
-			ffi.C_INT.withName("maxBindGroupsPlusVertexBuffers"),
-			ffi.C_INT.withName("maxBindingsPerBindGroup"),
-			ffi.C_INT.withName("maxDynamicUniformBuffersPerPipelineLayout"),
-			ffi.C_INT.withName("maxDynamicStorageBuffersPerPipelineLayout"),
-			ffi.C_INT.withName("maxSampledTexturesPerShaderStage"),
-			ffi.C_INT.withName("maxSamplersPerShaderStage"),
-			ffi.C_INT.withName("maxStorageBuffersPerShaderStage"),
-			ffi.C_INT.withName("maxStorageTexturesPerShaderStage"),
-			ffi.C_INT.withName("maxUniformBuffersPerShaderStage"),
-			ffi.C_LONG.withName("maxUniformBufferBindingSize"),
-			ffi.C_LONG.withName("maxStorageBufferBindingSize"),
-			ffi.C_INT.withName("minUniformBufferOffsetAlignment"),
-			ffi.C_INT.withName("minStorageBufferOffsetAlignment"),
-			ffi.C_INT.withName("maxVertexBuffers"),
 			MemoryLayout.paddingLayout(4),
+			ffi.C_INT.withName("maxTextureDimension1D"),
+			MemoryLayout.paddingLayout(4),
+			ffi.C_INT.withName("maxTextureDimension2D"),
+			MemoryLayout.paddingLayout(4),
+			ffi.C_INT.withName("maxTextureDimension3D"),
+			MemoryLayout.paddingLayout(4),
+			ffi.C_INT.withName("maxTextureArrayLayers"),
+			MemoryLayout.paddingLayout(4),
+			ffi.C_INT.withName("maxBindGroups"),
+			MemoryLayout.paddingLayout(4),
+			ffi.C_INT.withName("maxBindGroupsPlusVertexBuffers"),
+			MemoryLayout.paddingLayout(4),
+			ffi.C_INT.withName("maxBindingsPerBindGroup"),
+			MemoryLayout.paddingLayout(4),
+			ffi.C_INT.withName("maxDynamicUniformBuffersPerPipelineLayout"),
+			MemoryLayout.paddingLayout(4),
+			ffi.C_INT.withName("maxDynamicStorageBuffersPerPipelineLayout"),
+			MemoryLayout.paddingLayout(4),
+			ffi.C_INT.withName("maxSampledTexturesPerShaderStage"),
+			MemoryLayout.paddingLayout(4),
+			ffi.C_INT.withName("maxSamplersPerShaderStage"),
+			MemoryLayout.paddingLayout(4),
+			ffi.C_INT.withName("maxStorageBuffersPerShaderStage"),
+			MemoryLayout.paddingLayout(4),
+			ffi.C_INT.withName("maxStorageTexturesPerShaderStage"),
+			MemoryLayout.paddingLayout(4),
+			ffi.C_INT.withName("maxUniformBuffersPerShaderStage"),
+			MemoryLayout.paddingLayout(8),
+			ffi.C_LONG.withName("maxUniformBufferBindingSize"),
+			MemoryLayout.paddingLayout(8),
+			ffi.C_LONG.withName("maxStorageBufferBindingSize"),
+			MemoryLayout.paddingLayout(4),
+			ffi.C_INT.withName("minUniformBufferOffsetAlignment"),
+			MemoryLayout.paddingLayout(4),
+			ffi.C_INT.withName("minStorageBufferOffsetAlignment"),
+			MemoryLayout.paddingLayout(4),
+			ffi.C_INT.withName("maxVertexBuffers"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_LONG.withName("maxBufferSize"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("maxVertexAttributes"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("maxVertexBufferArrayStride"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("maxInterStageShaderVariables"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("maxColorAttachments"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("maxColorAttachmentBytesPerSample"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("maxComputeWorkgroupStorageSize"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("maxComputeInvocationsPerWorkgroup"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("maxComputeWorkgroupSizeX"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("maxComputeWorkgroupSizeY"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("maxComputeWorkgroupSizeZ"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("maxComputeWorkgroupsPerDimension"),
 			MemoryLayout.paddingLayout(4)
 		).withName("WGPULimits")
@@ -2617,9 +2792,13 @@ actual interface WGPUMultisampleState : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("count"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("mask"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("alphaToCoverageEnabled"),
 			MemoryLayout.paddingLayout(4)
 		).withName("WGPUMultisampleState")
@@ -2677,8 +2856,11 @@ actual interface WGPUOrigin3D : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("x"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("y"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("z"),
 		).withName("WGPUOrigin3D")
 
@@ -2736,9 +2918,13 @@ actual interface WGPUPipelineLayoutDescriptor : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
+			MemoryLayout.paddingLayout(16),
 			WGPUStringView.LAYOUT.withName("label"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_LONG.withName("bindGroupLayoutCount"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("bindGroupLayouts"),
 		).withName("WGPUPipelineLayoutDescriptor")
 
@@ -2807,11 +2993,17 @@ actual interface WGPUPrimitiveState : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("topology"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("stripIndexFormat"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("frontFace"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("cullMode"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("unclippedDepth"),
 			MemoryLayout.paddingLayout(4)
 		).withName("WGPUPrimitiveState")
@@ -2876,9 +3068,13 @@ actual interface WGPUQuerySetDescriptor : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
+			MemoryLayout.paddingLayout(16),
 			WGPUStringView.LAYOUT.withName("label"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("type"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("count"),
 		).withName("WGPUQuerySetDescriptor")
 
@@ -2930,7 +3126,9 @@ actual interface WGPURenderBundleDescriptor : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
+			MemoryLayout.paddingLayout(16),
 			WGPUStringView.LAYOUT.withName("label"),
 		).withName("WGPURenderBundleDescriptor")
 
@@ -3002,13 +3200,21 @@ actual interface WGPURenderBundleEncoderDescriptor : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
+			MemoryLayout.paddingLayout(16),
 			WGPUStringView.LAYOUT.withName("label"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_LONG.withName("colorFormatCount"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("colorFormats"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("depthStencilFormat"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("sampleCount"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("depthReadOnly"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("stencilReadOnly"),
 		).withName("WGPURenderBundleEncoderDescriptor")
 
@@ -3088,13 +3294,19 @@ actual interface WGPURenderPassColorAttachment : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("view"),
-			ffi.C_INT.withName("depthSlice"),
 			MemoryLayout.paddingLayout(4),
+			ffi.C_INT.withName("depthSlice"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("resolveTarget"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("loadOp"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("storeOp"),
+			MemoryLayout.paddingLayout(32),
 			WGPUColor.LAYOUT.withName("clearValue"),
 		).withName("WGPURenderPassColorAttachment")
 
@@ -3181,14 +3393,23 @@ actual interface WGPURenderPassDepthStencilAttachment : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("view"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("depthLoadOp"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("depthStoreOp"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_FLOAT.withName("depthClearValue"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("depthReadOnly"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("stencilLoadOp"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("stencilStoreOp"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("stencilClearValue"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("stencilReadOnly"),
 		).withName("WGPURenderPassDepthStencilAttachment")
 
@@ -3270,12 +3491,19 @@ actual interface WGPURenderPassDescriptor : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
+			MemoryLayout.paddingLayout(16),
 			WGPUStringView.LAYOUT.withName("label"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_LONG.withName("colorAttachmentCount"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("colorAttachments"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("depthStencilAttachment"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("occlusionQuerySet"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("timestampWrites"),
 		).withName("WGPURenderPassDescriptor")
 
@@ -3334,7 +3562,9 @@ actual interface WGPUChainedStruct : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("next"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("sType"),
 			MemoryLayout.paddingLayout(4)
 		).withName("WGPUChainedStruct")
@@ -3383,7 +3613,9 @@ actual interface WGPURenderPassMaxDrawCount : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(16),
 			WGPUChainedStruct.LAYOUT.withName("chain"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_LONG.withName("maxDrawCount"),
 		).withName("WGPURenderPassMaxDrawCount")
 
@@ -3436,8 +3668,11 @@ actual interface WGPURenderPassTimestampWrites : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("querySet"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("beginningOfPassWriteIndex"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("endOfPassWriteIndex"),
 		).withName("WGPURenderPassTimestampWrites")
 
@@ -3507,12 +3742,19 @@ actual interface WGPUVertexState : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("module"),
+			MemoryLayout.paddingLayout(16),
 			WGPUStringView.LAYOUT.withName("entryPoint"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_LONG.withName("constantCount"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("constants"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_LONG.withName("bufferCount"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("buffers"),
 		).withName("WGPUVertexState")
 
@@ -3591,13 +3833,21 @@ actual interface WGPURenderPipelineDescriptor : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
+			MemoryLayout.paddingLayout(16),
 			WGPUStringView.LAYOUT.withName("label"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("layout"),
+			MemoryLayout.paddingLayout(64),
 			WGPUVertexState.LAYOUT.withName("vertex"),
+			MemoryLayout.paddingLayout(32),
 			WGPUPrimitiveState.LAYOUT.withName("primitive"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("depthStencil"),
+			MemoryLayout.paddingLayout(24),
 			WGPUMultisampleState.LAYOUT.withName("multisample"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("fragment"),
 		).withName("WGPURenderPipelineDescriptor")
 
@@ -3674,11 +3924,17 @@ actual interface WGPURequestAdapterOptions : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("featureLevel"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("powerPreference"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("forceFallbackAdapter"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("backendType"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("compatibleSurface"),
 		).withName("WGPURequestAdapterOptions")
 
@@ -3774,17 +4030,29 @@ actual interface WGPUSamplerDescriptor : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
+			MemoryLayout.paddingLayout(16),
 			WGPUStringView.LAYOUT.withName("label"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("addressModeU"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("addressModeV"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("addressModeW"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("magFilter"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("minFilter"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("mipmapFilter"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_FLOAT.withName("lodMinClamp"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_FLOAT.withName("lodMaxClamp"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("compare"),
+			MemoryLayout.paddingLayout(2),
 			ffi.C_SHORT.withName("maxAnisotropy"),
 			MemoryLayout.paddingLayout(6)
 		).withName("WGPUSamplerDescriptor")
@@ -3853,7 +4121,9 @@ actual interface WGPUShaderModuleDescriptor : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
+			MemoryLayout.paddingLayout(16),
 			WGPUStringView.LAYOUT.withName("label"),
 		).withName("WGPUShaderModuleDescriptor")
 
@@ -3905,9 +4175,11 @@ actual interface WGPUShaderSourceSPIRV : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(16),
 			WGPUChainedStruct.LAYOUT.withName("chain"),
-			ffi.C_INT.withName("codeSize"),
 			MemoryLayout.paddingLayout(4),
+			ffi.C_INT.withName("codeSize"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("code"),
 		).withName("WGPUShaderSourceSPIRV")
 
@@ -3956,7 +4228,9 @@ actual interface WGPUShaderSourceWGSL : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(16),
 			WGPUChainedStruct.LAYOUT.withName("chain"),
+			MemoryLayout.paddingLayout(16),
 			WGPUStringView.LAYOUT.withName("code"),
 		).withName("WGPUShaderSourceWGSL")
 
@@ -4005,7 +4279,9 @@ actual interface WGPUSupportedFeatures : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_LONG.withName("featureCount"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("features"),
 		).withName("WGPUSupportedFeatures")
 
@@ -4054,7 +4330,9 @@ actual interface WGPUSupportedWGSLLanguageFeatures : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_LONG.withName("featureCount"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("features"),
 		).withName("WGPUSupportedWGSLLanguageFeatures")
 
@@ -4127,13 +4405,21 @@ actual interface WGPUSurfaceCapabilities : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_LONG.withName("usages"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_LONG.withName("formatCount"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("formats"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_LONG.withName("presentModeCount"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("presentModes"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_LONG.withName("alphaModeCount"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("alphaModes"),
 		).withName("WGPUSurfaceCapabilities")
 
@@ -4226,16 +4512,25 @@ actual interface WGPUSurfaceConfiguration : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("device"),
-			ffi.C_INT.withName("format"),
 			MemoryLayout.paddingLayout(4),
+			ffi.C_INT.withName("format"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_LONG.withName("usage"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("width"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("height"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_LONG.withName("viewFormatCount"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("viewFormats"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("alphaMode"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("presentMode"),
 		).withName("WGPUSurfaceConfiguration")
 
@@ -4299,7 +4594,9 @@ actual interface WGPUSurfaceDescriptor : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
+			MemoryLayout.paddingLayout(16),
 			WGPUStringView.LAYOUT.withName("label"),
 		).withName("WGPUSurfaceDescriptor")
 
@@ -4347,7 +4644,9 @@ actual interface WGPUSurfaceSourceAndroidNativeWindow : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(16),
 			WGPUChainedStruct.LAYOUT.withName("chain"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("window"),
 		).withName("WGPUSurfaceSourceAndroidNativeWindow")
 
@@ -4395,7 +4694,9 @@ actual interface WGPUSurfaceSourceMetalLayer : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(16),
 			WGPUChainedStruct.LAYOUT.withName("chain"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("layer"),
 		).withName("WGPUSurfaceSourceMetalLayer")
 
@@ -4447,8 +4748,11 @@ actual interface WGPUSurfaceSourceWaylandSurface : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(16),
 			WGPUChainedStruct.LAYOUT.withName("chain"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("display"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("surface"),
 		).withName("WGPUSurfaceSourceWaylandSurface")
 
@@ -4502,8 +4806,11 @@ actual interface WGPUSurfaceSourceWindowsHWND : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(16),
 			WGPUChainedStruct.LAYOUT.withName("chain"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("hinstance"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("hwnd"),
 		).withName("WGPUSurfaceSourceWindowsHWND")
 
@@ -4557,8 +4864,11 @@ actual interface WGPUSurfaceSourceXCBWindow : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(16),
 			WGPUChainedStruct.LAYOUT.withName("chain"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("connection"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("window"),
 			MemoryLayout.paddingLayout(4)
 		).withName("WGPUSurfaceSourceXCBWindow")
@@ -4613,8 +4923,11 @@ actual interface WGPUSurfaceSourceXlibWindow : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(16),
 			WGPUChainedStruct.LAYOUT.withName("chain"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("display"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_LONG.withName("window"),
 		).withName("WGPUSurfaceSourceXlibWindow")
 
@@ -4669,8 +4982,11 @@ actual interface WGPUSurfaceTexture : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("texture"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("status"),
 			MemoryLayout.paddingLayout(4)
 		).withName("WGPUSurfaceTexture")
@@ -4726,8 +5042,11 @@ actual interface WGPUTexelCopyBufferLayout : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_LONG.withName("offset"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("bytesPerRow"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("rowsPerImage"),
 		).withName("WGPUTexelCopyBufferLayout")
 
@@ -4777,7 +5096,9 @@ actual interface WGPUTexelCopyBufferInfo : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(16),
 			WGPUTexelCopyBufferLayout.LAYOUT.withName("layout"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("buffer"),
 		).withName("WGPUTexelCopyBufferInfo")
 
@@ -4833,9 +5154,13 @@ actual interface WGPUTexelCopyTextureInfo : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("texture"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("mipLevel"),
+			MemoryLayout.paddingLayout(12),
 			WGPUOrigin3D.LAYOUT.withName("origin"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("aspect"),
 			MemoryLayout.paddingLayout(4)
 		).withName("WGPUTexelCopyTextureInfo")
@@ -4919,16 +5244,25 @@ actual interface WGPUTextureDescriptor : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
+			MemoryLayout.paddingLayout(16),
 			WGPUStringView.LAYOUT.withName("label"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_LONG.withName("usage"),
-			ffi.C_INT.withName("dimension"),
-			WGPUExtent3D.LAYOUT.withName("size"),
-			ffi.C_INT.withName("format"),
-			ffi.C_INT.withName("mipLevelCount"),
-			ffi.C_INT.withName("sampleCount"),
 			MemoryLayout.paddingLayout(4),
+			ffi.C_INT.withName("dimension"),
+			MemoryLayout.paddingLayout(12),
+			WGPUExtent3D.LAYOUT.withName("size"),
+			MemoryLayout.paddingLayout(4),
+			ffi.C_INT.withName("format"),
+			MemoryLayout.paddingLayout(4),
+			ffi.C_INT.withName("mipLevelCount"),
+			MemoryLayout.paddingLayout(4),
+			ffi.C_INT.withName("sampleCount"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_LONG.withName("viewFormatCount"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("viewFormats"),
 		).withName("WGPUTextureDescriptor")
 
@@ -5024,16 +5358,25 @@ actual interface WGPUTextureViewDescriptor : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
+			MemoryLayout.paddingLayout(16),
 			WGPUStringView.LAYOUT.withName("label"),
-			ffi.C_INT.withName("format"),
-			ffi.C_INT.withName("dimension"),
-			ffi.C_INT.withName("baseMipLevel"),
-			ffi.C_INT.withName("mipLevelCount"),
-			ffi.C_INT.withName("baseArrayLayer"),
-			ffi.C_INT.withName("arrayLayerCount"),
-			ffi.C_INT.withName("aspect"),
 			MemoryLayout.paddingLayout(4),
+			ffi.C_INT.withName("format"),
+			MemoryLayout.paddingLayout(4),
+			ffi.C_INT.withName("dimension"),
+			MemoryLayout.paddingLayout(4),
+			ffi.C_INT.withName("baseMipLevel"),
+			MemoryLayout.paddingLayout(4),
+			ffi.C_INT.withName("mipLevelCount"),
+			MemoryLayout.paddingLayout(4),
+			ffi.C_INT.withName("baseArrayLayer"),
+			MemoryLayout.paddingLayout(4),
+			ffi.C_INT.withName("arrayLayerCount"),
+			MemoryLayout.paddingLayout(4),
+			ffi.C_INT.withName("aspect"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_LONG.withName("usage"),
 		).withName("WGPUTextureViewDescriptor")
 
@@ -5102,9 +5445,11 @@ actual interface WGPUVertexAttribute : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
-			ffi.C_INT.withName("format"),
 			MemoryLayout.paddingLayout(4),
+			ffi.C_INT.withName("format"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_LONG.withName("offset"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("shaderLocation"),
 			MemoryLayout.paddingLayout(4)
 		).withName("WGPUVertexAttribute")
@@ -5164,10 +5509,13 @@ actual interface WGPUVertexBufferLayout : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
-			ffi.C_INT.withName("stepMode"),
 			MemoryLayout.paddingLayout(4),
+			ffi.C_INT.withName("stepMode"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_LONG.withName("arrayStride"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_LONG.withName("attributeCount"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("attributes"),
 		).withName("WGPUVertexBufferLayout")
 
@@ -5237,12 +5585,19 @@ actual interface WGPUInstanceExtras : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(16),
 			WGPUChainedStruct.LAYOUT.withName("chain"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_LONG.withName("backends"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_LONG.withName("flags"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("dx12ShaderCompiler"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("gles3MinorVersion"),
+			MemoryLayout.paddingLayout(16),
 			WGPUStringView.LAYOUT.withName("dxilPath"),
+			MemoryLayout.paddingLayout(16),
 			WGPUStringView.LAYOUT.withName("dxcPath"),
 		).withName("WGPUInstanceExtras")
 
@@ -5301,7 +5656,9 @@ actual interface WGPUChainedStructOut : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("next"),
+			MemoryLayout.paddingLayout(4),
 			ffi.C_INT.withName("sType"),
 			MemoryLayout.paddingLayout(4)
 		).withName("WGPUChainedStructOut")
@@ -5363,11 +5720,15 @@ actual interface WGPUBufferMapCallbackInfo : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
-			ffi.C_INT.withName("mode"),
 			MemoryLayout.paddingLayout(4),
+			ffi.C_INT.withName("mode"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("callback"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("userdata1"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("userdata2"),
 		).withName("WGPUBufferMapCallbackInfo")
 
@@ -5434,11 +5795,15 @@ actual interface WGPUCompilationInfoCallbackInfo : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
-			ffi.C_INT.withName("mode"),
 			MemoryLayout.paddingLayout(4),
+			ffi.C_INT.withName("mode"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("callback"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("userdata1"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("userdata2"),
 		).withName("WGPUCompilationInfoCallbackInfo")
 
@@ -5505,11 +5870,15 @@ actual interface WGPUCreateComputePipelineAsyncCallbackInfo : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
-			ffi.C_INT.withName("mode"),
 			MemoryLayout.paddingLayout(4),
+			ffi.C_INT.withName("mode"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("callback"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("userdata1"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("userdata2"),
 		).withName("WGPUCreateComputePipelineAsyncCallbackInfo")
 
@@ -5576,11 +5945,15 @@ actual interface WGPUCreateRenderPipelineAsyncCallbackInfo : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
-			ffi.C_INT.withName("mode"),
 			MemoryLayout.paddingLayout(4),
+			ffi.C_INT.withName("mode"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("callback"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("userdata1"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("userdata2"),
 		).withName("WGPUCreateRenderPipelineAsyncCallbackInfo")
 
@@ -5647,11 +6020,15 @@ actual interface WGPUPopErrorScopeCallbackInfo : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
-			ffi.C_INT.withName("mode"),
 			MemoryLayout.paddingLayout(4),
+			ffi.C_INT.withName("mode"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("callback"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("userdata1"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("userdata2"),
 		).withName("WGPUPopErrorScopeCallbackInfo")
 
@@ -5718,11 +6095,15 @@ actual interface WGPUQueueWorkDoneCallbackInfo : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
-			ffi.C_INT.withName("mode"),
 			MemoryLayout.paddingLayout(4),
+			ffi.C_INT.withName("mode"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("callback"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("userdata1"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("userdata2"),
 		).withName("WGPUQueueWorkDoneCallbackInfo")
 
@@ -5789,11 +6170,15 @@ actual interface WGPURequestAdapterCallbackInfo : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
-			ffi.C_INT.withName("mode"),
 			MemoryLayout.paddingLayout(4),
+			ffi.C_INT.withName("mode"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("callback"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("userdata1"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("userdata2"),
 		).withName("WGPURequestAdapterCallbackInfo")
 
@@ -5860,11 +6245,15 @@ actual interface WGPURequestDeviceCallbackInfo : CStructure {
 		}
 
 		internal val LAYOUT = structLayout(
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("nextInChain"),
-			ffi.C_INT.withName("mode"),
 			MemoryLayout.paddingLayout(4),
+			ffi.C_INT.withName("mode"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("callback"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("userdata1"),
+			MemoryLayout.paddingLayout(8),
 			ffi.C_POINTER.withName("userdata2"),
 		).withName("WGPURequestDeviceCallbackInfo")
 
