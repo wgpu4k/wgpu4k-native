@@ -41,6 +41,9 @@ value class WGPURenderPipeline(val handler: NativeAddress)
 value class WGPUSampler(val handler: NativeAddress)
 @JvmInline
 value class WGPUShaderModule(val handler: NativeAddress)
+/**
+ * An object used to continuously present image data to the user, see @ref Surfaces for more details.
+ */
 @JvmInline
 value class WGPUSurface(val handler: NativeAddress)
 @JvmInline

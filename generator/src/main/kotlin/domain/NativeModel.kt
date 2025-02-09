@@ -42,7 +42,7 @@ data class NativeModel(
     }
     object Void : Type
 
-    data class Pointer(val name: String)
+    data class Pointer(val name: String, val doc: String?)
 
     data class Function(val name: String, val returnType: FunctionReturnType, val args: List<FunctionArgument>, val doc: String?)
 

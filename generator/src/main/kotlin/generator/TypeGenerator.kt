@@ -1,5 +1,6 @@
 package generator
 
+import builder.templateBuilder
 import disclamer
 import domain.NativeModel
 import java.io.File
@@ -15,8 +16,11 @@ private val header = """
 
 fun File.generateCommonTypes(classes: List<NativeModel.Pointer>) = resolve("Types.kt").apply {
     writeText(header)
-    classes.forEach {
-        appendText("@JvmInline\n")
-        appendText("value class ${it.name}(val handler: NativeAddress)\n")
-    }
+    templateBuilder {
+        classes.forEach {
+            appendDoc(it.doc)
+            appendLine("@JvmInline")
+            appendLine("value class ${it.name}(val handler: NativeAddress)")
+        }
+    }.let(::appendText)
 }
