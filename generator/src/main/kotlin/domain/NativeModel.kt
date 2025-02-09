@@ -68,6 +68,7 @@ data class NativeModel(
     data class Callback(
         val name: String,
         val members: List<Pair<String, Type>>,
+        val doc: String?
     )
 
 }

@@ -4,6 +4,7 @@ import convertToKotlinCallbackName
 import convertToKotlinVariableName
 import domain.NativeModel
 import domain.YamlModel
+import domain.actualDoc
 import domain.toCType
 
 internal fun YamlModel.convertCallbacks() = convertCallbacksFromV23() + convertCallbacksFromV22()
@@ -16,7 +17,8 @@ private fun YamlModel.convertCallbacksFromV22() = function_types.map {
                 it.pointer != null,
                 it.pointer == "mutable"
             )
-        }
+        },
+        it.doc.actualDoc()
     )
 } + objects.flatMap { gpuObject ->
     gpuObject.methods.filter { it.returns_async != null }.map {
@@ -27,7 +29,8 @@ private fun YamlModel.convertCallbacksFromV22() = function_types.map {
                     it.pointer != null,
                     it.pointer == "mutable"
                 )
-            }
+            },
+            it.doc.actualDoc()
         )
     }
 }
@@ -44,6 +47,7 @@ private fun YamlModel.convertCallbacksFromV23() = callbacks.map {
                 listOf(
                     "userdata1" to NativeModel.Reference.OpaquePointer,
                     "userdata2" to NativeModel.Reference.OpaquePointer
-                )
+                ),
+        it.doc.actualDoc()
     )
 }
