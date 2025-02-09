@@ -8,6 +8,7 @@ import converter.to.native.generateCLibraryStructures
 import domain.NativeModel
 import domain.Version
 import domain.YamlModel
+import domain.actualDoc
 import domain.mappingVersion
 
 internal fun YamlModel.toNativeModel(): NativeModel {
@@ -22,41 +23,47 @@ internal fun YamlModel.toNativeModel(): NativeModel {
 }
 
 
-
 private fun YamlModel.convertToCLibraryEnumerations() =
     enums.map {
-        NativeModel.Enumeration(it.name.convertToKotlinClassName(), it.entries.convertEnumToEnumValues())
+        NativeModel.Enumeration(
+            it.name.convertToKotlinClassName(),
+            it.entries.convertEnumToEnumValues(),
+            32,
+            it.doc.actualDoc()
+        )
     } + bitflags.map {
-        NativeModel.Enumeration(it.name.convertToKotlinClassName(), it.entries.convertToEnumValues(it.entries), if(mappingVersion == Version.v22) 32 else 64)
+        NativeModel.Enumeration(
+            it.name.convertToKotlinClassName(),
+            it.entries.convertToEnumValues(it.entries),
+            if (mappingVersion == Version.v22) 32 else 64,
+            it.doc.actualDoc()
+        )
     }
 
-private fun List<YamlModel.Bitflag.Entry>.convertToEnumValues(entries: List<YamlModel.Bitflag.Entry>): List<Pair<String, Int>> = mapIndexed { index, entry ->
-    // Calculate first if that a combination
-    val value = entry.value_combination?.sumOf { subPart -> indexToFlagValue(entries.indexOfFirst { it.name == subPart }) }
-        ?: indexToFlagValue(index)
-    entry.name.convertToEnumValueName() to value
-}
+private fun List<YamlModel.Bitflag.Entry>.convertToEnumValues(entries: List<YamlModel.Bitflag.Entry>): List<Triple<String, Int, String?>> =
+    mapIndexed { index, entry ->
+        // Calculate first if that a combination
+        val value =
+            entry.value_combination?.sumOf { subPart -> indexToFlagValue(entries.indexOfFirst { it.name == subPart }) }
+                ?: indexToFlagValue(index)
+        Triple(entry.name.convertToEnumValueName(), value, entry.doc.actualDoc())
+    }
 
 private fun indexToFlagValue(base: Int): Int = if (base == 0) 0 else 1 shl (base - 1)
 
-private fun List<YamlModel.Enum.Entry?>.convertEnumToEnumValues(): List<Pair<String, Int>> = mapIndexedNotNull { index, entry ->
-    if (entry == null) return@mapIndexedNotNull null
+private fun List<YamlModel.Enum.Entry?>.convertEnumToEnumValues(): List<Triple<String, Int, String?>> =
+    mapIndexedNotNull { index, entry ->
+        if (entry == null) return@mapIndexedNotNull null
 
-    entry.name.convertToEnumValueName() to (entry.value ?: (index))
+        Triple(entry.name.convertToEnumValueName(), entry.value ?: index, entry.doc.actualDoc())
+    }
+
+private fun YamlModel.convertToPointer(): List<NativeModel.Pointer> = objects.map {
+    NativeModel.Pointer(
+        it.name.convertToKotlinClassName(),
+        it.doc.actualDoc()
+    )
 }
-
-
-
-private fun YamlModel.convertToPointer(): List<NativeModel.Pointer> {
-    val pointers = objects.map { it.name.convertToKotlinClassName() }
-        .map { NativeModel.Pointer(it) }
-    return pointers
-}
-
-
-
-
-
 
 data class Field(val name: String, val size: Int, val alignment: Int)
 

@@ -8,12 +8,18 @@ const val WGPUAdapterType_CPU : WGPUAdapterType = 3u
 const val WGPUAdapterType_Unknown : WGPUAdapterType = 4u
 
 typealias WGPUAddressMode = UInt
+/**
+ * Indicates no value is passed for this argument. See @ref SentinelValues.
+ */
 const val WGPUAddressMode_Undefined : WGPUAddressMode = 0u
 const val WGPUAddressMode_ClampToEdge : WGPUAddressMode = 1u
 const val WGPUAddressMode_Repeat : WGPUAddressMode = 2u
 const val WGPUAddressMode_MirrorRepeat : WGPUAddressMode = 3u
 
 typealias WGPUBackendType = UInt
+/**
+ * Indicates no value is passed for this argument. See @ref SentinelValues.
+ */
 const val WGPUBackendType_Undefined : WGPUBackendType = 0u
 const val WGPUBackendType_Null : WGPUBackendType = 1u
 const val WGPUBackendType_WebGPU : WGPUBackendType = 2u
@@ -25,6 +31,9 @@ const val WGPUBackendType_OpenGL : WGPUBackendType = 7u
 const val WGPUBackendType_OpenGLES : WGPUBackendType = 8u
 
 typealias WGPUBlendFactor = UInt
+/**
+ * Indicates no value is passed for this argument. See @ref SentinelValues.
+ */
 const val WGPUBlendFactor_Undefined : WGPUBlendFactor = 0u
 const val WGPUBlendFactor_Zero : WGPUBlendFactor = 1u
 const val WGPUBlendFactor_One : WGPUBlendFactor = 2u
@@ -45,6 +54,9 @@ const val WGPUBlendFactor_Src1Alpha : WGPUBlendFactor = 16u
 const val WGPUBlendFactor_OneMinusSrc1Alpha : WGPUBlendFactor = 17u
 
 typealias WGPUBlendOperation = UInt
+/**
+ * Indicates no value is passed for this argument. See @ref SentinelValues.
+ */
 const val WGPUBlendOperation_Undefined : WGPUBlendOperation = 0u
 const val WGPUBlendOperation_Add : WGPUBlendOperation = 1u
 const val WGPUBlendOperation_Subtract : WGPUBlendOperation = 2u
@@ -53,7 +65,15 @@ const val WGPUBlendOperation_Min : WGPUBlendOperation = 4u
 const val WGPUBlendOperation_Max : WGPUBlendOperation = 5u
 
 typealias WGPUBufferBindingType = UInt
+/**
+ * Indicates that this @ref WGPUBufferBindingLayout member of
+ * its parent @ref WGPUBindGroupLayoutEntry is not used.
+ * (See also @ref SentinelValues.)
+ */
 const val WGPUBufferBindingType_BindingNotUsed : WGPUBufferBindingType = 0u
+/**
+ * Indicates no value is passed for this argument. See @ref SentinelValues.
+ */
 const val WGPUBufferBindingType_Undefined : WGPUBufferBindingType = 1u
 const val WGPUBufferBindingType_Uniform : WGPUBufferBindingType = 2u
 const val WGPUBufferBindingType_Storage : WGPUBufferBindingType = 3u
@@ -64,12 +84,37 @@ const val WGPUBufferMapState_Unmapped : WGPUBufferMapState = 1u
 const val WGPUBufferMapState_Pending : WGPUBufferMapState = 2u
 const val WGPUBufferMapState_Mapped : WGPUBufferMapState = 3u
 
+/**
+ * The callback mode controls how a callback for an asynchronous operation may be fired. See @ref Asynchronous-Operations for how these are used.
+ */
 typealias WGPUCallbackMode = UInt
+/**
+ * Callbacks created with [WGPUCallbackMode_WaitAnyOnly]:
+ * - fire when the asynchronous operation's future is passed to a call to [wgpuInstanceWaitAny]
+ *   AND the operation has already completed or it completes inside the call to [wgpuInstanceWaitAny].
+ */
 const val WGPUCallbackMode_WaitAnyOnly : WGPUCallbackMode = 1u
+/**
+ * Callbacks created with [WGPUCallbackMode_AllowProcessEvents]:
+ * - fire for the same reasons as callbacks created with [WGPUCallbackMode_WaitAnyOnly]
+ * - fire inside a call to [wgpuInstanceProcessEvents] if the asynchronous operation is complete.
+ */
 const val WGPUCallbackMode_AllowProcessEvents : WGPUCallbackMode = 2u
+/**
+ * Callbacks created with [WGPUCallbackMode_AllowSpontaneous]:
+ * - fire for the same reasons as callbacks created with [WGPUCallbackMode_AllowProcessEvents]
+ * - **may** fire spontaneously on an arbitrary or application thread, when the WebGPU implementations discovers that the asynchronous operation is complete.
+ * 
+ *   Implementations _should_ fire spontaneous callbacks as soon as possible.
+ * 
+ * @note Because spontaneous callbacks may fire at an arbitrary time on an arbitrary thread, applications should take extra care when acquiring locks or mutating state inside the callback. It undefined behavior to re-entrantly call into the webgpu.h API if the callback fires while inside the callstack of another webgpu.h function that is not [wgpuInstanceWaitAny] or [wgpuInstanceProcessEvents].
+ */
 const val WGPUCallbackMode_AllowSpontaneous : WGPUCallbackMode = 3u
 
 typealias WGPUCompareFunction = UInt
+/**
+ * Indicates no value is passed for this argument. See @ref SentinelValues.
+ */
 const val WGPUCompareFunction_Undefined : WGPUCompareFunction = 0u
 const val WGPUCompareFunction_Never : WGPUCompareFunction = 1u
 const val WGPUCompareFunction_Less : WGPUCompareFunction = 2u
@@ -91,11 +136,29 @@ const val WGPUCompilationMessageType_Error : WGPUCompilationMessageType = 1u
 const val WGPUCompilationMessageType_Warning : WGPUCompilationMessageType = 2u
 const val WGPUCompilationMessageType_Info : WGPUCompilationMessageType = 3u
 
+/**
+ * Describes how frames are composited with other contents on the screen when [wgpuSurfacePresent] is called.
+ */
 typealias WGPUCompositeAlphaMode = UInt
+/**
+ * Lets the WebGPU implementation choose the best mode (supported, and with the best performance) between @ref WGPUCompositeAlphaMode_Opaque or @ref WGPUCompositeAlphaMode_Inherit.
+ */
 const val WGPUCompositeAlphaMode_Auto : WGPUCompositeAlphaMode = 0u
+/**
+ * The alpha component of the image is ignored and teated as if it is always 1.0.
+ */
 const val WGPUCompositeAlphaMode_Opaque : WGPUCompositeAlphaMode = 1u
+/**
+ * The alpha component is respected and non-alpha components are assumed to be already multiplied with the alpha component. For example, (0.5, 0, 0, 0.5) is semi-transparent bright red.
+ */
 const val WGPUCompositeAlphaMode_Premultiplied : WGPUCompositeAlphaMode = 2u
+/**
+ * The alpha component is respected and non-alpha components are assumed to NOT be already multiplied with the alpha component. For example, (1.0, 0, 0, 0.5) is semi-transparent bright red.
+ */
 const val WGPUCompositeAlphaMode_Unpremultiplied : WGPUCompositeAlphaMode = 3u
+/**
+ * The handling of the alpha component is unknown to WebGPU and should be handled by the application using system-specific APIs. This mode may be unavailable (for example on Wasm).
+ */
 const val WGPUCompositeAlphaMode_Inherit : WGPUCompositeAlphaMode = 4u
 
 typealias WGPUCreatePipelineAsyncStatus = UInt
@@ -106,6 +169,9 @@ const val WGPUCreatePipelineAsyncStatus_InternalError : WGPUCreatePipelineAsyncS
 const val WGPUCreatePipelineAsyncStatus_Unknown : WGPUCreatePipelineAsyncStatus = 5u
 
 typealias WGPUCullMode = UInt
+/**
+ * Indicates no value is passed for this argument. See @ref SentinelValues.
+ */
 const val WGPUCullMode_Undefined : WGPUCullMode = 0u
 const val WGPUCullMode_None : WGPUCullMode = 1u
 const val WGPUCullMode_Front : WGPUCullMode = 2u
@@ -129,8 +195,17 @@ const val WGPUErrorType_OutOfMemory : WGPUErrorType = 3u
 const val WGPUErrorType_Internal : WGPUErrorType = 4u
 const val WGPUErrorType_Unknown : WGPUErrorType = 5u
 
+/**
+ * See @ref WGPURequestAdapterOptions::featureLevel.
+ */
 typealias WGPUFeatureLevel = UInt
+/**
+ * "Compatibility" profile which can be supported on OpenGL ES 3.1.
+ */
 const val WGPUFeatureLevel_Compatibility : WGPUFeatureLevel = 1u
+/**
+ * "Core" profile which can be supported on Vulkan/Metal/D3D12.
+ */
 const val WGPUFeatureLevel_Core : WGPUFeatureLevel = 2u
 
 typealias WGPUFeatureName = UInt
@@ -153,21 +228,33 @@ const val WGPUFeatureName_ClipDistances : WGPUFeatureName = 15u
 const val WGPUFeatureName_DualSourceBlending : WGPUFeatureName = 16u
 
 typealias WGPUFilterMode = UInt
+/**
+ * Indicates no value is passed for this argument. See @ref SentinelValues.
+ */
 const val WGPUFilterMode_Undefined : WGPUFilterMode = 0u
 const val WGPUFilterMode_Nearest : WGPUFilterMode = 1u
 const val WGPUFilterMode_Linear : WGPUFilterMode = 2u
 
 typealias WGPUFrontFace = UInt
+/**
+ * Indicates no value is passed for this argument. See @ref SentinelValues.
+ */
 const val WGPUFrontFace_Undefined : WGPUFrontFace = 0u
 const val WGPUFrontFace_CCW : WGPUFrontFace = 1u
 const val WGPUFrontFace_CW : WGPUFrontFace = 2u
 
 typealias WGPUIndexFormat = UInt
+/**
+ * Indicates no value is passed for this argument. See @ref SentinelValues.
+ */
 const val WGPUIndexFormat_Undefined : WGPUIndexFormat = 0u
 const val WGPUIndexFormat_Uint16 : WGPUIndexFormat = 1u
 const val WGPUIndexFormat_Uint32 : WGPUIndexFormat = 2u
 
 typealias WGPULoadOp = UInt
+/**
+ * Indicates no value is passed for this argument. See @ref SentinelValues.
+ */
 const val WGPULoadOp_Undefined : WGPULoadOp = 0u
 const val WGPULoadOp_Load : WGPULoadOp = 1u
 const val WGPULoadOp_Clear : WGPULoadOp = 2u
@@ -180,6 +267,9 @@ const val WGPUMapAsyncStatus_Aborted : WGPUMapAsyncStatus = 4u
 const val WGPUMapAsyncStatus_Unknown : WGPUMapAsyncStatus = 5u
 
 typealias WGPUMipmapFilterMode = UInt
+/**
+ * Indicates no value is passed for this argument. See @ref SentinelValues.
+ */
 const val WGPUMipmapFilterMode_Undefined : WGPUMipmapFilterMode = 0u
 const val WGPUMipmapFilterMode_Nearest : WGPUMipmapFilterMode = 1u
 const val WGPUMipmapFilterMode_Linear : WGPUMipmapFilterMode = 2u
@@ -190,23 +280,59 @@ const val WGPUOptionalBool_True : WGPUOptionalBool = 1u
 const val WGPUOptionalBool_Undefined : WGPUOptionalBool = 2u
 
 typealias WGPUPopErrorScopeStatus = UInt
+/**
+ * The error scope stack was successfully popped and a result was reported.
+ */
 const val WGPUPopErrorScopeStatus_Success : WGPUPopErrorScopeStatus = 1u
 const val WGPUPopErrorScopeStatus_InstanceDropped : WGPUPopErrorScopeStatus = 2u
+/**
+ * The error scope stack could not be popped, because it was empty.
+ */
 const val WGPUPopErrorScopeStatus_EmptyStack : WGPUPopErrorScopeStatus = 3u
 
 typealias WGPUPowerPreference = UInt
+/**
+ * No preference. (See also @ref SentinelValues.)
+ */
 const val WGPUPowerPreference_Undefined : WGPUPowerPreference = 0u
 const val WGPUPowerPreference_LowPower : WGPUPowerPreference = 1u
 const val WGPUPowerPreference_HighPerformance : WGPUPowerPreference = 2u
 
+/**
+ * Describes when and in which order frames are presented on the screen when [wgpuSurfacePresent] is called.
+ */
 typealias WGPUPresentMode = UInt
+/**
+ * Present mode is not specified. Use the default.
+ */
 const val WGPUPresentMode_Undefined : WGPUPresentMode = 0u
+/**
+ * The presentation of the image to the user waits for the next vertical blanking period to update in a first-in, first-out manner.
+ * Tearing cannot be observed and frame-loop will be limited to the display's refresh rate.
+ * This is the only mode that's always available.
+ */
 const val WGPUPresentMode_Fifo : WGPUPresentMode = 1u
+/**
+ * The presentation of the image to the user tries to wait for the next vertical blanking period but may decide to not wait if a frame is presented late.
+ * Tearing can sometimes be observed but late-frame don't produce a full-frame stutter in the presentation.
+ * This is still a first-in, first-out mechanism so a frame-loop will be limited to the display's refresh rate.
+ */
 const val WGPUPresentMode_FifoRelaxed : WGPUPresentMode = 2u
+/**
+ * The presentation of the image to the user is updated immediately without waiting for a vertical blank.
+ * Tearing can be observed but latency is minimized.
+ */
 const val WGPUPresentMode_Immediate : WGPUPresentMode = 3u
+/**
+ * The presentation of the image to the user waits for the next vertical blanking period to update to the latest provided image.
+ * Tearing cannot be observed and a frame-loop is not limited to the display's refresh rate.
+ */
 const val WGPUPresentMode_Mailbox : WGPUPresentMode = 4u
 
 typealias WGPUPrimitiveTopology = UInt
+/**
+ * Indicates no value is passed for this argument. See @ref SentinelValues.
+ */
 const val WGPUPrimitiveTopology_Undefined : WGPUPrimitiveTopology = 0u
 const val WGPUPrimitiveTopology_PointList : WGPUPrimitiveTopology = 1u
 const val WGPUPrimitiveTopology_LineList : WGPUPrimitiveTopology = 2u
@@ -249,17 +375,33 @@ const val WGPUSType_SurfaceSourceAndroidNativeWindow : WGPUSType = 8u
 const val WGPUSType_SurfaceSourceXCBWindow : WGPUSType = 9u
 
 typealias WGPUSamplerBindingType = UInt
+/**
+ * Indicates that this @ref WGPUSamplerBindingLayout member of
+ * its parent @ref WGPUBindGroupLayoutEntry is not used.
+ * (See also @ref SentinelValues.)
+ */
 const val WGPUSamplerBindingType_BindingNotUsed : WGPUSamplerBindingType = 0u
+/**
+ * Indicates no value is passed for this argument. See @ref SentinelValues.
+ */
 const val WGPUSamplerBindingType_Undefined : WGPUSamplerBindingType = 1u
 const val WGPUSamplerBindingType_Filtering : WGPUSamplerBindingType = 2u
 const val WGPUSamplerBindingType_NonFiltering : WGPUSamplerBindingType = 3u
 const val WGPUSamplerBindingType_Comparison : WGPUSamplerBindingType = 4u
 
+/**
+ * Status code returned (synchronously) from many operations. Generally
+ * indicates an invalid input like an unknown enum value or @ref OutStructChainError.
+ * Read the function's documentation for specific error conditions.
+ */
 typealias WGPUStatus = UInt
 const val WGPUStatus_Success : WGPUStatus = 1u
 const val WGPUStatus_Error : WGPUStatus = 2u
 
 typealias WGPUStencilOperation = UInt
+/**
+ * Indicates no value is passed for this argument. See @ref SentinelValues.
+ */
 const val WGPUStencilOperation_Undefined : WGPUStencilOperation = 0u
 const val WGPUStencilOperation_Keep : WGPUStencilOperation = 1u
 const val WGPUStencilOperation_Zero : WGPUStencilOperation = 2u
@@ -271,40 +413,87 @@ const val WGPUStencilOperation_IncrementWrap : WGPUStencilOperation = 7u
 const val WGPUStencilOperation_DecrementWrap : WGPUStencilOperation = 8u
 
 typealias WGPUStorageTextureAccess = UInt
+/**
+ * Indicates that this @ref WGPUStorageTextureBindingLayout member of
+ * its parent @ref WGPUBindGroupLayoutEntry is not used.
+ * (See also @ref SentinelValues.)
+ */
 const val WGPUStorageTextureAccess_BindingNotUsed : WGPUStorageTextureAccess = 0u
+/**
+ * Indicates no value is passed for this argument. See @ref SentinelValues.
+ */
 const val WGPUStorageTextureAccess_Undefined : WGPUStorageTextureAccess = 1u
 const val WGPUStorageTextureAccess_WriteOnly : WGPUStorageTextureAccess = 2u
 const val WGPUStorageTextureAccess_ReadOnly : WGPUStorageTextureAccess = 3u
 const val WGPUStorageTextureAccess_ReadWrite : WGPUStorageTextureAccess = 4u
 
 typealias WGPUStoreOp = UInt
+/**
+ * Indicates no value is passed for this argument. See @ref SentinelValues.
+ */
 const val WGPUStoreOp_Undefined : WGPUStoreOp = 0u
 const val WGPUStoreOp_Store : WGPUStoreOp = 1u
 const val WGPUStoreOp_Discard : WGPUStoreOp = 2u
 
+/**
+ * The status enum for [wgpuSurfaceGetCurrentTexture].
+ */
 typealias WGPUSurfaceGetCurrentTextureStatus = UInt
+/**
+ * Yay! Everything is good and we can render this frame.
+ */
 const val WGPUSurfaceGetCurrentTextureStatus_SuccessOptimal : WGPUSurfaceGetCurrentTextureStatus = 1u
+/**
+ * Still OK - the surface can present the frame, but in a suboptimal way. The surface may need reconfiguration.
+ */
 const val WGPUSurfaceGetCurrentTextureStatus_SuccessSuboptimal : WGPUSurfaceGetCurrentTextureStatus = 2u
+/**
+ * Some operation timed out while trying to acquire the frame.
+ */
 const val WGPUSurfaceGetCurrentTextureStatus_Timeout : WGPUSurfaceGetCurrentTextureStatus = 3u
+/**
+ * The surface is too different to be used, compared to when it was originally created.
+ */
 const val WGPUSurfaceGetCurrentTextureStatus_Outdated : WGPUSurfaceGetCurrentTextureStatus = 4u
+/**
+ * The connection to whatever owns the surface was lost.
+ */
 const val WGPUSurfaceGetCurrentTextureStatus_Lost : WGPUSurfaceGetCurrentTextureStatus = 5u
+/**
+ * The system ran out of memory.
+ */
 const val WGPUSurfaceGetCurrentTextureStatus_OutOfMemory : WGPUSurfaceGetCurrentTextureStatus = 6u
+/**
+ * The @ref WGPUDevice configured on the @ref WGPUSurface was lost.
+ */
 const val WGPUSurfaceGetCurrentTextureStatus_DeviceLost : WGPUSurfaceGetCurrentTextureStatus = 7u
+/**
+ * The surface is not configured, or there was an @ref OutStructChainError.
+ */
 const val WGPUSurfaceGetCurrentTextureStatus_Error : WGPUSurfaceGetCurrentTextureStatus = 8u
 
 typealias WGPUTextureAspect = UInt
+/**
+ * Indicates no value is passed for this argument. See @ref SentinelValues.
+ */
 const val WGPUTextureAspect_Undefined : WGPUTextureAspect = 0u
 const val WGPUTextureAspect_All : WGPUTextureAspect = 1u
 const val WGPUTextureAspect_StencilOnly : WGPUTextureAspect = 2u
 const val WGPUTextureAspect_DepthOnly : WGPUTextureAspect = 3u
 
 typealias WGPUTextureDimension = UInt
+/**
+ * Indicates no value is passed for this argument. See @ref SentinelValues.
+ */
 const val WGPUTextureDimension_Undefined : WGPUTextureDimension = 0u
 const val WGPUTextureDimension_1D : WGPUTextureDimension = 1u
 const val WGPUTextureDimension_2D : WGPUTextureDimension = 2u
 const val WGPUTextureDimension_3D : WGPUTextureDimension = 3u
 
 typealias WGPUTextureFormat = UInt
+/**
+ * Indicates no value is passed for this argument. See @ref SentinelValues.
+ */
 const val WGPUTextureFormat_Undefined : WGPUTextureFormat = 0u
 const val WGPUTextureFormat_R8Unorm : WGPUTextureFormat = 1u
 const val WGPUTextureFormat_R8Snorm : WGPUTextureFormat = 2u
@@ -403,7 +592,15 @@ const val WGPUTextureFormat_ASTC12x12Unorm : WGPUTextureFormat = 94u
 const val WGPUTextureFormat_ASTC12x12UnormSrgb : WGPUTextureFormat = 95u
 
 typealias WGPUTextureSampleType = UInt
+/**
+ * Indicates that this @ref WGPUTextureBindingLayout member of
+ * its parent @ref WGPUBindGroupLayoutEntry is not used.
+ * (See also @ref SentinelValues.)
+ */
 const val WGPUTextureSampleType_BindingNotUsed : WGPUTextureSampleType = 0u
+/**
+ * Indicates no value is passed for this argument. See @ref SentinelValues.
+ */
 const val WGPUTextureSampleType_Undefined : WGPUTextureSampleType = 1u
 const val WGPUTextureSampleType_Float : WGPUTextureSampleType = 2u
 const val WGPUTextureSampleType_UnfilterableFloat : WGPUTextureSampleType = 3u
@@ -412,6 +609,9 @@ const val WGPUTextureSampleType_Sint : WGPUTextureSampleType = 5u
 const val WGPUTextureSampleType_Uint : WGPUTextureSampleType = 6u
 
 typealias WGPUTextureViewDimension = UInt
+/**
+ * Indicates no value is passed for this argument. See @ref SentinelValues.
+ */
 const val WGPUTextureViewDimension_Undefined : WGPUTextureViewDimension = 0u
 const val WGPUTextureViewDimension_1D : WGPUTextureViewDimension = 1u
 const val WGPUTextureViewDimension_2D : WGPUTextureViewDimension = 2u
@@ -464,16 +664,41 @@ const val WGPUVertexFormat_Unorm1010102 : WGPUVertexFormat = 40u
 const val WGPUVertexFormat_Unorm8x4BGRA : WGPUVertexFormat = 41u
 
 typealias WGPUVertexStepMode = UInt
+/**
+ * This @ref WGPUVertexBufferLayout is a "hole" in the @ref WGPUVertexState [buffers] array.
+ * (See also @ref SentinelValues.)
+ */
 const val WGPUVertexStepMode_VertexBufferNotUsed : WGPUVertexStepMode = 0u
+/**
+ * Indicates no value is passed for this argument. See @ref SentinelValues.
+ */
 const val WGPUVertexStepMode_Undefined : WGPUVertexStepMode = 1u
 const val WGPUVertexStepMode_Vertex : WGPUVertexStepMode = 2u
 const val WGPUVertexStepMode_Instance : WGPUVertexStepMode = 3u
 
+/**
+ * Status returned from a call to ::wgpuInstanceWaitAny.
+ */
 typealias WGPUWaitStatus = UInt
+/**
+ * At least one WGPUFuture completed successfully.
+ */
 const val WGPUWaitStatus_Success : WGPUWaitStatus = 1u
+/**
+ * No WGPUFutures completed within the timeout.
+ */
 const val WGPUWaitStatus_TimedOut : WGPUWaitStatus = 2u
+/**
+ * A @ref Timed-Wait was performed when WGPUInstanceFeatures::timedWaitAnyEnable is false.
+ */
 const val WGPUWaitStatus_UnsupportedTimeout : WGPUWaitStatus = 3u
+/**
+ * The number of futures waited on in a @ref Timed-Wait is greater than the supported WGPUInstanceFeatures::timedWaitAnyMaxCount.
+ */
 const val WGPUWaitStatus_UnsupportedCount : WGPUWaitStatus = 4u
+/**
+ * An invalid wait was performed with @ref Mixed-Sources.
+ */
 const val WGPUWaitStatus_UnsupportedMixedSources : WGPUWaitStatus = 5u
 
 typealias WGPUWGSLLanguageFeatureName = UInt

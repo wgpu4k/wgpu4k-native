@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>[native]ByValue</title>
+    <link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
+<script type="text/javascript" src="../../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../../styles/style.css" rel="Stylesheet">
+<link href="../../../../styles/main.css" rel="Stylesheet">
+<link href="../../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<link href="../../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../../ui-kit/ui-kit.min.js" defer="defer"></script>
+<script type="text/javascript" src="../../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+</head>
+<body>
+    <div class="root">
+    <nav class="navigation theme-dark" id="navigation-wrapper">
+            <a class="library-name--link" href="../../../../index.html">
+                    wgpu4k-native
+            </a>
+        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle"
+                type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+v24.0.0-SNAPSHOT        </div>
+        <div class="navigation-controls">
+        <div class="filter-section filter-section_loading" id="filter-section">
+                <button class="platform-tag platform-selector common-like" data-active=""
+                        data-filter=":wgpu4k-native:dokkaHtml/nativeMain">native</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox"
+                        data-role="dropdown-toggle"
+                        aria-controls="platform-tags-listbox"
+                        aria-haspopup="listbox"
+                        aria-expanded="false"
+                        aria-label="Toggle source sets"
+                ></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
+                    <div class="dropdown--header"><span>Platform filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option common-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":wgpu4k-native:dokkaHtml/nativeMain"
+                                       data-filter=":wgpu4k-native:dokkaHtml/nativeMain"/>
+                                <span class="checkbox--icon"></span>
+                                native
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </div>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button"
+                    type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
+                        data-role="dropdown-listbox">
+                        <div class="dropdown--header">
+                            <span>
+                                    wgpu4k-native
+                            </span>
+                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
+                        </div>
+                        <div class="sidebar--inner" id="sideMenu"></div>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
+                </div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="wgpu4k-native::io.ygdrasil.wgpu/WGPULimits.ByValue///PointingToDeclaration//1250558744">
+  <div class="breadcrumbs"><a href="../../../../index.html">wgpu4k-native</a><span class="delimiter">/</span><a href="../../index.html">io.ygdrasil.wgpu</a><span class="delimiter">/</span><a href="../index.html">WGPULimits</a><span class="delimiter">/</span><span class="current">[native]ByValue</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>By</span><wbr></wbr><span><span>Value</span></span></h1>
+    <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+      <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">value </span><span class="token keyword">class </span><a href="index.html">ByValue</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>handle<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlinx.cinterop/-c-value/index.html">CValue</a><span class="token operator">&lt;</span><span data-unresolved-link="webgpu.native/WGPULimits///PointingToDeclaration/">WGPULimits</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span> : <a href="../index.html">WGPULimits</a></div></div>    </div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="1840724303%2FConstructors%2F1250558744" anchor-label="ByValue" id="1840724303%2FConstructors%2F1250558744" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-by-value.html"><span>By</span><wbr></wbr><span><span>Value</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1840724303%2FConstructors%2F1250558744"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">handle<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlinx.cinterop/-c-value/index.html">CValue</a><span class="token operator">&lt;</span><span data-unresolved-link="webgpu.native/WGPULimits///PointingToDeclaration/">WGPULimits</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="1676261220%2FProperties%2F1250558744" anchor-label="handle" id="1676261220%2FProperties%2F1250558744" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="handle.html"><span><span>handle</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1676261220%2FProperties%2F1250558744"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="handle.html">handle</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlinx.cinterop/-c-value/index.html">CValue</a><span class="token operator">&lt;</span><span data-unresolved-link="webgpu.native/WGPULimits///PointingToDeclaration/">WGPULimits</span><span class="token operator">&gt;</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1959725252%2FProperties%2F1250558744" anchor-label="handler" id="1959725252%2FProperties%2F1250558744" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="handler.html"><span><span>handler</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1959725252%2FProperties%2F1250558744"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="handler.html">handler</a><span class="token operator">: </span><a href="../../../ffi/-native-address/index.html">NativeAddress</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1825675449%2FProperties%2F1250558744" anchor-label="maxBindGroups" id="1825675449%2FProperties%2F1250558744" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-bind-groups.html"><span>max</span><wbr></wbr><span>Bind</span><wbr></wbr><span><span>Groups</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1825675449%2FProperties%2F1250558744"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">var </span><a href="max-bind-groups.html">maxBindGroups</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-int/index.html">UInt</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2129372788%2FProperties%2F1250558744" anchor-label="maxBindGroupsPlusVertexBuffers" id="-2129372788%2FProperties%2F1250558744" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-bind-groups-plus-vertex-buffers.html"><span>max</span><wbr></wbr><span>Bind</span><wbr></wbr><span>Groups</span><wbr></wbr><span>Plus</span><wbr></wbr><span>Vertex</span><wbr></wbr><span><span>Buffers</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2129372788%2FProperties%2F1250558744"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">var </span><a href="max-bind-groups-plus-vertex-buffers.html">maxBindGroupsPlusVertexBuffers</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-int/index.html">UInt</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1478994473%2FProperties%2F1250558744" anchor-label="maxBindingsPerBindGroup" id="-1478994473%2FProperties%2F1250558744" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-bindings-per-bind-group.html"><span>max</span><wbr></wbr><span>Bindings</span><wbr></wbr><span>Per</span><wbr></wbr><span>Bind</span><wbr></wbr><span><span>Group</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1478994473%2FProperties%2F1250558744"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">var </span><a href="max-bindings-per-bind-group.html">maxBindingsPerBindGroup</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-int/index.html">UInt</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="871868105%2FProperties%2F1250558744" anchor-label="maxBufferSize" id="871868105%2FProperties%2F1250558744" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-buffer-size.html"><span>max</span><wbr></wbr><span>Buffer</span><wbr></wbr><span><span>Size</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="871868105%2FProperties%2F1250558744"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">var </span><a href="max-buffer-size.html">maxBufferSize</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-long/index.html">ULong</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1458549006%2FProperties%2F1250558744" anchor-label="maxColorAttachmentBytesPerSample" id="1458549006%2FProperties%2F1250558744" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-color-attachment-bytes-per-sample.html"><span>max</span><wbr></wbr><span>Color</span><wbr></wbr><span>Attachment</span><wbr></wbr><span>Bytes</span><wbr></wbr><span>Per</span><wbr></wbr><span><span>Sample</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1458549006%2FProperties%2F1250558744"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">var </span><a href="max-color-attachment-bytes-per-sample.html">maxColorAttachmentBytesPerSample</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-int/index.html">UInt</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1872827747%2FProperties%2F1250558744" anchor-label="maxColorAttachments" id="-1872827747%2FProperties%2F1250558744" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-color-attachments.html"><span>max</span><wbr></wbr><span>Color</span><wbr></wbr><span><span>Attachments</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1872827747%2FProperties%2F1250558744"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">var </span><a href="max-color-attachments.html">maxColorAttachments</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-int/index.html">UInt</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-265608851%2FProperties%2F1250558744" anchor-label="maxComputeInvocationsPerWorkgroup" id="-265608851%2FProperties%2F1250558744" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-compute-invocations-per-workgroup.html"><span>max</span><wbr></wbr><span>Compute</span><wbr></wbr><span>Invocations</span><wbr></wbr><span>Per</span><wbr></wbr><span><span>Workgroup</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-265608851%2FProperties%2F1250558744"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">var </span><a href="max-compute-invocations-per-workgroup.html">maxComputeInvocationsPerWorkgroup</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-int/index.html">UInt</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2140035632%2FProperties%2F1250558744" anchor-label="maxComputeWorkgroupSizeX" id="2140035632%2FProperties%2F1250558744" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-compute-workgroup-size-x.html"><span>max</span><wbr></wbr><span>Compute</span><wbr></wbr><span>Workgroup</span><wbr></wbr><span>Size</span><wbr></wbr><span><span>X</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2140035632%2FProperties%2F1250558744"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">var </span><a href="max-compute-workgroup-size-x.html">maxComputeWorkgroupSizeX</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-int/index.html">UInt</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2123911857%2FProperties%2F1250558744" anchor-label="maxComputeWorkgroupSizeY" id="-2123911857%2FProperties%2F1250558744" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-compute-workgroup-size-y.html"><span>max</span><wbr></wbr><span>Compute</span><wbr></wbr><span>Workgroup</span><wbr></wbr><span>Size</span><wbr></wbr><span><span>Y</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2123911857%2FProperties%2F1250558744"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">var </span><a href="max-compute-workgroup-size-y.html">maxComputeWorkgroupSizeY</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-int/index.html">UInt</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2092892050%2FProperties%2F1250558744" anchor-label="maxComputeWorkgroupSizeZ" id="-2092892050%2FProperties%2F1250558744" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-compute-workgroup-size-z.html"><span>max</span><wbr></wbr><span>Compute</span><wbr></wbr><span>Workgroup</span><wbr></wbr><span>Size</span><wbr></wbr><span><span>Z</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2092892050%2FProperties%2F1250558744"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">var </span><a href="max-compute-workgroup-size-z.html">maxComputeWorkgroupSizeZ</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-int/index.html">UInt</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-239819957%2FProperties%2F1250558744" anchor-label="maxComputeWorkgroupsPerDimension" id="-239819957%2FProperties%2F1250558744" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-compute-workgroups-per-dimension.html"><span>max</span><wbr></wbr><span>Compute</span><wbr></wbr><span>Workgroups</span><wbr></wbr><span>Per</span><wbr></wbr><span><span>Dimension</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-239819957%2FProperties%2F1250558744"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">var </span><a href="max-compute-workgroups-per-dimension.html">maxComputeWorkgroupsPerDimension</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-int/index.html">UInt</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="754924971%2FProperties%2F1250558744" anchor-label="maxComputeWorkgroupStorageSize" id="754924971%2FProperties%2F1250558744" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-compute-workgroup-storage-size.html"><span>max</span><wbr></wbr><span>Compute</span><wbr></wbr><span>Workgroup</span><wbr></wbr><span>Storage</span><wbr></wbr><span><span>Size</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="754924971%2FProperties%2F1250558744"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">var </span><a href="max-compute-workgroup-storage-size.html">maxComputeWorkgroupStorageSize</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-int/index.html">UInt</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2081613432%2FProperties%2F1250558744" anchor-label="maxDynamicStorageBuffersPerPipelineLayout" id="2081613432%2FProperties%2F1250558744" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-dynamic-storage-buffers-per-pipeline-layout.html"><span>max</span><wbr></wbr><span>Dynamic</span><wbr></wbr><span>Storage</span><wbr></wbr><span>Buffers</span><wbr></wbr><span>Per</span><wbr></wbr><span>Pipeline</span><wbr></wbr><span><span>Layout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2081613432%2FProperties%2F1250558744"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">var </span><a href="max-dynamic-storage-buffers-per-pipeline-layout.html">maxDynamicStorageBuffersPerPipelineLayout</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-int/index.html">UInt</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1094724703%2FProperties%2F1250558744" anchor-label="maxDynamicUniformBuffersPerPipelineLayout" id="1094724703%2FProperties%2F1250558744" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-dynamic-uniform-buffers-per-pipeline-layout.html"><span>max</span><wbr></wbr><span>Dynamic</span><wbr></wbr><span>Uniform</span><wbr></wbr><span>Buffers</span><wbr></wbr><span>Per</span><wbr></wbr><span>Pipeline</span><wbr></wbr><span><span>Layout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1094724703%2FProperties%2F1250558744"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">var </span><a href="max-dynamic-uniform-buffers-per-pipeline-layout.html">maxDynamicUniformBuffersPerPipelineLayout</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-int/index.html">UInt</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1824712352%2FProperties%2F1250558744" anchor-label="maxInterStageShaderVariables" id="1824712352%2FProperties%2F1250558744" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-inter-stage-shader-variables.html"><span>max</span><wbr></wbr><span>Inter</span><wbr></wbr><span>Stage</span><wbr></wbr><span>Shader</span><wbr></wbr><span><span>Variables</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1824712352%2FProperties%2F1250558744"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">var </span><a href="max-inter-stage-shader-variables.html">maxInterStageShaderVariables</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-int/index.html">UInt</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1414209506%2FProperties%2F1250558744" anchor-label="maxSampledTexturesPerShaderStage" id="1414209506%2FProperties%2F1250558744" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-sampled-textures-per-shader-stage.html"><span>max</span><wbr></wbr><span>Sampled</span><wbr></wbr><span>Textures</span><wbr></wbr><span>Per</span><wbr></wbr><span>Shader</span><wbr></wbr><span><span>Stage</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1414209506%2FProperties%2F1250558744"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">var </span><a href="max-sampled-textures-per-shader-stage.html">maxSampledTexturesPerShaderStage</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-int/index.html">UInt</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-894582941%2FProperties%2F1250558744" anchor-label="maxSamplersPerShaderStage" id="-894582941%2FProperties%2F1250558744" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-samplers-per-shader-stage.html"><span>max</span><wbr></wbr><span>Samplers</span><wbr></wbr><span>Per</span><wbr></wbr><span>Shader</span><wbr></wbr><span><span>Stage</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-894582941%2FProperties%2F1250558744"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">var </span><a href="max-samplers-per-shader-stage.html">maxSamplersPerShaderStage</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-int/index.html">UInt</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1147126047%2FProperties%2F1250558744" anchor-label="maxStorageBufferBindingSize" id="1147126047%2FProperties%2F1250558744" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-storage-buffer-binding-size.html"><span>max</span><wbr></wbr><span>Storage</span><wbr></wbr><span>Buffer</span><wbr></wbr><span>Binding</span><wbr></wbr><span><span>Size</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1147126047%2FProperties%2F1250558744"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">var </span><a href="max-storage-buffer-binding-size.html">maxStorageBufferBindingSize</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-long/index.html">ULong</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2063573706%2FProperties%2F1250558744" anchor-label="maxStorageBuffersPerShaderStage" id="-2063573706%2FProperties%2F1250558744" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-storage-buffers-per-shader-stage.html"><span>max</span><wbr></wbr><span>Storage</span><wbr></wbr><span>Buffers</span><wbr></wbr><span>Per</span><wbr></wbr><span>Shader</span><wbr></wbr><span><span>Stage</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2063573706%2FProperties%2F1250558744"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">var </span><a href="max-storage-buffers-per-shader-stage.html">maxStorageBuffersPerShaderStage</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-int/index.html">UInt</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1996394687%2FProperties%2F1250558744" anchor-label="maxStorageTexturesPerShaderStage" id="-1996394687%2FProperties%2F1250558744" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-storage-textures-per-shader-stage.html"><span>max</span><wbr></wbr><span>Storage</span><wbr></wbr><span>Textures</span><wbr></wbr><span>Per</span><wbr></wbr><span>Shader</span><wbr></wbr><span><span>Stage</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1996394687%2FProperties%2F1250558744"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">var </span><a href="max-storage-textures-per-shader-stage.html">maxStorageTexturesPerShaderStage</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-int/index.html">UInt</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="931307050%2FProperties%2F1250558744" anchor-label="maxTextureArrayLayers" id="931307050%2FProperties%2F1250558744" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-texture-array-layers.html"><span>max</span><wbr></wbr><span>Texture</span><wbr></wbr><span>Array</span><wbr></wbr><span><span>Layers</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="931307050%2FProperties%2F1250558744"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">var </span><a href="max-texture-array-layers.html">maxTextureArrayLayers</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-int/index.html">UInt</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="216635084%2FProperties%2F1250558744" anchor-label="maxTextureDimension1D" id="216635084%2FProperties%2F1250558744" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-texture-dimension1-d.html"><span>max</span><wbr></wbr><span>Texture</span><wbr></wbr><span><span>Dimension1D</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="216635084%2FProperties%2F1250558744"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">var </span><a href="max-texture-dimension1-d.html">maxTextureDimension1D</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-int/index.html">UInt</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1178249101%2FProperties%2F1250558744" anchor-label="maxTextureDimension2D" id="1178249101%2FProperties%2F1250558744" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-texture-dimension2-d.html"><span>max</span><wbr></wbr><span>Texture</span><wbr></wbr><span><span>Dimension2D</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1178249101%2FProperties%2F1250558744"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">var </span><a href="max-texture-dimension2-d.html">maxTextureDimension2D</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-int/index.html">UInt</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2139863118%2FProperties%2F1250558744" anchor-label="maxTextureDimension3D" id="2139863118%2FProperties%2F1250558744" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-texture-dimension3-d.html"><span>max</span><wbr></wbr><span>Texture</span><wbr></wbr><span><span>Dimension3D</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2139863118%2FProperties%2F1250558744"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">var </span><a href="max-texture-dimension3-d.html">maxTextureDimension3D</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-int/index.html">UInt</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1966752024%2FProperties%2F1250558744" anchor-label="maxUniformBufferBindingSize" id="1966752024%2FProperties%2F1250558744" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-uniform-buffer-binding-size.html"><span>max</span><wbr></wbr><span>Uniform</span><wbr></wbr><span>Buffer</span><wbr></wbr><span>Binding</span><wbr></wbr><span><span>Size</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1966752024%2FProperties%2F1250558744"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">var </span><a href="max-uniform-buffer-binding-size.html">maxUniformBufferBindingSize</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-long/index.html">ULong</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1002948433%2FProperties%2F1250558744" anchor-label="maxUniformBuffersPerShaderStage" id="-1002948433%2FProperties%2F1250558744" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-uniform-buffers-per-shader-stage.html"><span>max</span><wbr></wbr><span>Uniform</span><wbr></wbr><span>Buffers</span><wbr></wbr><span>Per</span><wbr></wbr><span>Shader</span><wbr></wbr><span><span>Stage</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1002948433%2FProperties%2F1250558744"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">var </span><a href="max-uniform-buffers-per-shader-stage.html">maxUniformBuffersPerShaderStage</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-int/index.html">UInt</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-267170673%2FProperties%2F1250558744" anchor-label="maxVertexAttributes" id="-267170673%2FProperties%2F1250558744" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-vertex-attributes.html"><span>max</span><wbr></wbr><span>Vertex</span><wbr></wbr><span><span>Attributes</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-267170673%2FProperties%2F1250558744"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">var </span><a href="max-vertex-attributes.html">maxVertexAttributes</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-int/index.html">UInt</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="370472802%2FProperties%2F1250558744" anchor-label="maxVertexBufferArrayStride" id="370472802%2FProperties%2F1250558744" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-vertex-buffer-array-stride.html"><span>max</span><wbr></wbr><span>Vertex</span><wbr></wbr><span>Buffer</span><wbr></wbr><span>Array</span><wbr></wbr><span><span>Stride</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="370472802%2FProperties%2F1250558744"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">var </span><a href="max-vertex-buffer-array-stride.html">maxVertexBufferArrayStride</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-int/index.html">UInt</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1414915775%2FProperties%2F1250558744" anchor-label="maxVertexBuffers" id="-1414915775%2FProperties%2F1250558744" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-vertex-buffers.html"><span>max</span><wbr></wbr><span>Vertex</span><wbr></wbr><span><span>Buffers</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1414915775%2FProperties%2F1250558744"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">var </span><a href="max-vertex-buffers.html">maxVertexBuffers</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-int/index.html">UInt</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="717809095%2FProperties%2F1250558744" anchor-label="minStorageBufferOffsetAlignment" id="717809095%2FProperties%2F1250558744" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="min-storage-buffer-offset-alignment.html"><span>min</span><wbr></wbr><span>Storage</span><wbr></wbr><span>Buffer</span><wbr></wbr><span>Offset</span><wbr></wbr><span><span>Alignment</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="717809095%2FProperties%2F1250558744"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">var </span><a href="min-storage-buffer-offset-alignment.html">minStorageBufferOffsetAlignment</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-int/index.html">UInt</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1778434368%2FProperties%2F1250558744" anchor-label="minUniformBufferOffsetAlignment" id="1778434368%2FProperties%2F1250558744" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="min-uniform-buffer-offset-alignment.html"><span>min</span><wbr></wbr><span>Uniform</span><wbr></wbr><span>Buffer</span><wbr></wbr><span>Offset</span><wbr></wbr><span><span>Alignment</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1778434368%2FProperties%2F1250558744"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">var </span><a href="min-uniform-buffer-offset-alignment.html">minUniformBufferOffsetAlignment</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-int/index.html">UInt</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1715738043%2FProperties%2F1250558744" anchor-label="nextInChain" id="-1715738043%2FProperties%2F1250558744" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="next-in-chain.html"><span>next</span><wbr></wbr><span>In</span><wbr></wbr><span><span>Chain</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1715738043%2FProperties%2F1250558744"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">var </span><a href="next-in-chain.html">nextInChain</a><span class="token operator">: </span><a href="../../../ffi/-native-address/index.html">NativeAddress</a><span class="token operator">?</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="1710829943%2FFunctions%2F1250558744" anchor-label="toCValue" id="1710829943%2FFunctions%2F1250558744" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../[native]to-c-value.html"><span>to</span><wbr></wbr><span><span>CValue</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1710829943%2FFunctions%2F1250558744"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../[native]to-c-value.html"><span class="token function">toCValue</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlinx.cinterop/-c-value/index.html">CValue</a><span class="token operator">&lt;</span><span data-unresolved-link="webgpu.native/WGPULimits///PointingToDeclaration/">WGPULimits</span><span class="token operator">&gt;</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+        <span>© 2025 Copyright</span>
+        <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
+    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

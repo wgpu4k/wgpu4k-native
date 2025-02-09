@@ -1,5 +1,6 @@
 package generator
 
+import builder.templateBuilder
 import converter.variableType
 import disclamer
 import domain.NativeModel
@@ -73,23 +74,28 @@ private val headerNative = """
 internal fun File.generateCommonStructures(structures: List<NativeModel.Structure>)
     = resolve("Structures.kt").apply {
     writeText(header)
-    structures.forEach {
-        val structureName = it.name
-        appendText("expect interface $structureName {\n")
-        it.members.forEach { (name, type, optional) ->
-            val variableType = type.variableType()
-            appendText("\t$variableType $name: ${type.toFunctionKotlinType()}$optional\n")
+    templateBuilder {
+        structures.forEach {
+            val structureName = it.name
+            appendDoc(it.doc)
+            appendBlock("expect interface $structureName") {
+                it.members.forEach { (name, type, optional, doc) ->
+                    val variableType = type.variableType()
+                    appendDoc(doc)
+                    appendLine("$variableType $name: ${type.toFunctionKotlinType()}$optional")
+                }
+
+                appendLine("val handler: NativeAddress")
+
+                appendBlock("companion object") {
+                    appendLine("operator fun invoke(address: NativeAddress): $structureName")
+                    appendLine("fun allocate(allocator: MemoryAllocator): $structureName")
+                    appendLine("fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, $structureName) -> Unit): ArrayHolder<$structureName>")
+                }
+            }
+            newLine()
         }
-
-        appendText("\tval handler: NativeAddress\n")
-
-        appendText("\tcompanion object {\n")
-        appendText("\t\toperator fun invoke(address: NativeAddress): $structureName\n")
-        appendText("\t\tfun allocate(allocator: MemoryAllocator): $structureName\n")
-        appendText("\t\tfun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, $structureName) -> Unit): ArrayHolder<$structureName>\n")
-        appendText("\t}\n")
-        appendText("}\n\n")
-    }
+    }.let(::appendText)
 }
 
 internal fun File.generateNativeStructures(structures: List<NativeModel.Structure>)

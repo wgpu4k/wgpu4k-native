@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>Companion</title>
+    <link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
+<script type="text/javascript" src="../../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../../styles/style.css" rel="Stylesheet">
+<link href="../../../../styles/main.css" rel="Stylesheet">
+<link href="../../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<link href="../../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../../ui-kit/ui-kit.min.js" defer="defer"></script>
+<script type="text/javascript" src="../../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+</head>
+<body>
+    <div class="root">
+    <nav class="navigation theme-dark" id="navigation-wrapper">
+            <a class="library-name--link" href="../../../../index.html">
+                    wgpu4k-native
+            </a>
+        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle"
+                type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+v24.0.0-SNAPSHOT        </div>
+        <div class="navigation-controls">
+        <div class="filter-section filter-section_loading" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active=""
+                        data-filter=":wgpu4k-native:dokkaHtml/androidMain">android</button>
+                <button class="platform-tag platform-selector common-like" data-active=""
+                        data-filter=":wgpu4k-native:dokkaHtml/commonMain">common</button>
+                <button class="platform-tag platform-selector jvm-like" data-active=""
+                        data-filter=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button>
+                <button class="platform-tag platform-selector common-like" data-active=""
+                        data-filter=":wgpu4k-native:dokkaHtml/nativeMain">native</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox"
+                        data-role="dropdown-toggle"
+                        aria-controls="platform-tags-listbox"
+                        aria-haspopup="listbox"
+                        aria-expanded="false"
+                        aria-label="Toggle source sets"
+                ></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
+                    <div class="dropdown--header"><span>Platform filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":wgpu4k-native:dokkaHtml/androidMain"
+                                       data-filter=":wgpu4k-native:dokkaHtml/androidMain"/>
+                                <span class="checkbox--icon"></span>
+                                android
+                            </label>
+                        </li>
+                        <li role="option" class="dropdown--option platform-selector-option common-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":wgpu4k-native:dokkaHtml/commonMain"
+                                       data-filter=":wgpu4k-native:dokkaHtml/commonMain"/>
+                                <span class="checkbox--icon"></span>
+                                common
+                            </label>
+                        </li>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":wgpu4k-native:dokkaHtml/jvmMain"
+                                       data-filter=":wgpu4k-native:dokkaHtml/jvmMain"/>
+                                <span class="checkbox--icon"></span>
+                                jvm
+                            </label>
+                        </li>
+                        <li role="option" class="dropdown--option platform-selector-option common-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":wgpu4k-native:dokkaHtml/nativeMain"
+                                       data-filter=":wgpu4k-native:dokkaHtml/nativeMain"/>
+                                <span class="checkbox--icon"></span>
+                                native
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </div>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button"
+                    type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
+                        data-role="dropdown-listbox">
+                        <div class="dropdown--header">
+                            <span>
+                                    wgpu4k-native
+                            </span>
+                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
+                        </div>
+                        <div class="sidebar--inner" id="sideMenu"></div>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
+                </div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="wgpu4k-native::io.ygdrasil.wgpu/WGPULimits.Companion///PointingToDeclaration//-947726544">
+  <div class="breadcrumbs"><a href="../../../../index.html">wgpu4k-native</a><span class="delimiter">/</span><a href="../../index.html">io.ygdrasil.wgpu</a><span class="delimiter">/</span><a href="../index.html">WGPULimits</a><span class="delimiter">/</span><span class="current">Companion</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Companion</span></span></h1>
+    <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+      <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/androidMain" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/androidMain">android</button><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/commonMain" data-filterable-set=":wgpu4k-native:dokkaHtml/commonMain" data-toggle=":wgpu4k-native:dokkaHtml/commonMain">common</button><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-togglable=":wgpu4k-native:dokkaHtml/androidMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">object </span><a href="index.html">Companion</a></div></div><div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">expect </span><span class="token keyword">object </span><a href="index.html">Companion</a></div></div><div class="content sourceset-dependent-content" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">object </span><a href="index.html">Companion</a></div></div><div class="content sourceset-dependent-content" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">object </span><a href="index.html">Companion</a></div></div>    </div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="-1636514243%2FProperties%2F-1037728418" anchor-label="maxBindGroupsLayout" id="-1636514243%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-bind-groups-layout.html"><span>max</span><wbr></wbr><span>Bind</span><wbr></wbr><span>Groups</span><wbr></wbr><span><span>Layout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1636514243%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-bind-groups-layout.html">maxBindGroupsLayout</a><span class="token operator">: </span><span data-unresolved-link="java.lang.foreign/ValueLayout///PointingToDeclaration/">ValueLayout</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-36465420%2FProperties%2F-1037728418" anchor-label="maxBindGroupsOffset" id="-36465420%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-bind-groups-offset.html"><span>max</span><wbr></wbr><span>Bind</span><wbr></wbr><span>Groups</span><wbr></wbr><span><span>Offset</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-36465420%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-bind-groups-offset.html">maxBindGroupsOffset</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a><span class="token operator"> = </span><span class="token constant">24</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="698176884%2FProperties%2F-1037728418" anchor-label="maxBindGroupsPlusVertexBuffersLayout" id="698176884%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-bind-groups-plus-vertex-buffers-layout.html"><span>max</span><wbr></wbr><span>Bind</span><wbr></wbr><span>Groups</span><wbr></wbr><span>Plus</span><wbr></wbr><span>Vertex</span><wbr></wbr><span>Buffers</span><wbr></wbr><span><span>Layout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="698176884%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-bind-groups-plus-vertex-buffers-layout.html">maxBindGroupsPlusVertexBuffersLayout</a><span class="token operator">: </span><span data-unresolved-link="java.lang.foreign/ValueLayout///PointingToDeclaration/">ValueLayout</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1996741589%2FProperties%2F-1037728418" anchor-label="maxBindGroupsPlusVertexBuffersOffset" id="-1996741589%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-bind-groups-plus-vertex-buffers-offset.html"><span>max</span><wbr></wbr><span>Bind</span><wbr></wbr><span>Groups</span><wbr></wbr><span>Plus</span><wbr></wbr><span>Vertex</span><wbr></wbr><span>Buffers</span><wbr></wbr><span><span>Offset</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1996741589%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-bind-groups-plus-vertex-buffers-offset.html">maxBindGroupsPlusVertexBuffersOffset</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a><span class="token operator"> = </span><span class="token constant">28</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-720938149%2FProperties%2F-1037728418" anchor-label="maxBindingsPerBindGroupLayout" id="-720938149%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-bindings-per-bind-group-layout.html"><span>max</span><wbr></wbr><span>Bindings</span><wbr></wbr><span>Per</span><wbr></wbr><span>Bind</span><wbr></wbr><span>Group</span><wbr></wbr><span><span>Layout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-720938149%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-bindings-per-bind-group-layout.html">maxBindingsPerBindGroupLayout</a><span class="token operator">: </span><span data-unresolved-link="java.lang.foreign/ValueLayout///PointingToDeclaration/">ValueLayout</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="879110674%2FProperties%2F-1037728418" anchor-label="maxBindingsPerBindGroupOffset" id="879110674%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-bindings-per-bind-group-offset.html"><span>max</span><wbr></wbr><span>Bindings</span><wbr></wbr><span>Per</span><wbr></wbr><span>Bind</span><wbr></wbr><span>Group</span><wbr></wbr><span><span>Offset</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="879110674%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-bindings-per-bind-group-offset.html">maxBindingsPerBindGroupOffset</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a><span class="token operator"> = </span><span class="token constant">32</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-692320179%2FProperties%2F-1037728418" anchor-label="maxBufferSizeLayout" id="-692320179%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-buffer-size-layout.html"><span>max</span><wbr></wbr><span>Buffer</span><wbr></wbr><span>Size</span><wbr></wbr><span><span>Layout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-692320179%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-buffer-size-layout.html">maxBufferSizeLayout</a><span class="token operator">: </span><span data-unresolved-link="java.lang.foreign/ValueLayout///PointingToDeclaration/">ValueLayout</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="907728644%2FProperties%2F-1037728418" anchor-label="maxBufferSizeOffset" id="907728644%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-buffer-size-offset.html"><span>max</span><wbr></wbr><span>Buffer</span><wbr></wbr><span>Size</span><wbr></wbr><span><span>Offset</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="907728644%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-buffer-size-offset.html">maxBufferSizeOffset</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a><span class="token operator"> = </span><span class="token constant">96</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1675460342%2FProperties%2F-1037728418" anchor-label="maxColorAttachmentBytesPerSampleLayout" id="1675460342%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-color-attachment-bytes-per-sample-layout.html"><span>max</span><wbr></wbr><span>Color</span><wbr></wbr><span>Attachment</span><wbr></wbr><span>Bytes</span><wbr></wbr><span>Per</span><wbr></wbr><span>Sample</span><wbr></wbr><span><span>Layout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1675460342%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-color-attachment-bytes-per-sample-layout.html">maxColorAttachmentBytesPerSampleLayout</a><span class="token operator">: </span><span data-unresolved-link="java.lang.foreign/ValueLayout///PointingToDeclaration/">ValueLayout</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1019458131%2FProperties%2F-1037728418" anchor-label="maxColorAttachmentBytesPerSampleOffset" id="-1019458131%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-color-attachment-bytes-per-sample-offset.html"><span>max</span><wbr></wbr><span>Color</span><wbr></wbr><span>Attachment</span><wbr></wbr><span>Bytes</span><wbr></wbr><span>Per</span><wbr></wbr><span>Sample</span><wbr></wbr><span><span>Offset</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1019458131%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-color-attachment-bytes-per-sample-offset.html">maxColorAttachmentBytesPerSampleOffset</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a><span class="token operator"> = </span><span class="token constant">120</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1442282145%2FProperties%2F-1037728418" anchor-label="maxColorAttachmentsLayout" id="1442282145%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-color-attachments-layout.html"><span>max</span><wbr></wbr><span>Color</span><wbr></wbr><span>Attachments</span><wbr></wbr><span><span>Layout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1442282145%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-color-attachments-layout.html">maxColorAttachmentsLayout</a><span class="token operator">: </span><span data-unresolved-link="java.lang.foreign/ValueLayout///PointingToDeclaration/">ValueLayout</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1252636328%2FProperties%2F-1037728418" anchor-label="maxColorAttachmentsOffset" id="-1252636328%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-color-attachments-offset.html"><span>max</span><wbr></wbr><span>Color</span><wbr></wbr><span>Attachments</span><wbr></wbr><span><span>Offset</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1252636328%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-color-attachments-offset.html">maxColorAttachmentsOffset</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a><span class="token operator"> = </span><span class="token constant">116</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1831787279%2FProperties%2F-1037728418" anchor-label="maxComputeInvocationsPerWorkgroupLayout" id="-1831787279%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-compute-invocations-per-workgroup-layout.html"><span>max</span><wbr></wbr><span>Compute</span><wbr></wbr><span>Invocations</span><wbr></wbr><span>Per</span><wbr></wbr><span>Workgroup</span><wbr></wbr><span><span>Layout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1831787279%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-compute-invocations-per-workgroup-layout.html">maxComputeInvocationsPerWorkgroupLayout</a><span class="token operator">: </span><span data-unresolved-link="java.lang.foreign/ValueLayout///PointingToDeclaration/">ValueLayout</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-231738456%2FProperties%2F-1037728418" anchor-label="maxComputeInvocationsPerWorkgroupOffset" id="-231738456%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-compute-invocations-per-workgroup-offset.html"><span>max</span><wbr></wbr><span>Compute</span><wbr></wbr><span>Invocations</span><wbr></wbr><span>Per</span><wbr></wbr><span>Workgroup</span><wbr></wbr><span><span>Offset</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-231738456%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-compute-invocations-per-workgroup-offset.html">maxComputeInvocationsPerWorkgroupOffset</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a><span class="token operator"> = </span><span class="token constant">128</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-38266728%2FProperties%2F-1037728418" anchor-label="maxComputeWorkgroupSizeXLayout" id="-38266728%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-compute-workgroup-size-x-layout.html"><span>max</span><wbr></wbr><span>Compute</span><wbr></wbr><span>Workgroup</span><wbr></wbr><span>Size</span><wbr></wbr><span><span>XLayout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-38266728%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-compute-workgroup-size-x-layout.html">maxComputeWorkgroupSizeXLayout</a><span class="token operator">: </span><span data-unresolved-link="java.lang.foreign/ValueLayout///PointingToDeclaration/">ValueLayout</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1561782095%2FProperties%2F-1037728418" anchor-label="maxComputeWorkgroupSizeXOffset" id="1561782095%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-compute-workgroup-size-x-offset.html"><span>max</span><wbr></wbr><span>Compute</span><wbr></wbr><span>Workgroup</span><wbr></wbr><span>Size</span><wbr></wbr><span><span>XOffset</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1561782095%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-compute-workgroup-size-x-offset.html">maxComputeWorkgroupSizeXOffset</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a><span class="token operator"> = </span><span class="token constant">132</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2048370569%2FProperties%2F-1037728418" anchor-label="maxComputeWorkgroupSizeYLayout" id="-2048370569%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-compute-workgroup-size-y-layout.html"><span>max</span><wbr></wbr><span>Compute</span><wbr></wbr><span>Workgroup</span><wbr></wbr><span>Size</span><wbr></wbr><span><span>YLayout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2048370569%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-compute-workgroup-size-y-layout.html">maxComputeWorkgroupSizeYLayout</a><span class="token operator">: </span><span data-unresolved-link="java.lang.foreign/ValueLayout///PointingToDeclaration/">ValueLayout</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-448321746%2FProperties%2F-1037728418" anchor-label="maxComputeWorkgroupSizeYOffset" id="-448321746%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-compute-workgroup-size-y-offset.html"><span>max</span><wbr></wbr><span>Compute</span><wbr></wbr><span>Workgroup</span><wbr></wbr><span>Size</span><wbr></wbr><span><span>YOffset</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-448321746%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-compute-workgroup-size-y-offset.html">maxComputeWorkgroupSizeYOffset</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a><span class="token operator"> = </span><span class="token constant">136</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="236492886%2FProperties%2F-1037728418" anchor-label="maxComputeWorkgroupSizeZLayout" id="236492886%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-compute-workgroup-size-z-layout.html"><span>max</span><wbr></wbr><span>Compute</span><wbr></wbr><span>Workgroup</span><wbr></wbr><span>Size</span><wbr></wbr><span><span>ZLayout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="236492886%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-compute-workgroup-size-z-layout.html">maxComputeWorkgroupSizeZLayout</a><span class="token operator">: </span><span data-unresolved-link="java.lang.foreign/ValueLayout///PointingToDeclaration/">ValueLayout</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1836541709%2FProperties%2F-1037728418" anchor-label="maxComputeWorkgroupSizeZOffset" id="1836541709%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-compute-workgroup-size-z-offset.html"><span>max</span><wbr></wbr><span>Compute</span><wbr></wbr><span>Workgroup</span><wbr></wbr><span>Size</span><wbr></wbr><span><span>ZOffset</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1836541709%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-compute-workgroup-size-z-offset.html">maxComputeWorkgroupSizeZOffset</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a><span class="token operator"> = </span><span class="token constant">140</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="444665715%2FProperties%2F-1037728418" anchor-label="maxComputeWorkgroupsPerDimensionLayout" id="444665715%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-compute-workgroups-per-dimension-layout.html"><span>max</span><wbr></wbr><span>Compute</span><wbr></wbr><span>Workgroups</span><wbr></wbr><span>Per</span><wbr></wbr><span>Dimension</span><wbr></wbr><span><span>Layout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="444665715%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-compute-workgroups-per-dimension-layout.html">maxComputeWorkgroupsPerDimensionLayout</a><span class="token operator">: </span><span data-unresolved-link="java.lang.foreign/ValueLayout///PointingToDeclaration/">ValueLayout</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2044714538%2FProperties%2F-1037728418" anchor-label="maxComputeWorkgroupsPerDimensionOffset" id="2044714538%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-compute-workgroups-per-dimension-offset.html"><span>max</span><wbr></wbr><span>Compute</span><wbr></wbr><span>Workgroups</span><wbr></wbr><span>Per</span><wbr></wbr><span>Dimension</span><wbr></wbr><span><span>Offset</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2044714538%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-compute-workgroups-per-dimension-offset.html">maxComputeWorkgroupsPerDimensionOffset</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a><span class="token operator"> = </span><span class="token constant">144</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="850290259%2FProperties%2F-1037728418" anchor-label="maxComputeWorkgroupStorageSizeLayout" id="850290259%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-compute-workgroup-storage-size-layout.html"><span>max</span><wbr></wbr><span>Compute</span><wbr></wbr><span>Workgroup</span><wbr></wbr><span>Storage</span><wbr></wbr><span>Size</span><wbr></wbr><span><span>Layout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="850290259%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-compute-workgroup-storage-size-layout.html">maxComputeWorkgroupStorageSizeLayout</a><span class="token operator">: </span><span data-unresolved-link="java.lang.foreign/ValueLayout///PointingToDeclaration/">ValueLayout</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1844628214%2FProperties%2F-1037728418" anchor-label="maxComputeWorkgroupStorageSizeOffset" id="-1844628214%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-compute-workgroup-storage-size-offset.html"><span>max</span><wbr></wbr><span>Compute</span><wbr></wbr><span>Workgroup</span><wbr></wbr><span>Storage</span><wbr></wbr><span>Size</span><wbr></wbr><span><span>Offset</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1844628214%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-compute-workgroup-storage-size-offset.html">maxComputeWorkgroupStorageSizeOffset</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a><span class="token operator"> = </span><span class="token constant">124</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2029275068%2FProperties%2F-1037728418" anchor-label="maxDynamicStorageBuffersPerPipelineLayoutLayout" id="2029275068%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-dynamic-storage-buffers-per-pipeline-layout-layout.html"><span>max</span><wbr></wbr><span>Dynamic</span><wbr></wbr><span>Storage</span><wbr></wbr><span>Buffers</span><wbr></wbr><span>Per</span><wbr></wbr><span>Pipeline</span><wbr></wbr><span>Layout</span><wbr></wbr><span><span>Layout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2029275068%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-dynamic-storage-buffers-per-pipeline-layout-layout.html">maxDynamicStorageBuffersPerPipelineLayoutLayout</a><span class="token operator">: </span><span data-unresolved-link="java.lang.foreign/ValueLayout///PointingToDeclaration/">ValueLayout</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-665643405%2FProperties%2F-1037728418" anchor-label="maxDynamicStorageBuffersPerPipelineLayoutOffset" id="-665643405%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-dynamic-storage-buffers-per-pipeline-layout-offset.html"><span>max</span><wbr></wbr><span>Dynamic</span><wbr></wbr><span>Storage</span><wbr></wbr><span>Buffers</span><wbr></wbr><span>Per</span><wbr></wbr><span>Pipeline</span><wbr></wbr><span>Layout</span><wbr></wbr><span><span>Offset</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-665643405%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-dynamic-storage-buffers-per-pipeline-layout-offset.html">maxDynamicStorageBuffersPerPipelineLayoutOffset</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a><span class="token operator"> = </span><span class="token constant">40</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1306966941%2FProperties%2F-1037728418" anchor-label="maxDynamicUniformBuffersPerPipelineLayoutLayout" id="-1306966941%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-dynamic-uniform-buffers-per-pipeline-layout-layout.html"><span>max</span><wbr></wbr><span>Dynamic</span><wbr></wbr><span>Uniform</span><wbr></wbr><span>Buffers</span><wbr></wbr><span>Per</span><wbr></wbr><span>Pipeline</span><wbr></wbr><span>Layout</span><wbr></wbr><span><span>Layout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1306966941%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-dynamic-uniform-buffers-per-pipeline-layout-layout.html">maxDynamicUniformBuffersPerPipelineLayoutLayout</a><span class="token operator">: </span><span data-unresolved-link="java.lang.foreign/ValueLayout///PointingToDeclaration/">ValueLayout</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="293081882%2FProperties%2F-1037728418" anchor-label="maxDynamicUniformBuffersPerPipelineLayoutOffset" id="293081882%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-dynamic-uniform-buffers-per-pipeline-layout-offset.html"><span>max</span><wbr></wbr><span>Dynamic</span><wbr></wbr><span>Uniform</span><wbr></wbr><span>Buffers</span><wbr></wbr><span>Per</span><wbr></wbr><span>Pipeline</span><wbr></wbr><span>Layout</span><wbr></wbr><span><span>Offset</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="293081882%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-dynamic-uniform-buffers-per-pipeline-layout-offset.html">maxDynamicUniformBuffersPerPipelineLayoutOffset</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a><span class="token operator"> = </span><span class="token constant">36</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1660295160%2FProperties%2F-1037728418" anchor-label="maxInterStageShaderVariablesLayout" id="-1660295160%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-inter-stage-shader-variables-layout.html"><span>max</span><wbr></wbr><span>Inter</span><wbr></wbr><span>Stage</span><wbr></wbr><span>Shader</span><wbr></wbr><span>Variables</span><wbr></wbr><span><span>Layout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1660295160%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-inter-stage-shader-variables-layout.html">maxInterStageShaderVariablesLayout</a><span class="token operator">: </span><span data-unresolved-link="java.lang.foreign/ValueLayout///PointingToDeclaration/">ValueLayout</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-60246337%2FProperties%2F-1037728418" anchor-label="maxInterStageShaderVariablesOffset" id="-60246337%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-inter-stage-shader-variables-offset.html"><span>max</span><wbr></wbr><span>Inter</span><wbr></wbr><span>Stage</span><wbr></wbr><span>Shader</span><wbr></wbr><span>Variables</span><wbr></wbr><span><span>Offset</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-60246337%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-inter-stage-shader-variables-offset.html">maxInterStageShaderVariablesOffset</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a><span class="token operator"> = </span><span class="token constant">112</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1830256330%2FProperties%2F-1037728418" anchor-label="maxSampledTexturesPerShaderStageLayout" id="1830256330%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-sampled-textures-per-shader-stage-layout.html"><span>max</span><wbr></wbr><span>Sampled</span><wbr></wbr><span>Textures</span><wbr></wbr><span>Per</span><wbr></wbr><span>Shader</span><wbr></wbr><span>Stage</span><wbr></wbr><span><span>Layout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1830256330%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-sampled-textures-per-shader-stage-layout.html">maxSampledTexturesPerShaderStageLayout</a><span class="token operator">: </span><span data-unresolved-link="java.lang.foreign/ValueLayout///PointingToDeclaration/">ValueLayout</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-864662143%2FProperties%2F-1037728418" anchor-label="maxSampledTexturesPerShaderStageOffset" id="-864662143%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-sampled-textures-per-shader-stage-offset.html"><span>max</span><wbr></wbr><span>Sampled</span><wbr></wbr><span>Textures</span><wbr></wbr><span>Per</span><wbr></wbr><span>Shader</span><wbr></wbr><span>Stage</span><wbr></wbr><span><span>Offset</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-864662143%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-sampled-textures-per-shader-stage-offset.html">maxSampledTexturesPerShaderStageOffset</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a><span class="token operator"> = </span><span class="token constant">44</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1330225049%2FProperties%2F-1037728418" anchor-label="maxSamplersPerShaderStageLayout" id="-1330225049%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-samplers-per-shader-stage-layout.html"><span>max</span><wbr></wbr><span>Samplers</span><wbr></wbr><span>Per</span><wbr></wbr><span>Shader</span><wbr></wbr><span>Stage</span><wbr></wbr><span><span>Layout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1330225049%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-samplers-per-shader-stage-layout.html">maxSamplersPerShaderStageLayout</a><span class="token operator">: </span><span data-unresolved-link="java.lang.foreign/ValueLayout///PointingToDeclaration/">ValueLayout</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="269823774%2FProperties%2F-1037728418" anchor-label="maxSamplersPerShaderStageOffset" id="269823774%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-samplers-per-shader-stage-offset.html"><span>max</span><wbr></wbr><span>Samplers</span><wbr></wbr><span>Per</span><wbr></wbr><span>Shader</span><wbr></wbr><span>Stage</span><wbr></wbr><span><span>Offset</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="269823774%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-samplers-per-shader-stage-offset.html">maxSamplersPerShaderStageOffset</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a><span class="token operator"> = </span><span class="token constant">48</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1668282787%2FProperties%2F-1037728418" anchor-label="maxStorageBufferBindingSizeLayout" id="1668282787%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-storage-buffer-binding-size-layout.html"><span>max</span><wbr></wbr><span>Storage</span><wbr></wbr><span>Buffer</span><wbr></wbr><span>Binding</span><wbr></wbr><span>Size</span><wbr></wbr><span><span>Layout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1668282787%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-storage-buffer-binding-size-layout.html">maxStorageBufferBindingSizeLayout</a><span class="token operator">: </span><span data-unresolved-link="java.lang.foreign/ValueLayout///PointingToDeclaration/">ValueLayout</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1026635686%2FProperties%2F-1037728418" anchor-label="maxStorageBufferBindingSizeOffset" id="-1026635686%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-storage-buffer-binding-size-offset.html"><span>max</span><wbr></wbr><span>Storage</span><wbr></wbr><span>Buffer</span><wbr></wbr><span>Binding</span><wbr></wbr><span>Size</span><wbr></wbr><span><span>Offset</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1026635686%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-storage-buffer-binding-size-offset.html">maxStorageBufferBindingSizeOffset</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a><span class="token operator"> = </span><span class="token constant">72</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="854274426%2FProperties%2F-1037728418" anchor-label="maxStorageBuffersPerShaderStageLayout" id="854274426%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-storage-buffers-per-shader-stage-layout.html"><span>max</span><wbr></wbr><span>Storage</span><wbr></wbr><span>Buffers</span><wbr></wbr><span>Per</span><wbr></wbr><span>Shader</span><wbr></wbr><span>Stage</span><wbr></wbr><span><span>Layout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="854274426%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-storage-buffers-per-shader-stage-layout.html">maxStorageBuffersPerShaderStageLayout</a><span class="token operator">: </span><span data-unresolved-link="java.lang.foreign/ValueLayout///PointingToDeclaration/">ValueLayout</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1840644047%2FProperties%2F-1037728418" anchor-label="maxStorageBuffersPerShaderStageOffset" id="-1840644047%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-storage-buffers-per-shader-stage-offset.html"><span>max</span><wbr></wbr><span>Storage</span><wbr></wbr><span>Buffers</span><wbr></wbr><span>Per</span><wbr></wbr><span>Shader</span><wbr></wbr><span>Stage</span><wbr></wbr><span><span>Offset</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1840644047%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-storage-buffers-per-shader-stage-offset.html">maxStorageBuffersPerShaderStageOffset</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a><span class="token operator"> = </span><span class="token constant">52</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1862699753%2FProperties%2F-1037728418" anchor-label="maxStorageTexturesPerShaderStageLayout" id="1862699753%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-storage-textures-per-shader-stage-layout.html"><span>max</span><wbr></wbr><span>Storage</span><wbr></wbr><span>Textures</span><wbr></wbr><span>Per</span><wbr></wbr><span>Shader</span><wbr></wbr><span>Stage</span><wbr></wbr><span><span>Layout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1862699753%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-storage-textures-per-shader-stage-layout.html">maxStorageTexturesPerShaderStageLayout</a><span class="token operator">: </span><span data-unresolved-link="java.lang.foreign/ValueLayout///PointingToDeclaration/">ValueLayout</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-832218720%2FProperties%2F-1037728418" anchor-label="maxStorageTexturesPerShaderStageOffset" id="-832218720%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-storage-textures-per-shader-stage-offset.html"><span>max</span><wbr></wbr><span>Storage</span><wbr></wbr><span>Textures</span><wbr></wbr><span>Per</span><wbr></wbr><span>Shader</span><wbr></wbr><span>Stage</span><wbr></wbr><span><span>Offset</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-832218720%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-storage-textures-per-shader-stage-offset.html">maxStorageTexturesPerShaderStageOffset</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a><span class="token operator"> = </span><span class="token constant">56</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1163279122%2FProperties%2F-1037728418" anchor-label="maxTextureArrayLayersLayout" id="-1163279122%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-texture-array-layers-layout.html"><span>max</span><wbr></wbr><span>Texture</span><wbr></wbr><span>Array</span><wbr></wbr><span>Layers</span><wbr></wbr><span><span>Layout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1163279122%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-texture-array-layers-layout.html">maxTextureArrayLayersLayout</a><span class="token operator">: </span><span data-unresolved-link="java.lang.foreign/ValueLayout///PointingToDeclaration/">ValueLayout</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="436769701%2FProperties%2F-1037728418" anchor-label="maxTextureArrayLayersOffset" id="436769701%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-texture-array-layers-offset.html"><span>max</span><wbr></wbr><span>Texture</span><wbr></wbr><span>Array</span><wbr></wbr><span>Layers</span><wbr></wbr><span><span>Offset</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="436769701%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-texture-array-layers-offset.html">maxTextureArrayLayersOffset</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a><span class="token operator"> = </span><span class="token constant">20</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-290964464%2FProperties%2F-1037728418" anchor-label="maxTextureDimension1DLayout" id="-290964464%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-texture-dimension1-d-layout.html"><span>max</span><wbr></wbr><span>Texture</span><wbr></wbr><span><span>Dimension1DLayout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-290964464%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-texture-dimension1-d-layout.html">maxTextureDimension1DLayout</a><span class="token operator">: </span><span data-unresolved-link="java.lang.foreign/ValueLayout///PointingToDeclaration/">ValueLayout</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1309084359%2FProperties%2F-1037728418" anchor-label="maxTextureDimension1DOffset" id="1309084359%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-texture-dimension1-d-offset.html"><span>max</span><wbr></wbr><span>Texture</span><wbr></wbr><span><span>Dimension1DOffset</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1309084359%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-texture-dimension1-d-offset.html">maxTextureDimension1DOffset</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a><span class="token operator"> = </span><span class="token constant">8</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1820325905%2FProperties%2F-1037728418" anchor-label="maxTextureDimension2DLayout" id="1820325905%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-texture-dimension2-d-layout.html"><span>max</span><wbr></wbr><span>Texture</span><wbr></wbr><span><span>Dimension2DLayout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1820325905%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-texture-dimension2-d-layout.html">maxTextureDimension2DLayout</a><span class="token operator">: </span><span data-unresolved-link="java.lang.foreign/ValueLayout///PointingToDeclaration/">ValueLayout</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-874592568%2FProperties%2F-1037728418" anchor-label="maxTextureDimension2DOffset" id="-874592568%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-texture-dimension2-d-offset.html"><span>max</span><wbr></wbr><span>Texture</span><wbr></wbr><span><span>Dimension2DOffset</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-874592568%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-texture-dimension2-d-offset.html">maxTextureDimension2DOffset</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a><span class="token operator"> = </span><span class="token constant">12</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-363351022%2FProperties%2F-1037728418" anchor-label="maxTextureDimension3DLayout" id="-363351022%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-texture-dimension3-d-layout.html"><span>max</span><wbr></wbr><span>Texture</span><wbr></wbr><span><span>Dimension3DLayout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-363351022%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-texture-dimension3-d-layout.html">maxTextureDimension3DLayout</a><span class="token operator">: </span><span data-unresolved-link="java.lang.foreign/ValueLayout///PointingToDeclaration/">ValueLayout</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1236697801%2FProperties%2F-1037728418" anchor-label="maxTextureDimension3DOffset" id="1236697801%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-texture-dimension3-d-offset.html"><span>max</span><wbr></wbr><span>Texture</span><wbr></wbr><span><span>Dimension3DOffset</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1236697801%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-texture-dimension3-d-offset.html">maxTextureDimension3DOffset</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a><span class="token operator"> = </span><span class="token constant">16</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1273046308%2FProperties%2F-1037728418" anchor-label="maxUniformBufferBindingSizeLayout" id="-1273046308%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-uniform-buffer-binding-size-layout.html"><span>max</span><wbr></wbr><span>Uniform</span><wbr></wbr><span>Buffer</span><wbr></wbr><span>Binding</span><wbr></wbr><span>Size</span><wbr></wbr><span><span>Layout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1273046308%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-uniform-buffer-binding-size-layout.html">maxUniformBufferBindingSizeLayout</a><span class="token operator">: </span><span data-unresolved-link="java.lang.foreign/ValueLayout///PointingToDeclaration/">ValueLayout</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="327002515%2FProperties%2F-1037728418" anchor-label="maxUniformBufferBindingSizeOffset" id="327002515%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-uniform-buffer-binding-size-offset.html"><span>max</span><wbr></wbr><span>Uniform</span><wbr></wbr><span>Buffer</span><wbr></wbr><span>Binding</span><wbr></wbr><span>Size</span><wbr></wbr><span><span>Offset</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="327002515%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-uniform-buffer-binding-size-offset.html">maxUniformBufferBindingSizeOffset</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a><span class="token operator"> = </span><span class="token constant">64</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-496710093%2FProperties%2F-1037728418" anchor-label="maxUniformBuffersPerShaderStageLayout" id="-496710093%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-uniform-buffers-per-shader-stage-layout.html"><span>max</span><wbr></wbr><span>Uniform</span><wbr></wbr><span>Buffers</span><wbr></wbr><span>Per</span><wbr></wbr><span>Shader</span><wbr></wbr><span>Stage</span><wbr></wbr><span><span>Layout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-496710093%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-uniform-buffers-per-shader-stage-layout.html">maxUniformBuffersPerShaderStageLayout</a><span class="token operator">: </span><span data-unresolved-link="java.lang.foreign/ValueLayout///PointingToDeclaration/">ValueLayout</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1103338730%2FProperties%2F-1037728418" anchor-label="maxUniformBuffersPerShaderStageOffset" id="1103338730%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-uniform-buffers-per-shader-stage-offset.html"><span>max</span><wbr></wbr><span>Uniform</span><wbr></wbr><span>Buffers</span><wbr></wbr><span>Per</span><wbr></wbr><span>Shader</span><wbr></wbr><span>Stage</span><wbr></wbr><span><span>Offset</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1103338730%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-uniform-buffers-per-shader-stage-offset.html">maxUniformBuffersPerShaderStageOffset</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a><span class="token operator"> = </span><span class="token constant">60</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1556291347%2FProperties%2F-1037728418" anchor-label="maxVertexAttributesLayout" id="1556291347%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-vertex-attributes-layout.html"><span>max</span><wbr></wbr><span>Vertex</span><wbr></wbr><span>Attributes</span><wbr></wbr><span><span>Layout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1556291347%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-vertex-attributes-layout.html">maxVertexAttributesLayout</a><span class="token operator">: </span><span data-unresolved-link="java.lang.foreign/ValueLayout///PointingToDeclaration/">ValueLayout</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1138627126%2FProperties%2F-1037728418" anchor-label="maxVertexAttributesOffset" id="-1138627126%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-vertex-attributes-offset.html"><span>max</span><wbr></wbr><span>Vertex</span><wbr></wbr><span>Attributes</span><wbr></wbr><span><span>Offset</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1138627126%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-vertex-attributes-offset.html">maxVertexAttributesOffset</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a><span class="token operator"> = </span><span class="token constant">104</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="455549898%2FProperties%2F-1037728418" anchor-label="maxVertexBufferArrayStrideLayout" id="455549898%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-vertex-buffer-array-stride-layout.html"><span>max</span><wbr></wbr><span>Vertex</span><wbr></wbr><span>Buffer</span><wbr></wbr><span>Array</span><wbr></wbr><span>Stride</span><wbr></wbr><span><span>Layout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="455549898%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-vertex-buffer-array-stride-layout.html">maxVertexBufferArrayStrideLayout</a><span class="token operator">: </span><span data-unresolved-link="java.lang.foreign/ValueLayout///PointingToDeclaration/">ValueLayout</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2055598721%2FProperties%2F-1037728418" anchor-label="maxVertexBufferArrayStrideOffset" id="2055598721%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-vertex-buffer-array-stride-offset.html"><span>max</span><wbr></wbr><span>Vertex</span><wbr></wbr><span>Buffer</span><wbr></wbr><span>Array</span><wbr></wbr><span>Stride</span><wbr></wbr><span><span>Offset</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2055598721%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-vertex-buffer-array-stride-offset.html">maxVertexBufferArrayStrideOffset</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a><span class="token operator"> = </span><span class="token constant">108</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="672094441%2FProperties%2F-1037728418" anchor-label="maxVertexBuffersLayout" id="672094441%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-vertex-buffers-layout.html"><span>max</span><wbr></wbr><span>Vertex</span><wbr></wbr><span>Buffers</span><wbr></wbr><span><span>Layout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="672094441%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-vertex-buffers-layout.html">maxVertexBuffersLayout</a><span class="token operator">: </span><span data-unresolved-link="java.lang.foreign/ValueLayout///PointingToDeclaration/">ValueLayout</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2022824032%2FProperties%2F-1037728418" anchor-label="maxVertexBuffersOffset" id="-2022824032%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-vertex-buffers-offset.html"><span>max</span><wbr></wbr><span>Vertex</span><wbr></wbr><span>Buffers</span><wbr></wbr><span><span>Offset</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2022824032%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="max-vertex-buffers-offset.html">maxVertexBuffersOffset</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a><span class="token operator"> = </span><span class="token constant">88</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1466611381%2FProperties%2F-1037728418" anchor-label="minStorageBufferOffsetAlignmentLayout" id="-1466611381%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="min-storage-buffer-offset-alignment-layout.html"><span>min</span><wbr></wbr><span>Storage</span><wbr></wbr><span>Buffer</span><wbr></wbr><span>Offset</span><wbr></wbr><span>Alignment</span><wbr></wbr><span><span>Layout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1466611381%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="min-storage-buffer-offset-alignment-layout.html">minStorageBufferOffsetAlignmentLayout</a><span class="token operator">: </span><span data-unresolved-link="java.lang.foreign/ValueLayout///PointingToDeclaration/">ValueLayout</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="133437442%2FProperties%2F-1037728418" anchor-label="minStorageBufferOffsetAlignmentOffset" id="133437442%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="min-storage-buffer-offset-alignment-offset.html"><span>min</span><wbr></wbr><span>Storage</span><wbr></wbr><span>Buffer</span><wbr></wbr><span>Offset</span><wbr></wbr><span>Alignment</span><wbr></wbr><span><span>Offset</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="133437442%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="min-storage-buffer-offset-alignment-offset.html">minStorageBufferOffsetAlignmentOffset</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a><span class="token operator"> = </span><span class="token constant">84</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1477371396%2FProperties%2F-1037728418" anchor-label="minUniformBufferOffsetAlignmentLayout" id="1477371396%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="min-uniform-buffer-offset-alignment-layout.html"><span>min</span><wbr></wbr><span>Uniform</span><wbr></wbr><span>Buffer</span><wbr></wbr><span>Offset</span><wbr></wbr><span>Alignment</span><wbr></wbr><span><span>Layout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1477371396%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="min-uniform-buffer-offset-alignment-layout.html">minUniformBufferOffsetAlignmentLayout</a><span class="token operator">: </span><span data-unresolved-link="java.lang.foreign/ValueLayout///PointingToDeclaration/">ValueLayout</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1217547077%2FProperties%2F-1037728418" anchor-label="minUniformBufferOffsetAlignmentOffset" id="-1217547077%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="min-uniform-buffer-offset-alignment-offset.html"><span>min</span><wbr></wbr><span>Uniform</span><wbr></wbr><span>Buffer</span><wbr></wbr><span>Offset</span><wbr></wbr><span>Alignment</span><wbr></wbr><span><span>Offset</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1217547077%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="min-uniform-buffer-offset-alignment-offset.html">minUniformBufferOffsetAlignmentOffset</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a><span class="token operator"> = </span><span class="token constant">80</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="121113161%2FProperties%2F-1037728418" anchor-label="nextInChainLayout" id="121113161%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="next-in-chain-layout.html"><span>next</span><wbr></wbr><span>In</span><wbr></wbr><span>Chain</span><wbr></wbr><span><span>Layout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="121113161%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="next-in-chain-layout.html">nextInChainLayout</a><span class="token operator">: </span><span data-unresolved-link="java.lang.foreign/ValueLayout///PointingToDeclaration/">ValueLayout</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1721161984%2FProperties%2F-1037728418" anchor-label="nextInChainOffset" id="1721161984%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="next-in-chain-offset.html"><span>next</span><wbr></wbr><span>In</span><wbr></wbr><span>Chain</span><wbr></wbr><span><span>Offset</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1721161984%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="next-in-chain-offset.html">nextInChainOffset</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a><span class="token operator"> = </span><span class="token constant">0</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="1428939900%2FFunctions%2F-947726544" anchor-label="allocate" id="1428939900%2FFunctions%2F-947726544" data-filterable-set=":wgpu4k-native:dokkaHtml/commonMain,:wgpu4k-native:dokkaHtml/androidMain,:wgpu4k-native:dokkaHtml/jvmMain,:wgpu4k-native:dokkaHtml/nativeMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/commonMain,:wgpu4k-native:dokkaHtml/androidMain,:wgpu4k-native:dokkaHtml/jvmMain,:wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/commonMain,:wgpu4k-native:dokkaHtml/androidMain,:wgpu4k-native:dokkaHtml/jvmMain,:wgpu4k-native:dokkaHtml/nativeMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="allocate.html"><span><span>allocate</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1428939900%2FFunctions%2F-947726544"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/androidMain" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/androidMain">android</button><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/commonMain" data-filterable-set=":wgpu4k-native:dokkaHtml/commonMain" data-toggle=":wgpu4k-native:dokkaHtml/commonMain">common</button><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-togglable=":wgpu4k-native:dokkaHtml/androidMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">fun </span><a href="allocate.html"><span class="token function">allocate</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">allocator<span class="token operator">: </span><a href="../../../ffi/-memory-allocator/index.html">MemoryAllocator</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../index.html">WGPULimits</a></div></div><div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">expect </span><span class="token keyword">fun </span><a href="allocate.html"><span class="token function">allocate</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">allocator<span class="token operator">: </span><a href="../../../ffi/-memory-allocator/index.html">MemoryAllocator</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../index.html">WGPULimits</a></div></div><div class="content sourceset-dependent-content" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">fun </span><a href="allocate.html"><span class="token function">allocate</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">allocator<span class="token operator">: </span><a href="../../../ffi/-memory-allocator/index.html">MemoryAllocator</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../index.html">WGPULimits</a></div></div><div class="content sourceset-dependent-content" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">fun </span><a href="allocate.html"><span class="token function">allocate</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">allocator<span class="token operator">: </span><a href="../../../ffi/-memory-allocator/index.html">MemoryAllocator</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../index.html">WGPULimits</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1022643554%2FFunctions%2F-947726544" anchor-label="allocateArray" id="1022643554%2FFunctions%2F-947726544" data-filterable-set=":wgpu4k-native:dokkaHtml/commonMain,:wgpu4k-native:dokkaHtml/androidMain,:wgpu4k-native:dokkaHtml/jvmMain,:wgpu4k-native:dokkaHtml/nativeMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/commonMain,:wgpu4k-native:dokkaHtml/androidMain,:wgpu4k-native:dokkaHtml/jvmMain,:wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/commonMain,:wgpu4k-native:dokkaHtml/androidMain,:wgpu4k-native:dokkaHtml/jvmMain,:wgpu4k-native:dokkaHtml/nativeMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="allocate-array.html"><span>allocate</span><wbr></wbr><span><span>Array</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1022643554%2FFunctions%2F-947726544"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/androidMain" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/androidMain">android</button><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/commonMain" data-filterable-set=":wgpu4k-native:dokkaHtml/commonMain" data-toggle=":wgpu4k-native:dokkaHtml/commonMain">common</button><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-togglable=":wgpu4k-native:dokkaHtml/androidMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">fun </span><a href="allocate-array.html"><span class="token function">allocateArray</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">allocator<span class="token operator">: </span><a href="../../../ffi/-memory-allocator/index.html">MemoryAllocator</a><span class="token punctuation">, </span></span><span class="parameter ">size<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-int/index.html">UInt</a><span class="token punctuation">, </span></span><span class="parameter ">provider<span class="token operator">: </span><span class="token punctuation">(</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-int/index.html">UInt</a><span class="token punctuation">, </span><a href="../index.html">WGPULimits</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../ffi/-array-holder/index.html">ArrayHolder</a><span class="token operator">&lt;</span><a href="../index.html">WGPULimits</a><span class="token operator">&gt;</span></div></div><div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">expect </span><span class="token keyword">fun </span><a href="allocate-array.html"><span class="token function">allocateArray</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">allocator<span class="token operator">: </span><a href="../../../ffi/-memory-allocator/index.html">MemoryAllocator</a><span class="token punctuation">, </span></span><span class="parameter ">size<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-int/index.html">UInt</a><span class="token punctuation">, </span></span><span class="parameter ">provider<span class="token operator">: </span><span class="token punctuation">(</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-int/index.html">UInt</a><span class="token punctuation">, </span><a href="../index.html">WGPULimits</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../ffi/-array-holder/index.html">ArrayHolder</a><span class="token operator">&lt;</span><a href="../index.html">WGPULimits</a><span class="token operator">&gt;</span></div></div><div class="content sourceset-dependent-content" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">fun </span><a href="allocate-array.html"><span class="token function">allocateArray</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">allocator<span class="token operator">: </span><a href="../../../ffi/-memory-allocator/index.html">MemoryAllocator</a><span class="token punctuation">, </span></span><span class="parameter ">size<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-int/index.html">UInt</a><span class="token punctuation">, </span></span><span class="parameter ">provider<span class="token operator">: </span><span class="token punctuation">(</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-int/index.html">UInt</a><span class="token punctuation">, </span><a href="../index.html">WGPULimits</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../ffi/-array-holder/index.html">ArrayHolder</a><span class="token operator">&lt;</span><a href="../index.html">WGPULimits</a><span class="token operator">&gt;</span></div></div><div class="content sourceset-dependent-content" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">fun </span><a href="allocate-array.html"><span class="token function">allocateArray</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">allocator<span class="token operator">: </span><a href="../../../ffi/-memory-allocator/index.html">MemoryAllocator</a><span class="token punctuation">, </span></span><span class="parameter ">size<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-int/index.html">UInt</a><span class="token punctuation">, </span></span><span class="parameter ">provider<span class="token operator">: </span><span class="token punctuation">(</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-int/index.html">UInt</a><span class="token punctuation">, </span><a href="../index.html">WGPULimits</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../ffi/-array-holder/index.html">ArrayHolder</a><span class="token operator">&lt;</span><a href="../index.html">WGPULimits</a><span class="token operator">&gt;</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-454978830%2FFunctions%2F-947726544" anchor-label="invoke" id="-454978830%2FFunctions%2F-947726544" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain,:wgpu4k-native:dokkaHtml/jvmMain,:wgpu4k-native:dokkaHtml/commonMain,:wgpu4k-native:dokkaHtml/nativeMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/androidMain,:wgpu4k-native:dokkaHtml/jvmMain,:wgpu4k-native:dokkaHtml/commonMain,:wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain,:wgpu4k-native:dokkaHtml/jvmMain,:wgpu4k-native:dokkaHtml/commonMain,:wgpu4k-native:dokkaHtml/nativeMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="invoke.html"><span><span>invoke</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-454978830%2FFunctions%2F-947726544"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/androidMain" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/androidMain">android</button><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/commonMain" data-filterable-set=":wgpu4k-native:dokkaHtml/commonMain" data-toggle=":wgpu4k-native:dokkaHtml/commonMain">common</button><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/androidMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">operator </span><span class="token keyword">fun </span><a href="invoke.html"><span class="token function">invoke</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">address<span class="token operator">: </span><a href="../../../ffi/-native-address/index.html">NativeAddress</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../index.html">WGPULimits</a></div></div><div class="content sourceset-dependent-content" data-togglable=":wgpu4k-native:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">expect </span><span class="token keyword">operator </span><span class="token keyword">fun </span><a href="invoke.html"><span class="token function">invoke</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">address<span class="token operator">: </span><a href="../../../ffi/-native-address/index.html">NativeAddress</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../index.html">WGPULimits</a></div></div><div class="content sourceset-dependent-content" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">operator </span><span class="token keyword">fun </span><a href="invoke.html"><span class="token function">invoke</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">address<span class="token operator">: </span><a href="../../../ffi/-native-address/index.html">NativeAddress</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../index.html">WGPULimits</a></div></div><div class="content sourceset-dependent-content" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">operator </span><span class="token keyword">fun </span><a href="invoke.html"><span class="token function">invoke</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">address<span class="token operator">: </span><a href="../../../ffi/-native-address/index.html">NativeAddress</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../index.html">WGPULimits</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+        <span>© 2025 Copyright</span>
+        <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
+    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

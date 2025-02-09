@@ -1,6 +1,4 @@
-import com.android.build.gradle.internal.tasks.factory.dependsOn
 import com.android.build.gradle.tasks.MergeSourceSetFolders
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.CInteropProcess
 import java.nio.file.Files
@@ -17,7 +15,6 @@ val buildNativeResourcesDirectory = project.file("build").resolve("native")
 val jvmLibResourcesDirectory = project.file("build").resolve("generated").resolve("resources")
 
 kotlin {
-
 
     val nativeTargets = listOf(
         iosX64(),
@@ -241,25 +238,6 @@ configureDownloadTasks {
             buildNativeResourcesDirectory.resolve("libs").resolve("arm64-v8a").resolve("lib").deleteRecursively()
         }
     }
-    /**** Debug ****/
-    download("wgpu-android-x86_64-debug.zip") {
-        extract("lib/libwgpu_native.so", buildNativeResourcesDirectory.resolve("libsDebug").resolve("x86_64").resolve("libwgpu4k.so")).doLast {
-            Files.move(
-                buildNativeResourcesDirectory.resolve("libsDebug").resolve("x86_64").resolve("lib").resolve("libwgpu4k.so").toPath(),
-                buildNativeResourcesDirectory.resolve("libsDebug").resolve("x86_64").resolve("libwgpu4k.so").toPath()
-            )
-            buildNativeResourcesDirectory.resolve("libsDebug").resolve("x86_64").resolve("lib").deleteRecursively()
-        }
-    }
-    download("wgpu-android-aarch64-debug.zip") {
-        extract("lib/libwgpu_native.so", buildNativeResourcesDirectory.resolve("libsDebug").resolve("arm64-v8a").resolve("libwgpu4k.so")).doLast {
-            Files.move(
-                buildNativeResourcesDirectory.resolve("libsDebug").resolve("arm64-v8a").resolve("lib").resolve("libwgpu4k.so").toPath(),
-                buildNativeResourcesDirectory.resolve("libsDebug").resolve("arm64-v8a").resolve("libwgpu4k.so").toPath()
-            )
-            buildNativeResourcesDirectory.resolve("libsDebug").resolve("arm64-v8a").resolve("lib").deleteRecursively()
-        }
-    }
 }
 
 java {
@@ -291,4 +269,16 @@ tasks.withType(MergeSourceSetFolders::class.java).configureEach {
 }
 tasks.withType(CInteropProcess::class.java).configureEach {
     dependsOn("fetch-native-dependencies")
+}
+
+tasks.register<Copy>("copyDocsToRoot") {
+    dependsOn("dokkaGfm", "dokkaHtml")
+    from(project.layout.buildDirectory.dir("dokka"))
+    into(rootDir.resolve("doc"))
+}
+
+tasks.register<Task>("generateDocs") {
+    group = "documentation"
+    description = "Generates the documentation in HTML and Markdown formats, then copies the files into the 'doc' folder."
+    dependsOn("copyDocsToRoot")
 }

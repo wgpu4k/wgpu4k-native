@@ -8,22 +8,23 @@ import domain.toFunctionKotlinType
 fun List<NativeModel.Function>.toAndroidFunctions() = templateBuilder {
     forEach { function ->
         val name = function.name
-        val returnType = function.returnType.toFunctionKotlinType() + function.returnType.optionalReturnType()
+        val returnType = function.returnType.first
+        val returnTypeAsString = returnType.toFunctionKotlinType() + returnType.optionalReturnType()
         val args = function.args
             .map { (name, type) -> "${name}: ${type.toFunctionKotlinType()}${type.optional()}" }
             .joinToString(", ")
         val argsCall = function.args
             .map { (name, type) -> type.toJvmArgCall(name) }
             .joinToString(", ")
-        appendLine("actual fun $name($args): $returnType")
+        appendLine("actual fun $name($args): $returnTypeAsString")
         appendLine("\t = io.ygdrasil.wgpu.android.Functions.$name($argsCall)")
 
-        when (function.returnType) {
+        when (returnType) {
             is NativeModel.Reference.Enumeration,
             is NativeModel.Reference.OpaquePointer -> null
-            is NativeModel.Reference.StructureField -> ".let(${function.returnType.name}::ByValue)"
+            is NativeModel.Reference.StructureField -> ".let(${returnType.name}::ByValue)"
             is NativeModel.Reference -> {
-                "?.let(::${function.returnType.name})"
+                "?.let(::${returnType.name})"
             }
             is NativeModel.Primitive.Bool -> ".toBoolean()"
             else -> null

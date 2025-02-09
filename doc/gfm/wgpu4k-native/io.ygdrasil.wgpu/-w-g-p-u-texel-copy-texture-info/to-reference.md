@@ -1,0 +1,6 @@
+//[wgpu4k-native](../../../index.md)/[io.ygdrasil.wgpu](../index.md)/[WGPUTexelCopyTextureInfo](index.md)/[toReference](to-reference.md)
+
+# toReference
+
+[android]\
+open fun [toReference](to-reference.md)(): [WGPUTexelCopyTextureInfo.ByReference](../../io.ygdrasil.wgpu.android/-w-g-p-u-texel-copy-texture-info/-by-reference/index.md)

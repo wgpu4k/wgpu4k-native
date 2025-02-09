@@ -1,0 +1,6 @@
+//[wgpu4k-native](../../../index.md)/[io.ygdrasil.wgpu](../index.md)/[WGPUComputePipelineDescriptor](index.md)/[[android]toCValue]([android]to-c-value.md)
+
+# toCValue
+
+[android]\
+open fun [toCValue]([android]to-c-value.md)(): [WGPUComputePipelineDescriptor.ByValue](../../io.ygdrasil.wgpu.android/-w-g-p-u-compute-pipeline-descriptor/-by-value/index.md)

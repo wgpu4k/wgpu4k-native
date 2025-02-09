@@ -3,7 +3,10 @@ package domain
 import convertToKotlinCallbackStructureName
 import convertToKotlinClassName
 import converter.toPrimitiveKotlinType
+import domain.NativeModel.Type
 
+typealias FunctionArgument = Triple<String, Type, String?>
+typealias FunctionReturnType = Pair<Type, String?>
 
 data class NativeModel(
     val pointers: List<Pointer>,
@@ -13,7 +16,7 @@ data class NativeModel(
     val callbacks: List<Callback>,
 ) {
 
-    class Enumeration(val name: String, val values: List<Pair<String, Int>>, val size: Int = 32)
+    class Enumeration(val name: String, val values: List<Triple<String, Int, String?>>, val size: Int = 32, val doc: String?)
 
     sealed interface Type
     sealed class Reference(val name: String) : Type {
@@ -26,7 +29,7 @@ data class NativeModel(
         object CString : Reference("CString")
     }
 
-    class Array(val subType: Type, val isMutable: Boolean) : Type
+    class Array(val subType: Type) : Type
     sealed interface Primitive : Type {
         object Bool : Primitive
         object UInt32 : Primitive
@@ -39,12 +42,14 @@ data class NativeModel(
     }
     object Void : Type
 
-    data class Pointer(val name: String)
-    data class Function(val name: String, val returnType: Type, val args: List<Pair<String, Type>>)
+    data class Pointer(val name: String, val doc: String?)
+
+    data class Function(val name: String, val returnType: FunctionReturnType, val args: List<FunctionArgument>, val doc: String?)
 
     data class Structure(
         val name: String,
         val members: List<StructureField>,
+        val doc: String?,
         val size: Int? = null,
         val alignment: Int? = null,
         val padding: Int? = null,
@@ -54,6 +59,7 @@ data class NativeModel(
         val name: String,
         val type: Type,
         val option: String,
+        val doc: String?,
         val alignment: Int? = type.getSize(),
         val size: Int? = type.getSize(),
         val padding: Int? = null
@@ -62,6 +68,7 @@ data class NativeModel(
     data class Callback(
         val name: String,
         val members: List<Pair<String, Type>>,
+        val doc: String?
     )
 
 }
@@ -130,7 +137,7 @@ internal fun String?.toCType(isPointer: Boolean, isMutable: Boolean, isOptional:
             true -> NativeModel.Reference.OpaquePointer
             else -> NativeModel.Void
         }
-        startsWith("array<") -> NativeModel.Array(substring(6, length - 1).toCType(false, false), isMutable)
+        startsWith("array<") -> NativeModel.Array(substring(6, length - 1).toCType(false, false))
         isString() -> NativeModel.Reference.StructureField("WGPUStringView", false)
         else -> error("unknown type $this")
     }

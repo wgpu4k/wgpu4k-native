@@ -5,6 +5,7 @@ import domain.NativeModel
 import domain.toCallbackKotlinType
 
 fun NativeModel.Callback.toCommonCallback() = templateBuilder {
+    appendDoc(doc)
     appendBlock("expect fun interface ${name} : Callback") {
         val args = members
             .map { (name, type) -> "$name: ${type.toCallbackKotlinType()}" }

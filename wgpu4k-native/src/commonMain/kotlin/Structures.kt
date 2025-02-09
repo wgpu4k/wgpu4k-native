@@ -197,6 +197,11 @@ expect interface WGPUColor {
 
 expect interface WGPUColorTargetState {
 	var nextInChain: NativeAddress?
+	/**
+	 * The texture format of the target. If @ref WGPUTextureFormat_Undefined,
+	 * indicates a "hole" in the parent @ref WGPUFragmentState [targets] array:
+	 * the pipeline does not output a value at this [location].
+	 */
 	var format: WGPUTextureFormat
 	var blend: WGPUBlendState?
 	var writeMask: ULong
@@ -244,11 +249,29 @@ expect interface WGPUCompilationInfo {
 
 expect interface WGPUCompilationMessage {
 	var nextInChain: NativeAddress?
+	/**
+	 * A @ref LocalizableHumanReadableMessageString.
+	 */
 	val message: WGPUStringView
+	/**
+	 * Severity level of the message.
+	 */
 	var type: WGPUCompilationMessageType
+	/**
+	 * Line number where the message is attached, starting at 1.
+	 */
 	var lineNum: ULong
+	/**
+	 * Offset in UTF-8 code units (bytes) from the beginning of the line, starting at 1.
+	 */
 	var linePos: ULong
+	/**
+	 * Offset in UTF-8 code units (bytes) from the beginning of the shader code, starting at 0.
+	 */
 	var offset: ULong
+	/**
+	 * Length in UTF-8 code units (bytes) of the span the message corresponds to.
+	 */
 	var length: ULong
 	val handler: NativeAddress
 	companion object {
@@ -437,7 +460,13 @@ expect interface WGPUFragmentState {
 	}
 }
 
+/**
+ * Opaque handle to an asynchronous operation. See @ref Asynchronous-Operations for more information.
+ */
 expect interface WGPUFuture {
+	/**
+	 * Opaque id of the @ref WGPUFuture
+	 */
 	var id: ULong
 	val handler: NativeAddress
 	companion object {
@@ -447,8 +476,17 @@ expect interface WGPUFuture {
 	}
 }
 
+/**
+ * Struct holding a future to wait on, and a [completed] boolean flag.
+ */
 expect interface WGPUFutureWaitInfo {
+	/**
+	 * The future to wait on.
+	 */
 	val future: WGPUFuture
+	/**
+	 * Whether or not the future completed.
+	 */
 	var completed: Boolean
 	val handler: NativeAddress
 	companion object {
@@ -458,9 +496,18 @@ expect interface WGPUFutureWaitInfo {
 	}
 }
 
+/**
+ * Features enabled on the WGPUInstance
+ */
 expect interface WGPUInstanceCapabilities {
 	var nextInChain: NativeAddress?
+	/**
+	 * Enable use of ::wgpuInstanceWaitAny with [timeoutNS > 0].
+	 */
 	var timedWaitAnyEnable: Boolean
+	/**
+	 * The maximum number @ref WGPUFutureWaitInfo supported in a call to ::wgpuInstanceWaitAny with [timeoutNS > 0].
+	 */
 	var timedWaitAnyMaxCount: ULong
 	val handler: NativeAddress
 	companion object {
@@ -472,6 +519,9 @@ expect interface WGPUInstanceCapabilities {
 
 expect interface WGPUInstanceDescriptor {
 	var nextInChain: NativeAddress?
+	/**
+	 * Instance features to enable
+	 */
 	val features: WGPUInstanceCapabilities
 	val handler: NativeAddress
 	companion object {
@@ -735,10 +785,27 @@ expect interface WGPURenderPipelineDescriptor {
 
 expect interface WGPURequestAdapterOptions {
 	var nextInChain: NativeAddress?
+	/**
+	 * "Feature level" for the adapter request. If an adapter is returned, it must support the features and limits in the requested feature level.
+	 * 
+	 * Implementations may ignore @ref WGPUFeatureLevel_Compatibility and provide @ref WGPUFeatureLevel_Core instead. @ref WGPUFeatureLevel_Core is the default in the JS API, but in C, this field is **required** (must not be undefined).
+	 */
 	var featureLevel: WGPUFeatureLevel
 	var powerPreference: WGPUPowerPreference
+	/**
+	 * If true, requires the adapter to be a "fallback" adapter as defined by the JS spec.
+	 * If this is not possible, the request returns null.
+	 */
 	var forceFallbackAdapter: Boolean
+	/**
+	 * If set, requires the adapter to have a particular backend type.
+	 * If this is not possible, the request returns null.
+	 */
 	var backendType: WGPUBackendType
+	/**
+	 * If set, requires the adapter to be able to output to a particular surface.
+	 * If this is not possible, the request returns null.
+	 */
 	var compatibleSurface: WGPUSurface?
 	val handler: NativeAddress
 	companion object {
@@ -825,14 +892,32 @@ expect interface WGPUSupportedWGSLLanguageFeatures {
 	}
 }
 
+/**
+ * Filled by [wgpuSurfaceGetCapabilities] with what's supported for [wgpuSurfaceConfigure] for a pair of @ref WGPUSurface and @ref WGPUAdapter.
+ */
 expect interface WGPUSurfaceCapabilities {
 	var nextInChain: NativeAddress?
+	/**
+	 * The bit set of supported @ref WGPUTextureUsage bits.
+	 * Guaranteed to contain @ref WGPUTextureUsage_RenderAttachment.
+	 */
 	var usages: ULong
 	var formatCount: ULong
+	/**
+	 * A list of supported @ref WGPUTextureFormat values, in order of preference.
+	 */
 	var formats: ArrayHolder<WGPUTextureFormat>?
 	var presentModeCount: ULong
+	/**
+	 * A list of supported @ref WGPUPresentMode values.
+	 * Guaranteed to contain @ref WGPUPresentMode_Fifo.
+	 */
 	var presentModes: ArrayHolder<WGPUPresentMode>?
 	var alphaModeCount: ULong
+	/**
+	 * A list of supported @ref WGPUCompositeAlphaMode values.
+	 * @ref WGPUCompositeAlphaMode_Auto will be an alias for the first element and will never be present in this array.
+	 */
 	var alphaModes: ArrayHolder<WGPUCompositeAlphaMode>?
 	val handler: NativeAddress
 	companion object {
@@ -842,16 +927,44 @@ expect interface WGPUSurfaceCapabilities {
 	}
 }
 
+/**
+ * Options to [wgpuSurfaceConfigure] for defining how a @ref WGPUSurface will be rendered to and presented to the user.
+ * See @ref Surface-Configuration for more details.
+ */
 expect interface WGPUSurfaceConfiguration {
 	var nextInChain: NativeAddress?
+	/**
+	 * The @ref WGPUDevice to use to render to surface's textures.
+	 */
 	var device: WGPUDevice?
+	/**
+	 * The @ref WGPUTextureFormat of the surface's textures.
+	 */
 	var format: WGPUTextureFormat
+	/**
+	 * The @ref WGPUTextureUsage of the surface's textures.
+	 */
 	var usage: ULong
+	/**
+	 * The width of the surface's textures.
+	 */
 	var width: UInt
+	/**
+	 * The height of the surface's textures.
+	 */
 	var height: UInt
 	var viewFormatCount: ULong
+	/**
+	 * The additional @ref WGPUTextureFormat for @ref WGPUTextureView format reinterpretation of the surface's textures.
+	 */
 	var viewFormats: ArrayHolder<WGPUTextureFormat>?
+	/**
+	 * How the surface's frames will be composited on the screen.
+	 */
 	var alphaMode: WGPUCompositeAlphaMode
+	/**
+	 * When and in which order the surface's frames will be shown on the screen. Defaults to @ref WGPUPresentMode_Fifo.
+	 */
 	var presentMode: WGPUPresentMode
 	val handler: NativeAddress
 	companion object {
@@ -861,8 +974,16 @@ expect interface WGPUSurfaceConfiguration {
 	}
 }
 
+/**
+ * The root descriptor for the creation of an @ref WGPUSurface with [wgpuInstanceCreateSurface].
+ * It isn't sufficient by itself and must have one of the [WGPUSurfaceSource*] in its chain.
+ * See @ref Surface-Creation for more details.
+ */
 expect interface WGPUSurfaceDescriptor {
 	var nextInChain: NativeAddress?
+	/**
+	 * Label used to refer to the object.
+	 */
 	val label: WGPUStringView
 	val handler: NativeAddress
 	companion object {
@@ -872,8 +993,14 @@ expect interface WGPUSurfaceDescriptor {
 	}
 }
 
+/**
+ * Chained in @ref WGPUSurfaceDescriptor to make an @ref WGPUSurface wrapping an Android [[ANativeWindow]](https://developer.android.com/ndk/reference/group/a-native-window).
+ */
 expect interface WGPUSurfaceSourceAndroidNativeWindow {
 	val chain: WGPUChainedStruct
+	/**
+	 * The pointer to the [[ANativeWindow]](https://developer.android.com/ndk/reference/group/a-native-window) that will be wrapped by the @ref WGPUSurface.
+	 */
 	var window: NativeAddress?
 	val handler: NativeAddress
 	companion object {
@@ -883,8 +1010,14 @@ expect interface WGPUSurfaceSourceAndroidNativeWindow {
 	}
 }
 
+/**
+ * Chained in @ref WGPUSurfaceDescriptor to make an @ref WGPUSurface wrapping a [[CAMetalLayer]](https://developer.apple.com/documentation/quartzcore/cametallayer?language=objc).
+ */
 expect interface WGPUSurfaceSourceMetalLayer {
 	val chain: WGPUChainedStruct
+	/**
+	 * The pointer to the [[CAMetalLayer]](https://developer.apple.com/documentation/quartzcore/cametallayer?language=objc) that will be wrapped by the @ref WGPUSurface.
+	 */
 	var layer: NativeAddress?
 	val handler: NativeAddress
 	companion object {
@@ -894,9 +1027,18 @@ expect interface WGPUSurfaceSourceMetalLayer {
 	}
 }
 
+/**
+ * Chained in @ref WGPUSurfaceDescriptor to make an @ref WGPUSurface wrapping a [Wayland](https://wayland.freedesktop.org/) [[wl_surface]](https://wayland.freedesktop.org/docs/html/apa.html#protocol-spec-wl_surface).
+ */
 expect interface WGPUSurfaceSourceWaylandSurface {
 	val chain: WGPUChainedStruct
+	/**
+	 * A [[wl_display]](https://wayland.freedesktop.org/docs/html/apa.html#protocol-spec-wl_display) for this Wayland instance.
+	 */
 	var display: NativeAddress?
+	/**
+	 * A [[wl_surface]](https://wayland.freedesktop.org/docs/html/apa.html#protocol-spec-wl_surface) that will be wrapped by the @ref WGPUSurface
+	 */
 	var surface: NativeAddress?
 	val handler: NativeAddress
 	companion object {
@@ -906,9 +1048,19 @@ expect interface WGPUSurfaceSourceWaylandSurface {
 	}
 }
 
+/**
+ * Chained in @ref WGPUSurfaceDescriptor to make an @ref WGPUSurface wrapping a Windows [[HWND]](https://learn.microsoft.com/en-us/windows/apps/develop/ui-input/retrieve-hwnd).
+ */
 expect interface WGPUSurfaceSourceWindowsHWND {
 	val chain: WGPUChainedStruct
+	/**
+	 * The [[HINSTANCE]](https://learn.microsoft.com/en-us/windows/win32/learnwin32/winmain--the-application-entry-point) for this application.
+	 * Most commonly [GetModuleHandle(nullptr)].
+	 */
 	var hinstance: NativeAddress?
+	/**
+	 * The [[HWND]](https://learn.microsoft.com/en-us/windows/apps/develop/ui-input/retrieve-hwnd) that will be wrapped by the @ref WGPUSurface.
+	 */
 	var hwnd: NativeAddress?
 	val handler: NativeAddress
 	companion object {
@@ -918,9 +1070,18 @@ expect interface WGPUSurfaceSourceWindowsHWND {
 	}
 }
 
+/**
+ * Chained in @ref WGPUSurfaceDescriptor to make an @ref WGPUSurface wrapping an [XCB](https://xcb.freedesktop.org/) [xcb_window_t].
+ */
 expect interface WGPUSurfaceSourceXCBWindow {
 	val chain: WGPUChainedStruct
+	/**
+	 * The [xcb_connection_t] for the connection to the X server.
+	 */
 	var connection: NativeAddress?
+	/**
+	 * The [xcb_window_t] for the window that will be wrapped by the @ref WGPUSurface.
+	 */
 	var window: UInt
 	val handler: NativeAddress
 	companion object {
@@ -930,9 +1091,18 @@ expect interface WGPUSurfaceSourceXCBWindow {
 	}
 }
 
+/**
+ * Chained in @ref WGPUSurfaceDescriptor to make an @ref WGPUSurface wrapping an [Xlib](https://www.x.org/releases/current/doc/libX11/libX11/libX11.html) [Window].
+ */
 expect interface WGPUSurfaceSourceXlibWindow {
 	val chain: WGPUChainedStruct
+	/**
+	 * A pointer to the [[Display]](https://www.x.org/releases/current/doc/libX11/libX11/libX11.html#Opening_the_Display) connected to the X server.
+	 */
 	var display: NativeAddress?
+	/**
+	 * The [[Window]](https://www.x.org/releases/current/doc/libX11/libX11/libX11.html#Creating_Windows) that will be wrapped by the @ref WGPUSurface.
+	 */
 	var window: ULong
 	val handler: NativeAddress
 	companion object {
@@ -942,9 +1112,20 @@ expect interface WGPUSurfaceSourceXlibWindow {
 	}
 }
 
+/**
+ * Queried each frame from a @ref WGPUSurface to get a @ref WGPUTexture to render to along with some metadata.
+ * See @ref Surface-Presenting for more details.
+ */
 expect interface WGPUSurfaceTexture {
 	var nextInChain: NativeAddress?
+	/**
+	 * The @ref WGPUTexture representing the frame that will be shown on the surface.
+	 * It is @ref ReturnedWithOwnership from @ref wgpuSurfaceGetCurrentTexture.
+	 */
 	var texture: WGPUTexture?
+	/**
+	 * Whether the call to [wgpuSurfaceGetCurrentTexture] succeeded and a hint as to why it might not have.
+	 */
 	var status: WGPUSurfaceGetCurrentTextureStatus
 	val handler: NativeAddress
 	companion object {
@@ -1041,6 +1222,11 @@ expect interface WGPUVertexAttribute {
 }
 
 expect interface WGPUVertexBufferLayout {
+	/**
+	 * The step mode for the vertex buffer. If @ref WGPUVertexStepMode_VertexBufferNotUsed,
+	 * indicates a "hole" in the parent @ref WGPUVertexState [buffers] array:
+	 * the pipeline does not use a vertex buffer at this [location].
+	 */
 	var stepMode: WGPUVertexStepMode
 	var arrayStride: ULong
 	var attributeCount: ULong

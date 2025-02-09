@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>MemoryAllocator</title>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+</head>
+<body>
+    <div class="root">
+    <nav class="navigation theme-dark" id="navigation-wrapper">
+            <a class="library-name--link" href="../../../index.html">
+                    wgpu4k-native
+            </a>
+        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle"
+                type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+v24.0.0-SNAPSHOT        </div>
+        <div class="navigation-controls">
+        <div class="filter-section filter-section_loading" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active=""
+                        data-filter=":wgpu4k-native:dokkaHtml/androidMain">android</button>
+                <button class="platform-tag platform-selector common-like" data-active=""
+                        data-filter=":wgpu4k-native:dokkaHtml/commonMain">common</button>
+                <button class="platform-tag platform-selector jvm-like" data-active=""
+                        data-filter=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button>
+                <button class="platform-tag platform-selector common-like" data-active=""
+                        data-filter=":wgpu4k-native:dokkaHtml/nativeMain">native</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox"
+                        data-role="dropdown-toggle"
+                        aria-controls="platform-tags-listbox"
+                        aria-haspopup="listbox"
+                        aria-expanded="false"
+                        aria-label="Toggle source sets"
+                ></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
+                    <div class="dropdown--header"><span>Platform filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":wgpu4k-native:dokkaHtml/androidMain"
+                                       data-filter=":wgpu4k-native:dokkaHtml/androidMain"/>
+                                <span class="checkbox--icon"></span>
+                                android
+                            </label>
+                        </li>
+                        <li role="option" class="dropdown--option platform-selector-option common-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":wgpu4k-native:dokkaHtml/commonMain"
+                                       data-filter=":wgpu4k-native:dokkaHtml/commonMain"/>
+                                <span class="checkbox--icon"></span>
+                                common
+                            </label>
+                        </li>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":wgpu4k-native:dokkaHtml/jvmMain"
+                                       data-filter=":wgpu4k-native:dokkaHtml/jvmMain"/>
+                                <span class="checkbox--icon"></span>
+                                jvm
+                            </label>
+                        </li>
+                        <li role="option" class="dropdown--option platform-selector-option common-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":wgpu4k-native:dokkaHtml/nativeMain"
+                                       data-filter=":wgpu4k-native:dokkaHtml/nativeMain"/>
+                                <span class="checkbox--icon"></span>
+                                native
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </div>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button"
+                    type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
+                        data-role="dropdown-listbox">
+                        <div class="dropdown--header">
+                            <span>
+                                    wgpu4k-native
+                            </span>
+                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
+                        </div>
+                        <div class="sidebar--inner" id="sideMenu"></div>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
+                </div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="wgpu4k-native::ffi/MemoryAllocator///PointingToDeclaration//-947726544">
+  <div class="breadcrumbs"><a href="../../../index.html">wgpu4k-native</a><span class="delimiter">/</span><a href="../index.html">ffi</a><span class="delimiter">/</span><span class="current">MemoryAllocator</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Memory</span><wbr></wbr><span><span>Allocator</span></span></h1>
+    <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+      <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/androidMain" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/androidMain">android</button><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/commonMain" data-filterable-set=":wgpu4k-native:dokkaHtml/commonMain" data-toggle=":wgpu4k-native:dokkaHtml/commonMain">common</button><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-togglable=":wgpu4k-native:dokkaHtml/androidMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">class </span><a href="index.html">MemoryAllocator</a> : <a href="https://developer.android.com/reference/kotlin/java/lang/AutoCloseable.html">AutoCloseable</a></div></div><div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">expect </span><span class="token keyword">class </span><a href="index.html">MemoryAllocator</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-auto-closeable/index.html">AutoCloseable</a></div></div><div class="content sourceset-dependent-content" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">class </span><a href="index.html">MemoryAllocator</a> : <a href="https://developer.android.com/reference/kotlin/java/lang/AutoCloseable.html">AutoCloseable</a></div></div><div class="content sourceset-dependent-content" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">class </span><a href="index.html">MemoryAllocator</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-auto-closeable/index.html">AutoCloseable</a></div></div>    </div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="-773978306%2FConstructors%2F-947726544" anchor-label="MemoryAllocator" id="-773978306%2FConstructors%2F-947726544" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain,:wgpu4k-native:dokkaHtml/jvmMain,:wgpu4k-native:dokkaHtml/nativeMain,:wgpu4k-native:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":wgpu4k-native:dokkaHtml/androidMain,:wgpu4k-native:dokkaHtml/jvmMain,:wgpu4k-native:dokkaHtml/nativeMain,:wgpu4k-native:dokkaHtml/commonMain" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain,:wgpu4k-native:dokkaHtml/jvmMain,:wgpu4k-native:dokkaHtml/nativeMain,:wgpu4k-native:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-memory-allocator.html"><span>Memory</span><wbr></wbr><span><span>Allocator</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-773978306%2FConstructors%2F-947726544"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/androidMain" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/androidMain">android</button><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/commonMain" data-filterable-set=":wgpu4k-native:dokkaHtml/commonMain" data-toggle=":wgpu4k-native:dokkaHtml/commonMain">common</button><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/androidMain"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div><div class="content sourceset-dependent-content" data-togglable=":wgpu4k-native:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">expect </span><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div><div class="content sourceset-dependent-content" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div><div class="content sourceset-dependent-content" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="-465754499%2FProperties%2F541366032" anchor-label="allocator" id="-465754499%2FProperties%2F541366032" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain,:wgpu4k-native:dokkaHtml/jvmMain,:wgpu4k-native:dokkaHtml/nativeMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/androidMain,:wgpu4k-native:dokkaHtml/jvmMain,:wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain,:wgpu4k-native:dokkaHtml/jvmMain,:wgpu4k-native:dokkaHtml/nativeMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><span data-unresolved-link="ffi/MemoryAllocator/allocator/#/PointingToDeclaration/"><span><span>allocator</span></span></span></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-465754499%2FProperties%2F541366032"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/androidMain" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/androidMain">android</button><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/androidMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="[android]allocator.html">allocator</a><span class="token operator">: </span><a href="../../java.lang.foreign/-segment-allocator/index.html">SegmentAllocator</a></div></div><div class="content sourceset-dependent-content" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="[jvm]allocator.html">allocator</a><span class="token operator">: </span><span data-unresolved-link="java.lang.foreign/SegmentAllocator///PointingToDeclaration/">SegmentAllocator</span></div></div><div class="content sourceset-dependent-content" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="[native]allocator.html">allocator</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlinx.cinterop/-arena/index.html">Arena</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-570392959%2FProperties%2F-1037728418" anchor-label="arena" id="-570392959%2FProperties%2F-1037728418" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="arena.html"><span><span>arena</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-570392959%2FProperties%2F-1037728418"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="arena.html">arena</a><span class="token operator">: </span><span data-unresolved-link="java.lang.foreign/Arena///PointingToDeclaration/">Arena</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="-771578684%2FFunctions%2F-947726544" anchor-label="allocate" id="-771578684%2FFunctions%2F-947726544" data-filterable-set=":wgpu4k-native:dokkaHtml/commonMain,:wgpu4k-native:dokkaHtml/androidMain,:wgpu4k-native:dokkaHtml/jvmMain,:wgpu4k-native:dokkaHtml/nativeMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/commonMain,:wgpu4k-native:dokkaHtml/androidMain,:wgpu4k-native:dokkaHtml/jvmMain,:wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/commonMain,:wgpu4k-native:dokkaHtml/androidMain,:wgpu4k-native:dokkaHtml/jvmMain,:wgpu4k-native:dokkaHtml/nativeMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="allocate.html"><span><span>allocate</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-771578684%2FFunctions%2F-947726544"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/androidMain" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/androidMain">android</button><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/commonMain" data-filterable-set=":wgpu4k-native:dokkaHtml/commonMain" data-toggle=":wgpu4k-native:dokkaHtml/commonMain">common</button><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-togglable=":wgpu4k-native:dokkaHtml/androidMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">fun </span><a href="allocate.html"><span class="token function">allocate</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">sizeInByte<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-native-address/index.html">NativeAddress</a></div></div><div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">expect </span><span class="token keyword">fun </span><a href="allocate.html"><span class="token function">allocate</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">sizeInByte<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-native-address/index.html">NativeAddress</a></div></div><div class="content sourceset-dependent-content" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">fun </span><a href="allocate.html"><span class="token function">allocate</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">sizeInByte<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-native-address/index.html">NativeAddress</a></div></div><div class="content sourceset-dependent-content" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">fun </span><a href="allocate.html"><span class="token function">allocate</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">sizeInByte<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-native-address/index.html">NativeAddress</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="49343793%2FFunctions%2F-947726544" anchor-label="allocateBuffer" id="49343793%2FFunctions%2F-947726544" data-filterable-set=":wgpu4k-native:dokkaHtml/commonMain,:wgpu4k-native:dokkaHtml/androidMain,:wgpu4k-native:dokkaHtml/jvmMain,:wgpu4k-native:dokkaHtml/nativeMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/commonMain,:wgpu4k-native:dokkaHtml/androidMain,:wgpu4k-native:dokkaHtml/jvmMain,:wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/commonMain,:wgpu4k-native:dokkaHtml/androidMain,:wgpu4k-native:dokkaHtml/jvmMain,:wgpu4k-native:dokkaHtml/nativeMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="allocate-buffer.html"><span>allocate</span><wbr></wbr><span><span>Buffer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="49343793%2FFunctions%2F-947726544"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/androidMain" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/androidMain">android</button><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/commonMain" data-filterable-set=":wgpu4k-native:dokkaHtml/commonMain" data-toggle=":wgpu4k-native:dokkaHtml/commonMain">common</button><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-togglable=":wgpu4k-native:dokkaHtml/androidMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">fun </span><a href="allocate-buffer.html"><span class="token function">allocateBuffer</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">size<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-long/index.html">ULong</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-memory-buffer/index.html">MemoryBuffer</a></div></div><div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">expect </span><span class="token keyword">fun </span><a href="allocate-buffer.html"><span class="token function">allocateBuffer</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">size<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-long/index.html">ULong</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-memory-buffer/index.html">MemoryBuffer</a></div></div><div class="content sourceset-dependent-content" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">fun </span><a href="allocate-buffer.html"><span class="token function">allocateBuffer</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">size<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-long/index.html">ULong</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-memory-buffer/index.html">MemoryBuffer</a></div></div><div class="content sourceset-dependent-content" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">fun </span><a href="allocate-buffer.html"><span class="token function">allocateBuffer</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">size<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-long/index.html">ULong</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-memory-buffer/index.html">MemoryBuffer</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1106275303%2FFunctions%2F-947726544" anchor-label="allocateFrom" id="-1106275303%2FFunctions%2F-947726544" data-filterable-set=":wgpu4k-native:dokkaHtml/commonMain,:wgpu4k-native:dokkaHtml/androidMain,:wgpu4k-native:dokkaHtml/jvmMain,:wgpu4k-native:dokkaHtml/nativeMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/commonMain,:wgpu4k-native:dokkaHtml/androidMain,:wgpu4k-native:dokkaHtml/jvmMain,:wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/commonMain,:wgpu4k-native:dokkaHtml/androidMain,:wgpu4k-native:dokkaHtml/jvmMain,:wgpu4k-native:dokkaHtml/nativeMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="allocate-from.html"><span>allocate</span><wbr></wbr><span><span>From</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1106275303%2FFunctions%2F-947726544"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/androidMain" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/androidMain">android</button><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/commonMain" data-filterable-set=":wgpu4k-native:dokkaHtml/commonMain" data-toggle=":wgpu4k-native:dokkaHtml/commonMain">common</button><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-togglable=":wgpu4k-native:dokkaHtml/androidMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">fun </span><a href="allocate-from.html"><span class="token function">allocateFrom</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-c-string/index.html">CString</a></div></div><div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">expect </span><span class="token keyword">fun </span><a href="allocate-from.html"><span class="token function">allocateFrom</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-c-string/index.html">CString</a></div></div><div class="content sourceset-dependent-content" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">fun </span><a href="allocate-from.html"><span class="token function">allocateFrom</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-c-string/index.html">CString</a></div></div><div class="content sourceset-dependent-content" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">fun </span><a href="allocate-from.html"><span class="token function">allocateFrom</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-c-string/index.html">CString</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1874940226%2FFunctions%2F-947726544" anchor-label="bufferOf" id="-1874940226%2FFunctions%2F-947726544" data-filterable-set=":wgpu4k-native:dokkaHtml/commonMain,:wgpu4k-native:dokkaHtml/androidMain,:wgpu4k-native:dokkaHtml/jvmMain,:wgpu4k-native:dokkaHtml/nativeMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/commonMain,:wgpu4k-native:dokkaHtml/androidMain,:wgpu4k-native:dokkaHtml/jvmMain,:wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/commonMain,:wgpu4k-native:dokkaHtml/androidMain,:wgpu4k-native:dokkaHtml/jvmMain,:wgpu4k-native:dokkaHtml/nativeMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="buffer-of.html"><span>buffer</span><wbr></wbr><span><span>Of</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1874940226%2FFunctions%2F-947726544"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/androidMain" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/androidMain">android</button><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/commonMain" data-filterable-set=":wgpu4k-native:dokkaHtml/commonMain" data-toggle=":wgpu4k-native:dokkaHtml/commonMain">common</button><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-togglable=":wgpu4k-native:dokkaHtml/androidMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">fun </span><a href="buffer-of.html"><span class="token function">bufferOf</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-memory-buffer/index.html">MemoryBuffer</a></div></div><div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">expect </span><span class="token keyword">fun </span><a href="buffer-of.html"><span class="token function">bufferOf</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-memory-buffer/index.html">MemoryBuffer</a></div></div><div class="content sourceset-dependent-content" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">fun </span><a href="buffer-of.html"><span class="token function">bufferOf</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-memory-buffer/index.html">MemoryBuffer</a></div></div><div class="content sourceset-dependent-content" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">fun </span><a href="buffer-of.html"><span class="token function">bufferOf</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-memory-buffer/index.html">MemoryBuffer</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2124665596%2FFunctions%2F-947726544" anchor-label="bufferOfAddress" id="2124665596%2FFunctions%2F-947726544" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain,:wgpu4k-native:dokkaHtml/jvmMain,:wgpu4k-native:dokkaHtml/commonMain,:wgpu4k-native:dokkaHtml/nativeMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/androidMain,:wgpu4k-native:dokkaHtml/jvmMain,:wgpu4k-native:dokkaHtml/commonMain,:wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain,:wgpu4k-native:dokkaHtml/jvmMain,:wgpu4k-native:dokkaHtml/commonMain,:wgpu4k-native:dokkaHtml/nativeMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="buffer-of-address.html"><span>buffer</span><wbr></wbr><span>Of</span><wbr></wbr><span><span>Address</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2124665596%2FFunctions%2F-947726544"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/androidMain" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/androidMain">android</button><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/commonMain" data-filterable-set=":wgpu4k-native:dokkaHtml/commonMain" data-toggle=":wgpu4k-native:dokkaHtml/commonMain">common</button><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/androidMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">fun </span><a href="buffer-of-address.html"><span class="token function">bufferOfAddress</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="../-native-address/index.html">NativeAddress</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-memory-buffer/index.html">MemoryBuffer</a></div></div><div class="content sourceset-dependent-content" data-togglable=":wgpu4k-native:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">expect </span><span class="token keyword">fun </span><a href="buffer-of-address.html"><span class="token function">bufferOfAddress</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="../-native-address/index.html">NativeAddress</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-memory-buffer/index.html">MemoryBuffer</a></div></div><div class="content sourceset-dependent-content" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">fun </span><a href="buffer-of-address.html"><span class="token function">bufferOfAddress</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="../-native-address/index.html">NativeAddress</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-memory-buffer/index.html">MemoryBuffer</a></div></div><div class="content sourceset-dependent-content" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">fun </span><a href="buffer-of-address.html"><span class="token function">bufferOfAddress</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="../-native-address/index.html">NativeAddress</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-memory-buffer/index.html">MemoryBuffer</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="956744858%2FFunctions%2F-947726544" anchor-label="bufferOfAddresses" id="956744858%2FFunctions%2F-947726544" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain,:wgpu4k-native:dokkaHtml/jvmMain,:wgpu4k-native:dokkaHtml/commonMain,:wgpu4k-native:dokkaHtml/nativeMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/androidMain,:wgpu4k-native:dokkaHtml/jvmMain,:wgpu4k-native:dokkaHtml/commonMain,:wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain,:wgpu4k-native:dokkaHtml/jvmMain,:wgpu4k-native:dokkaHtml/commonMain,:wgpu4k-native:dokkaHtml/nativeMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="buffer-of-addresses.html"><span>buffer</span><wbr></wbr><span>Of</span><wbr></wbr><span><span>Addresses</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="956744858%2FFunctions%2F-947726544"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/androidMain" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/androidMain">android</button><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/commonMain" data-filterable-set=":wgpu4k-native:dokkaHtml/commonMain" data-toggle=":wgpu4k-native:dokkaHtml/commonMain">common</button><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/androidMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">fun </span><a href="buffer-of-addresses.html"><span class="token function">bufferOfAddresses</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../-native-address/index.html">NativeAddress</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-memory-buffer/index.html">MemoryBuffer</a></div></div><div class="content sourceset-dependent-content" data-togglable=":wgpu4k-native:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">expect </span><span class="token keyword">fun </span><a href="buffer-of-addresses.html"><span class="token function">bufferOfAddresses</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../-native-address/index.html">NativeAddress</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-memory-buffer/index.html">MemoryBuffer</a></div></div><div class="content sourceset-dependent-content" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">fun </span><a href="buffer-of-addresses.html"><span class="token function">bufferOfAddresses</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../-native-address/index.html">NativeAddress</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-memory-buffer/index.html">MemoryBuffer</a></div></div><div class="content sourceset-dependent-content" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">fun </span><a href="buffer-of-addresses.html"><span class="token function">bufferOfAddresses</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../-native-address/index.html">NativeAddress</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-memory-buffer/index.html">MemoryBuffer</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1973380272%2FFunctions%2F-947726544" anchor-label="close" id="1973380272%2FFunctions%2F-947726544" data-filterable-set=":wgpu4k-native:dokkaHtml/commonMain,:wgpu4k-native:dokkaHtml/androidMain,:wgpu4k-native:dokkaHtml/jvmMain,:wgpu4k-native:dokkaHtml/nativeMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/commonMain,:wgpu4k-native:dokkaHtml/androidMain,:wgpu4k-native:dokkaHtml/jvmMain,:wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/commonMain,:wgpu4k-native:dokkaHtml/androidMain,:wgpu4k-native:dokkaHtml/jvmMain,:wgpu4k-native:dokkaHtml/nativeMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="close.html"><span><span>close</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1973380272%2FFunctions%2F-947726544"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/androidMain" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/androidMain">android</button><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/commonMain" data-filterable-set=":wgpu4k-native:dokkaHtml/commonMain" data-toggle=":wgpu4k-native:dokkaHtml/commonMain">common</button><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/jvmMain" data-filterable-set=":wgpu4k-native:dokkaHtml/jvmMain" data-toggle=":wgpu4k-native:dokkaHtml/jvmMain">jvm</button><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/nativeMain" data-filterable-set=":wgpu4k-native:dokkaHtml/nativeMain" data-toggle=":wgpu4k-native:dokkaHtml/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-togglable=":wgpu4k-native:dokkaHtml/androidMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="close.html"><span class="token function">close</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div><div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">expect </span><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="close.html"><span class="token function">close</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div><div class="content sourceset-dependent-content" data-togglable=":wgpu4k-native:dokkaHtml/jvmMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="close.html"><span class="token function">close</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div><div class="content sourceset-dependent-content" data-togglable=":wgpu4k-native:dokkaHtml/nativeMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="close.html"><span class="token function">close</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1204290832%2FFunctions%2F-829905854" anchor-label="register" id="-1204290832%2FFunctions%2F-829905854" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/androidMain" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="register.html"><span><span>register</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1204290832%2FFunctions%2F-829905854"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/androidMain" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/androidMain">android</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/androidMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="register.html"><span class="token function">register</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">it<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a></span></span><span class="token punctuation">)</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1833060101%2FFunctions%2F-829905854" anchor-label="registerCallback" id="1833060101%2FFunctions%2F-829905854" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain"></a>
+          <div class="table-row" data-filterable-current=":wgpu4k-native:dokkaHtml/androidMain" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="register-callback.html"><span>register</span><wbr></wbr><span><span>Callback</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1833060101%2FFunctions%2F-829905854"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":wgpu4k-native:dokkaHtml/androidMain" data-filterable-set=":wgpu4k-native:dokkaHtml/androidMain" data-active="" data-toggle=":wgpu4k-native:dokkaHtml/androidMain">android</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":wgpu4k-native:dokkaHtml/androidMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="register-callback.html"><span class="token function">registerCallback</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">function<span class="token operator">: </span><span data-unresolved-link="com.sun.jna/Callback///PointingToDeclaration/">Callback</span></span></span><span class="token punctuation">)</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+        <span>© 2025 Copyright</span>
+        <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
+    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

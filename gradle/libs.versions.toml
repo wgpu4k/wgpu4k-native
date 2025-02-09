@@ -45,7 +45,8 @@ zip4j = { module = "net.lingala.zip4j:zip4j", version = "2.11.5" }
 download = { module = "de.undercouch.download:de.undercouch.download.gradle.plugin", version.ref = "download" }
 kaml = { module = "com.charleskorn.kaml:kaml", version.ref = "kaml" }
 jreleaser-plugin = { module = "org.jreleaser:org.jreleaser.gradle.plugin", version.ref = "jreleaser" }
-dokka = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
+dokka-plugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
+dokka-base = { module = "org.jetbrains.dokka:dokka-base", version.ref = "dokka" }
 
 [plugins]
 kotest = { id = "io.kotest.multiplatform", version.ref = "kotest" }
@@ -54,3 +55,4 @@ android-application = { id = "com.android.application", version.ref = "agp" }
 
 [bundles]
 kotest = ["kotest-core", "kotest-assertions"]
+dokka = ["dokka-base", "dokka-plugin"]

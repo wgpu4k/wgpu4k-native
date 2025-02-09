@@ -17,6 +17,21 @@ class Builder(
         }
     }
 
+    fun appendDoc(doc: String?) {
+        if (doc == null) return
+        textBuilder.append("\t".repeat(indent))
+        textBuilder.append("/**")
+        newLine()
+        doc.split("\n").forEach {
+            textBuilder.append("\t".repeat(indent))
+            textBuilder.append(" * $it")
+            newLine()
+        }
+        textBuilder.append("\t".repeat(indent))
+        textBuilder.append(" */")
+        newLine()
+    }
+
     fun appendBlock(text: String, args: String, run: Builder.() -> Unit) {
         textBuilder.append("\t".repeat(indent))
         textBuilder.append(text)

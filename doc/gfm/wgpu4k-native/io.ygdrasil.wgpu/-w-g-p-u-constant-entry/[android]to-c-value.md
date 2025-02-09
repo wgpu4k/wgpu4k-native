@@ -1,0 +1,6 @@
+//[wgpu4k-native](../../../index.md)/[io.ygdrasil.wgpu](../index.md)/[WGPUConstantEntry](index.md)/[[android]toCValue]([android]to-c-value.md)
+
+# toCValue
+
+[android]\
+open fun [toCValue]([android]to-c-value.md)(): [WGPUConstantEntry.ByValue](../../io.ygdrasil.wgpu.android/-w-g-p-u-constant-entry/-by-value/index.md)
