@@ -47,7 +47,7 @@ internal fun NativeModel.Structure.toJvmStructure() = templateBuilder {
             newLine()
             // Generate layout
             appendLine("internal val LAYOUT = structLayout(")
-            members.forEach { (name, type, _, _, _, padding) ->
+            members.forEach { (name, type, _, _, _, _, padding) ->
                 padding?.takeIf { it > 0 }
                     ?.let { "\tMemoryLayout.paddingLayout($it),"}
                     ?.let(::appendLine)
