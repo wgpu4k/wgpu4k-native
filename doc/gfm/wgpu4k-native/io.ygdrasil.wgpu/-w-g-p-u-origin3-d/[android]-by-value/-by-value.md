@@ -3,4 +3,4 @@
 # ByValue
 
 [android]\
-constructor(handle: [WGPUOrigin3D.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-origin3-d/-by-value/index.md) = io.ygdrasil.wgpu.android.WGPUOrigin3D.ByValue(com.sun.jna.Pointer.NULL))
+constructor(handle: WGPUOrigin3D.ByValue = io.ygdrasil.wgpu.android.WGPUOrigin3D.ByValue(com.sun.jna.Pointer.NULL))

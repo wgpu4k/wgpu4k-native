@@ -3,4 +3,4 @@
 # toReference
 
 [android]\
-open fun [toReference](to-reference.md)(): [WGPUSurfaceTexture.ByReference](../../io.ygdrasil.wgpu.android/-w-g-p-u-surface-texture/-by-reference/index.md)
+open fun [toReference](to-reference.md)(): WGPUSurfaceTexture.ByReference

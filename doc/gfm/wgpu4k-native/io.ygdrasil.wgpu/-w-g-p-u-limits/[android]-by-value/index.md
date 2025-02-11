@@ -3,19 +3,19 @@
 # ByValue
 
 [android]\
-class [ByValue](index.md)(val handle: [WGPULimits.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-limits/-by-value/index.md) = io.ygdrasil.wgpu.android.WGPULimits.ByValue(com.sun.jna.Pointer.NULL)) : [WGPULimits](../index.md)
+class [ByValue](index.md)(val handle: WGPULimits.ByValue = io.ygdrasil.wgpu.android.WGPULimits.ByValue(com.sun.jna.Pointer.NULL)) : [WGPULimits](../index.md)
 
 ## Constructors
 
 | | |
 |---|---|
-| [ByValue](-by-value.md) | [android]<br>constructor(handle: [WGPULimits.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-limits/-by-value/index.md) = io.ygdrasil.wgpu.android.WGPULimits.ByValue(com.sun.jna.Pointer.NULL)) |
+| [ByValue](-by-value.md) | [android]<br>constructor(handle: WGPULimits.ByValue = io.ygdrasil.wgpu.android.WGPULimits.ByValue(com.sun.jna.Pointer.NULL)) |
 
 ## Properties
 
 | Name | Summary |
 |---|---|
-| [handle](handle.md) | [android]<br>val [handle](handle.md): [WGPULimits.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-limits/-by-value/index.md) |
+| [handle](handle.md) | [android]<br>val [handle](handle.md): WGPULimits.ByValue |
 | [handler](handler.md) | [android]<br>open override val [handler](handler.md): [NativeAddress](../../../ffi/-native-address/index.md) |
 | [maxBindGroups](max-bind-groups.md) | [android]<br>open override var [maxBindGroups](max-bind-groups.md): [UInt](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-int/index.html) |
 | [maxBindGroupsPlusVertexBuffers](max-bind-groups-plus-vertex-buffers.md) | [android]<br>open override var [maxBindGroupsPlusVertexBuffers](max-bind-groups-plus-vertex-buffers.md): [UInt](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-int/index.html) |
@@ -54,5 +54,5 @@ class [ByValue](index.md)(val handle: [WGPULimits.ByValue](../../../io.ygdrasil.
 
 | Name | Summary |
 |---|---|
-| [toCValue](../[android]to-c-value.md) | [android]<br>open fun [toCValue](../[android]to-c-value.md)(): [WGPULimits.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-limits/-by-value/index.md) |
-| [toReference](../to-reference.md) | [android]<br>open fun [toReference](../to-reference.md)(): [WGPULimits.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-limits/-by-reference/index.md) |
+| [toCValue](../[android]to-c-value.md) | [android]<br>open fun [toCValue](../[android]to-c-value.md)(): WGPULimits.ByValue |
+| [toReference](../to-reference.md) | [android]<br>open fun [toReference](../to-reference.md)(): WGPULimits.ByReference |

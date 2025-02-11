@@ -3,4 +3,4 @@
 # handle
 
 [android]\
-val [handle](handle.md): [WGPUCompilationMessage.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-compilation-message/-by-value/index.md)
+val [handle](handle.md): WGPUCompilationMessage.ByValue

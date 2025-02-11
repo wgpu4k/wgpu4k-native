@@ -3,4 +3,4 @@
 # toReference
 
 [android]\
-open fun [toReference](to-reference.md)(): [WGPUFuture.ByReference](../../io.ygdrasil.wgpu.android/-w-g-p-u-future/-by-reference/index.md)
+open fun [toReference](to-reference.md)(): WGPUFuture.ByReference

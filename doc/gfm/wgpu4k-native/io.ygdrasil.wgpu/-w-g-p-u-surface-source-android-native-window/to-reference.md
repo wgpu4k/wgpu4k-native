@@ -3,4 +3,4 @@
 # toReference
 
 [android]\
-open fun [toReference](to-reference.md)(): [WGPUSurfaceSourceAndroidNativeWindow.ByReference](../../io.ygdrasil.wgpu.android/-w-g-p-u-surface-source-android-native-window/-by-reference/index.md)
+open fun [toReference](to-reference.md)(): WGPUSurfaceSourceAndroidNativeWindow.ByReference

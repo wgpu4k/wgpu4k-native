@@ -3,4 +3,4 @@
 # handle
 
 [android]\
-val [handle](handle.md): [WGPUTextureViewDescriptor.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-texture-view-descriptor/-by-reference/index.md)
+val [handle](handle.md): WGPUTextureViewDescriptor.ByReference

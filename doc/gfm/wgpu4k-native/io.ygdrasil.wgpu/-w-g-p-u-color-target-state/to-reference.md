@@ -3,4 +3,4 @@
 # toReference
 
 [android]\
-open fun [toReference](to-reference.md)(): [WGPUColorTargetState.ByReference](../../io.ygdrasil.wgpu.android/-w-g-p-u-color-target-state/-by-reference/index.md)
+open fun [toReference](to-reference.md)(): WGPUColorTargetState.ByReference

@@ -3,4 +3,4 @@
 # ByValue
 
 [android]\
-constructor(handle: [WGPUColorTargetState.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-color-target-state/-by-value/index.md) = io.ygdrasil.wgpu.android.WGPUColorTargetState.ByValue(com.sun.jna.Pointer.NULL))
+constructor(handle: WGPUColorTargetState.ByValue = io.ygdrasil.wgpu.android.WGPUColorTargetState.ByValue(com.sun.jna.Pointer.NULL))

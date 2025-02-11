@@ -21,7 +21,7 @@ actual class [MemoryAllocator](index.md) : [AutoCloseable](https://kotlinlang.or
 
 | Name | Summary |
 |---|---|
-| allocator | [android, jvm, native]<br>[android]<br>val [allocator]([android]allocator.md): [SegmentAllocator](../../java.lang.foreign/-segment-allocator/index.md)<br>[jvm]<br>val [allocator]([jvm]allocator.md): SegmentAllocator<br>[native]<br>val [allocator]([native]allocator.md): [Arena](https://kotlinlang.org/api/core/kotlin-stdlib/kotlinx.cinterop/-arena/index.html) |
+| allocator | [android, jvm, native]<br>[android]<br>val [allocator]([android]allocator.md): SegmentAllocator<br>[jvm]<br>val [allocator]([jvm]allocator.md): SegmentAllocator<br>[native]<br>val [allocator]([native]allocator.md): [Arena](https://kotlinlang.org/api/core/kotlin-stdlib/kotlinx.cinterop/-arena/index.html) |
 | [arena](arena.md) | [jvm]<br>val [arena](arena.md): Arena |
 
 ## Functions

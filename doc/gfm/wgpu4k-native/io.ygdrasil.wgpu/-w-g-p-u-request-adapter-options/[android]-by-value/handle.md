@@ -3,4 +3,4 @@
 # handle
 
 [android]\
-val [handle](handle.md): [WGPURequestAdapterOptions.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-request-adapter-options/-by-value/index.md)
+val [handle](handle.md): WGPURequestAdapterOptions.ByValue

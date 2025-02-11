@@ -3,4 +3,4 @@
 # toCValue
 
 [android]\
-open fun [toCValue]([android]to-c-value.md)(): [WGPUBlendState.ByValue](../../io.ygdrasil.wgpu.android/-w-g-p-u-blend-state/-by-value/index.md)
+open fun [toCValue]([android]to-c-value.md)(): WGPUBlendState.ByValue

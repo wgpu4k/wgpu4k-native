@@ -3,4 +3,4 @@
 # handle
 
 [android]\
-val [handle](handle.md): [WGPUTextureDescriptor.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-texture-descriptor/-by-value/index.md)
+val [handle](handle.md): WGPUTextureDescriptor.ByValue

@@ -3,4 +3,4 @@
 # toReference
 
 [android]\
-open fun [toReference](to-reference.md)(): [WGPUShaderSourceSPIRV.ByReference](../../io.ygdrasil.wgpu.android/-w-g-p-u-shader-source-s-p-i-r-v/-by-reference/index.md)
+open fun [toReference](to-reference.md)(): WGPUShaderSourceSPIRV.ByReference

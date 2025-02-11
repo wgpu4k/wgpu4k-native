@@ -3,4 +3,4 @@
 # ByReference
 
 [android]\
-constructor(handle: [WGPUSurfaceConfiguration.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-surface-configuration/-by-reference/index.md) = io.ygdrasil.wgpu.android.WGPUSurfaceConfiguration.ByReference(com.sun.jna.Pointer.NULL))
+constructor(handle: WGPUSurfaceConfiguration.ByReference = io.ygdrasil.wgpu.android.WGPUSurfaceConfiguration.ByReference(com.sun.jna.Pointer.NULL))

@@ -3,4 +3,4 @@
 # ByValue
 
 [android]\
-constructor(handle: [WGPUBlendComponent.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-blend-component/-by-value/index.md) = io.ygdrasil.wgpu.android.WGPUBlendComponent.ByValue(com.sun.jna.Pointer.NULL))
+constructor(handle: WGPUBlendComponent.ByValue = io.ygdrasil.wgpu.android.WGPUBlendComponent.ByValue(com.sun.jna.Pointer.NULL))

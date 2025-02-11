@@ -3,4 +3,4 @@
 # ByValue
 
 [android]\
-constructor(handle: [WGPUSamplerDescriptor.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-sampler-descriptor/-by-value/index.md) = io.ygdrasil.wgpu.android.WGPUSamplerDescriptor.ByValue(com.sun.jna.Pointer.NULL))
+constructor(handle: WGPUSamplerDescriptor.ByValue = io.ygdrasil.wgpu.android.WGPUSamplerDescriptor.ByValue(com.sun.jna.Pointer.NULL))

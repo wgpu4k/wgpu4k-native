@@ -3,4 +3,4 @@
 # handle
 
 [android]\
-val [handle](handle.md): [WGPUPrimitiveState.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-primitive-state/-by-reference/index.md)
+val [handle](handle.md): WGPUPrimitiveState.ByReference

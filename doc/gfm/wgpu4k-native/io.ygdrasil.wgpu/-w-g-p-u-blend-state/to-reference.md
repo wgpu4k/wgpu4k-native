@@ -3,4 +3,4 @@
 # toReference
 
 [android]\
-open fun [toReference](to-reference.md)(): [WGPUBlendState.ByReference](../../io.ygdrasil.wgpu.android/-w-g-p-u-blend-state/-by-reference/index.md)
+open fun [toReference](to-reference.md)(): WGPUBlendState.ByReference

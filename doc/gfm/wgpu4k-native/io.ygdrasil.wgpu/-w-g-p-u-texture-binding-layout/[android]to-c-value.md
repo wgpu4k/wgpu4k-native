@@ -3,4 +3,4 @@
 # toCValue
 
 [android]\
-open fun [toCValue]([android]to-c-value.md)(): [WGPUTextureBindingLayout.ByValue](../../io.ygdrasil.wgpu.android/-w-g-p-u-texture-binding-layout/-by-value/index.md)
+open fun [toCValue]([android]to-c-value.md)(): WGPUTextureBindingLayout.ByValue

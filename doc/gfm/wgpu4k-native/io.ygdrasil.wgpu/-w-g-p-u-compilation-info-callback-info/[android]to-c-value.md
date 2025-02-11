@@ -3,4 +3,4 @@
 # toCValue
 
 [android]\
-open fun [toCValue]([android]to-c-value.md)(): [WGPUCompilationInfoCallbackInfo.ByValue](../../io.ygdrasil.wgpu.android/-w-g-p-u-compilation-info-callback-info/-by-value/index.md)
+open fun [toCValue]([android]to-c-value.md)(): WGPUCompilationInfoCallbackInfo.ByValue

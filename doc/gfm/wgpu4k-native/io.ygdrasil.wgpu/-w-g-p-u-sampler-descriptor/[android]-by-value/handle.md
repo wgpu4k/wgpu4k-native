@@ -3,4 +3,4 @@
 # handle
 
 [android]\
-val [handle](handle.md): [WGPUSamplerDescriptor.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-sampler-descriptor/-by-value/index.md)
+val [handle](handle.md): WGPUSamplerDescriptor.ByValue

@@ -3,4 +3,4 @@
 # toReference
 
 [android]\
-open fun [toReference](to-reference.md)(): [WGPULimits.ByReference](../../io.ygdrasil.wgpu.android/-w-g-p-u-limits/-by-reference/index.md)
+open fun [toReference](to-reference.md)(): WGPULimits.ByReference

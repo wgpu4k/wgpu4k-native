@@ -3,13 +3,13 @@
 # ByValue
 
 [android]\
-class [ByValue](index.md)(val handle: [WGPUDepthStencilState.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-depth-stencil-state/-by-value/index.md) = io.ygdrasil.wgpu.android.WGPUDepthStencilState.ByValue(com.sun.jna.Pointer.NULL)) : [WGPUDepthStencilState](../index.md)
+class [ByValue](index.md)(val handle: WGPUDepthStencilState.ByValue = io.ygdrasil.wgpu.android.WGPUDepthStencilState.ByValue(com.sun.jna.Pointer.NULL)) : [WGPUDepthStencilState](../index.md)
 
 ## Constructors
 
 | | |
 |---|---|
-| [ByValue](-by-value.md) | [android]<br>constructor(handle: [WGPUDepthStencilState.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-depth-stencil-state/-by-value/index.md) = io.ygdrasil.wgpu.android.WGPUDepthStencilState.ByValue(com.sun.jna.Pointer.NULL)) |
+| [ByValue](-by-value.md) | [android]<br>constructor(handle: WGPUDepthStencilState.ByValue = io.ygdrasil.wgpu.android.WGPUDepthStencilState.ByValue(com.sun.jna.Pointer.NULL)) |
 
 ## Properties
 
@@ -21,7 +21,7 @@ class [ByValue](index.md)(val handle: [WGPUDepthStencilState.ByValue](../../../i
 | [depthCompare](depth-compare.md) | [android]<br>open override var [depthCompare](depth-compare.md): [WGPUCompareFunction](../../-w-g-p-u-compare-function/index.md) |
 | [depthWriteEnabled](depth-write-enabled.md) | [android]<br>open override var [depthWriteEnabled](depth-write-enabled.md): [WGPUOptionalBool](../../-w-g-p-u-optional-bool/index.md) |
 | [format](format.md) | [android]<br>open override var [format](format.md): [WGPUTextureFormat](../../-w-g-p-u-texture-format/index.md) |
-| [handle](handle.md) | [android]<br>val [handle](handle.md): [WGPUDepthStencilState.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-depth-stencil-state/-by-value/index.md) |
+| [handle](handle.md) | [android]<br>val [handle](handle.md): WGPUDepthStencilState.ByValue |
 | [handler](handler.md) | [android]<br>open override val [handler](handler.md): [NativeAddress](../../../ffi/-native-address/index.md) |
 | [nextInChain](next-in-chain.md) | [android]<br>open override var [nextInChain](next-in-chain.md): [NativeAddress](../../../ffi/-native-address/index.md)? |
 | [stencilBack](stencil-back.md) | [android]<br>open override val [stencilBack](stencil-back.md): [WGPUStencilFaceState](../../-w-g-p-u-stencil-face-state/index.md) |
@@ -33,5 +33,5 @@ class [ByValue](index.md)(val handle: [WGPUDepthStencilState.ByValue](../../../i
 
 | Name | Summary |
 |---|---|
-| [toCValue](../[android]to-c-value.md) | [android]<br>open fun [toCValue](../[android]to-c-value.md)(): [WGPUDepthStencilState.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-depth-stencil-state/-by-value/index.md) |
-| [toReference](../to-reference.md) | [android]<br>open fun [toReference](../to-reference.md)(): [WGPUDepthStencilState.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-depth-stencil-state/-by-reference/index.md) |
+| [toCValue](../[android]to-c-value.md) | [android]<br>open fun [toCValue](../[android]to-c-value.md)(): WGPUDepthStencilState.ByValue |
+| [toReference](../to-reference.md) | [android]<br>open fun [toReference](../to-reference.md)(): WGPUDepthStencilState.ByReference |

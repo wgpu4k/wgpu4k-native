@@ -3,4 +3,4 @@
 # toReference
 
 [android]\
-open fun [toReference](to-reference.md)(): [WGPUSurfaceCapabilities.ByReference](../../io.ygdrasil.wgpu.android/-w-g-p-u-surface-capabilities/-by-reference/index.md)
+open fun [toReference](to-reference.md)(): WGPUSurfaceCapabilities.ByReference

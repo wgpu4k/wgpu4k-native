@@ -3,4 +3,4 @@
 # handle
 
 [android]\
-val [handle](handle.md): [WGPUAdapterInfo.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-adapter-info/-by-reference/index.md)
+val [handle](handle.md): WGPUAdapterInfo.ByReference

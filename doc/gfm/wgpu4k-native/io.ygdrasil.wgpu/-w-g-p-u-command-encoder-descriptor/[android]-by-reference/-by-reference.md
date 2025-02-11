@@ -3,4 +3,4 @@
 # ByReference
 
 [android]\
-constructor(handle: [WGPUCommandEncoderDescriptor.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-command-encoder-descriptor/-by-reference/index.md) = io.ygdrasil.wgpu.android.WGPUCommandEncoderDescriptor.ByReference(com.sun.jna.Pointer.NULL))
+constructor(handle: WGPUCommandEncoderDescriptor.ByReference = io.ygdrasil.wgpu.android.WGPUCommandEncoderDescriptor.ByReference(com.sun.jna.Pointer.NULL))

@@ -3,4 +3,4 @@
 # ByValue
 
 [android]\
-constructor(handle: [WGPUPipelineLayoutDescriptor.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-pipeline-layout-descriptor/-by-value/index.md) = io.ygdrasil.wgpu.android.WGPUPipelineLayoutDescriptor.ByValue(com.sun.jna.Pointer.NULL))
+constructor(handle: WGPUPipelineLayoutDescriptor.ByValue = io.ygdrasil.wgpu.android.WGPUPipelineLayoutDescriptor.ByValue(com.sun.jna.Pointer.NULL))

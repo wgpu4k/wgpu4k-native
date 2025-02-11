@@ -3,4 +3,4 @@
 # ByReference
 
 [android]\
-constructor(handle: [WGPUStencilFaceState.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-stencil-face-state/-by-reference/index.md) = io.ygdrasil.wgpu.android.WGPUStencilFaceState.ByReference(com.sun.jna.Pointer.NULL))
+constructor(handle: WGPUStencilFaceState.ByReference = io.ygdrasil.wgpu.android.WGPUStencilFaceState.ByReference(com.sun.jna.Pointer.NULL))

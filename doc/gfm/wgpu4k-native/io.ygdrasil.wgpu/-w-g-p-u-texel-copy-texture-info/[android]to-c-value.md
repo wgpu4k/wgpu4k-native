@@ -3,4 +3,4 @@
 # toCValue
 
 [android]\
-open fun [toCValue]([android]to-c-value.md)(): [WGPUTexelCopyTextureInfo.ByValue](../../io.ygdrasil.wgpu.android/-w-g-p-u-texel-copy-texture-info/-by-value/index.md)
+open fun [toCValue]([android]to-c-value.md)(): WGPUTexelCopyTextureInfo.ByValue

@@ -3,4 +3,4 @@
 # ByReference
 
 [android]\
-constructor(handle: [WGPURequestAdapterOptions.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-request-adapter-options/-by-reference/index.md) = io.ygdrasil.wgpu.android.WGPURequestAdapterOptions.ByReference(com.sun.jna.Pointer.NULL))
+constructor(handle: WGPURequestAdapterOptions.ByReference = io.ygdrasil.wgpu.android.WGPURequestAdapterOptions.ByReference(com.sun.jna.Pointer.NULL))

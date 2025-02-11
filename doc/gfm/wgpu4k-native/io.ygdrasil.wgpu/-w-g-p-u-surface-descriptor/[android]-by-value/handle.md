@@ -3,4 +3,4 @@
 # handle
 
 [android]\
-val [handle](handle.md): [WGPUSurfaceDescriptor.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-surface-descriptor/-by-value/index.md)
+val [handle](handle.md): WGPUSurfaceDescriptor.ByValue

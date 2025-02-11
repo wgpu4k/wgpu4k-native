@@ -3,4 +3,4 @@
 # ByReference
 
 [android]\
-constructor(handle: [WGPUDepthStencilState.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-depth-stencil-state/-by-reference/index.md) = io.ygdrasil.wgpu.android.WGPUDepthStencilState.ByReference(com.sun.jna.Pointer.NULL))
+constructor(handle: WGPUDepthStencilState.ByReference = io.ygdrasil.wgpu.android.WGPUDepthStencilState.ByReference(com.sun.jna.Pointer.NULL))

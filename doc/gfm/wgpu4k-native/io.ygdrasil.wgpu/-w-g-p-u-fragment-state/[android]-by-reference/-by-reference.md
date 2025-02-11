@@ -3,4 +3,4 @@
 # ByReference
 
 [android]\
-constructor(handle: [WGPUFragmentState.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-fragment-state/-by-reference/index.md) = io.ygdrasil.wgpu.android.WGPUFragmentState.ByReference(com.sun.jna.Pointer.NULL))
+constructor(handle: WGPUFragmentState.ByReference = io.ygdrasil.wgpu.android.WGPUFragmentState.ByReference(com.sun.jna.Pointer.NULL))

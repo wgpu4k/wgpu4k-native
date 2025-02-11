@@ -3,4 +3,4 @@
 # handle
 
 [android]\
-val [handle](handle.md): [WGPUBufferDescriptor.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-buffer-descriptor/-by-value/index.md)
+val [handle](handle.md): WGPUBufferDescriptor.ByValue

@@ -3,4 +3,4 @@
 # handle
 
 [android]\
-val [handle](handle.md): [WGPUShaderSourceWGSL.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-shader-source-w-g-s-l/-by-value/index.md)
+val [handle](handle.md): WGPUShaderSourceWGSL.ByValue

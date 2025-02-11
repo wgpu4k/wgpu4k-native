@@ -3,4 +3,4 @@
 # handle
 
 [android]\
-val [handle](handle.md): [WGPUMultisampleState.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-multisample-state/-by-reference/index.md)
+val [handle](handle.md): WGPUMultisampleState.ByReference

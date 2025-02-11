@@ -3,4 +3,4 @@
 # ByReference
 
 [android]\
-constructor(handle: [WGPUTextureDescriptor.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-texture-descriptor/-by-reference/index.md) = io.ygdrasil.wgpu.android.WGPUTextureDescriptor.ByReference(com.sun.jna.Pointer.NULL))
+constructor(handle: WGPUTextureDescriptor.ByReference = io.ygdrasil.wgpu.android.WGPUTextureDescriptor.ByReference(com.sun.jna.Pointer.NULL))

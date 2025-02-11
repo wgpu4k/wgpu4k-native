@@ -3,4 +3,4 @@
 # ByValue
 
 [android]\
-constructor(handle: [WGPUInstanceDescriptor.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-instance-descriptor/-by-value/index.md) = io.ygdrasil.wgpu.android.WGPUInstanceDescriptor.ByValue(com.sun.jna.Pointer.NULL))
+constructor(handle: WGPUInstanceDescriptor.ByValue = io.ygdrasil.wgpu.android.WGPUInstanceDescriptor.ByValue(com.sun.jna.Pointer.NULL))

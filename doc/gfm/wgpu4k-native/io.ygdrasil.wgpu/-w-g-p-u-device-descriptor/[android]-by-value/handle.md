@@ -3,4 +3,4 @@
 # handle
 
 [android]\
-val [handle](handle.md): [WGPUDeviceDescriptor.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-device-descriptor/-by-value/index.md)
+val [handle](handle.md): WGPUDeviceDescriptor.ByValue

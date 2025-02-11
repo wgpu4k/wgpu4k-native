@@ -4,6 +4,9 @@ import com.sun.jna.Pointer
 import ffi.toAddress
 import java.util.function.Consumer
 
+/**
+ * @suppress
+ */
 class MemorySegment(val pointer: Pointer, val size: Long = -1) {
 
     constructor(address: Long, size: Long = -1) : this(Pointer(address), size)
@@ -57,11 +60,6 @@ class MemorySegment(val pointer: Pointer, val size: Long = -1) {
     }
 
     fun asSlice(offest: Long, size: Long = 0): MemorySegment = MemorySegment(pointer.share(offest), size - offest)
-
-    fun reinterpret(l: Long, arena: Arena, cleanup: Consumer<MemorySegment?>): MemorySegment = MemorySegment(
-        pointer,
-        size
-    )
 
     fun fillWithZero() {
         repeat((size / 8).toInt()) {

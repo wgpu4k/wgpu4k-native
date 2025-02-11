@@ -3,4 +3,4 @@
 # toReference
 
 [android]\
-open fun [toReference](to-reference.md)(): [WGPUCommandBufferDescriptor.ByReference](../../io.ygdrasil.wgpu.android/-w-g-p-u-command-buffer-descriptor/-by-reference/index.md)
+open fun [toReference](to-reference.md)(): WGPUCommandBufferDescriptor.ByReference

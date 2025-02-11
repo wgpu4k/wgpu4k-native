@@ -3,4 +3,4 @@
 # toReference
 
 [android]\
-open fun [toReference](to-reference.md)(): [WGPUUncapturedErrorCallbackInfo.ByReference](../../io.ygdrasil.wgpu.android/-w-g-p-u-uncaptured-error-callback-info/-by-reference/index.md)
+open fun [toReference](to-reference.md)(): WGPUUncapturedErrorCallbackInfo.ByReference

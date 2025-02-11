@@ -3,4 +3,4 @@
 # toCValue
 
 [android]\
-open fun [toCValue]([android]to-c-value.md)(): [WGPURenderBundleEncoderDescriptor.ByValue](../../io.ygdrasil.wgpu.android/-w-g-p-u-render-bundle-encoder-descriptor/-by-value/index.md)
+open fun [toCValue]([android]to-c-value.md)(): WGPURenderBundleEncoderDescriptor.ByValue

@@ -23,15 +23,15 @@
 
 | Name | Summary |
 |---|---|
-| [C_BOOL](-c_-b-o-o-l.md) | [android, jvm]<br>[android]<br>val [C_BOOL](-c_-b-o-o-l.md): [ValueLayout](../java.lang.foreign/-value-layout/index.md)<br>[jvm]<br>val [C_BOOL](-c_-b-o-o-l.md): ValueLayout |
-| [C_CHAR](-c_-c-h-a-r.md) | [android, jvm]<br>[android]<br>val [C_CHAR](-c_-c-h-a-r.md): [ValueLayout](../java.lang.foreign/-value-layout/index.md)<br>[jvm]<br>val [C_CHAR](-c_-c-h-a-r.md): ValueLayout |
-| [C_DOUBLE](-c_-d-o-u-b-l-e.md) | [android, jvm]<br>[android]<br>val [C_DOUBLE](-c_-d-o-u-b-l-e.md): [ValueLayout](../java.lang.foreign/-value-layout/index.md)<br>[jvm]<br>val [C_DOUBLE](-c_-d-o-u-b-l-e.md): ValueLayout |
-| [C_FLOAT](-c_-f-l-o-a-t.md) | [android, jvm]<br>[android]<br>val [C_FLOAT](-c_-f-l-o-a-t.md): [ValueLayout](../java.lang.foreign/-value-layout/index.md)<br>[jvm]<br>val [C_FLOAT](-c_-f-l-o-a-t.md): ValueLayout |
-| [C_INT](-c_-i-n-t.md) | [android, jvm]<br>[android]<br>val [C_INT](-c_-i-n-t.md): [ValueLayout](../java.lang.foreign/-value-layout/index.md)<br>[jvm]<br>val [C_INT](-c_-i-n-t.md): ValueLayout |
-| [C_LONG](-c_-l-o-n-g.md) | [android, jvm]<br>[android]<br>val [C_LONG](-c_-l-o-n-g.md): [ValueLayout](../java.lang.foreign/-value-layout/index.md)<br>[jvm]<br>val [C_LONG](-c_-l-o-n-g.md): ValueLayout |
-| [C_LONG_LONG](-c_-l-o-n-g_-l-o-n-g.md) | [android, jvm]<br>[android]<br>val [C_LONG_LONG](-c_-l-o-n-g_-l-o-n-g.md): [ValueLayout](../java.lang.foreign/-value-layout/index.md)<br>[jvm]<br>val [C_LONG_LONG](-c_-l-o-n-g_-l-o-n-g.md): ValueLayout |
-| [C_POINTER](-c_-p-o-i-n-t-e-r.md) | [android, jvm]<br>[android]<br>val [C_POINTER](-c_-p-o-i-n-t-e-r.md): [ValueLayout](../java.lang.foreign/-value-layout/index.md)<br>[jvm]<br>val [C_POINTER](-c_-p-o-i-n-t-e-r.md): ValueLayout |
-| [C_SHORT](-c_-s-h-o-r-t.md) | [android, jvm]<br>[android]<br>val [C_SHORT](-c_-s-h-o-r-t.md): [ValueLayout](../java.lang.foreign/-value-layout/index.md)<br>[jvm]<br>val [C_SHORT](-c_-s-h-o-r-t.md): ValueLayout |
+| [C_BOOL](-c_-b-o-o-l.md) | [android, jvm]<br>[android, jvm]<br>val [C_BOOL](-c_-b-o-o-l.md): ValueLayout |
+| [C_CHAR](-c_-c-h-a-r.md) | [android, jvm]<br>[android, jvm]<br>val [C_CHAR](-c_-c-h-a-r.md): ValueLayout |
+| [C_DOUBLE](-c_-d-o-u-b-l-e.md) | [android, jvm]<br>[android, jvm]<br>val [C_DOUBLE](-c_-d-o-u-b-l-e.md): ValueLayout |
+| [C_FLOAT](-c_-f-l-o-a-t.md) | [android, jvm]<br>[android, jvm]<br>val [C_FLOAT](-c_-f-l-o-a-t.md): ValueLayout |
+| [C_INT](-c_-i-n-t.md) | [android, jvm]<br>[android, jvm]<br>val [C_INT](-c_-i-n-t.md): ValueLayout |
+| [C_LONG](-c_-l-o-n-g.md) | [android, jvm]<br>[android, jvm]<br>val [C_LONG](-c_-l-o-n-g.md): ValueLayout |
+| [C_LONG_LONG](-c_-l-o-n-g_-l-o-n-g.md) | [android, jvm]<br>[android, jvm]<br>val [C_LONG_LONG](-c_-l-o-n-g_-l-o-n-g.md): ValueLayout |
+| [C_POINTER](-c_-p-o-i-n-t-e-r.md) | [android, jvm]<br>[android, jvm]<br>val [C_POINTER](-c_-p-o-i-n-t-e-r.md): ValueLayout |
+| [C_SHORT](-c_-s-h-o-r-t.md) | [android, jvm]<br>[android, jvm]<br>val [C_SHORT](-c_-s-h-o-r-t.md): ValueLayout |
 | [globalMemory](global-memory.md) | [common]<br>val [globalMemory](global-memory.md): [MemoryAllocator](-memory-allocator/index.md) |
 
 ## Functions

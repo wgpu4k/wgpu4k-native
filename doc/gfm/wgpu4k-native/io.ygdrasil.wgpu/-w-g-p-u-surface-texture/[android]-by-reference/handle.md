@@ -3,4 +3,4 @@
 # handle
 
 [android]\
-val [handle](handle.md): [WGPUSurfaceTexture.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-surface-texture/-by-reference/index.md)
+val [handle](handle.md): WGPUSurfaceTexture.ByReference

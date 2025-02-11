@@ -3,4 +3,4 @@
 # toReference
 
 [android]\
-open fun [toReference](to-reference.md)(): [WGPUDepthStencilState.ByReference](../../io.ygdrasil.wgpu.android/-w-g-p-u-depth-stencil-state/-by-reference/index.md)
+open fun [toReference](to-reference.md)(): WGPUDepthStencilState.ByReference

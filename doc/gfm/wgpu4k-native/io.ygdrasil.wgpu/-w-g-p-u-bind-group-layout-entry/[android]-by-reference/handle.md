@@ -3,4 +3,4 @@
 # handle
 
 [android]\
-val [handle](handle.md): [WGPUBindGroupLayoutEntry.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-bind-group-layout-entry/-by-reference/index.md)
+val [handle](handle.md): WGPUBindGroupLayoutEntry.ByReference

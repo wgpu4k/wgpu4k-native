@@ -3,4 +3,4 @@
 # toReference
 
 [android]\
-open fun [toReference](to-reference.md)(): [WGPUCompilationInfo.ByReference](../../io.ygdrasil.wgpu.android/-w-g-p-u-compilation-info/-by-reference/index.md)
+open fun [toReference](to-reference.md)(): WGPUCompilationInfo.ByReference

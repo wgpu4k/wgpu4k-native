@@ -3,4 +3,4 @@
 # toCValue
 
 [android]\
-open fun [toCValue]([android]to-c-value.md)(): [WGPUSupportedWGSLLanguageFeatures.ByValue](../../io.ygdrasil.wgpu.android/-w-g-p-u-supported-w-g-s-l-language-features/-by-value/index.md)
+open fun [toCValue]([android]to-c-value.md)(): WGPUSupportedWGSLLanguageFeatures.ByValue

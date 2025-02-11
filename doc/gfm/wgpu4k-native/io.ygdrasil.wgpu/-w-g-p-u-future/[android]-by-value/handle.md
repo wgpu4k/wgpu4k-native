@@ -3,4 +3,4 @@
 # handle
 
 [android]\
-val [handle](handle.md): [WGPUFuture.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-future/-by-value/index.md)
+val [handle](handle.md): WGPUFuture.ByValue

@@ -3,4 +3,4 @@
 # ByValue
 
 [android]\
-constructor(handle: [WGPUTextureViewDescriptor.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-texture-view-descriptor/-by-value/index.md) = io.ygdrasil.wgpu.android.WGPUTextureViewDescriptor.ByValue(com.sun.jna.Pointer.NULL))
+constructor(handle: WGPUTextureViewDescriptor.ByValue = io.ygdrasil.wgpu.android.WGPUTextureViewDescriptor.ByValue(com.sun.jna.Pointer.NULL))

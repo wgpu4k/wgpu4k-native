@@ -3,4 +3,4 @@
 # handle
 
 [android]\
-val [handle](handle.md): [WGPUSurfaceSourceXlibWindow.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-surface-source-xlib-window/-by-value/index.md)
+val [handle](handle.md): WGPUSurfaceSourceXlibWindow.ByValue

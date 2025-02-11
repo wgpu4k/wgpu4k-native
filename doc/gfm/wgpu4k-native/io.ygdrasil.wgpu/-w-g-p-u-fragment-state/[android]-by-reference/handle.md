@@ -3,4 +3,4 @@
 # handle
 
 [android]\
-val [handle](handle.md): [WGPUFragmentState.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-fragment-state/-by-reference/index.md)
+val [handle](handle.md): WGPUFragmentState.ByReference

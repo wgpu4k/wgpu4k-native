@@ -3,4 +3,4 @@
 # handle
 
 [android]\
-val [handle](handle.md): [WGPURenderPipelineDescriptor.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-render-pipeline-descriptor/-by-value/index.md)
+val [handle](handle.md): WGPURenderPipelineDescriptor.ByValue

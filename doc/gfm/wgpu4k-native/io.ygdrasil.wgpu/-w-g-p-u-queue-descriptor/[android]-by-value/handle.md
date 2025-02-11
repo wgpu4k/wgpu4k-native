@@ -3,4 +3,4 @@
 # handle
 
 [android]\
-val [handle](handle.md): [WGPUQueueDescriptor.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-queue-descriptor/-by-value/index.md)
+val [handle](handle.md): WGPUQueueDescriptor.ByValue

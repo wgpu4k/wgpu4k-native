@@ -3,4 +3,4 @@
 # ByValue
 
 [android]\
-constructor(handle: [WGPUBindGroupLayoutEntry.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-bind-group-layout-entry/-by-value/index.md) = io.ygdrasil.wgpu.android.WGPUBindGroupLayoutEntry.ByValue(com.sun.jna.Pointer.NULL))
+constructor(handle: WGPUBindGroupLayoutEntry.ByValue = io.ygdrasil.wgpu.android.WGPUBindGroupLayoutEntry.ByValue(com.sun.jna.Pointer.NULL))

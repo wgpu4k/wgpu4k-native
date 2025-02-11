@@ -3,4 +3,4 @@
 # toReference
 
 [android]\
-open fun [toReference](to-reference.md)(): [WGPURequestAdapterOptions.ByReference](../../io.ygdrasil.wgpu.android/-w-g-p-u-request-adapter-options/-by-reference/index.md)
+open fun [toReference](to-reference.md)(): WGPURequestAdapterOptions.ByReference

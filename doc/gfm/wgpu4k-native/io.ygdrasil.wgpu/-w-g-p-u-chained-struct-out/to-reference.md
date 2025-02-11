@@ -3,4 +3,4 @@
 # toReference
 
 [android]\
-open fun [toReference](to-reference.md)(): [WGPUChainedStructOut.ByReference](../../io.ygdrasil.wgpu.android/-w-g-p-u-chained-struct-out/-by-reference/index.md)
+open fun [toReference](to-reference.md)(): WGPUChainedStructOut.ByReference

@@ -3,4 +3,4 @@
 # ByValue
 
 [android]\
-constructor(handle: [WGPUQueueDescriptor.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-queue-descriptor/-by-value/index.md) = io.ygdrasil.wgpu.android.WGPUQueueDescriptor.ByValue(com.sun.jna.Pointer.NULL))
+constructor(handle: WGPUQueueDescriptor.ByValue = io.ygdrasil.wgpu.android.WGPUQueueDescriptor.ByValue(com.sun.jna.Pointer.NULL))

@@ -3,4 +3,4 @@
 # toCValue
 
 [android]\
-open fun [toCValue]([android]to-c-value.md)(): [WGPUBindGroupEntry.ByValue](../../io.ygdrasil.wgpu.android/-w-g-p-u-bind-group-entry/-by-value/index.md)
+open fun [toCValue]([android]to-c-value.md)(): WGPUBindGroupEntry.ByValue

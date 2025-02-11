@@ -3,4 +3,4 @@
 # toReference
 
 [android]\
-open fun [toReference](to-reference.md)(): [WGPUQuerySetDescriptor.ByReference](../../io.ygdrasil.wgpu.android/-w-g-p-u-query-set-descriptor/-by-reference/index.md)
+open fun [toReference](to-reference.md)(): WGPUQuerySetDescriptor.ByReference

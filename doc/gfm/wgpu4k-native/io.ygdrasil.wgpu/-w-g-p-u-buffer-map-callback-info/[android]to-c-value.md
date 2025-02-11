@@ -3,4 +3,4 @@
 # toCValue
 
 [android]\
-open fun [toCValue]([android]to-c-value.md)(): [WGPUBufferMapCallbackInfo.ByValue](../../io.ygdrasil.wgpu.android/-w-g-p-u-buffer-map-callback-info/-by-value/index.md)
+open fun [toCValue]([android]to-c-value.md)(): WGPUBufferMapCallbackInfo.ByValue

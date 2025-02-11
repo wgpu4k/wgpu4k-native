@@ -3,4 +3,4 @@
 # toCValue
 
 [android]\
-open fun [toCValue]([android]to-c-value.md)(): [WGPUSamplerDescriptor.ByValue](../../io.ygdrasil.wgpu.android/-w-g-p-u-sampler-descriptor/-by-value/index.md)
+open fun [toCValue]([android]to-c-value.md)(): WGPUSamplerDescriptor.ByValue

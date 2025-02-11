@@ -3,4 +3,4 @@
 # handle
 
 [android]\
-val [handle](handle.md): [WGPUChainedStructOut.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-chained-struct-out/-by-reference/index.md)
+val [handle](handle.md): WGPUChainedStructOut.ByReference

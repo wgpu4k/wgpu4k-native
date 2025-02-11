@@ -3,4 +3,4 @@
 # toReference
 
 [android]\
-open fun [toReference](to-reference.md)(): [WGPUSurfaceConfiguration.ByReference](../../io.ygdrasil.wgpu.android/-w-g-p-u-surface-configuration/-by-reference/index.md)
+open fun [toReference](to-reference.md)(): WGPUSurfaceConfiguration.ByReference

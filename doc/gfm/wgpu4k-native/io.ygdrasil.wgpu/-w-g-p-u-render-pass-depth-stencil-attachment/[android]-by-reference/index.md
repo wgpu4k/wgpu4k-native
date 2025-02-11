@@ -3,13 +3,13 @@
 # ByReference
 
 [android]\
-class [ByReference](index.md)(val handle: [WGPURenderPassDepthStencilAttachment.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-render-pass-depth-stencil-attachment/-by-reference/index.md) = io.ygdrasil.wgpu.android.WGPURenderPassDepthStencilAttachment.ByReference(com.sun.jna.Pointer.NULL)) : [WGPURenderPassDepthStencilAttachment](../index.md)
+class [ByReference](index.md)(val handle: WGPURenderPassDepthStencilAttachment.ByReference = io.ygdrasil.wgpu.android.WGPURenderPassDepthStencilAttachment.ByReference(com.sun.jna.Pointer.NULL)) : [WGPURenderPassDepthStencilAttachment](../index.md)
 
 ## Constructors
 
 | | |
 |---|---|
-| [ByReference](-by-reference.md) | [android]<br>constructor(handle: [WGPURenderPassDepthStencilAttachment.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-render-pass-depth-stencil-attachment/-by-reference/index.md) = io.ygdrasil.wgpu.android.WGPURenderPassDepthStencilAttachment.ByReference(com.sun.jna.Pointer.NULL)) |
+| [ByReference](-by-reference.md) | [android]<br>constructor(handle: WGPURenderPassDepthStencilAttachment.ByReference = io.ygdrasil.wgpu.android.WGPURenderPassDepthStencilAttachment.ByReference(com.sun.jna.Pointer.NULL)) |
 
 ## Properties
 
@@ -19,7 +19,7 @@ class [ByReference](index.md)(val handle: [WGPURenderPassDepthStencilAttachment.
 | [depthLoadOp](depth-load-op.md) | [android]<br>open override var [depthLoadOp](depth-load-op.md): [WGPULoadOp](../../-w-g-p-u-load-op/index.md) |
 | [depthReadOnly](depth-read-only.md) | [android]<br>open override var [depthReadOnly](depth-read-only.md): [Boolean](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html) |
 | [depthStoreOp](depth-store-op.md) | [android]<br>open override var [depthStoreOp](depth-store-op.md): [WGPUStoreOp](../../-w-g-p-u-store-op/index.md) |
-| [handle](handle.md) | [android]<br>val [handle](handle.md): [WGPURenderPassDepthStencilAttachment.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-render-pass-depth-stencil-attachment/-by-reference/index.md) |
+| [handle](handle.md) | [android]<br>val [handle](handle.md): WGPURenderPassDepthStencilAttachment.ByReference |
 | [handler](handler.md) | [android]<br>open override val [handler](handler.md): [NativeAddress](../../../ffi/-native-address/index.md) |
 | [stencilClearValue](stencil-clear-value.md) | [android]<br>open override var [stencilClearValue](stencil-clear-value.md): [UInt](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-int/index.html) |
 | [stencilLoadOp](stencil-load-op.md) | [android]<br>open override var [stencilLoadOp](stencil-load-op.md): [WGPULoadOp](../../-w-g-p-u-load-op/index.md) |
@@ -31,5 +31,5 @@ class [ByReference](index.md)(val handle: [WGPURenderPassDepthStencilAttachment.
 
 | Name | Summary |
 |---|---|
-| [toCValue](../[android]to-c-value.md) | [android]<br>open fun [toCValue](../[android]to-c-value.md)(): [WGPURenderPassDepthStencilAttachment.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-render-pass-depth-stencil-attachment/-by-value/index.md) |
-| [toReference](../to-reference.md) | [android]<br>open fun [toReference](../to-reference.md)(): [WGPURenderPassDepthStencilAttachment.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-render-pass-depth-stencil-attachment/-by-reference/index.md) |
+| [toCValue](../[android]to-c-value.md) | [android]<br>open fun [toCValue](../[android]to-c-value.md)(): WGPURenderPassDepthStencilAttachment.ByValue |
+| [toReference](../to-reference.md) | [android]<br>open fun [toReference](../to-reference.md)(): WGPURenderPassDepthStencilAttachment.ByReference |

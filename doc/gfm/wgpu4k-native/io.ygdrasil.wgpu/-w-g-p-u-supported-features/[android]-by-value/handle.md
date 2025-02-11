@@ -3,4 +3,4 @@
 # handle
 
 [android]\
-val [handle](handle.md): [WGPUSupportedFeatures.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-supported-features/-by-value/index.md)
+val [handle](handle.md): WGPUSupportedFeatures.ByValue

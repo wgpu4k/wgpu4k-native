@@ -3,4 +3,4 @@
 # ByValue
 
 [android]\
-constructor(handle: [WGPUShaderModuleDescriptor.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-shader-module-descriptor/-by-value/index.md) = io.ygdrasil.wgpu.android.WGPUShaderModuleDescriptor.ByValue(com.sun.jna.Pointer.NULL))
+constructor(handle: WGPUShaderModuleDescriptor.ByValue = io.ygdrasil.wgpu.android.WGPUShaderModuleDescriptor.ByValue(com.sun.jna.Pointer.NULL))

@@ -3,4 +3,4 @@
 # ByValue
 
 [android]\
-constructor(handle: [WGPUQuerySetDescriptor.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-query-set-descriptor/-by-value/index.md) = io.ygdrasil.wgpu.android.WGPUQuerySetDescriptor.ByValue(com.sun.jna.Pointer.NULL))
+constructor(handle: WGPUQuerySetDescriptor.ByValue = io.ygdrasil.wgpu.android.WGPUQuerySetDescriptor.ByValue(com.sun.jna.Pointer.NULL))

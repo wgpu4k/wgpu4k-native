@@ -3,4 +3,4 @@
 # ByReference
 
 [android]\
-constructor(handle: [WGPUShaderSourceWGSL.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-shader-source-w-g-s-l/-by-reference/index.md) = io.ygdrasil.wgpu.android.WGPUShaderSourceWGSL.ByReference(com.sun.jna.Pointer.NULL))
+constructor(handle: WGPUShaderSourceWGSL.ByReference = io.ygdrasil.wgpu.android.WGPUShaderSourceWGSL.ByReference(com.sun.jna.Pointer.NULL))

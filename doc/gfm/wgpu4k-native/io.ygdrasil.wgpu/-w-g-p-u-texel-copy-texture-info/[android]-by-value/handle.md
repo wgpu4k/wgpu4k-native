@@ -3,4 +3,4 @@
 # handle
 
 [android]\
-val [handle](handle.md): [WGPUTexelCopyTextureInfo.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-texel-copy-texture-info/-by-value/index.md)
+val [handle](handle.md): WGPUTexelCopyTextureInfo.ByValue

@@ -3,4 +3,4 @@
 # handle
 
 [android]\
-val [handle](handle.md): [WGPUVertexAttribute.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-vertex-attribute/-by-value/index.md)
+val [handle](handle.md): WGPUVertexAttribute.ByValue

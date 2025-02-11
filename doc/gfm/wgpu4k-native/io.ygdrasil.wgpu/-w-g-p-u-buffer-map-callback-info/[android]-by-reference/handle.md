@@ -3,4 +3,4 @@
 # handle
 
 [android]\
-val [handle](handle.md): [WGPUBufferMapCallbackInfo.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-buffer-map-callback-info/-by-reference/index.md)
+val [handle](handle.md): WGPUBufferMapCallbackInfo.ByReference

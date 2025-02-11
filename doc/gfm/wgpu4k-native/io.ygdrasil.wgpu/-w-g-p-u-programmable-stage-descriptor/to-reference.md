@@ -3,4 +3,4 @@
 # toReference
 
 [android]\
-open fun [toReference](to-reference.md)(): [WGPUProgrammableStageDescriptor.ByReference](../../io.ygdrasil.wgpu.android/-w-g-p-u-programmable-stage-descriptor/-by-reference/index.md)
+open fun [toReference](to-reference.md)(): WGPUProgrammableStageDescriptor.ByReference

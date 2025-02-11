@@ -3,4 +3,4 @@
 # toCValue
 
 [android]\
-open fun [toCValue]([android]to-c-value.md)(): [WGPUSurfaceCapabilities.ByValue](../../io.ygdrasil.wgpu.android/-w-g-p-u-surface-capabilities/-by-value/index.md)
+open fun [toCValue]([android]to-c-value.md)(): WGPUSurfaceCapabilities.ByValue

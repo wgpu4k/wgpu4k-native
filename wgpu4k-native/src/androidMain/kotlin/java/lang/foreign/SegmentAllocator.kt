@@ -4,6 +4,9 @@ import com.sun.jna.Pointer
 import ffi.JnaArena
 import ffi.NativeAddress
 
+/**
+ * @suppress
+ */
 class SegmentAllocator(internal val arena: JnaArena) {
     fun allocate(layout: ValueLayout): MemorySegment = MemorySegment(arena.allocate(layout.size), layout.size)
         .also { it.fillWithZero() }

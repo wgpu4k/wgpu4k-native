@@ -3,4 +3,4 @@
 # toCValue
 
 [android]\
-open fun [toCValue]([android]to-c-value.md)(): [WGPUChainedStruct.ByValue](../../io.ygdrasil.wgpu.android/-w-g-p-u-chained-struct/-by-value/index.md)
+open fun [toCValue]([android]to-c-value.md)(): WGPUChainedStruct.ByValue

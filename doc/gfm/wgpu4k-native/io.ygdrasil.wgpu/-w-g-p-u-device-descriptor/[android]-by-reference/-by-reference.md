@@ -3,4 +3,4 @@
 # ByReference
 
 [android]\
-constructor(handle: [WGPUDeviceDescriptor.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-device-descriptor/-by-reference/index.md) = io.ygdrasil.wgpu.android.WGPUDeviceDescriptor.ByReference(com.sun.jna.Pointer.NULL))
+constructor(handle: WGPUDeviceDescriptor.ByReference = io.ygdrasil.wgpu.android.WGPUDeviceDescriptor.ByReference(com.sun.jna.Pointer.NULL))

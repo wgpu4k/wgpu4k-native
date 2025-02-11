@@ -9,4 +9,4 @@ interface [Function](index.md) : Callback
 
 | Name | Summary |
 |---|---|
-| [apply](apply.md) | [android]<br>abstract fun [apply](apply.md)(status: [Int](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html), pipeline: Pointer?, message: [WGPUStringView.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-string-view/-by-value/index.md), userdata1: Pointer?, userdata2: Pointer?) |
+| [apply](apply.md) | [android]<br>abstract fun [apply](apply.md)(status: [Int](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html), pipeline: Pointer?, message: WGPUStringView.ByValue, userdata1: Pointer?, userdata2: Pointer?) |

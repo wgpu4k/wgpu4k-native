@@ -3,4 +3,4 @@
 # toCValue
 
 [android]\
-open fun [toCValue]([android]to-c-value.md)(): [WGPUDeviceLostCallbackInfo.ByValue](../../io.ygdrasil.wgpu.android/-w-g-p-u-device-lost-callback-info/-by-value/index.md)
+open fun [toCValue]([android]to-c-value.md)(): WGPUDeviceLostCallbackInfo.ByValue

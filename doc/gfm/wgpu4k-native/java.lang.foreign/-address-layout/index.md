@@ -3,4 +3,4 @@
 # AddressLayout
 
 [android]\
-typealias [AddressLayout](index.md) = [ValueLayout](../-value-layout/index.md)
+typealias [AddressLayout](index.md) = ValueLayout

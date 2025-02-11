@@ -3,4 +3,4 @@
 # setAtIndex
 
 [android]\
-fun [setAtIndex](set-at-index.md)(layout: [ValueLayout.OfInt](../-value-layout/-of-int/index.md), offest: [Long](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html), value: [Int](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html))
+fun [setAtIndex](set-at-index.md)(layout: ValueLayout.OfInt, offest: [Long](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html), value: [Int](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html))

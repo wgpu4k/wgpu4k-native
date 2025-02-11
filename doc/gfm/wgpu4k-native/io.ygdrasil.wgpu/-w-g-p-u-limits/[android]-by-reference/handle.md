@@ -3,4 +3,4 @@
 # handle
 
 [android]\
-val [handle](handle.md): [WGPULimits.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-limits/-by-reference/index.md)
+val [handle](handle.md): WGPULimits.ByReference

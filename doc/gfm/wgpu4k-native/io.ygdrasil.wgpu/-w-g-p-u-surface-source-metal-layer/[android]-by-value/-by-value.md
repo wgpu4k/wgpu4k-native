@@ -3,4 +3,4 @@
 # ByValue
 
 [android]\
-constructor(handle: [WGPUSurfaceSourceMetalLayer.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-surface-source-metal-layer/-by-value/index.md) = io.ygdrasil.wgpu.android.WGPUSurfaceSourceMetalLayer.ByValue(com.sun.jna.Pointer.NULL))
+constructor(handle: WGPUSurfaceSourceMetalLayer.ByValue = io.ygdrasil.wgpu.android.WGPUSurfaceSourceMetalLayer.ByValue(com.sun.jna.Pointer.NULL))

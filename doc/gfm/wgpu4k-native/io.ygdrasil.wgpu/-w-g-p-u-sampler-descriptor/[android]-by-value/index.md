@@ -3,13 +3,13 @@
 # ByValue
 
 [android]\
-class [ByValue](index.md)(val handle: [WGPUSamplerDescriptor.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-sampler-descriptor/-by-value/index.md) = io.ygdrasil.wgpu.android.WGPUSamplerDescriptor.ByValue(com.sun.jna.Pointer.NULL)) : [WGPUSamplerDescriptor](../index.md)
+class [ByValue](index.md)(val handle: WGPUSamplerDescriptor.ByValue = io.ygdrasil.wgpu.android.WGPUSamplerDescriptor.ByValue(com.sun.jna.Pointer.NULL)) : [WGPUSamplerDescriptor](../index.md)
 
 ## Constructors
 
 | | |
 |---|---|
-| [ByValue](-by-value.md) | [android]<br>constructor(handle: [WGPUSamplerDescriptor.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-sampler-descriptor/-by-value/index.md) = io.ygdrasil.wgpu.android.WGPUSamplerDescriptor.ByValue(com.sun.jna.Pointer.NULL)) |
+| [ByValue](-by-value.md) | [android]<br>constructor(handle: WGPUSamplerDescriptor.ByValue = io.ygdrasil.wgpu.android.WGPUSamplerDescriptor.ByValue(com.sun.jna.Pointer.NULL)) |
 
 ## Properties
 
@@ -19,7 +19,7 @@ class [ByValue](index.md)(val handle: [WGPUSamplerDescriptor.ByValue](../../../i
 | [addressModeV](address-mode-v.md) | [android]<br>open override var [addressModeV](address-mode-v.md): [WGPUAddressMode](../../-w-g-p-u-address-mode/index.md) |
 | [addressModeW](address-mode-w.md) | [android]<br>open override var [addressModeW](address-mode-w.md): [WGPUAddressMode](../../-w-g-p-u-address-mode/index.md) |
 | [compare](compare.md) | [android]<br>open override var [compare](compare.md): [WGPUCompareFunction](../../-w-g-p-u-compare-function/index.md) |
-| [handle](handle.md) | [android]<br>val [handle](handle.md): [WGPUSamplerDescriptor.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-sampler-descriptor/-by-value/index.md) |
+| [handle](handle.md) | [android]<br>val [handle](handle.md): WGPUSamplerDescriptor.ByValue |
 | [handler](handler.md) | [android]<br>open override val [handler](handler.md): [NativeAddress](../../../ffi/-native-address/index.md) |
 | [label](label.md) | [android]<br>open override val [label](label.md): [WGPUStringView](../../-w-g-p-u-string-view/index.md) |
 | [lodMaxClamp](lod-max-clamp.md) | [android]<br>open override var [lodMaxClamp](lod-max-clamp.md): [Float](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html) |
@@ -34,5 +34,5 @@ class [ByValue](index.md)(val handle: [WGPUSamplerDescriptor.ByValue](../../../i
 
 | Name | Summary |
 |---|---|
-| [toCValue](../[android]to-c-value.md) | [android]<br>open fun [toCValue](../[android]to-c-value.md)(): [WGPUSamplerDescriptor.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-sampler-descriptor/-by-value/index.md) |
-| [toReference](../to-reference.md) | [android]<br>open fun [toReference](../to-reference.md)(): [WGPUSamplerDescriptor.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-sampler-descriptor/-by-reference/index.md) |
+| [toCValue](../[android]to-c-value.md) | [android]<br>open fun [toCValue](../[android]to-c-value.md)(): WGPUSamplerDescriptor.ByValue |
+| [toReference](../to-reference.md) | [android]<br>open fun [toReference](../to-reference.md)(): WGPUSamplerDescriptor.ByReference |

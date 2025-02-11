@@ -3,4 +3,4 @@
 # handle
 
 [android]\
-val [handle](handle.md): [WGPUCreateComputePipelineAsyncCallbackInfo.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-create-compute-pipeline-async-callback-info/-by-value/index.md)
+val [handle](handle.md): WGPUCreateComputePipelineAsyncCallbackInfo.ByValue

@@ -3,4 +3,4 @@
 # ByReference
 
 [android]\
-constructor(handle: [WGPURequestAdapterCallbackInfo.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-request-adapter-callback-info/-by-reference/index.md) = io.ygdrasil.wgpu.android.WGPURequestAdapterCallbackInfo.ByReference(com.sun.jna.Pointer.NULL))
+constructor(handle: WGPURequestAdapterCallbackInfo.ByReference = io.ygdrasil.wgpu.android.WGPURequestAdapterCallbackInfo.ByReference(com.sun.jna.Pointer.NULL))

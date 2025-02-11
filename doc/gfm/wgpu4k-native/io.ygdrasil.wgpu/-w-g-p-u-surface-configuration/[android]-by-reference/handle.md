@@ -3,4 +3,4 @@
 # handle
 
 [android]\
-val [handle](handle.md): [WGPUSurfaceConfiguration.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-surface-configuration/-by-reference/index.md)
+val [handle](handle.md): WGPUSurfaceConfiguration.ByReference

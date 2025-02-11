@@ -1,7 +1,13 @@
 package java.lang.foreign
 
+/**
+ * @suppress
+ */
 typealias AddressLayout = ValueLayout
 
+/**
+ * @suppress
+ */
 abstract class ValueLayout(val size: Long, val name: String? = null) {
     companion object {
         val JAVA_LONG: OfLong = OfLong(Long.SIZE_BYTES.toLong())
@@ -38,9 +44,4 @@ abstract class ValueLayout(val size: Long, val name: String? = null) {
     class OfBoolean(size: Long, name: String? = null) : ValueLayout(size, name) {
         override fun withName(name: String) = OfBoolean(size, name)
     }
-}
-
-
-class PaddingLayout(size: Long, name: String? = null) : ValueLayout(size, name) {
-    override fun withName(name: String) = PaddingLayout(size, name)
 }

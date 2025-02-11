@@ -3,4 +3,4 @@
 # ByReference
 
 [android]\
-constructor(handle: [WGPURenderPassDescriptor.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-render-pass-descriptor/-by-reference/index.md) = io.ygdrasil.wgpu.android.WGPURenderPassDescriptor.ByReference(com.sun.jna.Pointer.NULL))
+constructor(handle: WGPURenderPassDescriptor.ByReference = io.ygdrasil.wgpu.android.WGPURenderPassDescriptor.ByReference(com.sun.jna.Pointer.NULL))

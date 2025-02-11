@@ -3,4 +3,4 @@
 # toReference
 
 [android]\
-open fun [toReference](to-reference.md)(): [WGPUVertexState.ByReference](../../io.ygdrasil.wgpu.android/-w-g-p-u-vertex-state/-by-reference/index.md)
+open fun [toReference](to-reference.md)(): WGPUVertexState.ByReference

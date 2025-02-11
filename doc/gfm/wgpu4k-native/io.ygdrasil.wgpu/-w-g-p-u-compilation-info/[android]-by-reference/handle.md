@@ -3,4 +3,4 @@
 # handle
 
 [android]\
-val [handle](handle.md): [WGPUCompilationInfo.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-compilation-info/-by-reference/index.md)
+val [handle](handle.md): WGPUCompilationInfo.ByReference

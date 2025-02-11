@@ -3,4 +3,4 @@
 # ByReference
 
 [android]\
-constructor(handle: [WGPUBindGroupLayoutEntry.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-bind-group-layout-entry/-by-reference/index.md) = io.ygdrasil.wgpu.android.WGPUBindGroupLayoutEntry.ByReference(com.sun.jna.Pointer.NULL))
+constructor(handle: WGPUBindGroupLayoutEntry.ByReference = io.ygdrasil.wgpu.android.WGPUBindGroupLayoutEntry.ByReference(com.sun.jna.Pointer.NULL))

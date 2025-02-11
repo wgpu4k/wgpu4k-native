@@ -3,4 +3,4 @@
 # handle
 
 [android]\
-val [handle](handle.md): [WGPUComputePipelineDescriptor.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-compute-pipeline-descriptor/-by-value/index.md)
+val [handle](handle.md): WGPUComputePipelineDescriptor.ByValue

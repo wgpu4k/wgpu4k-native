@@ -3,4 +3,4 @@
 # ByReference
 
 [android]\
-constructor(handle: [WGPUVertexState.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-vertex-state/-by-reference/index.md) = io.ygdrasil.wgpu.android.WGPUVertexState.ByReference(com.sun.jna.Pointer.NULL))
+constructor(handle: WGPUVertexState.ByReference = io.ygdrasil.wgpu.android.WGPUVertexState.ByReference(com.sun.jna.Pointer.NULL))

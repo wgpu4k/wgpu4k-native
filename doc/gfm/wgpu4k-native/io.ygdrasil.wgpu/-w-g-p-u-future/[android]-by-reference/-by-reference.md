@@ -3,4 +3,4 @@
 # ByReference
 
 [android]\
-constructor(handle: [WGPUFuture.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-future/-by-reference/index.md) = io.ygdrasil.wgpu.android.WGPUFuture.ByReference(com.sun.jna.Pointer.NULL))
+constructor(handle: WGPUFuture.ByReference = io.ygdrasil.wgpu.android.WGPUFuture.ByReference(com.sun.jna.Pointer.NULL))

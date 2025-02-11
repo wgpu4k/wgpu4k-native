@@ -3,4 +3,4 @@
 # toCValue
 
 [android]\
-open fun [toCValue]([android]to-c-value.md)(): [WGPUComputePassTimestampWrites.ByValue](../../io.ygdrasil.wgpu.android/-w-g-p-u-compute-pass-timestamp-writes/-by-value/index.md)
+open fun [toCValue]([android]to-c-value.md)(): WGPUComputePassTimestampWrites.ByValue

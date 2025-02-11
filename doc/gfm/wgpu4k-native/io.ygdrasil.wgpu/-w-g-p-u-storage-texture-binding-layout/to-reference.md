@@ -3,4 +3,4 @@
 # toReference
 
 [android]\
-open fun [toReference](to-reference.md)(): [WGPUStorageTextureBindingLayout.ByReference](../../io.ygdrasil.wgpu.android/-w-g-p-u-storage-texture-binding-layout/-by-reference/index.md)
+open fun [toReference](to-reference.md)(): WGPUStorageTextureBindingLayout.ByReference

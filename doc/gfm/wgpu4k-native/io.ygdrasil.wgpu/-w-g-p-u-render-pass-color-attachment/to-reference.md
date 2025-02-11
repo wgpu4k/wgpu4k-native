@@ -3,4 +3,4 @@
 # toReference
 
 [android]\
-open fun [toReference](to-reference.md)(): [WGPURenderPassColorAttachment.ByReference](../../io.ygdrasil.wgpu.android/-w-g-p-u-render-pass-color-attachment/-by-reference/index.md)
+open fun [toReference](to-reference.md)(): WGPURenderPassColorAttachment.ByReference

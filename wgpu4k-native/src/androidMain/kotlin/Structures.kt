@@ -3,6 +3,9 @@ package io.ygdrasil.wgpu.android
 
 import ffi.NativeAddress
 
+/**
+ * @suppress
+ */
 sealed class WGPUStringView(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var data: com.sun.jna.Pointer? = null
 	@JvmField var length: Long = 0L
@@ -23,6 +26,9 @@ sealed class WGPUStringView(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUAdapterInfo(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var vendor: WGPUStringView.ByValue = WGPUStringView.ByValue()
@@ -64,6 +70,9 @@ sealed class WGPUAdapterInfo(pointer: com.sun.jna.Pointer? = null) : com.sun.jna
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUBindGroupDescriptor(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var label: WGPUStringView.ByValue = WGPUStringView.ByValue()
@@ -93,6 +102,9 @@ sealed class WGPUBindGroupDescriptor(pointer: com.sun.jna.Pointer? = null) : com
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUBindGroupEntry(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var binding: Int = 0
@@ -128,6 +140,9 @@ sealed class WGPUBindGroupEntry(pointer: com.sun.jna.Pointer? = null) : com.sun.
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUBindGroupLayoutDescriptor(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var label: WGPUStringView.ByValue = WGPUStringView.ByValue()
@@ -154,6 +169,9 @@ sealed class WGPUBindGroupLayoutDescriptor(pointer: com.sun.jna.Pointer? = null)
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUBufferBindingLayout(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var type: Int = 0
@@ -180,6 +198,9 @@ sealed class WGPUBufferBindingLayout(pointer: com.sun.jna.Pointer? = null) : com
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUSamplerBindingLayout(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var type: Int = 0
@@ -200,6 +221,9 @@ sealed class WGPUSamplerBindingLayout(pointer: com.sun.jna.Pointer? = null) : co
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUTextureBindingLayout(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var sampleType: Int = 0
@@ -226,6 +250,9 @@ sealed class WGPUTextureBindingLayout(pointer: com.sun.jna.Pointer? = null) : co
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUStorageTextureBindingLayout(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var access: Int = 0
@@ -252,6 +279,9 @@ sealed class WGPUStorageTextureBindingLayout(pointer: com.sun.jna.Pointer? = nul
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUBindGroupLayoutEntry(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var binding: Int = 0
@@ -287,6 +317,9 @@ sealed class WGPUBindGroupLayoutEntry(pointer: com.sun.jna.Pointer? = null) : co
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUBlendComponent(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var operation: Int = 0
 	@JvmField var srcFactor: Int = 0
@@ -310,6 +343,9 @@ sealed class WGPUBlendComponent(pointer: com.sun.jna.Pointer? = null) : com.sun.
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUBlendState(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var color: WGPUBlendComponent.ByValue = WGPUBlendComponent.ByValue()
 	@JvmField var alpha: WGPUBlendComponent.ByValue = WGPUBlendComponent.ByValue()
@@ -330,6 +366,9 @@ sealed class WGPUBlendState(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUBufferDescriptor(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var label: WGPUStringView.ByValue = WGPUStringView.ByValue()
@@ -359,6 +398,9 @@ sealed class WGPUBufferDescriptor(pointer: com.sun.jna.Pointer? = null) : com.su
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUColor(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var r: Double = 0.0
 	@JvmField var g: Double = 0.0
@@ -385,6 +427,9 @@ sealed class WGPUColor(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Struc
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUColorTargetState(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var format: Int = 0
@@ -411,6 +456,9 @@ sealed class WGPUColorTargetState(pointer: com.sun.jna.Pointer? = null) : com.su
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUCommandBufferDescriptor(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var label: WGPUStringView.ByValue = WGPUStringView.ByValue()
@@ -431,6 +479,9 @@ sealed class WGPUCommandBufferDescriptor(pointer: com.sun.jna.Pointer? = null) :
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUCommandEncoderDescriptor(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var label: WGPUStringView.ByValue = WGPUStringView.ByValue()
@@ -451,6 +502,9 @@ sealed class WGPUCommandEncoderDescriptor(pointer: com.sun.jna.Pointer? = null) 
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUCompilationInfo(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var messageCount: Long = 0L
@@ -474,6 +528,9 @@ sealed class WGPUCompilationInfo(pointer: com.sun.jna.Pointer? = null) : com.sun
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUCompilationMessage(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var message: WGPUStringView.ByValue = WGPUStringView.ByValue()
@@ -509,6 +566,9 @@ sealed class WGPUCompilationMessage(pointer: com.sun.jna.Pointer? = null) : com.
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUComputePassDescriptor(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var label: WGPUStringView.ByValue = WGPUStringView.ByValue()
@@ -532,6 +592,9 @@ sealed class WGPUComputePassDescriptor(pointer: com.sun.jna.Pointer? = null) : c
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUComputePassTimestampWrites(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var querySet: com.sun.jna.Pointer? = null
 	@JvmField var beginningOfPassWriteIndex: Int = 0
@@ -555,6 +618,9 @@ sealed class WGPUComputePassTimestampWrites(pointer: com.sun.jna.Pointer? = null
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUProgrammableStageDescriptor(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var module: com.sun.jna.Pointer? = null
@@ -584,6 +650,9 @@ sealed class WGPUProgrammableStageDescriptor(pointer: com.sun.jna.Pointer? = nul
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUComputePipelineDescriptor(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var label: WGPUStringView.ByValue = WGPUStringView.ByValue()
@@ -610,6 +679,9 @@ sealed class WGPUComputePipelineDescriptor(pointer: com.sun.jna.Pointer? = null)
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUConstantEntry(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var key: WGPUStringView.ByValue = WGPUStringView.ByValue()
@@ -633,6 +705,9 @@ sealed class WGPUConstantEntry(pointer: com.sun.jna.Pointer? = null) : com.sun.j
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUStencilFaceState(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var compare: Int = 0
 	@JvmField var failOp: Int = 0
@@ -659,6 +734,9 @@ sealed class WGPUStencilFaceState(pointer: com.sun.jna.Pointer? = null) : com.su
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUDepthStencilState(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var format: Int = 0
@@ -706,6 +784,9 @@ sealed class WGPUDepthStencilState(pointer: com.sun.jna.Pointer? = null) : com.s
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUQueueDescriptor(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var label: WGPUStringView.ByValue = WGPUStringView.ByValue()
@@ -726,6 +807,9 @@ sealed class WGPUQueueDescriptor(pointer: com.sun.jna.Pointer? = null) : com.sun
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUDeviceLostCallbackInfo(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: WGPUChainedStruct.ByReference?? = null
 	@JvmField var mode: Int = 0
@@ -755,6 +839,9 @@ sealed class WGPUDeviceLostCallbackInfo(pointer: com.sun.jna.Pointer? = null) : 
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUUncapturedErrorCallbackInfo(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: WGPUChainedStruct.ByReference?? = null
 	@JvmField var callback: com.sun.jna.Callback? = null
@@ -781,6 +868,9 @@ sealed class WGPUUncapturedErrorCallbackInfo(pointer: com.sun.jna.Pointer? = nul
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUDeviceDescriptor(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var label: WGPUStringView.ByValue = WGPUStringView.ByValue()
@@ -819,6 +909,9 @@ sealed class WGPUDeviceDescriptor(pointer: com.sun.jna.Pointer? = null) : com.su
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUExtent3D(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var width: Int = 0
 	@JvmField var height: Int = 0
@@ -842,6 +935,9 @@ sealed class WGPUExtent3D(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.St
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUFragmentState(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var module: com.sun.jna.Pointer? = null
@@ -877,6 +973,9 @@ sealed class WGPUFragmentState(pointer: com.sun.jna.Pointer? = null) : com.sun.j
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUFuture(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var id: Long = 0L
 	override fun getFieldOrder() = listOf("id")
@@ -894,6 +993,9 @@ sealed class WGPUFuture(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Stru
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUFutureWaitInfo(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var future: WGPUFuture.ByValue = WGPUFuture.ByValue()
 	@JvmField var completed: Int = 0
@@ -914,6 +1016,9 @@ sealed class WGPUFutureWaitInfo(pointer: com.sun.jna.Pointer? = null) : com.sun.
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUInstanceCapabilities(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var timedWaitAnyEnable: Int = 0
@@ -937,6 +1042,9 @@ sealed class WGPUInstanceCapabilities(pointer: com.sun.jna.Pointer? = null) : co
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUInstanceDescriptor(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var features: WGPUInstanceCapabilities.ByValue = WGPUInstanceCapabilities.ByValue()
@@ -957,6 +1065,9 @@ sealed class WGPUInstanceDescriptor(pointer: com.sun.jna.Pointer? = null) : com.
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPULimits(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var maxTextureDimension1D: Int = 0
@@ -1067,6 +1178,9 @@ sealed class WGPULimits(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Stru
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUMultisampleState(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var count: Int = 0
@@ -1093,6 +1207,9 @@ sealed class WGPUMultisampleState(pointer: com.sun.jna.Pointer? = null) : com.su
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUOrigin3D(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var x: Int = 0
 	@JvmField var y: Int = 0
@@ -1116,6 +1233,9 @@ sealed class WGPUOrigin3D(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.St
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUPipelineLayoutDescriptor(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var label: WGPUStringView.ByValue = WGPUStringView.ByValue()
@@ -1142,6 +1262,9 @@ sealed class WGPUPipelineLayoutDescriptor(pointer: com.sun.jna.Pointer? = null) 
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUPrimitiveState(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var topology: Int = 0
@@ -1174,6 +1297,9 @@ sealed class WGPUPrimitiveState(pointer: com.sun.jna.Pointer? = null) : com.sun.
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUQuerySetDescriptor(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var label: WGPUStringView.ByValue = WGPUStringView.ByValue()
@@ -1200,6 +1326,9 @@ sealed class WGPUQuerySetDescriptor(pointer: com.sun.jna.Pointer? = null) : com.
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPURenderBundleDescriptor(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var label: WGPUStringView.ByValue = WGPUStringView.ByValue()
@@ -1220,6 +1349,9 @@ sealed class WGPURenderBundleDescriptor(pointer: com.sun.jna.Pointer? = null) : 
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPURenderBundleEncoderDescriptor(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var label: WGPUStringView.ByValue = WGPUStringView.ByValue()
@@ -1258,6 +1390,9 @@ sealed class WGPURenderBundleEncoderDescriptor(pointer: com.sun.jna.Pointer? = n
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPURenderPassColorAttachment(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var view: com.sun.jna.Pointer? = null
@@ -1293,6 +1428,9 @@ sealed class WGPURenderPassColorAttachment(pointer: com.sun.jna.Pointer? = null)
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPURenderPassDepthStencilAttachment(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var view: com.sun.jna.Pointer? = null
 	@JvmField var depthLoadOp: Int = 0
@@ -1334,6 +1472,9 @@ sealed class WGPURenderPassDepthStencilAttachment(pointer: com.sun.jna.Pointer? 
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPURenderPassDescriptor(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var label: WGPUStringView.ByValue = WGPUStringView.ByValue()
@@ -1369,6 +1510,9 @@ sealed class WGPURenderPassDescriptor(pointer: com.sun.jna.Pointer? = null) : co
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUChainedStruct(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var next: WGPUChainedStruct.ByReference?? = null
 	@JvmField var sType: Int = 0
@@ -1389,6 +1533,9 @@ sealed class WGPUChainedStruct(pointer: com.sun.jna.Pointer? = null) : com.sun.j
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPURenderPassMaxDrawCount(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var chain: WGPUChainedStruct.ByValue = WGPUChainedStruct.ByValue()
 	@JvmField var maxDrawCount: Long = 0L
@@ -1409,6 +1556,9 @@ sealed class WGPURenderPassMaxDrawCount(pointer: com.sun.jna.Pointer? = null) : 
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPURenderPassTimestampWrites(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var querySet: com.sun.jna.Pointer? = null
 	@JvmField var beginningOfPassWriteIndex: Int = 0
@@ -1432,6 +1582,9 @@ sealed class WGPURenderPassTimestampWrites(pointer: com.sun.jna.Pointer? = null)
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUVertexState(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var module: com.sun.jna.Pointer? = null
@@ -1467,6 +1620,9 @@ sealed class WGPUVertexState(pointer: com.sun.jna.Pointer? = null) : com.sun.jna
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPURenderPipelineDescriptor(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var label: WGPUStringView.ByValue = WGPUStringView.ByValue()
@@ -1505,6 +1661,9 @@ sealed class WGPURenderPipelineDescriptor(pointer: com.sun.jna.Pointer? = null) 
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPURequestAdapterOptions(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var featureLevel: Int = 0
@@ -1537,6 +1696,9 @@ sealed class WGPURequestAdapterOptions(pointer: com.sun.jna.Pointer? = null) : c
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUSamplerDescriptor(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var label: WGPUStringView.ByValue = WGPUStringView.ByValue()
@@ -1587,6 +1749,9 @@ sealed class WGPUSamplerDescriptor(pointer: com.sun.jna.Pointer? = null) : com.s
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUShaderModuleDescriptor(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var label: WGPUStringView.ByValue = WGPUStringView.ByValue()
@@ -1607,6 +1772,9 @@ sealed class WGPUShaderModuleDescriptor(pointer: com.sun.jna.Pointer? = null) : 
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUShaderSourceSPIRV(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var chain: WGPUChainedStruct.ByValue = WGPUChainedStruct.ByValue()
 	@JvmField var codeSize: Int = 0
@@ -1630,6 +1798,9 @@ sealed class WGPUShaderSourceSPIRV(pointer: com.sun.jna.Pointer? = null) : com.s
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUShaderSourceWGSL(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var chain: WGPUChainedStruct.ByValue = WGPUChainedStruct.ByValue()
 	@JvmField var code: WGPUStringView.ByValue = WGPUStringView.ByValue()
@@ -1650,6 +1821,9 @@ sealed class WGPUShaderSourceWGSL(pointer: com.sun.jna.Pointer? = null) : com.su
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUSupportedFeatures(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var featureCount: Long = 0L
 	@JvmField var features: com.sun.jna.Pointer? = null
@@ -1670,6 +1844,9 @@ sealed class WGPUSupportedFeatures(pointer: com.sun.jna.Pointer? = null) : com.s
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUSupportedWGSLLanguageFeatures(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var featureCount: Long = 0L
 	@JvmField var features: com.sun.jna.Pointer? = null
@@ -1690,6 +1867,9 @@ sealed class WGPUSupportedWGSLLanguageFeatures(pointer: com.sun.jna.Pointer? = n
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUSurfaceCapabilities(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var usages: Long = 0L
@@ -1728,6 +1908,9 @@ sealed class WGPUSurfaceCapabilities(pointer: com.sun.jna.Pointer? = null) : com
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUSurfaceConfiguration(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var device: com.sun.jna.Pointer? = null
@@ -1772,6 +1955,9 @@ sealed class WGPUSurfaceConfiguration(pointer: com.sun.jna.Pointer? = null) : co
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUSurfaceDescriptor(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var label: WGPUStringView.ByValue = WGPUStringView.ByValue()
@@ -1792,6 +1978,9 @@ sealed class WGPUSurfaceDescriptor(pointer: com.sun.jna.Pointer? = null) : com.s
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUSurfaceSourceAndroidNativeWindow(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var chain: WGPUChainedStruct.ByValue = WGPUChainedStruct.ByValue()
 	@JvmField var window: com.sun.jna.Pointer? = null
@@ -1812,6 +2001,9 @@ sealed class WGPUSurfaceSourceAndroidNativeWindow(pointer: com.sun.jna.Pointer? 
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUSurfaceSourceMetalLayer(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var chain: WGPUChainedStruct.ByValue = WGPUChainedStruct.ByValue()
 	@JvmField var layer: com.sun.jna.Pointer? = null
@@ -1832,6 +2024,9 @@ sealed class WGPUSurfaceSourceMetalLayer(pointer: com.sun.jna.Pointer? = null) :
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUSurfaceSourceWaylandSurface(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var chain: WGPUChainedStruct.ByValue = WGPUChainedStruct.ByValue()
 	@JvmField var display: com.sun.jna.Pointer? = null
@@ -1855,6 +2050,9 @@ sealed class WGPUSurfaceSourceWaylandSurface(pointer: com.sun.jna.Pointer? = nul
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUSurfaceSourceWindowsHWND(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var chain: WGPUChainedStruct.ByValue = WGPUChainedStruct.ByValue()
 	@JvmField var hinstance: com.sun.jna.Pointer? = null
@@ -1878,6 +2076,9 @@ sealed class WGPUSurfaceSourceWindowsHWND(pointer: com.sun.jna.Pointer? = null) 
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUSurfaceSourceXCBWindow(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var chain: WGPUChainedStruct.ByValue = WGPUChainedStruct.ByValue()
 	@JvmField var connection: com.sun.jna.Pointer? = null
@@ -1901,6 +2102,9 @@ sealed class WGPUSurfaceSourceXCBWindow(pointer: com.sun.jna.Pointer? = null) : 
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUSurfaceSourceXlibWindow(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var chain: WGPUChainedStruct.ByValue = WGPUChainedStruct.ByValue()
 	@JvmField var display: com.sun.jna.Pointer? = null
@@ -1924,6 +2128,9 @@ sealed class WGPUSurfaceSourceXlibWindow(pointer: com.sun.jna.Pointer? = null) :
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUSurfaceTexture(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var texture: com.sun.jna.Pointer? = null
@@ -1947,6 +2154,9 @@ sealed class WGPUSurfaceTexture(pointer: com.sun.jna.Pointer? = null) : com.sun.
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUTexelCopyBufferLayout(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var offset: Long = 0L
 	@JvmField var bytesPerRow: Int = 0
@@ -1970,6 +2180,9 @@ sealed class WGPUTexelCopyBufferLayout(pointer: com.sun.jna.Pointer? = null) : c
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUTexelCopyBufferInfo(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var layout: WGPUTexelCopyBufferLayout.ByValue = WGPUTexelCopyBufferLayout.ByValue()
 	@JvmField var buffer: com.sun.jna.Pointer? = null
@@ -1990,6 +2203,9 @@ sealed class WGPUTexelCopyBufferInfo(pointer: com.sun.jna.Pointer? = null) : com
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUTexelCopyTextureInfo(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var texture: com.sun.jna.Pointer? = null
 	@JvmField var mipLevel: Int = 0
@@ -2016,6 +2232,9 @@ sealed class WGPUTexelCopyTextureInfo(pointer: com.sun.jna.Pointer? = null) : co
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUTextureDescriptor(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var label: WGPUStringView.ByValue = WGPUStringView.ByValue()
@@ -2060,6 +2279,9 @@ sealed class WGPUTextureDescriptor(pointer: com.sun.jna.Pointer? = null) : com.s
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUTextureViewDescriptor(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var label: WGPUStringView.ByValue = WGPUStringView.ByValue()
@@ -2104,6 +2326,9 @@ sealed class WGPUTextureViewDescriptor(pointer: com.sun.jna.Pointer? = null) : c
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUVertexAttribute(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var format: Int = 0
 	@JvmField var offset: Long = 0L
@@ -2127,6 +2352,9 @@ sealed class WGPUVertexAttribute(pointer: com.sun.jna.Pointer? = null) : com.sun
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUVertexBufferLayout(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var stepMode: Int = 0
 	@JvmField var arrayStride: Long = 0L
@@ -2153,6 +2381,9 @@ sealed class WGPUVertexBufferLayout(pointer: com.sun.jna.Pointer? = null) : com.
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUInstanceExtras(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var chain: WGPUChainedStruct.ByValue = WGPUChainedStruct.ByValue()
 	@JvmField var backends: Long = 0L
@@ -2188,6 +2419,9 @@ sealed class WGPUInstanceExtras(pointer: com.sun.jna.Pointer? = null) : com.sun.
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUChainedStructOut(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var next: WGPUChainedStructOut.ByReference?? = null
 	@JvmField var sType: Int = 0
@@ -2208,6 +2442,9 @@ sealed class WGPUChainedStructOut(pointer: com.sun.jna.Pointer? = null) : com.su
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUBufferMapCallbackInfo(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: WGPUChainedStruct.ByReference?? = null
 	@JvmField var mode: Int = 0
@@ -2237,6 +2474,9 @@ sealed class WGPUBufferMapCallbackInfo(pointer: com.sun.jna.Pointer? = null) : c
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUCompilationInfoCallbackInfo(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: WGPUChainedStruct.ByReference?? = null
 	@JvmField var mode: Int = 0
@@ -2266,6 +2506,9 @@ sealed class WGPUCompilationInfoCallbackInfo(pointer: com.sun.jna.Pointer? = nul
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUCreateComputePipelineAsyncCallbackInfo(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: WGPUChainedStruct.ByReference?? = null
 	@JvmField var mode: Int = 0
@@ -2295,6 +2538,9 @@ sealed class WGPUCreateComputePipelineAsyncCallbackInfo(pointer: com.sun.jna.Poi
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUCreateRenderPipelineAsyncCallbackInfo(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: WGPUChainedStruct.ByReference?? = null
 	@JvmField var mode: Int = 0
@@ -2324,6 +2570,9 @@ sealed class WGPUCreateRenderPipelineAsyncCallbackInfo(pointer: com.sun.jna.Poin
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUPopErrorScopeCallbackInfo(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: WGPUChainedStruct.ByReference?? = null
 	@JvmField var mode: Int = 0
@@ -2353,6 +2602,9 @@ sealed class WGPUPopErrorScopeCallbackInfo(pointer: com.sun.jna.Pointer? = null)
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPUQueueWorkDoneCallbackInfo(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: WGPUChainedStruct.ByReference?? = null
 	@JvmField var mode: Int = 0
@@ -2382,6 +2634,9 @@ sealed class WGPUQueueWorkDoneCallbackInfo(pointer: com.sun.jna.Pointer? = null)
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPURequestAdapterCallbackInfo(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: WGPUChainedStruct.ByReference?? = null
 	@JvmField var mode: Int = 0
@@ -2411,6 +2666,9 @@ sealed class WGPURequestAdapterCallbackInfo(pointer: com.sun.jna.Pointer? = null
 	}
 }
 
+/**
+ * @suppress
+ */
 sealed class WGPURequestDeviceCallbackInfo(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var nextInChain: WGPUChainedStruct.ByReference?? = null
 	@JvmField var mode: Int = 0

@@ -3,4 +3,4 @@
 # toReference
 
 [android]\
-open fun [toReference](to-reference.md)(): [WGPUShaderModuleDescriptor.ByReference](../../io.ygdrasil.wgpu.android/-w-g-p-u-shader-module-descriptor/-by-reference/index.md)
+open fun [toReference](to-reference.md)(): WGPUShaderModuleDescriptor.ByReference

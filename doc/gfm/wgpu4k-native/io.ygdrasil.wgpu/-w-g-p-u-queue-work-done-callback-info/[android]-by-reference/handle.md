@@ -3,4 +3,4 @@
 # handle
 
 [android]\
-val [handle](handle.md): [WGPUQueueWorkDoneCallbackInfo.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-queue-work-done-callback-info/-by-reference/index.md)
+val [handle](handle.md): WGPUQueueWorkDoneCallbackInfo.ByReference

@@ -3,4 +3,4 @@
 # ByValue
 
 [android]\
-constructor(handle: [WGPUCommandBufferDescriptor.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-command-buffer-descriptor/-by-value/index.md) = io.ygdrasil.wgpu.android.WGPUCommandBufferDescriptor.ByValue(com.sun.jna.Pointer.NULL))
+constructor(handle: WGPUCommandBufferDescriptor.ByValue = io.ygdrasil.wgpu.android.WGPUCommandBufferDescriptor.ByValue(com.sun.jna.Pointer.NULL))

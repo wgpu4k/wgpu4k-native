@@ -3,4 +3,4 @@
 # handle
 
 [android]\
-val [handle](handle.md): [WGPUCommandEncoderDescriptor.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-command-encoder-descriptor/-by-value/index.md)
+val [handle](handle.md): WGPUCommandEncoderDescriptor.ByValue

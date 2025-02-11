@@ -3,4 +3,4 @@
 # handle
 
 [android]\
-val [handle](handle.md): [WGPUTexelCopyBufferInfo.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-texel-copy-buffer-info/-by-reference/index.md)
+val [handle](handle.md): WGPUTexelCopyBufferInfo.ByReference

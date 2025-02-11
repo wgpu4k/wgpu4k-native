@@ -3,4 +3,4 @@
 # ByValue
 
 [android]\
-constructor(handle: [WGPUTexelCopyBufferInfo.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-texel-copy-buffer-info/-by-value/index.md) = io.ygdrasil.wgpu.android.WGPUTexelCopyBufferInfo.ByValue(com.sun.jna.Pointer.NULL))
+constructor(handle: WGPUTexelCopyBufferInfo.ByValue = io.ygdrasil.wgpu.android.WGPUTexelCopyBufferInfo.ByValue(com.sun.jna.Pointer.NULL))

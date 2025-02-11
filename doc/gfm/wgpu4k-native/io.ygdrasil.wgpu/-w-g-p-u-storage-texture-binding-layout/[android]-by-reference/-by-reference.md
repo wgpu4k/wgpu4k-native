@@ -3,4 +3,4 @@
 # ByReference
 
 [android]\
-constructor(handle: [WGPUStorageTextureBindingLayout.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-storage-texture-binding-layout/-by-reference/index.md) = io.ygdrasil.wgpu.android.WGPUStorageTextureBindingLayout.ByReference(com.sun.jna.Pointer.NULL))
+constructor(handle: WGPUStorageTextureBindingLayout.ByReference = io.ygdrasil.wgpu.android.WGPUStorageTextureBindingLayout.ByReference(com.sun.jna.Pointer.NULL))

@@ -3,4 +3,4 @@
 # ByValue
 
 [android]\
-constructor(handle: [WGPUSurfaceSourceXlibWindow.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-surface-source-xlib-window/-by-value/index.md) = io.ygdrasil.wgpu.android.WGPUSurfaceSourceXlibWindow.ByValue(com.sun.jna.Pointer.NULL))
+constructor(handle: WGPUSurfaceSourceXlibWindow.ByValue = io.ygdrasil.wgpu.android.WGPUSurfaceSourceXlibWindow.ByValue(com.sun.jna.Pointer.NULL))

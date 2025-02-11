@@ -3,4 +3,4 @@
 # toReference
 
 [android]\
-open fun [toReference](to-reference.md)(): [WGPURenderPassDescriptor.ByReference](../../io.ygdrasil.wgpu.android/-w-g-p-u-render-pass-descriptor/-by-reference/index.md)
+open fun [toReference](to-reference.md)(): WGPURenderPassDescriptor.ByReference

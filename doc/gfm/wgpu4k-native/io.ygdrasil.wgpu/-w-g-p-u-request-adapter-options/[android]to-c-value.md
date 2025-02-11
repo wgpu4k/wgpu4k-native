@@ -3,4 +3,4 @@
 # toCValue
 
 [android]\
-open fun [toCValue]([android]to-c-value.md)(): [WGPURequestAdapterOptions.ByValue](../../io.ygdrasil.wgpu.android/-w-g-p-u-request-adapter-options/-by-value/index.md)
+open fun [toCValue]([android]to-c-value.md)(): WGPURequestAdapterOptions.ByValue

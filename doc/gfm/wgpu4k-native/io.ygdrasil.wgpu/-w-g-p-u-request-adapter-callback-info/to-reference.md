@@ -3,4 +3,4 @@
 # toReference
 
 [android]\
-open fun [toReference](to-reference.md)(): [WGPURequestAdapterCallbackInfo.ByReference](../../io.ygdrasil.wgpu.android/-w-g-p-u-request-adapter-callback-info/-by-reference/index.md)
+open fun [toReference](to-reference.md)(): WGPURequestAdapterCallbackInfo.ByReference

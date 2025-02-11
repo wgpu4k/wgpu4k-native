@@ -3,4 +3,4 @@
 # toReference
 
 [android]\
-open fun [toReference](to-reference.md)(): [WGPUStringView.ByReference](../../io.ygdrasil.wgpu.android/-w-g-p-u-string-view/-by-reference/index.md)
+open fun [toReference](to-reference.md)(): WGPUStringView.ByReference

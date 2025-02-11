@@ -3,13 +3,13 @@
 # ByValue
 
 [android]\
-class [ByValue](index.md)(val handle: [WGPUPrimitiveState.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-primitive-state/-by-value/index.md) = io.ygdrasil.wgpu.android.WGPUPrimitiveState.ByValue(com.sun.jna.Pointer.NULL)) : [WGPUPrimitiveState](../index.md)
+class [ByValue](index.md)(val handle: WGPUPrimitiveState.ByValue = io.ygdrasil.wgpu.android.WGPUPrimitiveState.ByValue(com.sun.jna.Pointer.NULL)) : [WGPUPrimitiveState](../index.md)
 
 ## Constructors
 
 | | |
 |---|---|
-| [ByValue](-by-value.md) | [android]<br>constructor(handle: [WGPUPrimitiveState.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-primitive-state/-by-value/index.md) = io.ygdrasil.wgpu.android.WGPUPrimitiveState.ByValue(com.sun.jna.Pointer.NULL)) |
+| [ByValue](-by-value.md) | [android]<br>constructor(handle: WGPUPrimitiveState.ByValue = io.ygdrasil.wgpu.android.WGPUPrimitiveState.ByValue(com.sun.jna.Pointer.NULL)) |
 
 ## Properties
 
@@ -17,7 +17,7 @@ class [ByValue](index.md)(val handle: [WGPUPrimitiveState.ByValue](../../../io.y
 |---|---|
 | [cullMode](cull-mode.md) | [android]<br>open override var [cullMode](cull-mode.md): [WGPUCullMode](../../-w-g-p-u-cull-mode/index.md) |
 | [frontFace](front-face.md) | [android]<br>open override var [frontFace](front-face.md): [WGPUFrontFace](../../-w-g-p-u-front-face/index.md) |
-| [handle](handle.md) | [android]<br>val [handle](handle.md): [WGPUPrimitiveState.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-primitive-state/-by-value/index.md) |
+| [handle](handle.md) | [android]<br>val [handle](handle.md): WGPUPrimitiveState.ByValue |
 | [handler](handler.md) | [android]<br>open override val [handler](handler.md): [NativeAddress](../../../ffi/-native-address/index.md) |
 | [nextInChain](next-in-chain.md) | [android]<br>open override var [nextInChain](next-in-chain.md): [NativeAddress](../../../ffi/-native-address/index.md)? |
 | [stripIndexFormat](strip-index-format.md) | [android]<br>open override var [stripIndexFormat](strip-index-format.md): [WGPUIndexFormat](../../-w-g-p-u-index-format/index.md) |
@@ -28,5 +28,5 @@ class [ByValue](index.md)(val handle: [WGPUPrimitiveState.ByValue](../../../io.y
 
 | Name | Summary |
 |---|---|
-| [toCValue](../[android]to-c-value.md) | [android]<br>open fun [toCValue](../[android]to-c-value.md)(): [WGPUPrimitiveState.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-primitive-state/-by-value/index.md) |
-| [toReference](../to-reference.md) | [android]<br>open fun [toReference](../to-reference.md)(): [WGPUPrimitiveState.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-primitive-state/-by-reference/index.md) |
+| [toCValue](../[android]to-c-value.md) | [android]<br>open fun [toCValue](../[android]to-c-value.md)(): WGPUPrimitiveState.ByValue |
+| [toReference](../to-reference.md) | [android]<br>open fun [toReference](../to-reference.md)(): WGPUPrimitiveState.ByReference |

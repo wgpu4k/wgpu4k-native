@@ -3,4 +3,4 @@
 # handle
 
 [android]\
-val [handle](handle.md): [WGPUColorTargetState.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-color-target-state/-by-value/index.md)
+val [handle](handle.md): WGPUColorTargetState.ByValue

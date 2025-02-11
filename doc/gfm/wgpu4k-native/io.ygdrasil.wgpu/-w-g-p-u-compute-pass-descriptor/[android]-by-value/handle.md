@@ -3,4 +3,4 @@
 # handle
 
 [android]\
-val [handle](handle.md): [WGPUComputePassDescriptor.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-compute-pass-descriptor/-by-value/index.md)
+val [handle](handle.md): WGPUComputePassDescriptor.ByValue

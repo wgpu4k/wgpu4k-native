@@ -3,4 +3,4 @@
 # ByReference
 
 [android]\
-constructor(handle: [WGPUTexelCopyTextureInfo.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-texel-copy-texture-info/-by-reference/index.md) = io.ygdrasil.wgpu.android.WGPUTexelCopyTextureInfo.ByReference(com.sun.jna.Pointer.NULL))
+constructor(handle: WGPUTexelCopyTextureInfo.ByReference = io.ygdrasil.wgpu.android.WGPUTexelCopyTextureInfo.ByReference(com.sun.jna.Pointer.NULL))

@@ -6,6 +6,9 @@ import java.nio.charset.Charset
 import java.nio.charset.IllegalCharsetNameException
 import java.nio.charset.UnsupportedCharsetException
 
+/**
+ * @suppress
+ */
 internal class NativeString @JvmOverloads constructor(
     string: String,
     encoding: String = Native.getDefaultStringEncoding()
@@ -84,10 +87,11 @@ internal class NativeString @JvmOverloads constructor(
     }
 }
 
-fun getBytes(s: String, encoding: String?): ByteArray {
+private fun getBytes(s: String, encoding: String?): ByteArray {
     return getBytes(s, getCharset(encoding))
 }
-fun getBytes(s: String, charset: Charset?): ByteArray {
+
+private fun getBytes(s: String, charset: Charset?): ByteArray {
     return s.toByteArray(charset!!)
 }
 

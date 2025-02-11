@@ -3,4 +3,4 @@
 # ByValue
 
 [android]\
-constructor(handle: [WGPUSurfaceSourceWaylandSurface.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-surface-source-wayland-surface/-by-value/index.md) = io.ygdrasil.wgpu.android.WGPUSurfaceSourceWaylandSurface.ByValue(com.sun.jna.Pointer.NULL))
+constructor(handle: WGPUSurfaceSourceWaylandSurface.ByValue = io.ygdrasil.wgpu.android.WGPUSurfaceSourceWaylandSurface.ByValue(com.sun.jna.Pointer.NULL))

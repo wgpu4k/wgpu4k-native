@@ -3,8 +3,5 @@
 # C_LONG_LONG
 
 [android, jvm]\
-[android]\
-val [C_LONG_LONG](-c_-l-o-n-g_-l-o-n-g.md): [ValueLayout](../java.lang.foreign/-value-layout/index.md)
-
-[jvm]\
+[android, jvm]\
 val [C_LONG_LONG](-c_-l-o-n-g_-l-o-n-g.md): ValueLayout

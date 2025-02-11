@@ -3,4 +3,4 @@
 # ByReference
 
 [android]\
-constructor(handle: [WGPUCompilationInfoCallbackInfo.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-compilation-info-callback-info/-by-reference/index.md) = io.ygdrasil.wgpu.android.WGPUCompilationInfoCallbackInfo.ByReference(com.sun.jna.Pointer.NULL))
+constructor(handle: WGPUCompilationInfoCallbackInfo.ByReference = io.ygdrasil.wgpu.android.WGPUCompilationInfoCallbackInfo.ByReference(com.sun.jna.Pointer.NULL))

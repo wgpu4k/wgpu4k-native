@@ -3,4 +3,4 @@
 # toReference
 
 [android]\
-open fun [toReference](to-reference.md)(): [WGPUCommandEncoderDescriptor.ByReference](../../io.ygdrasil.wgpu.android/-w-g-p-u-command-encoder-descriptor/-by-reference/index.md)
+open fun [toReference](to-reference.md)(): WGPUCommandEncoderDescriptor.ByReference

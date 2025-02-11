@@ -3,4 +3,4 @@
 # toReference
 
 [android]\
-open fun [toReference](to-reference.md)(): [WGPUSurfaceSourceMetalLayer.ByReference](../../io.ygdrasil.wgpu.android/-w-g-p-u-surface-source-metal-layer/-by-reference/index.md)
+open fun [toReference](to-reference.md)(): WGPUSurfaceSourceMetalLayer.ByReference

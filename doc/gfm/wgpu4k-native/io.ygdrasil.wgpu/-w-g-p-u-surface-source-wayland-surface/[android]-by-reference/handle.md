@@ -3,4 +3,4 @@
 # handle
 
 [android]\
-val [handle](handle.md): [WGPUSurfaceSourceWaylandSurface.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-surface-source-wayland-surface/-by-reference/index.md)
+val [handle](handle.md): WGPUSurfaceSourceWaylandSurface.ByReference

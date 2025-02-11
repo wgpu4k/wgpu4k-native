@@ -3,4 +3,4 @@
 # handle
 
 [android]\
-val [handle](handle.md): [WGPUSamplerBindingLayout.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-sampler-binding-layout/-by-reference/index.md)
+val [handle](handle.md): WGPUSamplerBindingLayout.ByReference

@@ -3,4 +3,4 @@
 # handle
 
 [android]\
-val [handle](handle.md): [WGPUPipelineLayoutDescriptor.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-pipeline-layout-descriptor/-by-value/index.md)
+val [handle](handle.md): WGPUPipelineLayoutDescriptor.ByValue

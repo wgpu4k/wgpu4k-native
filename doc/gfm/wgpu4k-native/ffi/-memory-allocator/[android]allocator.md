@@ -3,4 +3,4 @@
 # allocator
 
 [android]\
-val [allocator]([android]allocator.md): [SegmentAllocator](../../java.lang.foreign/-segment-allocator/index.md)
+val [allocator]([android]allocator.md): SegmentAllocator

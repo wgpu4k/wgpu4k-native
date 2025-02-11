@@ -3,4 +3,4 @@
 # toReference
 
 [android]\
-open fun [toReference](to-reference.md)(): [WGPUPipelineLayoutDescriptor.ByReference](../../io.ygdrasil.wgpu.android/-w-g-p-u-pipeline-layout-descriptor/-by-reference/index.md)
+open fun [toReference](to-reference.md)(): WGPUPipelineLayoutDescriptor.ByReference

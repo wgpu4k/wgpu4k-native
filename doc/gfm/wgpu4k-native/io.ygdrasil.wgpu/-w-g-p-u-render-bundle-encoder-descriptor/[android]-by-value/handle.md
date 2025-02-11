@@ -3,4 +3,4 @@
 # handle
 
 [android]\
-val [handle](handle.md): [WGPURenderBundleEncoderDescriptor.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-render-bundle-encoder-descriptor/-by-value/index.md)
+val [handle](handle.md): WGPURenderBundleEncoderDescriptor.ByValue

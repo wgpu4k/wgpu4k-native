@@ -3,4 +3,4 @@
 # handle
 
 [android]\
-val [handle](handle.md): [WGPUVertexState.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-vertex-state/-by-reference/index.md)
+val [handle](handle.md): WGPUVertexState.ByReference

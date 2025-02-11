@@ -3,4 +3,4 @@
 # toReference
 
 [android]\
-open fun [toReference](to-reference.md)(): [WGPUTexelCopyBufferLayout.ByReference](../../io.ygdrasil.wgpu.android/-w-g-p-u-texel-copy-buffer-layout/-by-reference/index.md)
+open fun [toReference](to-reference.md)(): WGPUTexelCopyBufferLayout.ByReference

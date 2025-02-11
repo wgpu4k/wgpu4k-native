@@ -3,13 +3,13 @@
 # ByValue
 
 [android]\
-class [ByValue](index.md)(val handle: [WGPUTextureViewDescriptor.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-texture-view-descriptor/-by-value/index.md) = io.ygdrasil.wgpu.android.WGPUTextureViewDescriptor.ByValue(com.sun.jna.Pointer.NULL)) : [WGPUTextureViewDescriptor](../index.md)
+class [ByValue](index.md)(val handle: WGPUTextureViewDescriptor.ByValue = io.ygdrasil.wgpu.android.WGPUTextureViewDescriptor.ByValue(com.sun.jna.Pointer.NULL)) : [WGPUTextureViewDescriptor](../index.md)
 
 ## Constructors
 
 | | |
 |---|---|
-| [ByValue](-by-value.md) | [android]<br>constructor(handle: [WGPUTextureViewDescriptor.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-texture-view-descriptor/-by-value/index.md) = io.ygdrasil.wgpu.android.WGPUTextureViewDescriptor.ByValue(com.sun.jna.Pointer.NULL)) |
+| [ByValue](-by-value.md) | [android]<br>constructor(handle: WGPUTextureViewDescriptor.ByValue = io.ygdrasil.wgpu.android.WGPUTextureViewDescriptor.ByValue(com.sun.jna.Pointer.NULL)) |
 
 ## Properties
 
@@ -21,7 +21,7 @@ class [ByValue](index.md)(val handle: [WGPUTextureViewDescriptor.ByValue](../../
 | [baseMipLevel](base-mip-level.md) | [android]<br>open override var [baseMipLevel](base-mip-level.md): [UInt](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-int/index.html) |
 | [dimension](dimension.md) | [android]<br>open override var [dimension](dimension.md): [WGPUTextureViewDimension](../../-w-g-p-u-texture-view-dimension/index.md) |
 | [format](format.md) | [android]<br>open override var [format](format.md): [WGPUTextureFormat](../../-w-g-p-u-texture-format/index.md) |
-| [handle](handle.md) | [android]<br>val [handle](handle.md): [WGPUTextureViewDescriptor.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-texture-view-descriptor/-by-value/index.md) |
+| [handle](handle.md) | [android]<br>val [handle](handle.md): WGPUTextureViewDescriptor.ByValue |
 | [handler](handler.md) | [android]<br>open override val [handler](handler.md): [NativeAddress](../../../ffi/-native-address/index.md) |
 | [label](label.md) | [android]<br>open override val [label](label.md): [WGPUStringView](../../-w-g-p-u-string-view/index.md) |
 | [mipLevelCount](mip-level-count.md) | [android]<br>open override var [mipLevelCount](mip-level-count.md): [UInt](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-int/index.html) |
@@ -32,5 +32,5 @@ class [ByValue](index.md)(val handle: [WGPUTextureViewDescriptor.ByValue](../../
 
 | Name | Summary |
 |---|---|
-| [toCValue](../[android]to-c-value.md) | [android]<br>open fun [toCValue](../[android]to-c-value.md)(): [WGPUTextureViewDescriptor.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-texture-view-descriptor/-by-value/index.md) |
-| [toReference](../to-reference.md) | [android]<br>open fun [toReference](../to-reference.md)(): [WGPUTextureViewDescriptor.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-texture-view-descriptor/-by-reference/index.md) |
+| [toCValue](../[android]to-c-value.md) | [android]<br>open fun [toCValue](../[android]to-c-value.md)(): WGPUTextureViewDescriptor.ByValue |
+| [toReference](../to-reference.md) | [android]<br>open fun [toReference](../to-reference.md)(): WGPUTextureViewDescriptor.ByReference |

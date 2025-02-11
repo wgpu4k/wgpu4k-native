@@ -3,4 +3,4 @@
 # handle
 
 [android]\
-val [handle](handle.md): [WGPURenderPassTimestampWrites.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-render-pass-timestamp-writes/-by-reference/index.md)
+val [handle](handle.md): WGPURenderPassTimestampWrites.ByReference

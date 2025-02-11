@@ -3,4 +3,4 @@
 # ByReference
 
 [android]\
-constructor(handle: [WGPUBufferDescriptor.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-buffer-descriptor/-by-reference/index.md) = io.ygdrasil.wgpu.android.WGPUBufferDescriptor.ByReference(com.sun.jna.Pointer.NULL))
+constructor(handle: WGPUBufferDescriptor.ByReference = io.ygdrasil.wgpu.android.WGPUBufferDescriptor.ByReference(com.sun.jna.Pointer.NULL))

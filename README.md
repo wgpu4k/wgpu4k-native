@@ -23,6 +23,8 @@ This library uses the Firefox backend written in Rust, [available here](https://
 
 ## How to use
 
+[View the API reference](https://wgpu4k.github.io/wgpu4k-native/)
+
 From a basic multiplatform project, create a common native source set and add the library:
 
 ``` kotlin

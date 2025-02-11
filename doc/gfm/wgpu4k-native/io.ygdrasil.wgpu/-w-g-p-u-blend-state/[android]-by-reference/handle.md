@@ -3,4 +3,4 @@
 # handle
 
 [android]\
-val [handle](handle.md): [WGPUBlendState.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-blend-state/-by-reference/index.md)
+val [handle](handle.md): WGPUBlendState.ByReference

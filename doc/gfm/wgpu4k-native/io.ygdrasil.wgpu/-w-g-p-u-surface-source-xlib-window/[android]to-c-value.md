@@ -3,4 +3,4 @@
 # toCValue
 
 [android]\
-open fun [toCValue]([android]to-c-value.md)(): [WGPUSurfaceSourceXlibWindow.ByValue](../../io.ygdrasil.wgpu.android/-w-g-p-u-surface-source-xlib-window/-by-value/index.md)
+open fun [toCValue]([android]to-c-value.md)(): WGPUSurfaceSourceXlibWindow.ByValue

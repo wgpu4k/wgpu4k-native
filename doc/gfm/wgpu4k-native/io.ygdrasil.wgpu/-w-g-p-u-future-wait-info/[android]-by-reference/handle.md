@@ -3,4 +3,4 @@
 # handle
 
 [android]\
-val [handle](handle.md): [WGPUFutureWaitInfo.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-future-wait-info/-by-reference/index.md)
+val [handle](handle.md): WGPUFutureWaitInfo.ByReference

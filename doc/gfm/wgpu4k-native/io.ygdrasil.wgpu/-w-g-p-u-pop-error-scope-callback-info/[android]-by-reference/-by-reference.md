@@ -3,4 +3,4 @@
 # ByReference
 
 [android]\
-constructor(handle: [WGPUPopErrorScopeCallbackInfo.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-pop-error-scope-callback-info/-by-reference/index.md) = io.ygdrasil.wgpu.android.WGPUPopErrorScopeCallbackInfo.ByReference(com.sun.jna.Pointer.NULL))
+constructor(handle: WGPUPopErrorScopeCallbackInfo.ByReference = io.ygdrasil.wgpu.android.WGPUPopErrorScopeCallbackInfo.ByReference(com.sun.jna.Pointer.NULL))

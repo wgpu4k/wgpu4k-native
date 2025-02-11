@@ -3,19 +3,19 @@
 # ByReference
 
 [android]\
-class [ByReference](index.md)(val handle: [WGPUInstanceCapabilities.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-instance-capabilities/-by-reference/index.md) = io.ygdrasil.wgpu.android.WGPUInstanceCapabilities.ByReference(com.sun.jna.Pointer.NULL)) : [WGPUInstanceCapabilities](../index.md)
+class [ByReference](index.md)(val handle: WGPUInstanceCapabilities.ByReference = io.ygdrasil.wgpu.android.WGPUInstanceCapabilities.ByReference(com.sun.jna.Pointer.NULL)) : [WGPUInstanceCapabilities](../index.md)
 
 ## Constructors
 
 | | |
 |---|---|
-| [ByReference](-by-reference.md) | [android]<br>constructor(handle: [WGPUInstanceCapabilities.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-instance-capabilities/-by-reference/index.md) = io.ygdrasil.wgpu.android.WGPUInstanceCapabilities.ByReference(com.sun.jna.Pointer.NULL)) |
+| [ByReference](-by-reference.md) | [android]<br>constructor(handle: WGPUInstanceCapabilities.ByReference = io.ygdrasil.wgpu.android.WGPUInstanceCapabilities.ByReference(com.sun.jna.Pointer.NULL)) |
 
 ## Properties
 
 | Name | Summary |
 |---|---|
-| [handle](handle.md) | [android]<br>val [handle](handle.md): [WGPUInstanceCapabilities.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-instance-capabilities/-by-reference/index.md) |
+| [handle](handle.md) | [android]<br>val [handle](handle.md): WGPUInstanceCapabilities.ByReference |
 | [handler](handler.md) | [android]<br>open override val [handler](handler.md): [NativeAddress](../../../ffi/-native-address/index.md) |
 | [nextInChain](next-in-chain.md) | [android]<br>open override var [nextInChain](next-in-chain.md): [NativeAddress](../../../ffi/-native-address/index.md)? |
 | [timedWaitAnyEnable](timed-wait-any-enable.md) | [android]<br>open override var [timedWaitAnyEnable](timed-wait-any-enable.md): [Boolean](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html) |
@@ -25,5 +25,5 @@ class [ByReference](index.md)(val handle: [WGPUInstanceCapabilities.ByReference]
 
 | Name | Summary |
 |---|---|
-| [toCValue](../[android]to-c-value.md) | [android]<br>open fun [toCValue](../[android]to-c-value.md)(): [WGPUInstanceCapabilities.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-instance-capabilities/-by-value/index.md) |
-| [toReference](../to-reference.md) | [android]<br>open fun [toReference](../to-reference.md)(): [WGPUInstanceCapabilities.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-instance-capabilities/-by-reference/index.md) |
+| [toCValue](../[android]to-c-value.md) | [android]<br>open fun [toCValue](../[android]to-c-value.md)(): WGPUInstanceCapabilities.ByValue |
+| [toReference](../to-reference.md) | [android]<br>open fun [toReference](../to-reference.md)(): WGPUInstanceCapabilities.ByReference |

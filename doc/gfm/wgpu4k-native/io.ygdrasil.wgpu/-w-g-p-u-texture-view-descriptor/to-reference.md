@@ -3,4 +3,4 @@
 # toReference
 
 [android]\
-open fun [toReference](to-reference.md)(): [WGPUTextureViewDescriptor.ByReference](../../io.ygdrasil.wgpu.android/-w-g-p-u-texture-view-descriptor/-by-reference/index.md)
+open fun [toReference](to-reference.md)(): WGPUTextureViewDescriptor.ByReference

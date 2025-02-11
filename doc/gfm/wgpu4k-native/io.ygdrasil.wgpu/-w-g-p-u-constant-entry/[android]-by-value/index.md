@@ -3,19 +3,19 @@
 # ByValue
 
 [android]\
-class [ByValue](index.md)(val handle: [WGPUConstantEntry.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-constant-entry/-by-value/index.md) = io.ygdrasil.wgpu.android.WGPUConstantEntry.ByValue(com.sun.jna.Pointer.NULL)) : [WGPUConstantEntry](../index.md)
+class [ByValue](index.md)(val handle: WGPUConstantEntry.ByValue = io.ygdrasil.wgpu.android.WGPUConstantEntry.ByValue(com.sun.jna.Pointer.NULL)) : [WGPUConstantEntry](../index.md)
 
 ## Constructors
 
 | | |
 |---|---|
-| [ByValue](-by-value.md) | [android]<br>constructor(handle: [WGPUConstantEntry.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-constant-entry/-by-value/index.md) = io.ygdrasil.wgpu.android.WGPUConstantEntry.ByValue(com.sun.jna.Pointer.NULL)) |
+| [ByValue](-by-value.md) | [android]<br>constructor(handle: WGPUConstantEntry.ByValue = io.ygdrasil.wgpu.android.WGPUConstantEntry.ByValue(com.sun.jna.Pointer.NULL)) |
 
 ## Properties
 
 | Name | Summary |
 |---|---|
-| [handle](handle.md) | [android]<br>val [handle](handle.md): [WGPUConstantEntry.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-constant-entry/-by-value/index.md) |
+| [handle](handle.md) | [android]<br>val [handle](handle.md): WGPUConstantEntry.ByValue |
 | [handler](handler.md) | [android]<br>open override val [handler](handler.md): [NativeAddress](../../../ffi/-native-address/index.md) |
 | [key](key.md) | [android]<br>open override val [key](key.md): [WGPUStringView](../../-w-g-p-u-string-view/index.md) |
 | [nextInChain](next-in-chain.md) | [android]<br>open override var [nextInChain](next-in-chain.md): [NativeAddress](../../../ffi/-native-address/index.md)? |
@@ -25,5 +25,5 @@ class [ByValue](index.md)(val handle: [WGPUConstantEntry.ByValue](../../../io.yg
 
 | Name | Summary |
 |---|---|
-| [toCValue](../[android]to-c-value.md) | [android]<br>open fun [toCValue](../[android]to-c-value.md)(): [WGPUConstantEntry.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-constant-entry/-by-value/index.md) |
-| [toReference](../to-reference.md) | [android]<br>open fun [toReference](../to-reference.md)(): [WGPUConstantEntry.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-constant-entry/-by-reference/index.md) |
+| [toCValue](../[android]to-c-value.md) | [android]<br>open fun [toCValue](../[android]to-c-value.md)(): WGPUConstantEntry.ByValue |
+| [toReference](../to-reference.md) | [android]<br>open fun [toReference](../to-reference.md)(): WGPUConstantEntry.ByReference |

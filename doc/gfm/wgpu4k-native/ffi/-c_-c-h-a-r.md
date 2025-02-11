@@ -3,8 +3,5 @@
 # C_CHAR
 
 [android, jvm]\
-[android]\
-val [C_CHAR](-c_-c-h-a-r.md): [ValueLayout](../java.lang.foreign/-value-layout/index.md)
-
-[jvm]\
+[android, jvm]\
 val [C_CHAR](-c_-c-h-a-r.md): ValueLayout

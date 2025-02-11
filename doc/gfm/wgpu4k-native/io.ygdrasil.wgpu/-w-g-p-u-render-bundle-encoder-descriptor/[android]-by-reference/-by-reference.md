@@ -3,4 +3,4 @@
 # ByReference
 
 [android]\
-constructor(handle: [WGPURenderBundleEncoderDescriptor.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-render-bundle-encoder-descriptor/-by-reference/index.md) = io.ygdrasil.wgpu.android.WGPURenderBundleEncoderDescriptor.ByReference(com.sun.jna.Pointer.NULL))
+constructor(handle: WGPURenderBundleEncoderDescriptor.ByReference = io.ygdrasil.wgpu.android.WGPURenderBundleEncoderDescriptor.ByReference(com.sun.jna.Pointer.NULL))

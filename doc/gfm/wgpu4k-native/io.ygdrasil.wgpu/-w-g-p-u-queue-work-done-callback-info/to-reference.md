@@ -3,4 +3,4 @@
 # toReference
 
 [android]\
-open fun [toReference](to-reference.md)(): [WGPUQueueWorkDoneCallbackInfo.ByReference](../../io.ygdrasil.wgpu.android/-w-g-p-u-queue-work-done-callback-info/-by-reference/index.md)
+open fun [toReference](to-reference.md)(): WGPUQueueWorkDoneCallbackInfo.ByReference

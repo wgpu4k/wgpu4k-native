@@ -3,4 +3,4 @@
 # toReference
 
 [android]\
-open fun [toReference](to-reference.md)(): [WGPUTexelCopyTextureInfo.ByReference](../../io.ygdrasil.wgpu.android/-w-g-p-u-texel-copy-texture-info/-by-reference/index.md)
+open fun [toReference](to-reference.md)(): WGPUTexelCopyTextureInfo.ByReference

@@ -3,4 +3,4 @@
 # handle
 
 [android]\
-val [handle](handle.md): [WGPUQuerySetDescriptor.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-query-set-descriptor/-by-reference/index.md)
+val [handle](handle.md): WGPUQuerySetDescriptor.ByReference

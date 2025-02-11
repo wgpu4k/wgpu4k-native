@@ -3,4 +3,4 @@
 # ByReference
 
 [android]\
-constructor(handle: [WGPUComputePipelineDescriptor.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-compute-pipeline-descriptor/-by-reference/index.md) = io.ygdrasil.wgpu.android.WGPUComputePipelineDescriptor.ByReference(com.sun.jna.Pointer.NULL))
+constructor(handle: WGPUComputePipelineDescriptor.ByReference = io.ygdrasil.wgpu.android.WGPUComputePipelineDescriptor.ByReference(com.sun.jna.Pointer.NULL))

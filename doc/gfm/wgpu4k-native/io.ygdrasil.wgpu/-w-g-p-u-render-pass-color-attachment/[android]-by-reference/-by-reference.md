@@ -3,4 +3,4 @@
 # ByReference
 
 [android]\
-constructor(handle: [WGPURenderPassColorAttachment.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-render-pass-color-attachment/-by-reference/index.md) = io.ygdrasil.wgpu.android.WGPURenderPassColorAttachment.ByReference(com.sun.jna.Pointer.NULL))
+constructor(handle: WGPURenderPassColorAttachment.ByReference = io.ygdrasil.wgpu.android.WGPURenderPassColorAttachment.ByReference(com.sun.jna.Pointer.NULL))

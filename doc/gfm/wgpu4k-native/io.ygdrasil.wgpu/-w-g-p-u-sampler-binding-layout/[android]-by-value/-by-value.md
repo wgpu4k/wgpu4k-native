@@ -3,4 +3,4 @@
 # ByValue
 
 [android]\
-constructor(handle: [WGPUSamplerBindingLayout.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-sampler-binding-layout/-by-value/index.md) = io.ygdrasil.wgpu.android.WGPUSamplerBindingLayout.ByValue(com.sun.jna.Pointer.NULL))
+constructor(handle: WGPUSamplerBindingLayout.ByValue = io.ygdrasil.wgpu.android.WGPUSamplerBindingLayout.ByValue(com.sun.jna.Pointer.NULL))

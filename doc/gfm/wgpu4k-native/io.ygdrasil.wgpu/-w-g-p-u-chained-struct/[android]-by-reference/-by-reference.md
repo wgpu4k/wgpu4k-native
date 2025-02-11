@@ -3,4 +3,4 @@
 # ByReference
 
 [android]\
-constructor(handle: [WGPUChainedStruct.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-chained-struct/-by-reference/index.md) = io.ygdrasil.wgpu.android.WGPUChainedStruct.ByReference(com.sun.jna.Pointer.NULL))
+constructor(handle: WGPUChainedStruct.ByReference = io.ygdrasil.wgpu.android.WGPUChainedStruct.ByReference(com.sun.jna.Pointer.NULL))

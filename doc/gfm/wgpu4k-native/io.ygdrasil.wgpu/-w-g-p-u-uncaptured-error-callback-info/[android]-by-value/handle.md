@@ -3,4 +3,4 @@
 # handle
 
 [android]\
-val [handle](handle.md): [WGPUUncapturedErrorCallbackInfo.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-uncaptured-error-callback-info/-by-value/index.md)
+val [handle](handle.md): WGPUUncapturedErrorCallbackInfo.ByValue

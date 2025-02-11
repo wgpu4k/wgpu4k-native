@@ -3,8 +3,5 @@
 # C_BOOL
 
 [android, jvm]\
-[android]\
-val [C_BOOL](-c_-b-o-o-l.md): [ValueLayout](../java.lang.foreign/-value-layout/index.md)
-
-[jvm]\
+[android, jvm]\
 val [C_BOOL](-c_-b-o-o-l.md): ValueLayout

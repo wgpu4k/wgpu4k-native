@@ -3,4 +3,4 @@
 # toCValue
 
 [android]\
-open fun [toCValue]([android]to-c-value.md)(): [WGPUCreateRenderPipelineAsyncCallbackInfo.ByValue](../../io.ygdrasil.wgpu.android/-w-g-p-u-create-render-pipeline-async-callback-info/-by-value/index.md)
+open fun [toCValue]([android]to-c-value.md)(): WGPUCreateRenderPipelineAsyncCallbackInfo.ByValue

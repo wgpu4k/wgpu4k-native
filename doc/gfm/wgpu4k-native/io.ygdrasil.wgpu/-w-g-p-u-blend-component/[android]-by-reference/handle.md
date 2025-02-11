@@ -3,4 +3,4 @@
 # handle
 
 [android]\
-val [handle](handle.md): [WGPUBlendComponent.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-blend-component/-by-reference/index.md)
+val [handle](handle.md): WGPUBlendComponent.ByReference

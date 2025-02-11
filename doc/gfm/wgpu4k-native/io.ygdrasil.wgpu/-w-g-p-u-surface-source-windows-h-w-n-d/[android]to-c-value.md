@@ -3,4 +3,4 @@
 # toCValue
 
 [android]\
-open fun [toCValue]([android]to-c-value.md)(): [WGPUSurfaceSourceWindowsHWND.ByValue](../../io.ygdrasil.wgpu.android/-w-g-p-u-surface-source-windows-h-w-n-d/-by-value/index.md)
+open fun [toCValue]([android]to-c-value.md)(): WGPUSurfaceSourceWindowsHWND.ByValue

@@ -3,4 +3,4 @@
 # handle
 
 [android]\
-val [handle](handle.md): [WGPURenderPassDepthStencilAttachment.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-render-pass-depth-stencil-attachment/-by-value/index.md)
+val [handle](handle.md): WGPURenderPassDepthStencilAttachment.ByValue

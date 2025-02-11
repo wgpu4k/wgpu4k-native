@@ -3,4 +3,4 @@
 # toReference
 
 [android]\
-open fun [toReference](to-reference.md)(): [WGPUSupportedFeatures.ByReference](../../io.ygdrasil.wgpu.android/-w-g-p-u-supported-features/-by-reference/index.md)
+open fun [toReference](to-reference.md)(): WGPUSupportedFeatures.ByReference

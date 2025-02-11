@@ -3,20 +3,20 @@
 # ByValue
 
 [android]\
-class [ByValue](index.md)(val handle: [WGPUStringView.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-string-view/-by-value/index.md) = io.ygdrasil.wgpu.android.WGPUStringView.ByValue(com.sun.jna.Pointer.NULL)) : [WGPUStringView](../index.md)
+class [ByValue](index.md)(val handle: WGPUStringView.ByValue = io.ygdrasil.wgpu.android.WGPUStringView.ByValue(com.sun.jna.Pointer.NULL)) : [WGPUStringView](../index.md)
 
 ## Constructors
 
 | | |
 |---|---|
-| [ByValue](-by-value.md) | [android]<br>constructor(handle: [WGPUStringView.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-string-view/-by-value/index.md) = io.ygdrasil.wgpu.android.WGPUStringView.ByValue(com.sun.jna.Pointer.NULL)) |
+| [ByValue](-by-value.md) | [android]<br>constructor(handle: WGPUStringView.ByValue = io.ygdrasil.wgpu.android.WGPUStringView.ByValue(com.sun.jna.Pointer.NULL)) |
 
 ## Properties
 
 | Name | Summary |
 |---|---|
 | [data](data.md) | [android]<br>open override var [data](data.md): [CString](../../../ffi/-c-string/index.md)? |
-| [handle](handle.md) | [android]<br>val [handle](handle.md): [WGPUStringView.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-string-view/-by-value/index.md) |
+| [handle](handle.md) | [android]<br>val [handle](handle.md): WGPUStringView.ByValue |
 | [handler](handler.md) | [android]<br>open override val [handler](handler.md): [NativeAddress](../../../ffi/-native-address/index.md) |
 | [length](length.md) | [android]<br>open override var [length](length.md): [ULong](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-long/index.html) |
 
@@ -24,5 +24,5 @@ class [ByValue](index.md)(val handle: [WGPUStringView.ByValue](../../../io.ygdra
 
 | Name | Summary |
 |---|---|
-| [toCValue](../[android]to-c-value.md) | [android]<br>open fun [toCValue](../[android]to-c-value.md)(): [WGPUStringView.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-string-view/-by-value/index.md) |
-| [toReference](../to-reference.md) | [android]<br>open fun [toReference](../to-reference.md)(): [WGPUStringView.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-string-view/-by-reference/index.md) |
+| [toCValue](../[android]to-c-value.md) | [android]<br>open fun [toCValue](../[android]to-c-value.md)(): WGPUStringView.ByValue |
+| [toReference](../to-reference.md) | [android]<br>open fun [toReference](../to-reference.md)(): WGPUStringView.ByReference |

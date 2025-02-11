@@ -3,4 +3,4 @@
 # ByReference
 
 [android]\
-constructor(handle: [WGPURenderPassMaxDrawCount.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-render-pass-max-draw-count/-by-reference/index.md) = io.ygdrasil.wgpu.android.WGPURenderPassMaxDrawCount.ByReference(com.sun.jna.Pointer.NULL))
+constructor(handle: WGPURenderPassMaxDrawCount.ByReference = io.ygdrasil.wgpu.android.WGPURenderPassMaxDrawCount.ByReference(com.sun.jna.Pointer.NULL))

@@ -3,4 +3,4 @@
 # ByReference
 
 [android]\
-constructor(handle: [WGPUSamplerDescriptor.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-sampler-descriptor/-by-reference/index.md) = io.ygdrasil.wgpu.android.WGPUSamplerDescriptor.ByReference(com.sun.jna.Pointer.NULL))
+constructor(handle: WGPUSamplerDescriptor.ByReference = io.ygdrasil.wgpu.android.WGPUSamplerDescriptor.ByReference(com.sun.jna.Pointer.NULL))

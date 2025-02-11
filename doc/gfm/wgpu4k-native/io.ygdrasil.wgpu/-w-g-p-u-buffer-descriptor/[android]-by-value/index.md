@@ -3,19 +3,19 @@
 # ByValue
 
 [android]\
-class [ByValue](index.md)(val handle: [WGPUBufferDescriptor.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-buffer-descriptor/-by-value/index.md) = io.ygdrasil.wgpu.android.WGPUBufferDescriptor.ByValue(com.sun.jna.Pointer.NULL)) : [WGPUBufferDescriptor](../index.md)
+class [ByValue](index.md)(val handle: WGPUBufferDescriptor.ByValue = io.ygdrasil.wgpu.android.WGPUBufferDescriptor.ByValue(com.sun.jna.Pointer.NULL)) : [WGPUBufferDescriptor](../index.md)
 
 ## Constructors
 
 | | |
 |---|---|
-| [ByValue](-by-value.md) | [android]<br>constructor(handle: [WGPUBufferDescriptor.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-buffer-descriptor/-by-value/index.md) = io.ygdrasil.wgpu.android.WGPUBufferDescriptor.ByValue(com.sun.jna.Pointer.NULL)) |
+| [ByValue](-by-value.md) | [android]<br>constructor(handle: WGPUBufferDescriptor.ByValue = io.ygdrasil.wgpu.android.WGPUBufferDescriptor.ByValue(com.sun.jna.Pointer.NULL)) |
 
 ## Properties
 
 | Name | Summary |
 |---|---|
-| [handle](handle.md) | [android]<br>val [handle](handle.md): [WGPUBufferDescriptor.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-buffer-descriptor/-by-value/index.md) |
+| [handle](handle.md) | [android]<br>val [handle](handle.md): WGPUBufferDescriptor.ByValue |
 | [handler](handler.md) | [android]<br>open override val [handler](handler.md): [NativeAddress](../../../ffi/-native-address/index.md) |
 | [label](label.md) | [android]<br>open override val [label](label.md): [WGPUStringView](../../-w-g-p-u-string-view/index.md) |
 | [mappedAtCreation](mapped-at-creation.md) | [android]<br>open override var [mappedAtCreation](mapped-at-creation.md): [Boolean](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html) |
@@ -27,5 +27,5 @@ class [ByValue](index.md)(val handle: [WGPUBufferDescriptor.ByValue](../../../io
 
 | Name | Summary |
 |---|---|
-| [toCValue](../[android]to-c-value.md) | [android]<br>open fun [toCValue](../[android]to-c-value.md)(): [WGPUBufferDescriptor.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-buffer-descriptor/-by-value/index.md) |
-| [toReference](../to-reference.md) | [android]<br>open fun [toReference](../to-reference.md)(): [WGPUBufferDescriptor.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-buffer-descriptor/-by-reference/index.md) |
+| [toCValue](../[android]to-c-value.md) | [android]<br>open fun [toCValue](../[android]to-c-value.md)(): WGPUBufferDescriptor.ByValue |
+| [toReference](../to-reference.md) | [android]<br>open fun [toReference](../to-reference.md)(): WGPUBufferDescriptor.ByReference |

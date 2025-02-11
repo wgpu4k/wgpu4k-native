@@ -3,4 +3,4 @@
 # toReference
 
 [android]\
-open fun [toReference](to-reference.md)(): [WGPUBufferMapCallbackInfo.ByReference](../../io.ygdrasil.wgpu.android/-w-g-p-u-buffer-map-callback-info/-by-reference/index.md)
+open fun [toReference](to-reference.md)(): WGPUBufferMapCallbackInfo.ByReference

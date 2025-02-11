@@ -3,4 +3,4 @@
 # handle
 
 [android]\
-val [handle](handle.md): [WGPUInstanceCapabilities.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-instance-capabilities/-by-reference/index.md)
+val [handle](handle.md): WGPUInstanceCapabilities.ByReference

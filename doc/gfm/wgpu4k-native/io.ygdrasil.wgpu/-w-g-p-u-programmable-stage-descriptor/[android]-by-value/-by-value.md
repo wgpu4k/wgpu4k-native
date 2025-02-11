@@ -3,4 +3,4 @@
 # ByValue
 
 [android]\
-constructor(handle: [WGPUProgrammableStageDescriptor.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-programmable-stage-descriptor/-by-value/index.md) = io.ygdrasil.wgpu.android.WGPUProgrammableStageDescriptor.ByValue(com.sun.jna.Pointer.NULL))
+constructor(handle: WGPUProgrammableStageDescriptor.ByValue = io.ygdrasil.wgpu.android.WGPUProgrammableStageDescriptor.ByValue(com.sun.jna.Pointer.NULL))

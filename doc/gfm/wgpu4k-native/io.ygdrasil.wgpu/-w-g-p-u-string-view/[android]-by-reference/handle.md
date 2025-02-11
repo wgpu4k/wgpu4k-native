@@ -3,4 +3,4 @@
 # handle
 
 [android]\
-val [handle](handle.md): [WGPUStringView.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-string-view/-by-reference/index.md)
+val [handle](handle.md): WGPUStringView.ByReference

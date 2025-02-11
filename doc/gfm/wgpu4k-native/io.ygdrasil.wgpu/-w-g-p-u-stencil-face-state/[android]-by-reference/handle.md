@@ -3,4 +3,4 @@
 # handle
 
 [android]\
-val [handle](handle.md): [WGPUStencilFaceState.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-stencil-face-state/-by-reference/index.md)
+val [handle](handle.md): WGPUStencilFaceState.ByReference

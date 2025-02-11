@@ -3,4 +3,4 @@
 # toCValue
 
 [android]\
-open fun [toCValue]([android]to-c-value.md)(): [WGPUPrimitiveState.ByValue](../../io.ygdrasil.wgpu.android/-w-g-p-u-primitive-state/-by-value/index.md)
+open fun [toCValue]([android]to-c-value.md)(): WGPUPrimitiveState.ByValue

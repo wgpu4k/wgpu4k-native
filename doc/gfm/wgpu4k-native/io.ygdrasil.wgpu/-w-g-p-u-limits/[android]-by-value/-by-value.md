@@ -3,4 +3,4 @@
 # ByValue
 
 [android]\
-constructor(handle: [WGPULimits.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-limits/-by-value/index.md) = io.ygdrasil.wgpu.android.WGPULimits.ByValue(com.sun.jna.Pointer.NULL))
+constructor(handle: WGPULimits.ByValue = io.ygdrasil.wgpu.android.WGPULimits.ByValue(com.sun.jna.Pointer.NULL))

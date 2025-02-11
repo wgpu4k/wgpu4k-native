@@ -15,8 +15,6 @@ import ffi.CStructure
 import ffi.MemoryAllocator
 import ffi.toAddress
 import java.lang.foreign.AddressLayout
-import java.lang.foreign.MemoryLayout
-import java.lang.foreign.MemoryLayout.Companion.structLayout
 
 actual interface WGPUStringView {
 

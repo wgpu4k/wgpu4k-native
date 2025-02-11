@@ -3,13 +3,13 @@
 # ByValue
 
 [android]\
-class [ByValue](index.md)(val handle: [WGPUSurfaceConfiguration.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-surface-configuration/-by-value/index.md) = io.ygdrasil.wgpu.android.WGPUSurfaceConfiguration.ByValue(com.sun.jna.Pointer.NULL)) : [WGPUSurfaceConfiguration](../index.md)
+class [ByValue](index.md)(val handle: WGPUSurfaceConfiguration.ByValue = io.ygdrasil.wgpu.android.WGPUSurfaceConfiguration.ByValue(com.sun.jna.Pointer.NULL)) : [WGPUSurfaceConfiguration](../index.md)
 
 ## Constructors
 
 | | |
 |---|---|
-| [ByValue](-by-value.md) | [android]<br>constructor(handle: [WGPUSurfaceConfiguration.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-surface-configuration/-by-value/index.md) = io.ygdrasil.wgpu.android.WGPUSurfaceConfiguration.ByValue(com.sun.jna.Pointer.NULL)) |
+| [ByValue](-by-value.md) | [android]<br>constructor(handle: WGPUSurfaceConfiguration.ByValue = io.ygdrasil.wgpu.android.WGPUSurfaceConfiguration.ByValue(com.sun.jna.Pointer.NULL)) |
 
 ## Properties
 
@@ -18,7 +18,7 @@ class [ByValue](index.md)(val handle: [WGPUSurfaceConfiguration.ByValue](../../.
 | [alphaMode](alpha-mode.md) | [android]<br>open override var [alphaMode](alpha-mode.md): [WGPUCompositeAlphaMode](../../-w-g-p-u-composite-alpha-mode/index.md) |
 | [device](device.md) | [android]<br>open override var [device](device.md): [WGPUDevice](../../-w-g-p-u-device/index.md)? |
 | [format](format.md) | [android]<br>open override var [format](format.md): [WGPUTextureFormat](../../-w-g-p-u-texture-format/index.md) |
-| [handle](handle.md) | [android]<br>val [handle](handle.md): [WGPUSurfaceConfiguration.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-surface-configuration/-by-value/index.md) |
+| [handle](handle.md) | [android]<br>val [handle](handle.md): WGPUSurfaceConfiguration.ByValue |
 | [handler](handler.md) | [android]<br>open override val [handler](handler.md): [NativeAddress](../../../ffi/-native-address/index.md) |
 | [height](height.md) | [android]<br>open override var [height](height.md): [UInt](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-u-int/index.html) |
 | [nextInChain](next-in-chain.md) | [android]<br>open override var [nextInChain](next-in-chain.md): [NativeAddress](../../../ffi/-native-address/index.md)? |
@@ -32,5 +32,5 @@ class [ByValue](index.md)(val handle: [WGPUSurfaceConfiguration.ByValue](../../.
 
 | Name | Summary |
 |---|---|
-| [toCValue](../[android]to-c-value.md) | [android]<br>open fun [toCValue](../[android]to-c-value.md)(): [WGPUSurfaceConfiguration.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-surface-configuration/-by-value/index.md) |
-| [toReference](../to-reference.md) | [android]<br>open fun [toReference](../to-reference.md)(): [WGPUSurfaceConfiguration.ByReference](../../../io.ygdrasil.wgpu.android/-w-g-p-u-surface-configuration/-by-reference/index.md) |
+| [toCValue](../[android]to-c-value.md) | [android]<br>open fun [toCValue](../[android]to-c-value.md)(): WGPUSurfaceConfiguration.ByValue |
+| [toReference](../to-reference.md) | [android]<br>open fun [toReference](../to-reference.md)(): WGPUSurfaceConfiguration.ByReference |

@@ -3,4 +3,4 @@
 # toReference
 
 [android]\
-open fun [toReference](to-reference.md)(): [WGPUPrimitiveState.ByReference](../../io.ygdrasil.wgpu.android/-w-g-p-u-primitive-state/-by-reference/index.md)
+open fun [toReference](to-reference.md)(): WGPUPrimitiveState.ByReference

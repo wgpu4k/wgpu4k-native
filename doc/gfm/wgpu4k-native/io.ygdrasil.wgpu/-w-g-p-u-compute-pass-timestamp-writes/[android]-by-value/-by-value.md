@@ -3,4 +3,4 @@
 # ByValue
 
 [android]\
-constructor(handle: [WGPUComputePassTimestampWrites.ByValue](../../../io.ygdrasil.wgpu.android/-w-g-p-u-compute-pass-timestamp-writes/-by-value/index.md) = io.ygdrasil.wgpu.android.WGPUComputePassTimestampWrites.ByValue(com.sun.jna.Pointer.NULL))
+constructor(handle: WGPUComputePassTimestampWrites.ByValue = io.ygdrasil.wgpu.android.WGPUComputePassTimestampWrites.ByValue(com.sun.jna.Pointer.NULL))

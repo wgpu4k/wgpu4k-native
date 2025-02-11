@@ -3,4 +3,4 @@
 # toReference
 
 [android]\
-open fun [toReference](to-reference.md)(): [WGPUExtent3D.ByReference](../../io.ygdrasil.wgpu.android/-w-g-p-u-extent3-d/-by-reference/index.md)
+open fun [toReference](to-reference.md)(): WGPUExtent3D.ByReference
