@@ -1,64 +1,13 @@
-import org.jreleaser.model.api.deploy.maven.MavenCentralMavenDeployer.Stage
-import org.jreleaser.model.Active
 import publish.centralPortalPublish
 import publish.PublishingType
 
 plugins {
     `maven-publish`
-    id("org.jreleaser")
     signing
     id("org.jetbrains.dokka")
 }
 
-
 val libraryDescription = "wgpu4k kotlin native binding."
-
-
-jreleaser {
-    gitRootSearch = true
-
-    project {
-        description = libraryDescription
-        copyright = "MIT"
-    }
-
-    signing {
-        active = Active.ALWAYS
-        armored = true
-        artifacts = true
-    }
-
-    deploy {
-        active = Active.ALWAYS
-        maven {
-
-            pomchecker {
-                failOnError = false
-                failOnWarning = false
-            }
-
-            active = Active.ALWAYS
-            mavenCentral {
-                active = Active.ALWAYS
-                create("sonatype") {
-                    stage = Stage.UPLOAD
-                    active = Active.ALWAYS
-                    url = "https://central.sonatype.com/api/v1/publisher"
-                    stagingRepository("build/staging-deploy")
-                }
-            }
-        }
-    }
-
-    release {
-        github {
-            skipRelease = true
-            skipTag = true
-            overwrite = false
-            token = "none"
-        }
-    }
-}
 
 val signingKey = System.getenv("JRELEASER_GPG_SECRET_KEY")
 val signingPassword = System.getenv("JRELEASER_GPG_PASSPHRASE")

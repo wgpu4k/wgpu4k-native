@@ -2,8 +2,9 @@ import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-    id(libs.plugins.kotlin.multiplatform.get().pluginId)
+    `kotlin-multiplatform`
     id(libs.plugins.android.application.get().pluginId)
+    `binary-compatibility-validator` apply false
 }
 
 kotlin {

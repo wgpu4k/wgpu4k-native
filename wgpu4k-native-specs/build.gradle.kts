@@ -1,6 +1,7 @@
 plugins {
-    id(libs.plugins.kotlin.multiplatform.get().pluginId)
-    id("publish")
+    `kotlin-multiplatform`
+    `binary-compatibility-validator` apply false
+    publish
 }
 
 kotlin {

@@ -2,6 +2,7 @@ import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 
 plugins {
     id(libs.plugins.kotlin.multiplatform.get().pluginId)
+    `binary-compatibility-validator` apply false
     id("com.android.library")
 }
 

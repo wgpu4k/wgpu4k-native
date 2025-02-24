@@ -7,9 +7,10 @@ import org.jetbrains.kotlin.gradle.tasks.CInteropProcess
 import java.nio.file.Files
 
 plugins {
-    id(libs.plugins.kotlin.multiplatform.get().pluginId)
-    id("publish")
-    id("com.android.library")
+    `kotlin-multiplatform`
+    `binary-compatibility-validator`
+    publish
+    com.android.library
     alias(libs.plugins.kotest)
     id("generator")
 }

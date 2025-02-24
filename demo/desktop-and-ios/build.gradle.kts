@@ -1,7 +1,8 @@
 import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
-    id(libs.plugins.kotlin.multiplatform.get().pluginId)
+    `kotlin-multiplatform`
+    `binary-compatibility-validator` apply false
 }
 
 kotlin {
