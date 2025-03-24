@@ -6,6 +6,8 @@ import java.io.InputStream
 import java.nio.file.Files
 import java.nio.file.StandardCopyOption
 
+private const val version = "v24.0.3.1"
+
 object LibraryLoader {
 
     var loaded = false
@@ -53,7 +55,7 @@ private fun inferWindowsWGPUPossiblePath(): List<File> = inferWGPUPossiblePath("
 
 private fun inferWGPUPossiblePath(prefix: String, extension: String): List<File> {
     return libraryPaths().map { File(it) }
-        .map { it.resolve("${prefix}WGPU.$extension") }
+        .map { it.resolve("${prefix}WGPU-$version.$extension") }
 }
 
 private fun libraryPaths() = System.getProperty("java.library.path").split(File.pathSeparator)
