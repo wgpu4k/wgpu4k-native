@@ -9,6 +9,8 @@ import ffi.NativeAddress
 import ffi.memoryScope
 import org.lwjgl.glfw.GLFW.*
 import org.lwjgl.glfw.GLFWNativeCocoa.glfwGetCocoaWindow
+import org.lwjgl.glfw.GLFWNativeWayland.glfwGetWaylandDisplay
+import org.lwjgl.glfw.GLFWNativeWayland.glfwGetWaylandWindow
 import org.lwjgl.glfw.GLFWNativeWin32.glfwGetWin32Window
 import org.lwjgl.glfw.GLFWNativeX11.glfwGetX11Display
 import org.lwjgl.glfw.GLFWNativeX11.glfwGetX11Window
@@ -61,10 +63,18 @@ fun main() {
 }
 
 private fun getSurface(instance: WGPUInstance, window: Long): WGPUSurface = when (Platform.os) {
-    Os.Linux -> {
-        val display = glfwGetX11Display().toNativeAddress()
-        val x11_window = glfwGetX11Window(window)
-        getSurfaceFromX11Window(instance, display, x11_window.toULong()) ?: error("fail to get surface on Linux")
+    Os.Linux -> when {
+        glfwGetWaylandWindow(window) == 0L -> {
+            val display = glfwGetX11Display().toNativeAddress()
+            val x11_window = glfwGetX11Window(window).toULong()
+            getSurfaceFromX11Window(instance, display, x11_window)
+        }
+
+        else -> {
+            val display = glfwGetWaylandDisplay().toNativeAddress()
+            val wayland_window = glfwGetWaylandWindow(window).toNativeAddress()
+            getSurfaceFromWaylandWindow(instance, display, wayland_window)
+        }
     }
     Os.Window -> {
         val hwnd = glfwGetWin32Window(window).toNativeAddress()

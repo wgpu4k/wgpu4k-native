@@ -147,3 +147,16 @@ fun getSurfaceFromWindows(instance: WGPUInstance, hinstance: NativeAddress, hwnd
 
     return wgpuInstanceCreateSurface(instance, surfaceDescriptor)
 }
+
+fun getSurfaceFromWaylandWindow(instance: WGPUInstance, display: NativeAddress, surface: NativeAddress): WGPUSurface? = memoryScope { scope ->
+
+    val surfaceDescriptor = WGPUSurfaceDescriptor.allocate(scope).apply {
+        nextInChain = WGPUSurfaceSourceWaylandSurface.allocate(scope).apply {
+            chain.sType = WGPUSType_SurfaceSourceWaylandSurface
+            this.display = display
+            this.surface = surface
+        }.handler
+    }
+
+    return wgpuInstanceCreateSurface(instance, surfaceDescriptor)
+}
