@@ -1,5 +1,5 @@
 [versions]
-kaml = "0.77.1"
+kaml = "0.78.0"
 kotlin = "2.1.21"
 wgpu = "v24.0.3.1"
 download = "5.6.0"
