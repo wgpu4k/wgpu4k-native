@@ -121,7 +121,7 @@ object Functions {
 	private val wgpuAdapterRequestDeviceHandlerDescription = FunctionDescriptor.ofVoid(
 			C_POINTER,
 			C_POINTER,
-			C_POINTER
+			WGPURequestDeviceCallbackInfo.LAYOUT
 		)
 	private val wgpuAdapterRequestDeviceHandlerAddress = findOrThrow("wgpuAdapterRequestDevice")
 	private val wgpuAdapterRequestDeviceHandler = Linker.nativeLinker().downcallHandle(wgpuAdapterRequestDeviceHandlerAddress, wgpuAdapterRequestDeviceHandlerDescription)
@@ -140,7 +140,7 @@ object Functions {
 	}
 	private val wgpuBindGroupSetLabelHandlerDescription = FunctionDescriptor.ofVoid(
 			C_POINTER,
-			C_POINTER
+			WGPUStringView.LAYOUT
 		)
 	private val wgpuBindGroupSetLabelHandlerAddress = findOrThrow("wgpuBindGroupSetLabel")
 	private val wgpuBindGroupSetLabelHandler = Linker.nativeLinker().downcallHandle(wgpuBindGroupSetLabelHandlerAddress, wgpuBindGroupSetLabelHandlerDescription)
@@ -159,7 +159,7 @@ object Functions {
 	}
 	private val wgpuBindGroupLayoutSetLabelHandlerDescription = FunctionDescriptor.ofVoid(
 			C_POINTER,
-			C_POINTER
+			WGPUStringView.LAYOUT
 		)
 	private val wgpuBindGroupLayoutSetLabelHandlerAddress = findOrThrow("wgpuBindGroupLayoutSetLabel")
 	private val wgpuBindGroupLayoutSetLabelHandler = Linker.nativeLinker().downcallHandle(wgpuBindGroupLayoutSetLabelHandlerAddress, wgpuBindGroupLayoutSetLabelHandlerDescription)
@@ -181,7 +181,7 @@ object Functions {
 			C_LONG,
 			C_LONG,
 			C_LONG,
-			C_POINTER
+			WGPUBufferMapCallbackInfo.LAYOUT
 		)
 	private val wgpuBufferMapAsyncHandlerAddress = findOrThrow("wgpuBufferMapAsync")
 	private val wgpuBufferMapAsyncHandler = Linker.nativeLinker().downcallHandle(wgpuBufferMapAsyncHandlerAddress, wgpuBufferMapAsyncHandlerDescription)
@@ -215,7 +215,7 @@ object Functions {
 	}
 	private val wgpuBufferSetLabelHandlerDescription = FunctionDescriptor.ofVoid(
 			C_POINTER,
-			C_POINTER
+			WGPUStringView.LAYOUT
 		)
 	private val wgpuBufferSetLabelHandlerAddress = findOrThrow("wgpuBufferSetLabel")
 	private val wgpuBufferSetLabelHandler = Linker.nativeLinker().downcallHandle(wgpuBufferSetLabelHandlerAddress, wgpuBufferSetLabelHandlerDescription)
@@ -282,7 +282,7 @@ object Functions {
 	}
 	private val wgpuCommandBufferSetLabelHandlerDescription = FunctionDescriptor.ofVoid(
 			C_POINTER,
-			C_POINTER
+			WGPUStringView.LAYOUT
 		)
 	private val wgpuCommandBufferSetLabelHandlerAddress = findOrThrow("wgpuCommandBufferSetLabel")
 	private val wgpuCommandBufferSetLabelHandler = Linker.nativeLinker().downcallHandle(wgpuCommandBufferSetLabelHandlerAddress, wgpuCommandBufferSetLabelHandlerDescription)
@@ -396,7 +396,7 @@ object Functions {
 	}
 	private val wgpuCommandEncoderInsertDebugMarkerHandlerDescription = FunctionDescriptor.ofVoid(
 			C_POINTER,
-			C_POINTER
+			WGPUStringView.LAYOUT
 		)
 	private val wgpuCommandEncoderInsertDebugMarkerHandlerAddress = findOrThrow("wgpuCommandEncoderInsertDebugMarker")
 	private val wgpuCommandEncoderInsertDebugMarkerHandler = Linker.nativeLinker().downcallHandle(wgpuCommandEncoderInsertDebugMarkerHandlerAddress, wgpuCommandEncoderInsertDebugMarkerHandlerDescription)
@@ -415,7 +415,7 @@ object Functions {
 	}
 	private val wgpuCommandEncoderPushDebugGroupHandlerDescription = FunctionDescriptor.ofVoid(
 			C_POINTER,
-			C_POINTER
+			WGPUStringView.LAYOUT
 		)
 	private val wgpuCommandEncoderPushDebugGroupHandlerAddress = findOrThrow("wgpuCommandEncoderPushDebugGroup")
 	private val wgpuCommandEncoderPushDebugGroupHandler = Linker.nativeLinker().downcallHandle(wgpuCommandEncoderPushDebugGroupHandlerAddress, wgpuCommandEncoderPushDebugGroupHandlerDescription)
@@ -450,7 +450,7 @@ object Functions {
 	}
 	private val wgpuCommandEncoderSetLabelHandlerDescription = FunctionDescriptor.ofVoid(
 			C_POINTER,
-			C_POINTER
+			WGPUStringView.LAYOUT
 		)
 	private val wgpuCommandEncoderSetLabelHandlerAddress = findOrThrow("wgpuCommandEncoderSetLabel")
 	private val wgpuCommandEncoderSetLabelHandler = Linker.nativeLinker().downcallHandle(wgpuCommandEncoderSetLabelHandlerAddress, wgpuCommandEncoderSetLabelHandlerDescription)
@@ -469,7 +469,7 @@ object Functions {
 	}
 	private val wgpuComputePassEncoderInsertDebugMarkerHandlerDescription = FunctionDescriptor.ofVoid(
 			C_POINTER,
-			C_POINTER
+			WGPUStringView.LAYOUT
 		)
 	private val wgpuComputePassEncoderInsertDebugMarkerHandlerAddress = findOrThrow("wgpuComputePassEncoderInsertDebugMarker")
 	private val wgpuComputePassEncoderInsertDebugMarkerHandler = Linker.nativeLinker().downcallHandle(wgpuComputePassEncoderInsertDebugMarkerHandlerAddress, wgpuComputePassEncoderInsertDebugMarkerHandlerDescription)
@@ -488,7 +488,7 @@ object Functions {
 	}
 	private val wgpuComputePassEncoderPushDebugGroupHandlerDescription = FunctionDescriptor.ofVoid(
 			C_POINTER,
-			C_POINTER
+			WGPUStringView.LAYOUT
 		)
 	private val wgpuComputePassEncoderPushDebugGroupHandlerAddress = findOrThrow("wgpuComputePassEncoderPushDebugGroup")
 	private val wgpuComputePassEncoderPushDebugGroupHandler = Linker.nativeLinker().downcallHandle(wgpuComputePassEncoderPushDebugGroupHandlerAddress, wgpuComputePassEncoderPushDebugGroupHandlerDescription)
@@ -553,7 +553,7 @@ object Functions {
 	}
 	private val wgpuComputePassEncoderSetLabelHandlerDescription = FunctionDescriptor.ofVoid(
 			C_POINTER,
-			C_POINTER
+			WGPUStringView.LAYOUT
 		)
 	private val wgpuComputePassEncoderSetLabelHandlerAddress = findOrThrow("wgpuComputePassEncoderSetLabel")
 	private val wgpuComputePassEncoderSetLabelHandler = Linker.nativeLinker().downcallHandle(wgpuComputePassEncoderSetLabelHandlerAddress, wgpuComputePassEncoderSetLabelHandlerDescription)
@@ -583,7 +583,7 @@ object Functions {
 	}
 	private val wgpuComputePipelineSetLabelHandlerDescription = FunctionDescriptor.ofVoid(
 			C_POINTER,
-			C_POINTER
+			WGPUStringView.LAYOUT
 		)
 	private val wgpuComputePipelineSetLabelHandlerAddress = findOrThrow("wgpuComputePipelineSetLabel")
 	private val wgpuComputePipelineSetLabelHandler = Linker.nativeLinker().downcallHandle(wgpuComputePipelineSetLabelHandlerAddress, wgpuComputePipelineSetLabelHandlerDescription)
@@ -658,7 +658,7 @@ object Functions {
 	private val wgpuDeviceCreateComputePipelineAsyncHandlerDescription = FunctionDescriptor.ofVoid(
 			C_POINTER,
 			C_POINTER,
-			C_POINTER
+			WGPUCreateComputePipelineAsyncCallbackInfo.LAYOUT
 		)
 	private val wgpuDeviceCreateComputePipelineAsyncHandlerAddress = findOrThrow("wgpuDeviceCreateComputePipelineAsync")
 	private val wgpuDeviceCreateComputePipelineAsyncHandler = Linker.nativeLinker().downcallHandle(wgpuDeviceCreateComputePipelineAsyncHandlerAddress, wgpuDeviceCreateComputePipelineAsyncHandlerDescription)
@@ -691,7 +691,7 @@ object Functions {
 	private val wgpuDeviceCreateRenderPipelineAsyncHandlerDescription = FunctionDescriptor.ofVoid(
 			C_POINTER,
 			C_POINTER,
-			C_POINTER
+			WGPUCreateRenderPipelineAsyncCallbackInfo.LAYOUT
 		)
 	private val wgpuDeviceCreateRenderPipelineAsyncHandlerAddress = findOrThrow("wgpuDeviceCreateRenderPipelineAsync")
 	private val wgpuDeviceCreateRenderPipelineAsyncHandler = Linker.nativeLinker().downcallHandle(wgpuDeviceCreateRenderPipelineAsyncHandlerAddress, wgpuDeviceCreateRenderPipelineAsyncHandlerDescription)
@@ -764,7 +764,7 @@ object Functions {
 		return (wgpuDeviceGetLostFutureHandler.invokeExact(handler) as java.lang.foreign.MemorySegment)
 	}
 	private val wgpuDeviceGetLostFutureHandlerDescription = FunctionDescriptor.of(
-			C_POINTER,
+			WGPUFuture.LAYOUT,
 			C_POINTER
 		)
 	private val wgpuDeviceGetLostFutureHandlerAddress = findOrThrow("wgpuDeviceGetLostFuture")
@@ -806,7 +806,7 @@ object Functions {
 		return (wgpuDeviceGetAdapterInfoHandler.invokeExact(handler) as java.lang.foreign.MemorySegment)
 	}
 	private val wgpuDeviceGetAdapterInfoHandlerDescription = FunctionDescriptor.of(
-			C_POINTER,
+			WGPUAdapterInfo.LAYOUT,
 			C_POINTER
 		)
 	private val wgpuDeviceGetAdapterInfoHandlerAddress = findOrThrow("wgpuDeviceGetAdapterInfo")
@@ -837,7 +837,7 @@ object Functions {
 	}
 	private val wgpuDevicePopErrorScopeHandlerDescription = FunctionDescriptor.ofVoid(
 			C_POINTER,
-			C_POINTER
+			WGPUPopErrorScopeCallbackInfo.LAYOUT
 		)
 	private val wgpuDevicePopErrorScopeHandlerAddress = findOrThrow("wgpuDevicePopErrorScope")
 	private val wgpuDevicePopErrorScopeHandler = Linker.nativeLinker().downcallHandle(wgpuDevicePopErrorScopeHandlerAddress, wgpuDevicePopErrorScopeHandlerDescription)
@@ -847,7 +847,7 @@ object Functions {
 	}
 	private val wgpuDeviceSetLabelHandlerDescription = FunctionDescriptor.ofVoid(
 			C_POINTER,
-			C_POINTER
+			WGPUStringView.LAYOUT
 		)
 	private val wgpuDeviceSetLabelHandlerAddress = findOrThrow("wgpuDeviceSetLabel")
 	private val wgpuDeviceSetLabelHandler = Linker.nativeLinker().downcallHandle(wgpuDeviceSetLabelHandlerAddress, wgpuDeviceSetLabelHandlerDescription)
@@ -909,7 +909,7 @@ object Functions {
 	private val wgpuInstanceRequestAdapterHandlerDescription = FunctionDescriptor.ofVoid(
 			C_POINTER,
 			C_POINTER,
-			C_POINTER
+			WGPURequestAdapterCallbackInfo.LAYOUT
 		)
 	private val wgpuInstanceRequestAdapterHandlerAddress = findOrThrow("wgpuInstanceRequestAdapter")
 	private val wgpuInstanceRequestAdapterHandler = Linker.nativeLinker().downcallHandle(wgpuInstanceRequestAdapterHandlerAddress, wgpuInstanceRequestAdapterHandlerDescription)
@@ -941,7 +941,7 @@ object Functions {
 	}
 	private val wgpuPipelineLayoutSetLabelHandlerDescription = FunctionDescriptor.ofVoid(
 			C_POINTER,
-			C_POINTER
+			WGPUStringView.LAYOUT
 		)
 	private val wgpuPipelineLayoutSetLabelHandlerAddress = findOrThrow("wgpuPipelineLayoutSetLabel")
 	private val wgpuPipelineLayoutSetLabelHandler = Linker.nativeLinker().downcallHandle(wgpuPipelineLayoutSetLabelHandlerAddress, wgpuPipelineLayoutSetLabelHandlerDescription)
@@ -960,7 +960,7 @@ object Functions {
 	}
 	private val wgpuQuerySetSetLabelHandlerDescription = FunctionDescriptor.ofVoid(
 			C_POINTER,
-			C_POINTER
+			WGPUStringView.LAYOUT
 		)
 	private val wgpuQuerySetSetLabelHandlerAddress = findOrThrow("wgpuQuerySetSetLabel")
 	private val wgpuQuerySetSetLabelHandler = Linker.nativeLinker().downcallHandle(wgpuQuerySetSetLabelHandlerAddress, wgpuQuerySetSetLabelHandlerDescription)
@@ -1019,7 +1019,7 @@ object Functions {
 	}
 	private val wgpuQueueOnSubmittedWorkDoneHandlerDescription = FunctionDescriptor.ofVoid(
 			C_POINTER,
-			C_POINTER
+			WGPUQueueWorkDoneCallbackInfo.LAYOUT
 		)
 	private val wgpuQueueOnSubmittedWorkDoneHandlerAddress = findOrThrow("wgpuQueueOnSubmittedWorkDone")
 	private val wgpuQueueOnSubmittedWorkDoneHandler = Linker.nativeLinker().downcallHandle(wgpuQueueOnSubmittedWorkDoneHandlerAddress, wgpuQueueOnSubmittedWorkDoneHandlerDescription)
@@ -1056,7 +1056,7 @@ object Functions {
 	}
 	private val wgpuQueueSetLabelHandlerDescription = FunctionDescriptor.ofVoid(
 			C_POINTER,
-			C_POINTER
+			WGPUStringView.LAYOUT
 		)
 	private val wgpuQueueSetLabelHandlerAddress = findOrThrow("wgpuQueueSetLabel")
 	private val wgpuQueueSetLabelHandler = Linker.nativeLinker().downcallHandle(wgpuQueueSetLabelHandlerAddress, wgpuQueueSetLabelHandlerDescription)
@@ -1075,7 +1075,7 @@ object Functions {
 	}
 	private val wgpuRenderBundleSetLabelHandlerDescription = FunctionDescriptor.ofVoid(
 			C_POINTER,
-			C_POINTER
+			WGPUStringView.LAYOUT
 		)
 	private val wgpuRenderBundleSetLabelHandlerAddress = findOrThrow("wgpuRenderBundleSetLabel")
 	private val wgpuRenderBundleSetLabelHandler = Linker.nativeLinker().downcallHandle(wgpuRenderBundleSetLabelHandlerAddress, wgpuRenderBundleSetLabelHandlerDescription)
@@ -1166,7 +1166,7 @@ object Functions {
 	}
 	private val wgpuRenderBundleEncoderInsertDebugMarkerHandlerDescription = FunctionDescriptor.ofVoid(
 			C_POINTER,
-			C_POINTER
+			WGPUStringView.LAYOUT
 		)
 	private val wgpuRenderBundleEncoderInsertDebugMarkerHandlerAddress = findOrThrow("wgpuRenderBundleEncoderInsertDebugMarker")
 	private val wgpuRenderBundleEncoderInsertDebugMarkerHandler = Linker.nativeLinker().downcallHandle(wgpuRenderBundleEncoderInsertDebugMarkerHandlerAddress, wgpuRenderBundleEncoderInsertDebugMarkerHandlerDescription)
@@ -1185,7 +1185,7 @@ object Functions {
 	}
 	private val wgpuRenderBundleEncoderPushDebugGroupHandlerDescription = FunctionDescriptor.ofVoid(
 			C_POINTER,
-			C_POINTER
+			WGPUStringView.LAYOUT
 		)
 	private val wgpuRenderBundleEncoderPushDebugGroupHandlerAddress = findOrThrow("wgpuRenderBundleEncoderPushDebugGroup")
 	private val wgpuRenderBundleEncoderPushDebugGroupHandler = Linker.nativeLinker().downcallHandle(wgpuRenderBundleEncoderPushDebugGroupHandlerAddress, wgpuRenderBundleEncoderPushDebugGroupHandlerDescription)
@@ -1232,7 +1232,7 @@ object Functions {
 	}
 	private val wgpuRenderBundleEncoderSetLabelHandlerDescription = FunctionDescriptor.ofVoid(
 			C_POINTER,
-			C_POINTER
+			WGPUStringView.LAYOUT
 		)
 	private val wgpuRenderBundleEncoderSetLabelHandlerAddress = findOrThrow("wgpuRenderBundleEncoderSetLabel")
 	private val wgpuRenderBundleEncoderSetLabelHandler = Linker.nativeLinker().downcallHandle(wgpuRenderBundleEncoderSetLabelHandlerAddress, wgpuRenderBundleEncoderSetLabelHandlerDescription)
@@ -1334,7 +1334,7 @@ object Functions {
 	}
 	private val wgpuRenderPassEncoderInsertDebugMarkerHandlerDescription = FunctionDescriptor.ofVoid(
 			C_POINTER,
-			C_POINTER
+			WGPUStringView.LAYOUT
 		)
 	private val wgpuRenderPassEncoderInsertDebugMarkerHandlerAddress = findOrThrow("wgpuRenderPassEncoderInsertDebugMarker")
 	private val wgpuRenderPassEncoderInsertDebugMarkerHandler = Linker.nativeLinker().downcallHandle(wgpuRenderPassEncoderInsertDebugMarkerHandlerAddress, wgpuRenderPassEncoderInsertDebugMarkerHandlerDescription)
@@ -1353,7 +1353,7 @@ object Functions {
 	}
 	private val wgpuRenderPassEncoderPushDebugGroupHandlerDescription = FunctionDescriptor.ofVoid(
 			C_POINTER,
-			C_POINTER
+			WGPUStringView.LAYOUT
 		)
 	private val wgpuRenderPassEncoderPushDebugGroupHandlerAddress = findOrThrow("wgpuRenderPassEncoderPushDebugGroup")
 	private val wgpuRenderPassEncoderPushDebugGroupHandler = Linker.nativeLinker().downcallHandle(wgpuRenderPassEncoderPushDebugGroupHandlerAddress, wgpuRenderPassEncoderPushDebugGroupHandlerDescription)
@@ -1465,7 +1465,7 @@ object Functions {
 	}
 	private val wgpuRenderPassEncoderSetLabelHandlerDescription = FunctionDescriptor.ofVoid(
 			C_POINTER,
-			C_POINTER
+			WGPUStringView.LAYOUT
 		)
 	private val wgpuRenderPassEncoderSetLabelHandlerAddress = findOrThrow("wgpuRenderPassEncoderSetLabel")
 	private val wgpuRenderPassEncoderSetLabelHandler = Linker.nativeLinker().downcallHandle(wgpuRenderPassEncoderSetLabelHandlerAddress, wgpuRenderPassEncoderSetLabelHandlerDescription)
@@ -1495,7 +1495,7 @@ object Functions {
 	}
 	private val wgpuRenderPipelineSetLabelHandlerDescription = FunctionDescriptor.ofVoid(
 			C_POINTER,
-			C_POINTER
+			WGPUStringView.LAYOUT
 		)
 	private val wgpuRenderPipelineSetLabelHandlerAddress = findOrThrow("wgpuRenderPipelineSetLabel")
 	private val wgpuRenderPipelineSetLabelHandler = Linker.nativeLinker().downcallHandle(wgpuRenderPipelineSetLabelHandlerAddress, wgpuRenderPipelineSetLabelHandlerDescription)
@@ -1514,7 +1514,7 @@ object Functions {
 	}
 	private val wgpuSamplerSetLabelHandlerDescription = FunctionDescriptor.ofVoid(
 			C_POINTER,
-			C_POINTER
+			WGPUStringView.LAYOUT
 		)
 	private val wgpuSamplerSetLabelHandlerAddress = findOrThrow("wgpuSamplerSetLabel")
 	private val wgpuSamplerSetLabelHandler = Linker.nativeLinker().downcallHandle(wgpuSamplerSetLabelHandlerAddress, wgpuSamplerSetLabelHandlerDescription)
@@ -1533,7 +1533,7 @@ object Functions {
 	}
 	private val wgpuShaderModuleGetCompilationInfoHandlerDescription = FunctionDescriptor.ofVoid(
 			C_POINTER,
-			C_POINTER
+			WGPUCompilationInfoCallbackInfo.LAYOUT
 		)
 	private val wgpuShaderModuleGetCompilationInfoHandlerAddress = findOrThrow("wgpuShaderModuleGetCompilationInfo")
 	private val wgpuShaderModuleGetCompilationInfoHandler = Linker.nativeLinker().downcallHandle(wgpuShaderModuleGetCompilationInfoHandlerAddress, wgpuShaderModuleGetCompilationInfoHandlerDescription)
@@ -1543,7 +1543,7 @@ object Functions {
 	}
 	private val wgpuShaderModuleSetLabelHandlerDescription = FunctionDescriptor.ofVoid(
 			C_POINTER,
-			C_POINTER
+			WGPUStringView.LAYOUT
 		)
 	private val wgpuShaderModuleSetLabelHandlerAddress = findOrThrow("wgpuShaderModuleSetLabel")
 	private val wgpuShaderModuleSetLabelHandler = Linker.nativeLinker().downcallHandle(wgpuShaderModuleSetLabelHandlerAddress, wgpuShaderModuleSetLabelHandlerDescription)
@@ -1613,7 +1613,7 @@ object Functions {
 	}
 	private val wgpuSurfaceSetLabelHandlerDescription = FunctionDescriptor.ofVoid(
 			C_POINTER,
-			C_POINTER
+			WGPUStringView.LAYOUT
 		)
 	private val wgpuSurfaceSetLabelHandlerAddress = findOrThrow("wgpuSurfaceSetLabel")
 	private val wgpuSurfaceSetLabelHandler = Linker.nativeLinker().downcallHandle(wgpuSurfaceSetLabelHandlerAddress, wgpuSurfaceSetLabelHandlerDescription)
@@ -1643,7 +1643,7 @@ object Functions {
 	}
 	private val wgpuTextureSetLabelHandlerDescription = FunctionDescriptor.ofVoid(
 			C_POINTER,
-			C_POINTER
+			WGPUStringView.LAYOUT
 		)
 	private val wgpuTextureSetLabelHandlerAddress = findOrThrow("wgpuTextureSetLabel")
 	private val wgpuTextureSetLabelHandler = Linker.nativeLinker().downcallHandle(wgpuTextureSetLabelHandlerAddress, wgpuTextureSetLabelHandlerDescription)
@@ -1751,7 +1751,7 @@ object Functions {
 	}
 	private val wgpuTextureViewSetLabelHandlerDescription = FunctionDescriptor.ofVoid(
 			C_POINTER,
-			C_POINTER
+			WGPUStringView.LAYOUT
 		)
 	private val wgpuTextureViewSetLabelHandlerAddress = findOrThrow("wgpuTextureViewSetLabel")
 	private val wgpuTextureViewSetLabelHandler = Linker.nativeLinker().downcallHandle(wgpuTextureViewSetLabelHandlerAddress, wgpuTextureViewSetLabelHandlerDescription)

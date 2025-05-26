@@ -107,8 +107,8 @@ internal fun NativeModel.Type.toJvmDescriptorType(): String = when (this) {
     is NativeModel.Reference.Callback,
     NativeModel.Reference.OpaquePointer,
     is NativeModel.Reference.Pointer,
-    is NativeModel.Reference.Structure,
-    is NativeModel.Reference.StructureField -> "C_POINTER"
+    is NativeModel.Reference.Structure -> "C_POINTER"
+    is NativeModel.Reference.StructureField -> "${name}.LAYOUT"
 }
 
 internal fun NativeModel.Type.toJvmNativeType(): String = when (this) {
