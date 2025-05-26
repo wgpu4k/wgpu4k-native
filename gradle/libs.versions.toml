@@ -1,7 +1,7 @@
 [versions]
 kaml = "0.77.1"
 kotlin = "2.1.21"
-wgpu = "v24.0.3.1"
+wgpu = "v25.0.2.1"
 download = "5.6.0"
 agp = "8.10.0"
 jna = "5.17.0"
