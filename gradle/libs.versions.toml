@@ -14,7 +14,7 @@ glfwNative = "0.0.1"
 rococoa = "0.0.1"
 
 # Android demo
-activityCompose = "1.10.1"
+activityCompose = "1.11.0"
 android-native-helper = "0.0.1"
 
 [libraries]
