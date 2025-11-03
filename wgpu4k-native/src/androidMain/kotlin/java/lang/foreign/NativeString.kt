@@ -72,8 +72,8 @@ internal class NativeString @JvmOverloads constructor(
 
     override val length: Int = toString().length
 
-    override fun subSequence(start: Int, end: Int): CharSequence {
-        return toString().subSequence(start, end)
+    override fun subSequence(startIndex: Int, endIndex: Int): CharSequence {
+        return toString().subSequence(startIndex, endIndex)
     }
 
     override fun compareTo(other: Any?): Int {

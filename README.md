@@ -80,7 +80,7 @@ kotlin {
     ...
     jvm {
         compilerOptions {
-            jvmTarget = JvmTarget.JVM_22
+            jvmTarget = JvmTarget.JVM_24
         }
     }
 
@@ -95,7 +95,7 @@ kotlin {
 
     androidTarget {
         compilerOptions {
-            jvmTarget = JvmTarget.JVM_22
+            jvmTarget = JvmTarget.JVM_24
         }
 
         publishLibraryVariants("release", "debug")
