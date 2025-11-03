@@ -48,13 +48,13 @@ kotlin {
 
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(22))
+        languageVersion.set(JavaLanguageVersion.of(25))
     }
 }
 
 android {
     namespace = "io.ygdrasil.wgpu4k"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 28
