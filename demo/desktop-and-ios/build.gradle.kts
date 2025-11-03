@@ -119,6 +119,6 @@ tasks.register<JavaExec>("runJvm") {
 
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(22))
+        languageVersion = JavaLanguageVersion.of(24)
     }
 }

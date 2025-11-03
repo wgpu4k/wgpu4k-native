@@ -28,7 +28,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: 25
+          java-version: 24
           cache: 'gradle'
       - name: Cache Gradle packages
         uses: actions/cache@v4

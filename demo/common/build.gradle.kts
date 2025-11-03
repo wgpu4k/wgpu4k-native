@@ -48,7 +48,7 @@ kotlin {
 
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(25))
+        languageVersion = JavaLanguageVersion.of(24)
     }
 }
 
