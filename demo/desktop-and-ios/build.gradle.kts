@@ -49,9 +49,7 @@ kotlin {
         }
     }
 
-    jvm {
-        withJava()
-    }
+    jvm()
 
     applyDefaultHierarchyTemplate()
 
@@ -101,8 +99,6 @@ kotlin {
 
 tasks.register<JavaExec>("runJvm") {
     group = "run"
-    // TODO: find why the app is crashing sometimes
-    isIgnoreExitValue = true
     mainClass = "io.ygdrasil.wgpu.MainKt"
     jvmArgs(
         if (Platform.os == Os.MacOs) {
@@ -118,7 +114,7 @@ tasks.register<JavaExec>("runJvm") {
             )
         }
     )
-    classpath = sourceSets["main"].runtimeClasspath
+    classpath = sourceSets["jvmMain"].runtimeClasspath
 }
 
 java {
