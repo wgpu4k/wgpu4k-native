@@ -5,9 +5,12 @@ wgpu = "v25.0.2.1"
 download = "5.6.0"
 agp = "8.10.1"
 jna = "5.17.0"
-kotest = "6.0.0.M3"
 dokka = "2.0.0"
 binary-compatibility-validator = "0.18.1"
+
+# Tests
+kotest = "6.0.4"
+ksp = "2.2.20-2.0.3"
 
 # Jvm demo
 glfwNative = "0.0.1"
@@ -47,10 +50,13 @@ dokka-plugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref
 dokka-base = { module = "org.jetbrains.dokka:dokka-base", version.ref = "dokka" }
 
 [plugins]
-kotest = { id = "io.kotest.multiplatform", version.ref = "kotest" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 android-application = { id = "com.android.application", version.ref = "agp" }
 binary-compatibility-validator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "binary-compatibility-validator" }
+
+# Tests
+kotest = { id = "io.kotest", version.ref = "kotest" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 
 [bundles]
 kotest = ["kotest-core", "kotest-assertions"]

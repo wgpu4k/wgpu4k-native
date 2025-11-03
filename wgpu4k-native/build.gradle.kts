@@ -12,6 +12,7 @@ plugins {
     publish
     com.android.library
     alias(libs.plugins.kotest)
+    alias(libs.plugins.ksp)
     id("generator")
 }
 
