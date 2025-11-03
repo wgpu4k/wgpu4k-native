@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ macos-14, ubuntu-latest, windows-latest ]
+        os: [ macos-latest, ubuntu-latest, windows-latest ]
     runs-on: ${{ matrix.os }}
     steps:
       - name: install dependencies
@@ -28,7 +28,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: 22
+          java-version: 25
           cache: 'gradle'
       - name: Cache Gradle packages
         uses: actions/cache@v4
