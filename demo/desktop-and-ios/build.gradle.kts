@@ -13,17 +13,18 @@ kotlin {
     val xcframeworkName = "WgpuApp"
     val xcf = XCFramework(xcframeworkName)
 
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64()
-    ).takeIf { os.isMacOsX }
-        ?.forEach { iosTarget ->
-        iosTarget.binaries.framework {
-            baseName = "WgpuApp"
-            isStatic = true
-            xcf.add(this)
-            binaryOption("bundleId", "io.ygdrasil.webgpu.$xcframeworkName")
+    if (os.isMacOsX) {
+        listOf(
+            iosX64(),
+            iosArm64(),
+            iosSimulatorArm64()
+        ).forEach { iosTarget ->
+            iosTarget.binaries.framework {
+                baseName = "WgpuApp"
+                isStatic = true
+                xcf.add(this)
+                binaryOption("bundleId", "io.ygdrasil.webgpu.$xcframeworkName")
+            }
         }
     }
 
