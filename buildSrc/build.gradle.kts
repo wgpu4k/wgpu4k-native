@@ -22,7 +22,6 @@ dependencies {
 	implementation(libs.okhttp)
 	implementation(libs.commons.io)
 
-	implementation(libs.plugins.binary.compatibility.validator.asLibrary())
 	implementation(libs.plugins.kotlin.multiplatform.asLibrary())
 
 }

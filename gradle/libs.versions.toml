@@ -6,7 +6,6 @@ download = "5.6.0"
 agp = "8.12.3"
 jna = "5.17.0"
 dokka = "2.0.0"
-binary-compatibility-validator = "0.18.1"
 
 # Tests
 kotest = "6.0.4"
@@ -52,7 +51,6 @@ dokka-base = { module = "org.jetbrains.dokka:dokka-base", version.ref = "dokka" 
 [plugins]
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 android-application = { id = "com.android.application", version.ref = "agp" }
-binary-compatibility-validator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "binary-compatibility-validator" }
 
 # Tests
 kotest = { id = "io.kotest", version.ref = "kotest" }

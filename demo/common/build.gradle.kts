@@ -3,8 +3,7 @@ import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-    id(libs.plugins.kotlin.multiplatform.get().pluginId)
-    `binary-compatibility-validator` apply false
+    `kotlin-multiplatform`
     id("com.android.library")
 }
 
@@ -12,7 +11,11 @@ val os = DefaultNativePlatform.getCurrentOperatingSystem()
 
 kotlin {
 
-    jvm()
+    jvm {
+        compilerOptions {
+            jvmTarget = JvmTarget.JVM_24
+        }
+    }
 
     if (os.isMacOsX) {
         macosArm64()

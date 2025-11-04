@@ -4,7 +4,6 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     `kotlin-multiplatform`
     id(libs.plugins.android.application.get().pluginId)
-    `binary-compatibility-validator` apply false
 }
 
 kotlin {

@@ -1,9 +1,9 @@
 import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
     `kotlin-multiplatform`
-    `binary-compatibility-validator` apply false
 }
 
 val os = DefaultNativePlatform.getCurrentOperatingSystem()
@@ -52,7 +52,11 @@ kotlin {
         }
     }
 
-    jvm()
+    jvm {
+        compilerOptions {
+            jvmTarget = JvmTarget.JVM_24
+        }
+    }
 
     applyDefaultHierarchyTemplate()
 

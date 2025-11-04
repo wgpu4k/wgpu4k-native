@@ -8,7 +8,6 @@ import java.nio.file.Files
 
 plugins {
     `kotlin-multiplatform`
-    `binary-compatibility-validator`
     publish
     com.android.library
     alias(libs.plugins.kotest)
@@ -20,6 +19,10 @@ val buildNativeResourcesDirectory = project.file("build").resolve("native")
 val jvmLibResourcesDirectory = project.file("build").resolve("generated").resolve("resources")
 
 kotlin {
+    @OptIn(org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation::class)
+    abiValidation {
+        enabled = true
+    }
 
     val nativeTargets = listOf(
         iosX64(),
@@ -235,11 +238,12 @@ java {
 
 fun jniBasePath() = buildNativeResourcesDirectory.resolve("libs")
 
+tasks.withType<Test> {
+    failOnNoDiscoveredTests = false
+}
+
 tasks.named<Test>("jvmTest") {
     useJUnitPlatform()
-    filter {
-        isFailOnNoMatchingTests = false
-    }
     testLogging {
         showExceptions = true
         showStandardStreams = true

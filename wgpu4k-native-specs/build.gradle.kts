@@ -1,6 +1,5 @@
 plugins {
     `kotlin-multiplatform`
-    `binary-compatibility-validator` apply false
     publish
 }
 
