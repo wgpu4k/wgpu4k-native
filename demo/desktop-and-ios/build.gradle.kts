@@ -10,11 +10,15 @@ kotlin {
     val xcframeworkName = "WgpuApp"
     val xcf = XCFramework(xcframeworkName)
 
+
+    val hostOs = System.getProperty("os.name")
+
     listOf(
         iosX64(),
         iosArm64(),
         iosSimulatorArm64()
-    ).forEach { iosTarget ->
+    ).takeIf { hostOs == "Mac OS X" }
+        ?.forEach { iosTarget ->
         iosTarget.binaries.framework {
             baseName = "WgpuApp"
             isStatic = true
@@ -23,10 +27,8 @@ kotlin {
         }
     }
 
-    val hostOs = System.getProperty("os.name")
-    val isArm64 = System.getProperty("os.arch") == "aarch64"
 
-    println("host is $hostOs")
+    val isArm64 = System.getProperty("os.arch") == "aarch64"
     val nativeTarget = when {
         // No toolchain on this architecture
         hostOs == "Linux" && isArm64 -> null.also { println("Linux native Arm64 not yet supported") }
