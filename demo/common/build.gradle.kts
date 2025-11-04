@@ -1,5 +1,6 @@
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     id(libs.plugins.kotlin.multiplatform.get().pluginId)
@@ -23,7 +24,21 @@ kotlin {
     linuxArm64()
     linuxX64()
     mingwX64()
-    androidTarget()
+    androidTarget {
+        compilerOptions {
+            jvmTarget = JvmTarget.JVM_17
+        }
+
+        android {
+            namespace = "io.ygdrasil.wgpu.app.common"
+            compileSdk = 36
+
+            defaultConfig {
+                minSdk = 28
+            }
+
+        }
+    }
 
     sourceSets {
 
@@ -53,12 +68,3 @@ java {
     }
 }
 
-android {
-    namespace = "io.ygdrasil.wgpu4k"
-    compileSdk = 36
-
-    defaultConfig {
-        minSdk = 28
-    }
-
-}

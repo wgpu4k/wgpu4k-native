@@ -34,11 +34,11 @@ kotlin {
 
     androidTarget {
         compilerOptions {
-            jvmTarget = JvmTarget.JVM_24
+            jvmTarget = JvmTarget.JVM_17
         }
 
         android {
-            namespace = "io.ygdrasil.nativeWgpu4k"
+            namespace = "io.ygdrasil.wgpu"
             compileSdk = 36
 
             defaultConfig {
@@ -237,6 +237,9 @@ fun jniBasePath() = buildNativeResourcesDirectory.resolve("libs")
 
 tasks.named<Test>("jvmTest") {
     useJUnitPlatform()
+    filter {
+        isFailOnNoMatchingTests = false
+    }
     testLogging {
         showExceptions = true
         showStandardStreams = true
