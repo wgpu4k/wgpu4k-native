@@ -1,3 +1,4 @@
+import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
 import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
@@ -5,19 +6,18 @@ plugins {
     `binary-compatibility-validator` apply false
 }
 
+val os = DefaultNativePlatform.getCurrentOperatingSystem()
+
 kotlin {
 
     val xcframeworkName = "WgpuApp"
     val xcf = XCFramework(xcframeworkName)
 
-
-    val hostOs = System.getProperty("os.name")
-
     listOf(
         iosX64(),
         iosArm64(),
         iosSimulatorArm64()
-    ).takeIf { hostOs == "Mac OS X" }
+    ).takeIf { os.isMacOsX }
         ?.forEach { iosTarget ->
         iosTarget.binaries.framework {
             baseName = "WgpuApp"
@@ -31,10 +31,10 @@ kotlin {
     val isArm64 = System.getProperty("os.arch") == "aarch64"
     val nativeTarget = when {
         // No toolchain on this architecture
-        hostOs == "Linux" && isArm64 -> null.also { println("Linux native Arm64 not yet supported") }
-        hostOs == "Linux" && !isArm64 -> linuxX64()
-        hostOs == "Mac OS X" && isArm64 -> macosArm64()
-        hostOs == "Mac OS X" && !isArm64 -> macosX64()
+        os.isLinux && isArm64 -> null.also { println("Linux native Arm64 not yet supported") }
+        os.isLinux && !isArm64 -> linuxX64()
+        os.isMacOsX && isArm64 -> macosArm64()
+        os.isMacOsX && !isArm64 -> macosX64()
         // Disable native on windows until linking issues are note solved
         //hostOs.startsWith("Windows") -> mingwX64()
         else -> null // Not supported
