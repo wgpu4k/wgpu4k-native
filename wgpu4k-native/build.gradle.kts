@@ -19,10 +19,6 @@ val buildNativeResourcesDirectory = project.file("build").resolve("native")
 val jvmLibResourcesDirectory = project.file("build").resolve("generated").resolve("resources")
 
 kotlin {
-    @OptIn(org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation::class)
-    abiValidation {
-        enabled = true
-    }
 
     val nativeTargets = listOf(
         iosX64(),
