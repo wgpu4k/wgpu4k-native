@@ -34,6 +34,7 @@ data class NativeModel(
         object Bool : Primitive
         object UInt32 : Primitive
         object UInt16 : Primitive
+        object UInt8 : Primitive
         object Int32 : Primitive
         object UInt64 : Primitive
         object Int64 : Primitive
@@ -117,6 +118,10 @@ internal fun String?.toCType(isPointer: Boolean, isMutable: Boolean, isOptional:
             true -> NativeModel.Reference.OpaquePointer
             else -> NativeModel.Primitive.UInt32
         }
+        equals("uint8") -> when (isPointer) {
+            true -> NativeModel.Reference.OpaquePointer
+            else -> NativeModel.Primitive.UInt8
+        }
         equals("uint16") -> when (isPointer) {
             true -> NativeModel.Reference.OpaquePointer
             else -> NativeModel.Primitive.UInt16
@@ -157,6 +162,7 @@ fun NativeModel.Type.getSize(): Int? = when (this) {
     NativeModel.Reference.CString,
     NativeModel.Primitive.Int64 -> 8
     NativeModel.Primitive.UInt16 -> 2
+    NativeModel.Primitive.UInt8 -> 1
     is NativeModel.Reference.Enumeration,
     NativeModel.Primitive.Int32,
     NativeModel.Primitive.Float32,

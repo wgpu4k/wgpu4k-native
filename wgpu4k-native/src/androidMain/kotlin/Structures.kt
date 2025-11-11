@@ -2393,7 +2393,9 @@ sealed class WGPUInstanceExtras(pointer: com.sun.jna.Pointer? = null) : com.sun.
 	@JvmField var glFenceBehaviour: Int = 0
 	@JvmField var dxcPath: WGPUStringView.ByValue = WGPUStringView.ByValue()
 	@JvmField var dxcMaxShaderModel: Int = 0
-	override fun getFieldOrder() = listOf("chain", "backends", "flags", "dx12ShaderCompiler", "gles3MinorVersion", "glFenceBehaviour", "dxcPath", "dxcMaxShaderModel")
+	@JvmField var budgetForDeviceCreation: com.sun.jna.Pointer? = null
+	@JvmField var budgetForDeviceLoss: com.sun.jna.Pointer? = null
+	override fun getFieldOrder() = listOf("chain", "backends", "flags", "dx12ShaderCompiler", "gles3MinorVersion", "glFenceBehaviour", "dxcPath", "dxcMaxShaderModel", "budgetForDeviceCreation", "budgetForDeviceLoss")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPUInstanceExtras(pointer), com.sun.jna.Structure.ByReference {
 		constructor(other: WGPUInstanceExtras) : this(other.pointer) {
@@ -2405,6 +2407,8 @@ sealed class WGPUInstanceExtras(pointer: com.sun.jna.Pointer? = null) : com.sun.
 			this.glFenceBehaviour = other.glFenceBehaviour
 			this.dxcPath = other.dxcPath
 			this.dxcMaxShaderModel = other.dxcMaxShaderModel
+			this.budgetForDeviceCreation = other.budgetForDeviceCreation
+			this.budgetForDeviceLoss = other.budgetForDeviceLoss
 		}
 	}
 
@@ -2418,6 +2422,8 @@ sealed class WGPUInstanceExtras(pointer: com.sun.jna.Pointer? = null) : com.sun.
 			this.glFenceBehaviour = other.glFenceBehaviour
 			this.dxcPath = other.dxcPath
 			this.dxcMaxShaderModel = other.dxcMaxShaderModel
+			this.budgetForDeviceCreation = other.budgetForDeviceCreation
+			this.budgetForDeviceLoss = other.budgetForDeviceLoss
 		}
 	}
 }

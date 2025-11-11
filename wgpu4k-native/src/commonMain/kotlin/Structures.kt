@@ -1248,6 +1248,8 @@ expect interface WGPUInstanceExtras {
 	var glFenceBehaviour: WGPUGLFenceBehaviour
 	val dxcPath: WGPUStringView
 	var dxcMaxShaderModel: WGPUDxcMaxShaderModel
+	var budgetForDeviceCreation: NativeAddress?
+	var budgetForDeviceLoss: NativeAddress?
 	val handler: NativeAddress
 	companion object {
 		operator fun invoke(address: NativeAddress): WGPUInstanceExtras

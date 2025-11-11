@@ -261,6 +261,16 @@ structs:
         doc: |
           TODO
         type: enum.DxcMaxShaderModel
+      - name: budgetForDeviceCreation
+        doc: |
+          TODO
+        type: uint8
+        pointer: immutable
+      - name: budgetForDeviceLoss
+        doc: |
+          TODO
+        type: uint8
+        pointer: immutable
 callbacks: []
 functions:
   - name: device_poll
@@ -278,8 +288,8 @@ functions:
       - name: wrappedSubmissionIndex
         doc: |
           TODO
-        type: c_void
-        pointer: mutable
+        type: uint64
+        pointer: immutable
     returns:
       doc: |
         TODO

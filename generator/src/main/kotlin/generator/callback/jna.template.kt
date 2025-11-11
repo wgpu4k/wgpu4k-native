@@ -46,6 +46,7 @@ private fun NativeModel.Type.toArgCall(name: String): String = when (this) {
     NativeModel.Primitive.Float64,
     NativeModel.Primitive.Int32,
     NativeModel.Primitive.Int64 -> name
+    NativeModel.Primitive.UInt8 ->  "$name.toUByte()"
     NativeModel.Primitive.UInt16 ->  "$name.toUShort()"
     NativeModel.Primitive.UInt64 ->  "$name.toULong()"
 
@@ -63,6 +64,7 @@ private fun NativeModel.Type.toCallbackJvmType(): String = when (this) {
     NativeModel.Primitive.Float32 -> "Float"
     NativeModel.Primitive.Float64 -> "Double"
     NativeModel.Primitive.UInt16 -> "Short"
+    NativeModel.Primitive.UInt8 -> "Byte"
     NativeModel.Primitive.UInt64,
     NativeModel.Primitive.Int64 -> "Long"
 

@@ -34,6 +34,7 @@ internal fun NativeModel.Type.toAndroidNativeType(): String = when (this) {
     is NativeModel.Reference.Enumeration,
     NativeModel.Primitive.UInt32 -> "UInt"
     NativeModel.Primitive.UInt16 -> "UShort"
+    NativeModel.Primitive.UInt8 -> "UByte"
     is NativeModel.Reference.StructureField -> when (isOptional) {
         true -> "${name}.ByValue?"
         else -> "${name}.ByValue"

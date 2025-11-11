@@ -5207,6 +5207,12 @@ actual interface WGPUInstanceExtras : CStructure {
 		override var dxcMaxShaderModel: WGPUDxcMaxShaderModel
 			get() = getUInt(dxcMaxShaderModelOffset)
 			set(newValue) = set(dxcMaxShaderModelOffset, newValue)
+		override var budgetForDeviceCreation: NativeAddress?
+			get() = get(budgetForDeviceCreationLayout, budgetForDeviceCreationOffset)
+			set(newValue) = set(budgetForDeviceCreationLayout, budgetForDeviceCreationOffset, newValue)
+		override var budgetForDeviceLoss: NativeAddress?
+			get() = get(budgetForDeviceLossLayout, budgetForDeviceLossOffset)
+			set(newValue) = set(budgetForDeviceLossLayout, budgetForDeviceLossOffset, newValue)
 	}
 
 	actual val chain: WGPUChainedStruct
@@ -5217,6 +5223,8 @@ actual interface WGPUInstanceExtras : CStructure {
 	actual var glFenceBehaviour: WGPUGLFenceBehaviour
 	actual val dxcPath: WGPUStringView
 	actual var dxcMaxShaderModel: WGPUDxcMaxShaderModel
+	actual var budgetForDeviceCreation: NativeAddress?
+	actual var budgetForDeviceLoss: NativeAddress?
 
 	actual companion object {
 		actual operator fun invoke(address: NativeAddress): WGPUInstanceExtras {
@@ -5224,15 +5232,15 @@ actual interface WGPUInstanceExtras : CStructure {
 		}
 
 		actual fun allocate(allocator: MemoryAllocator): WGPUInstanceExtras {
-			return allocator.allocate(72L)
+			return allocator.allocate(88L)
 				.let { WGPUInstanceExtras(it) }
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUInstanceExtras) -> Unit): ArrayHolder<WGPUInstanceExtras> {
-			return allocator.allocate(72 * size.toLong())
+			return allocator.allocate(88 * size.toLong())
 				.also {
 					(0u until size).forEach { index ->
-						it.handler.asSlice(index.toLong() * 72L)
+						it.handler.asSlice(index.toLong() * 88L)
 							.let(::NativeAddress)
 							.let { WGPUInstanceExtras(it) }
 							.let { provider(index, it) }
@@ -5251,7 +5259,9 @@ actual interface WGPUInstanceExtras : CStructure {
 			MemoryLayout.paddingLayout(4),
 			WGPUStringView.LAYOUT.withName("dxcPath"),
 			ffi.C_INT.withName("dxcMaxShaderModel"),
-			MemoryLayout.paddingLayout(4)
+			MemoryLayout.paddingLayout(4),
+			ffi.C_POINTER.withName("budgetForDeviceCreation"),
+			ffi.C_POINTER.withName("budgetForDeviceLoss"),
 		).withName("WGPUInstanceExtras")
 
 		val chainOffset = 0L
@@ -5270,6 +5280,10 @@ actual interface WGPUInstanceExtras : CStructure {
 		val dxcPathLayout = WGPUStringView.LAYOUT
 		val dxcMaxShaderModelOffset = 64L
 		val dxcMaxShaderModelLayout = ffi.C_INT
+		val budgetForDeviceCreationOffset = 72L
+		val budgetForDeviceCreationLayout = ffi.C_POINTER
+		val budgetForDeviceLossOffset = 80L
+		val budgetForDeviceLossLayout = ffi.C_POINTER
 	}
 }
 actual interface WGPUChainedStructOut : CStructure {

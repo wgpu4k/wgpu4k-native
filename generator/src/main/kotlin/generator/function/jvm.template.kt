@@ -101,6 +101,7 @@ internal fun NativeModel.Type.toJvmDescriptorType(): String = when (this) {
     NativeModel.Primitive.Float64 -> "C_DOUBLE"
     NativeModel.Primitive.Float32 -> "C_FLOAT"
     NativeModel.Primitive.UInt16 -> "C_SHORT"
+    NativeModel.Primitive.UInt8 -> "C_BYTE"
     is NativeModel.Void,
     is NativeModel.Array,
     NativeModel.Reference.CString,
@@ -122,6 +123,7 @@ internal fun NativeModel.Type.toJvmNativeType(): String = when (this) {
     NativeModel.Primitive.Bool,
     NativeModel.Primitive.UInt32 -> "Int"
     NativeModel.Primitive.UInt16 -> "Short"
+    NativeModel.Primitive.UInt8 -> "Byte"
     is NativeModel.Array,
     NativeModel.Reference.CString,
     is NativeModel.Reference.Callback,

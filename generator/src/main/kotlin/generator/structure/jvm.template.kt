@@ -96,6 +96,7 @@ private fun Builder.toPanamaImplementation(structure: NativeModel.Structure) {
                 NativeModel.Primitive.Float32 -> "getFloat(${name}Offset)"
                 NativeModel.Primitive.Float64 -> "getDouble(${name}Offset)"
                 NativeModel.Primitive.Int64 -> "getLong(${name}Offset)"
+                NativeModel.Primitive.UInt8 -> "getUByte(${name}Offset)"
                 NativeModel.Primitive.UInt16 -> "getUShort(${name}Offset)"
                 NativeModel.Primitive.UInt64 -> "getULong(${name}Offset)"
                 NativeModel.Primitive.Bool -> "getInt(${name}Offset).toBoolean()"
@@ -113,6 +114,7 @@ private fun Builder.toPanamaImplementation(structure: NativeModel.Structure) {
                 NativeModel.Primitive.Float32,
                 NativeModel.Primitive.Float64,
                 NativeModel.Primitive.Int64,
+                NativeModel.Primitive.UInt8,
                 NativeModel.Primitive.UInt16,
                 NativeModel.Primitive.UInt64,
                 NativeModel.Primitive.Bool,

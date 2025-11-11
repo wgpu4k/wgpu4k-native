@@ -7180,6 +7180,14 @@ actual interface WGPUInstanceExtras {
 			get() = handle.useContents { dxcMaxShaderModel ?: error("pointer of WGPUInstanceExtras is null") }
 			set(newValue) { handle.useContents { dxcMaxShaderModel = newValue } } 
 
+		override var budgetForDeviceCreation: NativeAddress?
+			get() = handle.useContents { budgetForDeviceCreation?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { budgetForDeviceCreation = newValue?.reinterpret() } } 
+
+		override var budgetForDeviceLoss: NativeAddress?
+			get() = handle.useContents { budgetForDeviceLoss?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { budgetForDeviceLoss = newValue?.reinterpret() } } 
+
 		override val handler: NativeAddress
 			get() = error("should not be call on CValue")
 
@@ -7215,6 +7223,14 @@ actual interface WGPUInstanceExtras {
 			get() = handler.reinterpret<webgpu.native.WGPUInstanceExtras>().pointed.dxcMaxShaderModel ?: error("pointer of WGPUInstanceExtras is null")
 			set(newValue) { handler.reinterpret<webgpu.native.WGPUInstanceExtras>().pointed.let { it.dxcMaxShaderModel = newValue } } 
 
+		override var budgetForDeviceCreation: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPUInstanceExtras>().pointed.budgetForDeviceCreation?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPUInstanceExtras>().pointed.let { it.budgetForDeviceCreation = newValue?.reinterpret() } } 
+
+		override var budgetForDeviceLoss: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPUInstanceExtras>().pointed.budgetForDeviceLoss?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPUInstanceExtras>().pointed.let { it.budgetForDeviceLoss = newValue?.reinterpret() } } 
+
 	}
 
 	actual val chain: WGPUChainedStruct
@@ -7225,6 +7241,8 @@ actual interface WGPUInstanceExtras {
 	actual var glFenceBehaviour: WGPUGLFenceBehaviour
 	actual val dxcPath: WGPUStringView
 	actual var dxcMaxShaderModel: WGPUDxcMaxShaderModel
+	actual var budgetForDeviceCreation: NativeAddress?
+	actual var budgetForDeviceLoss: NativeAddress?
 	actual val handler: NativeAddress
 
 	actual companion object {
@@ -7260,6 +7278,8 @@ actual interface WGPUInstanceExtras {
 			gles3MinorVersion = this@WGPUInstanceExtras.gles3MinorVersion
 			glFenceBehaviour = this@WGPUInstanceExtras.glFenceBehaviour
 			dxcMaxShaderModel = this@WGPUInstanceExtras.dxcMaxShaderModel
+			budgetForDeviceCreation = this@WGPUInstanceExtras.budgetForDeviceCreation?.reinterpret()
+			budgetForDeviceLoss = this@WGPUInstanceExtras.budgetForDeviceLoss?.reinterpret()
 		}
 	}
 }
@@ -7273,6 +7293,8 @@ fun webgpu.native.WGPUInstanceExtras.adapt(structure: WGPUInstanceExtras) {
 	gles3MinorVersion = structure.gles3MinorVersion
 	glFenceBehaviour = structure.glFenceBehaviour
 	dxcMaxShaderModel = structure.dxcMaxShaderModel
+	budgetForDeviceCreation = structure.budgetForDeviceCreation?.reinterpret()
+	budgetForDeviceLoss = structure.budgetForDeviceLoss?.reinterpret()
 }
 
 actual interface WGPUChainedStructOut {

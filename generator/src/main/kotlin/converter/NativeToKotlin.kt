@@ -16,6 +16,7 @@ internal fun NativeModel.Primitive.toPrimitiveKotlinType(): String = when (this)
     NativeModel.Primitive.Float32 -> "Float"
     NativeModel.Primitive.UInt32 -> "UInt"
     NativeModel.Primitive.UInt16 -> "UShort"
+    NativeModel.Primitive.UInt8 -> "UByte"
 }
 
 internal fun NativeModel.Primitive.toPrimitiveDefaultValue(): String = when (this) {
@@ -27,4 +28,5 @@ internal fun NativeModel.Primitive.toPrimitiveDefaultValue(): String = when (thi
     NativeModel.Primitive.Float32 -> "0f"
     NativeModel.Primitive.UInt32 -> "0u"
     NativeModel.Primitive.UInt16 -> "0u"
+    NativeModel.Primitive.UInt8 -> "0u"
 }

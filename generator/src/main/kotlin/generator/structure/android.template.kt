@@ -75,6 +75,7 @@ private fun Builder.toAndroidImplementation(structure: NativeModel.Structure, na
                 NativeModel.Primitive.Int64 -> "handle.$name"
                 NativeModel.Primitive.Int32 -> "handle.$name"
                 NativeModel.Primitive.Bool -> "handle.$name.toBoolean()"
+                NativeModel.Primitive.UInt8 -> "handle.$name.toUByte()"
                 NativeModel.Primitive.UInt16 -> "handle.$name.toUShort()"
                 NativeModel.Primitive.UInt64 -> "handle.$name.toULong()"
                 is NativeModel.Reference.Enumeration,
@@ -93,6 +94,7 @@ private fun Builder.toAndroidImplementation(structure: NativeModel.Structure, na
                 NativeModel.Primitive.Int64,
                 NativeModel.Primitive.Int32 -> "handle.$name = newValue"
 
+                NativeModel.Primitive.UInt8 -> "handle.$name = newValue.toByte()"
                 NativeModel.Primitive.UInt16 -> "handle.$name = newValue.toShort()"
                 is NativeModel.Reference.Enumeration,
                 NativeModel.Primitive.Bool,

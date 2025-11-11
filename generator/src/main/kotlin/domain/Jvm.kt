@@ -10,6 +10,7 @@ internal fun typeToJvmLayout(type: NativeModel.Type) = when (type) {
     is NativeModel.Reference.Structure -> "ffi.C_POINTER"
 
     NativeModel.Primitive.UInt16 -> "ffi.C_SHORT"
+    NativeModel.Primitive.UInt8 -> "ffi.C_BYTE"
 
     NativeModel.Primitive.Bool,
     NativeModel.Primitive.UInt32,

@@ -6835,6 +6835,14 @@ actual interface WGPUInstanceExtras {
 			get() = handle.dxcMaxShaderModel.toUInt()
 			set(newValue) { handle.dxcMaxShaderModel = newValue.toInt() }
 
+		override var budgetForDeviceCreation: NativeAddress?
+			get() = handle.budgetForDeviceCreation
+			set(newValue) { handle.budgetForDeviceCreation = newValue }
+
+		override var budgetForDeviceLoss: NativeAddress?
+			get() = handle.budgetForDeviceLoss
+			set(newValue) { handle.budgetForDeviceLoss = newValue }
+
 		override val handler: NativeAddress
 			get() {
 				handle.write()
@@ -6873,6 +6881,14 @@ actual interface WGPUInstanceExtras {
 			get() = handle.dxcMaxShaderModel.toUInt()
 			set(newValue) { handle.dxcMaxShaderModel = newValue.toInt() }
 
+		override var budgetForDeviceCreation: NativeAddress?
+			get() = handle.budgetForDeviceCreation
+			set(newValue) { handle.budgetForDeviceCreation = newValue }
+
+		override var budgetForDeviceLoss: NativeAddress?
+			get() = handle.budgetForDeviceLoss
+			set(newValue) { handle.budgetForDeviceLoss = newValue }
+
 		override val handler: NativeAddress
 			get() {
 				handle.write()
@@ -6891,6 +6907,8 @@ actual interface WGPUInstanceExtras {
 	actual var glFenceBehaviour: WGPUGLFenceBehaviour
 	actual val dxcPath: WGPUStringView
 	actual var dxcMaxShaderModel: WGPUDxcMaxShaderModel
+	actual var budgetForDeviceCreation: NativeAddress?
+	actual var budgetForDeviceLoss: NativeAddress?
 	actual val handler: NativeAddress
 
 	actual companion object {
@@ -6906,7 +6924,7 @@ actual interface WGPUInstanceExtras {
 		}
 
 		actual fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt,  WGPUInstanceExtras) -> Unit): ArrayHolder<WGPUInstanceExtras> {
-			val array = io.ygdrasil.wgpu.android.WGPUInstanceExtras.ByValue(allocator.allocate(72 * size.toLong())).toArray(size.toInt())
+			val array = io.ygdrasil.wgpu.android.WGPUInstanceExtras.ByValue(allocator.allocate(88 * size.toLong())).toArray(size.toInt())
 			array.forEachIndexed { index, structure ->
 				(structure as io.ygdrasil.wgpu.android.WGPUInstanceExtras.ByValue)
 					.also { provider(index.toUInt(), WGPUInstanceExtras.ByValue(it)) }
