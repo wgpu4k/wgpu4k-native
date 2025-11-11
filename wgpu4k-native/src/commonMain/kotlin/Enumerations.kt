@@ -726,17 +726,33 @@ const val WGPULogLevel_Info : WGPULogLevel = 3u
 const val WGPULogLevel_Debug : WGPULogLevel = 4u
 const val WGPULogLevel_Trace : WGPULogLevel = 5u
 
+typealias WGPUGLFenceBehaviour = UInt
+const val WGPUGLFenceBehaviour_Normal : WGPUGLFenceBehaviour = 0u
+const val WGPUGLFenceBehaviour_AutoFinish : WGPUGLFenceBehaviour = 1u
+
+typealias WGPUDxcMaxShaderModel = UInt
+const val WGPUDxcMaxShaderModel_V60 : WGPUDxcMaxShaderModel = 0u
+const val WGPUDxcMaxShaderModel_V61 : WGPUDxcMaxShaderModel = 1u
+const val WGPUDxcMaxShaderModel_V62 : WGPUDxcMaxShaderModel = 2u
+const val WGPUDxcMaxShaderModel_V63 : WGPUDxcMaxShaderModel = 3u
+const val WGPUDxcMaxShaderModel_V64 : WGPUDxcMaxShaderModel = 4u
+const val WGPUDxcMaxShaderModel_V65 : WGPUDxcMaxShaderModel = 5u
+const val WGPUDxcMaxShaderModel_V66 : WGPUDxcMaxShaderModel = 6u
+const val WGPUDxcMaxShaderModel_V67 : WGPUDxcMaxShaderModel = 7u
+
 typealias WGPUNativeSType = UInt
 const val WGPUNativeSType_DeviceExtras : WGPUNativeSType = 196609u
 const val WGPUNativeSType_RequiredLimitsExtras : WGPUNativeSType = 196610u
 const val WGPUNativeSType_PipelineLayoutExtras : WGPUNativeSType = 196611u
-const val WGPUNativeSType_ShaderModuleGLSLDescriptor : WGPUNativeSType = 196612u
+const val WGPUNativeSType_ShaderSourceGLSL : WGPUNativeSType = 196612u
 const val WGPUNativeSType_SupportedLimitsExtras : WGPUNativeSType = 196613u
 const val WGPUNativeSType_InstanceExtras : WGPUNativeSType = 196614u
 const val WGPUNativeSType_BindGroupEntryExtras : WGPUNativeSType = 196615u
 const val WGPUNativeSType_BindGroupLayoutEntryExtras : WGPUNativeSType = 196616u
 const val WGPUNativeSType_QuerySetDescriptorExtras : WGPUNativeSType = 196617u
 const val WGPUNativeSType_SurfaceConfigurationExtras : WGPUNativeSType = 196618u
+const val WGPUNativeSType_SurfaceSourceSwapChainPanel : WGPUNativeSType = 196619u
+const val WGPUNativeSType_PrimitiveStateExtras : WGPUNativeSType = 196620u
 
 typealias WGPUBufferUsage = ULong
 const val WGPUBufferUsage_None : WGPUBufferUsage = 0uL

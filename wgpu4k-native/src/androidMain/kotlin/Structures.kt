@@ -2390,9 +2390,10 @@ sealed class WGPUInstanceExtras(pointer: com.sun.jna.Pointer? = null) : com.sun.
 	@JvmField var flags: Long = 0L
 	@JvmField var dx12ShaderCompiler: Int = 0
 	@JvmField var gles3MinorVersion: Int = 0
-	@JvmField var dxilPath: WGPUStringView.ByValue = WGPUStringView.ByValue()
+	@JvmField var glFenceBehaviour: Int = 0
 	@JvmField var dxcPath: WGPUStringView.ByValue = WGPUStringView.ByValue()
-	override fun getFieldOrder() = listOf("chain", "backends", "flags", "dx12ShaderCompiler", "gles3MinorVersion", "dxilPath", "dxcPath")
+	@JvmField var dxcMaxShaderModel: Int = 0
+	override fun getFieldOrder() = listOf("chain", "backends", "flags", "dx12ShaderCompiler", "gles3MinorVersion", "glFenceBehaviour", "dxcPath", "dxcMaxShaderModel")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPUInstanceExtras(pointer), com.sun.jna.Structure.ByReference {
 		constructor(other: WGPUInstanceExtras) : this(other.pointer) {
@@ -2401,8 +2402,9 @@ sealed class WGPUInstanceExtras(pointer: com.sun.jna.Pointer? = null) : com.sun.
 			this.flags = other.flags
 			this.dx12ShaderCompiler = other.dx12ShaderCompiler
 			this.gles3MinorVersion = other.gles3MinorVersion
-			this.dxilPath = other.dxilPath
+			this.glFenceBehaviour = other.glFenceBehaviour
 			this.dxcPath = other.dxcPath
+			this.dxcMaxShaderModel = other.dxcMaxShaderModel
 		}
 	}
 
@@ -2413,8 +2415,9 @@ sealed class WGPUInstanceExtras(pointer: com.sun.jna.Pointer? = null) : com.sun.
 			this.flags = other.flags
 			this.dx12ShaderCompiler = other.dx12ShaderCompiler
 			this.gles3MinorVersion = other.gles3MinorVersion
-			this.dxilPath = other.dxilPath
+			this.glFenceBehaviour = other.glFenceBehaviour
 			this.dxcPath = other.dxcPath
+			this.dxcMaxShaderModel = other.dxcMaxShaderModel
 		}
 	}
 }

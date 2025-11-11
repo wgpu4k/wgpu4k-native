@@ -69,7 +69,54 @@ enums:
         doc: |
           TODO
         value: 0x00000005
-
+  - name: GLFenceBehaviour
+    doc: |
+      TODO
+    entries:
+      - name: Normal
+        doc: |
+          TODO
+        value: 0x00000000
+      - name: AutoFinish
+        doc: |
+          TODO
+        value: 0x00000001
+  - name: DxcMaxShaderModel
+    doc: |
+      TODO
+    entries:
+      - name: V6_0
+        doc: |
+          TODO
+        value: 0x00000000
+      - name: V6_1
+        doc: |
+          TODO
+        value: 0x00000001
+      - name: V6_2
+        doc: |
+          TODO
+        value: 0x00000002
+      - name: V6_3
+        doc: |
+          TODO
+        value: 0x00000003
+      - name: V6_4
+        doc: |
+          TODO
+        value: 0x00000004
+      - name: V6_5
+        doc: |
+          TODO
+        value: 0x00000005
+      - name: V6_6
+        doc: |
+          TODO
+        value: 0x00000006
+      - name: V6_7
+        doc: |
+          TODO
+        value: 0x00000007
   - name: NativeSType
     doc: |
       TODO
@@ -86,7 +133,7 @@ enums:
         doc: |
           TODO
         value: 0x00030003
-      - name: ShaderModuleGLSLDescriptor
+      - name: ShaderSourceGLSL
         doc: |
           TODO
         value: 0x00030004
@@ -114,6 +161,14 @@ enums:
         doc: |
           TODO
         value: 0x0003000A
+      - name: SurfaceSourceSwapChainPanel
+        doc: |
+          TODO
+        value: 0x0003000B
+      - name: PrimitiveStateExtras
+        doc: |
+          TODO
+        value: 0x0003000C
 constants: []
 typedefs: []
 bitflags:
@@ -194,14 +249,18 @@ structs:
         doc: |
           TODO
         type: enum.Gles3MinorVersion
-      - name: dxilPath
+      - name: glFenceBehaviour
         doc: |
           TODO
-        type: string
+        type: enum.GLFenceBehaviour
       - name: dxcPath
         doc: |
           TODO
         type: string
+      - name: dxcMaxShaderModel
+        doc: |
+          TODO
+        type: enum.DxcMaxShaderModel
 callbacks: []
 functions:
   - name: device_poll

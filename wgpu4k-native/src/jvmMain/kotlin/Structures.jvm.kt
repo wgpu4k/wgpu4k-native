@@ -5199,10 +5199,14 @@ actual interface WGPUInstanceExtras : CStructure {
 		override var gles3MinorVersion: WGPUGles3MinorVersion
 			get() = getUInt(gles3MinorVersionOffset)
 			set(newValue) = set(gles3MinorVersionOffset, newValue)
-		override val dxilPath: WGPUStringView
-			get() = handler.handler.asSlice(dxilPathOffset, 16L).let(::NativeAddress).let { WGPUStringView(it) }
+		override var glFenceBehaviour: WGPUGLFenceBehaviour
+			get() = getUInt(glFenceBehaviourOffset)
+			set(newValue) = set(glFenceBehaviourOffset, newValue)
 		override val dxcPath: WGPUStringView
 			get() = handler.handler.asSlice(dxcPathOffset, 16L).let(::NativeAddress).let { WGPUStringView(it) }
+		override var dxcMaxShaderModel: WGPUDxcMaxShaderModel
+			get() = getUInt(dxcMaxShaderModelOffset)
+			set(newValue) = set(dxcMaxShaderModelOffset, newValue)
 	}
 
 	actual val chain: WGPUChainedStruct
@@ -5210,8 +5214,9 @@ actual interface WGPUInstanceExtras : CStructure {
 	actual var flags: ULong
 	actual var dx12ShaderCompiler: WGPUDx12Compiler
 	actual var gles3MinorVersion: WGPUGles3MinorVersion
-	actual val dxilPath: WGPUStringView
+	actual var glFenceBehaviour: WGPUGLFenceBehaviour
 	actual val dxcPath: WGPUStringView
+	actual var dxcMaxShaderModel: WGPUDxcMaxShaderModel
 
 	actual companion object {
 		actual operator fun invoke(address: NativeAddress): WGPUInstanceExtras {
@@ -5242,8 +5247,11 @@ actual interface WGPUInstanceExtras : CStructure {
 			ffi.C_LONG.withName("flags"),
 			ffi.C_INT.withName("dx12ShaderCompiler"),
 			ffi.C_INT.withName("gles3MinorVersion"),
-			WGPUStringView.LAYOUT.withName("dxilPath"),
+			ffi.C_INT.withName("glFenceBehaviour"),
+			MemoryLayout.paddingLayout(4),
 			WGPUStringView.LAYOUT.withName("dxcPath"),
+			ffi.C_INT.withName("dxcMaxShaderModel"),
+			MemoryLayout.paddingLayout(4)
 		).withName("WGPUInstanceExtras")
 
 		val chainOffset = 0L
@@ -5256,10 +5264,12 @@ actual interface WGPUInstanceExtras : CStructure {
 		val dx12ShaderCompilerLayout = ffi.C_INT
 		val gles3MinorVersionOffset = 36L
 		val gles3MinorVersionLayout = ffi.C_INT
-		val dxilPathOffset = 40L
-		val dxilPathLayout = WGPUStringView.LAYOUT
-		val dxcPathOffset = 56L
+		val glFenceBehaviourOffset = 40L
+		val glFenceBehaviourLayout = ffi.C_INT
+		val dxcPathOffset = 48L
 		val dxcPathLayout = WGPUStringView.LAYOUT
+		val dxcMaxShaderModelOffset = 64L
+		val dxcMaxShaderModelLayout = ffi.C_INT
 	}
 }
 actual interface WGPUChainedStructOut : CStructure {

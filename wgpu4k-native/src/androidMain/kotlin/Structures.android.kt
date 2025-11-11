@@ -6824,11 +6824,16 @@ actual interface WGPUInstanceExtras {
 			get() = handle.gles3MinorVersion.toUInt()
 			set(newValue) { handle.gles3MinorVersion = newValue.toInt() }
 
-		override val dxilPath: WGPUStringView
-			get() = handle.dxilPath.let{ WGPUStringView.ByValue(it) }
+		override var glFenceBehaviour: WGPUGLFenceBehaviour
+			get() = handle.glFenceBehaviour.toUInt()
+			set(newValue) { handle.glFenceBehaviour = newValue.toInt() }
 
 		override val dxcPath: WGPUStringView
 			get() = handle.dxcPath.let{ WGPUStringView.ByValue(it) }
+
+		override var dxcMaxShaderModel: WGPUDxcMaxShaderModel
+			get() = handle.dxcMaxShaderModel.toUInt()
+			set(newValue) { handle.dxcMaxShaderModel = newValue.toInt() }
 
 		override val handler: NativeAddress
 			get() {
@@ -6857,11 +6862,16 @@ actual interface WGPUInstanceExtras {
 			get() = handle.gles3MinorVersion.toUInt()
 			set(newValue) { handle.gles3MinorVersion = newValue.toInt() }
 
-		override val dxilPath: WGPUStringView
-			get() = handle.dxilPath.let{ WGPUStringView.ByValue(it) }
+		override var glFenceBehaviour: WGPUGLFenceBehaviour
+			get() = handle.glFenceBehaviour.toUInt()
+			set(newValue) { handle.glFenceBehaviour = newValue.toInt() }
 
 		override val dxcPath: WGPUStringView
 			get() = handle.dxcPath.let{ WGPUStringView.ByValue(it) }
+
+		override var dxcMaxShaderModel: WGPUDxcMaxShaderModel
+			get() = handle.dxcMaxShaderModel.toUInt()
+			set(newValue) { handle.dxcMaxShaderModel = newValue.toInt() }
 
 		override val handler: NativeAddress
 			get() {
@@ -6878,8 +6888,9 @@ actual interface WGPUInstanceExtras {
 	actual var flags: ULong
 	actual var dx12ShaderCompiler: WGPUDx12Compiler
 	actual var gles3MinorVersion: WGPUGles3MinorVersion
-	actual val dxilPath: WGPUStringView
+	actual var glFenceBehaviour: WGPUGLFenceBehaviour
 	actual val dxcPath: WGPUStringView
+	actual var dxcMaxShaderModel: WGPUDxcMaxShaderModel
 	actual val handler: NativeAddress
 
 	actual companion object {

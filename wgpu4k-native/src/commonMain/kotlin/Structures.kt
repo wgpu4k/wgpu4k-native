@@ -1245,8 +1245,9 @@ expect interface WGPUInstanceExtras {
 	var flags: ULong
 	var dx12ShaderCompiler: WGPUDx12Compiler
 	var gles3MinorVersion: WGPUGles3MinorVersion
-	val dxilPath: WGPUStringView
+	var glFenceBehaviour: WGPUGLFenceBehaviour
 	val dxcPath: WGPUStringView
+	var dxcMaxShaderModel: WGPUDxcMaxShaderModel
 	val handler: NativeAddress
 	companion object {
 		operator fun invoke(address: NativeAddress): WGPUInstanceExtras
