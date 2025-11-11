@@ -44,6 +44,12 @@ kotlin {
                 minSdk = 28
             }
 
+            sourceSets {
+                getByName("main") {
+                    jniLibs.srcDirs(jniBasePath().absolutePath)
+                }
+
+            }
         }
         publishLibraryVariants("release", "debug")
     }
