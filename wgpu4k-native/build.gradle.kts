@@ -28,7 +28,9 @@ kotlin {
         macosX64(),
         linuxArm64(),
         linuxX64(),
-        mingwX64()
+        mingwX64(),
+        androidNativeArm64(),
+        androidNativeX64(),
     )
 
     androidTarget {
@@ -220,6 +222,7 @@ configureDownloadTasks {
             )
             buildNativeResourcesDirectory.resolve("libs").resolve("x86_64").resolve("lib").deleteRecursively()
         }
+        extract("lib/libwgpu_native.a", buildNativeResourcesDirectory.resolve("android-x64").resolve("libWGPU.a"))
     }
     download("wgpu-android-aarch64-release.zip") {
         extract("lib/libwgpu_native.so", buildNativeResourcesDirectory.resolve("libs").resolve("arm64-v8a").resolve("libwgpu4k.so")).doLast {
@@ -229,6 +232,7 @@ configureDownloadTasks {
             )
             buildNativeResourcesDirectory.resolve("libs").resolve("arm64-v8a").resolve("lib").deleteRecursively()
         }
+        extract("lib/libwgpu_native.a", buildNativeResourcesDirectory.resolve("android-aarch64").resolve("libWGPU.a"))
     }
 }
 

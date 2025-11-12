@@ -27,6 +27,30 @@ kotlin {
     linuxArm64()
     linuxX64()
     mingwX64()
+
+    listOf(
+        androidNativeArm64() to "arm64-v8a",
+        androidNativeX64() to "x86_64"
+    ).forEach { (target, androidArch) ->
+        target.binaries {
+            sharedLib {
+                baseName = "wgpu4k-demo"
+            }
+        }
+
+        target.binaries.all {
+            linkTaskProvider.configure {
+                doLast {
+                    val sourceFile = outputFile.get()
+                    val destDir = project.layout.buildDirectory.dir("androidJniLibs/$androidArch").get().asFile
+                    destDir.mkdirs()
+                    val destFile = File(destDir, sourceFile.name)
+                    sourceFile.copyTo(destFile, overwrite = true)
+                }
+            }
+        }
+    }
+
     androidTarget {
         compilerOptions {
             jvmTarget = JvmTarget.JVM_17

@@ -121,7 +121,6 @@ fun getSurfaceAndroidView(
     wgpuInstanceCreateSurface(instance, surfaceDescriptor) ?: error("fail to create surface")
 }
 
-
 fun getSurfaceFromX11Window(instance: WGPUInstance, display: NativeAddress, window: ULong): WGPUSurface? = memoryScope { scope ->
 
     val surfaceDescriptor = WGPUSurfaceDescriptor.allocate(scope).apply {

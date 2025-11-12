@@ -17,7 +17,8 @@ This library uses the Firefox backend written in Rust, [available here](https://
 
 1. On JVM: `./gradlew demo:desktop-and-ios:runJvm`
 4. On native Macos or Linux: `./gradlew demo:desktop-and-ios:runDebugExecutable`
-5. On Android, run the subproject `android` with android studio !
+5. On Android, run the subproject `android` with android studio or IntelliJ IDEA!
+5. On Android Native, run `./gradlew build`, then run the subproject `android-native` with android studio or IntelliJ IDEA!
 6. On iOS `./gradlew demo:desktop-and-ios:assembleWgpuAppXCFramework` to build the XC Framework, then you can run the subproject `iosApp` (on demo/desktop-and-ios folder) with XCode on a iOS simulator or real device.
 
 
