@@ -8,7 +8,7 @@ allprojects {
 	}
 
 	group = "io.ygdrasil"
-	version = System.getenv("VERSION")?.takeIf { it.isNotBlank() } ?: "v27.0.2-SNAPSHOT"
+	version = System.getenv("VERSION")?.takeIf { it.isNotBlank() } ?: "v27.0.4-SNAPSHOT"
 }
 
 
