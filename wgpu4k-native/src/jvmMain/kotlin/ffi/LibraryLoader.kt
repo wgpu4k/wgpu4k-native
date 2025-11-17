@@ -6,7 +6,7 @@ import java.io.InputStream
 import java.nio.file.Files
 import java.nio.file.StandardCopyOption
 
-private const val version = "v25.0.0.1"
+private const val version = "v27.0.4.0"
 
 object LibraryLoader {
 
