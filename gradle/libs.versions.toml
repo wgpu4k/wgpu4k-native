@@ -17,7 +17,7 @@ rococoa = "0.0.1"
 
 # Android demo
 activityCompose = "1.11.0"
-android-native-helper = "0.0.1"
+android-native-helper = "0.0.2"
 
 [libraries]
 android-library = { module = "com.android.library:com.android.library.gradle.plugin", version.ref = "agp" }
