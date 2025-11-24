@@ -9,7 +9,7 @@ dokka = "2.0.0"
 
 # Tests
 kotest = "6.0.4"
-ksp = "2.2.20-2.0.3"
+ksp = "2.3.3"
 
 # Jvm demo
 glfwNative = "0.0.2"
