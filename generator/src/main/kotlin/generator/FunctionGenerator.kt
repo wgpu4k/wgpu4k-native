@@ -1,126 +1,97 @@
 package generator
 
+import com.squareup.kotlinpoet.AnnotationSpec
+import com.squareup.kotlinpoet.ClassName
+import com.squareup.kotlinpoet.FileSpec
+import com.squareup.kotlinpoet.FunSpec
+import com.squareup.kotlinpoet.KModifier
 import disclamer
-import builder.templateBuilder
 import domain.NativeModel
-import domain.toFunctionKotlinType
-import generator.function.toNativeFunctionsInterface
-import generator.function.toJvmFunctions
+import generator.function.addJvmFunctionsTo
+import generator.function.addNativeFunctionsTo
+import poet.isNullableParam
+import poet.isNullableReturnType
+import poet.toCommonTypeName
+import poet.WGPU_PACKAGE
 import java.io.File
 
-private val header = """
-    $disclamer
-    package io.ygdrasil.wgpu
-    
-    import ffi.CString
-    import ffi.NativeAddress
-    import ffi.CallbackHolder
-    import ffi.ArrayHolder
-    
-    
-    
-""".trimIndent()
-
-private val jvmHeader = """
-    $disclamer
-    package io.ygdrasil.wgpu
-    
-    import ffi.CString
-    import ffi.NativeAddress
-    import ffi.ArrayHolder
-    import ffi.CallbackHolder
-    import ffi.adapt
-    
-    
-    
-""".trimIndent()
-
-private val nativeHeader = """
-    @file:OptIn(ExperimentalForeignApi::class)
-    $disclamer
-    package io.ygdrasil.wgpu
-    
-    import ffi.CString
-    import ffi.NativeAddress
-    import ffi.ArrayHolder
-    import ffi.CallbackHolder
-    import kotlinx.cinterop.ExperimentalForeignApi
-    import kotlinx.cinterop.toCPointer
-    
-    
-    
-""".trimIndent()
-
-internal fun File.generateCommonFunctions(functions: List<NativeModel.Function>) = resolve("Functions.kt").apply {
-
-    writeText(header)
-
-    functions.forEach { function ->
-        writeFunction(function)
-            .let(::appendText)
-    }
-
+internal fun File.generateCommonFunctions(functions: List<NativeModel.Function>) {
+	val fileSpec = FileSpec.builder(WGPU_PACKAGE, "Functions")
+		.addFileComment(disclamer.removePrefix("// "))
+		.indent("\t")
+		.apply {
+			addImport("ffi", "CString")
+			addImport("ffi", "NativeAddress")
+			addImport("ffi", "CallbackHolder")
+			addImport("ffi", "ArrayHolder")
+			functions.forEach { function ->
+				addFunction(function.toCommonFunSpec())
+			}
+		}
+		.build()
+	resolve("Functions.kt").writeText(fileSpec.toString())
 }
 
-private fun writeFunction(function: NativeModel.Function) = templateBuilder {
-    val name = function.name
-    val returnType = function.returnType.first.toFunctionKotlinType() + function.returnType.first.optionalReturnType()
-    val args = function.args
-        .map { (name, type) -> "${name}: ${type.toFunctionKotlinType()}${type.optional()}" }
-        .joinToString(", ")
+private fun NativeModel.Function.toCommonFunSpec(): FunSpec {
+	val typeArg = returnType.first
+	val typeArgDoc = returnType.second
+	val returnTypeName = typeArg.toCommonTypeName()
+		.let { if (typeArg.isNullableReturnType()) it.copy(nullable = true) else it }
 
-    val argsDoc = function.args.mapNotNull { (name, _, doc) -> doc?.let { "@param $name $doc"} }
-        .joinToString("\n")
-        .takeIf { it.isNotBlank() }
-    val returnDoc = function.returnType.second?.let { doc -> "@return $doc" }
-    val doc = ((function.doc ?: "") + (argsDoc?.let { "\n$it" } ?: "") + (returnDoc?.let { "\n$it" } ?: ""))
-        .takeIf { it.isNotBlank() }
+	val argsDocParts = args.mapNotNull { (name, _, argDoc) -> argDoc?.let { "@param $name $it" } }
+	val returnDocPart = typeArgDoc?.let { "@return $it" }
+	val docParts = listOfNotNull(doc, *argsDocParts.toTypedArray(), returnDocPart)
+	val fullDoc = docParts.joinToString("\n").takeIf { it.isNotBlank() }
 
-    appendDoc(doc)
-    appendLine("expect fun $name($args): $returnType")
+	return FunSpec.builder(name)
+		.addModifiers(KModifier.EXPECT)
+		.apply {
+			args.forEach { (argName, type, _) ->
+				val paramType = type.toCommonTypeName()
+					.let { if (type.isNullableParam()) it.copy(nullable = true) else it }
+				addParameter(argName, paramType)
+			}
+			fullDoc?.let { addKdoc("%L", it) }
+		}
+		.returns(returnTypeName)
+		.build()
 }
 
-private fun NativeModel.Type.optionalReturnType(): String = when (this) {
-    NativeModel.Reference.OpaquePointer,
-    is NativeModel.Reference.Pointer,
-    is NativeModel.Reference.Structure,
-    NativeModel.Reference.CString,
-    is NativeModel.Reference.Callback,
-    is NativeModel.Array -> "?"
-
-    else -> ""
+internal fun File.generateNativeFunctions(functions: List<NativeModel.Function>) {
+	val fileSpec = FileSpec.builder(WGPU_PACKAGE, "Functions.native")
+		.addFileComment(disclamer.removePrefix("// "))
+		.addAnnotation(
+			AnnotationSpec.builder(ClassName("kotlin", "OptIn"))
+				.addMember("%T::class", ClassName("kotlinx.cinterop", "ExperimentalForeignApi"))
+				.useSiteTarget(AnnotationSpec.UseSiteTarget.FILE)
+				.build()
+		)
+		.indent("\t")
+		.apply {
+			addImport("ffi", "CString")
+			addImport("ffi", "NativeAddress")
+			addImport("ffi", "ArrayHolder")
+			addImport("ffi", "CallbackHolder")
+			addImport("kotlinx.cinterop", "ExperimentalForeignApi")
+			addImport("kotlinx.cinterop", "toCPointer")
+			functions.addNativeFunctionsTo(this)
+		}
+		.build()
+	resolve("Functions.native.kt").writeText(fileSpec.toString())
 }
 
-private fun NativeModel.Type.optional(): String = when (this) {
-    NativeModel.Void,
-    NativeModel.Reference.OpaquePointer,
-    is NativeModel.Reference.Pointer,
-    is NativeModel.Reference.Structure,
-    NativeModel.Reference.CString,
-    is NativeModel.Reference.Callback,
-    is NativeModel.Array -> "?"
-
-    is NativeModel.Reference.StructureField -> when (isOptional) {
-        true -> "?"
-        else -> ""
-    }
-
-    else -> ""
+internal fun File.generateJvmFunctions(functions: List<NativeModel.Function>) {
+	val fileSpec = FileSpec.builder(WGPU_PACKAGE, "Functions.jvm")
+		.addFileComment(disclamer.removePrefix("// "))
+		.indent("\t")
+		.apply {
+			addImport("ffi", "CString")
+			addImport("ffi", "NativeAddress")
+			addImport("ffi", "ArrayHolder")
+			addImport("ffi", "CallbackHolder")
+			addImport("ffi", "adapt")
+			functions.addJvmFunctionsTo(this)
+		}
+		.build()
+	resolve("Functions.jvm.kt").writeText(fileSpec.toString())
 }
-
-
-internal fun File.generateNativeFunctions(functions: List<NativeModel.Function>) =
-    resolve("Functions.native.kt").apply {
-        writeText(nativeHeader)
-        functions.toNativeFunctionsInterface()
-            .let(::appendText)
-    }
-
-
-internal fun File.generateJvmFunctions(functions: List<NativeModel.Function>)
-= resolve("Functions.jvm.kt").apply {
-    writeText(jvmHeader)
-    functions.toJvmFunctions()
-        .let(::appendText)
-}
-

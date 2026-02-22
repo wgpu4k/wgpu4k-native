@@ -1,76 +1,92 @@
 package generator
 
+import com.squareup.kotlinpoet.AnnotationSpec
+import com.squareup.kotlinpoet.ClassName
+import com.squareup.kotlinpoet.FileSpec
 import disclamer
 import domain.NativeModel
-import generator.callback.toCommonCallback
-import generator.callback.toJnaCallback
-import generator.callback.toJvmCallback
-import generator.callback.toNativeCallback
+import generator.callback.addAndroidCallbacksTo
+import generator.callback.addCommonCallbacksTo
+import generator.callback.addJvmCallbacksTo
+import generator.callback.addNativeCallbacksTo
+import poet.WGPU_PACKAGE
 import java.io.File
 
-private val header = """
-    $disclamer
-    package io.ygdrasil.wgpu
-    
-    import ffi.Callback
-    import ffi.CString
-    import ffi.CallbackHolder
-    import ffi.MemoryAllocator
-    import ffi.NativeAddress
-    
-    
-""".trimIndent()
-
-private val nativeHeader = """
-    $disclamer
-    @file:OptIn(ExperimentalForeignApi::class)
-    
-    package io.ygdrasil.wgpu
-    
-    import ffi.CString
-    import ffi.Callback
-    import ffi.CallbackHolder
-    import ffi.MemoryAllocator
-    import ffi.NativeAddress
-    import ffi.findCallback
-    import ffi.registerCallback
-    import ffi.globalMemory
-    import kotlinx.cinterop.COpaque
-    import kotlinx.cinterop.COpaquePointer
-    import kotlinx.cinterop.useContents
-    import kotlinx.cinterop.ExperimentalForeignApi
-    import kotlinx.cinterop.LongVar
-    import kotlinx.cinterop.pointed
-    import kotlinx.cinterop.reinterpret
-    import kotlinx.cinterop.value
-    
-    
-""".trimIndent()
-
-internal fun File.generateCommonCallback(callbacks: List<NativeModel.Callback>) = resolve("Callbacks.kt").apply {
-
-    writeText(header)
-    callbacks.map(NativeModel.Callback::toCommonCallback)
-        .forEach(::appendText)
+internal fun File.generateCommonCallback(callbacks: List<NativeModel.Callback>) {
+	val fileSpec = FileSpec.builder(WGPU_PACKAGE, "Callbacks")
+		.addFileComment(disclamer.removePrefix("// "))
+		.indent("\t")
+		.apply {
+			addImport("ffi", "Callback")
+			addImport("ffi", "CString")
+			addImport("ffi", "CallbackHolder")
+			addImport("ffi", "MemoryAllocator")
+			addImport("ffi", "NativeAddress")
+			callbacks.addCommonCallbacksTo(this)
+		}
+		.build()
+	resolve("Callbacks.kt").writeText(fileSpec.toString())
 }
 
-internal fun File.generateJvmCallback(callbacks: List<NativeModel.Callback>) = resolve("Callbacks.jvm.kt").apply {
-
-    writeText(header)
-    callbacks.map(NativeModel.Callback::toJvmCallback)
-        .forEach(::appendText)
+internal fun File.generateJvmCallback(callbacks: List<NativeModel.Callback>) {
+	val fileSpec = FileSpec.builder(WGPU_PACKAGE, "Callbacks.jvm")
+		.addFileComment(disclamer.removePrefix("// "))
+		.indent("\t")
+		.apply {
+			addImport("ffi", "Callback")
+			addImport("ffi", "CallbackHolder")
+			addImport("ffi", "MemoryAllocator")
+			addImport("ffi", "NativeAddress")
+			addImport("java.lang.foreign", "FunctionDescriptor")
+			callbacks.addJvmCallbacksTo(this)
+		}
+		.build()
+	resolve("Callbacks.jvm.kt").writeText(fileSpec.toString())
 }
 
-internal fun File.generateAndroidCallback(callbacks: List<NativeModel.Callback>) =
-    resolve("Callbacks.android.kt").apply {
+internal fun File.generateAndroidCallback(callbacks: List<NativeModel.Callback>) {
+	val fileSpec = FileSpec.builder(WGPU_PACKAGE, "Callbacks.android")
+		.addFileComment(disclamer.removePrefix("// "))
+		.indent("\t")
+		.apply {
+			addImport("ffi", "Callback")
+			addImport("ffi", "CallbackHolder")
+			addImport("ffi", "ArrayHolder")
+			addImport("ffi", "MemoryAllocator")
+			addImport("ffi", "NativeAddress")
+			callbacks.addAndroidCallbacksTo(this)
+		}
+		.build()
+	resolve("Callbacks.android.kt").writeText(fileSpec.toString())
+}
 
-        writeText(header)
-        callbacks.map(NativeModel.Callback::toJnaCallback)
-            .forEach(::appendText)
-    }
-
-internal fun File.generateNativeCallback(callbacks: List<NativeModel.Callback>) = resolve("Callbacks.native.kt").apply {
-    writeText(nativeHeader)
-    callbacks.map(NativeModel.Callback::toNativeCallback)
-        .forEach(::appendText)
+internal fun File.generateNativeCallback(callbacks: List<NativeModel.Callback>) {
+	val fileSpec = FileSpec.builder(WGPU_PACKAGE, "Callbacks.native")
+		.addFileComment(disclamer.removePrefix("// "))
+		.addAnnotation(
+			AnnotationSpec.builder(ClassName("kotlin", "OptIn"))
+				.addMember("%T::class", ClassName("kotlinx.cinterop", "ExperimentalForeignApi"))
+				.useSiteTarget(AnnotationSpec.UseSiteTarget.FILE)
+				.build()
+		)
+		.indent("\t")
+		.apply {
+			addImport("ffi", "CString")
+			addImport("ffi", "Callback")
+			addImport("ffi", "CallbackHolder")
+			addImport("ffi", "MemoryAllocator")
+			addImport("ffi", "NativeAddress")
+			addImport("ffi", "findCallback")
+			addImport("ffi", "registerCallback")
+			addImport("kotlinx.cinterop", "ExperimentalForeignApi")
+			addImport("kotlinx.cinterop", "LongVar")
+			addImport("kotlinx.cinterop", "COpaque")
+			addImport("kotlinx.cinterop", "COpaquePointer")
+			addImport("kotlinx.cinterop", "pointed")
+			addImport("kotlinx.cinterop", "reinterpret")
+			addImport("kotlinx.cinterop", "value")
+			callbacks.addNativeCallbacksTo(this)
+		}
+		.build()
+	resolve("Callbacks.native.kt").writeText(fileSpec.toString())
 }

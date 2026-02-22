@@ -1,54 +1,34 @@
 package generator
 
+import com.squareup.kotlinpoet.FileSpec
 import disclamer
 import domain.NativeModel
-import generator.structure.toAndroidStructure
-import generator.structure.toJnaStructure
+import generator.structure.addAndroidStructuresTo
+import generator.structure.addJnaStructuresTo
+import poet.ANDROID_WGPU_PACKAGE
+import poet.WGPU_PACKAGE
 import java.io.File
 
-private val headerAndroidJna = """
-    $disclamer
-    package io.ygdrasil.wgpu.android
-    
-    import ffi.NativeAddress
-
-    
-""".trimIndent()
-
-private val headerAndroid = """
-    $disclamer
-    package io.ygdrasil.wgpu
-    
-    import ffi.NativeAddress
-    import ffi.CallbackHolder
-    import ffi.CString
-    import ffi.ArrayHolder
-    import ffi.C_LONG
-    import ffi.C_POINTER
-    import ffi.C_SHORT
-    import ffi.C_INT
-    import ffi.C_FLOAT
-    import ffi.C_DOUBLE
-    import ffi.CStructure
-    import ffi.MemoryAllocator
-    import ffi.toAddress
-    import java.lang.foreign.AddressLayout
-    
-    
-""".trimIndent()
-
 fun File.generateAndroidStructures(structures: List<NativeModel.Structure>) = this.apply {
-    resolve("Structures.android.kt").apply {
-        writeText(headerAndroid)
-        structures.map(NativeModel.Structure::toAndroidStructure)
-            .forEach(::appendText)
-    }
-    resolve("Structures.kt").apply {
-        writeText(headerAndroidJna)
-        structures.map(NativeModel.Structure::toJnaStructure)
-            .forEach(::appendText)
-    }
+	val jnaFileSpec = FileSpec.builder(ANDROID_WGPU_PACKAGE, "Structures")
+		.addFileComment(disclamer.removePrefix("// "))
+		.indent("\t")
+		.apply { structures.addJnaStructuresTo(this) }
+		.build()
+	resolve("Structures.kt").writeText(jnaFileSpec.toString())
+
+	val androidFileSpec = FileSpec.builder(WGPU_PACKAGE, "Structures.android")
+		.addFileComment(disclamer.removePrefix("// "))
+		.indent("\t")
+		.apply {
+			addImport("ffi", "NativeAddress")
+			addImport("ffi", "CallbackHolder")
+			addImport("ffi", "CString")
+			addImport("ffi", "ArrayHolder")
+			addImport("ffi", "MemoryAllocator")
+			addImport("ffi", "register")
+			structures.addAndroidStructuresTo(this)
+		}
+		.build()
+	resolve("Structures.android.kt").writeText(androidFileSpec.toString())
 }
-
-
-

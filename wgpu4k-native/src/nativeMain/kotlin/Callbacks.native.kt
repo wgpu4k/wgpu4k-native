@@ -10,20 +10,26 @@ import ffi.MemoryAllocator
 import ffi.NativeAddress
 import ffi.findCallback
 import ffi.registerCallback
-import ffi.globalMemory
+import kotlin.OptIn
 import kotlinx.cinterop.COpaque
 import kotlinx.cinterop.COpaquePointer
-import kotlinx.cinterop.useContents
 import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.LongVar
+import kotlinx.cinterop.`value`
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.reinterpret
-import kotlinx.cinterop.value
 
-actual fun interface WGPUBufferMapCallback : Callback {
-	actual fun invoke(status: WGPUMapAsyncStatus, message: WGPUStringView?, userdata1: NativeAddress?, userdata2: NativeAddress?)
-	actual companion object {
-		actual fun allocate(allocator: MemoryAllocator, callback: WGPUBufferMapCallback): CallbackHolder<WGPUBufferMapCallback> {
+public actual fun interface WGPUBufferMapCallback : Callback {
+	public actual fun invoke(
+		status: WGPUMapAsyncStatus,
+		message: WGPUStringView?,
+		userdata1: NativeAddress?,
+		userdata2: NativeAddress?,
+	) {
+	}
+
+	public actual companion object {
+		public actual fun allocate(allocator: MemoryAllocator, callback: WGPUBufferMapCallback): CallbackHolder<WGPUBufferMapCallback> {
 			val actualCallback = kotlinx.cinterop.staticCFunction { status: UInt, message: kotlinx.cinterop.CValue<webgpu.native.WGPUStringView>, userdata1: COpaquePointer?, userdata2: COpaquePointer? ->
 				val address = userdata2?.reinterpret<LongVar>()?.pointed?.value?.let(::NativeAddress) ?: error("Missing callback address on last argument")
 				val callback = findCallback<WGPUBufferMapCallback>(address.reinterpret<COpaque>())
@@ -36,10 +42,17 @@ actual fun interface WGPUBufferMapCallback : Callback {
 	}
 }
 
-actual fun interface WGPUCompilationInfoCallback : Callback {
-	actual fun invoke(status: WGPUCompilationInfoRequestStatus, compilationInfo: WGPUCompilationInfo?, userdata1: NativeAddress?, userdata2: NativeAddress?)
-	actual companion object {
-		actual fun allocate(allocator: MemoryAllocator, callback: WGPUCompilationInfoCallback): CallbackHolder<WGPUCompilationInfoCallback> {
+public actual fun interface WGPUCompilationInfoCallback : Callback {
+	public actual fun invoke(
+		status: WGPUCompilationInfoRequestStatus,
+		compilationInfo: WGPUCompilationInfo?,
+		userdata1: NativeAddress?,
+		userdata2: NativeAddress?,
+	) {
+	}
+
+	public actual companion object {
+		public actual fun allocate(allocator: MemoryAllocator, callback: WGPUCompilationInfoCallback): CallbackHolder<WGPUCompilationInfoCallback> {
 			val actualCallback = kotlinx.cinterop.staticCFunction { status: UInt, compilationInfo: COpaquePointer?, userdata1: COpaquePointer?, userdata2: COpaquePointer? ->
 				val address = userdata2?.reinterpret<LongVar>()?.pointed?.value?.let(::NativeAddress) ?: error("Missing callback address on last argument")
 				val callback = findCallback<WGPUCompilationInfoCallback>(address.reinterpret<COpaque>())
@@ -52,10 +65,18 @@ actual fun interface WGPUCompilationInfoCallback : Callback {
 	}
 }
 
-actual fun interface WGPUCreateComputePipelineAsyncCallback : Callback {
-	actual fun invoke(status: WGPUCreatePipelineAsyncStatus, pipeline: WGPUComputePipeline?, message: WGPUStringView?, userdata1: NativeAddress?, userdata2: NativeAddress?)
-	actual companion object {
-		actual fun allocate(allocator: MemoryAllocator, callback: WGPUCreateComputePipelineAsyncCallback): CallbackHolder<WGPUCreateComputePipelineAsyncCallback> {
+public actual fun interface WGPUCreateComputePipelineAsyncCallback : Callback {
+	public actual fun invoke(
+		status: WGPUCreatePipelineAsyncStatus,
+		pipeline: WGPUComputePipeline?,
+		message: WGPUStringView?,
+		userdata1: NativeAddress?,
+		userdata2: NativeAddress?,
+	) {
+	}
+
+	public actual companion object {
+		public actual fun allocate(allocator: MemoryAllocator, callback: WGPUCreateComputePipelineAsyncCallback): CallbackHolder<WGPUCreateComputePipelineAsyncCallback> {
 			val actualCallback = kotlinx.cinterop.staticCFunction { status: UInt, pipeline: COpaquePointer?, message: kotlinx.cinterop.CValue<webgpu.native.WGPUStringView>, userdata1: COpaquePointer?, userdata2: COpaquePointer? ->
 				val address = userdata2?.reinterpret<LongVar>()?.pointed?.value?.let(::NativeAddress) ?: error("Missing callback address on last argument")
 				val callback = findCallback<WGPUCreateComputePipelineAsyncCallback>(address.reinterpret<COpaque>())
@@ -68,10 +89,18 @@ actual fun interface WGPUCreateComputePipelineAsyncCallback : Callback {
 	}
 }
 
-actual fun interface WGPUCreateRenderPipelineAsyncCallback : Callback {
-	actual fun invoke(status: WGPUCreatePipelineAsyncStatus, pipeline: WGPURenderPipeline?, message: WGPUStringView?, userdata1: NativeAddress?, userdata2: NativeAddress?)
-	actual companion object {
-		actual fun allocate(allocator: MemoryAllocator, callback: WGPUCreateRenderPipelineAsyncCallback): CallbackHolder<WGPUCreateRenderPipelineAsyncCallback> {
+public actual fun interface WGPUCreateRenderPipelineAsyncCallback : Callback {
+	public actual fun invoke(
+		status: WGPUCreatePipelineAsyncStatus,
+		pipeline: WGPURenderPipeline?,
+		message: WGPUStringView?,
+		userdata1: NativeAddress?,
+		userdata2: NativeAddress?,
+	) {
+	}
+
+	public actual companion object {
+		public actual fun allocate(allocator: MemoryAllocator, callback: WGPUCreateRenderPipelineAsyncCallback): CallbackHolder<WGPUCreateRenderPipelineAsyncCallback> {
 			val actualCallback = kotlinx.cinterop.staticCFunction { status: UInt, pipeline: COpaquePointer?, message: kotlinx.cinterop.CValue<webgpu.native.WGPUStringView>, userdata1: COpaquePointer?, userdata2: COpaquePointer? ->
 				val address = userdata2?.reinterpret<LongVar>()?.pointed?.value?.let(::NativeAddress) ?: error("Missing callback address on last argument")
 				val callback = findCallback<WGPUCreateRenderPipelineAsyncCallback>(address.reinterpret<COpaque>())
@@ -84,10 +113,18 @@ actual fun interface WGPUCreateRenderPipelineAsyncCallback : Callback {
 	}
 }
 
-actual fun interface WGPUDeviceLostCallback : Callback {
-	actual fun invoke(device: WGPUDevice?, reason: WGPUDeviceLostReason, message: WGPUStringView?, userdata1: NativeAddress?, userdata2: NativeAddress?)
-	actual companion object {
-		actual fun allocate(allocator: MemoryAllocator, callback: WGPUDeviceLostCallback): CallbackHolder<WGPUDeviceLostCallback> {
+public actual fun interface WGPUDeviceLostCallback : Callback {
+	public actual fun invoke(
+		device: WGPUDevice?,
+		reason: WGPUDeviceLostReason,
+		message: WGPUStringView?,
+		userdata1: NativeAddress?,
+		userdata2: NativeAddress?,
+	) {
+	}
+
+	public actual companion object {
+		public actual fun allocate(allocator: MemoryAllocator, callback: WGPUDeviceLostCallback): CallbackHolder<WGPUDeviceLostCallback> {
 			val actualCallback = kotlinx.cinterop.staticCFunction { device: COpaquePointer?, reason: UInt, message: kotlinx.cinterop.CValue<webgpu.native.WGPUStringView>, userdata1: COpaquePointer?, userdata2: COpaquePointer? ->
 				val address = userdata2?.reinterpret<LongVar>()?.pointed?.value?.let(::NativeAddress) ?: error("Missing callback address on last argument")
 				val callback = findCallback<WGPUDeviceLostCallback>(address.reinterpret<COpaque>())
@@ -100,10 +137,18 @@ actual fun interface WGPUDeviceLostCallback : Callback {
 	}
 }
 
-actual fun interface WGPUPopErrorScopeCallback : Callback {
-	actual fun invoke(status: WGPUPopErrorScopeStatus, type: WGPUErrorType, message: WGPUStringView?, userdata1: NativeAddress?, userdata2: NativeAddress?)
-	actual companion object {
-		actual fun allocate(allocator: MemoryAllocator, callback: WGPUPopErrorScopeCallback): CallbackHolder<WGPUPopErrorScopeCallback> {
+public actual fun interface WGPUPopErrorScopeCallback : Callback {
+	public actual fun invoke(
+		status: WGPUPopErrorScopeStatus,
+		type: WGPUErrorType,
+		message: WGPUStringView?,
+		userdata1: NativeAddress?,
+		userdata2: NativeAddress?,
+	) {
+	}
+
+	public actual companion object {
+		public actual fun allocate(allocator: MemoryAllocator, callback: WGPUPopErrorScopeCallback): CallbackHolder<WGPUPopErrorScopeCallback> {
 			val actualCallback = kotlinx.cinterop.staticCFunction { status: UInt, type: UInt, message: kotlinx.cinterop.CValue<webgpu.native.WGPUStringView>, userdata1: COpaquePointer?, userdata2: COpaquePointer? ->
 				val address = userdata2?.reinterpret<LongVar>()?.pointed?.value?.let(::NativeAddress) ?: error("Missing callback address on last argument")
 				val callback = findCallback<WGPUPopErrorScopeCallback>(address.reinterpret<COpaque>())
@@ -116,10 +161,16 @@ actual fun interface WGPUPopErrorScopeCallback : Callback {
 	}
 }
 
-actual fun interface WGPUQueueWorkDoneCallback : Callback {
-	actual fun invoke(status: WGPUQueueWorkDoneStatus, userdata1: NativeAddress?, userdata2: NativeAddress?)
-	actual companion object {
-		actual fun allocate(allocator: MemoryAllocator, callback: WGPUQueueWorkDoneCallback): CallbackHolder<WGPUQueueWorkDoneCallback> {
+public actual fun interface WGPUQueueWorkDoneCallback : Callback {
+	public actual fun invoke(
+		status: WGPUQueueWorkDoneStatus,
+		userdata1: NativeAddress?,
+		userdata2: NativeAddress?,
+	) {
+	}
+
+	public actual companion object {
+		public actual fun allocate(allocator: MemoryAllocator, callback: WGPUQueueWorkDoneCallback): CallbackHolder<WGPUQueueWorkDoneCallback> {
 			val actualCallback = kotlinx.cinterop.staticCFunction { status: UInt, userdata1: COpaquePointer?, userdata2: COpaquePointer? ->
 				val address = userdata2?.reinterpret<LongVar>()?.pointed?.value?.let(::NativeAddress) ?: error("Missing callback address on last argument")
 				val callback = findCallback<WGPUQueueWorkDoneCallback>(address.reinterpret<COpaque>())
@@ -132,10 +183,18 @@ actual fun interface WGPUQueueWorkDoneCallback : Callback {
 	}
 }
 
-actual fun interface WGPURequestAdapterCallback : Callback {
-	actual fun invoke(status: WGPURequestAdapterStatus, adapter: WGPUAdapter?, message: WGPUStringView?, userdata1: NativeAddress?, userdata2: NativeAddress?)
-	actual companion object {
-		actual fun allocate(allocator: MemoryAllocator, callback: WGPURequestAdapterCallback): CallbackHolder<WGPURequestAdapterCallback> {
+public actual fun interface WGPURequestAdapterCallback : Callback {
+	public actual fun invoke(
+		status: WGPURequestAdapterStatus,
+		adapter: WGPUAdapter?,
+		message: WGPUStringView?,
+		userdata1: NativeAddress?,
+		userdata2: NativeAddress?,
+	) {
+	}
+
+	public actual companion object {
+		public actual fun allocate(allocator: MemoryAllocator, callback: WGPURequestAdapterCallback): CallbackHolder<WGPURequestAdapterCallback> {
 			val actualCallback = kotlinx.cinterop.staticCFunction { status: UInt, adapter: COpaquePointer?, message: kotlinx.cinterop.CValue<webgpu.native.WGPUStringView>, userdata1: COpaquePointer?, userdata2: COpaquePointer? ->
 				val address = userdata2?.reinterpret<LongVar>()?.pointed?.value?.let(::NativeAddress) ?: error("Missing callback address on last argument")
 				val callback = findCallback<WGPURequestAdapterCallback>(address.reinterpret<COpaque>())
@@ -148,10 +207,18 @@ actual fun interface WGPURequestAdapterCallback : Callback {
 	}
 }
 
-actual fun interface WGPURequestDeviceCallback : Callback {
-	actual fun invoke(status: WGPURequestDeviceStatus, device: WGPUDevice?, message: WGPUStringView?, userdata1: NativeAddress?, userdata2: NativeAddress?)
-	actual companion object {
-		actual fun allocate(allocator: MemoryAllocator, callback: WGPURequestDeviceCallback): CallbackHolder<WGPURequestDeviceCallback> {
+public actual fun interface WGPURequestDeviceCallback : Callback {
+	public actual fun invoke(
+		status: WGPURequestDeviceStatus,
+		device: WGPUDevice?,
+		message: WGPUStringView?,
+		userdata1: NativeAddress?,
+		userdata2: NativeAddress?,
+	) {
+	}
+
+	public actual companion object {
+		public actual fun allocate(allocator: MemoryAllocator, callback: WGPURequestDeviceCallback): CallbackHolder<WGPURequestDeviceCallback> {
 			val actualCallback = kotlinx.cinterop.staticCFunction { status: UInt, device: COpaquePointer?, message: kotlinx.cinterop.CValue<webgpu.native.WGPUStringView>, userdata1: COpaquePointer?, userdata2: COpaquePointer? ->
 				val address = userdata2?.reinterpret<LongVar>()?.pointed?.value?.let(::NativeAddress) ?: error("Missing callback address on last argument")
 				val callback = findCallback<WGPURequestDeviceCallback>(address.reinterpret<COpaque>())
@@ -164,10 +231,18 @@ actual fun interface WGPURequestDeviceCallback : Callback {
 	}
 }
 
-actual fun interface WGPUUncapturedErrorCallback : Callback {
-	actual fun invoke(device: WGPUDevice?, type: WGPUErrorType, message: WGPUStringView?, userdata1: NativeAddress?, userdata2: NativeAddress?)
-	actual companion object {
-		actual fun allocate(allocator: MemoryAllocator, callback: WGPUUncapturedErrorCallback): CallbackHolder<WGPUUncapturedErrorCallback> {
+public actual fun interface WGPUUncapturedErrorCallback : Callback {
+	public actual fun invoke(
+		device: WGPUDevice?,
+		type: WGPUErrorType,
+		message: WGPUStringView?,
+		userdata1: NativeAddress?,
+		userdata2: NativeAddress?,
+	) {
+	}
+
+	public actual companion object {
+		public actual fun allocate(allocator: MemoryAllocator, callback: WGPUUncapturedErrorCallback): CallbackHolder<WGPUUncapturedErrorCallback> {
 			val actualCallback = kotlinx.cinterop.staticCFunction { device: COpaquePointer?, type: UInt, message: kotlinx.cinterop.CValue<webgpu.native.WGPUStringView>, userdata1: COpaquePointer?, userdata2: COpaquePointer? ->
 				val address = userdata2?.reinterpret<LongVar>()?.pointed?.value?.let(::NativeAddress) ?: error("Missing callback address on last argument")
 				val callback = findCallback<WGPUUncapturedErrorCallback>(address.reinterpret<COpaque>())
@@ -180,10 +255,16 @@ actual fun interface WGPUUncapturedErrorCallback : Callback {
 	}
 }
 
-actual fun interface WGPULogCallback : Callback {
-	actual fun invoke(level: WGPULogLevel, message: WGPUStringView?, userdata: NativeAddress?)
-	actual companion object {
-		actual fun allocate(allocator: MemoryAllocator, callback: WGPULogCallback): CallbackHolder<WGPULogCallback> {
+public actual fun interface WGPULogCallback : Callback {
+	public actual fun invoke(
+		level: WGPULogLevel,
+		message: WGPUStringView?,
+		userdata: NativeAddress?,
+	) {
+	}
+
+	public actual companion object {
+		public actual fun allocate(allocator: MemoryAllocator, callback: WGPULogCallback): CallbackHolder<WGPULogCallback> {
 			val actualCallback = kotlinx.cinterop.staticCFunction { level: UInt, message: kotlinx.cinterop.CValue<webgpu.native.WGPUStringView>, userdata: COpaquePointer? ->
 				val address = userdata?.reinterpret<LongVar>()?.pointed?.value?.let(::NativeAddress) ?: error("Missing callback address on last argument")
 				val callback = findCallback<WGPULogCallback>(address.reinterpret<COpaque>())
@@ -195,4 +276,3 @@ actual fun interface WGPULogCallback : Callback {
 		}
 	}
 }
-

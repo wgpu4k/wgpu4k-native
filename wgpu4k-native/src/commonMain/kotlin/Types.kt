@@ -3,50 +3,116 @@ package io.ygdrasil.wgpu
 
 import ffi.NativeAddress
 import kotlin.jvm.JvmInline
+
 @JvmInline
-value class WGPUAdapter(val handler: NativeAddress)
+public value class WGPUAdapter(
+	public val handler: NativeAddress,
+)
+
 @JvmInline
-value class WGPUBindGroup(val handler: NativeAddress)
+public value class WGPUBindGroup(
+	public val handler: NativeAddress,
+)
+
 @JvmInline
-value class WGPUBindGroupLayout(val handler: NativeAddress)
+public value class WGPUBindGroupLayout(
+	public val handler: NativeAddress,
+)
+
 @JvmInline
-value class WGPUBuffer(val handler: NativeAddress)
+public value class WGPUBuffer(
+	public val handler: NativeAddress,
+)
+
 @JvmInline
-value class WGPUCommandBuffer(val handler: NativeAddress)
+public value class WGPUCommandBuffer(
+	public val handler: NativeAddress,
+)
+
 @JvmInline
-value class WGPUCommandEncoder(val handler: NativeAddress)
+public value class WGPUCommandEncoder(
+	public val handler: NativeAddress,
+)
+
 @JvmInline
-value class WGPUComputePassEncoder(val handler: NativeAddress)
+public value class WGPUComputePassEncoder(
+	public val handler: NativeAddress,
+)
+
 @JvmInline
-value class WGPUComputePipeline(val handler: NativeAddress)
+public value class WGPUComputePipeline(
+	public val handler: NativeAddress,
+)
+
 @JvmInline
-value class WGPUDevice(val handler: NativeAddress)
+public value class WGPUDevice(
+	public val handler: NativeAddress,
+)
+
 @JvmInline
-value class WGPUInstance(val handler: NativeAddress)
+public value class WGPUInstance(
+	public val handler: NativeAddress,
+)
+
 @JvmInline
-value class WGPUPipelineLayout(val handler: NativeAddress)
+public value class WGPUPipelineLayout(
+	public val handler: NativeAddress,
+)
+
 @JvmInline
-value class WGPUQuerySet(val handler: NativeAddress)
+public value class WGPUQuerySet(
+	public val handler: NativeAddress,
+)
+
 @JvmInline
-value class WGPUQueue(val handler: NativeAddress)
+public value class WGPUQueue(
+	public val handler: NativeAddress,
+)
+
 @JvmInline
-value class WGPURenderBundle(val handler: NativeAddress)
+public value class WGPURenderBundle(
+	public val handler: NativeAddress,
+)
+
 @JvmInline
-value class WGPURenderBundleEncoder(val handler: NativeAddress)
+public value class WGPURenderBundleEncoder(
+	public val handler: NativeAddress,
+)
+
 @JvmInline
-value class WGPURenderPassEncoder(val handler: NativeAddress)
+public value class WGPURenderPassEncoder(
+	public val handler: NativeAddress,
+)
+
 @JvmInline
-value class WGPURenderPipeline(val handler: NativeAddress)
+public value class WGPURenderPipeline(
+	public val handler: NativeAddress,
+)
+
 @JvmInline
-value class WGPUSampler(val handler: NativeAddress)
+public value class WGPUSampler(
+	public val handler: NativeAddress,
+)
+
 @JvmInline
-value class WGPUShaderModule(val handler: NativeAddress)
+public value class WGPUShaderModule(
+	public val handler: NativeAddress,
+)
+
 /**
  * An object used to continuously present image data to the user, see @ref Surfaces for more details.
  */
 @JvmInline
-value class WGPUSurface(val handler: NativeAddress)
+public value class WGPUSurface(
+	public val handler: NativeAddress,
+)
+
 @JvmInline
-value class WGPUTexture(val handler: NativeAddress)
+public value class WGPUTexture(
+	public val handler: NativeAddress,
+)
+
 @JvmInline
-value class WGPUTextureView(val handler: NativeAddress)
+public value class WGPUTextureView(
+	public val handler: NativeAddress,
+)

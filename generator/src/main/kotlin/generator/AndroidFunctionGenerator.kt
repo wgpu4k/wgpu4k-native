@@ -1,48 +1,32 @@
 package generator
 
+import com.squareup.kotlinpoet.FileSpec
 import disclamer
 import domain.NativeModel
-import generator.function.toAndroidFunctions
-import generator.function.toJnaFunctionsInterface
+import generator.function.addAndroidFunctionsTo
+import generator.function.addJnaFunctionsInterfaceTo
+import poet.ANDROID_WGPU_PACKAGE
+import poet.WGPU_PACKAGE
 import java.io.File
 
-private val jnaHeader = """
-    $disclamer
-    package io.ygdrasil.wgpu.android
+internal fun File.generateAndroidNativeFunctions(functions: List<NativeModel.Function>) {
+	val fileSpec = FileSpec.builder(ANDROID_WGPU_PACKAGE, "Functions")
+		.addFileComment(disclamer.removePrefix("// "))
+		.indent("\t")
+		.apply {
+			functions.addJnaFunctionsInterfaceTo(this)
+		}
+		.build()
+	resolve("Functions.kt").writeText(fileSpec.toString())
+}
 
-    
-    
-""".trimIndent()
-
-
-private val header = """
-    $disclamer
-    package io.ygdrasil.wgpu
-    
-    import ffi.CString
-    import ffi.NativeAddress
-    import ffi.CallbackHolder
-    import ffi.ArrayHolder
-    import ffi.adapt
-    
-    
-    
-""".trimIndent()
-
-internal fun File.generateAndroidNativeFunctions(functions: List<NativeModel.Function>) =
-    resolve("Functions.kt").apply {
-        writeText(jnaHeader)
-
-        functions.toJnaFunctionsInterface()
-            .let(::appendText)
-
-    }
-
-
-internal fun File.generateAndroidFunctions(functions: List<NativeModel.Function>) = resolve("Functions.android.kt").apply {
-        writeText(header)
-
-        functions.toAndroidFunctions()
-            .let(::appendText)
-
-    }
+internal fun File.generateAndroidFunctions(functions: List<NativeModel.Function>) {
+	val fileSpec = FileSpec.builder(WGPU_PACKAGE, "Functions.android")
+		.addFileComment(disclamer.removePrefix("// "))
+		.indent("\t")
+		.apply {
+			functions.addAndroidFunctionsTo(this)
+		}
+		.build()
+	resolve("Functions.android.kt").writeText(fileSpec.toString())
+}

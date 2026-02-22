@@ -16,4 +16,5 @@ fun Provider<PluginDependency>.asLibrary(): Provider<Any> = map { it.asLibrary()
 dependencies {
 	implementation(libs.plugins.kotlin.multiplatform.asLibrary())
 	implementation(libs.kaml)
+	implementation(libs.kotlinpoet)
 }

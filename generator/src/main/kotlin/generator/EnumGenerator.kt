@@ -1,34 +1,41 @@
 package generator
 
-import builder.templateBuilder
+import com.squareup.kotlinpoet.ClassName
+import com.squareup.kotlinpoet.FileSpec
+import com.squareup.kotlinpoet.KModifier
+import com.squareup.kotlinpoet.PropertySpec
+import com.squareup.kotlinpoet.TypeAliasSpec
+import com.squareup.kotlinpoet.U_INT
+import com.squareup.kotlinpoet.U_LONG
 import disclamer
 import domain.NativeModel
+import poet.WGPU_PACKAGE
 import java.io.File
 
-private val header = """
-    $disclamer
-    package io.ygdrasil.wgpu
-    
-    
-""".trimIndent()
+internal fun File.generateCommonEnumerations(enumerations: List<NativeModel.Enumeration>) {
+	val fileSpec = FileSpec.builder(WGPU_PACKAGE, "Enumerations")
+		.addFileComment(disclamer.removePrefix("// "))
+		.indent("\t")
+		.apply {
+			enumerations.forEach { enumeration ->
+				val (underlyingType, valueSuffix) = if (enumeration.size == 32) U_INT to "u" else U_LONG to "uL"
+				val typeAliasType = ClassName(WGPU_PACKAGE, enumeration.name)
 
-internal fun File.generateCommonEnumerations(enumerations: List<NativeModel.Enumeration>)
-= resolve("Enumerations.kt").apply {
+				TypeAliasSpec.builder(enumeration.name, underlyingType)
+					.apply { enumeration.doc?.let { addKdoc("%L", it) } }
+					.build()
+					.let(::addTypeAlias)
 
-    writeText(header)
-
-    templateBuilder {
-        enumerations.forEach { enumeration ->
-            val type = if (enumeration.size == 32) "UInt" else "ULong"
-            val valueSuffix = if (enumeration.size == 32) "u" else "uL"
-            appendDoc(enumeration.doc)
-            appendLine("typealias ${enumeration.name} = $type")
-            enumeration.values.forEach { (name, value, doc) ->
-                appendDoc(doc)
-                appendLine("const val ${enumeration.name}_$name : ${enumeration.name} = ${value}$valueSuffix")
-            }
-            newLine()
-        }
-    }.let(::appendText)
-
+				enumeration.values.forEach { (name, value, doc) ->
+					PropertySpec.builder("${enumeration.name}_$name", typeAliasType)
+						.addModifiers(KModifier.CONST)
+						.initializer("$value$valueSuffix")
+						.apply { doc?.let { addKdoc("%L", it) } }
+						.build()
+						.let(::addProperty)
+				}
+			}
+		}
+		.build()
+	resolve("Enumerations.kt").writeText(fileSpec.toString())
 }
