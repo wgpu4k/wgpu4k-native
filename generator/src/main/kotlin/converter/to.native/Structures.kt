@@ -112,7 +112,16 @@ private fun getMembers(it: YamlModel.Struct, allStructs: List<YamlModel.Struct>)
             )
         ) + it.members + inheritedMembers
 
-        "standalone", "extensible", "extensible_callback_arg", null -> it.members + inheritedMembers
+        "extensible" -> listOf(
+            YamlModel.Struct.Member(
+                "nextInChain",
+                "",
+                "c_void",
+                true,
+                "mutable"
+            )
+        ) + it.members + inheritedMembers
+        "standalone", "extensible_callback_arg", null -> it.members + inheritedMembers
         "extension" -> listOf(YamlModel.Struct.Member("chain", "", "struct.chained_struct")) + it.members
         else -> error("unsuported type ${it.type}")
     }

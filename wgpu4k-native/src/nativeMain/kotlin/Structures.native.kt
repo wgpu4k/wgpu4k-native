@@ -85,6 +85,10 @@ fun webgpu.native.WGPUStringView.adapt(structure: WGPUStringView) {
 
 actual interface WGPUAdapterInfo {
 	value class ByValue(val handle: CValue<webgpu.native.WGPUAdapterInfo>) : WGPUAdapterInfo {
+		override var nextInChain: NativeAddress?
+			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
+
 		override val vendor: WGPUStringView
 			get() = handle.useContents { vendor.rawPtr.toLong().let(::NativeAddress).let { WGPUStringView(it) } }
 
@@ -126,6 +130,10 @@ actual interface WGPUAdapterInfo {
 
 	}
 	value class ByReference(override val handler: NativeAddress) : WGPUAdapterInfo {
+		override var nextInChain: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPUAdapterInfo>().pointed.nextInChain?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPUAdapterInfo>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
+
 		override val vendor: WGPUStringView
 			get() = handler.reinterpret<webgpu.native.WGPUAdapterInfo>().pointed.vendor.rawPtr.toLong().let(::NativeAddress).let { WGPUStringView(it) }
 
@@ -164,6 +172,7 @@ actual interface WGPUAdapterInfo {
 
 	}
 
+	actual var nextInChain: NativeAddress?
 	actual val vendor: WGPUStringView
 	actual val architecture: WGPUStringView
 	actual val device: WGPUStringView
@@ -205,6 +214,7 @@ actual interface WGPUAdapterInfo {
 			architecture.adapt(this@WGPUAdapterInfo.architecture)
 			device.adapt(this@WGPUAdapterInfo.device)
 			description.adapt(this@WGPUAdapterInfo.description)
+			nextInChain = this@WGPUAdapterInfo.nextInChain?.reinterpret()
 			backendType = this@WGPUAdapterInfo.backendType
 			adapterType = this@WGPUAdapterInfo.adapterType
 			vendorID = this@WGPUAdapterInfo.vendorID
@@ -220,6 +230,7 @@ fun webgpu.native.WGPUAdapterInfo.adapt(structure: WGPUAdapterInfo) {
 	architecture.adapt(structure.architecture)
 	device.adapt(structure.device)
 	description.adapt(structure.description)
+	nextInChain = structure.nextInChain?.reinterpret()
 	backendType = structure.backendType
 	adapterType = structure.adapterType
 	vendorID = structure.vendorID
@@ -230,6 +241,10 @@ fun webgpu.native.WGPUAdapterInfo.adapt(structure: WGPUAdapterInfo) {
 
 actual interface WGPUBindGroupDescriptor {
 	value class ByValue(val handle: CValue<webgpu.native.WGPUBindGroupDescriptor>) : WGPUBindGroupDescriptor {
+		override var nextInChain: NativeAddress?
+			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
+
 		override val label: WGPUStringView
 			get() = handle.useContents { label.rawPtr.toLong().let(::NativeAddress).let { WGPUStringView(it) } }
 
@@ -250,6 +265,10 @@ actual interface WGPUBindGroupDescriptor {
 
 	}
 	value class ByReference(override val handler: NativeAddress) : WGPUBindGroupDescriptor {
+		override var nextInChain: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPUBindGroupDescriptor>().pointed.nextInChain?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPUBindGroupDescriptor>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
+
 		override val label: WGPUStringView
 			get() = handler.reinterpret<webgpu.native.WGPUBindGroupDescriptor>().pointed.label.rawPtr.toLong().let(::NativeAddress).let { WGPUStringView(it) }
 
@@ -267,6 +286,7 @@ actual interface WGPUBindGroupDescriptor {
 
 	}
 
+	actual var nextInChain: NativeAddress?
 	actual val label: WGPUStringView
 	actual var layout: WGPUBindGroupLayout?
 	actual var entryCount: ULong
@@ -299,6 +319,7 @@ actual interface WGPUBindGroupDescriptor {
 	fun toCValue(): CValue<webgpu.native.WGPUBindGroupDescriptor> {
 		return cValue<webgpu.native.WGPUBindGroupDescriptor> {
 			label.adapt(this@WGPUBindGroupDescriptor.label)
+			nextInChain = this@WGPUBindGroupDescriptor.nextInChain?.reinterpret()
 			layout = this@WGPUBindGroupDescriptor.layout?.handler?.reinterpret()
 			entryCount = this@WGPUBindGroupDescriptor.entryCount
 			entries = this@WGPUBindGroupDescriptor.entries?.handler?.reinterpret()
@@ -308,6 +329,7 @@ actual interface WGPUBindGroupDescriptor {
 
 fun webgpu.native.WGPUBindGroupDescriptor.adapt(structure: WGPUBindGroupDescriptor) {
 	label.adapt(structure.label)
+	nextInChain = structure.nextInChain?.reinterpret()
 	layout = structure.layout?.handler?.reinterpret()
 	entryCount = structure.entryCount
 	entries = structure.entries?.handler?.reinterpret()
@@ -315,6 +337,10 @@ fun webgpu.native.WGPUBindGroupDescriptor.adapt(structure: WGPUBindGroupDescript
 
 actual interface WGPUBindGroupEntry {
 	value class ByValue(val handle: CValue<webgpu.native.WGPUBindGroupEntry>) : WGPUBindGroupEntry {
+		override var nextInChain: NativeAddress?
+			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
+
 		override var binding: UInt
 			get() = handle.useContents { binding ?: error("pointer of WGPUBindGroupEntry is null") }
 			set(newValue) { handle.useContents { binding = newValue } } 
@@ -344,6 +370,10 @@ actual interface WGPUBindGroupEntry {
 
 	}
 	value class ByReference(override val handler: NativeAddress) : WGPUBindGroupEntry {
+		override var nextInChain: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPUBindGroupEntry>().pointed.nextInChain?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPUBindGroupEntry>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
+
 		override var binding: UInt
 			get() = handler.reinterpret<webgpu.native.WGPUBindGroupEntry>().pointed.binding ?: error("pointer of WGPUBindGroupEntry is null")
 			set(newValue) { handler.reinterpret<webgpu.native.WGPUBindGroupEntry>().pointed.let { it.binding = newValue } } 
@@ -370,6 +400,7 @@ actual interface WGPUBindGroupEntry {
 
 	}
 
+	actual var nextInChain: NativeAddress?
 	actual var binding: UInt
 	actual var buffer: WGPUBuffer?
 	actual var offset: ULong
@@ -403,6 +434,7 @@ actual interface WGPUBindGroupEntry {
 	}
 	fun toCValue(): CValue<webgpu.native.WGPUBindGroupEntry> {
 		return cValue<webgpu.native.WGPUBindGroupEntry> {
+			nextInChain = this@WGPUBindGroupEntry.nextInChain?.reinterpret()
 			binding = this@WGPUBindGroupEntry.binding
 			buffer = this@WGPUBindGroupEntry.buffer?.handler?.reinterpret()
 			offset = this@WGPUBindGroupEntry.offset
@@ -414,6 +446,7 @@ actual interface WGPUBindGroupEntry {
 }
 
 fun webgpu.native.WGPUBindGroupEntry.adapt(structure: WGPUBindGroupEntry) {
+	nextInChain = structure.nextInChain?.reinterpret()
 	binding = structure.binding
 	buffer = structure.buffer?.handler?.reinterpret()
 	offset = structure.offset
@@ -424,6 +457,10 @@ fun webgpu.native.WGPUBindGroupEntry.adapt(structure: WGPUBindGroupEntry) {
 
 actual interface WGPUBindGroupLayoutDescriptor {
 	value class ByValue(val handle: CValue<webgpu.native.WGPUBindGroupLayoutDescriptor>) : WGPUBindGroupLayoutDescriptor {
+		override var nextInChain: NativeAddress?
+			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
+
 		override val label: WGPUStringView
 			get() = handle.useContents { label.rawPtr.toLong().let(::NativeAddress).let { WGPUStringView(it) } }
 
@@ -440,6 +477,10 @@ actual interface WGPUBindGroupLayoutDescriptor {
 
 	}
 	value class ByReference(override val handler: NativeAddress) : WGPUBindGroupLayoutDescriptor {
+		override var nextInChain: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPUBindGroupLayoutDescriptor>().pointed.nextInChain?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPUBindGroupLayoutDescriptor>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
+
 		override val label: WGPUStringView
 			get() = handler.reinterpret<webgpu.native.WGPUBindGroupLayoutDescriptor>().pointed.label.rawPtr.toLong().let(::NativeAddress).let { WGPUStringView(it) }
 
@@ -453,6 +494,7 @@ actual interface WGPUBindGroupLayoutDescriptor {
 
 	}
 
+	actual var nextInChain: NativeAddress?
 	actual val label: WGPUStringView
 	actual var entryCount: ULong
 	actual var entries: ArrayHolder<WGPUBindGroupLayoutEntry>?
@@ -484,6 +526,7 @@ actual interface WGPUBindGroupLayoutDescriptor {
 	fun toCValue(): CValue<webgpu.native.WGPUBindGroupLayoutDescriptor> {
 		return cValue<webgpu.native.WGPUBindGroupLayoutDescriptor> {
 			label.adapt(this@WGPUBindGroupLayoutDescriptor.label)
+			nextInChain = this@WGPUBindGroupLayoutDescriptor.nextInChain?.reinterpret()
 			entryCount = this@WGPUBindGroupLayoutDescriptor.entryCount
 			entries = this@WGPUBindGroupLayoutDescriptor.entries?.handler?.reinterpret()
 		}
@@ -492,12 +535,17 @@ actual interface WGPUBindGroupLayoutDescriptor {
 
 fun webgpu.native.WGPUBindGroupLayoutDescriptor.adapt(structure: WGPUBindGroupLayoutDescriptor) {
 	label.adapt(structure.label)
+	nextInChain = structure.nextInChain?.reinterpret()
 	entryCount = structure.entryCount
 	entries = structure.entries?.handler?.reinterpret()
 }
 
 actual interface WGPUBufferBindingLayout {
 	value class ByValue(val handle: CValue<webgpu.native.WGPUBufferBindingLayout>) : WGPUBufferBindingLayout {
+		override var nextInChain: NativeAddress?
+			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
+
 		override var type: WGPUBufferBindingType
 			get() = handle.useContents { type ?: error("pointer of WGPUBufferBindingLayout is null") }
 			set(newValue) { handle.useContents { type = newValue } } 
@@ -515,6 +563,10 @@ actual interface WGPUBufferBindingLayout {
 
 	}
 	value class ByReference(override val handler: NativeAddress) : WGPUBufferBindingLayout {
+		override var nextInChain: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPUBufferBindingLayout>().pointed.nextInChain?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPUBufferBindingLayout>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
+
 		override var type: WGPUBufferBindingType
 			get() = handler.reinterpret<webgpu.native.WGPUBufferBindingLayout>().pointed.type ?: error("pointer of WGPUBufferBindingLayout is null")
 			set(newValue) { handler.reinterpret<webgpu.native.WGPUBufferBindingLayout>().pointed.let { it.type = newValue } } 
@@ -529,6 +581,7 @@ actual interface WGPUBufferBindingLayout {
 
 	}
 
+	actual var nextInChain: NativeAddress?
 	actual var type: WGPUBufferBindingType
 	actual var hasDynamicOffset: Boolean
 	actual var minBindingSize: ULong
@@ -559,6 +612,7 @@ actual interface WGPUBufferBindingLayout {
 	}
 	fun toCValue(): CValue<webgpu.native.WGPUBufferBindingLayout> {
 		return cValue<webgpu.native.WGPUBufferBindingLayout> {
+			nextInChain = this@WGPUBufferBindingLayout.nextInChain?.reinterpret()
 			type = this@WGPUBufferBindingLayout.type
 			hasDynamicOffset = this@WGPUBufferBindingLayout.hasDynamicOffset.toUInt()
 			minBindingSize = this@WGPUBufferBindingLayout.minBindingSize
@@ -567,6 +621,7 @@ actual interface WGPUBufferBindingLayout {
 }
 
 fun webgpu.native.WGPUBufferBindingLayout.adapt(structure: WGPUBufferBindingLayout) {
+	nextInChain = structure.nextInChain?.reinterpret()
 	type = structure.type
 	hasDynamicOffset = structure.hasDynamicOffset.toUInt()
 	minBindingSize = structure.minBindingSize
@@ -574,6 +629,10 @@ fun webgpu.native.WGPUBufferBindingLayout.adapt(structure: WGPUBufferBindingLayo
 
 actual interface WGPUSamplerBindingLayout {
 	value class ByValue(val handle: CValue<webgpu.native.WGPUSamplerBindingLayout>) : WGPUSamplerBindingLayout {
+		override var nextInChain: NativeAddress?
+			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
+
 		override var type: WGPUSamplerBindingType
 			get() = handle.useContents { type ?: error("pointer of WGPUSamplerBindingLayout is null") }
 			set(newValue) { handle.useContents { type = newValue } } 
@@ -583,12 +642,17 @@ actual interface WGPUSamplerBindingLayout {
 
 	}
 	value class ByReference(override val handler: NativeAddress) : WGPUSamplerBindingLayout {
+		override var nextInChain: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPUSamplerBindingLayout>().pointed.nextInChain?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPUSamplerBindingLayout>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
+
 		override var type: WGPUSamplerBindingType
 			get() = handler.reinterpret<webgpu.native.WGPUSamplerBindingLayout>().pointed.type ?: error("pointer of WGPUSamplerBindingLayout is null")
 			set(newValue) { handler.reinterpret<webgpu.native.WGPUSamplerBindingLayout>().pointed.let { it.type = newValue } } 
 
 	}
 
+	actual var nextInChain: NativeAddress?
 	actual var type: WGPUSamplerBindingType
 	actual val handler: NativeAddress
 
@@ -617,17 +681,23 @@ actual interface WGPUSamplerBindingLayout {
 	}
 	fun toCValue(): CValue<webgpu.native.WGPUSamplerBindingLayout> {
 		return cValue<webgpu.native.WGPUSamplerBindingLayout> {
+			nextInChain = this@WGPUSamplerBindingLayout.nextInChain?.reinterpret()
 			type = this@WGPUSamplerBindingLayout.type
 		}
 	}
 }
 
 fun webgpu.native.WGPUSamplerBindingLayout.adapt(structure: WGPUSamplerBindingLayout) {
+	nextInChain = structure.nextInChain?.reinterpret()
 	type = structure.type
 }
 
 actual interface WGPUTextureBindingLayout {
 	value class ByValue(val handle: CValue<webgpu.native.WGPUTextureBindingLayout>) : WGPUTextureBindingLayout {
+		override var nextInChain: NativeAddress?
+			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
+
 		override var sampleType: WGPUTextureSampleType
 			get() = handle.useContents { sampleType ?: error("pointer of WGPUTextureBindingLayout is null") }
 			set(newValue) { handle.useContents { sampleType = newValue } } 
@@ -645,6 +715,10 @@ actual interface WGPUTextureBindingLayout {
 
 	}
 	value class ByReference(override val handler: NativeAddress) : WGPUTextureBindingLayout {
+		override var nextInChain: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPUTextureBindingLayout>().pointed.nextInChain?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPUTextureBindingLayout>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
+
 		override var sampleType: WGPUTextureSampleType
 			get() = handler.reinterpret<webgpu.native.WGPUTextureBindingLayout>().pointed.sampleType ?: error("pointer of WGPUTextureBindingLayout is null")
 			set(newValue) { handler.reinterpret<webgpu.native.WGPUTextureBindingLayout>().pointed.let { it.sampleType = newValue } } 
@@ -659,6 +733,7 @@ actual interface WGPUTextureBindingLayout {
 
 	}
 
+	actual var nextInChain: NativeAddress?
 	actual var sampleType: WGPUTextureSampleType
 	actual var viewDimension: WGPUTextureViewDimension
 	actual var multisampled: Boolean
@@ -689,6 +764,7 @@ actual interface WGPUTextureBindingLayout {
 	}
 	fun toCValue(): CValue<webgpu.native.WGPUTextureBindingLayout> {
 		return cValue<webgpu.native.WGPUTextureBindingLayout> {
+			nextInChain = this@WGPUTextureBindingLayout.nextInChain?.reinterpret()
 			sampleType = this@WGPUTextureBindingLayout.sampleType
 			viewDimension = this@WGPUTextureBindingLayout.viewDimension
 			multisampled = this@WGPUTextureBindingLayout.multisampled.toUInt()
@@ -697,6 +773,7 @@ actual interface WGPUTextureBindingLayout {
 }
 
 fun webgpu.native.WGPUTextureBindingLayout.adapt(structure: WGPUTextureBindingLayout) {
+	nextInChain = structure.nextInChain?.reinterpret()
 	sampleType = structure.sampleType
 	viewDimension = structure.viewDimension
 	multisampled = structure.multisampled.toUInt()
@@ -704,6 +781,10 @@ fun webgpu.native.WGPUTextureBindingLayout.adapt(structure: WGPUTextureBindingLa
 
 actual interface WGPUStorageTextureBindingLayout {
 	value class ByValue(val handle: CValue<webgpu.native.WGPUStorageTextureBindingLayout>) : WGPUStorageTextureBindingLayout {
+		override var nextInChain: NativeAddress?
+			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
+
 		override var access: WGPUStorageTextureAccess
 			get() = handle.useContents { access ?: error("pointer of WGPUStorageTextureBindingLayout is null") }
 			set(newValue) { handle.useContents { access = newValue } } 
@@ -721,6 +802,10 @@ actual interface WGPUStorageTextureBindingLayout {
 
 	}
 	value class ByReference(override val handler: NativeAddress) : WGPUStorageTextureBindingLayout {
+		override var nextInChain: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPUStorageTextureBindingLayout>().pointed.nextInChain?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPUStorageTextureBindingLayout>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
+
 		override var access: WGPUStorageTextureAccess
 			get() = handler.reinterpret<webgpu.native.WGPUStorageTextureBindingLayout>().pointed.access ?: error("pointer of WGPUStorageTextureBindingLayout is null")
 			set(newValue) { handler.reinterpret<webgpu.native.WGPUStorageTextureBindingLayout>().pointed.let { it.access = newValue } } 
@@ -735,6 +820,7 @@ actual interface WGPUStorageTextureBindingLayout {
 
 	}
 
+	actual var nextInChain: NativeAddress?
 	actual var access: WGPUStorageTextureAccess
 	actual var format: WGPUTextureFormat
 	actual var viewDimension: WGPUTextureViewDimension
@@ -765,6 +851,7 @@ actual interface WGPUStorageTextureBindingLayout {
 	}
 	fun toCValue(): CValue<webgpu.native.WGPUStorageTextureBindingLayout> {
 		return cValue<webgpu.native.WGPUStorageTextureBindingLayout> {
+			nextInChain = this@WGPUStorageTextureBindingLayout.nextInChain?.reinterpret()
 			access = this@WGPUStorageTextureBindingLayout.access
 			format = this@WGPUStorageTextureBindingLayout.format
 			viewDimension = this@WGPUStorageTextureBindingLayout.viewDimension
@@ -773,6 +860,7 @@ actual interface WGPUStorageTextureBindingLayout {
 }
 
 fun webgpu.native.WGPUStorageTextureBindingLayout.adapt(structure: WGPUStorageTextureBindingLayout) {
+	nextInChain = structure.nextInChain?.reinterpret()
 	access = structure.access
 	format = structure.format
 	viewDimension = structure.viewDimension
@@ -780,6 +868,10 @@ fun webgpu.native.WGPUStorageTextureBindingLayout.adapt(structure: WGPUStorageTe
 
 actual interface WGPUBindGroupLayoutEntry {
 	value class ByValue(val handle: CValue<webgpu.native.WGPUBindGroupLayoutEntry>) : WGPUBindGroupLayoutEntry {
+		override var nextInChain: NativeAddress?
+			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
+
 		override var binding: UInt
 			get() = handle.useContents { binding ?: error("pointer of WGPUBindGroupLayoutEntry is null") }
 			set(newValue) { handle.useContents { binding = newValue } } 
@@ -809,6 +901,10 @@ actual interface WGPUBindGroupLayoutEntry {
 
 	}
 	value class ByReference(override val handler: NativeAddress) : WGPUBindGroupLayoutEntry {
+		override var nextInChain: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPUBindGroupLayoutEntry>().pointed.nextInChain?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPUBindGroupLayoutEntry>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
+
 		override var binding: UInt
 			get() = handler.reinterpret<webgpu.native.WGPUBindGroupLayoutEntry>().pointed.binding ?: error("pointer of WGPUBindGroupLayoutEntry is null")
 			set(newValue) { handler.reinterpret<webgpu.native.WGPUBindGroupLayoutEntry>().pointed.let { it.binding = newValue } } 
@@ -835,6 +931,7 @@ actual interface WGPUBindGroupLayoutEntry {
 
 	}
 
+	actual var nextInChain: NativeAddress?
 	actual var binding: UInt
 	actual var visibility: ULong
 	actual var bindingArraySize: UInt
@@ -873,6 +970,7 @@ actual interface WGPUBindGroupLayoutEntry {
 			sampler.adapt(this@WGPUBindGroupLayoutEntry.sampler)
 			texture.adapt(this@WGPUBindGroupLayoutEntry.texture)
 			storageTexture.adapt(this@WGPUBindGroupLayoutEntry.storageTexture)
+			nextInChain = this@WGPUBindGroupLayoutEntry.nextInChain?.reinterpret()
 			binding = this@WGPUBindGroupLayoutEntry.binding
 			visibility = this@WGPUBindGroupLayoutEntry.visibility
 			bindingArraySize = this@WGPUBindGroupLayoutEntry.bindingArraySize
@@ -885,6 +983,7 @@ fun webgpu.native.WGPUBindGroupLayoutEntry.adapt(structure: WGPUBindGroupLayoutE
 	sampler.adapt(structure.sampler)
 	texture.adapt(structure.texture)
 	storageTexture.adapt(structure.storageTexture)
+	nextInChain = structure.nextInChain?.reinterpret()
 	binding = structure.binding
 	visibility = structure.visibility
 	bindingArraySize = structure.bindingArraySize
@@ -1029,6 +1128,10 @@ fun webgpu.native.WGPUBlendState.adapt(structure: WGPUBlendState) {
 
 actual interface WGPUBufferDescriptor {
 	value class ByValue(val handle: CValue<webgpu.native.WGPUBufferDescriptor>) : WGPUBufferDescriptor {
+		override var nextInChain: NativeAddress?
+			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
+
 		override val label: WGPUStringView
 			get() = handle.useContents { label.rawPtr.toLong().let(::NativeAddress).let { WGPUStringView(it) } }
 
@@ -1049,6 +1152,10 @@ actual interface WGPUBufferDescriptor {
 
 	}
 	value class ByReference(override val handler: NativeAddress) : WGPUBufferDescriptor {
+		override var nextInChain: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPUBufferDescriptor>().pointed.nextInChain?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPUBufferDescriptor>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
+
 		override val label: WGPUStringView
 			get() = handler.reinterpret<webgpu.native.WGPUBufferDescriptor>().pointed.label.rawPtr.toLong().let(::NativeAddress).let { WGPUStringView(it) }
 
@@ -1066,6 +1173,7 @@ actual interface WGPUBufferDescriptor {
 
 	}
 
+	actual var nextInChain: NativeAddress?
 	actual val label: WGPUStringView
 	actual var usage: ULong
 	actual var size: ULong
@@ -1098,6 +1206,7 @@ actual interface WGPUBufferDescriptor {
 	fun toCValue(): CValue<webgpu.native.WGPUBufferDescriptor> {
 		return cValue<webgpu.native.WGPUBufferDescriptor> {
 			label.adapt(this@WGPUBufferDescriptor.label)
+			nextInChain = this@WGPUBufferDescriptor.nextInChain?.reinterpret()
 			usage = this@WGPUBufferDescriptor.usage
 			size = this@WGPUBufferDescriptor.size
 			mappedAtCreation = this@WGPUBufferDescriptor.mappedAtCreation.toUInt()
@@ -1107,6 +1216,7 @@ actual interface WGPUBufferDescriptor {
 
 fun webgpu.native.WGPUBufferDescriptor.adapt(structure: WGPUBufferDescriptor) {
 	label.adapt(structure.label)
+	nextInChain = structure.nextInChain?.reinterpret()
 	usage = structure.usage
 	size = structure.size
 	mappedAtCreation = structure.mappedAtCreation.toUInt()
@@ -1201,6 +1311,10 @@ fun webgpu.native.WGPUColor.adapt(structure: WGPUColor) {
 
 actual interface WGPUColorTargetState {
 	value class ByValue(val handle: CValue<webgpu.native.WGPUColorTargetState>) : WGPUColorTargetState {
+		override var nextInChain: NativeAddress?
+			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
+
 		override var format: WGPUTextureFormat
 			get() = handle.useContents { format ?: error("pointer of WGPUColorTargetState is null") }
 			set(newValue) { handle.useContents { format = newValue } } 
@@ -1218,6 +1332,10 @@ actual interface WGPUColorTargetState {
 
 	}
 	value class ByReference(override val handler: NativeAddress) : WGPUColorTargetState {
+		override var nextInChain: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPUColorTargetState>().pointed.nextInChain?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPUColorTargetState>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
+
 		override var format: WGPUTextureFormat
 			get() = handler.reinterpret<webgpu.native.WGPUColorTargetState>().pointed.format ?: error("pointer of WGPUColorTargetState is null")
 			set(newValue) { handler.reinterpret<webgpu.native.WGPUColorTargetState>().pointed.let { it.format = newValue } } 
@@ -1232,6 +1350,7 @@ actual interface WGPUColorTargetState {
 
 	}
 
+	actual var nextInChain: NativeAddress?
 	actual var format: WGPUTextureFormat
 	actual var blend: WGPUBlendState?
 	actual var writeMask: ULong
@@ -1262,6 +1381,7 @@ actual interface WGPUColorTargetState {
 	}
 	fun toCValue(): CValue<webgpu.native.WGPUColorTargetState> {
 		return cValue<webgpu.native.WGPUColorTargetState> {
+			nextInChain = this@WGPUColorTargetState.nextInChain?.reinterpret()
 			format = this@WGPUColorTargetState.format
 			blend = this@WGPUColorTargetState.blend?.handler?.reinterpret()
 			writeMask = this@WGPUColorTargetState.writeMask
@@ -1270,6 +1390,7 @@ actual interface WGPUColorTargetState {
 }
 
 fun webgpu.native.WGPUColorTargetState.adapt(structure: WGPUColorTargetState) {
+	nextInChain = structure.nextInChain?.reinterpret()
 	format = structure.format
 	blend = structure.blend?.handler?.reinterpret()
 	writeMask = structure.writeMask
@@ -1277,6 +1398,10 @@ fun webgpu.native.WGPUColorTargetState.adapt(structure: WGPUColorTargetState) {
 
 actual interface WGPUCommandBufferDescriptor {
 	value class ByValue(val handle: CValue<webgpu.native.WGPUCommandBufferDescriptor>) : WGPUCommandBufferDescriptor {
+		override var nextInChain: NativeAddress?
+			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
+
 		override val label: WGPUStringView
 			get() = handle.useContents { label.rawPtr.toLong().let(::NativeAddress).let { WGPUStringView(it) } }
 
@@ -1285,11 +1410,16 @@ actual interface WGPUCommandBufferDescriptor {
 
 	}
 	value class ByReference(override val handler: NativeAddress) : WGPUCommandBufferDescriptor {
+		override var nextInChain: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPUCommandBufferDescriptor>().pointed.nextInChain?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPUCommandBufferDescriptor>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
+
 		override val label: WGPUStringView
 			get() = handler.reinterpret<webgpu.native.WGPUCommandBufferDescriptor>().pointed.label.rawPtr.toLong().let(::NativeAddress).let { WGPUStringView(it) }
 
 	}
 
+	actual var nextInChain: NativeAddress?
 	actual val label: WGPUStringView
 	actual val handler: NativeAddress
 
@@ -1319,16 +1449,22 @@ actual interface WGPUCommandBufferDescriptor {
 	fun toCValue(): CValue<webgpu.native.WGPUCommandBufferDescriptor> {
 		return cValue<webgpu.native.WGPUCommandBufferDescriptor> {
 			label.adapt(this@WGPUCommandBufferDescriptor.label)
+			nextInChain = this@WGPUCommandBufferDescriptor.nextInChain?.reinterpret()
 		}
 	}
 }
 
 fun webgpu.native.WGPUCommandBufferDescriptor.adapt(structure: WGPUCommandBufferDescriptor) {
 	label.adapt(structure.label)
+	nextInChain = structure.nextInChain?.reinterpret()
 }
 
 actual interface WGPUCommandEncoderDescriptor {
 	value class ByValue(val handle: CValue<webgpu.native.WGPUCommandEncoderDescriptor>) : WGPUCommandEncoderDescriptor {
+		override var nextInChain: NativeAddress?
+			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
+
 		override val label: WGPUStringView
 			get() = handle.useContents { label.rawPtr.toLong().let(::NativeAddress).let { WGPUStringView(it) } }
 
@@ -1337,11 +1473,16 @@ actual interface WGPUCommandEncoderDescriptor {
 
 	}
 	value class ByReference(override val handler: NativeAddress) : WGPUCommandEncoderDescriptor {
+		override var nextInChain: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPUCommandEncoderDescriptor>().pointed.nextInChain?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPUCommandEncoderDescriptor>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
+
 		override val label: WGPUStringView
 			get() = handler.reinterpret<webgpu.native.WGPUCommandEncoderDescriptor>().pointed.label.rawPtr.toLong().let(::NativeAddress).let { WGPUStringView(it) }
 
 	}
 
+	actual var nextInChain: NativeAddress?
 	actual val label: WGPUStringView
 	actual val handler: NativeAddress
 
@@ -1371,12 +1512,14 @@ actual interface WGPUCommandEncoderDescriptor {
 	fun toCValue(): CValue<webgpu.native.WGPUCommandEncoderDescriptor> {
 		return cValue<webgpu.native.WGPUCommandEncoderDescriptor> {
 			label.adapt(this@WGPUCommandEncoderDescriptor.label)
+			nextInChain = this@WGPUCommandEncoderDescriptor.nextInChain?.reinterpret()
 		}
 	}
 }
 
 fun webgpu.native.WGPUCommandEncoderDescriptor.adapt(structure: WGPUCommandEncoderDescriptor) {
 	label.adapt(structure.label)
+	nextInChain = structure.nextInChain?.reinterpret()
 }
 
 actual interface WGPUChainedStruct {
@@ -1714,6 +1857,10 @@ fun webgpu.native.WGPUCompilationMessage.adapt(structure: WGPUCompilationMessage
 
 actual interface WGPUComputePassDescriptor {
 	value class ByValue(val handle: CValue<webgpu.native.WGPUComputePassDescriptor>) : WGPUComputePassDescriptor {
+		override var nextInChain: NativeAddress?
+			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
+
 		override val label: WGPUStringView
 			get() = handle.useContents { label.rawPtr.toLong().let(::NativeAddress).let { WGPUStringView(it) } }
 
@@ -1726,6 +1873,10 @@ actual interface WGPUComputePassDescriptor {
 
 	}
 	value class ByReference(override val handler: NativeAddress) : WGPUComputePassDescriptor {
+		override var nextInChain: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPUComputePassDescriptor>().pointed.nextInChain?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPUComputePassDescriptor>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
+
 		override val label: WGPUStringView
 			get() = handler.reinterpret<webgpu.native.WGPUComputePassDescriptor>().pointed.label.rawPtr.toLong().let(::NativeAddress).let { WGPUStringView(it) }
 
@@ -1735,6 +1886,7 @@ actual interface WGPUComputePassDescriptor {
 
 	}
 
+	actual var nextInChain: NativeAddress?
 	actual val label: WGPUStringView
 	actual var timestampWrites: WGPUPassTimestampWrites?
 	actual val handler: NativeAddress
@@ -1765,6 +1917,7 @@ actual interface WGPUComputePassDescriptor {
 	fun toCValue(): CValue<webgpu.native.WGPUComputePassDescriptor> {
 		return cValue<webgpu.native.WGPUComputePassDescriptor> {
 			label.adapt(this@WGPUComputePassDescriptor.label)
+			nextInChain = this@WGPUComputePassDescriptor.nextInChain?.reinterpret()
 			timestampWrites = this@WGPUComputePassDescriptor.timestampWrites?.handler?.reinterpret()
 		}
 	}
@@ -1772,11 +1925,16 @@ actual interface WGPUComputePassDescriptor {
 
 fun webgpu.native.WGPUComputePassDescriptor.adapt(structure: WGPUComputePassDescriptor) {
 	label.adapt(structure.label)
+	nextInChain = structure.nextInChain?.reinterpret()
 	timestampWrites = structure.timestampWrites?.handler?.reinterpret()
 }
 
 actual interface WGPUComputeState {
 	value class ByValue(val handle: CValue<webgpu.native.WGPUComputeState>) : WGPUComputeState {
+		override var nextInChain: NativeAddress?
+			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
+
 		override var module: WGPUShaderModule?
 			get() = handle.useContents { module?.let(::NativeAddress)?.let { WGPUShaderModule(it) } }
 			set(newValue) { handle.useContents { module = newValue?.handler?.reinterpret() } } 
@@ -1797,6 +1955,10 @@ actual interface WGPUComputeState {
 
 	}
 	value class ByReference(override val handler: NativeAddress) : WGPUComputeState {
+		override var nextInChain: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPUComputeState>().pointed.nextInChain?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPUComputeState>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
+
 		override var module: WGPUShaderModule?
 			get() = handler.reinterpret<webgpu.native.WGPUComputeState>().pointed.module?.let(::NativeAddress)?.let { WGPUShaderModule(it) }
 			set(newValue) { handler.reinterpret<webgpu.native.WGPUComputeState>().pointed.let { it.module = newValue?.handler?.reinterpret() } } 
@@ -1814,6 +1976,7 @@ actual interface WGPUComputeState {
 
 	}
 
+	actual var nextInChain: NativeAddress?
 	actual var module: WGPUShaderModule?
 	actual val entryPoint: WGPUStringView
 	actual var constantCount: ULong
@@ -1846,6 +2009,7 @@ actual interface WGPUComputeState {
 	fun toCValue(): CValue<webgpu.native.WGPUComputeState> {
 		return cValue<webgpu.native.WGPUComputeState> {
 			entryPoint.adapt(this@WGPUComputeState.entryPoint)
+			nextInChain = this@WGPUComputeState.nextInChain?.reinterpret()
 			module = this@WGPUComputeState.module?.handler?.reinterpret()
 			constantCount = this@WGPUComputeState.constantCount
 			constants = this@WGPUComputeState.constants?.handler?.reinterpret()
@@ -1855,6 +2019,7 @@ actual interface WGPUComputeState {
 
 fun webgpu.native.WGPUComputeState.adapt(structure: WGPUComputeState) {
 	entryPoint.adapt(structure.entryPoint)
+	nextInChain = structure.nextInChain?.reinterpret()
 	module = structure.module?.handler?.reinterpret()
 	constantCount = structure.constantCount
 	constants = structure.constants?.handler?.reinterpret()
@@ -1862,6 +2027,10 @@ fun webgpu.native.WGPUComputeState.adapt(structure: WGPUComputeState) {
 
 actual interface WGPUComputePipelineDescriptor {
 	value class ByValue(val handle: CValue<webgpu.native.WGPUComputePipelineDescriptor>) : WGPUComputePipelineDescriptor {
+		override var nextInChain: NativeAddress?
+			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
+
 		override val label: WGPUStringView
 			get() = handle.useContents { label.rawPtr.toLong().let(::NativeAddress).let { WGPUStringView(it) } }
 
@@ -1877,6 +2046,10 @@ actual interface WGPUComputePipelineDescriptor {
 
 	}
 	value class ByReference(override val handler: NativeAddress) : WGPUComputePipelineDescriptor {
+		override var nextInChain: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPUComputePipelineDescriptor>().pointed.nextInChain?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPUComputePipelineDescriptor>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
+
 		override val label: WGPUStringView
 			get() = handler.reinterpret<webgpu.native.WGPUComputePipelineDescriptor>().pointed.label.rawPtr.toLong().let(::NativeAddress).let { WGPUStringView(it) }
 
@@ -1889,6 +2062,7 @@ actual interface WGPUComputePipelineDescriptor {
 
 	}
 
+	actual var nextInChain: NativeAddress?
 	actual val label: WGPUStringView
 	actual var layout: WGPUPipelineLayout?
 	actual val compute: WGPUComputeState
@@ -1921,6 +2095,7 @@ actual interface WGPUComputePipelineDescriptor {
 		return cValue<webgpu.native.WGPUComputePipelineDescriptor> {
 			label.adapt(this@WGPUComputePipelineDescriptor.label)
 			compute.adapt(this@WGPUComputePipelineDescriptor.compute)
+			nextInChain = this@WGPUComputePipelineDescriptor.nextInChain?.reinterpret()
 			layout = this@WGPUComputePipelineDescriptor.layout?.handler?.reinterpret()
 		}
 	}
@@ -1929,11 +2104,16 @@ actual interface WGPUComputePipelineDescriptor {
 fun webgpu.native.WGPUComputePipelineDescriptor.adapt(structure: WGPUComputePipelineDescriptor) {
 	label.adapt(structure.label)
 	compute.adapt(structure.compute)
+	nextInChain = structure.nextInChain?.reinterpret()
 	layout = structure.layout?.handler?.reinterpret()
 }
 
 actual interface WGPUConstantEntry {
 	value class ByValue(val handle: CValue<webgpu.native.WGPUConstantEntry>) : WGPUConstantEntry {
+		override var nextInChain: NativeAddress?
+			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
+
 		override val key: WGPUStringView
 			get() = handle.useContents { key.rawPtr.toLong().let(::NativeAddress).let { WGPUStringView(it) } }
 
@@ -1946,6 +2126,10 @@ actual interface WGPUConstantEntry {
 
 	}
 	value class ByReference(override val handler: NativeAddress) : WGPUConstantEntry {
+		override var nextInChain: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPUConstantEntry>().pointed.nextInChain?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPUConstantEntry>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
+
 		override val key: WGPUStringView
 			get() = handler.reinterpret<webgpu.native.WGPUConstantEntry>().pointed.key.rawPtr.toLong().let(::NativeAddress).let { WGPUStringView(it) }
 
@@ -1955,6 +2139,7 @@ actual interface WGPUConstantEntry {
 
 	}
 
+	actual var nextInChain: NativeAddress?
 	actual val key: WGPUStringView
 	actual var value: Double
 	actual val handler: NativeAddress
@@ -1985,6 +2170,7 @@ actual interface WGPUConstantEntry {
 	fun toCValue(): CValue<webgpu.native.WGPUConstantEntry> {
 		return cValue<webgpu.native.WGPUConstantEntry> {
 			key.adapt(this@WGPUConstantEntry.key)
+			nextInChain = this@WGPUConstantEntry.nextInChain?.reinterpret()
 			value = this@WGPUConstantEntry.value
 		}
 	}
@@ -1992,6 +2178,7 @@ actual interface WGPUConstantEntry {
 
 fun webgpu.native.WGPUConstantEntry.adapt(structure: WGPUConstantEntry) {
 	key.adapt(structure.key)
+	nextInChain = structure.nextInChain?.reinterpret()
 	value = structure.value
 }
 
@@ -2084,6 +2271,10 @@ fun webgpu.native.WGPUStencilFaceState.adapt(structure: WGPUStencilFaceState) {
 
 actual interface WGPUDepthStencilState {
 	value class ByValue(val handle: CValue<webgpu.native.WGPUDepthStencilState>) : WGPUDepthStencilState {
+		override var nextInChain: NativeAddress?
+			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
+
 		override var format: WGPUTextureFormat
 			get() = handle.useContents { format ?: error("pointer of WGPUDepthStencilState is null") }
 			set(newValue) { handle.useContents { format = newValue } } 
@@ -2127,6 +2318,10 @@ actual interface WGPUDepthStencilState {
 
 	}
 	value class ByReference(override val handler: NativeAddress) : WGPUDepthStencilState {
+		override var nextInChain: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPUDepthStencilState>().pointed.nextInChain?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPUDepthStencilState>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
+
 		override var format: WGPUTextureFormat
 			get() = handler.reinterpret<webgpu.native.WGPUDepthStencilState>().pointed.format ?: error("pointer of WGPUDepthStencilState is null")
 			set(newValue) { handler.reinterpret<webgpu.native.WGPUDepthStencilState>().pointed.let { it.format = newValue } } 
@@ -2167,6 +2362,7 @@ actual interface WGPUDepthStencilState {
 
 	}
 
+	actual var nextInChain: NativeAddress?
 	actual var format: WGPUTextureFormat
 	actual var depthWriteEnabled: WGPUOptionalBool
 	actual var depthCompare: WGPUCompareFunction
@@ -2206,6 +2402,7 @@ actual interface WGPUDepthStencilState {
 		return cValue<webgpu.native.WGPUDepthStencilState> {
 			stencilFront.adapt(this@WGPUDepthStencilState.stencilFront)
 			stencilBack.adapt(this@WGPUDepthStencilState.stencilBack)
+			nextInChain = this@WGPUDepthStencilState.nextInChain?.reinterpret()
 			format = this@WGPUDepthStencilState.format
 			depthWriteEnabled = this@WGPUDepthStencilState.depthWriteEnabled
 			depthCompare = this@WGPUDepthStencilState.depthCompare
@@ -2221,6 +2418,7 @@ actual interface WGPUDepthStencilState {
 fun webgpu.native.WGPUDepthStencilState.adapt(structure: WGPUDepthStencilState) {
 	stencilFront.adapt(structure.stencilFront)
 	stencilBack.adapt(structure.stencilBack)
+	nextInChain = structure.nextInChain?.reinterpret()
 	format = structure.format
 	depthWriteEnabled = structure.depthWriteEnabled
 	depthCompare = structure.depthCompare
@@ -2233,6 +2431,10 @@ fun webgpu.native.WGPUDepthStencilState.adapt(structure: WGPUDepthStencilState) 
 
 actual interface WGPUQueueDescriptor {
 	value class ByValue(val handle: CValue<webgpu.native.WGPUQueueDescriptor>) : WGPUQueueDescriptor {
+		override var nextInChain: NativeAddress?
+			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
+
 		override val label: WGPUStringView
 			get() = handle.useContents { label.rawPtr.toLong().let(::NativeAddress).let { WGPUStringView(it) } }
 
@@ -2241,11 +2443,16 @@ actual interface WGPUQueueDescriptor {
 
 	}
 	value class ByReference(override val handler: NativeAddress) : WGPUQueueDescriptor {
+		override var nextInChain: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPUQueueDescriptor>().pointed.nextInChain?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPUQueueDescriptor>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
+
 		override val label: WGPUStringView
 			get() = handler.reinterpret<webgpu.native.WGPUQueueDescriptor>().pointed.label.rawPtr.toLong().let(::NativeAddress).let { WGPUStringView(it) }
 
 	}
 
+	actual var nextInChain: NativeAddress?
 	actual val label: WGPUStringView
 	actual val handler: NativeAddress
 
@@ -2275,12 +2482,14 @@ actual interface WGPUQueueDescriptor {
 	fun toCValue(): CValue<webgpu.native.WGPUQueueDescriptor> {
 		return cValue<webgpu.native.WGPUQueueDescriptor> {
 			label.adapt(this@WGPUQueueDescriptor.label)
+			nextInChain = this@WGPUQueueDescriptor.nextInChain?.reinterpret()
 		}
 	}
 }
 
 fun webgpu.native.WGPUQueueDescriptor.adapt(structure: WGPUQueueDescriptor) {
 	label.adapt(structure.label)
+	nextInChain = structure.nextInChain?.reinterpret()
 }
 
 actual interface WGPUDeviceLostCallbackInfo {
@@ -2470,6 +2679,10 @@ fun webgpu.native.WGPUUncapturedErrorCallbackInfo.adapt(structure: WGPUUncapture
 
 actual interface WGPUDeviceDescriptor {
 	value class ByValue(val handle: CValue<webgpu.native.WGPUDeviceDescriptor>) : WGPUDeviceDescriptor {
+		override var nextInChain: NativeAddress?
+			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
+
 		override val label: WGPUStringView
 			get() = handle.useContents { label.rawPtr.toLong().let(::NativeAddress).let { WGPUStringView(it) } }
 
@@ -2499,6 +2712,10 @@ actual interface WGPUDeviceDescriptor {
 
 	}
 	value class ByReference(override val handler: NativeAddress) : WGPUDeviceDescriptor {
+		override var nextInChain: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPUDeviceDescriptor>().pointed.nextInChain?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPUDeviceDescriptor>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
+
 		override val label: WGPUStringView
 			get() = handler.reinterpret<webgpu.native.WGPUDeviceDescriptor>().pointed.label.rawPtr.toLong().let(::NativeAddress).let { WGPUStringView(it) }
 
@@ -2525,6 +2742,7 @@ actual interface WGPUDeviceDescriptor {
 
 	}
 
+	actual var nextInChain: NativeAddress?
 	actual val label: WGPUStringView
 	actual var requiredFeatureCount: ULong
 	actual var requiredFeatures: ArrayHolder<WGPUFeatureName>?
@@ -2563,6 +2781,7 @@ actual interface WGPUDeviceDescriptor {
 			defaultQueue.adapt(this@WGPUDeviceDescriptor.defaultQueue)
 			deviceLostCallbackInfo.adapt(this@WGPUDeviceDescriptor.deviceLostCallbackInfo)
 			uncapturedErrorCallbackInfo.adapt(this@WGPUDeviceDescriptor.uncapturedErrorCallbackInfo)
+			nextInChain = this@WGPUDeviceDescriptor.nextInChain?.reinterpret()
 			requiredFeatureCount = this@WGPUDeviceDescriptor.requiredFeatureCount
 			requiredFeatures = this@WGPUDeviceDescriptor.requiredFeatures?.handler?.reinterpret()
 			requiredLimits = this@WGPUDeviceDescriptor.requiredLimits?.handler?.reinterpret()
@@ -2575,6 +2794,7 @@ fun webgpu.native.WGPUDeviceDescriptor.adapt(structure: WGPUDeviceDescriptor) {
 	defaultQueue.adapt(structure.defaultQueue)
 	deviceLostCallbackInfo.adapt(structure.deviceLostCallbackInfo)
 	uncapturedErrorCallbackInfo.adapt(structure.uncapturedErrorCallbackInfo)
+	nextInChain = structure.nextInChain?.reinterpret()
 	requiredFeatureCount = structure.requiredFeatureCount
 	requiredFeatures = structure.requiredFeatures?.handler?.reinterpret()
 	requiredLimits = structure.requiredLimits?.handler?.reinterpret()
@@ -2773,6 +2993,10 @@ fun webgpu.native.WGPUExternalTextureBindingLayout.adapt(structure: WGPUExternal
 
 actual interface WGPUFragmentState {
 	value class ByValue(val handle: CValue<webgpu.native.WGPUFragmentState>) : WGPUFragmentState {
+		override var nextInChain: NativeAddress?
+			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
+
 		override var module: WGPUShaderModule?
 			get() = handle.useContents { module?.let(::NativeAddress)?.let { WGPUShaderModule(it) } }
 			set(newValue) { handle.useContents { module = newValue?.handler?.reinterpret() } } 
@@ -2801,6 +3025,10 @@ actual interface WGPUFragmentState {
 
 	}
 	value class ByReference(override val handler: NativeAddress) : WGPUFragmentState {
+		override var nextInChain: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPUFragmentState>().pointed.nextInChain?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPUFragmentState>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
+
 		override var module: WGPUShaderModule?
 			get() = handler.reinterpret<webgpu.native.WGPUFragmentState>().pointed.module?.let(::NativeAddress)?.let { WGPUShaderModule(it) }
 			set(newValue) { handler.reinterpret<webgpu.native.WGPUFragmentState>().pointed.let { it.module = newValue?.handler?.reinterpret() } } 
@@ -2826,6 +3054,7 @@ actual interface WGPUFragmentState {
 
 	}
 
+	actual var nextInChain: NativeAddress?
 	actual var module: WGPUShaderModule?
 	actual val entryPoint: WGPUStringView
 	actual var constantCount: ULong
@@ -2860,6 +3089,7 @@ actual interface WGPUFragmentState {
 	fun toCValue(): CValue<webgpu.native.WGPUFragmentState> {
 		return cValue<webgpu.native.WGPUFragmentState> {
 			entryPoint.adapt(this@WGPUFragmentState.entryPoint)
+			nextInChain = this@WGPUFragmentState.nextInChain?.reinterpret()
 			module = this@WGPUFragmentState.module?.handler?.reinterpret()
 			constantCount = this@WGPUFragmentState.constantCount
 			constants = this@WGPUFragmentState.constants?.handler?.reinterpret()
@@ -2871,6 +3101,7 @@ actual interface WGPUFragmentState {
 
 fun webgpu.native.WGPUFragmentState.adapt(structure: WGPUFragmentState) {
 	entryPoint.adapt(structure.entryPoint)
+	nextInChain = structure.nextInChain?.reinterpret()
 	module = structure.module?.handler?.reinterpret()
 	constantCount = structure.constantCount
 	constants = structure.constants?.handler?.reinterpret()
@@ -2997,6 +3228,10 @@ fun webgpu.native.WGPUFutureWaitInfo.adapt(structure: WGPUFutureWaitInfo) {
 
 actual interface WGPUInstanceDescriptor {
 	value class ByValue(val handle: CValue<webgpu.native.WGPUInstanceDescriptor>) : WGPUInstanceDescriptor {
+		override var nextInChain: NativeAddress?
+			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
+
 		override var requiredFeatureCount: ULong
 			get() = handle.useContents { requiredFeatureCount ?: error("pointer of WGPUInstanceDescriptor is null") }
 			set(newValue) { handle.useContents { requiredFeatureCount = newValue } } 
@@ -3014,6 +3249,10 @@ actual interface WGPUInstanceDescriptor {
 
 	}
 	value class ByReference(override val handler: NativeAddress) : WGPUInstanceDescriptor {
+		override var nextInChain: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPUInstanceDescriptor>().pointed.nextInChain?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPUInstanceDescriptor>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
+
 		override var requiredFeatureCount: ULong
 			get() = handler.reinterpret<webgpu.native.WGPUInstanceDescriptor>().pointed.requiredFeatureCount ?: error("pointer of WGPUInstanceDescriptor is null")
 			set(newValue) { handler.reinterpret<webgpu.native.WGPUInstanceDescriptor>().pointed.let { it.requiredFeatureCount = newValue } } 
@@ -3028,6 +3267,7 @@ actual interface WGPUInstanceDescriptor {
 
 	}
 
+	actual var nextInChain: NativeAddress?
 	actual var requiredFeatureCount: ULong
 	actual var requiredFeatures: ArrayHolder<WGPUInstanceFeatureName>?
 	actual var requiredLimits: WGPUInstanceLimits?
@@ -3058,6 +3298,7 @@ actual interface WGPUInstanceDescriptor {
 	}
 	fun toCValue(): CValue<webgpu.native.WGPUInstanceDescriptor> {
 		return cValue<webgpu.native.WGPUInstanceDescriptor> {
+			nextInChain = this@WGPUInstanceDescriptor.nextInChain?.reinterpret()
 			requiredFeatureCount = this@WGPUInstanceDescriptor.requiredFeatureCount
 			requiredFeatures = this@WGPUInstanceDescriptor.requiredFeatures?.handler?.reinterpret()
 			requiredLimits = this@WGPUInstanceDescriptor.requiredLimits?.handler?.reinterpret()
@@ -3066,6 +3307,7 @@ actual interface WGPUInstanceDescriptor {
 }
 
 fun webgpu.native.WGPUInstanceDescriptor.adapt(structure: WGPUInstanceDescriptor) {
+	nextInChain = structure.nextInChain?.reinterpret()
 	requiredFeatureCount = structure.requiredFeatureCount
 	requiredFeatures = structure.requiredFeatures?.handler?.reinterpret()
 	requiredLimits = structure.requiredLimits?.handler?.reinterpret()
@@ -3073,6 +3315,10 @@ fun webgpu.native.WGPUInstanceDescriptor.adapt(structure: WGPUInstanceDescriptor
 
 actual interface WGPUInstanceLimits {
 	value class ByValue(val handle: CValue<webgpu.native.WGPUInstanceLimits>) : WGPUInstanceLimits {
+		override var nextInChain: NativeAddress?
+			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
+
 		override var timedWaitAnyMaxCount: ULong
 			get() = handle.useContents { timedWaitAnyMaxCount ?: error("pointer of WGPUInstanceLimits is null") }
 			set(newValue) { handle.useContents { timedWaitAnyMaxCount = newValue } } 
@@ -3082,12 +3328,17 @@ actual interface WGPUInstanceLimits {
 
 	}
 	value class ByReference(override val handler: NativeAddress) : WGPUInstanceLimits {
+		override var nextInChain: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPUInstanceLimits>().pointed.nextInChain?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPUInstanceLimits>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
+
 		override var timedWaitAnyMaxCount: ULong
 			get() = handler.reinterpret<webgpu.native.WGPUInstanceLimits>().pointed.timedWaitAnyMaxCount ?: error("pointer of WGPUInstanceLimits is null")
 			set(newValue) { handler.reinterpret<webgpu.native.WGPUInstanceLimits>().pointed.let { it.timedWaitAnyMaxCount = newValue } } 
 
 	}
 
+	actual var nextInChain: NativeAddress?
 	actual var timedWaitAnyMaxCount: ULong
 	actual val handler: NativeAddress
 
@@ -3116,17 +3367,23 @@ actual interface WGPUInstanceLimits {
 	}
 	fun toCValue(): CValue<webgpu.native.WGPUInstanceLimits> {
 		return cValue<webgpu.native.WGPUInstanceLimits> {
+			nextInChain = this@WGPUInstanceLimits.nextInChain?.reinterpret()
 			timedWaitAnyMaxCount = this@WGPUInstanceLimits.timedWaitAnyMaxCount
 		}
 	}
 }
 
 fun webgpu.native.WGPUInstanceLimits.adapt(structure: WGPUInstanceLimits) {
+	nextInChain = structure.nextInChain?.reinterpret()
 	timedWaitAnyMaxCount = structure.timedWaitAnyMaxCount
 }
 
 actual interface WGPULimits {
 	value class ByValue(val handle: CValue<webgpu.native.WGPULimits>) : WGPULimits {
+		override var nextInChain: NativeAddress?
+			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
+
 		override var maxTextureDimension1D: UInt
 			get() = handle.useContents { maxTextureDimension1D ?: error("pointer of WGPULimits is null") }
 			set(newValue) { handle.useContents { maxTextureDimension1D = newValue } } 
@@ -3260,6 +3517,10 @@ actual interface WGPULimits {
 
 	}
 	value class ByReference(override val handler: NativeAddress) : WGPULimits {
+		override var nextInChain: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPULimits>().pointed.nextInChain?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPULimits>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
+
 		override var maxTextureDimension1D: UInt
 			get() = handler.reinterpret<webgpu.native.WGPULimits>().pointed.maxTextureDimension1D ?: error("pointer of WGPULimits is null")
 			set(newValue) { handler.reinterpret<webgpu.native.WGPULimits>().pointed.let { it.maxTextureDimension1D = newValue } } 
@@ -3390,6 +3651,7 @@ actual interface WGPULimits {
 
 	}
 
+	actual var nextInChain: NativeAddress?
 	actual var maxTextureDimension1D: UInt
 	actual var maxTextureDimension2D: UInt
 	actual var maxTextureDimension3D: UInt
@@ -3449,6 +3711,7 @@ actual interface WGPULimits {
 	}
 	fun toCValue(): CValue<webgpu.native.WGPULimits> {
 		return cValue<webgpu.native.WGPULimits> {
+			nextInChain = this@WGPULimits.nextInChain?.reinterpret()
 			maxTextureDimension1D = this@WGPULimits.maxTextureDimension1D
 			maxTextureDimension2D = this@WGPULimits.maxTextureDimension2D
 			maxTextureDimension3D = this@WGPULimits.maxTextureDimension3D
@@ -3486,6 +3749,7 @@ actual interface WGPULimits {
 }
 
 fun webgpu.native.WGPULimits.adapt(structure: WGPULimits) {
+	nextInChain = structure.nextInChain?.reinterpret()
 	maxTextureDimension1D = structure.maxTextureDimension1D
 	maxTextureDimension2D = structure.maxTextureDimension2D
 	maxTextureDimension3D = structure.maxTextureDimension3D
@@ -3522,6 +3786,10 @@ fun webgpu.native.WGPULimits.adapt(structure: WGPULimits) {
 
 actual interface WGPUMultisampleState {
 	value class ByValue(val handle: CValue<webgpu.native.WGPUMultisampleState>) : WGPUMultisampleState {
+		override var nextInChain: NativeAddress?
+			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
+
 		override var count: UInt
 			get() = handle.useContents { count ?: error("pointer of WGPUMultisampleState is null") }
 			set(newValue) { handle.useContents { count = newValue } } 
@@ -3539,6 +3807,10 @@ actual interface WGPUMultisampleState {
 
 	}
 	value class ByReference(override val handler: NativeAddress) : WGPUMultisampleState {
+		override var nextInChain: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPUMultisampleState>().pointed.nextInChain?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPUMultisampleState>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
+
 		override var count: UInt
 			get() = handler.reinterpret<webgpu.native.WGPUMultisampleState>().pointed.count ?: error("pointer of WGPUMultisampleState is null")
 			set(newValue) { handler.reinterpret<webgpu.native.WGPUMultisampleState>().pointed.let { it.count = newValue } } 
@@ -3553,6 +3825,7 @@ actual interface WGPUMultisampleState {
 
 	}
 
+	actual var nextInChain: NativeAddress?
 	actual var count: UInt
 	actual var mask: UInt
 	actual var alphaToCoverageEnabled: Boolean
@@ -3583,6 +3856,7 @@ actual interface WGPUMultisampleState {
 	}
 	fun toCValue(): CValue<webgpu.native.WGPUMultisampleState> {
 		return cValue<webgpu.native.WGPUMultisampleState> {
+			nextInChain = this@WGPUMultisampleState.nextInChain?.reinterpret()
 			count = this@WGPUMultisampleState.count
 			mask = this@WGPUMultisampleState.mask
 			alphaToCoverageEnabled = this@WGPUMultisampleState.alphaToCoverageEnabled.toUInt()
@@ -3591,6 +3865,7 @@ actual interface WGPUMultisampleState {
 }
 
 fun webgpu.native.WGPUMultisampleState.adapt(structure: WGPUMultisampleState) {
+	nextInChain = structure.nextInChain?.reinterpret()
 	count = structure.count
 	mask = structure.mask
 	alphaToCoverageEnabled = structure.alphaToCoverageEnabled.toUInt()
@@ -3674,6 +3949,10 @@ fun webgpu.native.WGPUOrigin3D.adapt(structure: WGPUOrigin3D) {
 
 actual interface WGPUPassTimestampWrites {
 	value class ByValue(val handle: CValue<webgpu.native.WGPUPassTimestampWrites>) : WGPUPassTimestampWrites {
+		override var nextInChain: NativeAddress?
+			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
+
 		override var querySet: WGPUQuerySet?
 			get() = handle.useContents { querySet?.let(::NativeAddress)?.let { WGPUQuerySet(it) } }
 			set(newValue) { handle.useContents { querySet = newValue?.handler?.reinterpret() } } 
@@ -3691,6 +3970,10 @@ actual interface WGPUPassTimestampWrites {
 
 	}
 	value class ByReference(override val handler: NativeAddress) : WGPUPassTimestampWrites {
+		override var nextInChain: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPUPassTimestampWrites>().pointed.nextInChain?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPUPassTimestampWrites>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
+
 		override var querySet: WGPUQuerySet?
 			get() = handler.reinterpret<webgpu.native.WGPUPassTimestampWrites>().pointed.querySet?.let(::NativeAddress)?.let { WGPUQuerySet(it) }
 			set(newValue) { handler.reinterpret<webgpu.native.WGPUPassTimestampWrites>().pointed.let { it.querySet = newValue?.handler?.reinterpret() } } 
@@ -3705,6 +3988,7 @@ actual interface WGPUPassTimestampWrites {
 
 	}
 
+	actual var nextInChain: NativeAddress?
 	actual var querySet: WGPUQuerySet?
 	actual var beginningOfPassWriteIndex: UInt
 	actual var endOfPassWriteIndex: UInt
@@ -3735,6 +4019,7 @@ actual interface WGPUPassTimestampWrites {
 	}
 	fun toCValue(): CValue<webgpu.native.WGPUPassTimestampWrites> {
 		return cValue<webgpu.native.WGPUPassTimestampWrites> {
+			nextInChain = this@WGPUPassTimestampWrites.nextInChain?.reinterpret()
 			querySet = this@WGPUPassTimestampWrites.querySet?.handler?.reinterpret()
 			beginningOfPassWriteIndex = this@WGPUPassTimestampWrites.beginningOfPassWriteIndex
 			endOfPassWriteIndex = this@WGPUPassTimestampWrites.endOfPassWriteIndex
@@ -3743,6 +4028,7 @@ actual interface WGPUPassTimestampWrites {
 }
 
 fun webgpu.native.WGPUPassTimestampWrites.adapt(structure: WGPUPassTimestampWrites) {
+	nextInChain = structure.nextInChain?.reinterpret()
 	querySet = structure.querySet?.handler?.reinterpret()
 	beginningOfPassWriteIndex = structure.beginningOfPassWriteIndex
 	endOfPassWriteIndex = structure.endOfPassWriteIndex
@@ -3750,6 +4036,10 @@ fun webgpu.native.WGPUPassTimestampWrites.adapt(structure: WGPUPassTimestampWrit
 
 actual interface WGPUPipelineLayoutDescriptor {
 	value class ByValue(val handle: CValue<webgpu.native.WGPUPipelineLayoutDescriptor>) : WGPUPipelineLayoutDescriptor {
+		override var nextInChain: NativeAddress?
+			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
+
 		override val label: WGPUStringView
 			get() = handle.useContents { label.rawPtr.toLong().let(::NativeAddress).let { WGPUStringView(it) } }
 
@@ -3770,6 +4060,10 @@ actual interface WGPUPipelineLayoutDescriptor {
 
 	}
 	value class ByReference(override val handler: NativeAddress) : WGPUPipelineLayoutDescriptor {
+		override var nextInChain: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPUPipelineLayoutDescriptor>().pointed.nextInChain?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPUPipelineLayoutDescriptor>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
+
 		override val label: WGPUStringView
 			get() = handler.reinterpret<webgpu.native.WGPUPipelineLayoutDescriptor>().pointed.label.rawPtr.toLong().let(::NativeAddress).let { WGPUStringView(it) }
 
@@ -3787,6 +4081,7 @@ actual interface WGPUPipelineLayoutDescriptor {
 
 	}
 
+	actual var nextInChain: NativeAddress?
 	actual val label: WGPUStringView
 	actual var bindGroupLayoutCount: ULong
 	actual var bindGroupLayouts: ArrayHolder<WGPUBindGroupLayout>?
@@ -3819,6 +4114,7 @@ actual interface WGPUPipelineLayoutDescriptor {
 	fun toCValue(): CValue<webgpu.native.WGPUPipelineLayoutDescriptor> {
 		return cValue<webgpu.native.WGPUPipelineLayoutDescriptor> {
 			label.adapt(this@WGPUPipelineLayoutDescriptor.label)
+			nextInChain = this@WGPUPipelineLayoutDescriptor.nextInChain?.reinterpret()
 			bindGroupLayoutCount = this@WGPUPipelineLayoutDescriptor.bindGroupLayoutCount
 			bindGroupLayouts = this@WGPUPipelineLayoutDescriptor.bindGroupLayouts?.handler?.reinterpret()
 			immediateSize = this@WGPUPipelineLayoutDescriptor.immediateSize
@@ -3828,6 +4124,7 @@ actual interface WGPUPipelineLayoutDescriptor {
 
 fun webgpu.native.WGPUPipelineLayoutDescriptor.adapt(structure: WGPUPipelineLayoutDescriptor) {
 	label.adapt(structure.label)
+	nextInChain = structure.nextInChain?.reinterpret()
 	bindGroupLayoutCount = structure.bindGroupLayoutCount
 	bindGroupLayouts = structure.bindGroupLayouts?.handler?.reinterpret()
 	immediateSize = structure.immediateSize
@@ -3835,6 +4132,10 @@ fun webgpu.native.WGPUPipelineLayoutDescriptor.adapt(structure: WGPUPipelineLayo
 
 actual interface WGPUPrimitiveState {
 	value class ByValue(val handle: CValue<webgpu.native.WGPUPrimitiveState>) : WGPUPrimitiveState {
+		override var nextInChain: NativeAddress?
+			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
+
 		override var topology: WGPUPrimitiveTopology
 			get() = handle.useContents { topology ?: error("pointer of WGPUPrimitiveState is null") }
 			set(newValue) { handle.useContents { topology = newValue } } 
@@ -3860,6 +4161,10 @@ actual interface WGPUPrimitiveState {
 
 	}
 	value class ByReference(override val handler: NativeAddress) : WGPUPrimitiveState {
+		override var nextInChain: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPUPrimitiveState>().pointed.nextInChain?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPUPrimitiveState>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
+
 		override var topology: WGPUPrimitiveTopology
 			get() = handler.reinterpret<webgpu.native.WGPUPrimitiveState>().pointed.topology ?: error("pointer of WGPUPrimitiveState is null")
 			set(newValue) { handler.reinterpret<webgpu.native.WGPUPrimitiveState>().pointed.let { it.topology = newValue } } 
@@ -3882,6 +4187,7 @@ actual interface WGPUPrimitiveState {
 
 	}
 
+	actual var nextInChain: NativeAddress?
 	actual var topology: WGPUPrimitiveTopology
 	actual var stripIndexFormat: WGPUIndexFormat
 	actual var frontFace: WGPUFrontFace
@@ -3914,6 +4220,7 @@ actual interface WGPUPrimitiveState {
 	}
 	fun toCValue(): CValue<webgpu.native.WGPUPrimitiveState> {
 		return cValue<webgpu.native.WGPUPrimitiveState> {
+			nextInChain = this@WGPUPrimitiveState.nextInChain?.reinterpret()
 			topology = this@WGPUPrimitiveState.topology
 			stripIndexFormat = this@WGPUPrimitiveState.stripIndexFormat
 			frontFace = this@WGPUPrimitiveState.frontFace
@@ -3924,6 +4231,7 @@ actual interface WGPUPrimitiveState {
 }
 
 fun webgpu.native.WGPUPrimitiveState.adapt(structure: WGPUPrimitiveState) {
+	nextInChain = structure.nextInChain?.reinterpret()
 	topology = structure.topology
 	stripIndexFormat = structure.stripIndexFormat
 	frontFace = structure.frontFace
@@ -3933,6 +4241,10 @@ fun webgpu.native.WGPUPrimitiveState.adapt(structure: WGPUPrimitiveState) {
 
 actual interface WGPUQuerySetDescriptor {
 	value class ByValue(val handle: CValue<webgpu.native.WGPUQuerySetDescriptor>) : WGPUQuerySetDescriptor {
+		override var nextInChain: NativeAddress?
+			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
+
 		override val label: WGPUStringView
 			get() = handle.useContents { label.rawPtr.toLong().let(::NativeAddress).let { WGPUStringView(it) } }
 
@@ -3949,6 +4261,10 @@ actual interface WGPUQuerySetDescriptor {
 
 	}
 	value class ByReference(override val handler: NativeAddress) : WGPUQuerySetDescriptor {
+		override var nextInChain: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPUQuerySetDescriptor>().pointed.nextInChain?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPUQuerySetDescriptor>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
+
 		override val label: WGPUStringView
 			get() = handler.reinterpret<webgpu.native.WGPUQuerySetDescriptor>().pointed.label.rawPtr.toLong().let(::NativeAddress).let { WGPUStringView(it) }
 
@@ -3962,6 +4278,7 @@ actual interface WGPUQuerySetDescriptor {
 
 	}
 
+	actual var nextInChain: NativeAddress?
 	actual val label: WGPUStringView
 	actual var type: WGPUQueryType
 	actual var count: UInt
@@ -3993,6 +4310,7 @@ actual interface WGPUQuerySetDescriptor {
 	fun toCValue(): CValue<webgpu.native.WGPUQuerySetDescriptor> {
 		return cValue<webgpu.native.WGPUQuerySetDescriptor> {
 			label.adapt(this@WGPUQuerySetDescriptor.label)
+			nextInChain = this@WGPUQuerySetDescriptor.nextInChain?.reinterpret()
 			type = this@WGPUQuerySetDescriptor.type
 			count = this@WGPUQuerySetDescriptor.count
 		}
@@ -4001,12 +4319,17 @@ actual interface WGPUQuerySetDescriptor {
 
 fun webgpu.native.WGPUQuerySetDescriptor.adapt(structure: WGPUQuerySetDescriptor) {
 	label.adapt(structure.label)
+	nextInChain = structure.nextInChain?.reinterpret()
 	type = structure.type
 	count = structure.count
 }
 
 actual interface WGPURenderBundleDescriptor {
 	value class ByValue(val handle: CValue<webgpu.native.WGPURenderBundleDescriptor>) : WGPURenderBundleDescriptor {
+		override var nextInChain: NativeAddress?
+			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
+
 		override val label: WGPUStringView
 			get() = handle.useContents { label.rawPtr.toLong().let(::NativeAddress).let { WGPUStringView(it) } }
 
@@ -4015,11 +4338,16 @@ actual interface WGPURenderBundleDescriptor {
 
 	}
 	value class ByReference(override val handler: NativeAddress) : WGPURenderBundleDescriptor {
+		override var nextInChain: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPURenderBundleDescriptor>().pointed.nextInChain?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPURenderBundleDescriptor>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
+
 		override val label: WGPUStringView
 			get() = handler.reinterpret<webgpu.native.WGPURenderBundleDescriptor>().pointed.label.rawPtr.toLong().let(::NativeAddress).let { WGPUStringView(it) }
 
 	}
 
+	actual var nextInChain: NativeAddress?
 	actual val label: WGPUStringView
 	actual val handler: NativeAddress
 
@@ -4049,16 +4377,22 @@ actual interface WGPURenderBundleDescriptor {
 	fun toCValue(): CValue<webgpu.native.WGPURenderBundleDescriptor> {
 		return cValue<webgpu.native.WGPURenderBundleDescriptor> {
 			label.adapt(this@WGPURenderBundleDescriptor.label)
+			nextInChain = this@WGPURenderBundleDescriptor.nextInChain?.reinterpret()
 		}
 	}
 }
 
 fun webgpu.native.WGPURenderBundleDescriptor.adapt(structure: WGPURenderBundleDescriptor) {
 	label.adapt(structure.label)
+	nextInChain = structure.nextInChain?.reinterpret()
 }
 
 actual interface WGPURenderBundleEncoderDescriptor {
 	value class ByValue(val handle: CValue<webgpu.native.WGPURenderBundleEncoderDescriptor>) : WGPURenderBundleEncoderDescriptor {
+		override var nextInChain: NativeAddress?
+			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
+
 		override val label: WGPUStringView
 			get() = handle.useContents { label.rawPtr.toLong().let(::NativeAddress).let { WGPUStringView(it) } }
 
@@ -4091,6 +4425,10 @@ actual interface WGPURenderBundleEncoderDescriptor {
 
 	}
 	value class ByReference(override val handler: NativeAddress) : WGPURenderBundleEncoderDescriptor {
+		override var nextInChain: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPURenderBundleEncoderDescriptor>().pointed.nextInChain?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPURenderBundleEncoderDescriptor>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
+
 		override val label: WGPUStringView
 			get() = handler.reinterpret<webgpu.native.WGPURenderBundleEncoderDescriptor>().pointed.label.rawPtr.toLong().let(::NativeAddress).let { WGPUStringView(it) }
 
@@ -4120,6 +4458,7 @@ actual interface WGPURenderBundleEncoderDescriptor {
 
 	}
 
+	actual var nextInChain: NativeAddress?
 	actual val label: WGPUStringView
 	actual var colorFormatCount: ULong
 	actual var colorFormats: ArrayHolder<WGPUTextureFormat>?
@@ -4155,6 +4494,7 @@ actual interface WGPURenderBundleEncoderDescriptor {
 	fun toCValue(): CValue<webgpu.native.WGPURenderBundleEncoderDescriptor> {
 		return cValue<webgpu.native.WGPURenderBundleEncoderDescriptor> {
 			label.adapt(this@WGPURenderBundleEncoderDescriptor.label)
+			nextInChain = this@WGPURenderBundleEncoderDescriptor.nextInChain?.reinterpret()
 			colorFormatCount = this@WGPURenderBundleEncoderDescriptor.colorFormatCount
 			colorFormats = this@WGPURenderBundleEncoderDescriptor.colorFormats?.handler?.reinterpret()
 			depthStencilFormat = this@WGPURenderBundleEncoderDescriptor.depthStencilFormat
@@ -4167,6 +4507,7 @@ actual interface WGPURenderBundleEncoderDescriptor {
 
 fun webgpu.native.WGPURenderBundleEncoderDescriptor.adapt(structure: WGPURenderBundleEncoderDescriptor) {
 	label.adapt(structure.label)
+	nextInChain = structure.nextInChain?.reinterpret()
 	colorFormatCount = structure.colorFormatCount
 	colorFormats = structure.colorFormats?.handler?.reinterpret()
 	depthStencilFormat = structure.depthStencilFormat
@@ -4177,6 +4518,10 @@ fun webgpu.native.WGPURenderBundleEncoderDescriptor.adapt(structure: WGPURenderB
 
 actual interface WGPURenderPassColorAttachment {
 	value class ByValue(val handle: CValue<webgpu.native.WGPURenderPassColorAttachment>) : WGPURenderPassColorAttachment {
+		override var nextInChain: NativeAddress?
+			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
+
 		override var view: WGPUTextureView?
 			get() = handle.useContents { view?.let(::NativeAddress)?.let { WGPUTextureView(it) } }
 			set(newValue) { handle.useContents { view = newValue?.handler?.reinterpret() } } 
@@ -4205,6 +4550,10 @@ actual interface WGPURenderPassColorAttachment {
 
 	}
 	value class ByReference(override val handler: NativeAddress) : WGPURenderPassColorAttachment {
+		override var nextInChain: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPURenderPassColorAttachment>().pointed.nextInChain?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPURenderPassColorAttachment>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
+
 		override var view: WGPUTextureView?
 			get() = handler.reinterpret<webgpu.native.WGPURenderPassColorAttachment>().pointed.view?.let(::NativeAddress)?.let { WGPUTextureView(it) }
 			set(newValue) { handler.reinterpret<webgpu.native.WGPURenderPassColorAttachment>().pointed.let { it.view = newValue?.handler?.reinterpret() } } 
@@ -4230,6 +4579,7 @@ actual interface WGPURenderPassColorAttachment {
 
 	}
 
+	actual var nextInChain: NativeAddress?
 	actual var view: WGPUTextureView?
 	actual var depthSlice: UInt
 	actual var resolveTarget: WGPUTextureView?
@@ -4264,6 +4614,7 @@ actual interface WGPURenderPassColorAttachment {
 	fun toCValue(): CValue<webgpu.native.WGPURenderPassColorAttachment> {
 		return cValue<webgpu.native.WGPURenderPassColorAttachment> {
 			clearValue.adapt(this@WGPURenderPassColorAttachment.clearValue)
+			nextInChain = this@WGPURenderPassColorAttachment.nextInChain?.reinterpret()
 			view = this@WGPURenderPassColorAttachment.view?.handler?.reinterpret()
 			depthSlice = this@WGPURenderPassColorAttachment.depthSlice
 			resolveTarget = this@WGPURenderPassColorAttachment.resolveTarget?.handler?.reinterpret()
@@ -4275,6 +4626,7 @@ actual interface WGPURenderPassColorAttachment {
 
 fun webgpu.native.WGPURenderPassColorAttachment.adapt(structure: WGPURenderPassColorAttachment) {
 	clearValue.adapt(structure.clearValue)
+	nextInChain = structure.nextInChain?.reinterpret()
 	view = structure.view?.handler?.reinterpret()
 	depthSlice = structure.depthSlice
 	resolveTarget = structure.resolveTarget?.handler?.reinterpret()
@@ -4284,6 +4636,10 @@ fun webgpu.native.WGPURenderPassColorAttachment.adapt(structure: WGPURenderPassC
 
 actual interface WGPURenderPassDepthStencilAttachment {
 	value class ByValue(val handle: CValue<webgpu.native.WGPURenderPassDepthStencilAttachment>) : WGPURenderPassDepthStencilAttachment {
+		override var nextInChain: NativeAddress?
+			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
+
 		override var view: WGPUTextureView?
 			get() = handle.useContents { view?.let(::NativeAddress)?.let { WGPUTextureView(it) } }
 			set(newValue) { handle.useContents { view = newValue?.handler?.reinterpret() } } 
@@ -4325,6 +4681,10 @@ actual interface WGPURenderPassDepthStencilAttachment {
 
 	}
 	value class ByReference(override val handler: NativeAddress) : WGPURenderPassDepthStencilAttachment {
+		override var nextInChain: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPURenderPassDepthStencilAttachment>().pointed.nextInChain?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPURenderPassDepthStencilAttachment>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
+
 		override var view: WGPUTextureView?
 			get() = handler.reinterpret<webgpu.native.WGPURenderPassDepthStencilAttachment>().pointed.view?.let(::NativeAddress)?.let { WGPUTextureView(it) }
 			set(newValue) { handler.reinterpret<webgpu.native.WGPURenderPassDepthStencilAttachment>().pointed.let { it.view = newValue?.handler?.reinterpret() } } 
@@ -4363,6 +4723,7 @@ actual interface WGPURenderPassDepthStencilAttachment {
 
 	}
 
+	actual var nextInChain: NativeAddress?
 	actual var view: WGPUTextureView?
 	actual var depthLoadOp: WGPULoadOp
 	actual var depthStoreOp: WGPUStoreOp
@@ -4399,6 +4760,7 @@ actual interface WGPURenderPassDepthStencilAttachment {
 	}
 	fun toCValue(): CValue<webgpu.native.WGPURenderPassDepthStencilAttachment> {
 		return cValue<webgpu.native.WGPURenderPassDepthStencilAttachment> {
+			nextInChain = this@WGPURenderPassDepthStencilAttachment.nextInChain?.reinterpret()
 			view = this@WGPURenderPassDepthStencilAttachment.view?.handler?.reinterpret()
 			depthLoadOp = this@WGPURenderPassDepthStencilAttachment.depthLoadOp
 			depthStoreOp = this@WGPURenderPassDepthStencilAttachment.depthStoreOp
@@ -4413,6 +4775,7 @@ actual interface WGPURenderPassDepthStencilAttachment {
 }
 
 fun webgpu.native.WGPURenderPassDepthStencilAttachment.adapt(structure: WGPURenderPassDepthStencilAttachment) {
+	nextInChain = structure.nextInChain?.reinterpret()
 	view = structure.view?.handler?.reinterpret()
 	depthLoadOp = structure.depthLoadOp
 	depthStoreOp = structure.depthStoreOp
@@ -4426,6 +4789,10 @@ fun webgpu.native.WGPURenderPassDepthStencilAttachment.adapt(structure: WGPURend
 
 actual interface WGPURenderPassDescriptor {
 	value class ByValue(val handle: CValue<webgpu.native.WGPURenderPassDescriptor>) : WGPURenderPassDescriptor {
+		override var nextInChain: NativeAddress?
+			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
+
 		override val label: WGPUStringView
 			get() = handle.useContents { label.rawPtr.toLong().let(::NativeAddress).let { WGPUStringView(it) } }
 
@@ -4454,6 +4821,10 @@ actual interface WGPURenderPassDescriptor {
 
 	}
 	value class ByReference(override val handler: NativeAddress) : WGPURenderPassDescriptor {
+		override var nextInChain: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPURenderPassDescriptor>().pointed.nextInChain?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPURenderPassDescriptor>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
+
 		override val label: WGPUStringView
 			get() = handler.reinterpret<webgpu.native.WGPURenderPassDescriptor>().pointed.label.rawPtr.toLong().let(::NativeAddress).let { WGPUStringView(it) }
 
@@ -4479,6 +4850,7 @@ actual interface WGPURenderPassDescriptor {
 
 	}
 
+	actual var nextInChain: NativeAddress?
 	actual val label: WGPUStringView
 	actual var colorAttachmentCount: ULong
 	actual var colorAttachments: ArrayHolder<WGPURenderPassColorAttachment>?
@@ -4513,6 +4885,7 @@ actual interface WGPURenderPassDescriptor {
 	fun toCValue(): CValue<webgpu.native.WGPURenderPassDescriptor> {
 		return cValue<webgpu.native.WGPURenderPassDescriptor> {
 			label.adapt(this@WGPURenderPassDescriptor.label)
+			nextInChain = this@WGPURenderPassDescriptor.nextInChain?.reinterpret()
 			colorAttachmentCount = this@WGPURenderPassDescriptor.colorAttachmentCount
 			colorAttachments = this@WGPURenderPassDescriptor.colorAttachments?.handler?.reinterpret()
 			depthStencilAttachment = this@WGPURenderPassDescriptor.depthStencilAttachment?.handler?.reinterpret()
@@ -4524,6 +4897,7 @@ actual interface WGPURenderPassDescriptor {
 
 fun webgpu.native.WGPURenderPassDescriptor.adapt(structure: WGPURenderPassDescriptor) {
 	label.adapt(structure.label)
+	nextInChain = structure.nextInChain?.reinterpret()
 	colorAttachmentCount = structure.colorAttachmentCount
 	colorAttachments = structure.colorAttachments?.handler?.reinterpret()
 	depthStencilAttachment = structure.depthStencilAttachment?.handler?.reinterpret()
@@ -4596,6 +4970,10 @@ fun webgpu.native.WGPURenderPassMaxDrawCount.adapt(structure: WGPURenderPassMaxD
 
 actual interface WGPUVertexState {
 	value class ByValue(val handle: CValue<webgpu.native.WGPUVertexState>) : WGPUVertexState {
+		override var nextInChain: NativeAddress?
+			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
+
 		override var module: WGPUShaderModule?
 			get() = handle.useContents { module?.let(::NativeAddress)?.let { WGPUShaderModule(it) } }
 			set(newValue) { handle.useContents { module = newValue?.handler?.reinterpret() } } 
@@ -4624,6 +5002,10 @@ actual interface WGPUVertexState {
 
 	}
 	value class ByReference(override val handler: NativeAddress) : WGPUVertexState {
+		override var nextInChain: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPUVertexState>().pointed.nextInChain?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPUVertexState>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
+
 		override var module: WGPUShaderModule?
 			get() = handler.reinterpret<webgpu.native.WGPUVertexState>().pointed.module?.let(::NativeAddress)?.let { WGPUShaderModule(it) }
 			set(newValue) { handler.reinterpret<webgpu.native.WGPUVertexState>().pointed.let { it.module = newValue?.handler?.reinterpret() } } 
@@ -4649,6 +5031,7 @@ actual interface WGPUVertexState {
 
 	}
 
+	actual var nextInChain: NativeAddress?
 	actual var module: WGPUShaderModule?
 	actual val entryPoint: WGPUStringView
 	actual var constantCount: ULong
@@ -4683,6 +5066,7 @@ actual interface WGPUVertexState {
 	fun toCValue(): CValue<webgpu.native.WGPUVertexState> {
 		return cValue<webgpu.native.WGPUVertexState> {
 			entryPoint.adapt(this@WGPUVertexState.entryPoint)
+			nextInChain = this@WGPUVertexState.nextInChain?.reinterpret()
 			module = this@WGPUVertexState.module?.handler?.reinterpret()
 			constantCount = this@WGPUVertexState.constantCount
 			constants = this@WGPUVertexState.constants?.handler?.reinterpret()
@@ -4694,6 +5078,7 @@ actual interface WGPUVertexState {
 
 fun webgpu.native.WGPUVertexState.adapt(structure: WGPUVertexState) {
 	entryPoint.adapt(structure.entryPoint)
+	nextInChain = structure.nextInChain?.reinterpret()
 	module = structure.module?.handler?.reinterpret()
 	constantCount = structure.constantCount
 	constants = structure.constants?.handler?.reinterpret()
@@ -4703,6 +5088,10 @@ fun webgpu.native.WGPUVertexState.adapt(structure: WGPUVertexState) {
 
 actual interface WGPURenderPipelineDescriptor {
 	value class ByValue(val handle: CValue<webgpu.native.WGPURenderPipelineDescriptor>) : WGPURenderPipelineDescriptor {
+		override var nextInChain: NativeAddress?
+			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
+
 		override val label: WGPUStringView
 			get() = handle.useContents { label.rawPtr.toLong().let(::NativeAddress).let { WGPUStringView(it) } }
 
@@ -4732,6 +5121,10 @@ actual interface WGPURenderPipelineDescriptor {
 
 	}
 	value class ByReference(override val handler: NativeAddress) : WGPURenderPipelineDescriptor {
+		override var nextInChain: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPURenderPipelineDescriptor>().pointed.nextInChain?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPURenderPipelineDescriptor>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
+
 		override val label: WGPUStringView
 			get() = handler.reinterpret<webgpu.native.WGPURenderPipelineDescriptor>().pointed.label.rawPtr.toLong().let(::NativeAddress).let { WGPUStringView(it) }
 
@@ -4758,6 +5151,7 @@ actual interface WGPURenderPipelineDescriptor {
 
 	}
 
+	actual var nextInChain: NativeAddress?
 	actual val label: WGPUStringView
 	actual var layout: WGPUPipelineLayout?
 	actual val vertex: WGPUVertexState
@@ -4796,6 +5190,7 @@ actual interface WGPURenderPipelineDescriptor {
 			vertex.adapt(this@WGPURenderPipelineDescriptor.vertex)
 			primitive.adapt(this@WGPURenderPipelineDescriptor.primitive)
 			multisample.adapt(this@WGPURenderPipelineDescriptor.multisample)
+			nextInChain = this@WGPURenderPipelineDescriptor.nextInChain?.reinterpret()
 			layout = this@WGPURenderPipelineDescriptor.layout?.handler?.reinterpret()
 			depthStencil = this@WGPURenderPipelineDescriptor.depthStencil?.handler?.reinterpret()
 			fragment = this@WGPURenderPipelineDescriptor.fragment?.handler?.reinterpret()
@@ -4808,6 +5203,7 @@ fun webgpu.native.WGPURenderPipelineDescriptor.adapt(structure: WGPURenderPipeli
 	vertex.adapt(structure.vertex)
 	primitive.adapt(structure.primitive)
 	multisample.adapt(structure.multisample)
+	nextInChain = structure.nextInChain?.reinterpret()
 	layout = structure.layout?.handler?.reinterpret()
 	depthStencil = structure.depthStencil?.handler?.reinterpret()
 	fragment = structure.fragment?.handler?.reinterpret()
@@ -4815,6 +5211,10 @@ fun webgpu.native.WGPURenderPipelineDescriptor.adapt(structure: WGPURenderPipeli
 
 actual interface WGPURequestAdapterOptions {
 	value class ByValue(val handle: CValue<webgpu.native.WGPURequestAdapterOptions>) : WGPURequestAdapterOptions {
+		override var nextInChain: NativeAddress?
+			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
+
 		override var featureLevel: WGPUFeatureLevel
 			get() = handle.useContents { featureLevel ?: error("pointer of WGPURequestAdapterOptions is null") }
 			set(newValue) { handle.useContents { featureLevel = newValue } } 
@@ -4840,6 +5240,10 @@ actual interface WGPURequestAdapterOptions {
 
 	}
 	value class ByReference(override val handler: NativeAddress) : WGPURequestAdapterOptions {
+		override var nextInChain: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPURequestAdapterOptions>().pointed.nextInChain?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPURequestAdapterOptions>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
+
 		override var featureLevel: WGPUFeatureLevel
 			get() = handler.reinterpret<webgpu.native.WGPURequestAdapterOptions>().pointed.featureLevel ?: error("pointer of WGPURequestAdapterOptions is null")
 			set(newValue) { handler.reinterpret<webgpu.native.WGPURequestAdapterOptions>().pointed.let { it.featureLevel = newValue } } 
@@ -4862,6 +5266,7 @@ actual interface WGPURequestAdapterOptions {
 
 	}
 
+	actual var nextInChain: NativeAddress?
 	actual var featureLevel: WGPUFeatureLevel
 	actual var powerPreference: WGPUPowerPreference
 	actual var forceFallbackAdapter: Boolean
@@ -4894,6 +5299,7 @@ actual interface WGPURequestAdapterOptions {
 	}
 	fun toCValue(): CValue<webgpu.native.WGPURequestAdapterOptions> {
 		return cValue<webgpu.native.WGPURequestAdapterOptions> {
+			nextInChain = this@WGPURequestAdapterOptions.nextInChain?.reinterpret()
 			featureLevel = this@WGPURequestAdapterOptions.featureLevel
 			powerPreference = this@WGPURequestAdapterOptions.powerPreference
 			forceFallbackAdapter = this@WGPURequestAdapterOptions.forceFallbackAdapter.toUInt()
@@ -4904,6 +5310,7 @@ actual interface WGPURequestAdapterOptions {
 }
 
 fun webgpu.native.WGPURequestAdapterOptions.adapt(structure: WGPURequestAdapterOptions) {
+	nextInChain = structure.nextInChain?.reinterpret()
 	featureLevel = structure.featureLevel
 	powerPreference = structure.powerPreference
 	forceFallbackAdapter = structure.forceFallbackAdapter.toUInt()
@@ -4976,6 +5383,10 @@ fun webgpu.native.WGPURequestAdapterWebXROptions.adapt(structure: WGPURequestAda
 
 actual interface WGPUSamplerDescriptor {
 	value class ByValue(val handle: CValue<webgpu.native.WGPUSamplerDescriptor>) : WGPUSamplerDescriptor {
+		override var nextInChain: NativeAddress?
+			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
+
 		override val label: WGPUStringView
 			get() = handle.useContents { label.rawPtr.toLong().let(::NativeAddress).let { WGPUStringView(it) } }
 
@@ -5024,6 +5435,10 @@ actual interface WGPUSamplerDescriptor {
 
 	}
 	value class ByReference(override val handler: NativeAddress) : WGPUSamplerDescriptor {
+		override var nextInChain: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPUSamplerDescriptor>().pointed.nextInChain?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPUSamplerDescriptor>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
+
 		override val label: WGPUStringView
 			get() = handler.reinterpret<webgpu.native.WGPUSamplerDescriptor>().pointed.label.rawPtr.toLong().let(::NativeAddress).let { WGPUStringView(it) }
 
@@ -5069,6 +5484,7 @@ actual interface WGPUSamplerDescriptor {
 
 	}
 
+	actual var nextInChain: NativeAddress?
 	actual val label: WGPUStringView
 	actual var addressModeU: WGPUAddressMode
 	actual var addressModeV: WGPUAddressMode
@@ -5108,6 +5524,7 @@ actual interface WGPUSamplerDescriptor {
 	fun toCValue(): CValue<webgpu.native.WGPUSamplerDescriptor> {
 		return cValue<webgpu.native.WGPUSamplerDescriptor> {
 			label.adapt(this@WGPUSamplerDescriptor.label)
+			nextInChain = this@WGPUSamplerDescriptor.nextInChain?.reinterpret()
 			addressModeU = this@WGPUSamplerDescriptor.addressModeU
 			addressModeV = this@WGPUSamplerDescriptor.addressModeV
 			addressModeW = this@WGPUSamplerDescriptor.addressModeW
@@ -5124,6 +5541,7 @@ actual interface WGPUSamplerDescriptor {
 
 fun webgpu.native.WGPUSamplerDescriptor.adapt(structure: WGPUSamplerDescriptor) {
 	label.adapt(structure.label)
+	nextInChain = structure.nextInChain?.reinterpret()
 	addressModeU = structure.addressModeU
 	addressModeV = structure.addressModeV
 	addressModeW = structure.addressModeW
@@ -5138,6 +5556,10 @@ fun webgpu.native.WGPUSamplerDescriptor.adapt(structure: WGPUSamplerDescriptor) 
 
 actual interface WGPUShaderModuleDescriptor {
 	value class ByValue(val handle: CValue<webgpu.native.WGPUShaderModuleDescriptor>) : WGPUShaderModuleDescriptor {
+		override var nextInChain: NativeAddress?
+			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
+
 		override val label: WGPUStringView
 			get() = handle.useContents { label.rawPtr.toLong().let(::NativeAddress).let { WGPUStringView(it) } }
 
@@ -5146,11 +5568,16 @@ actual interface WGPUShaderModuleDescriptor {
 
 	}
 	value class ByReference(override val handler: NativeAddress) : WGPUShaderModuleDescriptor {
+		override var nextInChain: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPUShaderModuleDescriptor>().pointed.nextInChain?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPUShaderModuleDescriptor>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
+
 		override val label: WGPUStringView
 			get() = handler.reinterpret<webgpu.native.WGPUShaderModuleDescriptor>().pointed.label.rawPtr.toLong().let(::NativeAddress).let { WGPUStringView(it) }
 
 	}
 
+	actual var nextInChain: NativeAddress?
 	actual val label: WGPUStringView
 	actual val handler: NativeAddress
 
@@ -5180,12 +5607,14 @@ actual interface WGPUShaderModuleDescriptor {
 	fun toCValue(): CValue<webgpu.native.WGPUShaderModuleDescriptor> {
 		return cValue<webgpu.native.WGPUShaderModuleDescriptor> {
 			label.adapt(this@WGPUShaderModuleDescriptor.label)
+			nextInChain = this@WGPUShaderModuleDescriptor.nextInChain?.reinterpret()
 		}
 	}
 }
 
 fun webgpu.native.WGPUShaderModuleDescriptor.adapt(structure: WGPUShaderModuleDescriptor) {
 	label.adapt(structure.label)
+	nextInChain = structure.nextInChain?.reinterpret()
 }
 
 actual interface WGPUShaderSourceSPIRV {
@@ -5520,6 +5949,10 @@ fun webgpu.native.WGPUSupportedWGSLLanguageFeatures.adapt(structure: WGPUSupport
 
 actual interface WGPUSurfaceCapabilities {
 	value class ByValue(val handle: CValue<webgpu.native.WGPUSurfaceCapabilities>) : WGPUSurfaceCapabilities {
+		override var nextInChain: NativeAddress?
+			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
+
 		override var usages: ULong
 			get() = handle.useContents { usages ?: error("pointer of WGPUSurfaceCapabilities is null") }
 			set(newValue) { handle.useContents { usages = newValue } } 
@@ -5553,6 +5986,10 @@ actual interface WGPUSurfaceCapabilities {
 
 	}
 	value class ByReference(override val handler: NativeAddress) : WGPUSurfaceCapabilities {
+		override var nextInChain: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPUSurfaceCapabilities>().pointed.nextInChain?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPUSurfaceCapabilities>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
+
 		override var usages: ULong
 			get() = handler.reinterpret<webgpu.native.WGPUSurfaceCapabilities>().pointed.usages ?: error("pointer of WGPUSurfaceCapabilities is null")
 			set(newValue) { handler.reinterpret<webgpu.native.WGPUSurfaceCapabilities>().pointed.let { it.usages = newValue } } 
@@ -5583,6 +6020,7 @@ actual interface WGPUSurfaceCapabilities {
 
 	}
 
+	actual var nextInChain: NativeAddress?
 	actual var usages: ULong
 	actual var formatCount: ULong
 	actual var formats: ArrayHolder<WGPUTextureFormat>?
@@ -5617,6 +6055,7 @@ actual interface WGPUSurfaceCapabilities {
 	}
 	fun toCValue(): CValue<webgpu.native.WGPUSurfaceCapabilities> {
 		return cValue<webgpu.native.WGPUSurfaceCapabilities> {
+			nextInChain = this@WGPUSurfaceCapabilities.nextInChain?.reinterpret()
 			usages = this@WGPUSurfaceCapabilities.usages
 			formatCount = this@WGPUSurfaceCapabilities.formatCount
 			formats = this@WGPUSurfaceCapabilities.formats?.handler?.reinterpret()
@@ -5629,6 +6068,7 @@ actual interface WGPUSurfaceCapabilities {
 }
 
 fun webgpu.native.WGPUSurfaceCapabilities.adapt(structure: WGPUSurfaceCapabilities) {
+	nextInChain = structure.nextInChain?.reinterpret()
 	usages = structure.usages
 	formatCount = structure.formatCount
 	formats = structure.formats?.handler?.reinterpret()
@@ -5714,6 +6154,10 @@ fun webgpu.native.WGPUSurfaceColorManagement.adapt(structure: WGPUSurfaceColorMa
 
 actual interface WGPUSurfaceConfiguration {
 	value class ByValue(val handle: CValue<webgpu.native.WGPUSurfaceConfiguration>) : WGPUSurfaceConfiguration {
+		override var nextInChain: NativeAddress?
+			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
+
 		override var device: WGPUDevice?
 			get() = handle.useContents { device?.let(::NativeAddress)?.let { WGPUDevice(it) } }
 			set(newValue) { handle.useContents { device = newValue?.handler?.reinterpret() } } 
@@ -5755,6 +6199,10 @@ actual interface WGPUSurfaceConfiguration {
 
 	}
 	value class ByReference(override val handler: NativeAddress) : WGPUSurfaceConfiguration {
+		override var nextInChain: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPUSurfaceConfiguration>().pointed.nextInChain?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPUSurfaceConfiguration>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
+
 		override var device: WGPUDevice?
 			get() = handler.reinterpret<webgpu.native.WGPUSurfaceConfiguration>().pointed.device?.let(::NativeAddress)?.let { WGPUDevice(it) }
 			set(newValue) { handler.reinterpret<webgpu.native.WGPUSurfaceConfiguration>().pointed.let { it.device = newValue?.handler?.reinterpret() } } 
@@ -5793,6 +6241,7 @@ actual interface WGPUSurfaceConfiguration {
 
 	}
 
+	actual var nextInChain: NativeAddress?
 	actual var device: WGPUDevice?
 	actual var format: WGPUTextureFormat
 	actual var usage: ULong
@@ -5829,6 +6278,7 @@ actual interface WGPUSurfaceConfiguration {
 	}
 	fun toCValue(): CValue<webgpu.native.WGPUSurfaceConfiguration> {
 		return cValue<webgpu.native.WGPUSurfaceConfiguration> {
+			nextInChain = this@WGPUSurfaceConfiguration.nextInChain?.reinterpret()
 			device = this@WGPUSurfaceConfiguration.device?.handler?.reinterpret()
 			format = this@WGPUSurfaceConfiguration.format
 			usage = this@WGPUSurfaceConfiguration.usage
@@ -5843,6 +6293,7 @@ actual interface WGPUSurfaceConfiguration {
 }
 
 fun webgpu.native.WGPUSurfaceConfiguration.adapt(structure: WGPUSurfaceConfiguration) {
+	nextInChain = structure.nextInChain?.reinterpret()
 	device = structure.device?.handler?.reinterpret()
 	format = structure.format
 	usage = structure.usage
@@ -5856,6 +6307,10 @@ fun webgpu.native.WGPUSurfaceConfiguration.adapt(structure: WGPUSurfaceConfigura
 
 actual interface WGPUSurfaceDescriptor {
 	value class ByValue(val handle: CValue<webgpu.native.WGPUSurfaceDescriptor>) : WGPUSurfaceDescriptor {
+		override var nextInChain: NativeAddress?
+			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
+
 		override val label: WGPUStringView
 			get() = handle.useContents { label.rawPtr.toLong().let(::NativeAddress).let { WGPUStringView(it) } }
 
@@ -5864,11 +6319,16 @@ actual interface WGPUSurfaceDescriptor {
 
 	}
 	value class ByReference(override val handler: NativeAddress) : WGPUSurfaceDescriptor {
+		override var nextInChain: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPUSurfaceDescriptor>().pointed.nextInChain?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPUSurfaceDescriptor>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
+
 		override val label: WGPUStringView
 			get() = handler.reinterpret<webgpu.native.WGPUSurfaceDescriptor>().pointed.label.rawPtr.toLong().let(::NativeAddress).let { WGPUStringView(it) }
 
 	}
 
+	actual var nextInChain: NativeAddress?
 	actual val label: WGPUStringView
 	actual val handler: NativeAddress
 
@@ -5898,12 +6358,14 @@ actual interface WGPUSurfaceDescriptor {
 	fun toCValue(): CValue<webgpu.native.WGPUSurfaceDescriptor> {
 		return cValue<webgpu.native.WGPUSurfaceDescriptor> {
 			label.adapt(this@WGPUSurfaceDescriptor.label)
+			nextInChain = this@WGPUSurfaceDescriptor.nextInChain?.reinterpret()
 		}
 	}
 }
 
 fun webgpu.native.WGPUSurfaceDescriptor.adapt(structure: WGPUSurfaceDescriptor) {
 	label.adapt(structure.label)
+	nextInChain = structure.nextInChain?.reinterpret()
 }
 
 actual interface WGPUSurfaceSourceAndroidNativeWindow {
@@ -6330,6 +6792,10 @@ fun webgpu.native.WGPUSurfaceSourceXlibWindow.adapt(structure: WGPUSurfaceSource
 
 actual interface WGPUSurfaceTexture {
 	value class ByValue(val handle: CValue<webgpu.native.WGPUSurfaceTexture>) : WGPUSurfaceTexture {
+		override var nextInChain: NativeAddress?
+			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
+
 		override var texture: WGPUTexture?
 			get() = handle.useContents { texture?.let(::NativeAddress)?.let { WGPUTexture(it) } }
 			set(newValue) { handle.useContents { texture = newValue?.handler?.reinterpret() } } 
@@ -6343,6 +6809,10 @@ actual interface WGPUSurfaceTexture {
 
 	}
 	value class ByReference(override val handler: NativeAddress) : WGPUSurfaceTexture {
+		override var nextInChain: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPUSurfaceTexture>().pointed.nextInChain?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPUSurfaceTexture>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
+
 		override var texture: WGPUTexture?
 			get() = handler.reinterpret<webgpu.native.WGPUSurfaceTexture>().pointed.texture?.let(::NativeAddress)?.let { WGPUTexture(it) }
 			set(newValue) { handler.reinterpret<webgpu.native.WGPUSurfaceTexture>().pointed.let { it.texture = newValue?.handler?.reinterpret() } } 
@@ -6353,6 +6823,7 @@ actual interface WGPUSurfaceTexture {
 
 	}
 
+	actual var nextInChain: NativeAddress?
 	actual var texture: WGPUTexture?
 	actual var status: WGPUSurfaceGetCurrentTextureStatus
 	actual val handler: NativeAddress
@@ -6382,6 +6853,7 @@ actual interface WGPUSurfaceTexture {
 	}
 	fun toCValue(): CValue<webgpu.native.WGPUSurfaceTexture> {
 		return cValue<webgpu.native.WGPUSurfaceTexture> {
+			nextInChain = this@WGPUSurfaceTexture.nextInChain?.reinterpret()
 			texture = this@WGPUSurfaceTexture.texture?.handler?.reinterpret()
 			status = this@WGPUSurfaceTexture.status
 		}
@@ -6389,6 +6861,7 @@ actual interface WGPUSurfaceTexture {
 }
 
 fun webgpu.native.WGPUSurfaceTexture.adapt(structure: WGPUSurfaceTexture) {
+	nextInChain = structure.nextInChain?.reinterpret()
 	texture = structure.texture?.handler?.reinterpret()
 	status = structure.status
 }
@@ -6830,6 +7303,10 @@ fun webgpu.native.WGPUTextureComponentSwizzleDescriptor.adapt(structure: WGPUTex
 
 actual interface WGPUTextureDescriptor {
 	value class ByValue(val handle: CValue<webgpu.native.WGPUTextureDescriptor>) : WGPUTextureDescriptor {
+		override var nextInChain: NativeAddress?
+			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
+
 		override val label: WGPUStringView
 			get() = handle.useContents { label.rawPtr.toLong().let(::NativeAddress).let { WGPUStringView(it) } }
 
@@ -6869,6 +7346,10 @@ actual interface WGPUTextureDescriptor {
 
 	}
 	value class ByReference(override val handler: NativeAddress) : WGPUTextureDescriptor {
+		override var nextInChain: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPUTextureDescriptor>().pointed.nextInChain?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPUTextureDescriptor>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
+
 		override val label: WGPUStringView
 			get() = handler.reinterpret<webgpu.native.WGPUTextureDescriptor>().pointed.label.rawPtr.toLong().let(::NativeAddress).let { WGPUStringView(it) }
 
@@ -6905,6 +7386,7 @@ actual interface WGPUTextureDescriptor {
 
 	}
 
+	actual var nextInChain: NativeAddress?
 	actual val label: WGPUStringView
 	actual var usage: ULong
 	actual var dimension: WGPUTextureDimension
@@ -6943,6 +7425,7 @@ actual interface WGPUTextureDescriptor {
 		return cValue<webgpu.native.WGPUTextureDescriptor> {
 			label.adapt(this@WGPUTextureDescriptor.label)
 			size.adapt(this@WGPUTextureDescriptor.size)
+			nextInChain = this@WGPUTextureDescriptor.nextInChain?.reinterpret()
 			usage = this@WGPUTextureDescriptor.usage
 			dimension = this@WGPUTextureDescriptor.dimension
 			format = this@WGPUTextureDescriptor.format
@@ -6957,6 +7440,7 @@ actual interface WGPUTextureDescriptor {
 fun webgpu.native.WGPUTextureDescriptor.adapt(structure: WGPUTextureDescriptor) {
 	label.adapt(structure.label)
 	size.adapt(structure.size)
+	nextInChain = structure.nextInChain?.reinterpret()
 	usage = structure.usage
 	dimension = structure.dimension
 	format = structure.format
@@ -6968,6 +7452,10 @@ fun webgpu.native.WGPUTextureDescriptor.adapt(structure: WGPUTextureDescriptor) 
 
 actual interface WGPUTextureViewDescriptor {
 	value class ByValue(val handle: CValue<webgpu.native.WGPUTextureViewDescriptor>) : WGPUTextureViewDescriptor {
+		override var nextInChain: NativeAddress?
+			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
+
 		override val label: WGPUStringView
 			get() = handle.useContents { label.rawPtr.toLong().let(::NativeAddress).let { WGPUStringView(it) } }
 
@@ -7008,6 +7496,10 @@ actual interface WGPUTextureViewDescriptor {
 
 	}
 	value class ByReference(override val handler: NativeAddress) : WGPUTextureViewDescriptor {
+		override var nextInChain: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPUTextureViewDescriptor>().pointed.nextInChain?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPUTextureViewDescriptor>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
+
 		override val label: WGPUStringView
 			get() = handler.reinterpret<webgpu.native.WGPUTextureViewDescriptor>().pointed.label.rawPtr.toLong().let(::NativeAddress).let { WGPUStringView(it) }
 
@@ -7045,6 +7537,7 @@ actual interface WGPUTextureViewDescriptor {
 
 	}
 
+	actual var nextInChain: NativeAddress?
 	actual val label: WGPUStringView
 	actual var format: WGPUTextureFormat
 	actual var dimension: WGPUTextureViewDimension
@@ -7082,6 +7575,7 @@ actual interface WGPUTextureViewDescriptor {
 	fun toCValue(): CValue<webgpu.native.WGPUTextureViewDescriptor> {
 		return cValue<webgpu.native.WGPUTextureViewDescriptor> {
 			label.adapt(this@WGPUTextureViewDescriptor.label)
+			nextInChain = this@WGPUTextureViewDescriptor.nextInChain?.reinterpret()
 			format = this@WGPUTextureViewDescriptor.format
 			dimension = this@WGPUTextureViewDescriptor.dimension
 			baseMipLevel = this@WGPUTextureViewDescriptor.baseMipLevel
@@ -7096,6 +7590,7 @@ actual interface WGPUTextureViewDescriptor {
 
 fun webgpu.native.WGPUTextureViewDescriptor.adapt(structure: WGPUTextureViewDescriptor) {
 	label.adapt(structure.label)
+	nextInChain = structure.nextInChain?.reinterpret()
 	format = structure.format
 	dimension = structure.dimension
 	baseMipLevel = structure.baseMipLevel
@@ -7108,6 +7603,10 @@ fun webgpu.native.WGPUTextureViewDescriptor.adapt(structure: WGPUTextureViewDesc
 
 actual interface WGPUVertexAttribute {
 	value class ByValue(val handle: CValue<webgpu.native.WGPUVertexAttribute>) : WGPUVertexAttribute {
+		override var nextInChain: NativeAddress?
+			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
+
 		override var format: WGPUVertexFormat
 			get() = handle.useContents { format ?: error("pointer of WGPUVertexAttribute is null") }
 			set(newValue) { handle.useContents { format = newValue } } 
@@ -7125,6 +7624,10 @@ actual interface WGPUVertexAttribute {
 
 	}
 	value class ByReference(override val handler: NativeAddress) : WGPUVertexAttribute {
+		override var nextInChain: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPUVertexAttribute>().pointed.nextInChain?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPUVertexAttribute>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
+
 		override var format: WGPUVertexFormat
 			get() = handler.reinterpret<webgpu.native.WGPUVertexAttribute>().pointed.format ?: error("pointer of WGPUVertexAttribute is null")
 			set(newValue) { handler.reinterpret<webgpu.native.WGPUVertexAttribute>().pointed.let { it.format = newValue } } 
@@ -7139,6 +7642,7 @@ actual interface WGPUVertexAttribute {
 
 	}
 
+	actual var nextInChain: NativeAddress?
 	actual var format: WGPUVertexFormat
 	actual var offset: ULong
 	actual var shaderLocation: UInt
@@ -7169,6 +7673,7 @@ actual interface WGPUVertexAttribute {
 	}
 	fun toCValue(): CValue<webgpu.native.WGPUVertexAttribute> {
 		return cValue<webgpu.native.WGPUVertexAttribute> {
+			nextInChain = this@WGPUVertexAttribute.nextInChain?.reinterpret()
 			format = this@WGPUVertexAttribute.format
 			offset = this@WGPUVertexAttribute.offset
 			shaderLocation = this@WGPUVertexAttribute.shaderLocation
@@ -7177,6 +7682,7 @@ actual interface WGPUVertexAttribute {
 }
 
 fun webgpu.native.WGPUVertexAttribute.adapt(structure: WGPUVertexAttribute) {
+	nextInChain = structure.nextInChain?.reinterpret()
 	format = structure.format
 	offset = structure.offset
 	shaderLocation = structure.shaderLocation
@@ -7184,6 +7690,10 @@ fun webgpu.native.WGPUVertexAttribute.adapt(structure: WGPUVertexAttribute) {
 
 actual interface WGPUVertexBufferLayout {
 	value class ByValue(val handle: CValue<webgpu.native.WGPUVertexBufferLayout>) : WGPUVertexBufferLayout {
+		override var nextInChain: NativeAddress?
+			get() = handle.useContents { nextInChain?.let(::NativeAddress) }
+			set(newValue) { handle.useContents { nextInChain = newValue?.reinterpret() } } 
+
 		override var stepMode: WGPUVertexStepMode
 			get() = handle.useContents { stepMode ?: error("pointer of WGPUVertexBufferLayout is null") }
 			set(newValue) { handle.useContents { stepMode = newValue } } 
@@ -7205,6 +7715,10 @@ actual interface WGPUVertexBufferLayout {
 
 	}
 	value class ByReference(override val handler: NativeAddress) : WGPUVertexBufferLayout {
+		override var nextInChain: NativeAddress?
+			get() = handler.reinterpret<webgpu.native.WGPUVertexBufferLayout>().pointed.nextInChain?.let(::NativeAddress)
+			set(newValue) { handler.reinterpret<webgpu.native.WGPUVertexBufferLayout>().pointed.let { it.nextInChain = newValue?.reinterpret() } } 
+
 		override var stepMode: WGPUVertexStepMode
 			get() = handler.reinterpret<webgpu.native.WGPUVertexBufferLayout>().pointed.stepMode ?: error("pointer of WGPUVertexBufferLayout is null")
 			set(newValue) { handler.reinterpret<webgpu.native.WGPUVertexBufferLayout>().pointed.let { it.stepMode = newValue } } 
@@ -7223,6 +7737,7 @@ actual interface WGPUVertexBufferLayout {
 
 	}
 
+	actual var nextInChain: NativeAddress?
 	actual var stepMode: WGPUVertexStepMode
 	actual var arrayStride: ULong
 	actual var attributeCount: ULong
@@ -7254,6 +7769,7 @@ actual interface WGPUVertexBufferLayout {
 	}
 	fun toCValue(): CValue<webgpu.native.WGPUVertexBufferLayout> {
 		return cValue<webgpu.native.WGPUVertexBufferLayout> {
+			nextInChain = this@WGPUVertexBufferLayout.nextInChain?.reinterpret()
 			stepMode = this@WGPUVertexBufferLayout.stepMode
 			arrayStride = this@WGPUVertexBufferLayout.arrayStride
 			attributeCount = this@WGPUVertexBufferLayout.attributeCount
@@ -7263,6 +7779,7 @@ actual interface WGPUVertexBufferLayout {
 }
 
 fun webgpu.native.WGPUVertexBufferLayout.adapt(structure: WGPUVertexBufferLayout) {
+	nextInChain = structure.nextInChain?.reinterpret()
 	stepMode = structure.stepMode
 	arrayStride = structure.arrayStride
 	attributeCount = structure.attributeCount

@@ -30,6 +30,7 @@ sealed class WGPUStringView(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.
  * @suppress
  */
 sealed class WGPUAdapterInfo(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
+	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var vendor: WGPUStringView.ByValue = WGPUStringView.ByValue()
 	@JvmField var architecture: WGPUStringView.ByValue = WGPUStringView.ByValue()
 	@JvmField var device: WGPUStringView.ByValue = WGPUStringView.ByValue()
@@ -40,10 +41,11 @@ sealed class WGPUAdapterInfo(pointer: com.sun.jna.Pointer? = null) : com.sun.jna
 	@JvmField var deviceID: Int = 0
 	@JvmField var subgroupMinSize: Int = 0
 	@JvmField var subgroupMaxSize: Int = 0
-	override fun getFieldOrder() = listOf("vendor", "architecture", "device", "description", "backendType", "adapterType", "vendorID", "deviceID", "subgroupMinSize", "subgroupMaxSize")
+	override fun getFieldOrder() = listOf("nextInChain", "vendor", "architecture", "device", "description", "backendType", "adapterType", "vendorID", "deviceID", "subgroupMinSize", "subgroupMaxSize")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPUAdapterInfo(pointer), com.sun.jna.Structure.ByReference {
 		constructor(other: WGPUAdapterInfo) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.vendor = other.vendor
 			this.architecture = other.architecture
 			this.device = other.device
@@ -59,6 +61,7 @@ sealed class WGPUAdapterInfo(pointer: com.sun.jna.Pointer? = null) : com.sun.jna
 
 	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPUAdapterInfo(pointer), com.sun.jna.Structure.ByValue {
 		constructor(other: WGPUAdapterInfo) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.vendor = other.vendor
 			this.architecture = other.architecture
 			this.device = other.device
@@ -77,14 +80,16 @@ sealed class WGPUAdapterInfo(pointer: com.sun.jna.Pointer? = null) : com.sun.jna
  * @suppress
  */
 sealed class WGPUBindGroupDescriptor(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
+	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var label: WGPUStringView.ByValue = WGPUStringView.ByValue()
 	@JvmField var layout: com.sun.jna.Pointer? = null
 	@JvmField var entryCount: Long = 0L
 	@JvmField var entries: com.sun.jna.Pointer? = null
-	override fun getFieldOrder() = listOf("label", "layout", "entryCount", "entries")
+	override fun getFieldOrder() = listOf("nextInChain", "label", "layout", "entryCount", "entries")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPUBindGroupDescriptor(pointer), com.sun.jna.Structure.ByReference {
 		constructor(other: WGPUBindGroupDescriptor) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.label = other.label
 			this.layout = other.layout
 			this.entryCount = other.entryCount
@@ -94,6 +99,7 @@ sealed class WGPUBindGroupDescriptor(pointer: com.sun.jna.Pointer? = null) : com
 
 	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPUBindGroupDescriptor(pointer), com.sun.jna.Structure.ByValue {
 		constructor(other: WGPUBindGroupDescriptor) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.label = other.label
 			this.layout = other.layout
 			this.entryCount = other.entryCount
@@ -106,16 +112,18 @@ sealed class WGPUBindGroupDescriptor(pointer: com.sun.jna.Pointer? = null) : com
  * @suppress
  */
 sealed class WGPUBindGroupEntry(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
+	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var binding: Int = 0
 	@JvmField var buffer: com.sun.jna.Pointer? = null
 	@JvmField var offset: Long = 0L
 	@JvmField var size: Long = 0L
 	@JvmField var sampler: com.sun.jna.Pointer? = null
 	@JvmField var textureView: com.sun.jna.Pointer? = null
-	override fun getFieldOrder() = listOf("binding", "buffer", "offset", "size", "sampler", "textureView")
+	override fun getFieldOrder() = listOf("nextInChain", "binding", "buffer", "offset", "size", "sampler", "textureView")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPUBindGroupEntry(pointer), com.sun.jna.Structure.ByReference {
 		constructor(other: WGPUBindGroupEntry) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.binding = other.binding
 			this.buffer = other.buffer
 			this.offset = other.offset
@@ -127,6 +135,7 @@ sealed class WGPUBindGroupEntry(pointer: com.sun.jna.Pointer? = null) : com.sun.
 
 	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPUBindGroupEntry(pointer), com.sun.jna.Structure.ByValue {
 		constructor(other: WGPUBindGroupEntry) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.binding = other.binding
 			this.buffer = other.buffer
 			this.offset = other.offset
@@ -141,13 +150,15 @@ sealed class WGPUBindGroupEntry(pointer: com.sun.jna.Pointer? = null) : com.sun.
  * @suppress
  */
 sealed class WGPUBindGroupLayoutDescriptor(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
+	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var label: WGPUStringView.ByValue = WGPUStringView.ByValue()
 	@JvmField var entryCount: Long = 0L
 	@JvmField var entries: com.sun.jna.Pointer? = null
-	override fun getFieldOrder() = listOf("label", "entryCount", "entries")
+	override fun getFieldOrder() = listOf("nextInChain", "label", "entryCount", "entries")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPUBindGroupLayoutDescriptor(pointer), com.sun.jna.Structure.ByReference {
 		constructor(other: WGPUBindGroupLayoutDescriptor) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.label = other.label
 			this.entryCount = other.entryCount
 			this.entries = other.entries
@@ -156,6 +167,7 @@ sealed class WGPUBindGroupLayoutDescriptor(pointer: com.sun.jna.Pointer? = null)
 
 	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPUBindGroupLayoutDescriptor(pointer), com.sun.jna.Structure.ByValue {
 		constructor(other: WGPUBindGroupLayoutDescriptor) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.label = other.label
 			this.entryCount = other.entryCount
 			this.entries = other.entries
@@ -167,13 +179,15 @@ sealed class WGPUBindGroupLayoutDescriptor(pointer: com.sun.jna.Pointer? = null)
  * @suppress
  */
 sealed class WGPUBufferBindingLayout(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
+	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var type: Int = 0
 	@JvmField var hasDynamicOffset: Int = 0
 	@JvmField var minBindingSize: Long = 0L
-	override fun getFieldOrder() = listOf("type", "hasDynamicOffset", "minBindingSize")
+	override fun getFieldOrder() = listOf("nextInChain", "type", "hasDynamicOffset", "minBindingSize")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPUBufferBindingLayout(pointer), com.sun.jna.Structure.ByReference {
 		constructor(other: WGPUBufferBindingLayout) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.type = other.type
 			this.hasDynamicOffset = other.hasDynamicOffset
 			this.minBindingSize = other.minBindingSize
@@ -182,6 +196,7 @@ sealed class WGPUBufferBindingLayout(pointer: com.sun.jna.Pointer? = null) : com
 
 	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPUBufferBindingLayout(pointer), com.sun.jna.Structure.ByValue {
 		constructor(other: WGPUBufferBindingLayout) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.type = other.type
 			this.hasDynamicOffset = other.hasDynamicOffset
 			this.minBindingSize = other.minBindingSize
@@ -193,17 +208,20 @@ sealed class WGPUBufferBindingLayout(pointer: com.sun.jna.Pointer? = null) : com
  * @suppress
  */
 sealed class WGPUSamplerBindingLayout(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
+	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var type: Int = 0
-	override fun getFieldOrder() = listOf("type")
+	override fun getFieldOrder() = listOf("nextInChain", "type")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPUSamplerBindingLayout(pointer), com.sun.jna.Structure.ByReference {
 		constructor(other: WGPUSamplerBindingLayout) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.type = other.type
 		}
 	}
 
 	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPUSamplerBindingLayout(pointer), com.sun.jna.Structure.ByValue {
 		constructor(other: WGPUSamplerBindingLayout) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.type = other.type
 		}
 	}
@@ -213,13 +231,15 @@ sealed class WGPUSamplerBindingLayout(pointer: com.sun.jna.Pointer? = null) : co
  * @suppress
  */
 sealed class WGPUTextureBindingLayout(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
+	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var sampleType: Int = 0
 	@JvmField var viewDimension: Int = 0
 	@JvmField var multisampled: Int = 0
-	override fun getFieldOrder() = listOf("sampleType", "viewDimension", "multisampled")
+	override fun getFieldOrder() = listOf("nextInChain", "sampleType", "viewDimension", "multisampled")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPUTextureBindingLayout(pointer), com.sun.jna.Structure.ByReference {
 		constructor(other: WGPUTextureBindingLayout) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.sampleType = other.sampleType
 			this.viewDimension = other.viewDimension
 			this.multisampled = other.multisampled
@@ -228,6 +248,7 @@ sealed class WGPUTextureBindingLayout(pointer: com.sun.jna.Pointer? = null) : co
 
 	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPUTextureBindingLayout(pointer), com.sun.jna.Structure.ByValue {
 		constructor(other: WGPUTextureBindingLayout) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.sampleType = other.sampleType
 			this.viewDimension = other.viewDimension
 			this.multisampled = other.multisampled
@@ -239,13 +260,15 @@ sealed class WGPUTextureBindingLayout(pointer: com.sun.jna.Pointer? = null) : co
  * @suppress
  */
 sealed class WGPUStorageTextureBindingLayout(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
+	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var access: Int = 0
 	@JvmField var format: Int = 0
 	@JvmField var viewDimension: Int = 0
-	override fun getFieldOrder() = listOf("access", "format", "viewDimension")
+	override fun getFieldOrder() = listOf("nextInChain", "access", "format", "viewDimension")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPUStorageTextureBindingLayout(pointer), com.sun.jna.Structure.ByReference {
 		constructor(other: WGPUStorageTextureBindingLayout) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.access = other.access
 			this.format = other.format
 			this.viewDimension = other.viewDimension
@@ -254,6 +277,7 @@ sealed class WGPUStorageTextureBindingLayout(pointer: com.sun.jna.Pointer? = nul
 
 	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPUStorageTextureBindingLayout(pointer), com.sun.jna.Structure.ByValue {
 		constructor(other: WGPUStorageTextureBindingLayout) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.access = other.access
 			this.format = other.format
 			this.viewDimension = other.viewDimension
@@ -265,6 +289,7 @@ sealed class WGPUStorageTextureBindingLayout(pointer: com.sun.jna.Pointer? = nul
  * @suppress
  */
 sealed class WGPUBindGroupLayoutEntry(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
+	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var binding: Int = 0
 	@JvmField var visibility: Long = 0L
 	@JvmField var bindingArraySize: Int = 0
@@ -272,10 +297,11 @@ sealed class WGPUBindGroupLayoutEntry(pointer: com.sun.jna.Pointer? = null) : co
 	@JvmField var sampler: WGPUSamplerBindingLayout.ByValue = WGPUSamplerBindingLayout.ByValue()
 	@JvmField var texture: WGPUTextureBindingLayout.ByValue = WGPUTextureBindingLayout.ByValue()
 	@JvmField var storageTexture: WGPUStorageTextureBindingLayout.ByValue = WGPUStorageTextureBindingLayout.ByValue()
-	override fun getFieldOrder() = listOf("binding", "visibility", "bindingArraySize", "buffer", "sampler", "texture", "storageTexture")
+	override fun getFieldOrder() = listOf("nextInChain", "binding", "visibility", "bindingArraySize", "buffer", "sampler", "texture", "storageTexture")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPUBindGroupLayoutEntry(pointer), com.sun.jna.Structure.ByReference {
 		constructor(other: WGPUBindGroupLayoutEntry) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.binding = other.binding
 			this.visibility = other.visibility
 			this.bindingArraySize = other.bindingArraySize
@@ -288,6 +314,7 @@ sealed class WGPUBindGroupLayoutEntry(pointer: com.sun.jna.Pointer? = null) : co
 
 	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPUBindGroupLayoutEntry(pointer), com.sun.jna.Structure.ByValue {
 		constructor(other: WGPUBindGroupLayoutEntry) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.binding = other.binding
 			this.visibility = other.visibility
 			this.bindingArraySize = other.bindingArraySize
@@ -352,14 +379,16 @@ sealed class WGPUBlendState(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.
  * @suppress
  */
 sealed class WGPUBufferDescriptor(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
+	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var label: WGPUStringView.ByValue = WGPUStringView.ByValue()
 	@JvmField var usage: Long = 0L
 	@JvmField var size: Long = 0L
 	@JvmField var mappedAtCreation: Int = 0
-	override fun getFieldOrder() = listOf("label", "usage", "size", "mappedAtCreation")
+	override fun getFieldOrder() = listOf("nextInChain", "label", "usage", "size", "mappedAtCreation")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPUBufferDescriptor(pointer), com.sun.jna.Structure.ByReference {
 		constructor(other: WGPUBufferDescriptor) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.label = other.label
 			this.usage = other.usage
 			this.size = other.size
@@ -369,6 +398,7 @@ sealed class WGPUBufferDescriptor(pointer: com.sun.jna.Pointer? = null) : com.su
 
 	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPUBufferDescriptor(pointer), com.sun.jna.Structure.ByValue {
 		constructor(other: WGPUBufferDescriptor) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.label = other.label
 			this.usage = other.usage
 			this.size = other.size
@@ -410,13 +440,15 @@ sealed class WGPUColor(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Struc
  * @suppress
  */
 sealed class WGPUColorTargetState(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
+	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var format: Int = 0
 	@JvmField var blend: WGPUBlendState.ByReference?? = null
 	@JvmField var writeMask: Long = 0L
-	override fun getFieldOrder() = listOf("format", "blend", "writeMask")
+	override fun getFieldOrder() = listOf("nextInChain", "format", "blend", "writeMask")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPUColorTargetState(pointer), com.sun.jna.Structure.ByReference {
 		constructor(other: WGPUColorTargetState) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.format = other.format
 			this.blend = other.blend
 			this.writeMask = other.writeMask
@@ -425,6 +457,7 @@ sealed class WGPUColorTargetState(pointer: com.sun.jna.Pointer? = null) : com.su
 
 	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPUColorTargetState(pointer), com.sun.jna.Structure.ByValue {
 		constructor(other: WGPUColorTargetState) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.format = other.format
 			this.blend = other.blend
 			this.writeMask = other.writeMask
@@ -436,17 +469,20 @@ sealed class WGPUColorTargetState(pointer: com.sun.jna.Pointer? = null) : com.su
  * @suppress
  */
 sealed class WGPUCommandBufferDescriptor(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
+	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var label: WGPUStringView.ByValue = WGPUStringView.ByValue()
-	override fun getFieldOrder() = listOf("label")
+	override fun getFieldOrder() = listOf("nextInChain", "label")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPUCommandBufferDescriptor(pointer), com.sun.jna.Structure.ByReference {
 		constructor(other: WGPUCommandBufferDescriptor) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.label = other.label
 		}
 	}
 
 	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPUCommandBufferDescriptor(pointer), com.sun.jna.Structure.ByValue {
 		constructor(other: WGPUCommandBufferDescriptor) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.label = other.label
 		}
 	}
@@ -456,17 +492,20 @@ sealed class WGPUCommandBufferDescriptor(pointer: com.sun.jna.Pointer? = null) :
  * @suppress
  */
 sealed class WGPUCommandEncoderDescriptor(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
+	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var label: WGPUStringView.ByValue = WGPUStringView.ByValue()
-	override fun getFieldOrder() = listOf("label")
+	override fun getFieldOrder() = listOf("nextInChain", "label")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPUCommandEncoderDescriptor(pointer), com.sun.jna.Structure.ByReference {
 		constructor(other: WGPUCommandEncoderDescriptor) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.label = other.label
 		}
 	}
 
 	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPUCommandEncoderDescriptor(pointer), com.sun.jna.Structure.ByValue {
 		constructor(other: WGPUCommandEncoderDescriptor) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.label = other.label
 		}
 	}
@@ -589,12 +628,14 @@ sealed class WGPUCompilationMessage(pointer: com.sun.jna.Pointer? = null) : com.
  * @suppress
  */
 sealed class WGPUComputePassDescriptor(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
+	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var label: WGPUStringView.ByValue = WGPUStringView.ByValue()
 	@JvmField var timestampWrites: WGPUPassTimestampWrites.ByReference?? = null
-	override fun getFieldOrder() = listOf("label", "timestampWrites")
+	override fun getFieldOrder() = listOf("nextInChain", "label", "timestampWrites")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPUComputePassDescriptor(pointer), com.sun.jna.Structure.ByReference {
 		constructor(other: WGPUComputePassDescriptor) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.label = other.label
 			this.timestampWrites = other.timestampWrites
 		}
@@ -602,6 +643,7 @@ sealed class WGPUComputePassDescriptor(pointer: com.sun.jna.Pointer? = null) : c
 
 	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPUComputePassDescriptor(pointer), com.sun.jna.Structure.ByValue {
 		constructor(other: WGPUComputePassDescriptor) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.label = other.label
 			this.timestampWrites = other.timestampWrites
 		}
@@ -612,14 +654,16 @@ sealed class WGPUComputePassDescriptor(pointer: com.sun.jna.Pointer? = null) : c
  * @suppress
  */
 sealed class WGPUComputeState(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
+	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var module: com.sun.jna.Pointer? = null
 	@JvmField var entryPoint: WGPUStringView.ByValue = WGPUStringView.ByValue()
 	@JvmField var constantCount: Long = 0L
 	@JvmField var constants: com.sun.jna.Pointer? = null
-	override fun getFieldOrder() = listOf("module", "entryPoint", "constantCount", "constants")
+	override fun getFieldOrder() = listOf("nextInChain", "module", "entryPoint", "constantCount", "constants")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPUComputeState(pointer), com.sun.jna.Structure.ByReference {
 		constructor(other: WGPUComputeState) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.module = other.module
 			this.entryPoint = other.entryPoint
 			this.constantCount = other.constantCount
@@ -629,6 +673,7 @@ sealed class WGPUComputeState(pointer: com.sun.jna.Pointer? = null) : com.sun.jn
 
 	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPUComputeState(pointer), com.sun.jna.Structure.ByValue {
 		constructor(other: WGPUComputeState) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.module = other.module
 			this.entryPoint = other.entryPoint
 			this.constantCount = other.constantCount
@@ -641,13 +686,15 @@ sealed class WGPUComputeState(pointer: com.sun.jna.Pointer? = null) : com.sun.jn
  * @suppress
  */
 sealed class WGPUComputePipelineDescriptor(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
+	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var label: WGPUStringView.ByValue = WGPUStringView.ByValue()
 	@JvmField var layout: com.sun.jna.Pointer? = null
 	@JvmField var compute: WGPUComputeState.ByValue = WGPUComputeState.ByValue()
-	override fun getFieldOrder() = listOf("label", "layout", "compute")
+	override fun getFieldOrder() = listOf("nextInChain", "label", "layout", "compute")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPUComputePipelineDescriptor(pointer), com.sun.jna.Structure.ByReference {
 		constructor(other: WGPUComputePipelineDescriptor) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.label = other.label
 			this.layout = other.layout
 			this.compute = other.compute
@@ -656,6 +703,7 @@ sealed class WGPUComputePipelineDescriptor(pointer: com.sun.jna.Pointer? = null)
 
 	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPUComputePipelineDescriptor(pointer), com.sun.jna.Structure.ByValue {
 		constructor(other: WGPUComputePipelineDescriptor) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.label = other.label
 			this.layout = other.layout
 			this.compute = other.compute
@@ -667,12 +715,14 @@ sealed class WGPUComputePipelineDescriptor(pointer: com.sun.jna.Pointer? = null)
  * @suppress
  */
 sealed class WGPUConstantEntry(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
+	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var key: WGPUStringView.ByValue = WGPUStringView.ByValue()
 	@JvmField var value: Double = 0.0
-	override fun getFieldOrder() = listOf("key", "value")
+	override fun getFieldOrder() = listOf("nextInChain", "key", "value")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPUConstantEntry(pointer), com.sun.jna.Structure.ByReference {
 		constructor(other: WGPUConstantEntry) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.key = other.key
 			this.value = other.value
 		}
@@ -680,6 +730,7 @@ sealed class WGPUConstantEntry(pointer: com.sun.jna.Pointer? = null) : com.sun.j
 
 	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPUConstantEntry(pointer), com.sun.jna.Structure.ByValue {
 		constructor(other: WGPUConstantEntry) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.key = other.key
 			this.value = other.value
 		}
@@ -719,6 +770,7 @@ sealed class WGPUStencilFaceState(pointer: com.sun.jna.Pointer? = null) : com.su
  * @suppress
  */
 sealed class WGPUDepthStencilState(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
+	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var format: Int = 0
 	@JvmField var depthWriteEnabled: Int = 0
 	@JvmField var depthCompare: Int = 0
@@ -729,10 +781,11 @@ sealed class WGPUDepthStencilState(pointer: com.sun.jna.Pointer? = null) : com.s
 	@JvmField var depthBias: Int = 0
 	@JvmField var depthBiasSlopeScale: Float = 0f
 	@JvmField var depthBiasClamp: Float = 0f
-	override fun getFieldOrder() = listOf("format", "depthWriteEnabled", "depthCompare", "stencilFront", "stencilBack", "stencilReadMask", "stencilWriteMask", "depthBias", "depthBiasSlopeScale", "depthBiasClamp")
+	override fun getFieldOrder() = listOf("nextInChain", "format", "depthWriteEnabled", "depthCompare", "stencilFront", "stencilBack", "stencilReadMask", "stencilWriteMask", "depthBias", "depthBiasSlopeScale", "depthBiasClamp")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPUDepthStencilState(pointer), com.sun.jna.Structure.ByReference {
 		constructor(other: WGPUDepthStencilState) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.format = other.format
 			this.depthWriteEnabled = other.depthWriteEnabled
 			this.depthCompare = other.depthCompare
@@ -748,6 +801,7 @@ sealed class WGPUDepthStencilState(pointer: com.sun.jna.Pointer? = null) : com.s
 
 	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPUDepthStencilState(pointer), com.sun.jna.Structure.ByValue {
 		constructor(other: WGPUDepthStencilState) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.format = other.format
 			this.depthWriteEnabled = other.depthWriteEnabled
 			this.depthCompare = other.depthCompare
@@ -766,17 +820,20 @@ sealed class WGPUDepthStencilState(pointer: com.sun.jna.Pointer? = null) : com.s
  * @suppress
  */
 sealed class WGPUQueueDescriptor(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
+	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var label: WGPUStringView.ByValue = WGPUStringView.ByValue()
-	override fun getFieldOrder() = listOf("label")
+	override fun getFieldOrder() = listOf("nextInChain", "label")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPUQueueDescriptor(pointer), com.sun.jna.Structure.ByReference {
 		constructor(other: WGPUQueueDescriptor) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.label = other.label
 		}
 	}
 
 	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPUQueueDescriptor(pointer), com.sun.jna.Structure.ByValue {
 		constructor(other: WGPUQueueDescriptor) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.label = other.label
 		}
 	}
@@ -847,6 +904,7 @@ sealed class WGPUUncapturedErrorCallbackInfo(pointer: com.sun.jna.Pointer? = nul
  * @suppress
  */
 sealed class WGPUDeviceDescriptor(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
+	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var label: WGPUStringView.ByValue = WGPUStringView.ByValue()
 	@JvmField var requiredFeatureCount: Long = 0L
 	@JvmField var requiredFeatures: com.sun.jna.Pointer? = null
@@ -854,10 +912,11 @@ sealed class WGPUDeviceDescriptor(pointer: com.sun.jna.Pointer? = null) : com.su
 	@JvmField var defaultQueue: WGPUQueueDescriptor.ByValue = WGPUQueueDescriptor.ByValue()
 	@JvmField var deviceLostCallbackInfo: WGPUDeviceLostCallbackInfo.ByValue = WGPUDeviceLostCallbackInfo.ByValue()
 	@JvmField var uncapturedErrorCallbackInfo: WGPUUncapturedErrorCallbackInfo.ByValue = WGPUUncapturedErrorCallbackInfo.ByValue()
-	override fun getFieldOrder() = listOf("label", "requiredFeatureCount", "requiredFeatures", "requiredLimits", "defaultQueue", "deviceLostCallbackInfo", "uncapturedErrorCallbackInfo")
+	override fun getFieldOrder() = listOf("nextInChain", "label", "requiredFeatureCount", "requiredFeatures", "requiredLimits", "defaultQueue", "deviceLostCallbackInfo", "uncapturedErrorCallbackInfo")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPUDeviceDescriptor(pointer), com.sun.jna.Structure.ByReference {
 		constructor(other: WGPUDeviceDescriptor) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.label = other.label
 			this.requiredFeatureCount = other.requiredFeatureCount
 			this.requiredFeatures = other.requiredFeatures
@@ -870,6 +929,7 @@ sealed class WGPUDeviceDescriptor(pointer: com.sun.jna.Pointer? = null) : com.su
 
 	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPUDeviceDescriptor(pointer), com.sun.jna.Structure.ByValue {
 		constructor(other: WGPUDeviceDescriptor) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.label = other.label
 			this.requiredFeatureCount = other.requiredFeatureCount
 			this.requiredFeatures = other.requiredFeatures
@@ -954,16 +1014,18 @@ sealed class WGPUExternalTextureBindingLayout(pointer: com.sun.jna.Pointer? = nu
  * @suppress
  */
 sealed class WGPUFragmentState(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
+	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var module: com.sun.jna.Pointer? = null
 	@JvmField var entryPoint: WGPUStringView.ByValue = WGPUStringView.ByValue()
 	@JvmField var constantCount: Long = 0L
 	@JvmField var constants: com.sun.jna.Pointer? = null
 	@JvmField var targetCount: Long = 0L
 	@JvmField var targets: com.sun.jna.Pointer? = null
-	override fun getFieldOrder() = listOf("module", "entryPoint", "constantCount", "constants", "targetCount", "targets")
+	override fun getFieldOrder() = listOf("nextInChain", "module", "entryPoint", "constantCount", "constants", "targetCount", "targets")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPUFragmentState(pointer), com.sun.jna.Structure.ByReference {
 		constructor(other: WGPUFragmentState) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.module = other.module
 			this.entryPoint = other.entryPoint
 			this.constantCount = other.constantCount
@@ -975,6 +1037,7 @@ sealed class WGPUFragmentState(pointer: com.sun.jna.Pointer? = null) : com.sun.j
 
 	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPUFragmentState(pointer), com.sun.jna.Structure.ByValue {
 		constructor(other: WGPUFragmentState) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.module = other.module
 			this.entryPoint = other.entryPoint
 			this.constantCount = other.constantCount
@@ -1032,13 +1095,15 @@ sealed class WGPUFutureWaitInfo(pointer: com.sun.jna.Pointer? = null) : com.sun.
  * @suppress
  */
 sealed class WGPUInstanceDescriptor(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
+	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var requiredFeatureCount: Long = 0L
 	@JvmField var requiredFeatures: com.sun.jna.Pointer? = null
 	@JvmField var requiredLimits: WGPUInstanceLimits.ByReference?? = null
-	override fun getFieldOrder() = listOf("requiredFeatureCount", "requiredFeatures", "requiredLimits")
+	override fun getFieldOrder() = listOf("nextInChain", "requiredFeatureCount", "requiredFeatures", "requiredLimits")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPUInstanceDescriptor(pointer), com.sun.jna.Structure.ByReference {
 		constructor(other: WGPUInstanceDescriptor) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.requiredFeatureCount = other.requiredFeatureCount
 			this.requiredFeatures = other.requiredFeatures
 			this.requiredLimits = other.requiredLimits
@@ -1047,6 +1112,7 @@ sealed class WGPUInstanceDescriptor(pointer: com.sun.jna.Pointer? = null) : com.
 
 	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPUInstanceDescriptor(pointer), com.sun.jna.Structure.ByValue {
 		constructor(other: WGPUInstanceDescriptor) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.requiredFeatureCount = other.requiredFeatureCount
 			this.requiredFeatures = other.requiredFeatures
 			this.requiredLimits = other.requiredLimits
@@ -1058,17 +1124,20 @@ sealed class WGPUInstanceDescriptor(pointer: com.sun.jna.Pointer? = null) : com.
  * @suppress
  */
 sealed class WGPUInstanceLimits(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
+	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var timedWaitAnyMaxCount: Long = 0L
-	override fun getFieldOrder() = listOf("timedWaitAnyMaxCount")
+	override fun getFieldOrder() = listOf("nextInChain", "timedWaitAnyMaxCount")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPUInstanceLimits(pointer), com.sun.jna.Structure.ByReference {
 		constructor(other: WGPUInstanceLimits) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.timedWaitAnyMaxCount = other.timedWaitAnyMaxCount
 		}
 	}
 
 	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPUInstanceLimits(pointer), com.sun.jna.Structure.ByValue {
 		constructor(other: WGPUInstanceLimits) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.timedWaitAnyMaxCount = other.timedWaitAnyMaxCount
 		}
 	}
@@ -1078,6 +1147,7 @@ sealed class WGPUInstanceLimits(pointer: com.sun.jna.Pointer? = null) : com.sun.
  * @suppress
  */
 sealed class WGPULimits(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
+	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var maxTextureDimension1D: Int = 0
 	@JvmField var maxTextureDimension2D: Int = 0
 	@JvmField var maxTextureDimension3D: Int = 0
@@ -1110,10 +1180,11 @@ sealed class WGPULimits(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Stru
 	@JvmField var maxComputeWorkgroupSizeZ: Int = 0
 	@JvmField var maxComputeWorkgroupsPerDimension: Int = 0
 	@JvmField var maxImmediateSize: Int = 0
-	override fun getFieldOrder() = listOf("maxTextureDimension1D", "maxTextureDimension2D", "maxTextureDimension3D", "maxTextureArrayLayers", "maxBindGroups", "maxBindGroupsPlusVertexBuffers", "maxBindingsPerBindGroup", "maxDynamicUniformBuffersPerPipelineLayout", "maxDynamicStorageBuffersPerPipelineLayout", "maxSampledTexturesPerShaderStage", "maxSamplersPerShaderStage", "maxStorageBuffersPerShaderStage", "maxStorageTexturesPerShaderStage", "maxUniformBuffersPerShaderStage", "maxUniformBufferBindingSize", "maxStorageBufferBindingSize", "minUniformBufferOffsetAlignment", "minStorageBufferOffsetAlignment", "maxVertexBuffers", "maxBufferSize", "maxVertexAttributes", "maxVertexBufferArrayStride", "maxInterStageShaderVariables", "maxColorAttachments", "maxColorAttachmentBytesPerSample", "maxComputeWorkgroupStorageSize", "maxComputeInvocationsPerWorkgroup", "maxComputeWorkgroupSizeX", "maxComputeWorkgroupSizeY", "maxComputeWorkgroupSizeZ", "maxComputeWorkgroupsPerDimension", "maxImmediateSize")
+	override fun getFieldOrder() = listOf("nextInChain", "maxTextureDimension1D", "maxTextureDimension2D", "maxTextureDimension3D", "maxTextureArrayLayers", "maxBindGroups", "maxBindGroupsPlusVertexBuffers", "maxBindingsPerBindGroup", "maxDynamicUniformBuffersPerPipelineLayout", "maxDynamicStorageBuffersPerPipelineLayout", "maxSampledTexturesPerShaderStage", "maxSamplersPerShaderStage", "maxStorageBuffersPerShaderStage", "maxStorageTexturesPerShaderStage", "maxUniformBuffersPerShaderStage", "maxUniformBufferBindingSize", "maxStorageBufferBindingSize", "minUniformBufferOffsetAlignment", "minStorageBufferOffsetAlignment", "maxVertexBuffers", "maxBufferSize", "maxVertexAttributes", "maxVertexBufferArrayStride", "maxInterStageShaderVariables", "maxColorAttachments", "maxColorAttachmentBytesPerSample", "maxComputeWorkgroupStorageSize", "maxComputeInvocationsPerWorkgroup", "maxComputeWorkgroupSizeX", "maxComputeWorkgroupSizeY", "maxComputeWorkgroupSizeZ", "maxComputeWorkgroupsPerDimension", "maxImmediateSize")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPULimits(pointer), com.sun.jna.Structure.ByReference {
 		constructor(other: WGPULimits) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.maxTextureDimension1D = other.maxTextureDimension1D
 			this.maxTextureDimension2D = other.maxTextureDimension2D
 			this.maxTextureDimension3D = other.maxTextureDimension3D
@@ -1151,6 +1222,7 @@ sealed class WGPULimits(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Stru
 
 	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPULimits(pointer), com.sun.jna.Structure.ByValue {
 		constructor(other: WGPULimits) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.maxTextureDimension1D = other.maxTextureDimension1D
 			this.maxTextureDimension2D = other.maxTextureDimension2D
 			this.maxTextureDimension3D = other.maxTextureDimension3D
@@ -1191,13 +1263,15 @@ sealed class WGPULimits(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Stru
  * @suppress
  */
 sealed class WGPUMultisampleState(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
+	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var count: Int = 0
 	@JvmField var mask: Int = 0
 	@JvmField var alphaToCoverageEnabled: Int = 0
-	override fun getFieldOrder() = listOf("count", "mask", "alphaToCoverageEnabled")
+	override fun getFieldOrder() = listOf("nextInChain", "count", "mask", "alphaToCoverageEnabled")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPUMultisampleState(pointer), com.sun.jna.Structure.ByReference {
 		constructor(other: WGPUMultisampleState) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.count = other.count
 			this.mask = other.mask
 			this.alphaToCoverageEnabled = other.alphaToCoverageEnabled
@@ -1206,6 +1280,7 @@ sealed class WGPUMultisampleState(pointer: com.sun.jna.Pointer? = null) : com.su
 
 	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPUMultisampleState(pointer), com.sun.jna.Structure.ByValue {
 		constructor(other: WGPUMultisampleState) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.count = other.count
 			this.mask = other.mask
 			this.alphaToCoverageEnabled = other.alphaToCoverageEnabled
@@ -1243,13 +1318,15 @@ sealed class WGPUOrigin3D(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.St
  * @suppress
  */
 sealed class WGPUPassTimestampWrites(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
+	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var querySet: com.sun.jna.Pointer? = null
 	@JvmField var beginningOfPassWriteIndex: Int = 0
 	@JvmField var endOfPassWriteIndex: Int = 0
-	override fun getFieldOrder() = listOf("querySet", "beginningOfPassWriteIndex", "endOfPassWriteIndex")
+	override fun getFieldOrder() = listOf("nextInChain", "querySet", "beginningOfPassWriteIndex", "endOfPassWriteIndex")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPUPassTimestampWrites(pointer), com.sun.jna.Structure.ByReference {
 		constructor(other: WGPUPassTimestampWrites) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.querySet = other.querySet
 			this.beginningOfPassWriteIndex = other.beginningOfPassWriteIndex
 			this.endOfPassWriteIndex = other.endOfPassWriteIndex
@@ -1258,6 +1335,7 @@ sealed class WGPUPassTimestampWrites(pointer: com.sun.jna.Pointer? = null) : com
 
 	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPUPassTimestampWrites(pointer), com.sun.jna.Structure.ByValue {
 		constructor(other: WGPUPassTimestampWrites) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.querySet = other.querySet
 			this.beginningOfPassWriteIndex = other.beginningOfPassWriteIndex
 			this.endOfPassWriteIndex = other.endOfPassWriteIndex
@@ -1269,14 +1347,16 @@ sealed class WGPUPassTimestampWrites(pointer: com.sun.jna.Pointer? = null) : com
  * @suppress
  */
 sealed class WGPUPipelineLayoutDescriptor(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
+	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var label: WGPUStringView.ByValue = WGPUStringView.ByValue()
 	@JvmField var bindGroupLayoutCount: Long = 0L
 	@JvmField var bindGroupLayouts: com.sun.jna.Pointer? = null
 	@JvmField var immediateSize: Int = 0
-	override fun getFieldOrder() = listOf("label", "bindGroupLayoutCount", "bindGroupLayouts", "immediateSize")
+	override fun getFieldOrder() = listOf("nextInChain", "label", "bindGroupLayoutCount", "bindGroupLayouts", "immediateSize")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPUPipelineLayoutDescriptor(pointer), com.sun.jna.Structure.ByReference {
 		constructor(other: WGPUPipelineLayoutDescriptor) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.label = other.label
 			this.bindGroupLayoutCount = other.bindGroupLayoutCount
 			this.bindGroupLayouts = other.bindGroupLayouts
@@ -1286,6 +1366,7 @@ sealed class WGPUPipelineLayoutDescriptor(pointer: com.sun.jna.Pointer? = null) 
 
 	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPUPipelineLayoutDescriptor(pointer), com.sun.jna.Structure.ByValue {
 		constructor(other: WGPUPipelineLayoutDescriptor) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.label = other.label
 			this.bindGroupLayoutCount = other.bindGroupLayoutCount
 			this.bindGroupLayouts = other.bindGroupLayouts
@@ -1298,15 +1379,17 @@ sealed class WGPUPipelineLayoutDescriptor(pointer: com.sun.jna.Pointer? = null) 
  * @suppress
  */
 sealed class WGPUPrimitiveState(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
+	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var topology: Int = 0
 	@JvmField var stripIndexFormat: Int = 0
 	@JvmField var frontFace: Int = 0
 	@JvmField var cullMode: Int = 0
 	@JvmField var unclippedDepth: Int = 0
-	override fun getFieldOrder() = listOf("topology", "stripIndexFormat", "frontFace", "cullMode", "unclippedDepth")
+	override fun getFieldOrder() = listOf("nextInChain", "topology", "stripIndexFormat", "frontFace", "cullMode", "unclippedDepth")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPUPrimitiveState(pointer), com.sun.jna.Structure.ByReference {
 		constructor(other: WGPUPrimitiveState) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.topology = other.topology
 			this.stripIndexFormat = other.stripIndexFormat
 			this.frontFace = other.frontFace
@@ -1317,6 +1400,7 @@ sealed class WGPUPrimitiveState(pointer: com.sun.jna.Pointer? = null) : com.sun.
 
 	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPUPrimitiveState(pointer), com.sun.jna.Structure.ByValue {
 		constructor(other: WGPUPrimitiveState) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.topology = other.topology
 			this.stripIndexFormat = other.stripIndexFormat
 			this.frontFace = other.frontFace
@@ -1330,13 +1414,15 @@ sealed class WGPUPrimitiveState(pointer: com.sun.jna.Pointer? = null) : com.sun.
  * @suppress
  */
 sealed class WGPUQuerySetDescriptor(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
+	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var label: WGPUStringView.ByValue = WGPUStringView.ByValue()
 	@JvmField var type: Int = 0
 	@JvmField var count: Int = 0
-	override fun getFieldOrder() = listOf("label", "type", "count")
+	override fun getFieldOrder() = listOf("nextInChain", "label", "type", "count")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPUQuerySetDescriptor(pointer), com.sun.jna.Structure.ByReference {
 		constructor(other: WGPUQuerySetDescriptor) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.label = other.label
 			this.type = other.type
 			this.count = other.count
@@ -1345,6 +1431,7 @@ sealed class WGPUQuerySetDescriptor(pointer: com.sun.jna.Pointer? = null) : com.
 
 	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPUQuerySetDescriptor(pointer), com.sun.jna.Structure.ByValue {
 		constructor(other: WGPUQuerySetDescriptor) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.label = other.label
 			this.type = other.type
 			this.count = other.count
@@ -1356,17 +1443,20 @@ sealed class WGPUQuerySetDescriptor(pointer: com.sun.jna.Pointer? = null) : com.
  * @suppress
  */
 sealed class WGPURenderBundleDescriptor(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
+	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var label: WGPUStringView.ByValue = WGPUStringView.ByValue()
-	override fun getFieldOrder() = listOf("label")
+	override fun getFieldOrder() = listOf("nextInChain", "label")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPURenderBundleDescriptor(pointer), com.sun.jna.Structure.ByReference {
 		constructor(other: WGPURenderBundleDescriptor) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.label = other.label
 		}
 	}
 
 	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPURenderBundleDescriptor(pointer), com.sun.jna.Structure.ByValue {
 		constructor(other: WGPURenderBundleDescriptor) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.label = other.label
 		}
 	}
@@ -1376,6 +1466,7 @@ sealed class WGPURenderBundleDescriptor(pointer: com.sun.jna.Pointer? = null) : 
  * @suppress
  */
 sealed class WGPURenderBundleEncoderDescriptor(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
+	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var label: WGPUStringView.ByValue = WGPUStringView.ByValue()
 	@JvmField var colorFormatCount: Long = 0L
 	@JvmField var colorFormats: com.sun.jna.Pointer? = null
@@ -1383,10 +1474,11 @@ sealed class WGPURenderBundleEncoderDescriptor(pointer: com.sun.jna.Pointer? = n
 	@JvmField var sampleCount: Int = 0
 	@JvmField var depthReadOnly: Int = 0
 	@JvmField var stencilReadOnly: Int = 0
-	override fun getFieldOrder() = listOf("label", "colorFormatCount", "colorFormats", "depthStencilFormat", "sampleCount", "depthReadOnly", "stencilReadOnly")
+	override fun getFieldOrder() = listOf("nextInChain", "label", "colorFormatCount", "colorFormats", "depthStencilFormat", "sampleCount", "depthReadOnly", "stencilReadOnly")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPURenderBundleEncoderDescriptor(pointer), com.sun.jna.Structure.ByReference {
 		constructor(other: WGPURenderBundleEncoderDescriptor) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.label = other.label
 			this.colorFormatCount = other.colorFormatCount
 			this.colorFormats = other.colorFormats
@@ -1399,6 +1491,7 @@ sealed class WGPURenderBundleEncoderDescriptor(pointer: com.sun.jna.Pointer? = n
 
 	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPURenderBundleEncoderDescriptor(pointer), com.sun.jna.Structure.ByValue {
 		constructor(other: WGPURenderBundleEncoderDescriptor) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.label = other.label
 			this.colorFormatCount = other.colorFormatCount
 			this.colorFormats = other.colorFormats
@@ -1414,16 +1507,18 @@ sealed class WGPURenderBundleEncoderDescriptor(pointer: com.sun.jna.Pointer? = n
  * @suppress
  */
 sealed class WGPURenderPassColorAttachment(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
+	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var view: com.sun.jna.Pointer? = null
 	@JvmField var depthSlice: Int = 0
 	@JvmField var resolveTarget: com.sun.jna.Pointer? = null
 	@JvmField var loadOp: Int = 0
 	@JvmField var storeOp: Int = 0
 	@JvmField var clearValue: WGPUColor.ByValue = WGPUColor.ByValue()
-	override fun getFieldOrder() = listOf("view", "depthSlice", "resolveTarget", "loadOp", "storeOp", "clearValue")
+	override fun getFieldOrder() = listOf("nextInChain", "view", "depthSlice", "resolveTarget", "loadOp", "storeOp", "clearValue")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPURenderPassColorAttachment(pointer), com.sun.jna.Structure.ByReference {
 		constructor(other: WGPURenderPassColorAttachment) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.view = other.view
 			this.depthSlice = other.depthSlice
 			this.resolveTarget = other.resolveTarget
@@ -1435,6 +1530,7 @@ sealed class WGPURenderPassColorAttachment(pointer: com.sun.jna.Pointer? = null)
 
 	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPURenderPassColorAttachment(pointer), com.sun.jna.Structure.ByValue {
 		constructor(other: WGPURenderPassColorAttachment) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.view = other.view
 			this.depthSlice = other.depthSlice
 			this.resolveTarget = other.resolveTarget
@@ -1449,6 +1545,7 @@ sealed class WGPURenderPassColorAttachment(pointer: com.sun.jna.Pointer? = null)
  * @suppress
  */
 sealed class WGPURenderPassDepthStencilAttachment(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
+	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var view: com.sun.jna.Pointer? = null
 	@JvmField var depthLoadOp: Int = 0
 	@JvmField var depthStoreOp: Int = 0
@@ -1458,10 +1555,11 @@ sealed class WGPURenderPassDepthStencilAttachment(pointer: com.sun.jna.Pointer? 
 	@JvmField var stencilStoreOp: Int = 0
 	@JvmField var stencilClearValue: Int = 0
 	@JvmField var stencilReadOnly: Int = 0
-	override fun getFieldOrder() = listOf("view", "depthLoadOp", "depthStoreOp", "depthClearValue", "depthReadOnly", "stencilLoadOp", "stencilStoreOp", "stencilClearValue", "stencilReadOnly")
+	override fun getFieldOrder() = listOf("nextInChain", "view", "depthLoadOp", "depthStoreOp", "depthClearValue", "depthReadOnly", "stencilLoadOp", "stencilStoreOp", "stencilClearValue", "stencilReadOnly")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPURenderPassDepthStencilAttachment(pointer), com.sun.jna.Structure.ByReference {
 		constructor(other: WGPURenderPassDepthStencilAttachment) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.view = other.view
 			this.depthLoadOp = other.depthLoadOp
 			this.depthStoreOp = other.depthStoreOp
@@ -1476,6 +1574,7 @@ sealed class WGPURenderPassDepthStencilAttachment(pointer: com.sun.jna.Pointer? 
 
 	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPURenderPassDepthStencilAttachment(pointer), com.sun.jna.Structure.ByValue {
 		constructor(other: WGPURenderPassDepthStencilAttachment) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.view = other.view
 			this.depthLoadOp = other.depthLoadOp
 			this.depthStoreOp = other.depthStoreOp
@@ -1493,16 +1592,18 @@ sealed class WGPURenderPassDepthStencilAttachment(pointer: com.sun.jna.Pointer? 
  * @suppress
  */
 sealed class WGPURenderPassDescriptor(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
+	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var label: WGPUStringView.ByValue = WGPUStringView.ByValue()
 	@JvmField var colorAttachmentCount: Long = 0L
 	@JvmField var colorAttachments: com.sun.jna.Pointer? = null
 	@JvmField var depthStencilAttachment: WGPURenderPassDepthStencilAttachment.ByReference?? = null
 	@JvmField var occlusionQuerySet: com.sun.jna.Pointer? = null
 	@JvmField var timestampWrites: WGPUPassTimestampWrites.ByReference?? = null
-	override fun getFieldOrder() = listOf("label", "colorAttachmentCount", "colorAttachments", "depthStencilAttachment", "occlusionQuerySet", "timestampWrites")
+	override fun getFieldOrder() = listOf("nextInChain", "label", "colorAttachmentCount", "colorAttachments", "depthStencilAttachment", "occlusionQuerySet", "timestampWrites")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPURenderPassDescriptor(pointer), com.sun.jna.Structure.ByReference {
 		constructor(other: WGPURenderPassDescriptor) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.label = other.label
 			this.colorAttachmentCount = other.colorAttachmentCount
 			this.colorAttachments = other.colorAttachments
@@ -1514,6 +1615,7 @@ sealed class WGPURenderPassDescriptor(pointer: com.sun.jna.Pointer? = null) : co
 
 	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPURenderPassDescriptor(pointer), com.sun.jna.Structure.ByValue {
 		constructor(other: WGPURenderPassDescriptor) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.label = other.label
 			this.colorAttachmentCount = other.colorAttachmentCount
 			this.colorAttachments = other.colorAttachments
@@ -1551,16 +1653,18 @@ sealed class WGPURenderPassMaxDrawCount(pointer: com.sun.jna.Pointer? = null) : 
  * @suppress
  */
 sealed class WGPUVertexState(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
+	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var module: com.sun.jna.Pointer? = null
 	@JvmField var entryPoint: WGPUStringView.ByValue = WGPUStringView.ByValue()
 	@JvmField var constantCount: Long = 0L
 	@JvmField var constants: com.sun.jna.Pointer? = null
 	@JvmField var bufferCount: Long = 0L
 	@JvmField var buffers: com.sun.jna.Pointer? = null
-	override fun getFieldOrder() = listOf("module", "entryPoint", "constantCount", "constants", "bufferCount", "buffers")
+	override fun getFieldOrder() = listOf("nextInChain", "module", "entryPoint", "constantCount", "constants", "bufferCount", "buffers")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPUVertexState(pointer), com.sun.jna.Structure.ByReference {
 		constructor(other: WGPUVertexState) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.module = other.module
 			this.entryPoint = other.entryPoint
 			this.constantCount = other.constantCount
@@ -1572,6 +1676,7 @@ sealed class WGPUVertexState(pointer: com.sun.jna.Pointer? = null) : com.sun.jna
 
 	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPUVertexState(pointer), com.sun.jna.Structure.ByValue {
 		constructor(other: WGPUVertexState) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.module = other.module
 			this.entryPoint = other.entryPoint
 			this.constantCount = other.constantCount
@@ -1586,6 +1691,7 @@ sealed class WGPUVertexState(pointer: com.sun.jna.Pointer? = null) : com.sun.jna
  * @suppress
  */
 sealed class WGPURenderPipelineDescriptor(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
+	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var label: WGPUStringView.ByValue = WGPUStringView.ByValue()
 	@JvmField var layout: com.sun.jna.Pointer? = null
 	@JvmField var vertex: WGPUVertexState.ByValue = WGPUVertexState.ByValue()
@@ -1593,10 +1699,11 @@ sealed class WGPURenderPipelineDescriptor(pointer: com.sun.jna.Pointer? = null) 
 	@JvmField var depthStencil: WGPUDepthStencilState.ByReference?? = null
 	@JvmField var multisample: WGPUMultisampleState.ByValue = WGPUMultisampleState.ByValue()
 	@JvmField var fragment: WGPUFragmentState.ByReference?? = null
-	override fun getFieldOrder() = listOf("label", "layout", "vertex", "primitive", "depthStencil", "multisample", "fragment")
+	override fun getFieldOrder() = listOf("nextInChain", "label", "layout", "vertex", "primitive", "depthStencil", "multisample", "fragment")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPURenderPipelineDescriptor(pointer), com.sun.jna.Structure.ByReference {
 		constructor(other: WGPURenderPipelineDescriptor) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.label = other.label
 			this.layout = other.layout
 			this.vertex = other.vertex
@@ -1609,6 +1716,7 @@ sealed class WGPURenderPipelineDescriptor(pointer: com.sun.jna.Pointer? = null) 
 
 	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPURenderPipelineDescriptor(pointer), com.sun.jna.Structure.ByValue {
 		constructor(other: WGPURenderPipelineDescriptor) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.label = other.label
 			this.layout = other.layout
 			this.vertex = other.vertex
@@ -1624,15 +1732,17 @@ sealed class WGPURenderPipelineDescriptor(pointer: com.sun.jna.Pointer? = null) 
  * @suppress
  */
 sealed class WGPURequestAdapterOptions(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
+	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var featureLevel: Int = 0
 	@JvmField var powerPreference: Int = 0
 	@JvmField var forceFallbackAdapter: Int = 0
 	@JvmField var backendType: Int = 0
 	@JvmField var compatibleSurface: com.sun.jna.Pointer? = null
-	override fun getFieldOrder() = listOf("featureLevel", "powerPreference", "forceFallbackAdapter", "backendType", "compatibleSurface")
+	override fun getFieldOrder() = listOf("nextInChain", "featureLevel", "powerPreference", "forceFallbackAdapter", "backendType", "compatibleSurface")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPURequestAdapterOptions(pointer), com.sun.jna.Structure.ByReference {
 		constructor(other: WGPURequestAdapterOptions) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.featureLevel = other.featureLevel
 			this.powerPreference = other.powerPreference
 			this.forceFallbackAdapter = other.forceFallbackAdapter
@@ -1643,6 +1753,7 @@ sealed class WGPURequestAdapterOptions(pointer: com.sun.jna.Pointer? = null) : c
 
 	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPURequestAdapterOptions(pointer), com.sun.jna.Structure.ByValue {
 		constructor(other: WGPURequestAdapterOptions) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.featureLevel = other.featureLevel
 			this.powerPreference = other.powerPreference
 			this.forceFallbackAdapter = other.forceFallbackAdapter
@@ -1679,6 +1790,7 @@ sealed class WGPURequestAdapterWebXROptions(pointer: com.sun.jna.Pointer? = null
  * @suppress
  */
 sealed class WGPUSamplerDescriptor(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
+	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var label: WGPUStringView.ByValue = WGPUStringView.ByValue()
 	@JvmField var addressModeU: Int = 0
 	@JvmField var addressModeV: Int = 0
@@ -1690,10 +1802,11 @@ sealed class WGPUSamplerDescriptor(pointer: com.sun.jna.Pointer? = null) : com.s
 	@JvmField var lodMaxClamp: Float = 0f
 	@JvmField var compare: Int = 0
 	@JvmField var maxAnisotropy: Short = 0
-	override fun getFieldOrder() = listOf("label", "addressModeU", "addressModeV", "addressModeW", "magFilter", "minFilter", "mipmapFilter", "lodMinClamp", "lodMaxClamp", "compare", "maxAnisotropy")
+	override fun getFieldOrder() = listOf("nextInChain", "label", "addressModeU", "addressModeV", "addressModeW", "magFilter", "minFilter", "mipmapFilter", "lodMinClamp", "lodMaxClamp", "compare", "maxAnisotropy")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPUSamplerDescriptor(pointer), com.sun.jna.Structure.ByReference {
 		constructor(other: WGPUSamplerDescriptor) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.label = other.label
 			this.addressModeU = other.addressModeU
 			this.addressModeV = other.addressModeV
@@ -1710,6 +1823,7 @@ sealed class WGPUSamplerDescriptor(pointer: com.sun.jna.Pointer? = null) : com.s
 
 	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPUSamplerDescriptor(pointer), com.sun.jna.Structure.ByValue {
 		constructor(other: WGPUSamplerDescriptor) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.label = other.label
 			this.addressModeU = other.addressModeU
 			this.addressModeV = other.addressModeV
@@ -1729,17 +1843,20 @@ sealed class WGPUSamplerDescriptor(pointer: com.sun.jna.Pointer? = null) : com.s
  * @suppress
  */
 sealed class WGPUShaderModuleDescriptor(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
+	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var label: WGPUStringView.ByValue = WGPUStringView.ByValue()
-	override fun getFieldOrder() = listOf("label")
+	override fun getFieldOrder() = listOf("nextInChain", "label")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPUShaderModuleDescriptor(pointer), com.sun.jna.Structure.ByReference {
 		constructor(other: WGPUShaderModuleDescriptor) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.label = other.label
 		}
 	}
 
 	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPUShaderModuleDescriptor(pointer), com.sun.jna.Structure.ByValue {
 		constructor(other: WGPUShaderModuleDescriptor) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.label = other.label
 		}
 	}
@@ -1867,6 +1984,7 @@ sealed class WGPUSupportedWGSLLanguageFeatures(pointer: com.sun.jna.Pointer? = n
  * @suppress
  */
 sealed class WGPUSurfaceCapabilities(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
+	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var usages: Long = 0L
 	@JvmField var formatCount: Long = 0L
 	@JvmField var formats: com.sun.jna.Pointer? = null
@@ -1874,10 +1992,11 @@ sealed class WGPUSurfaceCapabilities(pointer: com.sun.jna.Pointer? = null) : com
 	@JvmField var presentModes: com.sun.jna.Pointer? = null
 	@JvmField var alphaModeCount: Long = 0L
 	@JvmField var alphaModes: com.sun.jna.Pointer? = null
-	override fun getFieldOrder() = listOf("usages", "formatCount", "formats", "presentModeCount", "presentModes", "alphaModeCount", "alphaModes")
+	override fun getFieldOrder() = listOf("nextInChain", "usages", "formatCount", "formats", "presentModeCount", "presentModes", "alphaModeCount", "alphaModes")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPUSurfaceCapabilities(pointer), com.sun.jna.Structure.ByReference {
 		constructor(other: WGPUSurfaceCapabilities) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.usages = other.usages
 			this.formatCount = other.formatCount
 			this.formats = other.formats
@@ -1890,6 +2009,7 @@ sealed class WGPUSurfaceCapabilities(pointer: com.sun.jna.Pointer? = null) : com
 
 	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPUSurfaceCapabilities(pointer), com.sun.jna.Structure.ByValue {
 		constructor(other: WGPUSurfaceCapabilities) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.usages = other.usages
 			this.formatCount = other.formatCount
 			this.formats = other.formats
@@ -1931,6 +2051,7 @@ sealed class WGPUSurfaceColorManagement(pointer: com.sun.jna.Pointer? = null) : 
  * @suppress
  */
 sealed class WGPUSurfaceConfiguration(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
+	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var device: com.sun.jna.Pointer? = null
 	@JvmField var format: Int = 0
 	@JvmField var usage: Long = 0L
@@ -1940,10 +2061,11 @@ sealed class WGPUSurfaceConfiguration(pointer: com.sun.jna.Pointer? = null) : co
 	@JvmField var viewFormats: com.sun.jna.Pointer? = null
 	@JvmField var alphaMode: Int = 0
 	@JvmField var presentMode: Int = 0
-	override fun getFieldOrder() = listOf("device", "format", "usage", "width", "height", "viewFormatCount", "viewFormats", "alphaMode", "presentMode")
+	override fun getFieldOrder() = listOf("nextInChain", "device", "format", "usage", "width", "height", "viewFormatCount", "viewFormats", "alphaMode", "presentMode")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPUSurfaceConfiguration(pointer), com.sun.jna.Structure.ByReference {
 		constructor(other: WGPUSurfaceConfiguration) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.device = other.device
 			this.format = other.format
 			this.usage = other.usage
@@ -1958,6 +2080,7 @@ sealed class WGPUSurfaceConfiguration(pointer: com.sun.jna.Pointer? = null) : co
 
 	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPUSurfaceConfiguration(pointer), com.sun.jna.Structure.ByValue {
 		constructor(other: WGPUSurfaceConfiguration) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.device = other.device
 			this.format = other.format
 			this.usage = other.usage
@@ -1975,17 +2098,20 @@ sealed class WGPUSurfaceConfiguration(pointer: com.sun.jna.Pointer? = null) : co
  * @suppress
  */
 sealed class WGPUSurfaceDescriptor(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
+	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var label: WGPUStringView.ByValue = WGPUStringView.ByValue()
-	override fun getFieldOrder() = listOf("label")
+	override fun getFieldOrder() = listOf("nextInChain", "label")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPUSurfaceDescriptor(pointer), com.sun.jna.Structure.ByReference {
 		constructor(other: WGPUSurfaceDescriptor) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.label = other.label
 		}
 	}
 
 	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPUSurfaceDescriptor(pointer), com.sun.jna.Structure.ByValue {
 		constructor(other: WGPUSurfaceDescriptor) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.label = other.label
 		}
 	}
@@ -2145,12 +2271,14 @@ sealed class WGPUSurfaceSourceXlibWindow(pointer: com.sun.jna.Pointer? = null) :
  * @suppress
  */
 sealed class WGPUSurfaceTexture(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
+	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var texture: com.sun.jna.Pointer? = null
 	@JvmField var status: Int = 0
-	override fun getFieldOrder() = listOf("texture", "status")
+	override fun getFieldOrder() = listOf("nextInChain", "texture", "status")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPUSurfaceTexture(pointer), com.sun.jna.Structure.ByReference {
 		constructor(other: WGPUSurfaceTexture) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.texture = other.texture
 			this.status = other.status
 		}
@@ -2158,6 +2286,7 @@ sealed class WGPUSurfaceTexture(pointer: com.sun.jna.Pointer? = null) : com.sun.
 
 	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPUSurfaceTexture(pointer), com.sun.jna.Structure.ByValue {
 		constructor(other: WGPUSurfaceTexture) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.texture = other.texture
 			this.status = other.status
 		}
@@ -2321,6 +2450,7 @@ sealed class WGPUTextureComponentSwizzleDescriptor(pointer: com.sun.jna.Pointer?
  * @suppress
  */
 sealed class WGPUTextureDescriptor(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
+	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var label: WGPUStringView.ByValue = WGPUStringView.ByValue()
 	@JvmField var usage: Long = 0L
 	@JvmField var dimension: Int = 0
@@ -2330,10 +2460,11 @@ sealed class WGPUTextureDescriptor(pointer: com.sun.jna.Pointer? = null) : com.s
 	@JvmField var sampleCount: Int = 0
 	@JvmField var viewFormatCount: Long = 0L
 	@JvmField var viewFormats: com.sun.jna.Pointer? = null
-	override fun getFieldOrder() = listOf("label", "usage", "dimension", "size", "format", "mipLevelCount", "sampleCount", "viewFormatCount", "viewFormats")
+	override fun getFieldOrder() = listOf("nextInChain", "label", "usage", "dimension", "size", "format", "mipLevelCount", "sampleCount", "viewFormatCount", "viewFormats")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPUTextureDescriptor(pointer), com.sun.jna.Structure.ByReference {
 		constructor(other: WGPUTextureDescriptor) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.label = other.label
 			this.usage = other.usage
 			this.dimension = other.dimension
@@ -2348,6 +2479,7 @@ sealed class WGPUTextureDescriptor(pointer: com.sun.jna.Pointer? = null) : com.s
 
 	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPUTextureDescriptor(pointer), com.sun.jna.Structure.ByValue {
 		constructor(other: WGPUTextureDescriptor) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.label = other.label
 			this.usage = other.usage
 			this.dimension = other.dimension
@@ -2365,6 +2497,7 @@ sealed class WGPUTextureDescriptor(pointer: com.sun.jna.Pointer? = null) : com.s
  * @suppress
  */
 sealed class WGPUTextureViewDescriptor(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
+	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var label: WGPUStringView.ByValue = WGPUStringView.ByValue()
 	@JvmField var format: Int = 0
 	@JvmField var dimension: Int = 0
@@ -2374,10 +2507,11 @@ sealed class WGPUTextureViewDescriptor(pointer: com.sun.jna.Pointer? = null) : c
 	@JvmField var arrayLayerCount: Int = 0
 	@JvmField var aspect: Int = 0
 	@JvmField var usage: Long = 0L
-	override fun getFieldOrder() = listOf("label", "format", "dimension", "baseMipLevel", "mipLevelCount", "baseArrayLayer", "arrayLayerCount", "aspect", "usage")
+	override fun getFieldOrder() = listOf("nextInChain", "label", "format", "dimension", "baseMipLevel", "mipLevelCount", "baseArrayLayer", "arrayLayerCount", "aspect", "usage")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPUTextureViewDescriptor(pointer), com.sun.jna.Structure.ByReference {
 		constructor(other: WGPUTextureViewDescriptor) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.label = other.label
 			this.format = other.format
 			this.dimension = other.dimension
@@ -2392,6 +2526,7 @@ sealed class WGPUTextureViewDescriptor(pointer: com.sun.jna.Pointer? = null) : c
 
 	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPUTextureViewDescriptor(pointer), com.sun.jna.Structure.ByValue {
 		constructor(other: WGPUTextureViewDescriptor) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.label = other.label
 			this.format = other.format
 			this.dimension = other.dimension
@@ -2409,13 +2544,15 @@ sealed class WGPUTextureViewDescriptor(pointer: com.sun.jna.Pointer? = null) : c
  * @suppress
  */
 sealed class WGPUVertexAttribute(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
+	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var format: Int = 0
 	@JvmField var offset: Long = 0L
 	@JvmField var shaderLocation: Int = 0
-	override fun getFieldOrder() = listOf("format", "offset", "shaderLocation")
+	override fun getFieldOrder() = listOf("nextInChain", "format", "offset", "shaderLocation")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPUVertexAttribute(pointer), com.sun.jna.Structure.ByReference {
 		constructor(other: WGPUVertexAttribute) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.format = other.format
 			this.offset = other.offset
 			this.shaderLocation = other.shaderLocation
@@ -2424,6 +2561,7 @@ sealed class WGPUVertexAttribute(pointer: com.sun.jna.Pointer? = null) : com.sun
 
 	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPUVertexAttribute(pointer), com.sun.jna.Structure.ByValue {
 		constructor(other: WGPUVertexAttribute) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.format = other.format
 			this.offset = other.offset
 			this.shaderLocation = other.shaderLocation
@@ -2435,14 +2573,16 @@ sealed class WGPUVertexAttribute(pointer: com.sun.jna.Pointer? = null) : com.sun
  * @suppress
  */
 sealed class WGPUVertexBufferLayout(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
+	@JvmField var nextInChain: com.sun.jna.Pointer? = null
 	@JvmField var stepMode: Int = 0
 	@JvmField var arrayStride: Long = 0L
 	@JvmField var attributeCount: Long = 0L
 	@JvmField var attributes: com.sun.jna.Pointer? = null
-	override fun getFieldOrder() = listOf("stepMode", "arrayStride", "attributeCount", "attributes")
+	override fun getFieldOrder() = listOf("nextInChain", "stepMode", "arrayStride", "attributeCount", "attributes")
 
 	class ByReference(pointer: com.sun.jna.Pointer? = null) : WGPUVertexBufferLayout(pointer), com.sun.jna.Structure.ByReference {
 		constructor(other: WGPUVertexBufferLayout) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.stepMode = other.stepMode
 			this.arrayStride = other.arrayStride
 			this.attributeCount = other.attributeCount
@@ -2452,6 +2592,7 @@ sealed class WGPUVertexBufferLayout(pointer: com.sun.jna.Pointer? = null) : com.
 
 	class ByValue(pointer: com.sun.jna.Pointer? = null) : WGPUVertexBufferLayout(pointer), com.sun.jna.Structure.ByValue {
 		constructor(other: WGPUVertexBufferLayout) : this(other.pointer) {
+			this.nextInChain = other.nextInChain
 			this.stepMode = other.stepMode
 			this.arrayStride = other.arrayStride
 			this.attributeCount = other.attributeCount
