@@ -34,7 +34,7 @@ actual fun wgpuQueueSubmitForIndex(queue: WGPUQueue?, commandCount: ULong, comma
 actual fun wgpuQueueGetTimestampPeriod(queue: WGPUQueue?): Float
 	 = io.ygdrasil.wgpu.android.Functions.wgpuQueueGetTimestampPeriod(queue?.handler)
 
-actual fun wgpuDevicePoll(device: WGPUDevice?, wait: Boolean, submissionIndex: ULong): Boolean
+actual fun wgpuDevicePoll(device: WGPUDevice?, wait: Boolean, submissionIndex: NativeAddress?): Boolean
 	 = io.ygdrasil.wgpu.android.Functions.wgpuDevicePoll(device?.handler, wait.toUInt(), submissionIndex)
 	.toBoolean()
 

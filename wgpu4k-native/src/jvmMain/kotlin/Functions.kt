@@ -95,14 +95,14 @@ object Functions {
 	private val wgpuQueueGetTimestampPeriodHandlerAddress = findOrThrow("wgpuQueueGetTimestampPeriod")
 	private val wgpuQueueGetTimestampPeriodHandler = Linker.nativeLinker().downcallHandle(wgpuQueueGetTimestampPeriodHandlerAddress, wgpuQueueGetTimestampPeriodHandlerDescription)
 
-	fun wgpuDevicePoll(device: java.lang.foreign.MemorySegment, wait: UInt, submissionIndex: ULong): UInt {
-		return (wgpuDevicePollHandler.invokeExact(device, wait.toInt(), submissionIndex.toLong()) as Int).toUInt()
+	fun wgpuDevicePoll(device: java.lang.foreign.MemorySegment, wait: UInt, submissionIndex: java.lang.foreign.MemorySegment): UInt {
+		return (wgpuDevicePollHandler.invokeExact(device, wait.toInt(), submissionIndex) as Int).toUInt()
 	}
 	private val wgpuDevicePollHandlerDescription = FunctionDescriptor.of(
 			C_INT,
 			C_POINTER,
 			C_INT,
-			C_LONG
+			C_POINTER
 		)
 	private val wgpuDevicePollHandlerAddress = findOrThrow("wgpuDevicePoll")
 	private val wgpuDevicePollHandler = Linker.nativeLinker().downcallHandle(wgpuDevicePollHandlerAddress, wgpuDevicePollHandlerDescription)

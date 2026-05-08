@@ -29,7 +29,7 @@ internal interface FunctionsInterface: com.sun.jna.Library {
 	fun wgpuQueueGetTimestampPeriod(queue: com.sun.jna.Pointer?): Float
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuDevicePoll")
-	fun wgpuDevicePoll(device: com.sun.jna.Pointer?, wait: UInt, submissionIndex: ULong): UInt
+	fun wgpuDevicePoll(device: com.sun.jna.Pointer?, wait: UInt, submissionIndex: com.sun.jna.Pointer?): UInt
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuDeviceCreateShaderModuleSpirV")
 	fun wgpuDeviceCreateShaderModuleSpirV(device: com.sun.jna.Pointer?, descriptor: WGPUShaderModuleDescriptorSpirV.ByReference?): com.sun.jna.Pointer?

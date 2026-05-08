@@ -44,8 +44,8 @@ actual fun wgpuQueueGetTimestampPeriod(queue: WGPUQueue?): Float {
 	return webgpu.native.wgpuQueueGetTimestampPeriod(queue?.handler?.reinterpret())
 }
 
-actual fun wgpuDevicePoll(device: WGPUDevice?, wait: Boolean, submissionIndex: ULong): Boolean {
-	return webgpu.native.wgpuDevicePoll(device?.handler?.reinterpret(), wait.toUInt(), submissionIndex)
+actual fun wgpuDevicePoll(device: WGPUDevice?, wait: Boolean, submissionIndex: NativeAddress?): Boolean {
+	return webgpu.native.wgpuDevicePoll(device?.handler?.reinterpret(), wait.toUInt(), submissionIndex?.reinterpret<kotlinx.cinterop.ULongVar>())
 		.toBoolean()
 }
 

@@ -148,7 +148,10 @@ internal fun String?.toCType(isPointer: Boolean, isMutable: Boolean, isOptional:
             true -> NativeModel.Reference.OpaquePointer
             else -> NativeModel.Void
         }
-        equals("SubmissionIndex") -> NativeModel.Primitive.UInt64
+        equals("SubmissionIndex") -> when (isPointer) {
+            true -> NativeModel.Reference.OpaquePointer
+            else -> NativeModel.Primitive.UInt64
+        }
         startsWith("typedef.") -> substring("typedef.".length).toCType(isPointer, isMutable, isOptional)
         startsWith("array<") -> NativeModel.Array(substring(6, length - 1).toCType(false, false))
         isString() -> NativeModel.Reference.StructureField("WGPUStringView", false)

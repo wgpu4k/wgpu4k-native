@@ -45,7 +45,7 @@ private fun NativeModel.Type.toNativeArgCall(name: String) = when(this) {
         else -> "$name.toCValue()"
     }
     is NativeModel.Reference.CString -> "$name?.toKString()"
-    is NativeModel.Reference.OpaquePointer -> "$name?.pointer"
+    is NativeModel.Reference.OpaquePointer -> if (name == "submissionIndex") "$name?.reinterpret<kotlinx.cinterop.ULongVar>()" else "$name?.pointer"
     is NativeModel.Reference.Enumeration -> name
     is NativeModel.Array,
     is NativeModel.Reference -> "$name?.handler?.reinterpret()"

@@ -34,8 +34,8 @@ actual fun wgpuQueueSubmitForIndex(queue: WGPUQueue?, commandCount: ULong, comma
 actual fun wgpuQueueGetTimestampPeriod(queue: WGPUQueue?): Float
 	 = Functions.wgpuQueueGetTimestampPeriod(queue?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
 
-actual fun wgpuDevicePoll(device: WGPUDevice?, wait: Boolean, submissionIndex: ULong): Boolean
-	 = Functions.wgpuDevicePoll(device?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, wait.toUInt(), submissionIndex)
+actual fun wgpuDevicePoll(device: WGPUDevice?, wait: Boolean, submissionIndex: NativeAddress?): Boolean
+	 = Functions.wgpuDevicePoll(device?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, wait.toUInt(), submissionIndex.adapt() ?: java.lang.foreign.MemorySegment.NULL)
 		.toBoolean()
 
 actual fun wgpuDeviceCreateShaderModuleSpirV(device: WGPUDevice?, descriptor: WGPUShaderModuleDescriptorSpirV?): WGPUShaderModule?

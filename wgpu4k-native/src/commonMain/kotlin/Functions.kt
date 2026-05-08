@@ -47,7 +47,7 @@ expect fun wgpuQueueGetTimestampPeriod(queue: WGPUQueue?): Float
  * Poll the device for completion of queue submissions.
  * @return True if the queue is empty or the submission completed.
  */
-expect fun wgpuDevicePoll(device: WGPUDevice?, wait: Boolean, submissionIndex: ULong): Boolean
+expect fun wgpuDevicePoll(device: WGPUDevice?, wait: Boolean, submissionIndex: NativeAddress?): Boolean
 /**
  * Create a shader module from SPIR-V binary.
  */
