@@ -180,22 +180,6 @@ actual fun interface WGPUUncapturedErrorCallback : Callback {
 	}
 }
 
-actual fun interface WGPULogCallbackCallback : Callback {
-	actual fun invoke(level: WGPULogLevel, message: WGPUStringView?, userdata: NativeAddress?, userdata1: NativeAddress?, userdata2: NativeAddress?)
-	actual companion object {
-		actual fun allocate(allocator: MemoryAllocator, callback: WGPULogCallbackCallback): CallbackHolder<WGPULogCallbackCallback> {
-			val actualCallback = kotlinx.cinterop.staticCFunction { level: UInt, message: kotlinx.cinterop.CValue<webgpu.native.WGPUStringView>, userdata: COpaquePointer?, userdata1: COpaquePointer?, userdata2: COpaquePointer? ->
-				val address = userdata2?.reinterpret<LongVar>()?.pointed?.value?.let(::NativeAddress) ?: error("Missing callback address on last argument")
-				val callback = findCallback<WGPULogCallbackCallback>(address.reinterpret<COpaque>())
-					?: error("Callback not found with address $address and type WGPULogCallbackCallback")
-				callback.invoke(level, message.let { WGPUStringView.ByValue(it) }, userdata?.let(::NativeAddress), userdata1?.let(::NativeAddress), userdata2?.let(::NativeAddress))
-			}
-			registerCallback(actualCallback, callback)
-			return CallbackHolder(actualCallback.let(::NativeAddress), actualCallback)
-		}
-	}
-}
-
 actual fun interface WGPULogCallback : Callback {
 	actual fun invoke(level: WGPULogLevel, message: WGPUStringView?, userdata: NativeAddress?)
 	actual companion object {

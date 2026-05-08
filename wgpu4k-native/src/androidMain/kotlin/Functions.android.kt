@@ -38,8 +38,8 @@ actual fun wgpuDevicePoll(device: WGPUDevice?, wait: Boolean, submissionIndex: U
 	 = io.ygdrasil.wgpu.android.Functions.wgpuDevicePoll(device?.handler, wait.toUInt(), submissionIndex)
 	.toBoolean()
 
-actual fun wgpuDeviceCreateShaderModuleSpirv(device: WGPUDevice?, descriptor: WGPUShaderModuleDescriptorSpirV?): WGPUShaderModule?
-	 = io.ygdrasil.wgpu.android.Functions.wgpuDeviceCreateShaderModuleSpirv(device?.handler, descriptor?.toReference())
+actual fun wgpuDeviceCreateShaderModuleSpirV(device: WGPUDevice?, descriptor: WGPUShaderModuleDescriptorSpirV?): WGPUShaderModule?
+	 = io.ygdrasil.wgpu.android.Functions.wgpuDeviceCreateShaderModuleSpirV(device?.handler, descriptor?.toReference())
 	?.let(::WGPUShaderModule)
 
 actual fun wgpuDeviceStartGraphicsDebuggerCapture(device: WGPUDevice?): Boolean

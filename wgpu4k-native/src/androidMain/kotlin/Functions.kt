@@ -31,8 +31,8 @@ internal interface FunctionsInterface: com.sun.jna.Library {
 	@JvmName("wgpuDevicePoll")
 	fun wgpuDevicePoll(device: com.sun.jna.Pointer?, wait: UInt, submissionIndex: ULong): UInt
 	@Suppress("INAPPLICABLE_JVM_NAME")
-	@JvmName("wgpuDeviceCreateShaderModuleSpirv")
-	fun wgpuDeviceCreateShaderModuleSpirv(device: com.sun.jna.Pointer?, descriptor: WGPUShaderModuleDescriptorSpirV.ByReference?): com.sun.jna.Pointer?
+	@JvmName("wgpuDeviceCreateShaderModuleSpirV")
+	fun wgpuDeviceCreateShaderModuleSpirV(device: com.sun.jna.Pointer?, descriptor: WGPUShaderModuleDescriptorSpirV.ByReference?): com.sun.jna.Pointer?
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuDeviceStartGraphicsDebuggerCapture")
 	fun wgpuDeviceStartGraphicsDebuggerCapture(device: com.sun.jna.Pointer?): UInt

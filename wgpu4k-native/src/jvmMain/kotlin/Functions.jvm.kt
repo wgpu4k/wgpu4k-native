@@ -38,8 +38,8 @@ actual fun wgpuDevicePoll(device: WGPUDevice?, wait: Boolean, submissionIndex: U
 	 = Functions.wgpuDevicePoll(device?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, wait.toUInt(), submissionIndex)
 		.toBoolean()
 
-actual fun wgpuDeviceCreateShaderModuleSpirv(device: WGPUDevice?, descriptor: WGPUShaderModuleDescriptorSpirV?): WGPUShaderModule?
-	 = Functions.wgpuDeviceCreateShaderModuleSpirv(device?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, descriptor?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
+actual fun wgpuDeviceCreateShaderModuleSpirV(device: WGPUDevice?, descriptor: WGPUShaderModuleDescriptorSpirV?): WGPUShaderModule?
+	 = Functions.wgpuDeviceCreateShaderModuleSpirV(device?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL, descriptor?.handler.adapt() ?: java.lang.foreign.MemorySegment.NULL)
 		?.let(::NativeAddress)?.let(::WGPUShaderModule)
 
 actual fun wgpuDeviceStartGraphicsDebuggerCapture(device: WGPUDevice?): Boolean

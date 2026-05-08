@@ -51,7 +51,7 @@ expect fun wgpuDevicePoll(device: WGPUDevice?, wait: Boolean, submissionIndex: U
 /**
  * Create a shader module from SPIR-V binary.
  */
-expect fun wgpuDeviceCreateShaderModuleSpirv(device: WGPUDevice?, descriptor: WGPUShaderModuleDescriptorSpirV?): WGPUShaderModule?
+expect fun wgpuDeviceCreateShaderModuleSpirV(device: WGPUDevice?, descriptor: WGPUShaderModuleDescriptorSpirV?): WGPUShaderModule?
 /**
  * Start a graphics debugger capture.
  * @return True if capture was successfully started.

@@ -49,8 +49,8 @@ actual fun wgpuDevicePoll(device: WGPUDevice?, wait: Boolean, submissionIndex: U
 		.toBoolean()
 }
 
-actual fun wgpuDeviceCreateShaderModuleSpirv(device: WGPUDevice?, descriptor: WGPUShaderModuleDescriptorSpirV?): WGPUShaderModule? {
-	return webgpu.native.wgpuDeviceCreateShaderModuleSpirv(device?.handler?.reinterpret(), descriptor?.handler?.reinterpret())
+actual fun wgpuDeviceCreateShaderModuleSpirV(device: WGPUDevice?, descriptor: WGPUShaderModuleDescriptorSpirV?): WGPUShaderModule? {
+	return webgpu.native.wgpuDeviceCreateShaderModuleSpirV(device?.handler?.reinterpret(), descriptor?.handler?.reinterpret())
 		?.let(::NativeAddress)?.let(::WGPUShaderModule)
 }
 

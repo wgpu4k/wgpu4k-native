@@ -107,16 +107,16 @@ object Functions {
 	private val wgpuDevicePollHandlerAddress = findOrThrow("wgpuDevicePoll")
 	private val wgpuDevicePollHandler = Linker.nativeLinker().downcallHandle(wgpuDevicePollHandlerAddress, wgpuDevicePollHandlerDescription)
 
-	fun wgpuDeviceCreateShaderModuleSpirv(device: java.lang.foreign.MemorySegment, descriptor: java.lang.foreign.MemorySegment): java.lang.foreign.MemorySegment {
-		return (wgpuDeviceCreateShaderModuleSpirvHandler.invokeExact(device, descriptor) as java.lang.foreign.MemorySegment)
+	fun wgpuDeviceCreateShaderModuleSpirV(device: java.lang.foreign.MemorySegment, descriptor: java.lang.foreign.MemorySegment): java.lang.foreign.MemorySegment {
+		return (wgpuDeviceCreateShaderModuleSpirVHandler.invokeExact(device, descriptor) as java.lang.foreign.MemorySegment)
 	}
-	private val wgpuDeviceCreateShaderModuleSpirvHandlerDescription = FunctionDescriptor.of(
+	private val wgpuDeviceCreateShaderModuleSpirVHandlerDescription = FunctionDescriptor.of(
 			C_POINTER,
 			C_POINTER,
 			C_POINTER
 		)
-	private val wgpuDeviceCreateShaderModuleSpirvHandlerAddress = findOrThrow("wgpuDeviceCreateShaderModuleSpirv")
-	private val wgpuDeviceCreateShaderModuleSpirvHandler = Linker.nativeLinker().downcallHandle(wgpuDeviceCreateShaderModuleSpirvHandlerAddress, wgpuDeviceCreateShaderModuleSpirvHandlerDescription)
+	private val wgpuDeviceCreateShaderModuleSpirVHandlerAddress = findOrThrow("wgpuDeviceCreateShaderModuleSpirV")
+	private val wgpuDeviceCreateShaderModuleSpirVHandler = Linker.nativeLinker().downcallHandle(wgpuDeviceCreateShaderModuleSpirVHandlerAddress, wgpuDeviceCreateShaderModuleSpirVHandlerDescription)
 
 	fun wgpuDeviceStartGraphicsDebuggerCapture(device: java.lang.foreign.MemorySegment): UInt {
 		return (wgpuDeviceStartGraphicsDebuggerCaptureHandler.invokeExact(device) as Int).toUInt()

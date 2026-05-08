@@ -177,23 +177,6 @@ actual fun interface WGPUUncapturedErrorCallback : Callback {
 	}
 }
 
-actual fun interface WGPULogCallbackCallback : Callback {
-	actual fun invoke(level: WGPULogLevel, message: WGPUStringView?, userdata: NativeAddress?, userdata1: NativeAddress?, userdata2: NativeAddress?)
-	interface Function : com.sun.jna.Callback {
-		fun apply(level: Int, message: io.ygdrasil.wgpu.android.WGPUStringView.ByValue, userdata: com.sun.jna.Pointer?, userdata1: com.sun.jna.Pointer?, userdata2: com.sun.jna.Pointer?)
-	}
-	actual companion object {
-		actual fun allocate(allocator: MemoryAllocator, callback: WGPULogCallbackCallback): CallbackHolder<WGPULogCallbackCallback> {
-			val callbackFunction = object : Function {
-				override fun apply(level: Int, message: io.ygdrasil.wgpu.android.WGPUStringView.ByValue, userdata: com.sun.jna.Pointer?, userdata1: com.sun.jna.Pointer?, userdata2: com.sun.jna.Pointer?) {
-					callback.invoke(level.toUInt(), message.let { WGPUStringView.ByValue(it) }, userdata ?: com.sun.jna.Pointer(0), userdata1 ?: com.sun.jna.Pointer(0), userdata2 ?: com.sun.jna.Pointer(0))
-				}
-			}
-			return CallbackHolder(com.sun.jna.Pointer(0), callbackFunction)
-		}
-	}
-}
-
 actual fun interface WGPULogCallback : Callback {
 	actual fun invoke(level: WGPULogLevel, message: WGPUStringView?, userdata: NativeAddress?)
 	interface Function : com.sun.jna.Callback {

@@ -77,16 +77,6 @@ expect fun interface WGPUUncapturedErrorCallback : Callback {
 	}
 }
 
-/**
- * Callback for logging messages from wgpu-native.
- */
-expect fun interface WGPULogCallbackCallback : Callback {
-	fun invoke(level: WGPULogLevel, message: WGPUStringView?, userdata: NativeAddress?, userdata1: NativeAddress?, userdata2: NativeAddress?)
-	companion object {
-		fun allocate(allocator: MemoryAllocator, callback: WGPULogCallbackCallback): CallbackHolder<WGPULogCallbackCallback>
-	}
-}
-
 expect fun interface WGPULogCallback : Callback {
 	fun invoke(level: WGPULogLevel, message: WGPUStringView?, userdata: NativeAddress?)
 	companion object {

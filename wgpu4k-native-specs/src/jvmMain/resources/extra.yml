@@ -319,20 +319,6 @@ structs:
         type: c_void
         pointer: mutable
 
-  - name: NativeDisplayHandle
-    members:
-      - name: type
-        type: enum.NativeDisplayHandleType
-      - name: data
-        type: union
-        members:
-          - name: xlib
-            type: struct.XlibDisplayHandle
-          - name: xcb
-            type: struct.XcbDisplayHandle
-          - name: wayland
-            type: struct.WaylandDisplayHandle
-
   # === Instance & Device Structs ===
   - name: InstanceExtras
     type: extension_in
@@ -359,8 +345,6 @@ structs:
       - name: budgetForDeviceLoss
         type: uint8
         pointer: immutable
-      - name: displayHandle
-        type: struct.NativeDisplayHandle
 
   - name: DeviceExtras
     type: extension_in
@@ -621,7 +605,7 @@ functions:
         True if the queue is empty or the submission completed.
       type: bool
 
-  - name: device_create_shader_module_spirv
+  - name: device_create_shader_module_spir_v
     doc: |
       Create a shader module from SPIR-V binary.
     args:
