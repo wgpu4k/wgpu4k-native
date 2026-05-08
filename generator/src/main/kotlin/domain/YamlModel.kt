@@ -13,12 +13,13 @@ data class YamlModel(
     val copyright: String,
     val name: String,
     val enum_prefix: String,
+    val doc: String? = null,
     val constants: List<Constant>,
-    val typedefs: List<String>,
+    val typedefs: List<Typedef>,
     val bitflags: List<Bitflag>,
     val structs: List<Struct>,
     val functions: List<Function>,
-    val objects: List<Object>,
+    val objects: List<Object>? = null,
     val enums: List<Enum>,
     // Used on v22
     val function_types: List<FunctionType> = listOf(),
@@ -37,7 +38,7 @@ data class YamlModel(
             structs = (this.structs + loadExtraYaml.structs).distinctBy { it.name },
             callbacks = (this.callbacks + loadExtraYaml.callbacks).distinctBy { it.name },
             functions = (this.functions + loadExtraYaml.functions).distinctBy { it.name },
-            objects = (this.objects + loadExtraYaml.objects).distinctBy { it.name },
+            objects = (this.objects.orEmpty() + loadExtraYaml.objects.orEmpty()).distinctBy { it.name },
             function_types = (this.function_types + loadExtraYaml.function_types).distinctBy { it.name },
         )
     }
@@ -61,9 +62,10 @@ data class YamlModel(
         @Serializable
         data class Return(
             val type: String,
-            val doc: String,
+            val doc: String? = null,
             val passed_with_ownership: Boolean = false,
             val pointer: String? = null,
+            val optional: Boolean = false,
         ) {
             val isMutable: Boolean
                 get() = passed_with_ownership || pointer == "mutable"
@@ -72,26 +74,28 @@ data class YamlModel(
         @Serializable
         data class Arg(
             val name: String,
-            val doc: String,
+            val doc: String? = null,
             val type: String,
             val pointer: String? = null,
             val optional: Boolean = false,
             val passed_with_ownership: Boolean? = null,
+            val array: Boolean = false,
         )
     }
 
     @Serializable
     data class FunctionType(
         val name: String,
-        val doc: String,
+        val doc: String? = null,
         var args: List<Arg>
     ) {
         @Serializable
         data class Arg(
             val name: String,
-            val doc: String,
+            val doc: String? = null,
             val type: String,
             val pointer: String? = null,
+            val array: Boolean = false,
         )
     }
 
@@ -102,13 +106,13 @@ data class YamlModel(
     data class Callback(
         val name: String,
         val doc: String,
-        val style: String,
+        val style: String? = null,
         val args: List<Arg>,
     ) {
         @Serializable
         data class Arg(
             val name: String,
-            val doc: String,
+            val doc: String? = null,
             val type: String,
             val pointer: String? = null,
             val passed_with_ownership: Boolean? = null,
@@ -118,8 +122,8 @@ data class YamlModel(
     @Serializable
     data class Struct(
         val name: String,
-        val doc: String,
-        val type: String,
+        val doc: String? = null,
+        val type: String? = null,
         val members: List<Member> = listOf(),
         val free_members: Boolean = false,
         val extends: List<String> = listOf()
@@ -127,10 +131,13 @@ data class YamlModel(
         @Serializable
         data class Member(
             val name: String,
-            val doc: String,
+            val doc: String? = null,
             val type: String,
             val optional: Boolean = false,
-            val pointer: String? = null
+            val pointer: String? = null,
+            val default: String? = null,
+            val array: Boolean = false,
+            val members: List<Member>? = null
         )
     }
 
@@ -143,8 +150,9 @@ data class YamlModel(
         @Serializable
         data class Entry(
             val name: String,
-            val doc: String,
+            val doc: String? = null,
             val value_combination: List<String>? = null,
+            val value: Int? = null,
         )
     }
 
@@ -156,23 +164,29 @@ data class YamlModel(
     )
 
     @Serializable
+    data class Typedef(
+        val name: String,
+        val type: String,
+    )
+
+    @Serializable
     data class Enum(
         val name: String,
-        val doc: String,
+        val doc: String? = null,
         val entries: List<Entry?>,
     ) {
 
         @Serializable
         data class Entry(
             val name: String,
-            val doc: String,
+            val doc: String? = null,
             val value: Int? = null,
         )
     }
 }
 
-fun String.actualDoc(): String? = trim()
-    .takeIf { it != "TODO" }
+fun String?.actualDoc(): String? = this?.trim()
+    ?.takeIf { it != "TODO" }
     ?.takeIf { it.isNotBlank() }
     ?.convertFunctionReferenceToDokka()
     ?.convertReferenceToDokka()

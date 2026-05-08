@@ -12,14 +12,135 @@ import ffi.ArrayHolder
  */
 expect fun wgpuCreateInstance(descriptor: WGPUInstanceDescriptor?): WGPUInstance?
 /**
- * Query the supported instance capabilities.
- * @param capabilities The supported instance capabilities
+ * Get the list of @ref WGPUInstanceFeatureName values supported by the instance.
+ */
+expect fun wgpuGetInstanceFeatures(features: WGPUSupportedInstanceFeatures?): Unit
+/**
+ * Get the limits supported by the instance.
  * @return Indicates if there was an @ref OutStructChainError.
  */
-expect fun wgpuGetInstanceCapabilities(capabilities: WGPUInstanceCapabilities?): WGPUStatus
-expect fun wgpuDevicePoll(device: WGPUDevice?, wait: Boolean, wrappedSubmissionIndex: NativeAddress?): Boolean
+expect fun wgpuGetInstanceLimits(limits: WGPUInstanceLimits?): WGPUStatus
+/**
+ * Check whether a particular @ref WGPUInstanceFeatureName is supported by the instance.
+ */
+expect fun wgpuHasInstanceFeature(feature: WGPUInstanceFeatureName): Boolean
+/**
+ * Generate a report of all current objects in the instance.
+ */
+expect fun wgpuGenerateReport(instance: WGPUInstance?, report: WGPUGlobalReport?): Unit
+/**
+ * Enumerate adapters available to the instance with options.
+ * @return Number of adapters written to the adapters array.
+ */
+expect fun wgpuInstanceEnumerateAdapters(instance: WGPUInstance?, options: WGPUInstanceEnumerateAdapterOptions?, adapters: WGPUAdapter?): ULong
+/**
+ * Submit commands to the queue and return a submission index.
+ * @return A submission index that can be used with device_poll.
+ */
+expect fun wgpuQueueSubmitForIndex(queue: WGPUQueue?, commandCount: ULong, commands: WGPUCommandBuffer?): ULong
+/**
+ * Get the timestamp period of the queue in nanoseconds.
+ * @return Timestamp period in nanoseconds.
+ */
+expect fun wgpuQueueGetTimestampPeriod(queue: WGPUQueue?): Float
+/**
+ * Poll the device for completion of queue submissions.
+ * @return True if the queue is empty or the submission completed.
+ */
+expect fun wgpuDevicePoll(device: WGPUDevice?, wait: Boolean, submissionIndex: ULong): Boolean
+/**
+ * Create a shader module from SPIR-V binary.
+ */
+expect fun wgpuDeviceCreateShaderModuleSpirv(device: WGPUDevice?, descriptor: WGPUShaderModuleDescriptorSpirV?): WGPUShaderModule?
+/**
+ * Start a graphics debugger capture.
+ * @return True if capture was successfully started.
+ */
+expect fun wgpuDeviceStartGraphicsDebuggerCapture(device: WGPUDevice?): Boolean
+/**
+ * Stop a graphics debugger capture.
+ */
+expect fun wgpuDeviceStopGraphicsDebuggerCapture(device: WGPUDevice?): Unit
+/**
+ * Set a callback for log messages.
+ */
 expect fun wgpuSetLogCallback(callback: CallbackHolder<WGPULogCallback>?, userdata: NativeAddress?): Unit
+/**
+ * Set the minimum log level.
+ */
 expect fun wgpuSetLogLevel(level: WGPULogLevel): Unit
+/**
+ * Get the wgpu-native version.
+ * @return Version number as an integer.
+ */
+expect fun wgpuGetVersion(): UInt
+/**
+ * Get the native Metal device handle.
+ * @return Opaque pointer to id<MTLDevice>, or NULL.
+ */
+expect fun wgpuDeviceGetNativeMetalDevice(device: WGPUDevice?): NativeAddress?
+/**
+ * Get the native Metal command queue handle.
+ * @return Opaque pointer to id<MTLCommandQueue>, or NULL.
+ */
+expect fun wgpuQueueGetNativeMetalCommandQueue(queue: WGPUQueue?): NativeAddress?
+/**
+ * Get the native Metal texture handle.
+ * @return Opaque pointer to id<MTLTexture>, or NULL.
+ */
+expect fun wgpuTextureGetNativeMetalTexture(texture: WGPUTexture?): NativeAddress?
+/**
+ * Set immediate data for a render pass encoder.
+ */
+expect fun wgpuRenderPassEncoderSetImmediates(encoder: WGPURenderPassEncoder?, offset: UInt, sizeBytes: UInt, data: NativeAddress?): Unit
+/**
+ * Set immediate data for a compute pass encoder.
+ */
+expect fun wgpuComputePassEncoderSetImmediates(encoder: WGPUComputePassEncoder?, offset: UInt, sizeBytes: UInt, data: NativeAddress?): Unit
+/**
+ * Set immediate data for a render bundle encoder.
+ */
+expect fun wgpuRenderBundleEncoderSetImmediates(encoder: WGPURenderBundleEncoder?, offset: UInt, sizeBytes: UInt, data: NativeAddress?): Unit
+/**
+ * Execute multiple indirect draw calls.
+ */
+expect fun wgpuRenderPassEncoderMultiDrawIndirect(encoder: WGPURenderPassEncoder?, buffer: WGPUBuffer?, offset: ULong, count: UInt): Unit
+/**
+ * Execute multiple indexed indirect draw calls.
+ */
+expect fun wgpuRenderPassEncoderMultiDrawIndexedIndirect(encoder: WGPURenderPassEncoder?, buffer: WGPUBuffer?, offset: ULong, count: UInt): Unit
+/**
+ * Execute multiple indirect draw calls with count from a buffer.
+ */
+expect fun wgpuRenderPassEncoderMultiDrawIndirectCount(encoder: WGPURenderPassEncoder?, buffer: WGPUBuffer?, offset: ULong, countBuffer: WGPUBuffer?, countBufferOffset: ULong, maxCount: UInt): Unit
+/**
+ * Execute multiple indexed indirect draw calls with count from a buffer.
+ */
+expect fun wgpuRenderPassEncoderMultiDrawIndexedIndirectCount(encoder: WGPURenderPassEncoder?, buffer: WGPUBuffer?, offset: ULong, countBuffer: WGPUBuffer?, countBufferOffset: ULong, maxCount: UInt): Unit
+/**
+ * Begin a pipeline statistics query in a compute pass.
+ */
+expect fun wgpuComputePassEncoderBeginPipelineStatisticsQuery(encoder: WGPUComputePassEncoder?, querySet: WGPUQuerySet?, queryIndex: UInt): Unit
+/**
+ * End a pipeline statistics query in a compute pass.
+ */
+expect fun wgpuComputePassEncoderEndPipelineStatisticsQuery(encoder: WGPUComputePassEncoder?): Unit
+/**
+ * Begin a pipeline statistics query in a render pass.
+ */
+expect fun wgpuRenderPassEncoderBeginPipelineStatisticsQuery(encoder: WGPURenderPassEncoder?, querySet: WGPUQuerySet?, queryIndex: UInt): Unit
+/**
+ * End a pipeline statistics query in a render pass.
+ */
+expect fun wgpuRenderPassEncoderEndPipelineStatisticsQuery(encoder: WGPURenderPassEncoder?): Unit
+/**
+ * Write a timestamp to a query set in a compute pass.
+ */
+expect fun wgpuComputePassEncoderWriteTimestamp(encoder: WGPUComputePassEncoder?, querySet: WGPUQuerySet?, queryIndex: UInt): Unit
+/**
+ * Write a timestamp to a query set in a render pass.
+ */
+expect fun wgpuRenderPassEncoderWriteTimestamp(encoder: WGPURenderPassEncoder?, querySet: WGPUQuerySet?, queryIndex: UInt): Unit
 expect fun wgpuAdapterRelease(handler: WGPUAdapter?): Unit
 /**
  * 
@@ -42,31 +163,67 @@ expect fun wgpuBindGroupSetLabel(handler: WGPUBindGroup?, label: WGPUStringView)
 expect fun wgpuBindGroupLayoutRelease(handler: WGPUBindGroupLayout?): Unit
 expect fun wgpuBindGroupLayoutSetLabel(handler: WGPUBindGroupLayout?, label: WGPUStringView): Unit
 expect fun wgpuBufferRelease(handler: WGPUBuffer?): Unit
-expect fun wgpuBufferMapAsync(handler: WGPUBuffer?, mode: ULong, offset: ULong, size: ULong, callbackInfo: WGPUBufferMapCallbackInfo): Unit
 /**
  * 
- * @param offset Byte offset relative to the beginning of the buffer.
- * @param size Byte size of the range to get. The returned pointer is valid for exactly this many bytes.
- * @return Returns a mutable pointer to beginning of the mapped range.
- * Returns [NULL] with @ref ImplementationDefinedLogging if:
+ * @param mode The mapping mode (read or write).
+ * @param offset Byte offset relative to beginning of the buffer.
+ * @param size Byte size of the region to map.
+ * If this is @ref WGPU_WHOLE_MAP_SIZE, it defaults to [buffer.size - offset].
+ */
+expect fun wgpuBufferMapAsync(handler: WGPUBuffer?, mode: ULong, offset: ULong, size: ULong, callbackInfo: WGPUBufferMapCallbackInfo): Unit
+/**
+ * Returns a mutable pointer to beginning of the mapped range.
+ * See @ref MappedRangeBehavior for error conditions and guarantees.
+ * This function is safe to call inside spontaneous callbacks (see @ref CallbackReentrancy).
  * 
- * - There is any content-timeline error as defined in the WebGPU specification for [getMappedRange()] (alignments, overlaps, etc.)
- * - The buffer is not mapped with @ref WGPUMapMode_Write.
+ * In Wasm, if [memcpy]ing into this range, prefer using @ref wgpuBufferWriteMappedRange
+ * instead for better performance.
+ * @param offset Byte offset relative to the beginning of the buffer.
+ * @param size Byte size of the range to get.
+ * If this is @ref WGPU_WHOLE_MAP_SIZE, it defaults to [buffer.size - offset].
+ * The returned pointer is valid for exactly this many bytes.
  */
 expect fun wgpuBufferGetMappedRange(handler: WGPUBuffer?, offset: ULong, size: ULong): NativeAddress?
 /**
- * 
- * @param offset Byte offset relative to the beginning of the buffer.
- * @param size Byte size of the range to get. The returned pointer is valid for exactly this many bytes.
- * @return Returns a const pointer to beginning of the mapped range.
+ * Returns a const pointer to beginning of the mapped range.
  * It must not be written; writing to this range causes undefined behavior.
- * Returns [NULL] with @ref ImplementationDefinedLogging if:
+ * See @ref MappedRangeBehavior for error conditions and guarantees.
+ * This function is safe to call inside spontaneous callbacks (see @ref CallbackReentrancy).
  * 
- * - There is any content-timeline error as defined in the WebGPU specification for [getMappedRange()] (alignments, overlaps, etc.)
- *   **except** for overlaps with other *const* ranges, which are allowed in C.
- *   (JS does not allow this because const ranges do not exist.)
+ * In Wasm, if [memcpy]ing from this range, prefer using @ref wgpuBufferReadMappedRange
+ * instead for better performance.
+ * @param offset Byte offset relative to the beginning of the buffer.
+ * @param size Byte size of the range to get.
+ * If this is @ref WGPU_WHOLE_MAP_SIZE, it defaults to [buffer.size - offset].
+ * The returned pointer is valid for exactly this many bytes.
  */
 expect fun wgpuBufferGetConstMappedRange(handler: WGPUBuffer?, offset: ULong, size: ULong): NativeAddress?
+/**
+ * Copies a range of data from the buffer mapping into the provided destination pointer.
+ * See @ref MappedRangeBehavior for error conditions and guarantees.
+ * This function is safe to call inside spontaneous callbacks (see @ref CallbackReentrancy).
+ * 
+ * In Wasm, this is more efficient than copying from a mapped range into a [malloc]'d range.
+ * @param offset Byte offset relative to the beginning of the buffer.
+ * @param data Destination, to read buffer data into.
+ * @param size Number of bytes of data to read from the buffer.
+ * (Note @ref WGPU_WHOLE_MAP_SIZE is *not* accepted here.)
+ * @return @ref WGPUStatus_Error if the copy did not occur.
+ */
+expect fun wgpuBufferReadMappedRange(handler: WGPUBuffer?, offset: ULong, data: NativeAddress?, size: ULong): WGPUStatus
+/**
+ * Copies a range of data from the provided source pointer into the buffer mapping.
+ * See @ref MappedRangeBehavior for error conditions and guarantees.
+ * This function is safe to call inside spontaneous callbacks (see @ref CallbackReentrancy).
+ * 
+ * In Wasm, this is more efficient than copying from a [malloc]'d range into a mapped range.
+ * @param offset Byte offset relative to the beginning of the buffer.
+ * @param data Source, to write buffer data from.
+ * @param size Number of bytes of data to write to the buffer.
+ * (Note @ref WGPU_WHOLE_MAP_SIZE is *not* accepted here.)
+ * @return @ref WGPUStatus_Error if the copy did not occur.
+ */
+expect fun wgpuBufferWriteMappedRange(handler: WGPUBuffer?, offset: ULong, data: NativeAddress?, size: ULong): WGPUStatus
 expect fun wgpuBufferSetLabel(handler: WGPUBuffer?, label: WGPUStringView): Unit
 expect fun wgpuBufferGetUsage(handler: WGPUBuffer?): ULong
 expect fun wgpuBufferGetSize(handler: WGPUBuffer?): ULong
@@ -110,6 +267,12 @@ expect fun wgpuComputePipelineSetLabel(handler: WGPUComputePipeline?, label: WGP
 expect fun wgpuDeviceRelease(handler: WGPUDevice?): Unit
 expect fun wgpuDeviceCreateBindGroup(handler: WGPUDevice?, descriptor: WGPUBindGroupDescriptor?): WGPUBindGroup?
 expect fun wgpuDeviceCreateBindGroupLayout(handler: WGPUDevice?, descriptor: WGPUBindGroupLayoutDescriptor?): WGPUBindGroupLayout?
+/**
+ * TODO
+ * 
+ * If @ref WGPUBufferDescriptor::mappedAtCreation is [true] and the mapping allocation fails,
+ * returns [NULL].
+ */
 expect fun wgpuDeviceCreateBuffer(handler: WGPUDevice?, descriptor: WGPUBufferDescriptor?): WGPUBuffer?
 expect fun wgpuDeviceCreateCommandEncoder(handler: WGPUDevice?, descriptor: WGPUCommandEncoderDescriptor?): WGPUCommandEncoder?
 expect fun wgpuDeviceCreateComputePipeline(handler: WGPUDevice?, descriptor: WGPUComputePipelineDescriptor?): WGPUComputePipeline?
@@ -138,11 +301,25 @@ expect fun wgpuDeviceHasFeature(handler: WGPUDevice?, feature: WGPUFeatureName):
  * Get the list of @ref WGPUFeatureName values supported by the device.
  */
 expect fun wgpuDeviceGetFeatures(handler: WGPUDevice?, features: WGPUSupportedFeatures?): Unit
-expect fun wgpuDeviceGetAdapterInfo(handler: WGPUDevice?): WGPUAdapterInfo
+/**
+ * 
+ * @return Indicates if there was an @ref OutStructChainError.
+ */
+expect fun wgpuDeviceGetAdapterInfo(handler: WGPUDevice?, adapterInfo: WGPUAdapterInfo?): WGPUStatus
 expect fun wgpuDeviceGetQueue(handler: WGPUDevice?): WGPUQueue?
+/**
+ * Pushes an error scope to the current thread's error scope stack.
+ * See @ref ErrorScopes.
+ */
 expect fun wgpuDevicePushErrorScope(handler: WGPUDevice?, filter: WGPUErrorFilter): Unit
+/**
+ * Pops an error scope to the current thread's error scope stack,
+ * asynchronously returning the result. See @ref ErrorScopes.
+ */
 expect fun wgpuDevicePopErrorScope(handler: WGPUDevice?, callbackInfo: WGPUPopErrorScopeCallbackInfo): Unit
 expect fun wgpuDeviceSetLabel(handler: WGPUDevice?, label: WGPUStringView): Unit
+expect fun wgpuExternalTextureRelease(handler: WGPUExternalTexture?): Unit
+expect fun wgpuExternalTextureSetLabel(handler: WGPUExternalTexture?, label: WGPUStringView): Unit
 expect fun wgpuInstanceRelease(handler: WGPUInstance?): Unit
 /**
  * Creates a @ref WGPUSurface, see @ref Surface-Creation for more details.
@@ -153,10 +330,10 @@ expect fun wgpuInstanceCreateSurface(handler: WGPUInstance?, descriptor: WGPUSur
 /**
  * Get the list of @ref WGPUWGSLLanguageFeatureName values supported by the instance.
  */
-expect fun wgpuInstanceGetWGSLLanguageFeatures(handler: WGPUInstance?, features: WGPUSupportedWGSLLanguageFeatures?): WGPUStatus
+expect fun wgpuInstanceGetWGSLLanguageFeatures(handler: WGPUInstance?, features: WGPUSupportedWGSLLanguageFeatures?): Unit
 expect fun wgpuInstanceHasWGSLLanguageFeature(handler: WGPUInstance?, feature: WGPUWGSLLanguageFeatureName): Boolean
 /**
- * Processes asynchronous events on this [WGPUInstance], calling any callbacks for asynchronous operations created with [WGPUCallbackMode_AllowProcessEvents].
+ * Processes asynchronous events on this [WGPUInstance], calling any callbacks for asynchronous operations created with @ref WGPUCallbackMode_AllowProcessEvents.
  * 
  * See @ref Process-Events for more information.
  */
@@ -229,7 +406,16 @@ expect fun wgpuRenderPassEncoderInsertDebugMarker(handler: WGPURenderPassEncoder
 expect fun wgpuRenderPassEncoderPopDebugGroup(handler: WGPURenderPassEncoder?): Unit
 expect fun wgpuRenderPassEncoderPushDebugGroup(handler: WGPURenderPassEncoder?, groupLabel: WGPUStringView): Unit
 expect fun wgpuRenderPassEncoderSetStencilReference(handler: WGPURenderPassEncoder?, reference: UInt): Unit
+/**
+ * 
+ * @param color The RGBA blend constant. Represents an [f32] color using @ref DoubleAsSupertype.
+ */
 expect fun wgpuRenderPassEncoderSetBlendConstant(handler: WGPURenderPassEncoder?, color: WGPUColor?): Unit
+/**
+ * TODO
+ * 
+ * If any argument is non-finite, produces a @ref NonFiniteFloatValueError.
+ */
 expect fun wgpuRenderPassEncoderSetViewport(handler: WGPURenderPassEncoder?, x: Float, y: Float, width: Float, height: Float, minDepth: Float, maxDepth: Float): Unit
 expect fun wgpuRenderPassEncoderSetScissorRect(handler: WGPURenderPassEncoder?, x: UInt, y: UInt, width: UInt, height: UInt): Unit
 expect fun wgpuRenderPassEncoderSetVertexBuffer(handler: WGPURenderPassEncoder?, slot: UInt, buffer: WGPUBuffer?, offset: ULong, size: ULong): Unit
@@ -260,7 +446,7 @@ expect fun wgpuSurfaceConfigure(handler: WGPUSurface?, config: WGPUSurfaceConfig
  * See @ref Surface-Capabilities for more details.
  * @param adapter The @ref WGPUAdapter to get capabilities for presenting to this @ref WGPUSurface.
  * @param capabilities The structure to fill capabilities in.
- * It may contain memory allocations so [wgpuSurfaceCapabilitiesFreeMembers] must be called to avoid memory leaks.
+ * It may contain memory allocations so @ref wgpuSurfaceCapabilitiesFreeMembers must be called to avoid memory leaks.
  * @return Indicates if there was an @ref OutStructChainError.
  */
 expect fun wgpuSurfaceGetCapabilities(handler: WGPUSurface?, adapter: WGPUAdapter?, capabilities: WGPUSurfaceCapabilities?): WGPUStatus
@@ -297,6 +483,7 @@ expect fun wgpuTextureGetDepthOrArrayLayers(handler: WGPUTexture?): UInt
 expect fun wgpuTextureGetMipLevelCount(handler: WGPUTexture?): UInt
 expect fun wgpuTextureGetSampleCount(handler: WGPUTexture?): UInt
 expect fun wgpuTextureGetDimension(handler: WGPUTexture?): WGPUTextureDimension
+expect fun wgpuTextureGetTextureBindingViewDimension(handler: WGPUTexture?): WGPUTextureViewDimension
 expect fun wgpuTextureGetFormat(handler: WGPUTexture?): WGPUTextureFormat
 expect fun wgpuTextureGetUsage(handler: WGPUTexture?): ULong
 expect fun wgpuTextureDestroy(handler: WGPUTexture?): Unit

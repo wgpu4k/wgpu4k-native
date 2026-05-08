@@ -92,8 +92,8 @@ internal fun YamlModel.generateCLibraryStructures() = structs.map {
     )
 ) else emptyList()
 
-private fun getMembers(it: YamlModel.Struct) = when {
-    it.type == "base_in" -> listOf(
+private fun getMembers(it: YamlModel.Struct) = when (it.type) {
+    "base_in" -> listOf(
         YamlModel.Struct.Member(
             "nextInChain",
             "",
@@ -103,8 +103,8 @@ private fun getMembers(it: YamlModel.Struct) = when {
         )
     ) + it.members
 
-    it.type == "extension_in" -> listOf(YamlModel.Struct.Member("chain", "", "struct.chained_struct")) + it.members
-    it.type == "base_out" || it.type == "base_in_or_out" -> listOf(
+    "extension_in" -> listOf(YamlModel.Struct.Member("chain", "", "struct.chained_struct")) + it.members
+    "base_out", "base_in_or_out" -> listOf(
         YamlModel.Struct.Member(
             "nextInChain",
             "",
@@ -114,7 +114,7 @@ private fun getMembers(it: YamlModel.Struct) = when {
         )
     ) + it.members
 
-    it.type == "standalone" -> it.members
+    "standalone", "extensible", "extensible_callback_arg", "extension", null -> it.members
     else -> error("unsuported type ${it.type}")
 }
 

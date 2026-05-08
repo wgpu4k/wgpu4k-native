@@ -50,7 +50,7 @@ expect fun interface WGPUPopErrorScopeCallback : Callback {
 }
 
 expect fun interface WGPUQueueWorkDoneCallback : Callback {
-	fun invoke(status: WGPUQueueWorkDoneStatus, userdata1: NativeAddress?, userdata2: NativeAddress?)
+	fun invoke(status: WGPUQueueWorkDoneStatus, message: WGPUStringView?, userdata1: NativeAddress?, userdata2: NativeAddress?)
 	companion object {
 		fun allocate(allocator: MemoryAllocator, callback: WGPUQueueWorkDoneCallback): CallbackHolder<WGPUQueueWorkDoneCallback>
 	}
@@ -74,6 +74,16 @@ expect fun interface WGPUUncapturedErrorCallback : Callback {
 	fun invoke(device: WGPUDevice?, type: WGPUErrorType, message: WGPUStringView?, userdata1: NativeAddress?, userdata2: NativeAddress?)
 	companion object {
 		fun allocate(allocator: MemoryAllocator, callback: WGPUUncapturedErrorCallback): CallbackHolder<WGPUUncapturedErrorCallback>
+	}
+}
+
+/**
+ * Callback for logging messages from wgpu-native.
+ */
+expect fun interface WGPULogCallbackCallback : Callback {
+	fun invoke(level: WGPULogLevel, message: WGPUStringView?, userdata: NativeAddress?, userdata1: NativeAddress?, userdata2: NativeAddress?)
+	companion object {
+		fun allocate(allocator: MemoryAllocator, callback: WGPULogCallbackCallback): CallbackHolder<WGPULogCallbackCallback>
 	}
 }
 

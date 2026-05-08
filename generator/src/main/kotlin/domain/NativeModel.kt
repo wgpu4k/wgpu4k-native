@@ -91,7 +91,7 @@ internal fun NativeModel.Type.toCallbackKotlinType(): String = when (this) {
 
 internal fun String?.toCType(isPointer: Boolean, isMutable: Boolean, isOptional: Boolean = false): NativeModel.Type {
     return when {
-        this == null -> NativeModel.Void
+        this == null || this == "null" -> NativeModel.Void
         startsWith("struct.") -> when (isPointer) {
             true -> NativeModel.Reference.Structure(split(".").last().convertToKotlinClassName())
             else -> NativeModel.Reference.StructureField(split(".").last().convertToKotlinClassName(), isOptional)
@@ -106,6 +106,10 @@ internal fun String?.toCType(isPointer: Boolean, isMutable: Boolean, isOptional:
         startsWith("callback.") -> NativeModel.Reference.StructureField(split(".").last().convertToKotlinCallbackStructureName(), false)
         startsWith("bitflag.") -> if (mappingVersion == Version.v22) NativeModel.Primitive.UInt32 else NativeModel.Primitive.UInt64
         equals("bool") -> NativeModel.Primitive.Bool
+        equals("size_t") -> when (isPointer) {
+            true -> NativeModel.Reference.OpaquePointer
+            else -> NativeModel.Primitive.UInt64
+        }
         equals("usize") -> when (isPointer) {
             true -> NativeModel.Reference.OpaquePointer
             else -> NativeModel.Primitive.UInt64
@@ -130,18 +134,22 @@ internal fun String?.toCType(isPointer: Boolean, isMutable: Boolean, isOptional:
             true -> NativeModel.Reference.OpaquePointer
             else -> NativeModel.Primitive.Int32
         }
-        equals("float32") -> when (isPointer) {
+        equals("float32") || equals("nullable_float32") -> when (isPointer) {
             true -> NativeModel.Reference.OpaquePointer
             else -> NativeModel.Primitive.Float32
         }
-        equals("float64") -> when (isPointer) {
+        equals("float64") || equals("float64_supertype") -> when (isPointer) {
             true -> NativeModel.Reference.OpaquePointer
             else -> NativeModel.Primitive.Float64
         }
+        equals("void") -> NativeModel.Void
+        equals("union") -> NativeModel.Reference.OpaquePointer
         equals("c_void") -> when (isPointer) {
             true -> NativeModel.Reference.OpaquePointer
             else -> NativeModel.Void
         }
+        equals("SubmissionIndex") -> NativeModel.Primitive.UInt64
+        startsWith("typedef.") -> substring("typedef.".length).toCType(isPointer, isMutable, isOptional)
         startsWith("array<") -> NativeModel.Array(substring(6, length - 1).toCType(false, false))
         isString() -> NativeModel.Reference.StructureField("WGPUStringView", false)
         else -> error("unknown type $this")
@@ -169,5 +177,5 @@ fun NativeModel.Type.getSize(): Int? = when (this) {
     NativeModel.Primitive.Bool,
     NativeModel.Primitive.UInt32 -> 4
     is NativeModel.Reference.StructureField -> null
-    NativeModel.Void -> null
+    NativeModel.Void -> 8
 }

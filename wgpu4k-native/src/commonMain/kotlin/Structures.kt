@@ -19,7 +19,6 @@ expect interface WGPUStringView {
 }
 
 expect interface WGPUAdapterInfo {
-	var nextInChain: NativeAddress?
 	val vendor: WGPUStringView
 	val architecture: WGPUStringView
 	val device: WGPUStringView
@@ -28,6 +27,8 @@ expect interface WGPUAdapterInfo {
 	var adapterType: WGPUAdapterType
 	var vendorID: UInt
 	var deviceID: UInt
+	var subgroupMinSize: UInt
+	var subgroupMaxSize: UInt
 	val handler: NativeAddress
 	companion object {
 		operator fun invoke(address: NativeAddress): WGPUAdapterInfo
@@ -37,7 +38,6 @@ expect interface WGPUAdapterInfo {
 }
 
 expect interface WGPUBindGroupDescriptor {
-	var nextInChain: NativeAddress?
 	val label: WGPUStringView
 	var layout: WGPUBindGroupLayout?
 	var entryCount: ULong
@@ -51,12 +51,35 @@ expect interface WGPUBindGroupDescriptor {
 }
 
 expect interface WGPUBindGroupEntry {
-	var nextInChain: NativeAddress?
+	/**
+	 * Binding index in the bind group.
+	 */
 	var binding: UInt
+	/**
+	 * Set this if the binding is a buffer object.
+	 * Otherwise must be null.
+	 */
 	var buffer: WGPUBuffer?
+	/**
+	 * If the binding is a buffer, this is the byte offset of the binding range.
+	 * Otherwise ignored.
+	 */
 	var offset: ULong
+	/**
+	 * If the binding is a buffer, this is the byte size of the binding range
+	 * (@ref WGPU_WHOLE_SIZE means the binding ends at the end of the buffer).
+	 * Otherwise ignored.
+	 */
 	var size: ULong
+	/**
+	 * Set this if the binding is a sampler object.
+	 * Otherwise must be null.
+	 */
 	var sampler: WGPUSampler?
+	/**
+	 * Set this if the binding is a texture view object.
+	 * Otherwise must be null.
+	 */
 	var textureView: WGPUTextureView?
 	val handler: NativeAddress
 	companion object {
@@ -67,7 +90,6 @@ expect interface WGPUBindGroupEntry {
 }
 
 expect interface WGPUBindGroupLayoutDescriptor {
-	var nextInChain: NativeAddress?
 	val label: WGPUStringView
 	var entryCount: ULong
 	var entries: ArrayHolder<WGPUBindGroupLayoutEntry>?
@@ -80,7 +102,10 @@ expect interface WGPUBindGroupLayoutDescriptor {
 }
 
 expect interface WGPUBufferBindingLayout {
-	var nextInChain: NativeAddress?
+	/**
+	 * If set to @ref WGPUBufferBindingType_Undefined,
+	 * [defaults](@ref SentinelValues) to @ref WGPUBufferBindingType_Uniform.
+	 */
 	var type: WGPUBufferBindingType
 	var hasDynamicOffset: Boolean
 	var minBindingSize: ULong
@@ -93,7 +118,10 @@ expect interface WGPUBufferBindingLayout {
 }
 
 expect interface WGPUSamplerBindingLayout {
-	var nextInChain: NativeAddress?
+	/**
+	 * If set to @ref WGPUSamplerBindingType_Undefined,
+	 * [defaults](@ref SentinelValues) to @ref WGPUSamplerBindingType_Filtering.
+	 */
 	var type: WGPUSamplerBindingType
 	val handler: NativeAddress
 	companion object {
@@ -104,8 +132,15 @@ expect interface WGPUSamplerBindingLayout {
 }
 
 expect interface WGPUTextureBindingLayout {
-	var nextInChain: NativeAddress?
+	/**
+	 * If set to @ref WGPUTextureSampleType_Undefined,
+	 * [defaults](@ref SentinelValues) to @ref WGPUTextureSampleType_Float.
+	 */
 	var sampleType: WGPUTextureSampleType
+	/**
+	 * If set to @ref WGPUTextureViewDimension_Undefined,
+	 * [defaults](@ref SentinelValues) to @ref WGPUTextureViewDimension_2D.
+	 */
 	var viewDimension: WGPUTextureViewDimension
 	var multisampled: Boolean
 	val handler: NativeAddress
@@ -117,9 +152,16 @@ expect interface WGPUTextureBindingLayout {
 }
 
 expect interface WGPUStorageTextureBindingLayout {
-	var nextInChain: NativeAddress?
+	/**
+	 * If set to @ref WGPUStorageTextureAccess_Undefined,
+	 * [defaults](@ref SentinelValues) to @ref WGPUStorageTextureAccess_WriteOnly.
+	 */
 	var access: WGPUStorageTextureAccess
 	var format: WGPUTextureFormat
+	/**
+	 * If set to @ref WGPUTextureViewDimension_Undefined,
+	 * [defaults](@ref SentinelValues) to @ref WGPUTextureViewDimension_2D.
+	 */
 	var viewDimension: WGPUTextureViewDimension
 	val handler: NativeAddress
 	companion object {
@@ -130,9 +172,12 @@ expect interface WGPUStorageTextureBindingLayout {
 }
 
 expect interface WGPUBindGroupLayoutEntry {
-	var nextInChain: NativeAddress?
 	var binding: UInt
 	var visibility: ULong
+	/**
+	 * If non-zero, this entry defines a binding array with this size.
+	 */
+	var bindingArraySize: UInt
 	val buffer: WGPUBufferBindingLayout
 	val sampler: WGPUSamplerBindingLayout
 	val texture: WGPUTextureBindingLayout
@@ -146,8 +191,20 @@ expect interface WGPUBindGroupLayoutEntry {
 }
 
 expect interface WGPUBlendComponent {
+	/**
+	 * If set to @ref WGPUBlendOperation_Undefined,
+	 * [defaults](@ref SentinelValues) to @ref WGPUBlendOperation_Add.
+	 */
 	var operation: WGPUBlendOperation
+	/**
+	 * If set to @ref WGPUBlendFactor_Undefined,
+	 * [defaults](@ref SentinelValues) to @ref WGPUBlendFactor_One.
+	 */
 	var srcFactor: WGPUBlendFactor
+	/**
+	 * If set to @ref WGPUBlendFactor_Undefined,
+	 * [defaults](@ref SentinelValues) to @ref WGPUBlendFactor_Zero.
+	 */
 	var dstFactor: WGPUBlendFactor
 	val handler: NativeAddress
 	companion object {
@@ -169,10 +226,14 @@ expect interface WGPUBlendState {
 }
 
 expect interface WGPUBufferDescriptor {
-	var nextInChain: NativeAddress?
 	val label: WGPUStringView
 	var usage: ULong
 	var size: ULong
+	/**
+	 * When true, the buffer is mapped in write mode at creation. It should thus be unmapped once its initial data has been written.
+	 * 
+	 * @note Mapping at creation does **not** require the usage @ref WGPUBufferUsage_MapWrite.
+	 */
 	var mappedAtCreation: Boolean
 	val handler: NativeAddress
 	companion object {
@@ -182,6 +243,11 @@ expect interface WGPUBufferDescriptor {
 	}
 }
 
+/**
+ * An RGBA color. Represents a [f32], [i32], or [u32] color using @ref DoubleAsSupertype.
+ * 
+ * If any channel is non-finite, produces a @ref NonFiniteFloatValueError.
+ */
 expect interface WGPUColor {
 	var r: Double
 	var g: Double
@@ -196,7 +262,6 @@ expect interface WGPUColor {
 }
 
 expect interface WGPUColorTargetState {
-	var nextInChain: NativeAddress?
 	/**
 	 * The texture format of the target. If @ref WGPUTextureFormat_Undefined,
 	 * indicates a "hole" in the parent @ref WGPUFragmentState [targets] array:
@@ -214,7 +279,6 @@ expect interface WGPUColorTargetState {
 }
 
 expect interface WGPUCommandBufferDescriptor {
-	var nextInChain: NativeAddress?
 	val label: WGPUStringView
 	val handler: NativeAddress
 	companion object {
@@ -225,7 +289,6 @@ expect interface WGPUCommandBufferDescriptor {
 }
 
 expect interface WGPUCommandEncoderDescriptor {
-	var nextInChain: NativeAddress?
 	val label: WGPUStringView
 	val handler: NativeAddress
 	companion object {
@@ -235,8 +298,25 @@ expect interface WGPUCommandEncoderDescriptor {
 	}
 }
 
+/**
+ * Note: While Compatibility Mode is optional to implement, this extension struct
+ * is required to be supported (for both queries and requests) and behave as
+ * defined in the WebGPU spec.
+ */
+expect interface WGPUCompatibilityModeLimits {
+	var maxStorageBuffersInVertexStage: UInt
+	var maxStorageTexturesInVertexStage: UInt
+	var maxStorageBuffersInFragmentStage: UInt
+	var maxStorageTexturesInFragmentStage: UInt
+	val handler: NativeAddress
+	companion object {
+		operator fun invoke(address: NativeAddress): WGPUCompatibilityModeLimits
+		fun allocate(allocator: MemoryAllocator): WGPUCompatibilityModeLimits
+		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPUCompatibilityModeLimits) -> Unit): ArrayHolder<WGPUCompatibilityModeLimits>
+	}
+}
+
 expect interface WGPUCompilationInfo {
-	var nextInChain: NativeAddress?
 	var messageCount: ULong
 	var messages: ArrayHolder<WGPUCompilationMessage>?
 	val handler: NativeAddress
@@ -248,7 +328,6 @@ expect interface WGPUCompilationInfo {
 }
 
 expect interface WGPUCompilationMessage {
-	var nextInChain: NativeAddress?
 	/**
 	 * A @ref LocalizableHumanReadableMessageString.
 	 */
@@ -282,9 +361,8 @@ expect interface WGPUCompilationMessage {
 }
 
 expect interface WGPUComputePassDescriptor {
-	var nextInChain: NativeAddress?
 	val label: WGPUStringView
-	var timestampWrites: WGPUComputePassTimestampWrites?
+	var timestampWrites: WGPUPassTimestampWrites?
 	val handler: NativeAddress
 	companion object {
 		operator fun invoke(address: NativeAddress): WGPUComputePassDescriptor
@@ -293,37 +371,23 @@ expect interface WGPUComputePassDescriptor {
 	}
 }
 
-expect interface WGPUComputePassTimestampWrites {
-	var querySet: WGPUQuerySet?
-	var beginningOfPassWriteIndex: UInt
-	var endOfPassWriteIndex: UInt
-	val handler: NativeAddress
-	companion object {
-		operator fun invoke(address: NativeAddress): WGPUComputePassTimestampWrites
-		fun allocate(allocator: MemoryAllocator): WGPUComputePassTimestampWrites
-		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPUComputePassTimestampWrites) -> Unit): ArrayHolder<WGPUComputePassTimestampWrites>
-	}
-}
-
-expect interface WGPUProgrammableStageDescriptor {
-	var nextInChain: NativeAddress?
+expect interface WGPUComputeState {
 	var module: WGPUShaderModule?
 	val entryPoint: WGPUStringView
 	var constantCount: ULong
 	var constants: ArrayHolder<WGPUConstantEntry>?
 	val handler: NativeAddress
 	companion object {
-		operator fun invoke(address: NativeAddress): WGPUProgrammableStageDescriptor
-		fun allocate(allocator: MemoryAllocator): WGPUProgrammableStageDescriptor
-		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPUProgrammableStageDescriptor) -> Unit): ArrayHolder<WGPUProgrammableStageDescriptor>
+		operator fun invoke(address: NativeAddress): WGPUComputeState
+		fun allocate(allocator: MemoryAllocator): WGPUComputeState
+		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPUComputeState) -> Unit): ArrayHolder<WGPUComputeState>
 	}
 }
 
 expect interface WGPUComputePipelineDescriptor {
-	var nextInChain: NativeAddress?
 	val label: WGPUStringView
 	var layout: WGPUPipelineLayout?
-	val compute: WGPUProgrammableStageDescriptor
+	val compute: WGPUComputeState
 	val handler: NativeAddress
 	companion object {
 		operator fun invoke(address: NativeAddress): WGPUComputePipelineDescriptor
@@ -333,8 +397,12 @@ expect interface WGPUComputePipelineDescriptor {
 }
 
 expect interface WGPUConstantEntry {
-	var nextInChain: NativeAddress?
 	val key: WGPUStringView
+	/**
+	 * Represents a WGSL numeric or boolean value using @ref DoubleAsSupertype.
+	 * 
+	 * If non-finite, produces a @ref NonFiniteFloatValueError.
+	 */
 	var value: Double
 	val handler: NativeAddress
 	companion object {
@@ -345,9 +413,25 @@ expect interface WGPUConstantEntry {
 }
 
 expect interface WGPUStencilFaceState {
+	/**
+	 * If set to @ref WGPUCompareFunction_Undefined,
+	 * [defaults](@ref SentinelValues) to @ref WGPUCompareFunction_Always.
+	 */
 	var compare: WGPUCompareFunction
+	/**
+	 * If set to @ref WGPUStencilOperation_Undefined,
+	 * [defaults](@ref SentinelValues) to @ref WGPUStencilOperation_Keep.
+	 */
 	var failOp: WGPUStencilOperation
+	/**
+	 * If set to @ref WGPUStencilOperation_Undefined,
+	 * [defaults](@ref SentinelValues) to @ref WGPUStencilOperation_Keep.
+	 */
 	var depthFailOp: WGPUStencilOperation
+	/**
+	 * If set to @ref WGPUStencilOperation_Undefined,
+	 * [defaults](@ref SentinelValues) to @ref WGPUStencilOperation_Keep.
+	 */
 	var passOp: WGPUStencilOperation
 	val handler: NativeAddress
 	companion object {
@@ -358,7 +442,6 @@ expect interface WGPUStencilFaceState {
 }
 
 expect interface WGPUDepthStencilState {
-	var nextInChain: NativeAddress?
 	var format: WGPUTextureFormat
 	var depthWriteEnabled: WGPUOptionalBool
 	var depthCompare: WGPUCompareFunction
@@ -367,7 +450,17 @@ expect interface WGPUDepthStencilState {
 	var stencilReadMask: UInt
 	var stencilWriteMask: UInt
 	var depthBias: Int
+	/**
+	 * TODO
+	 * 
+	 * If non-finite, produces a @ref NonFiniteFloatValueError.
+	 */
 	var depthBiasSlopeScale: Float
+	/**
+	 * TODO
+	 * 
+	 * If non-finite, produces a @ref NonFiniteFloatValueError.
+	 */
 	var depthBiasClamp: Float
 	val handler: NativeAddress
 	companion object {
@@ -378,7 +471,6 @@ expect interface WGPUDepthStencilState {
 }
 
 expect interface WGPUQueueDescriptor {
-	var nextInChain: NativeAddress?
 	val label: WGPUStringView
 	val handler: NativeAddress
 	companion object {
@@ -416,13 +508,18 @@ expect interface WGPUUncapturedErrorCallbackInfo {
 }
 
 expect interface WGPUDeviceDescriptor {
-	var nextInChain: NativeAddress?
 	val label: WGPUStringView
 	var requiredFeatureCount: ULong
 	var requiredFeatures: ArrayHolder<WGPUFeatureName>?
 	var requiredLimits: WGPULimits?
 	val defaultQueue: WGPUQueueDescriptor
 	val deviceLostCallbackInfo: WGPUDeviceLostCallbackInfo
+	/**
+	 * Called when there is an uncaptured error on this device, from any thread.
+	 * See @ref ErrorScopes.
+	 * 
+	 * **Important:** This callback does not have a configurable @ref WGPUCallbackMode; it may be called at any time (like @ref WGPUCallbackMode_AllowSpontaneous). As such, calls into the [webgpu.h] API from this callback are unsafe. See @ref CallbackReentrancy.
+	 */
 	val uncapturedErrorCallbackInfo: WGPUUncapturedErrorCallbackInfo
 	val handler: NativeAddress
 	companion object {
@@ -444,8 +541,32 @@ expect interface WGPUExtent3D {
 	}
 }
 
+/**
+ * Chained in an @ref WGPUBindGroupEntry to set it to an @ref WGPUExternalTexture. This must have a corresponding @ref WGPUExternalTextureBindingLayout in the @ref WGPUBindGroupLayout.
+ */
+expect interface WGPUExternalTextureBindingEntry {
+	var externalTexture: WGPUExternalTexture?
+	val handler: NativeAddress
+	companion object {
+		operator fun invoke(address: NativeAddress): WGPUExternalTextureBindingEntry
+		fun allocate(allocator: MemoryAllocator): WGPUExternalTextureBindingEntry
+		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPUExternalTextureBindingEntry) -> Unit): ArrayHolder<WGPUExternalTextureBindingEntry>
+	}
+}
+
+/**
+ * Chained in @ref WGPUBindGroupLayoutEntry to specify that the corresponding entries in an @ref WGPUBindGroup will contain an @ref WGPUExternalTexture.
+ */
+expect interface WGPUExternalTextureBindingLayout {
+	val handler: NativeAddress
+	companion object {
+		operator fun invoke(address: NativeAddress): WGPUExternalTextureBindingLayout
+		fun allocate(allocator: MemoryAllocator): WGPUExternalTextureBindingLayout
+		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPUExternalTextureBindingLayout) -> Unit): ArrayHolder<WGPUExternalTextureBindingLayout>
+	}
+}
+
 expect interface WGPUFragmentState {
-	var nextInChain: NativeAddress?
 	var module: WGPUShaderModule?
 	val entryPoint: WGPUStringView
 	var constantCount: ULong
@@ -496,33 +617,10 @@ expect interface WGPUFutureWaitInfo {
 	}
 }
 
-/**
- * Features enabled on the WGPUInstance
- */
-expect interface WGPUInstanceCapabilities {
-	var nextInChain: NativeAddress?
-	/**
-	 * Enable use of ::wgpuInstanceWaitAny with [timeoutNS > 0].
-	 */
-	var timedWaitAnyEnable: Boolean
-	/**
-	 * The maximum number @ref WGPUFutureWaitInfo supported in a call to ::wgpuInstanceWaitAny with [timeoutNS > 0].
-	 */
-	var timedWaitAnyMaxCount: ULong
-	val handler: NativeAddress
-	companion object {
-		operator fun invoke(address: NativeAddress): WGPUInstanceCapabilities
-		fun allocate(allocator: MemoryAllocator): WGPUInstanceCapabilities
-		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPUInstanceCapabilities) -> Unit): ArrayHolder<WGPUInstanceCapabilities>
-	}
-}
-
 expect interface WGPUInstanceDescriptor {
-	var nextInChain: NativeAddress?
-	/**
-	 * Instance features to enable
-	 */
-	val features: WGPUInstanceCapabilities
+	var requiredFeatureCount: ULong
+	var requiredFeatures: ArrayHolder<WGPUInstanceFeatureName>?
+	var requiredLimits: WGPUInstanceLimits?
 	val handler: NativeAddress
 	companion object {
 		operator fun invoke(address: NativeAddress): WGPUInstanceDescriptor
@@ -531,8 +629,20 @@ expect interface WGPUInstanceDescriptor {
 	}
 }
 
+expect interface WGPUInstanceLimits {
+	/**
+	 * The maximum number @ref WGPUFutureWaitInfo supported in a call to ::wgpuInstanceWaitAny with [timeoutNS > 0].
+	 */
+	var timedWaitAnyMaxCount: ULong
+	val handler: NativeAddress
+	companion object {
+		operator fun invoke(address: NativeAddress): WGPUInstanceLimits
+		fun allocate(allocator: MemoryAllocator): WGPUInstanceLimits
+		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPUInstanceLimits) -> Unit): ArrayHolder<WGPUInstanceLimits>
+	}
+}
+
 expect interface WGPULimits {
-	var nextInChain: NativeAddress?
 	var maxTextureDimension1D: UInt
 	var maxTextureDimension2D: UInt
 	var maxTextureDimension3D: UInt
@@ -564,6 +674,7 @@ expect interface WGPULimits {
 	var maxComputeWorkgroupSizeY: UInt
 	var maxComputeWorkgroupSizeZ: UInt
 	var maxComputeWorkgroupsPerDimension: UInt
+	var maxImmediateSize: UInt
 	val handler: NativeAddress
 	companion object {
 		operator fun invoke(address: NativeAddress): WGPULimits
@@ -573,7 +684,6 @@ expect interface WGPULimits {
 }
 
 expect interface WGPUMultisampleState {
-	var nextInChain: NativeAddress?
 	var count: UInt
 	var mask: UInt
 	var alphaToCoverageEnabled: Boolean
@@ -597,11 +707,26 @@ expect interface WGPUOrigin3D {
 	}
 }
 
+expect interface WGPUPassTimestampWrites {
+	/**
+	 * Query set to write timestamps to.
+	 */
+	var querySet: WGPUQuerySet?
+	var beginningOfPassWriteIndex: UInt
+	var endOfPassWriteIndex: UInt
+	val handler: NativeAddress
+	companion object {
+		operator fun invoke(address: NativeAddress): WGPUPassTimestampWrites
+		fun allocate(allocator: MemoryAllocator): WGPUPassTimestampWrites
+		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPUPassTimestampWrites) -> Unit): ArrayHolder<WGPUPassTimestampWrites>
+	}
+}
+
 expect interface WGPUPipelineLayoutDescriptor {
-	var nextInChain: NativeAddress?
 	val label: WGPUStringView
 	var bindGroupLayoutCount: ULong
 	var bindGroupLayouts: ArrayHolder<WGPUBindGroupLayout>?
+	var immediateSize: UInt
 	val handler: NativeAddress
 	companion object {
 		operator fun invoke(address: NativeAddress): WGPUPipelineLayoutDescriptor
@@ -611,10 +736,21 @@ expect interface WGPUPipelineLayoutDescriptor {
 }
 
 expect interface WGPUPrimitiveState {
-	var nextInChain: NativeAddress?
+	/**
+	 * If set to @ref WGPUPrimitiveTopology_Undefined,
+	 * [defaults](@ref SentinelValues) to @ref WGPUPrimitiveTopology_TriangleList.
+	 */
 	var topology: WGPUPrimitiveTopology
 	var stripIndexFormat: WGPUIndexFormat
+	/**
+	 * If set to @ref WGPUFrontFace_Undefined,
+	 * [defaults](@ref SentinelValues) to @ref WGPUFrontFace_CCW.
+	 */
 	var frontFace: WGPUFrontFace
+	/**
+	 * If set to @ref WGPUCullMode_Undefined,
+	 * [defaults](@ref SentinelValues) to @ref WGPUCullMode_None.
+	 */
 	var cullMode: WGPUCullMode
 	var unclippedDepth: Boolean
 	val handler: NativeAddress
@@ -626,7 +762,6 @@ expect interface WGPUPrimitiveState {
 }
 
 expect interface WGPUQuerySetDescriptor {
-	var nextInChain: NativeAddress?
 	val label: WGPUStringView
 	var type: WGPUQueryType
 	var count: UInt
@@ -639,7 +774,6 @@ expect interface WGPUQuerySetDescriptor {
 }
 
 expect interface WGPURenderBundleDescriptor {
-	var nextInChain: NativeAddress?
 	val label: WGPUStringView
 	val handler: NativeAddress
 	companion object {
@@ -650,7 +784,6 @@ expect interface WGPURenderBundleDescriptor {
 }
 
 expect interface WGPURenderBundleEncoderDescriptor {
-	var nextInChain: NativeAddress?
 	val label: WGPUStringView
 	var colorFormatCount: ULong
 	var colorFormats: ArrayHolder<WGPUTextureFormat>?
@@ -667,7 +800,10 @@ expect interface WGPURenderBundleEncoderDescriptor {
 }
 
 expect interface WGPURenderPassColorAttachment {
-	var nextInChain: NativeAddress?
+	/**
+	 * If [NULL], indicates a hole in the parent
+	 * @ref WGPURenderPassDescriptor::colorAttachments array.
+	 */
 	var view: WGPUTextureView?
 	var depthSlice: UInt
 	var resolveTarget: WGPUTextureView?
@@ -686,6 +822,14 @@ expect interface WGPURenderPassDepthStencilAttachment {
 	var view: WGPUTextureView?
 	var depthLoadOp: WGPULoadOp
 	var depthStoreOp: WGPUStoreOp
+	/**
+	 * This is a @ref NullableFloatingPointType.
+	 * 
+	 * If [NaN], indicates an [undefined] value (as defined by the JS spec).
+	 * Use @ref WGPU_DEPTH_CLEAR_VALUE_UNDEFINED to indicate this semantically.
+	 * 
+	 * If infinite, produces a @ref NonFiniteFloatValueError.
+	 */
 	var depthClearValue: Float
 	var depthReadOnly: Boolean
 	var stencilLoadOp: WGPULoadOp
@@ -701,13 +845,12 @@ expect interface WGPURenderPassDepthStencilAttachment {
 }
 
 expect interface WGPURenderPassDescriptor {
-	var nextInChain: NativeAddress?
 	val label: WGPUStringView
 	var colorAttachmentCount: ULong
 	var colorAttachments: ArrayHolder<WGPURenderPassColorAttachment>?
 	var depthStencilAttachment: WGPURenderPassDepthStencilAttachment?
 	var occlusionQuerySet: WGPUQuerySet?
-	var timestampWrites: WGPURenderPassTimestampWrites?
+	var timestampWrites: WGPUPassTimestampWrites?
 	val handler: NativeAddress
 	companion object {
 		operator fun invoke(address: NativeAddress): WGPURenderPassDescriptor
@@ -716,19 +859,7 @@ expect interface WGPURenderPassDescriptor {
 	}
 }
 
-expect interface WGPUChainedStruct {
-	var next: WGPUChainedStruct?
-	var sType: WGPUSType
-	val handler: NativeAddress
-	companion object {
-		operator fun invoke(address: NativeAddress): WGPUChainedStruct
-		fun allocate(allocator: MemoryAllocator): WGPUChainedStruct
-		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPUChainedStruct) -> Unit): ArrayHolder<WGPUChainedStruct>
-	}
-}
-
 expect interface WGPURenderPassMaxDrawCount {
-	val chain: WGPUChainedStruct
 	var maxDrawCount: ULong
 	val handler: NativeAddress
 	companion object {
@@ -738,20 +869,7 @@ expect interface WGPURenderPassMaxDrawCount {
 	}
 }
 
-expect interface WGPURenderPassTimestampWrites {
-	var querySet: WGPUQuerySet?
-	var beginningOfPassWriteIndex: UInt
-	var endOfPassWriteIndex: UInt
-	val handler: NativeAddress
-	companion object {
-		operator fun invoke(address: NativeAddress): WGPURenderPassTimestampWrites
-		fun allocate(allocator: MemoryAllocator): WGPURenderPassTimestampWrites
-		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPURenderPassTimestampWrites) -> Unit): ArrayHolder<WGPURenderPassTimestampWrites>
-	}
-}
-
 expect interface WGPUVertexState {
-	var nextInChain: NativeAddress?
 	var module: WGPUShaderModule?
 	val entryPoint: WGPUStringView
 	var constantCount: ULong
@@ -767,7 +885,6 @@ expect interface WGPUVertexState {
 }
 
 expect interface WGPURenderPipelineDescriptor {
-	var nextInChain: NativeAddress?
 	val label: WGPUStringView
 	var layout: WGPUPipelineLayout?
 	val vertex: WGPUVertexState
@@ -784,11 +901,13 @@ expect interface WGPURenderPipelineDescriptor {
 }
 
 expect interface WGPURequestAdapterOptions {
-	var nextInChain: NativeAddress?
 	/**
 	 * "Feature level" for the adapter request. If an adapter is returned, it must support the features and limits in the requested feature level.
 	 * 
-	 * Implementations may ignore @ref WGPUFeatureLevel_Compatibility and provide @ref WGPUFeatureLevel_Core instead. @ref WGPUFeatureLevel_Core is the default in the JS API, but in C, this field is **required** (must not be undefined).
+	 * If set to @ref WGPUFeatureLevel_Undefined,
+	 * [defaults](@ref SentinelValues) to @ref WGPUFeatureLevel_Core.
+	 * Additionally, implementations may ignore @ref WGPUFeatureLevel_Compatibility
+	 * and provide @ref WGPUFeatureLevel_Core instead.
 	 */
 	var featureLevel: WGPUFeatureLevel
 	var powerPreference: WGPUPowerPreference
@@ -815,16 +934,65 @@ expect interface WGPURequestAdapterOptions {
 	}
 }
 
+/**
+ * Extension providing requestAdapter options for implementations with WebXR interop (i.e. Wasm).
+ */
+expect interface WGPURequestAdapterWebXROptions {
+	/**
+	 * Sets the [xrCompatible] option in the JS API.
+	 */
+	var xrCompatible: Boolean
+	val handler: NativeAddress
+	companion object {
+		operator fun invoke(address: NativeAddress): WGPURequestAdapterWebXROptions
+		fun allocate(allocator: MemoryAllocator): WGPURequestAdapterWebXROptions
+		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPURequestAdapterWebXROptions) -> Unit): ArrayHolder<WGPURequestAdapterWebXROptions>
+	}
+}
+
 expect interface WGPUSamplerDescriptor {
-	var nextInChain: NativeAddress?
 	val label: WGPUStringView
+	/**
+	 * If set to @ref WGPUAddressMode_Undefined,
+	 * [defaults](@ref SentinelValues) to @ref WGPUAddressMode_ClampToEdge.
+	 */
 	var addressModeU: WGPUAddressMode
+	/**
+	 * If set to @ref WGPUAddressMode_Undefined,
+	 * [defaults](@ref SentinelValues) to @ref WGPUAddressMode_ClampToEdge.
+	 */
 	var addressModeV: WGPUAddressMode
+	/**
+	 * If set to @ref WGPUAddressMode_Undefined,
+	 * [defaults](@ref SentinelValues) to @ref WGPUAddressMode_ClampToEdge.
+	 */
 	var addressModeW: WGPUAddressMode
+	/**
+	 * If set to @ref WGPUFilterMode_Undefined,
+	 * [defaults](@ref SentinelValues) to @ref WGPUFilterMode_Nearest.
+	 */
 	var magFilter: WGPUFilterMode
+	/**
+	 * If set to @ref WGPUFilterMode_Undefined,
+	 * [defaults](@ref SentinelValues) to @ref WGPUFilterMode_Nearest.
+	 */
 	var minFilter: WGPUFilterMode
+	/**
+	 * If set to @ref WGPUFilterMode_Undefined,
+	 * [defaults](@ref SentinelValues) to @ref WGPUMipmapFilterMode_Nearest.
+	 */
 	var mipmapFilter: WGPUMipmapFilterMode
+	/**
+	 * TODO
+	 * 
+	 * If non-finite, produces a @ref NonFiniteFloatValueError.
+	 */
 	var lodMinClamp: Float
+	/**
+	 * TODO
+	 * 
+	 * If non-finite, produces a @ref NonFiniteFloatValueError.
+	 */
 	var lodMaxClamp: Float
 	var compare: WGPUCompareFunction
 	var maxAnisotropy: UShort
@@ -837,7 +1005,6 @@ expect interface WGPUSamplerDescriptor {
 }
 
 expect interface WGPUShaderModuleDescriptor {
-	var nextInChain: NativeAddress?
 	val label: WGPUStringView
 	val handler: NativeAddress
 	companion object {
@@ -848,7 +1015,6 @@ expect interface WGPUShaderModuleDescriptor {
 }
 
 expect interface WGPUShaderSourceSPIRV {
-	val chain: WGPUChainedStruct
 	var codeSize: UInt
 	var code: NativeAddress?
 	val handler: NativeAddress
@@ -860,7 +1026,6 @@ expect interface WGPUShaderSourceSPIRV {
 }
 
 expect interface WGPUShaderSourceWGSL {
-	val chain: WGPUChainedStruct
 	val code: WGPUStringView
 	val handler: NativeAddress
 	companion object {
@@ -881,6 +1046,17 @@ expect interface WGPUSupportedFeatures {
 	}
 }
 
+expect interface WGPUSupportedInstanceFeatures {
+	var featureCount: ULong
+	var features: ArrayHolder<WGPUInstanceFeatureName>?
+	val handler: NativeAddress
+	companion object {
+		operator fun invoke(address: NativeAddress): WGPUSupportedInstanceFeatures
+		fun allocate(allocator: MemoryAllocator): WGPUSupportedInstanceFeatures
+		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPUSupportedInstanceFeatures) -> Unit): ArrayHolder<WGPUSupportedInstanceFeatures>
+	}
+}
+
 expect interface WGPUSupportedWGSLLanguageFeatures {
 	var featureCount: ULong
 	var features: ArrayHolder<WGPUWGSLLanguageFeatureName>?
@@ -893,10 +1069,9 @@ expect interface WGPUSupportedWGSLLanguageFeatures {
 }
 
 /**
- * Filled by [wgpuSurfaceGetCapabilities] with what's supported for [wgpuSurfaceConfigure] for a pair of @ref WGPUSurface and @ref WGPUAdapter.
+ * Filled by @ref wgpuSurfaceGetCapabilities with what's supported for @ref wgpuSurfaceConfigure for a pair of @ref WGPUSurface and @ref WGPUAdapter.
  */
 expect interface WGPUSurfaceCapabilities {
-	var nextInChain: NativeAddress?
 	/**
 	 * The bit set of supported @ref WGPUTextureUsage bits.
 	 * Guaranteed to contain @ref WGPUTextureUsage_RenderAttachment.
@@ -928,11 +1103,24 @@ expect interface WGPUSurfaceCapabilities {
 }
 
 /**
- * Options to [wgpuSurfaceConfigure] for defining how a @ref WGPUSurface will be rendered to and presented to the user.
+ * Extension of @ref WGPUSurfaceConfiguration for color spaces and HDR.
+ */
+expect interface WGPUSurfaceColorManagement {
+	var colorSpace: WGPUPredefinedColorSpace
+	var toneMappingMode: WGPUToneMappingMode
+	val handler: NativeAddress
+	companion object {
+		operator fun invoke(address: NativeAddress): WGPUSurfaceColorManagement
+		fun allocate(allocator: MemoryAllocator): WGPUSurfaceColorManagement
+		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPUSurfaceColorManagement) -> Unit): ArrayHolder<WGPUSurfaceColorManagement>
+	}
+}
+
+/**
+ * Options to @ref wgpuSurfaceConfigure for defining how a @ref WGPUSurface will be rendered to and presented to the user.
  * See @ref Surface-Configuration for more details.
  */
 expect interface WGPUSurfaceConfiguration {
-	var nextInChain: NativeAddress?
 	/**
 	 * The @ref WGPUDevice to use to render to surface's textures.
 	 */
@@ -960,10 +1148,17 @@ expect interface WGPUSurfaceConfiguration {
 	var viewFormats: ArrayHolder<WGPUTextureFormat>?
 	/**
 	 * How the surface's frames will be composited on the screen.
+	 * 
+	 * If set to @ref WGPUCompositeAlphaMode_Auto,
+	 * [defaults] to @ref WGPUCompositeAlphaMode_Inherit in native (allowing the mode
+	 * to be configured externally), and to @ref WGPUCompositeAlphaMode_Opaque in Wasm.
 	 */
 	var alphaMode: WGPUCompositeAlphaMode
 	/**
-	 * When and in which order the surface's frames will be shown on the screen. Defaults to @ref WGPUPresentMode_Fifo.
+	 * When and in which order the surface's frames will be shown on the screen.
+	 * 
+	 * If set to @ref WGPUPresentMode_Undefined,
+	 * [defaults](@ref SentinelValues) to @ref WGPUPresentMode_Fifo.
 	 */
 	var presentMode: WGPUPresentMode
 	val handler: NativeAddress
@@ -975,12 +1170,11 @@ expect interface WGPUSurfaceConfiguration {
 }
 
 /**
- * The root descriptor for the creation of an @ref WGPUSurface with [wgpuInstanceCreateSurface].
+ * The root descriptor for the creation of an @ref WGPUSurface with @ref wgpuInstanceCreateSurface.
  * It isn't sufficient by itself and must have one of the [WGPUSurfaceSource*] in its chain.
  * See @ref Surface-Creation for more details.
  */
 expect interface WGPUSurfaceDescriptor {
-	var nextInChain: NativeAddress?
 	/**
 	 * Label used to refer to the object.
 	 */
@@ -997,7 +1191,6 @@ expect interface WGPUSurfaceDescriptor {
  * Chained in @ref WGPUSurfaceDescriptor to make an @ref WGPUSurface wrapping an Android [[ANativeWindow]](https://developer.android.com/ndk/reference/group/a-native-window).
  */
 expect interface WGPUSurfaceSourceAndroidNativeWindow {
-	val chain: WGPUChainedStruct
 	/**
 	 * The pointer to the [[ANativeWindow]](https://developer.android.com/ndk/reference/group/a-native-window) that will be wrapped by the @ref WGPUSurface.
 	 */
@@ -1014,7 +1207,6 @@ expect interface WGPUSurfaceSourceAndroidNativeWindow {
  * Chained in @ref WGPUSurfaceDescriptor to make an @ref WGPUSurface wrapping a [[CAMetalLayer]](https://developer.apple.com/documentation/quartzcore/cametallayer?language=objc).
  */
 expect interface WGPUSurfaceSourceMetalLayer {
-	val chain: WGPUChainedStruct
 	/**
 	 * The pointer to the [[CAMetalLayer]](https://developer.apple.com/documentation/quartzcore/cametallayer?language=objc) that will be wrapped by the @ref WGPUSurface.
 	 */
@@ -1031,7 +1223,6 @@ expect interface WGPUSurfaceSourceMetalLayer {
  * Chained in @ref WGPUSurfaceDescriptor to make an @ref WGPUSurface wrapping a [Wayland](https://wayland.freedesktop.org/) [[wl_surface]](https://wayland.freedesktop.org/docs/html/apa.html#protocol-spec-wl_surface).
  */
 expect interface WGPUSurfaceSourceWaylandSurface {
-	val chain: WGPUChainedStruct
 	/**
 	 * A [[wl_display]](https://wayland.freedesktop.org/docs/html/apa.html#protocol-spec-wl_display) for this Wayland instance.
 	 */
@@ -1052,7 +1243,6 @@ expect interface WGPUSurfaceSourceWaylandSurface {
  * Chained in @ref WGPUSurfaceDescriptor to make an @ref WGPUSurface wrapping a Windows [[HWND]](https://learn.microsoft.com/en-us/windows/apps/develop/ui-input/retrieve-hwnd).
  */
 expect interface WGPUSurfaceSourceWindowsHWND {
-	val chain: WGPUChainedStruct
 	/**
 	 * The [[HINSTANCE]](https://learn.microsoft.com/en-us/windows/win32/learnwin32/winmain--the-application-entry-point) for this application.
 	 * Most commonly [GetModuleHandle(nullptr)].
@@ -1074,7 +1264,6 @@ expect interface WGPUSurfaceSourceWindowsHWND {
  * Chained in @ref WGPUSurfaceDescriptor to make an @ref WGPUSurface wrapping an [XCB](https://xcb.freedesktop.org/) [xcb_window_t].
  */
 expect interface WGPUSurfaceSourceXCBWindow {
-	val chain: WGPUChainedStruct
 	/**
 	 * The [xcb_connection_t] for the connection to the X server.
 	 */
@@ -1095,7 +1284,6 @@ expect interface WGPUSurfaceSourceXCBWindow {
  * Chained in @ref WGPUSurfaceDescriptor to make an @ref WGPUSurface wrapping an [Xlib](https://www.x.org/releases/current/doc/libX11/libX11/libX11.html) [Window].
  */
 expect interface WGPUSurfaceSourceXlibWindow {
-	val chain: WGPUChainedStruct
 	/**
 	 * A pointer to the [[Display]](https://www.x.org/releases/current/doc/libX11/libX11/libX11.html#Opening_the_Display) connected to the X server.
 	 */
@@ -1117,14 +1305,13 @@ expect interface WGPUSurfaceSourceXlibWindow {
  * See @ref Surface-Presenting for more details.
  */
 expect interface WGPUSurfaceTexture {
-	var nextInChain: NativeAddress?
 	/**
 	 * The @ref WGPUTexture representing the frame that will be shown on the surface.
 	 * It is @ref ReturnedWithOwnership from @ref wgpuSurfaceGetCurrentTexture.
 	 */
 	var texture: WGPUTexture?
 	/**
-	 * Whether the call to [wgpuSurfaceGetCurrentTexture] succeeded and a hint as to why it might not have.
+	 * Whether the call to @ref wgpuSurfaceGetCurrentTexture succeeded and a hint as to why it might not have.
 	 */
 	var status: WGPUSurfaceGetCurrentTextureStatus
 	val handler: NativeAddress
@@ -1162,6 +1349,10 @@ expect interface WGPUTexelCopyTextureInfo {
 	var texture: WGPUTexture?
 	var mipLevel: UInt
 	val origin: WGPUOrigin3D
+	/**
+	 * If set to @ref WGPUTextureAspect_Undefined,
+	 * [defaults](@ref SentinelValues) to @ref WGPUTextureAspect_All.
+	 */
 	var aspect: WGPUTextureAspect
 	val handler: NativeAddress
 	companion object {
@@ -1171,10 +1362,81 @@ expect interface WGPUTexelCopyTextureInfo {
 	}
 }
 
+/**
+ * Note: While Compatibility Mode is optional to implement, this extension struct
+ * is required to be accepted (but per the WebGPU spec, its contents are ignored
+ * on devices that have the @ref WGPUFeatureName_CoreFeaturesAndLimits feature).
+ */
+expect interface WGPUTextureBindingViewDimension {
+	var textureBindingViewDimension: WGPUTextureViewDimension
+	val handler: NativeAddress
+	companion object {
+		operator fun invoke(address: NativeAddress): WGPUTextureBindingViewDimension
+		fun allocate(allocator: MemoryAllocator): WGPUTextureBindingViewDimension
+		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPUTextureBindingViewDimension) -> Unit): ArrayHolder<WGPUTextureBindingViewDimension>
+	}
+}
+
+/**
+ * When accessed by a shader, the red/green/blue/alpha channels are replaced
+ * by the value corresponding to the component specified in r, g, b, and a,
+ * respectively unlike the JS API which uses a string of length four, with
+ * each character mapping to the texture view's red/green/blue/alpha channels.
+ */
+expect interface WGPUTextureComponentSwizzle {
+	/**
+	 * The value that replaces the red channel in the shader.
+	 * 
+	 * If set to @ref WGPUComponentSwizzle_Undefined,
+	 * [defaults](@ref SentinelValues) to @ref WGPUComponentSwizzle_R.
+	 */
+	var r: WGPUComponentSwizzle
+	/**
+	 * The value that replaces the green channel in the shader.
+	 * 
+	 * If set to @ref WGPUComponentSwizzle_Undefined,
+	 * [defaults](@ref SentinelValues) to @ref WGPUComponentSwizzle_G.
+	 */
+	var g: WGPUComponentSwizzle
+	/**
+	 * The value that replaces the blue channel in the shader.
+	 * 
+	 * If set to @ref WGPUComponentSwizzle_Undefined,
+	 * [defaults](@ref SentinelValues) to @ref WGPUComponentSwizzle_B.
+	 */
+	var b: WGPUComponentSwizzle
+	/**
+	 * The value that replaces the alpha channel in the shader.
+	 * 
+	 * If set to @ref WGPUComponentSwizzle_Undefined,
+	 * [defaults](@ref SentinelValues) to @ref WGPUComponentSwizzle_A.
+	 */
+	var a: WGPUComponentSwizzle
+	val handler: NativeAddress
+	companion object {
+		operator fun invoke(address: NativeAddress): WGPUTextureComponentSwizzle
+		fun allocate(allocator: MemoryAllocator): WGPUTextureComponentSwizzle
+		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPUTextureComponentSwizzle) -> Unit): ArrayHolder<WGPUTextureComponentSwizzle>
+	}
+}
+
+expect interface WGPUTextureComponentSwizzleDescriptor {
+	val swizzle: WGPUTextureComponentSwizzle
+	val handler: NativeAddress
+	companion object {
+		operator fun invoke(address: NativeAddress): WGPUTextureComponentSwizzleDescriptor
+		fun allocate(allocator: MemoryAllocator): WGPUTextureComponentSwizzleDescriptor
+		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPUTextureComponentSwizzleDescriptor) -> Unit): ArrayHolder<WGPUTextureComponentSwizzleDescriptor>
+	}
+}
+
 expect interface WGPUTextureDescriptor {
-	var nextInChain: NativeAddress?
 	val label: WGPUStringView
 	var usage: ULong
+	/**
+	 * If set to @ref WGPUTextureDimension_Undefined,
+	 * [defaults](@ref SentinelValues) to @ref WGPUTextureDimension_2D.
+	 */
 	var dimension: WGPUTextureDimension
 	val size: WGPUExtent3D
 	var format: WGPUTextureFormat
@@ -1191,7 +1453,6 @@ expect interface WGPUTextureDescriptor {
 }
 
 expect interface WGPUTextureViewDescriptor {
-	var nextInChain: NativeAddress?
 	val label: WGPUStringView
 	var format: WGPUTextureFormat
 	var dimension: WGPUTextureViewDimension
@@ -1199,6 +1460,10 @@ expect interface WGPUTextureViewDescriptor {
 	var mipLevelCount: UInt
 	var baseArrayLayer: UInt
 	var arrayLayerCount: UInt
+	/**
+	 * If set to @ref WGPUTextureAspect_Undefined,
+	 * [defaults](@ref SentinelValues) to @ref WGPUTextureAspect_All.
+	 */
 	var aspect: WGPUTextureAspect
 	var usage: ULong
 	val handler: NativeAddress
@@ -1221,12 +1486,21 @@ expect interface WGPUVertexAttribute {
 	}
 }
 
+/**
+ * If [attributes] is empty *and* [stepMode] is @ref WGPUVertexStepMode_Undefined,
+ * indicates a "hole" in the parent @ref WGPUVertexState [buffers] array,
+ * with behavior equivalent to [null] in the JS API.
+ * 
+ * If [attributes] is empty but [stepMode] is *not* @ref WGPUVertexStepMode_Undefined,
+ * indicates a vertex buffer with no attributes, with behavior equivalent to
+ * [{ attributes: [] }] in the JS API. (TODO: If the JS API changes not to
+ * distinguish these cases, then this distinction doesn't matter and we can
+ * remove this documentation.)
+ * 
+ * If [stepMode] is @ref WGPUVertexStepMode_Undefined but [attributes] is *not* empty,
+ * [stepMode] [defaults](@ref SentinelValues) to @ref WGPUVertexStepMode_Vertex.
+ */
 expect interface WGPUVertexBufferLayout {
-	/**
-	 * The step mode for the vertex buffer. If @ref WGPUVertexStepMode_VertexBufferNotUsed,
-	 * indicates a "hole" in the parent @ref WGPUVertexState [buffers] array:
-	 * the pipeline does not use a vertex buffer at this [location].
-	 */
 	var stepMode: WGPUVertexStepMode
 	var arrayStride: ULong
 	var attributeCount: ULong
@@ -1239,6 +1513,60 @@ expect interface WGPUVertexBufferLayout {
 	}
 }
 
+expect interface WGPUXlibDisplayHandle {
+	var display: NativeAddress?
+	var screen: Int
+	val handler: NativeAddress
+	companion object {
+		operator fun invoke(address: NativeAddress): WGPUXlibDisplayHandle
+		fun allocate(allocator: MemoryAllocator): WGPUXlibDisplayHandle
+		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPUXlibDisplayHandle) -> Unit): ArrayHolder<WGPUXlibDisplayHandle>
+	}
+}
+
+expect interface WGPUXcbDisplayHandle {
+	var connection: NativeAddress?
+	var screen: Int
+	val handler: NativeAddress
+	companion object {
+		operator fun invoke(address: NativeAddress): WGPUXcbDisplayHandle
+		fun allocate(allocator: MemoryAllocator): WGPUXcbDisplayHandle
+		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPUXcbDisplayHandle) -> Unit): ArrayHolder<WGPUXcbDisplayHandle>
+	}
+}
+
+expect interface WGPUWaylandDisplayHandle {
+	var display: NativeAddress?
+	val handler: NativeAddress
+	companion object {
+		operator fun invoke(address: NativeAddress): WGPUWaylandDisplayHandle
+		fun allocate(allocator: MemoryAllocator): WGPUWaylandDisplayHandle
+		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPUWaylandDisplayHandle) -> Unit): ArrayHolder<WGPUWaylandDisplayHandle>
+	}
+}
+
+expect interface WGPUNativeDisplayHandle {
+	var type: WGPUNativeDisplayHandleType
+	var data: NativeAddress?
+	val handler: NativeAddress
+	companion object {
+		operator fun invoke(address: NativeAddress): WGPUNativeDisplayHandle
+		fun allocate(allocator: MemoryAllocator): WGPUNativeDisplayHandle
+		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPUNativeDisplayHandle) -> Unit): ArrayHolder<WGPUNativeDisplayHandle>
+	}
+}
+
+expect interface WGPUChainedStruct {
+	var next: WGPUChainedStruct?
+	var sType: WGPUSType
+	val handler: NativeAddress
+	companion object {
+		operator fun invoke(address: NativeAddress): WGPUChainedStruct
+		fun allocate(allocator: MemoryAllocator): WGPUChainedStruct
+		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPUChainedStruct) -> Unit): ArrayHolder<WGPUChainedStruct>
+	}
+}
+
 expect interface WGPUInstanceExtras {
 	val chain: WGPUChainedStruct
 	var backends: ULong
@@ -1248,13 +1576,219 @@ expect interface WGPUInstanceExtras {
 	var glFenceBehaviour: WGPUGLFenceBehaviour
 	val dxcPath: WGPUStringView
 	var dxcMaxShaderModel: WGPUDxcMaxShaderModel
+	var dx12PresentationSystem: WGPUDx12SwapchainKind
 	var budgetForDeviceCreation: NativeAddress?
 	var budgetForDeviceLoss: NativeAddress?
+	val displayHandle: WGPUNativeDisplayHandle
 	val handler: NativeAddress
 	companion object {
 		operator fun invoke(address: NativeAddress): WGPUInstanceExtras
 		fun allocate(allocator: MemoryAllocator): WGPUInstanceExtras
 		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPUInstanceExtras) -> Unit): ArrayHolder<WGPUInstanceExtras>
+	}
+}
+
+expect interface WGPUDeviceExtras {
+	val chain: WGPUChainedStruct
+	val tracePath: WGPUStringView
+	val handler: NativeAddress
+	companion object {
+		operator fun invoke(address: NativeAddress): WGPUDeviceExtras
+		fun allocate(allocator: MemoryAllocator): WGPUDeviceExtras
+		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPUDeviceExtras) -> Unit): ArrayHolder<WGPUDeviceExtras>
+	}
+}
+
+expect interface WGPUNativeLimits {
+	val chain: WGPUChainedStruct
+	var maxImmediateSize: UInt
+	var maxNonSamplerBindings: UInt
+	var maxBindingArrayElementsPerShaderStage: UInt
+	val handler: NativeAddress
+	companion object {
+		operator fun invoke(address: NativeAddress): WGPUNativeLimits
+		fun allocate(allocator: MemoryAllocator): WGPUNativeLimits
+		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPUNativeLimits) -> Unit): ArrayHolder<WGPUNativeLimits>
+	}
+}
+
+expect interface WGPUPipelineLayoutExtras {
+	val chain: WGPUChainedStruct
+	var immediateDataSize: UInt
+	val handler: NativeAddress
+	companion object {
+		operator fun invoke(address: NativeAddress): WGPUPipelineLayoutExtras
+		fun allocate(allocator: MemoryAllocator): WGPUPipelineLayoutExtras
+		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPUPipelineLayoutExtras) -> Unit): ArrayHolder<WGPUPipelineLayoutExtras>
+	}
+}
+
+expect interface WGPUShaderDefine {
+	val name: WGPUStringView
+	val value: WGPUStringView
+	val handler: NativeAddress
+	companion object {
+		operator fun invoke(address: NativeAddress): WGPUShaderDefine
+		fun allocate(allocator: MemoryAllocator): WGPUShaderDefine
+		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPUShaderDefine) -> Unit): ArrayHolder<WGPUShaderDefine>
+	}
+}
+
+expect interface WGPUShaderSourceGLSL {
+	val chain: WGPUChainedStruct
+	var stage: WGPUShaderStage
+	val code: WGPUStringView
+	var defineCount: UInt
+	var defines: WGPUShaderDefine?
+	val handler: NativeAddress
+	companion object {
+		operator fun invoke(address: NativeAddress): WGPUShaderSourceGLSL
+		fun allocate(allocator: MemoryAllocator): WGPUShaderSourceGLSL
+		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPUShaderSourceGLSL) -> Unit): ArrayHolder<WGPUShaderSourceGLSL>
+	}
+}
+
+expect interface WGPUShaderModuleDescriptorSpirV {
+	val label: WGPUStringView
+	var sourceSize: UInt
+	var source: NativeAddress?
+	val handler: NativeAddress
+	companion object {
+		operator fun invoke(address: NativeAddress): WGPUShaderModuleDescriptorSpirV
+		fun allocate(allocator: MemoryAllocator): WGPUShaderModuleDescriptorSpirV
+		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPUShaderModuleDescriptorSpirV) -> Unit): ArrayHolder<WGPUShaderModuleDescriptorSpirV>
+	}
+}
+
+expect interface WGPURegistryReport {
+	var numAllocated: ULong
+	var numKeptFromUser: ULong
+	var numReleasedFromUser: ULong
+	var elementSize: ULong
+	val handler: NativeAddress
+	companion object {
+		operator fun invoke(address: NativeAddress): WGPURegistryReport
+		fun allocate(allocator: MemoryAllocator): WGPURegistryReport
+		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPURegistryReport) -> Unit): ArrayHolder<WGPURegistryReport>
+	}
+}
+
+expect interface WGPUHubReport {
+	val adapters: WGPURegistryReport
+	val devices: WGPURegistryReport
+	val queues: WGPURegistryReport
+	val pipelineLayouts: WGPURegistryReport
+	val shaderModules: WGPURegistryReport
+	val bindGroupLayouts: WGPURegistryReport
+	val bindGroups: WGPURegistryReport
+	val commandBuffers: WGPURegistryReport
+	val renderBundles: WGPURegistryReport
+	val renderPipelines: WGPURegistryReport
+	val computePipelines: WGPURegistryReport
+	val buffers: WGPURegistryReport
+	val textures: WGPURegistryReport
+	val textureViews: WGPURegistryReport
+	val samplers: WGPURegistryReport
+	val handler: NativeAddress
+	companion object {
+		operator fun invoke(address: NativeAddress): WGPUHubReport
+		fun allocate(allocator: MemoryAllocator): WGPUHubReport
+		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPUHubReport) -> Unit): ArrayHolder<WGPUHubReport>
+	}
+}
+
+expect interface WGPUGlobalReport {
+	val surfaces: WGPURegistryReport
+	val hub: WGPUHubReport
+	val handler: NativeAddress
+	companion object {
+		operator fun invoke(address: NativeAddress): WGPUGlobalReport
+		fun allocate(allocator: MemoryAllocator): WGPUGlobalReport
+		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPUGlobalReport) -> Unit): ArrayHolder<WGPUGlobalReport>
+	}
+}
+
+expect interface WGPUInstanceEnumerateAdapterOptions {
+	var nextInChain: WGPUChainedStruct?
+	var backends: ULong
+	val handler: NativeAddress
+	companion object {
+		operator fun invoke(address: NativeAddress): WGPUInstanceEnumerateAdapterOptions
+		fun allocate(allocator: MemoryAllocator): WGPUInstanceEnumerateAdapterOptions
+		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPUInstanceEnumerateAdapterOptions) -> Unit): ArrayHolder<WGPUInstanceEnumerateAdapterOptions>
+	}
+}
+
+expect interface WGPUBindGroupEntryExtras {
+	val chain: WGPUChainedStruct
+	var buffers: WGPUBuffer?
+	var bufferCount: ULong
+	var samplers: WGPUSampler?
+	var samplerCount: ULong
+	var textureViews: WGPUTextureView?
+	var textureViewCount: ULong
+	val handler: NativeAddress
+	companion object {
+		operator fun invoke(address: NativeAddress): WGPUBindGroupEntryExtras
+		fun allocate(allocator: MemoryAllocator): WGPUBindGroupEntryExtras
+		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPUBindGroupEntryExtras) -> Unit): ArrayHolder<WGPUBindGroupEntryExtras>
+	}
+}
+
+expect interface WGPUBindGroupLayoutEntryExtras {
+	val chain: WGPUChainedStruct
+	var count: UInt
+	val handler: NativeAddress
+	companion object {
+		operator fun invoke(address: NativeAddress): WGPUBindGroupLayoutEntryExtras
+		fun allocate(allocator: MemoryAllocator): WGPUBindGroupLayoutEntryExtras
+		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPUBindGroupLayoutEntryExtras) -> Unit): ArrayHolder<WGPUBindGroupLayoutEntryExtras>
+	}
+}
+
+expect interface WGPUQuerySetDescriptorExtras {
+	val chain: WGPUChainedStruct
+	var pipelineStatistics: NativeAddress?
+	var pipelineStatisticCount: ULong
+	val handler: NativeAddress
+	companion object {
+		operator fun invoke(address: NativeAddress): WGPUQuerySetDescriptorExtras
+		fun allocate(allocator: MemoryAllocator): WGPUQuerySetDescriptorExtras
+		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPUQuerySetDescriptorExtras) -> Unit): ArrayHolder<WGPUQuerySetDescriptorExtras>
+	}
+}
+
+expect interface WGPUSurfaceConfigurationExtras {
+	val chain: WGPUChainedStruct
+	var desiredMaximumFrameLatency: UInt
+	val handler: NativeAddress
+	companion object {
+		operator fun invoke(address: NativeAddress): WGPUSurfaceConfigurationExtras
+		fun allocate(allocator: MemoryAllocator): WGPUSurfaceConfigurationExtras
+		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPUSurfaceConfigurationExtras) -> Unit): ArrayHolder<WGPUSurfaceConfigurationExtras>
+	}
+}
+
+expect interface WGPUSurfaceSourceSwapChainPanel {
+	val chain: WGPUChainedStruct
+	var panelNative: NativeAddress?
+	val handler: NativeAddress
+	companion object {
+		operator fun invoke(address: NativeAddress): WGPUSurfaceSourceSwapChainPanel
+		fun allocate(allocator: MemoryAllocator): WGPUSurfaceSourceSwapChainPanel
+		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPUSurfaceSourceSwapChainPanel) -> Unit): ArrayHolder<WGPUSurfaceSourceSwapChainPanel>
+	}
+}
+
+expect interface WGPUPrimitiveStateExtras {
+	val chain: WGPUChainedStruct
+	var polygonMode: WGPUPolygonMode
+	var conservative: Boolean
+	val handler: NativeAddress
+	companion object {
+		operator fun invoke(address: NativeAddress): WGPUPrimitiveStateExtras
+		fun allocate(allocator: MemoryAllocator): WGPUPrimitiveStateExtras
+		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPUPrimitiveStateExtras) -> Unit): ArrayHolder<WGPUPrimitiveStateExtras>
 	}
 }
 
@@ -1378,6 +1912,19 @@ expect interface WGPURequestDeviceCallbackInfo {
 		operator fun invoke(address: NativeAddress): WGPURequestDeviceCallbackInfo
 		fun allocate(allocator: MemoryAllocator): WGPURequestDeviceCallbackInfo
 		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPURequestDeviceCallbackInfo) -> Unit): ArrayHolder<WGPURequestDeviceCallbackInfo>
+	}
+}
+
+expect interface WGPULogCallbackCallbackInfo {
+	var nextInChain: WGPUChainedStruct?
+	var callback: CallbackHolder<WGPULogCallbackCallback>?
+	var userdata1: NativeAddress?
+	var userdata2: NativeAddress?
+	val handler: NativeAddress
+	companion object {
+		operator fun invoke(address: NativeAddress): WGPULogCallbackCallbackInfo
+		fun allocate(allocator: MemoryAllocator): WGPULogCallbackCallbackInfo
+		fun allocateArray(allocator: MemoryAllocator, size: UInt, provider: (UInt, WGPULogCallbackCallbackInfo) -> Unit): ArrayHolder<WGPULogCallbackCallbackInfo>
 	}
 }
 

@@ -7,17 +7,95 @@ internal interface FunctionsInterface: com.sun.jna.Library {
 	@JvmName("wgpuCreateInstance")
 	fun wgpuCreateInstance(descriptor: WGPUInstanceDescriptor.ByReference?): com.sun.jna.Pointer?
 	@Suppress("INAPPLICABLE_JVM_NAME")
-	@JvmName("wgpuGetInstanceCapabilities")
-	fun wgpuGetInstanceCapabilities(capabilities: WGPUInstanceCapabilities.ByReference?): UInt
+	@JvmName("wgpuGetInstanceFeatures")
+	fun wgpuGetInstanceFeatures(features: WGPUSupportedInstanceFeatures.ByReference?): Unit
+	@Suppress("INAPPLICABLE_JVM_NAME")
+	@JvmName("wgpuGetInstanceLimits")
+	fun wgpuGetInstanceLimits(limits: WGPUInstanceLimits.ByReference?): UInt
+	@Suppress("INAPPLICABLE_JVM_NAME")
+	@JvmName("wgpuHasInstanceFeature")
+	fun wgpuHasInstanceFeature(feature: UInt): UInt
+	@Suppress("INAPPLICABLE_JVM_NAME")
+	@JvmName("wgpuGenerateReport")
+	fun wgpuGenerateReport(instance: com.sun.jna.Pointer?, report: WGPUGlobalReport.ByReference?): Unit
+	@Suppress("INAPPLICABLE_JVM_NAME")
+	@JvmName("wgpuInstanceEnumerateAdapters")
+	fun wgpuInstanceEnumerateAdapters(instance: com.sun.jna.Pointer?, options: WGPUInstanceEnumerateAdapterOptions.ByReference?, adapters: com.sun.jna.Pointer?): ULong
+	@Suppress("INAPPLICABLE_JVM_NAME")
+	@JvmName("wgpuQueueSubmitForIndex")
+	fun wgpuQueueSubmitForIndex(queue: com.sun.jna.Pointer?, commandCount: ULong, commands: com.sun.jna.Pointer?): ULong
+	@Suppress("INAPPLICABLE_JVM_NAME")
+	@JvmName("wgpuQueueGetTimestampPeriod")
+	fun wgpuQueueGetTimestampPeriod(queue: com.sun.jna.Pointer?): Float
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuDevicePoll")
-	fun wgpuDevicePoll(device: com.sun.jna.Pointer?, wait: UInt, wrappedSubmissionIndex: com.sun.jna.Pointer?): UInt
+	fun wgpuDevicePoll(device: com.sun.jna.Pointer?, wait: UInt, submissionIndex: ULong): UInt
+	@Suppress("INAPPLICABLE_JVM_NAME")
+	@JvmName("wgpuDeviceCreateShaderModuleSpirv")
+	fun wgpuDeviceCreateShaderModuleSpirv(device: com.sun.jna.Pointer?, descriptor: WGPUShaderModuleDescriptorSpirV.ByReference?): com.sun.jna.Pointer?
+	@Suppress("INAPPLICABLE_JVM_NAME")
+	@JvmName("wgpuDeviceStartGraphicsDebuggerCapture")
+	fun wgpuDeviceStartGraphicsDebuggerCapture(device: com.sun.jna.Pointer?): UInt
+	@Suppress("INAPPLICABLE_JVM_NAME")
+	@JvmName("wgpuDeviceStopGraphicsDebuggerCapture")
+	fun wgpuDeviceStopGraphicsDebuggerCapture(device: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuSetLogCallback")
 	fun wgpuSetLogCallback(callback: com.sun.jna.Callback?, userdata: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuSetLogLevel")
 	fun wgpuSetLogLevel(level: UInt): Unit
+	@Suppress("INAPPLICABLE_JVM_NAME")
+	@JvmName("wgpuGetVersion")
+	fun wgpuGetVersion(): UInt
+	@Suppress("INAPPLICABLE_JVM_NAME")
+	@JvmName("wgpuDeviceGetNativeMetalDevice")
+	fun wgpuDeviceGetNativeMetalDevice(device: com.sun.jna.Pointer?): com.sun.jna.Pointer?
+	@Suppress("INAPPLICABLE_JVM_NAME")
+	@JvmName("wgpuQueueGetNativeMetalCommandQueue")
+	fun wgpuQueueGetNativeMetalCommandQueue(queue: com.sun.jna.Pointer?): com.sun.jna.Pointer?
+	@Suppress("INAPPLICABLE_JVM_NAME")
+	@JvmName("wgpuTextureGetNativeMetalTexture")
+	fun wgpuTextureGetNativeMetalTexture(texture: com.sun.jna.Pointer?): com.sun.jna.Pointer?
+	@Suppress("INAPPLICABLE_JVM_NAME")
+	@JvmName("wgpuRenderPassEncoderSetImmediates")
+	fun wgpuRenderPassEncoderSetImmediates(encoder: com.sun.jna.Pointer?, offset: UInt, sizeBytes: UInt, data: com.sun.jna.Pointer?): Unit
+	@Suppress("INAPPLICABLE_JVM_NAME")
+	@JvmName("wgpuComputePassEncoderSetImmediates")
+	fun wgpuComputePassEncoderSetImmediates(encoder: com.sun.jna.Pointer?, offset: UInt, sizeBytes: UInt, data: com.sun.jna.Pointer?): Unit
+	@Suppress("INAPPLICABLE_JVM_NAME")
+	@JvmName("wgpuRenderBundleEncoderSetImmediates")
+	fun wgpuRenderBundleEncoderSetImmediates(encoder: com.sun.jna.Pointer?, offset: UInt, sizeBytes: UInt, data: com.sun.jna.Pointer?): Unit
+	@Suppress("INAPPLICABLE_JVM_NAME")
+	@JvmName("wgpuRenderPassEncoderMultiDrawIndirect")
+	fun wgpuRenderPassEncoderMultiDrawIndirect(encoder: com.sun.jna.Pointer?, buffer: com.sun.jna.Pointer?, offset: ULong, count: UInt): Unit
+	@Suppress("INAPPLICABLE_JVM_NAME")
+	@JvmName("wgpuRenderPassEncoderMultiDrawIndexedIndirect")
+	fun wgpuRenderPassEncoderMultiDrawIndexedIndirect(encoder: com.sun.jna.Pointer?, buffer: com.sun.jna.Pointer?, offset: ULong, count: UInt): Unit
+	@Suppress("INAPPLICABLE_JVM_NAME")
+	@JvmName("wgpuRenderPassEncoderMultiDrawIndirectCount")
+	fun wgpuRenderPassEncoderMultiDrawIndirectCount(encoder: com.sun.jna.Pointer?, buffer: com.sun.jna.Pointer?, offset: ULong, countBuffer: com.sun.jna.Pointer?, countBufferOffset: ULong, maxCount: UInt): Unit
+	@Suppress("INAPPLICABLE_JVM_NAME")
+	@JvmName("wgpuRenderPassEncoderMultiDrawIndexedIndirectCount")
+	fun wgpuRenderPassEncoderMultiDrawIndexedIndirectCount(encoder: com.sun.jna.Pointer?, buffer: com.sun.jna.Pointer?, offset: ULong, countBuffer: com.sun.jna.Pointer?, countBufferOffset: ULong, maxCount: UInt): Unit
+	@Suppress("INAPPLICABLE_JVM_NAME")
+	@JvmName("wgpuComputePassEncoderBeginPipelineStatisticsQuery")
+	fun wgpuComputePassEncoderBeginPipelineStatisticsQuery(encoder: com.sun.jna.Pointer?, querySet: com.sun.jna.Pointer?, queryIndex: UInt): Unit
+	@Suppress("INAPPLICABLE_JVM_NAME")
+	@JvmName("wgpuComputePassEncoderEndPipelineStatisticsQuery")
+	fun wgpuComputePassEncoderEndPipelineStatisticsQuery(encoder: com.sun.jna.Pointer?): Unit
+	@Suppress("INAPPLICABLE_JVM_NAME")
+	@JvmName("wgpuRenderPassEncoderBeginPipelineStatisticsQuery")
+	fun wgpuRenderPassEncoderBeginPipelineStatisticsQuery(encoder: com.sun.jna.Pointer?, querySet: com.sun.jna.Pointer?, queryIndex: UInt): Unit
+	@Suppress("INAPPLICABLE_JVM_NAME")
+	@JvmName("wgpuRenderPassEncoderEndPipelineStatisticsQuery")
+	fun wgpuRenderPassEncoderEndPipelineStatisticsQuery(encoder: com.sun.jna.Pointer?): Unit
+	@Suppress("INAPPLICABLE_JVM_NAME")
+	@JvmName("wgpuComputePassEncoderWriteTimestamp")
+	fun wgpuComputePassEncoderWriteTimestamp(encoder: com.sun.jna.Pointer?, querySet: com.sun.jna.Pointer?, queryIndex: UInt): Unit
+	@Suppress("INAPPLICABLE_JVM_NAME")
+	@JvmName("wgpuRenderPassEncoderWriteTimestamp")
+	fun wgpuRenderPassEncoderWriteTimestamp(encoder: com.sun.jna.Pointer?, querySet: com.sun.jna.Pointer?, queryIndex: UInt): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuAdapterRelease")
 	fun wgpuAdapterRelease(handler: com.sun.jna.Pointer?): Unit
@@ -60,6 +138,12 @@ internal interface FunctionsInterface: com.sun.jna.Library {
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuBufferGetConstMappedRange")
 	fun wgpuBufferGetConstMappedRange(handler: com.sun.jna.Pointer?, offset: ULong, size: ULong): com.sun.jna.Pointer?
+	@Suppress("INAPPLICABLE_JVM_NAME")
+	@JvmName("wgpuBufferReadMappedRange")
+	fun wgpuBufferReadMappedRange(handler: com.sun.jna.Pointer?, offset: ULong, data: com.sun.jna.Pointer?, size: ULong): UInt
+	@Suppress("INAPPLICABLE_JVM_NAME")
+	@JvmName("wgpuBufferWriteMappedRange")
+	fun wgpuBufferWriteMappedRange(handler: com.sun.jna.Pointer?, offset: ULong, data: com.sun.jna.Pointer?, size: ULong): UInt
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuBufferSetLabel")
 	fun wgpuBufferSetLabel(handler: com.sun.jna.Pointer?, label: WGPUStringView.ByValue): Unit
@@ -230,7 +314,7 @@ internal interface FunctionsInterface: com.sun.jna.Library {
 	fun wgpuDeviceGetFeatures(handler: com.sun.jna.Pointer?, features: WGPUSupportedFeatures.ByReference?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuDeviceGetAdapterInfo")
-	fun wgpuDeviceGetAdapterInfo(handler: com.sun.jna.Pointer?): WGPUAdapterInfo.ByValue
+	fun wgpuDeviceGetAdapterInfo(handler: com.sun.jna.Pointer?, adapterInfo: WGPUAdapterInfo.ByReference?): UInt
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuDeviceGetQueue")
 	fun wgpuDeviceGetQueue(handler: com.sun.jna.Pointer?): com.sun.jna.Pointer?
@@ -244,6 +328,12 @@ internal interface FunctionsInterface: com.sun.jna.Library {
 	@JvmName("wgpuDeviceSetLabel")
 	fun wgpuDeviceSetLabel(handler: com.sun.jna.Pointer?, label: WGPUStringView.ByValue): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
+	@JvmName("wgpuExternalTextureRelease")
+	fun wgpuExternalTextureRelease(handler: com.sun.jna.Pointer?): Unit
+	@Suppress("INAPPLICABLE_JVM_NAME")
+	@JvmName("wgpuExternalTextureSetLabel")
+	fun wgpuExternalTextureSetLabel(handler: com.sun.jna.Pointer?, label: WGPUStringView.ByValue): Unit
+	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuInstanceRelease")
 	fun wgpuInstanceRelease(handler: com.sun.jna.Pointer?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
@@ -251,7 +341,7 @@ internal interface FunctionsInterface: com.sun.jna.Library {
 	fun wgpuInstanceCreateSurface(handler: com.sun.jna.Pointer?, descriptor: WGPUSurfaceDescriptor.ByReference?): com.sun.jna.Pointer?
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuInstanceGetWGSLLanguageFeatures")
-	fun wgpuInstanceGetWGSLLanguageFeatures(handler: com.sun.jna.Pointer?, features: WGPUSupportedWGSLLanguageFeatures.ByReference?): UInt
+	fun wgpuInstanceGetWGSLLanguageFeatures(handler: com.sun.jna.Pointer?, features: WGPUSupportedWGSLLanguageFeatures.ByReference?): Unit
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuInstanceHasWGSLLanguageFeature")
 	fun wgpuInstanceHasWGSLLanguageFeature(handler: com.sun.jna.Pointer?, feature: UInt): UInt
@@ -486,6 +576,9 @@ internal interface FunctionsInterface: com.sun.jna.Library {
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuTextureGetDimension")
 	fun wgpuTextureGetDimension(handler: com.sun.jna.Pointer?): UInt
+	@Suppress("INAPPLICABLE_JVM_NAME")
+	@JvmName("wgpuTextureGetTextureBindingViewDimension")
+	fun wgpuTextureGetTextureBindingViewDimension(handler: com.sun.jna.Pointer?): UInt
 	@Suppress("INAPPLICABLE_JVM_NAME")
 	@JvmName("wgpuTextureGetFormat")
 	fun wgpuTextureGetFormat(handler: com.sun.jna.Pointer?): UInt

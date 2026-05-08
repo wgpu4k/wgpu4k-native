@@ -19,8 +19,19 @@ value class WGPUCommandEncoder(val handler: NativeAddress)
 value class WGPUComputePassEncoder(val handler: NativeAddress)
 @JvmInline
 value class WGPUComputePipeline(val handler: NativeAddress)
+/**
+ * TODO
+ * 
+ * Releasing the last ref to a [WGPUDevice] also calls @ref wgpuDeviceDestroy.
+ * For more info, see @ref DeviceRelease.
+ */
 @JvmInline
 value class WGPUDevice(val handler: NativeAddress)
+/**
+ * A sampleable 2D texture that may perform 0-copy YUV sampling internally. Creation of @ref WGPUExternalTexture is extremely implementation-dependent and not defined in this header.
+ */
+@JvmInline
+value class WGPUExternalTexture(val handler: NativeAddress)
 @JvmInline
 value class WGPUInstance(val handler: NativeAddress)
 @JvmInline

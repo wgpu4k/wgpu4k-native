@@ -20,7 +20,7 @@ private fun YamlModel.convertCallbacksFromV22() = function_types.map {
         },
         it.doc.actualDoc()
     )
-} + objects.flatMap { gpuObject ->
+} + objects.orEmpty().flatMap { gpuObject ->
     gpuObject.methods.filter { it.returns_async != null }.map {
         NativeModel.Callback(
             "${gpuObject.name}_${it.name}".convertToKotlinCallbackName(),

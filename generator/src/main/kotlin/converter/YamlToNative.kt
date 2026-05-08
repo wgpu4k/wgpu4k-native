@@ -58,7 +58,7 @@ private fun List<YamlModel.Enum.Entry?>.convertEnumToEnumValues(): List<Triple<S
         Triple(entry.name.convertToEnumValueName(), entry.value ?: index, entry.doc.actualDoc())
     }
 
-private fun YamlModel.convertToPointer(): List<NativeModel.Pointer> = objects.map {
+private fun YamlModel.convertToPointer(): List<NativeModel.Pointer> = objects.orEmpty().map {
     NativeModel.Pointer(
         it.name.convertToKotlinClassName(),
         it.doc.actualDoc()

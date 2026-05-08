@@ -5,333 +5,905 @@ copyright: |
 name: webgpu
 enum_prefix: '0x0000'
 enums:
-  - name: Gles3MinorVersion
+  # === Log Levels ===
+  - name: LogLevel
     doc: |
-      TODO
-    entries:
-      - name: Automatic
-        doc: |
-          TODO
-        value: 0x00000000
-      - name: Version0
-        doc: |
-          TODO
-        value: 0x00000001
-      - name: Version1
-        doc: |
-          TODO
-        value: 0x00000002
-      - name: Version2
-        doc: |
-          TODO
-        value: 0x00000003
-  - name: Dx12Compiler
-    doc: |
-      TODO
-    entries:
-      - name: Undefined
-        doc: |
-          TODO
-        value: 0x00000000
-      - name: Fxc
-        doc: |
-          TODO
-        value: 0x00000001
-      - name: Dxc
-        doc: |
-          TODO
-        value: 0x00000002
-  - name: log_level
-    doc: |
-      TODO
+      Log levels for wgpu-native logging.
     entries:
       - name: Off
-        doc: |
-          TODO
         value: 0x00000000
       - name: Error
-        doc: |
-          TODO
         value: 0x00000001
       - name: Warn
-        doc: |
-          TODO
         value: 0x00000002
       - name: Info
-        doc: |
-          TODO
         value: 0x00000003
       - name: Debug
-        doc: |
-          TODO
         value: 0x00000004
       - name: Trace
-        doc: |
-          TODO
         value: 0x00000005
-  - name: GLFenceBehaviour
-    doc: |
-      TODO
-    entries:
-      - name: Normal
-        doc: |
-          TODO
-        value: 0x00000000
-      - name: AutoFinish
-        doc: |
-          TODO
-        value: 0x00000001
-  - name: DxcMaxShaderModel
-    doc: |
-      TODO
-    entries:
-      - name: V6_0
-        doc: |
-          TODO
-        value: 0x00000000
-      - name: V6_1
-        doc: |
-          TODO
-        value: 0x00000001
-      - name: V6_2
-        doc: |
-          TODO
-        value: 0x00000002
-      - name: V6_3
-        doc: |
-          TODO
-        value: 0x00000003
-      - name: V6_4
-        doc: |
-          TODO
-        value: 0x00000004
-      - name: V6_5
-        doc: |
-          TODO
-        value: 0x00000005
-      - name: V6_6
-        doc: |
-          TODO
-        value: 0x00000006
-      - name: V6_7
-        doc: |
-          TODO
-        value: 0x00000007
+
+  # === Native STypes ===
   - name: NativeSType
     doc: |
-      TODO
+      Native structure type identifiers for wgpu-native extensions.
     entries:
       - name: DeviceExtras
-        doc: |
-          TODO
         value: 0x00030001
-      - name: RequiredLimitsExtras
-        doc: |
-          TODO
+      - name: NativeLimits
         value: 0x00030002
       - name: PipelineLayoutExtras
-        doc: |
-          TODO
         value: 0x00030003
       - name: ShaderSourceGLSL
-        doc: |
-          TODO
         value: 0x00030004
-      - name: SupportedLimitsExtras
-        doc: |
-          TODO
-        value: 0x00030005
       - name: InstanceExtras
-        doc: |
-          TODO
         value: 0x00030006
       - name: BindGroupEntryExtras
-        doc: |
-          TODO
         value: 0x00030007
       - name: BindGroupLayoutEntryExtras
-        doc: |
-          TODO
         value: 0x00030008
       - name: QuerySetDescriptorExtras
-        doc: |
-          TODO
         value: 0x00030009
       - name: SurfaceConfigurationExtras
-        doc: |
-          TODO
         value: 0x0003000A
       - name: SurfaceSourceSwapChainPanel
-        doc: |
-          TODO
         value: 0x0003000B
       - name: PrimitiveStateExtras
-        doc: |
-          TODO
         value: 0x0003000C
-constants: []
-typedefs: []
-bitflags:
-  - name: InstanceFlag
+
+  # === Surface Status ===
+  - name: NativeSurfaceGetCurrentTextureStatus
     doc: |
-      TODO
+      Additional surface-get-current-texture status codes defined by wgpu-native.
     entries:
-      - name: Default
-        doc: |
-          TODO
-      - name: Debug
-        doc: |
-          TODO
-      - name: Validation
-        doc: |
-          TODO
-      - name: DiscardHalLabels
-        doc: |
-          TODO
+      - name: Occluded
+        value: 0x00030001
+
+  # === Native Features ===
+  - name: NativeFeature
+    doc: |
+      Native-only device features that extend standard WebGPU features.
+    entries:
+      - name: Immediates
+        value: 0x00030001
+      - name: TextureAdapterSpecificFormatFeatures
+        value: 0x00030002
+      - name: MultiDrawIndirectCount
+        value: 0x00030004
+      - name: VertexWritableStorage
+        value: 0x00030005
+      - name: TextureBindingArray
+        value: 0x00030006
+      - name: SampledTextureAndStorageBufferArrayNonUniformIndexing
+        value: 0x00030007
+      - name: PipelineStatisticsQuery
+        value: 0x00030008
+      - name: StorageResourceBindingArray
+        value: 0x00030009
+      - name: PartiallyBoundBindingArray
+        value: 0x0003000A
+      - name: TextureFormat16bitNorm
+        value: 0x0003000B
+      - name: TextureCompressionAstcHdr
+        value: 0x0003000C
+      - name: MappablePrimaryBuffers
+        value: 0x0003000E
+      - name: BufferBindingArray
+        value: 0x0003000F
+      - name: UniformBufferAndStorageTextureArrayNonUniformIndexing
+        value: 0x00030010
+      - name: PolygonModeLine
+        value: 0x00030013
+      - name: PolygonModePoint
+        value: 0x00030014
+      - name: ConservativeRasterization
+        value: 0x00030015
+      - name: SpirvShaderPassthrough
+        value: 0x00030017
+      - name: VertexAttribute64bit
+        value: 0x00030019
+      - name: TextureFormatNv12
+        value: 0x0003001A
+      - name: RayQuery
+        value: 0x0003001C
+      - name: ShaderF64
+        value: 0x0003001D
+      - name: ShaderI16
+        value: 0x0003001E
+      - name: ShaderEarlyDepthTest
+        value: 0x00030020
+      - name: Subgroup
+        value: 0x00030021
+      - name: SubgroupVertex
+        value: 0x00030022
+      - name: SubgroupBarrier
+        value: 0x00030023
+      - name: TimestampQueryInsideEncoders
+        value: 0x00030024
+      - name: TimestampQueryInsidePasses
+        value: 0x00030025
+      - name: ShaderInt64
+        value: 0x00030026
+
+  # === Compiler & Version Enums ===
+  - name: Dx12Compiler
+    entries:
+      - name: Undefined
+        value: 0x00000000
+      - name: Fxc
+        value: 0x00000001
+      - name: Dxc
+        value: 0x00000002
+
+  - name: Gles3MinorVersion
+    entries:
+      - name: Automatic
+        value: 0x00000000
+      - name: Version0
+        value: 0x00000001
+      - name: Version1
+        value: 0x00000002
+      - name: Version2
+        value: 0x00000003
+
+  - name: DxcMaxShaderModel
+    entries:
+      - name: V6_0
+        value: 0x00000000
+      - name: V6_1
+        value: 0x00000001
+      - name: V6_2
+        value: 0x00000002
+      - name: V6_3
+        value: 0x00000003
+      - name: V6_4
+        value: 0x00000004
+      - name: V6_5
+        value: 0x00000005
+      - name: V6_6
+        value: 0x00000006
+      - name: V6_7
+        value: 0x00000007
+
+  - name: GLFenceBehaviour
+    entries:
+      - name: Normal
+        value: 0x00000000
+      - name: AutoFinish
+        value: 0x00000001
+
+  - name: PipelineStatisticName
+    entries:
+      - name: VertexShaderInvocations
+        value: 0x00000000
+      - name: ClipperInvocations
+        value: 0x00000001
+      - name: ClipperPrimitivesOut
+        value: 0x00000002
+      - name: FragmentShaderInvocations
+        value: 0x00000003
+      - name: ComputeShaderInvocations
+        value: 0x00000004
+
+  - name: NativeQueryType
+    entries:
+      - name: PipelineStatistics
+        value: 0x00030000
+
+  - name: Dx12SwapchainKind
+    entries:
+      - name: Undefined
+        value: 0x00000000
+      - name: DxgiFromHwnd
+        value: 0x00000001
+      - name: DxgiFromVisual
+        value: 0x00000002
+
+  - name: NativeDisplayHandleType
+    entries:
+      - name: None
+        value: 0x00000000
+      - name: Xlib
+        value: 0x00000001
+      - name: Xcb
+        value: 0x00000002
+      - name: Wayland
+        value: 0x00000003
+
+  - name: PolygonMode
+    entries:
+      - name: Fill
+        value: 0
+      - name: Line
+        value: 1
+      - name: Point
+        value: 2
+
+  - name: NativeTextureFormat
+    doc: |
+      Native-specific texture formats.
+    entries:
+      - name: R16Unorm
+        value: 0x00030001
+      - name: R16Snorm
+        value: 0x00030002
+      - name: Rg16Unorm
+        value: 0x00030003
+      - name: Rg16Snorm
+        value: 0x00030004
+      - name: Rgba16Unorm
+        value: 0x00030005
+      - name: Rgba16Snorm
+        value: 0x00030006
+      - name: NV12
+        value: 0x00030007
+      - name: P010
+        value: 0x00030008
+
+bitflags:
   - name: InstanceBackend
     doc: |
-      TODO
+      Bitflags selecting which graphics backends to enable.
     entries:
       - name: All
-        doc: |
-          TODO
+        value: 0x00000000
       - name: Vulkan
-        doc: |
-          TODO
+        value: 1
       - name: GL
-        doc: |
-          TODO
+        value: 2
       - name: Metal
-        doc: |
-          TODO
+        value: 4
       - name: DX12
-        doc: |
-          TODO
-      - name: DX11
-        doc: |
-          TODO
+        value: 8
       - name: BrowserWebGPU
-        doc: |
-          TODO
+        value: 32
       - name: Primary
-        doc: |
-          TODO
-        value_combination:
-          - Vulkan
-          - Metal
-          - DX12
-          - BrowserWebGPU
+        value_combination: [Vulkan, Metal, DX12, BrowserWebGPU]
       - name: Secondary
-        doc: |
-          TODO
-        value_combination:
-          - GL
-          - DX11
-structs:
-  - name: InstanceExtras
+        value_combination: [GL]
+
+  - name: InstanceFlag
     doc: |
-      TODO
+      Bitflags controlling instance debugging and validation behavior.
+    entries:
+      - name: Empty
+        value: 0x00000000
+      - name: Debug
+        value: 1
+      - name: Validation
+        value: 2
+      - name: DiscardHalLabels
+        value: 4
+      - name: AllowUnderlyingNoncompliantAdapter
+        value: 8
+      - name: GPUBasedValidation
+        value: 16
+      - name: ValidationIndirectCall
+        value: 32
+      - name: AutomaticTimestampNormalization
+        value: 64
+      - name: Default
+        value: 0x01000000
+      - name: Debugging
+        value: 0x02000000
+      - name: AdvancedDebugging
+        value: 0x04000000
+      - name: WithEnv
+        value: 0x08000000
+
+typedefs:
+  - name: SubmissionIndex
+    type: uint64
+
+structs:
+  # === Display Handle Structs ===
+  - name: XlibDisplayHandle
+    members:
+      - name: display
+        type: c_void
+        pointer: mutable
+      - name: screen
+        type: int32
+
+  - name: XcbDisplayHandle
+    members:
+      - name: connection
+        type: c_void
+        pointer: mutable
+      - name: screen
+        type: int32
+
+  - name: WaylandDisplayHandle
+    members:
+      - name: display
+        type: c_void
+        pointer: mutable
+
+  - name: NativeDisplayHandle
+    members:
+      - name: type
+        type: enum.NativeDisplayHandleType
+      - name: data
+        type: union
+        members:
+          - name: xlib
+            type: struct.XlibDisplayHandle
+          - name: xcb
+            type: struct.XcbDisplayHandle
+          - name: wayland
+            type: struct.WaylandDisplayHandle
+
+  # === Instance & Device Structs ===
+  - name: InstanceExtras
     type: extension_in
     members:
       - name: backends
-        doc: |
-          TODO
         type: bitflag.InstanceBackend
       - name: flags
-        doc: |
-          TODO
         type: bitflag.InstanceFlag
       - name: dx12ShaderCompiler
-        doc: |
-          TODO
         type: enum.Dx12Compiler
       - name: gles3MinorVersion
-        doc: |
-          TODO
         type: enum.Gles3MinorVersion
       - name: glFenceBehaviour
-        doc: |
-          TODO
         type: enum.GLFenceBehaviour
       - name: dxcPath
-        doc: |
-          TODO
         type: string
       - name: dxcMaxShaderModel
-        doc: |
-          TODO
         type: enum.DxcMaxShaderModel
+      - name: dx12PresentationSystem
+        type: enum.Dx12SwapchainKind
       - name: budgetForDeviceCreation
-        doc: |
-          TODO
         type: uint8
         pointer: immutable
       - name: budgetForDeviceLoss
-        doc: |
-          TODO
         type: uint8
         pointer: immutable
-callbacks: []
-functions:
-  - name: device_poll
-    doc: |
-      TODO
-    args:
-      - name: device
-        doc: |
-          TODO
-        type: object.device
-      - name: wait
-        doc: |
-          TODO
-        type: bool
-      - name: wrappedSubmissionIndex
-        doc: |
-          TODO
-        type: uint64
-        pointer: immutable
-    returns:
-      doc: |
-        TODO
-      type: bool
+      - name: displayHandle
+        type: struct.NativeDisplayHandle
 
-  - name: set_log_callback
-    doc: |
-      TODO
-    args:
-      - name: callback
-        doc: |
-          TODO
-        type: function_type.log_callback
-      - name: userdata
-        doc: |
-          TODO
+  - name: DeviceExtras
+    type: extension_in
+    members:
+      - name: tracePath
+        type: string
+
+  - name: NativeLimits
+    type: extension_in
+    members:
+      - name: maxImmediateSize
+        type: uint32
+      - name: maxNonSamplerBindings
+        type: uint32
+      - name: maxBindingArrayElementsPerShaderStage
+        type: uint32
+
+  # === Pipeline & Shader Structs ===
+  - name: PipelineLayoutExtras
+    type: extension_in
+    members:
+      - name: immediateDataSize
+        type: uint32
+
+  - name: ShaderDefine
+    members:
+      - name: name
+        type: string
+      - name: value
+        type: string
+
+  - name: ShaderSourceGLSL
+    type: extension_in
+    members:
+      - name: stage
+        type: enum.ShaderStage
+      - name: code
+        type: string
+      - name: defineCount
+        type: uint32
+      - name: defines
+        type: struct.ShaderDefine
+        pointer: immutable
+        array: true
+
+  - name: ShaderModuleDescriptorSpirV
+    members:
+      - name: label
+        type: string
+      - name: sourceSize
+        type: uint32
+      - name: source
+        type: uint32
+        pointer: immutable
+        array: true
+
+  # === Query & Statistics Structs ===
+  - name: RegistryReport
+    members:
+      - name: numAllocated
+        type: size_t
+      - name: numKeptFromUser
+        type: size_t
+      - name: numReleasedFromUser
+        type: size_t
+      - name: elementSize
+        type: size_t
+
+  - name: HubReport
+    members:
+      - name: adapters
+        type: struct.RegistryReport
+      - name: devices
+        type: struct.RegistryReport
+      - name: queues
+        type: struct.RegistryReport
+      - name: pipelineLayouts
+        type: struct.RegistryReport
+      - name: shaderModules
+        type: struct.RegistryReport
+      - name: bindGroupLayouts
+        type: struct.RegistryReport
+      - name: bindGroups
+        type: struct.RegistryReport
+      - name: commandBuffers
+        type: struct.RegistryReport
+      - name: renderBundles
+        type: struct.RegistryReport
+      - name: renderPipelines
+        type: struct.RegistryReport
+      - name: computePipelines
+        type: struct.RegistryReport
+      - name: buffers
+        type: struct.RegistryReport
+      - name: textures
+        type: struct.RegistryReport
+      - name: textureViews
+        type: struct.RegistryReport
+      - name: samplers
+        type: struct.RegistryReport
+
+  - name: GlobalReport
+    members:
+      - name: surfaces
+        type: struct.RegistryReport
+      - name: hub
+        type: struct.HubReport
+
+  - name: InstanceEnumerateAdapterOptions
+    members:
+      - name: nextInChain
+        type: struct.ChainedStruct
+        pointer: immutable
+      - name: backends
+        type: bitflag.InstanceBackend
+
+  # === Bind Group Structs ===
+  - name: BindGroupEntryExtras
+    type: extension_in
+    members:
+      - name: buffers
+        type: object.buffer
+        pointer: immutable
+        array: true
+      - name: bufferCount
+        type: size_t
+      - name: samplers
+        type: object.sampler
+        pointer: immutable
+        array: true
+      - name: samplerCount
+        type: size_t
+      - name: textureViews
+        type: object.texture_view
+        pointer: immutable
+        array: true
+      - name: textureViewCount
+        type: size_t
+
+  - name: BindGroupLayoutEntryExtras
+    type: extension_in
+    members:
+      - name: count
+        type: uint32
+
+  - name: QuerySetDescriptorExtras
+    type: extension_in
+    members:
+      - name: pipelineStatistics
+        type: enum.PipelineStatisticName
+        pointer: immutable
+        array: true
+      - name: pipelineStatisticCount
+        type: size_t
+
+  # === Surface Structs ===
+  - name: SurfaceConfigurationExtras
+    type: extension_in
+    members:
+      - name: desiredMaximumFrameLatency
+        type: uint32
+
+  - name: SurfaceSourceSwapChainPanel
+    type: extension_in
+    members:
+      - name: panelNative
         type: c_void
         pointer: mutable
-  - name: set_log_level
+
+  # === Primitive State ===
+  - name: PrimitiveStateExtras
+    type: extension_in
+    members:
+      - name: polygonMode
+        type: enum.PolygonMode
+      - name: conservative
+        type: bool
+
+constants: []
+callbacks:
+  - name: LogCallback
     doc: |
-      TODO
+      Callback for logging messages from wgpu-native.
     args:
       - name: level
-        doc: |
-          TODO
-        type: enum.log_level
-objects: []
-function_types:
-  - name: log_callback
-    doc: |
-      TODO
-    args:
-      - name: level
-        doc: |
-          TODO
-        type: enum.log_level
+        type: enum.LogLevel
       - name: message
-        doc: |
-          TODO
         type: string
       - name: userdata
-        doc: |
-          TODO
+        type: c_void
+        pointer: mutable
+
+functions:
+  # === Report & Enumeration ===
+  - name: generate_report
+    doc: |
+      Generate a report of all current objects in the instance.
+    args:
+      - name: instance
+        type: object.instance
+      - name: report
+        type: struct.GlobalReport
+        pointer: mutable
+    returns:
+      type: void
+
+  - name: instance_enumerate_adapters
+    doc: |
+      Enumerate adapters available to the instance with options.
+    args:
+      - name: instance
+        type: object.instance
+      - name: options
+        type: struct.InstanceEnumerateAdapterOptions
+        pointer: immutable
+        optional: true
+      - name: adapters
+        type: object.adapter
+        pointer: mutable
+    returns:
+      doc: |
+        Number of adapters written to the adapters array.
+      type: size_t
+
+  # === Queue Operations ===
+  - name: queue_submit_for_index
+    doc: |
+      Submit commands to the queue and return a submission index.
+    args:
+      - name: queue
+        type: object.queue
+      - name: commandCount
+        type: size_t
+      - name: commands
+        type: object.command_buffer
+        pointer: immutable
+        array: true
+    returns:
+      doc: |
+        A submission index that can be used with device_poll.
+      type: typedef.SubmissionIndex
+
+  - name: queue_get_timestamp_period
+    doc: |
+      Get the timestamp period of the queue in nanoseconds.
+    args:
+      - name: queue
+        type: object.queue
+    returns:
+      doc: |
+        Timestamp period in nanoseconds.
+      type: float32
+
+  # === Device Operations ===
+  - name: device_poll
+    doc: |
+      Poll the device for completion of queue submissions.
+    args:
+      - name: device
+        type: object.device
+      - name: wait
+        type: bool
+      - name: submissionIndex
+        type: typedef.SubmissionIndex
+        pointer: immutable
+        optional: true
+    returns:
+      doc: |
+        True if the queue is empty or the submission completed.
+      type: bool
+
+  - name: device_create_shader_module_spirv
+    doc: |
+      Create a shader module from SPIR-V binary.
+    args:
+      - name: device
+        type: object.device
+      - name: descriptor
+        type: struct.ShaderModuleDescriptorSpirV
+        pointer: immutable
+    returns:
+      type: object.shader_module
+
+  - name: device_start_graphics_debugger_capture
+    doc: |
+      Start a graphics debugger capture.
+    args:
+      - name: device
+        type: object.device
+    returns:
+      doc: |
+        True if capture was successfully started.
+      type: bool
+
+  - name: device_stop_graphics_debugger_capture
+    doc: |
+      Stop a graphics debugger capture.
+    args:
+      - name: device
+        type: object.device
+    returns:
+      type: void
+
+  # === Log Configuration ===
+  - name: set_log_callback
+    doc: |
+      Set a callback for log messages.
+    args:
+      - name: callback
+        type: function_type.log_callback
+        optional: true
+      - name: userdata
+        type: c_void
+        pointer: mutable
+        optional: true
+    returns:
+      type: void
+
+  - name: set_log_level
+    doc: |
+      Set the minimum log level.
+    args:
+      - name: level
+        type: enum.LogLevel
+    returns:
+      type: void
+
+  - name: get_version
+    doc: |
+      Get the wgpu-native version.
+    returns:
+      doc: |
+        Version number as an integer.
+      type: uint32
+
+  # === Metal Native Handle Getters ===
+  - name: device_get_native_metal_device
+    doc: |
+      Get the native Metal device handle.
+    args:
+      - name: device
+        type: object.device
+    returns:
+      doc: |
+        Opaque pointer to id<MTLDevice>, or NULL.
+      type: c_void
+      pointer: mutable
+
+  - name: queue_get_native_metal_command_queue
+    doc: |
+      Get the native Metal command queue handle.
+    args:
+      - name: queue
+        type: object.queue
+    returns:
+      doc: |
+        Opaque pointer to id<MTLCommandQueue>, or NULL.
+      type: c_void
+      pointer: mutable
+
+  - name: texture_get_native_metal_texture
+    doc: |
+      Get the native Metal texture handle.
+    args:
+      - name: texture
+        type: object.texture
+    returns:
+      doc: |
+        Opaque pointer to id<MTLTexture>, or NULL.
+      type: c_void
+      pointer: mutable
+
+  # === Immediate Data ===
+  - name: render_pass_encoder_set_immediates
+    doc: |
+      Set immediate data for a render pass encoder.
+    args:
+      - name: encoder
+        type: object.render_pass_encoder
+      - name: offset
+        type: uint32
+      - name: sizeBytes
+        type: uint32
+      - name: data
+        type: c_void
+        pointer: immutable
+
+  - name: compute_pass_encoder_set_immediates
+    doc: |
+      Set immediate data for a compute pass encoder.
+    args:
+      - name: encoder
+        type: object.compute_pass_encoder
+      - name: offset
+        type: uint32
+      - name: sizeBytes
+        type: uint32
+      - name: data
+        type: c_void
+        pointer: immutable
+
+  - name: render_bundle_encoder_set_immediates
+    doc: |
+      Set immediate data for a render bundle encoder.
+    args:
+      - name: encoder
+        type: object.render_bundle_encoder
+      - name: offset
+        type: uint32
+      - name: sizeBytes
+        type: uint32
+      - name: data
+        type: c_void
+        pointer: immutable
+
+  # === Multi Draw Indirect ===
+  - name: render_pass_encoder_multi_draw_indirect
+    doc: |
+      Execute multiple indirect draw calls.
+    args:
+      - name: encoder
+        type: object.render_pass_encoder
+      - name: buffer
+        type: object.buffer
+      - name: offset
+        type: uint64
+      - name: count
+        type: uint32
+
+  - name: render_pass_encoder_multi_draw_indexed_indirect
+    doc: |
+      Execute multiple indexed indirect draw calls.
+    args:
+      - name: encoder
+        type: object.render_pass_encoder
+      - name: buffer
+        type: object.buffer
+      - name: offset
+        type: uint64
+      - name: count
+        type: uint32
+
+  - name: render_pass_encoder_multi_draw_indirect_count
+    doc: |
+      Execute multiple indirect draw calls with count from a buffer.
+    args:
+      - name: encoder
+        type: object.render_pass_encoder
+      - name: buffer
+        type: object.buffer
+      - name: offset
+        type: uint64
+      - name: count_buffer
+        type: object.buffer
+      - name: count_buffer_offset
+        type: uint64
+      - name: max_count
+        type: uint32
+
+  - name: render_pass_encoder_multi_draw_indexed_indirect_count
+    doc: |
+      Execute multiple indexed indirect draw calls with count from a buffer.
+    args:
+      - name: encoder
+        type: object.render_pass_encoder
+      - name: buffer
+        type: object.buffer
+      - name: offset
+        type: uint64
+      - name: count_buffer
+        type: object.buffer
+      - name: count_buffer_offset
+        type: uint64
+      - name: max_count
+        type: uint32
+
+  # === Pipeline Statistics Query ===
+  - name: compute_pass_encoder_begin_pipeline_statistics_query
+    doc: |
+      Begin a pipeline statistics query in a compute pass.
+    args:
+      - name: encoder
+        type: object.compute_pass_encoder
+      - name: querySet
+        type: object.query_set
+      - name: queryIndex
+        type: uint32
+
+  - name: compute_pass_encoder_end_pipeline_statistics_query
+    doc: |
+      End a pipeline statistics query in a compute pass.
+    args:
+      - name: encoder
+        type: object.compute_pass_encoder
+
+  - name: render_pass_encoder_begin_pipeline_statistics_query
+    doc: |
+      Begin a pipeline statistics query in a render pass.
+    args:
+      - name: encoder
+        type: object.render_pass_encoder
+      - name: querySet
+        type: object.query_set
+      - name: queryIndex
+        type: uint32
+
+  - name: render_pass_encoder_end_pipeline_statistics_query
+    doc: |
+      End a pipeline statistics query in a render pass.
+    args:
+      - name: encoder
+        type: object.render_pass_encoder
+
+  # === Timestamp Queries ===
+  - name: compute_pass_encoder_write_timestamp
+    doc: |
+      Write a timestamp to a query set in a compute pass.
+    args:
+      - name: encoder
+        type: object.compute_pass_encoder
+      - name: querySet
+        type: object.query_set
+      - name: queryIndex
+        type: uint32
+
+  - name: render_pass_encoder_write_timestamp
+    doc: |
+      Write a timestamp to a query set in a render pass.
+    args:
+      - name: encoder
+        type: object.render_pass_encoder
+      - name: querySet
+        type: object.query_set
+      - name: queryIndex
+        type: uint32
+
+function_types:
+  - name: log_callback
+    args:
+      - name: level
+        type: enum.LogLevel
+      - name: message
+        type: string
+      - name: userdata
         type: c_void
         pointer: mutable

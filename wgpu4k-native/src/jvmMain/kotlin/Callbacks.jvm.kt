@@ -210,15 +210,15 @@ actual fun interface WGPUPopErrorScopeCallback : Callback {
 }
 
 actual fun interface WGPUQueueWorkDoneCallback : Callback {
-	actual fun invoke(status: WGPUQueueWorkDoneStatus, userdata1: NativeAddress?, userdata2: NativeAddress?)
+	actual fun invoke(status: WGPUQueueWorkDoneStatus, message: WGPUStringView?, userdata1: NativeAddress?, userdata2: NativeAddress?)
 	interface Function {
-		fun apply(status: Int, userdata1: java.lang.foreign.MemorySegment, userdata2: java.lang.foreign.MemorySegment)
+		fun apply(status: Int, message: java.lang.foreign.MemorySegment, userdata1: java.lang.foreign.MemorySegment, userdata2: java.lang.foreign.MemorySegment)
 	}
 	actual companion object {
 		actual fun allocate(allocator: MemoryAllocator, callback: WGPUQueueWorkDoneCallback): CallbackHolder<WGPUQueueWorkDoneCallback> {
 			val function = object : Function {
-				override fun apply(status: Int, userdata1: java.lang.foreign.MemorySegment, userdata2: java.lang.foreign.MemorySegment) {
-					callback.invoke(status.toUInt(), userdata1.let(::NativeAddress), userdata2.let(::NativeAddress))
+				override fun apply(status: Int, message: java.lang.foreign.MemorySegment, userdata1: java.lang.foreign.MemorySegment, userdata2: java.lang.foreign.MemorySegment) {
+					callback.invoke(status.toUInt(), message.takeIf { it != java.lang.foreign.MemorySegment.NULL }?.let { java.lang.foreign.MemorySegment.ofAddress(it.address()).reinterpret(it.byteSize()) }?.let(::NativeAddress)?.let { WGPUStringView(it) }, userdata1.let(::NativeAddress), userdata2.let(::NativeAddress))
 				}
 			}
 			return java.lang.foreign.Linker.nativeLinker().upcallStub(
@@ -230,6 +230,7 @@ actual fun interface WGPUQueueWorkDoneCallback : Callback {
 		}
 		private val descriptor: java.lang.foreign.FunctionDescriptor = java.lang.foreign.FunctionDescriptor.ofVoid(
 			ffi.C_INT,
+			WGPUStringView.LAYOUT,
 			ffi.C_POINTER,
 			ffi.C_POINTER,
 		)
@@ -332,6 +333,40 @@ actual fun interface WGPUUncapturedErrorCallback : Callback {
 			ffi.C_POINTER,
 			ffi.C_INT,
 			WGPUStringView.LAYOUT,
+			ffi.C_POINTER,
+			ffi.C_POINTER,
+		)
+		private val handler: java.lang.invoke.MethodHandle = ffi.upcallHandle(
+			Function::class.java,
+			"apply",
+			descriptor
+		)
+	}
+}
+
+actual fun interface WGPULogCallbackCallback : Callback {
+	actual fun invoke(level: WGPULogLevel, message: WGPUStringView?, userdata: NativeAddress?, userdata1: NativeAddress?, userdata2: NativeAddress?)
+	interface Function {
+		fun apply(level: Int, message: java.lang.foreign.MemorySegment, userdata: java.lang.foreign.MemorySegment, userdata1: java.lang.foreign.MemorySegment, userdata2: java.lang.foreign.MemorySegment)
+	}
+	actual companion object {
+		actual fun allocate(allocator: MemoryAllocator, callback: WGPULogCallbackCallback): CallbackHolder<WGPULogCallbackCallback> {
+			val function = object : Function {
+				override fun apply(level: Int, message: java.lang.foreign.MemorySegment, userdata: java.lang.foreign.MemorySegment, userdata1: java.lang.foreign.MemorySegment, userdata2: java.lang.foreign.MemorySegment) {
+					callback.invoke(level.toUInt(), message.takeIf { it != java.lang.foreign.MemorySegment.NULL }?.let { java.lang.foreign.MemorySegment.ofAddress(it.address()).reinterpret(it.byteSize()) }?.let(::NativeAddress)?.let { WGPUStringView(it) }, userdata.let(::NativeAddress), userdata1.let(::NativeAddress), userdata2.let(::NativeAddress))
+				}
+			}
+			return java.lang.foreign.Linker.nativeLinker().upcallStub(
+				handler.bindTo(function),
+				descriptor,
+				allocator.arena
+			).let(::NativeAddress)
+				.let(::CallbackHolder)
+		}
+		private val descriptor: java.lang.foreign.FunctionDescriptor = java.lang.foreign.FunctionDescriptor.ofVoid(
+			ffi.C_INT,
+			WGPUStringView.LAYOUT,
+			ffi.C_POINTER,
 			ffi.C_POINTER,
 			ffi.C_POINTER,
 		)

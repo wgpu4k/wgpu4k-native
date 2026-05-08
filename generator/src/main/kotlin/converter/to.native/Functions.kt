@@ -19,7 +19,7 @@ internal fun YamlModel.convertToCLibraryFunctions(): List<NativeModel.Function> 
             convertToCFunctionArgs(it.args, it.callback),
             it.doc.actualDoc()
         )
-    } + objects.flatMap { reference ->
+    } + objects.orEmpty().flatMap { reference ->
     (listOf(
         YamlModel.Function("release", "")
     ) + reference.methods)
