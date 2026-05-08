@@ -540,18 +540,7 @@ structs:
         type: bool
 
 constants: []
-callbacks:
-  - name: LogCallback
-    doc: |
-      Callback for logging messages from wgpu-native.
-    args:
-      - name: level
-        type: enum.LogLevel
-      - name: message
-        type: string
-      - name: userdata
-        type: c_void
-        pointer: mutable
+callbacks: []
 
 functions:
   # === Report & Enumeration ===

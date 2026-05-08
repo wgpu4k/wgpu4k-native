@@ -51,13 +51,6 @@ internal fun YamlModel.generateCLibraryStructures() = structs.map {
             NativeModel.StructureField("sType", NativeModel.Reference.Enumeration("WGPUSType"), "", null)
         ),
         null
-    ),
-    NativeModel.Structure(
-        "WGPUChainedStructOut", listOf(
-            NativeModel.StructureField("next", NativeModel.Reference.Structure("WGPUChainedStructOut"), "?", null),
-            NativeModel.StructureField("sType", NativeModel.Reference.Enumeration("WGPUSType"), "", null)
-        ),
-        null
     )
 ) + callbacks.map {
     val name = it.name.convertToKotlinCallbackStructureName()
