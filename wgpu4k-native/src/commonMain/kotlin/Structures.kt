@@ -1791,7 +1791,7 @@ expect interface WGPUShaderDefine {
 
 expect interface WGPUShaderSourceGLSL {
 	val chain: WGPUChainedStruct
-	var stage: WGPUShaderStage
+	var stage: ULong
 	val code: WGPUStringView
 	var defineCount: UInt
 	var defines: WGPUShaderDefine?

@@ -8276,9 +8276,9 @@ actual interface WGPUShaderSourceGLSL {
 		override val chain: WGPUChainedStruct
 			get() = handle.chain.let{ WGPUChainedStruct.ByValue(it) }
 
-		override var stage: WGPUShaderStage
-			get() = handle.stage.toUInt()
-			set(newValue) { handle.stage = newValue.toInt() }
+		override var stage: ULong
+			get() = handle.stage.toULong()
+			set(newValue) { handle.stage = newValue.toLong() }
 
 		override val code: WGPUStringView
 			get() = handle.code.let{ WGPUStringView.ByValue(it) }
@@ -8302,9 +8302,9 @@ actual interface WGPUShaderSourceGLSL {
 		override val chain: WGPUChainedStruct
 			get() = handle.chain.let{ WGPUChainedStruct.ByValue(it) }
 
-		override var stage: WGPUShaderStage
-			get() = handle.stage.toUInt()
-			set(newValue) { handle.stage = newValue.toInt() }
+		override var stage: ULong
+			get() = handle.stage.toULong()
+			set(newValue) { handle.stage = newValue.toLong() }
 
 		override val code: WGPUStringView
 			get() = handle.code.let{ WGPUStringView.ByValue(it) }
@@ -8328,7 +8328,7 @@ actual interface WGPUShaderSourceGLSL {
 	fun toReference() = (this as ByReference).handle
 
 	actual val chain: WGPUChainedStruct
-	actual var stage: WGPUShaderStage
+	actual var stage: ULong
 	actual val code: WGPUStringView
 	actual var defineCount: UInt
 	actual var defines: WGPUShaderDefine?

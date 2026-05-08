@@ -2903,7 +2903,7 @@ sealed class WGPUShaderDefine(pointer: com.sun.jna.Pointer? = null) : com.sun.jn
  */
 sealed class WGPUShaderSourceGLSL(pointer: com.sun.jna.Pointer? = null) : com.sun.jna.Structure(pointer) {
 	@JvmField var chain: WGPUChainedStruct.ByValue = WGPUChainedStruct.ByValue()
-	@JvmField var stage: Int = 0
+	@JvmField var stage: Long = 0L
 	@JvmField var code: WGPUStringView.ByValue = WGPUStringView.ByValue()
 	@JvmField var defineCount: Int = 0
 	@JvmField var defines: WGPUShaderDefine.ByReference?? = null

@@ -396,7 +396,7 @@ structs:
     type: extension_in
     members:
       - name: stage
-        type: enum.ShaderStage
+        type: bitflag.ShaderStage
       - name: code
         type: string
       - name: defineCount

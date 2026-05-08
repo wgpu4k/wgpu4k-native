@@ -8688,7 +8688,7 @@ actual interface WGPUShaderSourceGLSL {
 		override val chain: WGPUChainedStruct
 			get() = handle.useContents { chain.rawPtr.toLong().let(::NativeAddress).let { WGPUChainedStruct(it) } }
 
-		override var stage: WGPUShaderStage
+		override var stage: ULong
 			get() = handle.useContents { stage ?: error("pointer of WGPUShaderSourceGLSL is null") }
 			set(newValue) { handle.useContents { stage = newValue } } 
 
@@ -8711,7 +8711,7 @@ actual interface WGPUShaderSourceGLSL {
 		override val chain: WGPUChainedStruct
 			get() = handler.reinterpret<webgpu.native.WGPUShaderSourceGLSL>().pointed.chain.rawPtr.toLong().let(::NativeAddress).let { WGPUChainedStruct(it) }
 
-		override var stage: WGPUShaderStage
+		override var stage: ULong
 			get() = handler.reinterpret<webgpu.native.WGPUShaderSourceGLSL>().pointed.stage ?: error("pointer of WGPUShaderSourceGLSL is null")
 			set(newValue) { handler.reinterpret<webgpu.native.WGPUShaderSourceGLSL>().pointed.let { it.stage = newValue } } 
 
@@ -8729,7 +8729,7 @@ actual interface WGPUShaderSourceGLSL {
 	}
 
 	actual val chain: WGPUChainedStruct
-	actual var stage: WGPUShaderStage
+	actual var stage: ULong
 	actual val code: WGPUStringView
 	actual var defineCount: UInt
 	actual var defines: WGPUShaderDefine?

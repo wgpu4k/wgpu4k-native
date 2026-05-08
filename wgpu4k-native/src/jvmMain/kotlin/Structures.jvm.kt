@@ -6311,8 +6311,8 @@ actual interface WGPUShaderSourceGLSL : CStructure {
 	value class ByReference(override val handler: NativeAddress) : WGPUShaderSourceGLSL {
 		override val chain: WGPUChainedStruct
 			get() = handler.handler.asSlice(chainOffset, 16L).let(::NativeAddress).let { WGPUChainedStruct(it) }
-		override var stage: WGPUShaderStage
-			get() = getUInt(stageOffset)
+		override var stage: ULong
+			get() = getULong(stageOffset)
 			set(newValue) = set(stageOffset, newValue)
 		override val code: WGPUStringView
 			get() = handler.handler.asSlice(codeOffset, 16L).let(::NativeAddress).let { WGPUStringView(it) }
@@ -6325,7 +6325,7 @@ actual interface WGPUShaderSourceGLSL : CStructure {
 	}
 
 	actual val chain: WGPUChainedStruct
-	actual var stage: WGPUShaderStage
+	actual var stage: ULong
 	actual val code: WGPUStringView
 	actual var defineCount: UInt
 	actual var defines: WGPUShaderDefine?
@@ -6355,8 +6355,7 @@ actual interface WGPUShaderSourceGLSL : CStructure {
 
 		internal val LAYOUT = structLayout(
 			WGPUChainedStruct.LAYOUT.withName("chain"),
-			ffi.C_INT.withName("stage"),
-			MemoryLayout.paddingLayout(4),
+			ffi.C_LONG.withName("stage"),
 			WGPUStringView.LAYOUT.withName("code"),
 			ffi.C_INT.withName("defineCount"),
 			MemoryLayout.paddingLayout(4),
@@ -6366,7 +6365,7 @@ actual interface WGPUShaderSourceGLSL : CStructure {
 		val chainOffset = 0L
 		val chainLayout = WGPUChainedStruct.LAYOUT
 		val stageOffset = 16L
-		val stageLayout = ffi.C_INT
+		val stageLayout = ffi.C_LONG
 		val codeOffset = 24L
 		val codeLayout = WGPUStringView.LAYOUT
 		val defineCountOffset = 40L
