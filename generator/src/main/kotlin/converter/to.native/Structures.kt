@@ -12,7 +12,7 @@ import domain.actualDoc
 import domain.mappingVersion
 
 internal fun YamlModel.generateCLibraryStructures() = structs.map {
-    val members = getMembers(it)
+    val members = getMembers(it, structs)
     NativeModel.Structure(
         it.name.convertToKotlinClassName(),
         members.flatMap {
@@ -92,30 +92,36 @@ internal fun YamlModel.generateCLibraryStructures() = structs.map {
     )
 ) else emptyList()
 
-private fun getMembers(it: YamlModel.Struct) = when (it.type) {
-    "base_in" -> listOf(
-        YamlModel.Struct.Member(
-            "nextInChain",
-            "",
-            "c_void",
-            true,
-            "mutable"
-        )
-    ) + it.members
+private fun getMembers(it: YamlModel.Struct, allStructs: List<YamlModel.Struct>): List<YamlModel.Struct.Member> {
+    val inheritedMembers = it.extends.flatMap { parentName ->
+        allStructs.find { it.name == parentName }?.members ?: emptyList()
+    }
+    
+    return when (it.type) {
+        "base_in" -> listOf(
+            YamlModel.Struct.Member(
+                "nextInChain",
+                "",
+                "c_void",
+                true,
+                "mutable"
+            )
+        ) + it.members + inheritedMembers
 
-    "extension_in" -> listOf(YamlModel.Struct.Member("chain", "", "struct.chained_struct")) + it.members
-    "base_out", "base_in_or_out" -> listOf(
-        YamlModel.Struct.Member(
-            "nextInChain",
-            "",
-            "c_void",
-            true,
-            "mutable"
-        )
-    ) + it.members
+        "extension_in" -> listOf(YamlModel.Struct.Member("chain", "", "struct.chained_struct")) + it.members + inheritedMembers
+        "base_out", "base_in_or_out" -> listOf(
+            YamlModel.Struct.Member(
+                "nextInChain",
+                "",
+                "c_void",
+                true,
+                "mutable"
+            )
+        ) + it.members + inheritedMembers
 
-    "standalone", "extensible", "extensible_callback_arg", "extension", null -> it.members
-    else -> error("unsuported type ${it.type}")
+        "standalone", "extensible", "extensible_callback_arg", "extension", null -> it.members + inheritedMembers
+        else -> error("unsuported type ${it.type}")
+    }
 }
 
 

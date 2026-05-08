@@ -308,6 +308,38 @@ expect interface WGPUCompatibilityModeLimits {
 	var maxStorageTexturesInVertexStage: UInt
 	var maxStorageBuffersInFragmentStage: UInt
 	var maxStorageTexturesInFragmentStage: UInt
+	var maxTextureDimension1D: UInt
+	var maxTextureDimension2D: UInt
+	var maxTextureDimension3D: UInt
+	var maxTextureArrayLayers: UInt
+	var maxBindGroups: UInt
+	var maxBindGroupsPlusVertexBuffers: UInt
+	var maxBindingsPerBindGroup: UInt
+	var maxDynamicUniformBuffersPerPipelineLayout: UInt
+	var maxDynamicStorageBuffersPerPipelineLayout: UInt
+	var maxSampledTexturesPerShaderStage: UInt
+	var maxSamplersPerShaderStage: UInt
+	var maxStorageBuffersPerShaderStage: UInt
+	var maxStorageTexturesPerShaderStage: UInt
+	var maxUniformBuffersPerShaderStage: UInt
+	var maxUniformBufferBindingSize: ULong
+	var maxStorageBufferBindingSize: ULong
+	var minUniformBufferOffsetAlignment: UInt
+	var minStorageBufferOffsetAlignment: UInt
+	var maxVertexBuffers: UInt
+	var maxBufferSize: ULong
+	var maxVertexAttributes: UInt
+	var maxVertexBufferArrayStride: UInt
+	var maxInterStageShaderVariables: UInt
+	var maxColorAttachments: UInt
+	var maxColorAttachmentBytesPerSample: UInt
+	var maxComputeWorkgroupStorageSize: UInt
+	var maxComputeInvocationsPerWorkgroup: UInt
+	var maxComputeWorkgroupSizeX: UInt
+	var maxComputeWorkgroupSizeY: UInt
+	var maxComputeWorkgroupSizeZ: UInt
+	var maxComputeWorkgroupsPerDimension: UInt
+	var maxImmediateSize: UInt
 	val handler: NativeAddress
 	companion object {
 		operator fun invoke(address: NativeAddress): WGPUCompatibilityModeLimits
@@ -546,6 +578,36 @@ expect interface WGPUExtent3D {
  */
 expect interface WGPUExternalTextureBindingEntry {
 	var externalTexture: WGPUExternalTexture?
+	/**
+	 * Binding index in the bind group.
+	 */
+	var binding: UInt
+	/**
+	 * Set this if the binding is a buffer object.
+	 * Otherwise must be null.
+	 */
+	var buffer: WGPUBuffer?
+	/**
+	 * If the binding is a buffer, this is the byte offset of the binding range.
+	 * Otherwise ignored.
+	 */
+	var offset: ULong
+	/**
+	 * If the binding is a buffer, this is the byte size of the binding range
+	 * (@ref WGPU_WHOLE_SIZE means the binding ends at the end of the buffer).
+	 * Otherwise ignored.
+	 */
+	var size: ULong
+	/**
+	 * Set this if the binding is a sampler object.
+	 * Otherwise must be null.
+	 */
+	var sampler: WGPUSampler?
+	/**
+	 * Set this if the binding is a texture view object.
+	 * Otherwise must be null.
+	 */
+	var textureView: WGPUTextureView?
 	val handler: NativeAddress
 	companion object {
 		operator fun invoke(address: NativeAddress): WGPUExternalTextureBindingEntry
@@ -558,6 +620,16 @@ expect interface WGPUExternalTextureBindingEntry {
  * Chained in @ref WGPUBindGroupLayoutEntry to specify that the corresponding entries in an @ref WGPUBindGroup will contain an @ref WGPUExternalTexture.
  */
 expect interface WGPUExternalTextureBindingLayout {
+	var binding: UInt
+	var visibility: ULong
+	/**
+	 * If non-zero, this entry defines a binding array with this size.
+	 */
+	var bindingArraySize: UInt
+	val buffer: WGPUBufferBindingLayout
+	val sampler: WGPUSamplerBindingLayout
+	val texture: WGPUTextureBindingLayout
+	val storageTexture: WGPUStorageTextureBindingLayout
 	val handler: NativeAddress
 	companion object {
 		operator fun invoke(address: NativeAddress): WGPUExternalTextureBindingLayout
@@ -861,6 +933,12 @@ expect interface WGPURenderPassDescriptor {
 
 expect interface WGPURenderPassMaxDrawCount {
 	var maxDrawCount: ULong
+	val label: WGPUStringView
+	var colorAttachmentCount: ULong
+	var colorAttachments: ArrayHolder<WGPURenderPassColorAttachment>?
+	var depthStencilAttachment: WGPURenderPassDepthStencilAttachment?
+	var occlusionQuerySet: WGPUQuerySet?
+	var timestampWrites: WGPUPassTimestampWrites?
 	val handler: NativeAddress
 	companion object {
 		operator fun invoke(address: NativeAddress): WGPURenderPassMaxDrawCount
@@ -942,6 +1020,31 @@ expect interface WGPURequestAdapterWebXROptions {
 	 * Sets the [xrCompatible] option in the JS API.
 	 */
 	var xrCompatible: Boolean
+	/**
+	 * "Feature level" for the adapter request. If an adapter is returned, it must support the features and limits in the requested feature level.
+	 * 
+	 * If set to @ref WGPUFeatureLevel_Undefined,
+	 * [defaults](@ref SentinelValues) to @ref WGPUFeatureLevel_Core.
+	 * Additionally, implementations may ignore @ref WGPUFeatureLevel_Compatibility
+	 * and provide @ref WGPUFeatureLevel_Core instead.
+	 */
+	var featureLevel: WGPUFeatureLevel
+	var powerPreference: WGPUPowerPreference
+	/**
+	 * If true, requires the adapter to be a "fallback" adapter as defined by the JS spec.
+	 * If this is not possible, the request returns null.
+	 */
+	var forceFallbackAdapter: Boolean
+	/**
+	 * If set, requires the adapter to have a particular backend type.
+	 * If this is not possible, the request returns null.
+	 */
+	var backendType: WGPUBackendType
+	/**
+	 * If set, requires the adapter to be able to output to a particular surface.
+	 * If this is not possible, the request returns null.
+	 */
+	var compatibleSurface: WGPUSurface?
 	val handler: NativeAddress
 	companion object {
 		operator fun invoke(address: NativeAddress): WGPURequestAdapterWebXROptions
@@ -1017,6 +1120,7 @@ expect interface WGPUShaderModuleDescriptor {
 expect interface WGPUShaderSourceSPIRV {
 	var codeSize: UInt
 	var code: NativeAddress?
+	val label: WGPUStringView
 	val handler: NativeAddress
 	companion object {
 		operator fun invoke(address: NativeAddress): WGPUShaderSourceSPIRV
@@ -1027,6 +1131,7 @@ expect interface WGPUShaderSourceSPIRV {
 
 expect interface WGPUShaderSourceWGSL {
 	val code: WGPUStringView
+	val label: WGPUStringView
 	val handler: NativeAddress
 	companion object {
 		operator fun invoke(address: NativeAddress): WGPUShaderSourceWGSL
@@ -1195,6 +1300,10 @@ expect interface WGPUSurfaceSourceAndroidNativeWindow {
 	 * The pointer to the [[ANativeWindow]](https://developer.android.com/ndk/reference/group/a-native-window) that will be wrapped by the @ref WGPUSurface.
 	 */
 	var window: NativeAddress?
+	/**
+	 * Label used to refer to the object.
+	 */
+	val label: WGPUStringView
 	val handler: NativeAddress
 	companion object {
 		operator fun invoke(address: NativeAddress): WGPUSurfaceSourceAndroidNativeWindow
@@ -1211,6 +1320,10 @@ expect interface WGPUSurfaceSourceMetalLayer {
 	 * The pointer to the [[CAMetalLayer]](https://developer.apple.com/documentation/quartzcore/cametallayer?language=objc) that will be wrapped by the @ref WGPUSurface.
 	 */
 	var layer: NativeAddress?
+	/**
+	 * Label used to refer to the object.
+	 */
+	val label: WGPUStringView
 	val handler: NativeAddress
 	companion object {
 		operator fun invoke(address: NativeAddress): WGPUSurfaceSourceMetalLayer
@@ -1231,6 +1344,10 @@ expect interface WGPUSurfaceSourceWaylandSurface {
 	 * A [[wl_surface]](https://wayland.freedesktop.org/docs/html/apa.html#protocol-spec-wl_surface) that will be wrapped by the @ref WGPUSurface
 	 */
 	var surface: NativeAddress?
+	/**
+	 * Label used to refer to the object.
+	 */
+	val label: WGPUStringView
 	val handler: NativeAddress
 	companion object {
 		operator fun invoke(address: NativeAddress): WGPUSurfaceSourceWaylandSurface
@@ -1252,6 +1369,10 @@ expect interface WGPUSurfaceSourceWindowsHWND {
 	 * The [[HWND]](https://learn.microsoft.com/en-us/windows/apps/develop/ui-input/retrieve-hwnd) that will be wrapped by the @ref WGPUSurface.
 	 */
 	var hwnd: NativeAddress?
+	/**
+	 * Label used to refer to the object.
+	 */
+	val label: WGPUStringView
 	val handler: NativeAddress
 	companion object {
 		operator fun invoke(address: NativeAddress): WGPUSurfaceSourceWindowsHWND
@@ -1272,6 +1393,10 @@ expect interface WGPUSurfaceSourceXCBWindow {
 	 * The [xcb_window_t] for the window that will be wrapped by the @ref WGPUSurface.
 	 */
 	var window: UInt
+	/**
+	 * Label used to refer to the object.
+	 */
+	val label: WGPUStringView
 	val handler: NativeAddress
 	companion object {
 		operator fun invoke(address: NativeAddress): WGPUSurfaceSourceXCBWindow
@@ -1292,6 +1417,10 @@ expect interface WGPUSurfaceSourceXlibWindow {
 	 * The [[Window]](https://www.x.org/releases/current/doc/libX11/libX11/libX11.html#Creating_Windows) that will be wrapped by the @ref WGPUSurface.
 	 */
 	var window: ULong
+	/**
+	 * Label used to refer to the object.
+	 */
+	val label: WGPUStringView
 	val handler: NativeAddress
 	companion object {
 		operator fun invoke(address: NativeAddress): WGPUSurfaceSourceXlibWindow
@@ -1369,6 +1498,19 @@ expect interface WGPUTexelCopyTextureInfo {
  */
 expect interface WGPUTextureBindingViewDimension {
 	var textureBindingViewDimension: WGPUTextureViewDimension
+	val label: WGPUStringView
+	var usage: ULong
+	/**
+	 * If set to @ref WGPUTextureDimension_Undefined,
+	 * [defaults](@ref SentinelValues) to @ref WGPUTextureDimension_2D.
+	 */
+	var dimension: WGPUTextureDimension
+	val size: WGPUExtent3D
+	var format: WGPUTextureFormat
+	var mipLevelCount: UInt
+	var sampleCount: UInt
+	var viewFormatCount: ULong
+	var viewFormats: ArrayHolder<WGPUTextureFormat>?
 	val handler: NativeAddress
 	companion object {
 		operator fun invoke(address: NativeAddress): WGPUTextureBindingViewDimension
@@ -1422,6 +1564,19 @@ expect interface WGPUTextureComponentSwizzle {
 
 expect interface WGPUTextureComponentSwizzleDescriptor {
 	val swizzle: WGPUTextureComponentSwizzle
+	val label: WGPUStringView
+	var format: WGPUTextureFormat
+	var dimension: WGPUTextureViewDimension
+	var baseMipLevel: UInt
+	var mipLevelCount: UInt
+	var baseArrayLayer: UInt
+	var arrayLayerCount: UInt
+	/**
+	 * If set to @ref WGPUTextureAspect_Undefined,
+	 * [defaults](@ref SentinelValues) to @ref WGPUTextureAspect_All.
+	 */
+	var aspect: WGPUTextureAspect
+	var usage: ULong
 	val handler: NativeAddress
 	companion object {
 		operator fun invoke(address: NativeAddress): WGPUTextureComponentSwizzleDescriptor
