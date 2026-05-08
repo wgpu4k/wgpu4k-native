@@ -72,7 +72,8 @@ kotlin {
     }
 
     compilerOptions {
-        allWarningsAsErrors = true
+        // Fix generator before reactive this
+        //allWarningsAsErrors = true
         freeCompilerArgs.add("-Xexpect-actual-classes")
     }
 

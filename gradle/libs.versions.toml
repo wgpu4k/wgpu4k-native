@@ -1,18 +1,18 @@
 [versions]
 kaml = "0.96.0"
-kotlin = "2.2.21"
+kotlin = "2.3.21"
 wgpu = "v29.0.0.0"
 download = "5.6.0"
 agp = "8.12.3"
 jna = "5.18.1"
-dokka = "2.0.0"
+dokka = "2.2.0"
 
 # Tests
-kotest = "6.0.4"
+kotest = "6.1.11"
 ksp = "2.2.20-2.0.3"
 
 # Jvm demo
-glfwNative = "0.0.2"
+glfwNative = "0.0.3"
 rococoa = "0.0.1"
 
 # Android demo
