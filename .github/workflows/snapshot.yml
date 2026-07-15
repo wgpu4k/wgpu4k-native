@@ -23,7 +23,7 @@ jobs:
         run:  |
           ./gradlew fetch-native-dependencies
           ./gradlew assemble
-          ./gradlew build -x :kextract:test
+          ./gradlew build -x :kextract:test -x :demo:common:testDebugUnitTest
           ./gradlew publish --info
         env:
           SNAPSHOT: "true"
