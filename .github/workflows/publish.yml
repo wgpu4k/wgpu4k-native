@@ -19,15 +19,13 @@ jobs:
           cache: 'gradle'
       - name: Build and publish with Gradle
         run: |
-          ./gradlew fetch-native-dependencies
-          ./gradlew assemble
-          ./gradlew build -x :kextract:test
-          ./gradlew publish publishToCentralPortal --info
+          ./gradlew fetch-native-dependencies assemble build publishAndReleaseToMavenCentral \
+            -x :kextract:test \
+            --info
         env:
           SNAPSHOT: "false"
           VERSION: ${{ github.event.release.tag_name }}
-          JRELEASER_MAVENCENTRAL_USERNAME: ${{ secrets.SONATYPE_LOGIN }}
-          JRELEASER_MAVENCENTRAL_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
-          JRELEASER_GPG_PUBLIC_KEY: ${{ secrets.PGP_PUBLIC }}
-          JRELEASER_GPG_SECRET_KEY: ${{ secrets.PGP_PRIVATE }}
-          JRELEASER_GPG_PASSPHRASE: ${{ secrets.PGP_PASSPHRASE }}
+          ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.SONATYPE_LOGIN }}
+          ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.SONATYPE_PASSWORD }}
+          ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.PGP_PRIVATE }}
+          ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.PGP_PASSPHRASE }}

@@ -19,18 +19,15 @@ jobs:
           distribution: 'temurin'
           java-version: 25
       - name: Build and publish with Gradle
-        # Each step must be separate, so native libraries are taken into account.
-        run:  |
-          ./gradlew fetch-native-dependencies
-          ./gradlew assemble
-          ./gradlew build -x :kextract:test -x :demo:common:testDebugUnitTest
-          ./gradlew publish --info
+        run: |
+          ./gradlew fetch-native-dependencies assemble build publishToMavenCentral \
+            -x :kextract:test \
+            -x :demo:common:testDebugUnitTest \
+            --info
         env:
           SNAPSHOT: "true"
           VERSION: ${{ github.event.inputs.version }}
-          SONATYPE_LOGIN: ${{ secrets.SONATYPE_LOGIN }}
-          SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
-          JRELEASER_GPG_PUBLIC_KEY: ${{ secrets.PGP_PUBLIC }}
-          JRELEASER_GPG_SECRET_KEY: ${{ secrets.PGP_PRIVATE }}
-          JRELEASER_GPG_PASSPHRASE: ${{ secrets.PGP_PASSPHRASE }}
-          GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
+          ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.SONATYPE_LOGIN }}
+          ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.SONATYPE_PASSWORD }}
+          ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.PGP_PRIVATE }}
+          ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.PGP_PASSPHRASE }}
