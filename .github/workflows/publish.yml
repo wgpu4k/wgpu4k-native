@@ -19,11 +19,14 @@ jobs:
           cache: 'gradle'
       - name: Build and publish with Gradle
         run: |
+          if [[ -z "$VERSION" || "$VERSION" == *-SNAPSHOT ]]; then
+            echo "::error title=Invalid release VERSION::VERSION must be non-empty and must not end with -SNAPSHOT."
+            exit 1
+          fi
           ./gradlew fetch-native-dependencies assemble build publishToMavenCentral \
             -x :kextract:test \
             --info
         env:
-          SNAPSHOT: "false"
           VERSION: ${{ github.event.release.tag_name }}
           ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.SONATYPE_LOGIN }}
           ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.SONATYPE_PASSWORD }}

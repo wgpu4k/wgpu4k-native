@@ -20,12 +20,15 @@ jobs:
           java-version: 25
       - name: Build and publish with Gradle
         run: |
+          if [[ -n "$VERSION" && "$VERSION" != *-SNAPSHOT ]]; then
+            echo "::error title=Invalid snapshot VERSION::VERSION must be empty or end exactly with -SNAPSHOT."
+            exit 1
+          fi
           ./gradlew fetch-native-dependencies assemble build publishToMavenCentral \
             -x :kextract:test \
             -x :demo:common:testDebugUnitTest \
             --info
         env:
-          SNAPSHOT: "true"
           VERSION: ${{ github.event.inputs.version }}
           ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.SONATYPE_LOGIN }}
           ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.SONATYPE_PASSWORD }}
