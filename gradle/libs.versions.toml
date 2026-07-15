@@ -5,6 +5,7 @@ download = "5.6.0"
 agp = "9.0.0"
 jna = "5.18.1"
 dokka = "2.2.0"
+maven-publish = "0.36.0"
 
 # Tests
 kotest = "6.1.11"
@@ -38,10 +39,7 @@ kotest-core = { module = "io.kotest:kotest-framework-engine", version.ref = "kot
 kotest-assertions = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
 
 # Generator & Release
-commons-io = { module = "commons-io:commons-io", version = "2.20.0" }
 gson = { module = "com.google.code.gson:gson", version = "2.13.1" }
-okhttp = { module = "com.squareup.okhttp3:okhttp", version = "4.12.0" }
-zip4j = { module = "net.lingala.zip4j:zip4j", version = "2.11.5" }
 download = { module = "de.undercouch.download:de.undercouch.download.gradle.plugin", version.ref = "download" }
 dokka-plugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
 dokka-base = { module = "org.jetbrains.dokka:dokka-base", version.ref = "dokka" }
@@ -49,6 +47,7 @@ dokka-base = { module = "org.jetbrains.dokka:dokka-base", version.ref = "dokka" 
 [plugins]
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 android-application = { id = "com.android.application", version.ref = "agp" }
+maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "maven-publish" }
 
 # Tests
 kotest = { id = "io.kotest", version.ref = "kotest" }

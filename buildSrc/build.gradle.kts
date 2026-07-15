@@ -16,11 +16,9 @@ dependencies {
 	implementation(libs.download)
 	implementation(libs.bundles.dokka)
 	implementation(libs.android.library)
+	implementation("com.vanniktech:gradle-maven-publish-plugin:${libs.versions.maven.publish.get()}")
 
 	implementation(libs.gson)
-	implementation(libs.zip4j)
-	implementation(libs.okhttp)
-	implementation(libs.commons.io)
 
 	implementation(libs.plugins.kotlin.multiplatform.asLibrary())
 
