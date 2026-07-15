@@ -19,7 +19,7 @@ jobs:
           cache: 'gradle'
       - name: Build and publish with Gradle
         run: |
-          ./gradlew fetch-native-dependencies assemble build publishAndReleaseToMavenCentral \
+          ./gradlew fetch-native-dependencies assemble build publishToMavenCentral \
             -x :kextract:test \
             --info
         env:
