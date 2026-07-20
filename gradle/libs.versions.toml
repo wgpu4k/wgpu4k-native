@@ -9,7 +9,7 @@ maven-publish = "0.36.0"
 
 # Tests
 kotest = "6.1.11"
-ksp = "2.2.20-2.0.3"
+ksp = "2.3.10"
 androidx-test-ext-junit = "1.2.1"
 androidx-test-runner = "1.6.2"
 
