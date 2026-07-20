@@ -5,7 +5,7 @@ download = "5.6.0"
 agp = "9.0.0"
 jna = "5.18.1"
 dokka = "2.2.0"
-maven-publish = "0.36.0"
+maven-publish = "0.37.0"
 
 # Tests
 kotest = "6.1.11"
